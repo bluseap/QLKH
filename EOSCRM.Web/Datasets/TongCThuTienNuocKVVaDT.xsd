@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TongCThuTienNuocKVVaDT" targetNamespace="http://tempuri.org/TongCThuTienNuocKVVaDT.xsd" xmlns:mstns="http://tempuri.org/TongCThuTienNuocKVVaDT.xsd" xmlns="http://tempuri.org/TongCThuTienNuocKVVaDT.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TongCThuTienNuocKVVaDT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TongCThuTienNuocKVVaDT" msprop:Generator_DataSetName="TongCThuTienNuocKVVaDT">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TongChuanThuTienNuocKVVaDT" msprop:Generator_UserTableName="TongChuanThuTienNuocKVVaDT" msprop:Generator_RowDeletedName="TongChuanThuTienNuocKVVaDTRowDeleted" msprop:Generator_TableClassName="TongChuanThuTienNuocKVVaDTDataTable" msprop:Generator_RowChangedName="TongChuanThuTienNuocKVVaDTRowChanged" msprop:Generator_RowClassName="TongChuanThuTienNuocKVVaDTRow" msprop:Generator_RowChangingName="TongChuanThuTienNuocKVVaDTRowChanging" msprop:Generator_RowEvArgName="TongChuanThuTienNuocKVVaDTRowChangeEvent" msprop:Generator_RowEvHandlerName="TongChuanThuTienNuocKVVaDTRowChangeEventHandler" msprop:Generator_TablePropName="TongChuanThuTienNuocKVVaDT" msprop:Generator_TableVarName="tableTongChuanThuTienNuocKVVaDT" msprop:Generator_RowDeletingName="TongChuanThuTienNuocKVVaDTRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAKV" msprop:Generator_UserColumnName="MAKV" msprop:Generator_ColumnPropNameInRow="MAKV" msprop:Generator_ColumnVarNameInTable="columnMAKV" msprop:Generator_ColumnPropNameInTable="MAKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKV" msprop:Generator_UserColumnName="TENKV" msprop:Generator_ColumnPropNameInRow="TENKV" msprop:Generator_ColumnVarNameInTable="columnTENKV" msprop:Generator_ColumnPropNameInTable="TENKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DONVI" msprop:Generator_UserColumnName="DONVI" msprop:Generator_ColumnPropNameInRow="DONVI" msprop:Generator_ColumnVarNameInTable="columnDONVI" msprop:Generator_ColumnPropNameInTable="DONVIColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TCONG" msprop:Generator_UserColumnName="TCONG" msprop:Generator_ColumnPropNameInRow="TCONG" msprop:Generator_ColumnVarNameInTable="columnTCONG" msprop:Generator_ColumnPropNameInTable="TCONGColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SHOAT" msprop:Generator_UserColumnName="SHOAT" msprop:Generator_ColumnPropNameInRow="SHOAT" msprop:Generator_ColumnVarNameInTable="columnSHOAT" msprop:Generator_ColumnPropNameInTable="SHOATColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NTHON" msprop:Generator_UserColumnName="NTHON" msprop:Generator_ColumnPropNameInRow="NTHON" msprop:Generator_ColumnVarNameInTable="columnNTHON" msprop:Generator_ColumnPropNameInTable="NTHONColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DBDT" msprop:Generator_UserColumnName="DBDT" msprop:Generator_ColumnPropNameInRow="DBDT" msprop:Generator_ColumnVarNameInTable="columnDBDT" msprop:Generator_ColumnPropNameInTable="DBDTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COQUAN" msprop:Generator_UserColumnName="COQUAN" msprop:Generator_ColumnPropNameInRow="COQUAN" msprop:Generator_ColumnVarNameInTable="columnCOQUAN" msprop:Generator_ColumnPropNameInTable="COQUANColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SANXUAT" msprop:Generator_UserColumnName="SANXUAT" msprop:Generator_ColumnPropNameInRow="SANXUAT" msprop:Generator_ColumnVarNameInTable="columnSANXUAT" msprop:Generator_ColumnPropNameInTable="SANXUATColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KDOANH" msprop:Generator_UserColumnName="KDOANH" msprop:Generator_ColumnPropNameInRow="KDOANH" msprop:Generator_ColumnVarNameInTable="columnKDOANH" msprop:Generator_ColumnPropNameInTable="KDOANHColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TAUBIEN" msprop:Generator_UserColumnName="TAUBIEN" msprop:Generator_ColumnPropNameInRow="TAUBIEN" msprop:Generator_ColumnVarNameInTable="columnTAUBIEN" msprop:Generator_ColumnPropNameInTable="TAUBIENColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ORDERS" msprop:Generator_UserColumnName="ORDERS" msprop:Generator_ColumnPropNameInRow="ORDERS" msprop:Generator_ColumnVarNameInTable="columnORDERS" msprop:Generator_ColumnPropNameInTable="ORDERSColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

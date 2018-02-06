@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSKH_Tien" targetNamespace="http://tempuri.org/DSKH_Tien.xsd" xmlns:mstns="http://tempuri.org/DSKH_Tien.xsd" xmlns="http://tempuri.org/DSKH_Tien.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSKH_Tien" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DSKH_Tien" msprop:Generator_DataSetName="DSKH_Tien">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSKH_Tien" msprop:Generator_UserTableName="DSKH_Tien" msprop:Generator_RowDeletedName="DSKH_TienRowDeleted" msprop:Generator_TableClassName="DSKH_TienDataTable" msprop:Generator_RowChangedName="DSKH_TienRowChanged" msprop:Generator_RowClassName="DSKH_TienRow" msprop:Generator_RowChangingName="DSKH_TienRowChanging" msprop:Generator_RowEvArgName="DSKH_TienRowChangeEvent" msprop:Generator_RowEvHandlerName="DSKH_TienRowChangeEventHandler" msprop:Generator_TablePropName="_DSKH_Tien" msprop:Generator_TableVarName="tableDSKH_Tien" msprop:Generator_RowDeletingName="DSKH_TienRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAKV" msprop:Generator_UserColumnName="MAKV" msprop:Generator_ColumnPropNameInRow="MAKV" msprop:Generator_ColumnVarNameInTable="columnMAKV" msprop:Generator_ColumnPropNameInTable="MAKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKV" msprop:Generator_UserColumnName="TENKV" msprop:Generator_ColumnPropNameInRow="TENKV" msprop:Generator_ColumnVarNameInTable="columnTENKV" msprop:Generator_ColumnPropNameInTable="TENKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="MADP" msprop:Generator_UserColumnName="MADP" msprop:Generator_ColumnPropNameInRow="MADP" msprop:Generator_ColumnVarNameInTable="columnMADP" msprop:Generator_ColumnPropNameInTable="MADPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DUONGPHU" msprop:Generator_UserColumnName="DUONGPHU" msprop:Generator_ColumnPropNameInRow="DUONGPHU" msprop:Generator_ColumnVarNameInTable="columnDUONGPHU" msprop:Generator_ColumnPropNameInTable="DUONGPHUColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENDP" msprop:Generator_UserColumnName="TENDP" msprop:Generator_ColumnPropNameInRow="TENDP" msprop:Generator_ColumnVarNameInTable="columnTENDP" msprop:Generator_ColumnPropNameInTable="TENDPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LOTRINH" msprop:Generator_UserColumnName="LOTRINH" msprop:Generator_ColumnPropNameInRow="LOTRINH" msprop:Generator_ColumnVarNameInTable="columnLOTRINH" msprop:Generator_ColumnPropNameInTable="LOTRINHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SODB" msprop:Generator_UserColumnName="SODB" msprop:Generator_ColumnPropNameInRow="SODB" msprop:Generator_ColumnVarNameInTable="columnSODB" msprop:Generator_ColumnPropNameInTable="SODBColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKH" msprop:Generator_UserColumnName="TENKH" msprop:Generator_ColumnPropNameInRow="TENKH" msprop:Generator_ColumnVarNameInTable="columnTENKH" msprop:Generator_ColumnPropNameInTable="TENKHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DIACHI" msprop:Generator_UserColumnName="DIACHI" msprop:Generator_ColumnPropNameInRow="DIACHI" msprop:Generator_ColumnVarNameInTable="columnDIACHI" msprop:Generator_ColumnPropNameInTable="DIACHIColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TIENNUOC" msprop:Generator_UserColumnName="TIENNUOC" msprop:Generator_ColumnPropNameInRow="TIENNUOC" msprop:Generator_ColumnVarNameInTable="columnTIENNUOC" msprop:Generator_ColumnPropNameInTable="TIENNUOCColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MACQ" msprop:Generator_UserColumnName="MACQ" msprop:Generator_ColumnPropNameInRow="MACQ" msprop:Generator_ColumnVarNameInTable="columnMACQ" msprop:Generator_ColumnPropNameInTable="MACQColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

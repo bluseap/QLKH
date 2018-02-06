@@ -1,0 +1,72 @@
+D:\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\Quanlykhachhang\EOSCRM.Domain\obj\Debug\ResolveAssemblyReference.cache
+D:\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\CNAG\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\CNAG\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\CNAG\Quanlykhachhang\EOSCRM.Domain\obj\Debug\ResolveAssemblyReference.cache
+D:\CNAG\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Domain\obj\Debug\ResolveAssemblyReference.cache
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\181113\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\181113\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\181113\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\181113\Quanlykhachhang\EOSCRM.Domain\obj\Debug\ResolveAssemblyReference.cache
+D:\181113\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\181113\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\Nguyen\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\Nguyen\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\Nguyen\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\Nguyen\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\Nguyen\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\Nguyen\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+C:\Users\Administrator\Downloads\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+C:\Users\Administrator\Downloads\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+C:\Users\Administrator\Downloads\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+C:\Users\Administrator\Downloads\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Downloads\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+C:\Users\Administrator\Downloads\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\GIS\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\GIS\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\GIS\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\GIS\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\GIS\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\GIS\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
+D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache

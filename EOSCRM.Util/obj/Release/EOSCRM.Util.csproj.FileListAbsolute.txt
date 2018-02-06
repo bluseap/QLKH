@@ -1,0 +1,4 @@
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Release\EOSCRM.Util.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Release\EOSCRM.Util.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Release\EOSCRM.Util.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Release\EOSCRM.Util.pdb

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NhapXuatVatTu" targetNamespace="http://tempuri.org/NhapXuatVatTu.xsd" xmlns:mstns="http://tempuri.org/NhapXuatVatTu.xsd" xmlns="http://tempuri.org/NhapXuatVatTu.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NhapXuatVatTu" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="NhapXuatVatTu" msprop:Generator_DataSetName="NhapXuatVatTu" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NhapXuatVatTu" msprop:Generator_UserTableName="NhapXuatVatTu" msprop:Generator_RowDeletedName="NhapXuatVatTuRowDeleted" msprop:Generator_RowChangedName="NhapXuatVatTuRowChanged" msprop:Generator_RowClassName="NhapXuatVatTuRow" msprop:Generator_RowChangingName="NhapXuatVatTuRowChanging" msprop:Generator_RowEvArgName="NhapXuatVatTuRowChangeEvent" msprop:Generator_RowEvHandlerName="NhapXuatVatTuRowChangeEventHandler" msprop:Generator_TableClassName="NhapXuatVatTuDataTable" msprop:Generator_TableVarName="tableNhapXuatVatTu" msprop:Generator_RowDeletingName="NhapXuatVatTuRowDeleting" msprop:Generator_TablePropName="_NhapXuatVatTu">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAVT" msprop:Generator_UserColumnName="MAVT" msprop:Generator_ColumnVarNameInTable="columnMAVT" msprop:Generator_ColumnPropNameInRow="MAVT" msprop:Generator_ColumnPropNameInTable="MAVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TenVT" msprop:Generator_UserColumnName="TenVT" msprop:Generator_ColumnVarNameInTable="columnTenVT" msprop:Generator_ColumnPropNameInRow="TenVT" msprop:Generator_ColumnPropNameInTable="TenVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TenDVT" msprop:Generator_UserColumnName="TenDVT" msprop:Generator_ColumnVarNameInTable="columnTenDVT" msprop:Generator_ColumnPropNameInRow="TenDVT" msprop:Generator_ColumnPropNameInTable="TenDVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SoLuong" msprop:Generator_UserColumnName="SoLuong" msprop:Generator_ColumnVarNameInTable="columnSoLuong" msprop:Generator_ColumnPropNameInRow="SoLuong" msprop:Generator_ColumnPropNameInTable="SoLuongColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DataColumn1" msprop:Generator_UserColumnName="DataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,900 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="CapNhatSoBoTS.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.CapNhatSoBoTS" %>
+
+<%@ Import Namespace="EOSCRM.Web.Common"%>
+<%@ Import Namespace="EOSCRM.Util" %>
+<%@ Import Namespace="EOSCRM.Dao" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
+<asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
+    <script type="text/javascript">
+        var isValid = true;
+        $(document).ready(function () {
+            $("#divDuongPho").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divDuongPhoDlgContainer");
+                }
+            });
+        });
+
+        function CheckFormFilterDP() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDP) %>', '');
+            return false;
+        }
+
+        function CheckChangeDP(e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            jQuery.fn.exists = function () { return jQuery(this).length > 0; }
+            if (code == 13 || code == 9) {
+                openWaitingDialog();
+                unblockWaitingDialog();
+                __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
+            }
+        }
+
+        function CheckFormFilter() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
+            return false;
+        }
+        //
+        function CheckFormSAVE() {
+            //openWaitingDialog();
+            //unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btSAVE) %>', '');
+            return false;
+        }
+
+        function onFocusEventHandler(controlId) {
+            FocusAndSelect(controlId);
+        }
+
+        function onKeyDownEventHandler(txtSTTId, txtTENKHId, txtSONHAId, txtMADPGId, txtMADBGId, hfCNSBId, order, e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            jQuery.fn.exists = function () { return jQuery(this).length > 0; }
+
+            // key codes: 
+            // tab = 9, right arrow = 39
+            // enter = 13, page down = 34, down arrow = 40(phím lùn)
+            // page up = 33, up arrow = 38 
+            // left arrow = 37
+            //TODO: split hidden field to get csc          
+
+
+            var hfvalue = $("#" + hfCNSBId).val();
+            var idArr = hfvalue.split("<%= DELIMITER.Delimiter %>");
+
+            if (idArr.length != 6) return;
+            var oldSTT = idArr[1];
+            var oldTENKH = idArr[2];
+            var oldSONHA = idArr[3];
+            var oldMADPG = idArr[4];
+            var oldMADBG = idArr[5];
+            var msg = 'Vui lòng nhập số thứ tự hợp lệ.';
+
+            // enter, down arrow keycodes
+            //if (code == 13 || code == 34 || code == 40) { 
+            if (code == 13 || code == 34) {
+                if (order == 1) {
+                    
+                    var stt = $("#" + txtSTTId).val();
+                    var tenkh = $("#" + txtTENKHId).val();
+                    var sonha = $("#" + txtSONHAId).val();
+                    var madp = $("#" + txtMADPGId).val();
+                    var madb = $("#" + txtMADBGId).val();
+                    var failedMsg = 'Cập nhật khách hàng không thành công. Danh bộ có thể trùng.';
+                    var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoThoaiSon(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb);
+
+
+                    //alertWithFocusSelect(stt + " " + idArr[0], txtMADPGId);
+                    if (msg.value == "<%= DELIMITER.Failed %>") {
+                        alertWithFocusSelect(stt + " " + idArr[0], txtMADPGId);
+                        return;
+                    }                   
+
+
+                    var val = idArr[0] + "<%= DELIMITER.Delimiter %>" +
+                                    idArr[1] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[2] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[3] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[4] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[5];
+                    $("#" + hfCNSBId).val(val);
+
+                    var sttId = getNextId(txtSTTId) + "";
+                    if ($("#" + sttId).exists()) {
+                        FocusAndSelect(sttId);
+                    }
+                       
+                                      
+                }
+                else if (order == 2) {
+                    var tenkhId = getNextId(txtTENKHId) + "";
+                    if ($("#" + tenkhId).exists()) {
+                        FocusAndSelect(tenkhId);
+                    }
+                }
+                else if (order == 3) {
+                    var sonhaId = getNextId(txtSONHAId) + "";
+                    if ($("#" + sonhaId).exists()) {
+                        FocusAndSelect(sonhaId);
+                    }
+                }
+                else if (order == 4) {
+
+                    var stt = $("#" + txtSTTId).val();
+                    var tenkh = $("#" + txtTENKHId).val();
+                    var sonha = $("#" + txtSONHAId).val();
+                    var madp = $("#" + txtMADPGId).val();
+                    var madb = $("#" + txtMADBGId).val();
+                    var failedMsg = 'Cập nhật khách hàng không thành công. Danh bộ có thể trùng.';
+                    var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoThoaiSonDBDP(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb);
+
+                    if (msg.value == "<%= DELIMITER.Failed %>") {
+                        alertWithFocusSelect(failedMsg, txtMADPGId);
+                        return;
+                    }
+
+                    var val = idArr[0] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[1] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[2] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[3] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[4] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[5];
+                    $("#" + hfCNSBId).val(val);
+
+                    var madpId = getNextId(txtMADPGId) + "";
+                    if ($("#" + madpId).exists()) {
+                        FocusAndSelect(madpId);
+                    }
+                }
+                else if (order == 5) {
+
+                    var stt = $("#" + txtSTTId).val();
+                    var tenkh = $("#" + txtTENKHId).val();
+                    var sonha = $("#" + txtSONHAId).val();
+                    var madp = $("#" + txtMADPGId).val();
+                    var madb = $("#" + txtMADBGId).val();
+                    var failedMsg = 'Cập nhật khách hàng không thành công. Danh bộ có thể trùng.';
+                    var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoThoaiSonDBDP(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb);
+
+                    if (msg.value == "<%= DELIMITER.Failed %>") {
+                        //alertWithFocusSelect(failedMsg, txtMADBGId);
+                        alertWithFocusSelect(madp+madb+stt+idArr[0], txtMADBGId);
+                        return;
+                    }
+
+                    var val = idArr[0] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[1] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[2] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[3] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[4] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[5];
+                    $("#" + hfCNSBId).val(val);
+
+
+                    var madbId = getNextId(txtMADBGId) + "";
+                    if ($("#" + madbId).exists()) {
+                        FocusAndSelect(madbId);
+                    }
+                }
+            }
+                // up arrow key code
+            else if (code == 33 || code == 38 || code == 40) {
+                if (order == 1) {
+                    if (isDataValid(txtSTTId) == false) {
+                        setControlValue(txtSTTId, oldSTT);
+                        showErrorWithFocusSelect(msg, txtSTTId);
+                        return;
+                    }
+                    var sttId = getPrevId(txtSTTId) + "";
+                    if ($("#" + sttId).exists()) {
+                        FocusAndSelect(sttId);
+                    }
+                }
+                else if (order == 2) {
+                    var tenkhId = getPrevId(txtTENKHId) + "";
+                    if ($("#" + tenkhId).exists()) {
+                        FocusAndSelect(tenkhId);
+                    }
+                }
+                else if (order == 3) {
+                    var sonhaId = getPrevId(txtSONHAId) + "";
+                    if ($("#" + sonhaId).exists()) {
+                        FocusAndSelect(sonhaId);
+                    }
+                }
+                else if (order == 4) {
+                    var madpId = getNextId(txtMADPGId) + "";
+                    if ($("#" + madpId).exists()) {
+                        FocusAndSelect(madpId);
+                    }
+
+                }
+                else if (order == 5) {
+                    var madbId = getNextId(txtMADBGId) + "";
+                    if ($("#" + madbId).exists()) {
+                        FocusAndSelect(madbId);
+                    }
+                }
+            }
+        }
+        /**
+         * check if data in textboxes is valid or not
+         */
+        function isDataValid(txtSTTId) {
+            var stt = $("#" + txtSTTId).val();
+
+            if (!isUnsignedInteger(stt))
+                return false;
+
+            return true;
+        }
+
+        function onBlurEventHandler(txtSTTId, txtTENKHId, txtSONHAId, txtMADPGId, txtMADBGId, hfCNSBId, manv, order) {
+
+            //TODO: split hidden field to get csc
+            var idkh = '';
+            var oldSTT = 0;
+            var oldTENKH = '';
+            var oldSONHA = '';
+            var oldMADPG = '';
+            var oldMADBG = '';
+
+            var hfvalue = $("#" + hfCNSBId).val();
+            var idArr = hfvalue.split("<%= DELIMITER.Delimiter %>");
+                    if (idArr.length == 6) {
+                        idkh = idArr[0];
+                        oldSTT = idArr[1];
+                        oldTENKH = idArr[2];
+                        oldSONHA = idArr[3];
+                        oldMADPG = idArr[4];
+                        oldMADBG = idArr[5];
+                    }
+                    else {
+                        return;
+                    }
+
+
+            var stt = $("#" + txtSTTId).val();
+            var tenkh = $("#" + txtTENKHId).val();
+            var sonha = $("#" + txtSONHAId).val();
+            var madp = $("#" + txtMADPGId).val();
+            var madb = $("#" + txtMADBGId).val();
+            var failedMsg = 'Cập nhật khách hàng không thành công.';
+
+            //var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoThoaiSon(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb, manv);
+
+            if (msg.value != "<%= DELIMITER.Passed %>") {
+                setControlValue(txtSTTId, oldSTT);
+                setControlValue(txtTENKHId, oldTENKH);
+                setControlValue(txtSONHAId, oldSONHA);
+                setControlValue(txtMADPGId, oldMADPG);
+                setControlValue(txtMADBGId, oldMADBG);
+
+                if (order == 1) {
+                    showErrorWithFocusSelect(failedMsg, txtSTTId);
+                }
+                if (order == 2) {
+                    showErrorWithFocusSelect(failedMsg, txtTENKHId);
+                }
+                if (order == 3) {
+                    showErrorWithFocusSelect(failedMsg, txtSONHAId);
+                }
+                if (order == 4) {
+                    showErrorWithFocusSelect(failedMsg, txtMADPGId);
+                }
+                if (order == 5) {
+                    showErrorWithFocusSelect(failedMsg, txtMADBGId);
+                }
+
+                return;
+            }
+
+            var val = idkh + "<%= DELIMITER.Delimiter %>" +
+                        stt + "<%= DELIMITER.Delimiter %>" +
+                        tenkh + "<%= DELIMITER.Delimiter %>" +
+                        sonha + "<%= DELIMITER.Delimiter %>" +
+                        madp + "<%= DELIMITER.Delimiter %>" +
+                        madb;
+
+            // save to hidden field
+            $("#" + hfCNSBId).val(val);
+
+            // if update stt, refresh grid
+            if (order == 1 && stt != oldSTT) {
+                openWaitingDialog();
+                unblockWaitingDialog();
+                __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnHidden) %>', '');
+            }
+        }
+
+        function getPrefixId(controlId) {
+            return controlId.substring(0, controlId.lastIndexOf('_'));
+        }
+
+        function getControlName(controlId) {
+            return controlId.substring(controlId.lastIndexOf('_') + 1, controlId.length);
+        }
+
+        function getNextId(controlId) {
+            var ctrlName = controlId.substring(controlId.lastIndexOf('_') + 1, controlId.length);
+            var prefix = controlId.substring(0, controlId.lastIndexOf('_'));
+            var index = prefix.substring(prefix.lastIndexOf('_') + 4, prefix.length);
+            var shortPrefix = prefix.substring(0, prefix.lastIndexOf('_')) + '_ctl';
+
+            var nextIndex = parseInt(index, 10) + 1;
+            if (nextIndex < 10)
+                nextIndex = '0' + nextIndex;
+
+            return shortPrefix + nextIndex + '_' + ctrlName;
+        }
+
+        function getPrevId(controlId) {
+            var ctrlName = controlId.substring(controlId.lastIndexOf('_') + 1, controlId.length);
+            var prefix = controlId.substring(0, controlId.lastIndexOf('_'));
+            var index = prefix.substring(prefix.lastIndexOf('_') + 4, prefix.length);
+            var shortPrefix = prefix.substring(0, prefix.lastIndexOf('_')) + '_ctl';
+
+            var nextIndex = parseInt(index, 10) - 1;
+            if (nextIndex < 10)
+                nextIndex = '0' + nextIndex;
+
+            return shortPrefix + nextIndex + '_' + ctrlName;
+        }
+
+        function onKeyDownEventHandlerTD(txtSTTId, txtTENKHId, txtSONHAId, txtMADPGId, txtMADBGId, hfCNSBId, order, e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            jQuery.fn.exists = function () { return jQuery(this).length > 0; }
+
+            // key codes: 
+            // tab = 9, right arrow = 39
+            // enter = 13, page down = 34, down arrow = 40(phím lùn)
+            // page up = 33, up arrow = 38 
+            // left arrow = 37
+            //TODO: split hidden field to get csc          
+
+
+            var hfvalue = $("#" + hfCNSBId).val();
+            var idArr = hfvalue.split("<%= DELIMITER.Delimiter %>");
+
+            if (idArr.length != 6) return;
+            var oldSTT = idArr[1];
+            var oldTENKH = idArr[2];
+            var oldSONHA = idArr[3];
+            var oldMADPG = idArr[4];
+            var oldMADBG = idArr[5];
+            var msg = 'Vui lòng nhập số thứ tự hợp lệ.';
+
+            // enter, down arrow keycodes
+            //if (code == 13 || code == 34 || code == 40) { 
+            if (code == 13 || code == 34) {
+                if (order == 1) {
+                    if (isDataValid(txtSTTId) == false) {
+                        setControlValue(txtSTTId, oldSTT);
+                        showErrorWithFocusSelect(msg, txtSTTId);
+                        return;
+                    }
+                    var sttId = getNextId(txtSTTId) + "";
+                    if ($("#" + sttId).exists()) {
+                        FocusAndSelect(sttId);
+                    }
+                }
+                else if (order == 2) {
+                    var tenkhId = getNextId(txtTENKHId) + "";
+                    if ($("#" + tenkhId).exists()) {
+                        FocusAndSelect(tenkhId);
+                    }
+                }
+                else if (order == 3) {
+                    var sonhaId = getNextId(txtSONHAId) + "";
+                    if ($("#" + sonhaId).exists()) {
+                        FocusAndSelect(sonhaId);
+                    }
+                }
+                else if (order == 4) {
+
+                    var stt = $("#" + txtSTTId).val();
+                    var tenkh = $("#" + txtTENKHId).val();
+                    var sonha = $("#" + txtSONHAId).val();
+                    var madp = $("#" + txtMADPGId).val();
+                    var madb = $("#" + txtMADBGId).val();
+                    var failedMsg = 'Cập nhật khách hàng không thành công. Danh bộ có thể trùng.';
+                    var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoTachDuong(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb);
+
+                    if (msg.value == "<%= DELIMITER.Failed %>") {
+                        alertWithFocusSelect(failedMsg, txtMADPGId);
+                        return;
+                    }
+
+                    var val = idArr[0] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[1] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[2] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[3] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[4] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[5];
+                    $("#" + hfCNSBId).val(val);
+
+                    var madpId = getNextId(txtMADPGId) + "";
+                    if ($("#" + madpId).exists()) {
+                        FocusAndSelect(madpId);
+                    }
+                }
+                else if (order == 5) {
+
+                    var stt = $("#" + txtSTTId).val();
+                    var tenkh = $("#" + txtTENKHId).val();
+                    var sonha = $("#" + txtSONHAId).val();
+                    var madp = $("#" + txtMADPGId).val();
+                    var madb = $("#" + txtMADBGId).val();
+                    var failedMsg = 'Cập nhật khách hàng không thành công. Danh bộ có thể trùng.';
+                    var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoTachDuong(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb);
+
+                    if (msg.value == "<%= DELIMITER.Failed %>") {
+                        alertWithFocusSelect(failedMsg, txtMADBGId);
+                        return;
+                    }
+
+                    var val = idArr[0] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[1] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[2] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[3] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[4] + "<%= DELIMITER.Delimiter %>" +
+                                idArr[5];
+                    $("#" + hfCNSBId).val(val);
+
+                    var madbId = getNextId(txtMADBGId) + "";
+                    if ($("#" + madbId).exists()) {
+                        FocusAndSelect(madbId);
+                    }
+                }
+            }
+                            // up arrow key code
+            else if (code == 33 || code == 38 || code == 40) {
+                if (order == 1) {
+                    if (isDataValid(txtSTTId) == false) {
+                        setControlValue(txtSTTId, oldSTT);
+                        showErrorWithFocusSelect(msg, txtSTTId);
+                        return;
+                    }
+                    var sttId = getPrevId(txtSTTId) + "";
+                    if ($("#" + sttId).exists()) {
+                        FocusAndSelect(sttId);
+                    }
+                }
+                else if (order == 2) {
+                    var tenkhId = getPrevId(txtTENKHId) + "";
+                    if ($("#" + tenkhId).exists()) {
+                        FocusAndSelect(tenkhId);
+                    }
+                }
+                else if (order == 3) {
+                    var sonhaId = getPrevId(txtSONHAId) + "";
+                    if ($("#" + sonhaId).exists()) {
+                        FocusAndSelect(sonhaId);
+                    }
+                }
+                else if (order == 4) {
+                    var madpId = getNextId(txtMADPGId) + "";
+                    if ($("#" + madpId).exists()) {
+                        FocusAndSelect(madpId);
+                    }
+
+                }
+                else if (order == 5) {
+                    var madbId = getNextId(txtMADBGId) + "";
+                    if ($("#" + madbId).exists()) {
+                        FocusAndSelect(madbId);
+                    }
+                }
+            }
+        }
+
+        function onBlurEventHandlerTD(txtSTTId, txtTENKHId, txtSONHAId, txtMADPGId, txtMADBGId, hfCNSBId, manv, order) {
+            //TODO: split hidden field to get csc
+            var idkh = '';
+            var oldSTT = 0;
+            var oldTENKH = '';
+            var oldSONHA = '';
+            var oldMADPG = '';
+            var oldMADBG = '';
+
+            var hfvalue = $("#" + hfCNSBId).val();
+            var idArr = hfvalue.split("<%= DELIMITER.Delimiter %>");
+            if (idArr.length == 6) {
+                idkh = idArr[0];
+                oldSTT = idArr[1];
+                oldTENKH = idArr[2];
+                oldSONHA = idArr[3];
+                oldMADPG = idArr[4];
+                oldMADBG = idArr[5];
+            }
+            else {
+                return;
+            }
+
+            var stt = $("#" + txtSTTId).val();
+            var tenkh = $("#" + txtTENKHId).val();
+            var sonha = $("#" + txtSONHAId).val();
+            var madp = $("#" + txtMADPGId).val();
+            var madb = $("#" + txtMADBGId).val();
+            var failedMsg = 'Cập nhật khách hàng không thành công.';
+
+            var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoThoaiSon(idkh, oldSTT, stt, tenkh, sonha, madp, madb, manv);
+
+            if (msg.value != "<%= DELIMITER.Passed %>") {
+                setControlValue(txtSTTId, oldSTT);
+                setControlValue(txtTENKHId, oldTENKH);
+                setControlValue(txtSONHAId, oldSONHA);
+                setControlValue(txtMADPGId, oldMADPG);
+                setControlValue(txtMADBGId, oldMADBG);
+
+                if (order == 1) {
+                    showErrorWithFocusSelect(failedMsg, txtSTTId);
+                }
+                if (order == 2) {
+                    showErrorWithFocusSelect(failedMsg, txtTENKHId);
+                }
+                if (order == 3) {
+                    showErrorWithFocusSelect(failedMsg, txtSONHAId);
+                }
+                if (order == 4) {
+                    showErrorWithFocusSelect(failedMsg, txtMADPGId);
+                }
+                if (order == 5) {
+                    showErrorWithFocusSelect(failedMsg, txtMADBGId);
+                }
+
+                return;
+            }
+
+            var val = idkh + "<%= DELIMITER.Delimiter %>" +
+                        stt + "<%= DELIMITER.Delimiter %>" +
+                        tenkh + "<%= DELIMITER.Delimiter %>" +
+                        sonha + "<%= DELIMITER.Delimiter %>" +
+                        madp + "<%= DELIMITER.Delimiter %>" +
+                        madb;
+
+            // save to hidden field
+            $("#" + hfCNSBId).val(val);
+
+            // if update stt, refresh grid
+            if (order == 1 && stt != oldSTT) {
+                openWaitingDialog();
+                unblockWaitingDialog();
+                __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnHidden) %>', '');
+            }
+        }
+
+    </script>
+</asp:Content>
+<asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <div id="divDuongPhoDlgContainer">
+        <div id="divDuongPho" style="display: none">
+            <asp:UpdatePanel ID="upnlDuongPho" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Từ khóa
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtKeywordDP" onchange="return CheckFormFilterDP();" runat="server" Width="250px" MaxLength="200" />
+                                                </div>
+                                                <div class="left">
+                                                    <asp:Button ID="btnFilterDP" OnClick="btnFilterDP_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilterDP();" 
+                                                        runat="server" CssClass="filter" Text="" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+						<tr>
+							<td class="ptop-10">
+							    <div class="crmcontainer">
+							        <eoscrm:Grid ID="gvDuongPho" runat="server" UseCustomPager="true" 
+							            OnRowDataBound="gvDuongPho_RowDataBound" OnRowCommand="gvDuongPho_RowCommand" 
+							            OnPageIndexChanging="gvDuongPho_PageIndexChanging">
+                                        <PagerSettings FirstPageText="đường phố" PageButtonCount="2" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã ĐP">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" 
+                                                        CommandArgument='<%# Eval("MADP") + "-" + Eval("DUONGPHU") %>' CommandName="SelectMADP"                                                         
+                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MADP").ToString()) %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderStyle-Width="15%" DataField="DUONGPHU" HeaderText="Đường phụ" />
+                                            <asp:BoundField HeaderStyle-Width="50%" DataField="TENDP" HeaderText="Tên đường phố" />
+                                            <asp:TemplateField HeaderStyle-Width="25%" HeaderText="Khu vực">
+                                                <ItemTemplate>
+                                                    <%# Eval("KHUVUC.TENKV") %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </eoscrm:Grid>
+                                </div>
+							</td>
+						</tr>
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>
+    </div>
+    <asp:UpdatePanel ID="upnlGhiChiSo" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <div class="crmcontainer">
+                <a name="top"></a>
+                <table class="crmtable">
+                    <tbody>
+                        <tr>
+                            <td class="crmcell right">Kỳ khai thác</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                   <asp:DropDownList ID="ddlTHANG1" runat="server" >
+                                        <asp:ListItem Text="01" Value="01" />
+                                        <asp:ListItem Text="02" Value="02" />
+                                        <asp:ListItem Text="03" Value="03" />
+                                        <asp:ListItem Text="04" Value="04" />
+                                        <asp:ListItem Text="05" Value="05" />
+                                        <asp:ListItem Text="06" Value="06" />
+                                        <asp:ListItem Text="07" Value="07" />
+                                        <asp:ListItem Text="08" Value="08" />
+                                        <asp:ListItem Text="09" Value="09" />
+                                        <asp:ListItem Text="10" Value="10" />
+                                        <asp:ListItem Text="11" Value="11" />
+                                        <asp:ListItem Text="12" Value="12" />
+                                   </asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtNAM1" runat="server" Width="40px" MaxLength="4" />
+                                    <asp:Label ID="reloadm" runat="server" Visible="False"></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Đường phố</td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:TextBox ID="txtMADP" runat="server" onkeydown="return CheckChangeDP(event);" MaxLength="4" Width="40px" TabIndex="1" readonly="false" />
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="30px" TabIndex="2" Visible="false" />
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btnBrowseDP" runat="server" CssClass="pickup" OnClick="btnBrowseDP_Click"
+                                        CausesValidation="false" UseSubmitBehavior="false" 
+                                        OnClientClick="openDialogAndBlock('Chọn từ danh sách đường phố', 500, 'divDuongPho')" 
+                                        TabIndex="3" />
+                                </div>
+                                <div class="left">
+                                    <asp:Label ID="lblTENDUONG" runat="server" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell"> 
+                                <div class="left" >                                    
+                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click" Visible="true"
+                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilter();" 
+                                        runat="server" CssClass="filter" Text="" TabIndex="4" />
+                                </div>                                
+                                <div >     
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
+                                    <asp:LinkButton ID="lkLOCTACKDUONG"  runat="server" class="myButton" Visible="false"
+                                            OnClick="lkLOCTACKDUONG_Click"  >
+                                        Xếp lại danh số
+                                    </asp:LinkButton>
+                                </div> 
+                                <td class="crmcell right"></td>
+                                <td class="crmcell"> 
+                                    <div class="left">
+                                        <asp:Button ID="btSAVE" OnClick="btSAVE_Click"
+                                            UseSubmitBehavior="false" OnClientClick="return CheckFormSAVE();" 
+                                            runat="server" CssClass="myButton" Text="Bắt đầu tách đường" TabIndex="4" />
+                                    </div>  
+                                </td>  
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td>
+                               <div class="left">
+                                    <asp:Label ID="lbGHICHU2" runat="server" Text="Nhập STT từ 1 đến 1999. Bước nhảy 5" Font-Bold="True" Font-Size="Large" ForeColor="#FF3300"></asp:Label>
+                                </div>
+                             </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>
+                                <td class="crmcell right"></td>
+                                <td class="crmcell"> 
+                                    <div >     
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
+                                        <asp:LinkButton ID="lkBAOCAOQUAKH"  runat="server" class="myButton" 
+                                                OnClick="lkBAOCAOQUAKH_Click"  >
+                                            Chuyển qua KH - Báo cáo
+                                        </asp:LinkButton>
+                                    </div> 
+                                </td>                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>    
+    <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <br />
+            <asp:HiddenField id="hfMADP" runat="server" />
+            <asp:LinkButton ID="linkBtnHidden" CausesValidation="false" style="display:none"  
+                OnClick="linkBtnHidden_Click" runat="server">Refresh GridView</asp:LinkButton>
+            <div class="crmcontainer" id="divList" runat="server" visible="false">
+            </div>    
+            <eoscrm:Grid ID="gvList" runat="server" 
+                OnPageIndexChanging="gvList_PageIndexChanging" 
+                OnRowDataBound="gvList_RowDataBound" PageSize="800" UseCustomPager="true">
+                <PagerSettings FirstPageText="khách hàng" PageButtonCount="2" />
+                <Columns>
+                    <asp:TemplateField HeaderStyle-CssClass="checkbox" HeaderText="#">
+                        <ItemTemplate>
+                            <%# Container.DataItemIndex + 1 %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="60px" HeaderText="Danh bộ củ">
+                        <ItemTemplate>
+                            <%# (Eval("MADPCU").ToString() + Eval("MADBCU") ) %>
+                            <asp:HiddenField ID="hfCNSB" runat="server" value='<%# 
+                                        Eval("IDKH") + DELIMITER.Delimiter + 
+                                        Eval("STTMOI") + DELIMITER.Delimiter + 
+                                        Eval("TENKH") + DELIMITER.Delimiter + 
+                                        Eval("SONHA") + DELIMITER.Delimiter + 
+                                        Eval("MADPMOI") + DELIMITER.Delimiter + 
+                                        Eval("MADBMOI") 
+                                 %>' />
+                        </ItemTemplate>
+                        <ItemStyle Font-Bold="true" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="40px" HeaderText="Mã đường Mới">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtMADPG" runat="server" MaxLength="4" Text='<%# Bind("MADPMOI") %>' 
+                                Width="70px" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="40px" HeaderText="Danh số Mới">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtMADBG" runat="server" MaxLength="4" Text='<%# Bind("MADBMOI") %>' 
+                                Width="90px" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="60px" HeaderText="Số thứ tự Mới">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtSTT" runat="server" Text='<%# Bind("STTMOI") %>' 
+                                Width="55px" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="555px" HeaderText="Tên khách hàng">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtTENKH" runat="server" Text='<%# Bind("TENKH") %>' 
+                                Width="550px" Enabled="false"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Mã tách">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtSONHA" runat="server" Text='<%# Bind("SONHA") %>' 
+                                Width="80px" Enabled="false"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </eoscrm:Grid>
+            <br />
+            <div class="crmcontainer">
+                <table class="crmtable">
+                    <tbody>
+                        <tr>    
+                            <td class="crmcell right"><a href="#top">Về đầu trang</a></td>
+                            <td class="crmcell">    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <asp:UpdatePanel ID="upgvTACHDUONG" UpdateMode="Conditional" runat="server" Visible="false">
+        <ContentTemplate>            
+            <eoscrm:Grid ID="gvTACHDUONG" runat="server" 
+                OnPageIndexChanging="gvTACHDUONG_PageIndexChanging" 
+                OnRowDataBound="gvTACHDUONG_RowDataBound" PageSize="500" UseCustomPager="true">
+                <PagerSettings FirstPageText="tách dường" PageButtonCount="2" />
+                <Columns>
+                    <asp:TemplateField HeaderStyle-CssClass="checkbox" HeaderText="#">
+                        <ItemTemplate>
+                            <%# Container.DataItemIndex + 1 %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="60px" HeaderText="Danh bộ">
+                        <ItemTemplate>
+                            <%# (Eval("MADP").ToString() + Eval("MADB") ) %>
+                            <asp:HiddenField ID="hfCNSBTD" runat="server" value='<%# 
+                                        Eval("IDKH") + DELIMITER.Delimiter + 
+                                        Eval("STT") + DELIMITER.Delimiter + 
+                                        Eval("TENKH") + DELIMITER.Delimiter + 
+                                        Eval("SONHA") + DELIMITER.Delimiter + 
+                                        Eval("MADP") + DELIMITER.Delimiter + 
+                                        Eval("MADB") 
+                                 %>' />
+                        </ItemTemplate>
+                        <ItemStyle Font-Bold="true" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="40px" HeaderText="Mã đường">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtMADPGTD" runat="server" MaxLength="4" Text='<%# Bind("MADP") %>' 
+                                Width="70px" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="40px" HeaderText="Danh số">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtMADBGTD" runat="server" MaxLength="4" Text='<%# Bind("MADB") %>' 
+                                Width="90px" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="60px" HeaderText="Số thứ tự">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtSTTTD" runat="server" Text='<%# Bind("STT") %>' 
+                                Width="55px" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="555px" HeaderText="Tên khách hàng">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtTENKHTD" runat="server" Text='<%# Bind("TENKH") %>' 
+                                Width="550px" Enabled="false"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Số nhà">
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtSONHATD" runat="server" Text='<%# Bind("SONHA") %>' 
+                                Width="80px" Enabled="false"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>                    
+                </Columns>
+            </eoscrm:Grid>   
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <br />  
+    <asp:UpdatePanel ID="upnlCrystalReport" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <div class="crmcontainer" id="divCR" runat="server" visible="false">
+                <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX" 
+                    DisplayGroupTree="False" />
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="rpViewer" />
+        </Triggers>
+    </asp:UpdatePanel>
+</asp:Content>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BCTHTTNNUOC" targetNamespace="http://tempuri.org/BCTHTTNNUOC.xsd" xmlns:mstns="http://tempuri.org/BCTHTTNNUOC.xsd" xmlns="http://tempuri.org/BCTHTTNNUOC.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BCTHTTNNUOC" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BCTHTTNNUOC" msprop:Generator_DataSetName="BCTHTTNNUOC">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BCThuTienNuocKy" msprop:Generator_UserTableName="BCThuTienNuocKy" msprop:Generator_RowDeletedName="BCThuTienNuocKyRowDeleted" msprop:Generator_TableClassName="BCThuTienNuocKyDataTable" msprop:Generator_RowChangedName="BCThuTienNuocKyRowChanged" msprop:Generator_RowClassName="BCThuTienNuocKyRow" msprop:Generator_RowChangingName="BCThuTienNuocKyRowChanging" msprop:Generator_RowEvArgName="BCThuTienNuocKyRowChangeEvent" msprop:Generator_RowEvHandlerName="BCThuTienNuocKyRowChangeEventHandler" msprop:Generator_TablePropName="BCThuTienNuocKy" msprop:Generator_TableVarName="tableBCThuTienNuocKy" msprop:Generator_RowDeletingName="BCThuTienNuocKyRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="STT" msprop:Generator_UserColumnName="STT" msprop:Generator_ColumnPropNameInRow="STT" msprop:Generator_ColumnVarNameInTable="columnSTT" msprop:Generator_ColumnPropNameInTable="STTColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="HOTEN" msprop:Generator_UserColumnName="HOTEN" msprop:Generator_ColumnPropNameInRow="HOTEN" msprop:Generator_ColumnVarNameInTable="columnHOTEN" msprop:Generator_ColumnPropNameInTable="HOTENColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PTHDTK" msprop:Generator_UserColumnName="PTHDTK" msprop:Generator_ColumnPropNameInRow="PTHDTK" msprop:Generator_ColumnVarNameInTable="columnPTHDTK" msprop:Generator_ColumnPropNameInTable="PTHDTKColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PTSTTK" msprop:Generator_UserColumnName="PTSTTK" msprop:Generator_ColumnPropNameInRow="PTSTTK" msprop:Generator_ColumnVarNameInTable="columnPTSTTK" msprop:Generator_ColumnPropNameInTable="PTSTTKColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PTHDKT" msprop:Generator_UserColumnName="PTHDKT" msprop:Generator_ColumnPropNameInRow="PTHDKT" msprop:Generator_ColumnVarNameInTable="columnPTHDKT" msprop:Generator_ColumnPropNameInTable="PTHDKTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PTSTKT" msprop:Generator_UserColumnName="PTSTKT" msprop:Generator_ColumnPropNameInRow="PTSTKT" msprop:Generator_ColumnVarNameInTable="columnPTSTKT" msprop:Generator_ColumnPropNameInTable="PTSTKTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PTHDTC" msprop:Generator_UserColumnName="PTHDTC" msprop:Generator_ColumnPropNameInRow="PTHDTC" msprop:Generator_ColumnVarNameInTable="columnPTHDTC" msprop:Generator_ColumnPropNameInTable="PTHDTCColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PTSTTC" msprop:Generator_UserColumnName="PTSTTC" msprop:Generator_ColumnPropNameInRow="PTSTTC" msprop:Generator_ColumnVarNameInTable="columnPTSTTC" msprop:Generator_ColumnPropNameInTable="PTSTTCColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTHDTK" msprop:Generator_UserColumnName="TTHDTK" msprop:Generator_ColumnPropNameInRow="TTHDTK" msprop:Generator_ColumnVarNameInTable="columnTTHDTK" msprop:Generator_ColumnPropNameInTable="TTHDTKColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTSTTK" msprop:Generator_UserColumnName="TTSTTK" msprop:Generator_ColumnPropNameInRow="TTSTTK" msprop:Generator_ColumnVarNameInTable="columnTTSTTK" msprop:Generator_ColumnPropNameInTable="TTSTTKColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTTTDH" msprop:Generator_UserColumnName="TTTTDH" msprop:Generator_ColumnPropNameInRow="TTTTDH" msprop:Generator_ColumnVarNameInTable="columnTTTTDH" msprop:Generator_ColumnPropNameInTable="TTTTDHColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTTTST" msprop:Generator_UserColumnName="TTTTST" msprop:Generator_ColumnPropNameInRow="TTTTST" msprop:Generator_ColumnVarNameInTable="columnTTTTST" msprop:Generator_ColumnPropNameInTable="TTTTSTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTTCHD" msprop:Generator_UserColumnName="TTTCHD" msprop:Generator_ColumnPropNameInRow="TTTCHD" msprop:Generator_ColumnVarNameInTable="columnTTTCHD" msprop:Generator_ColumnPropNameInTable="TTTCHDColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTTCST" msprop:Generator_UserColumnName="TTTCST" msprop:Generator_ColumnPropNameInRow="TTTCST" msprop:Generator_ColumnVarNameInTable="columnTTTCST" msprop:Generator_ColumnPropNameInTable="TTTCSTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TONTHD" msprop:Generator_UserColumnName="TONTHD" msprop:Generator_ColumnPropNameInRow="TONTHD" msprop:Generator_ColumnVarNameInTable="columnTONTHD" msprop:Generator_ColumnPropNameInTable="TONTHDColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TONTST" msprop:Generator_UserColumnName="TONTST" msprop:Generator_ColumnPropNameInRow="TONTST" msprop:Generator_ColumnVarNameInTable="columnTONTST" msprop:Generator_ColumnPropNameInTable="TONTSTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TENCTY" msprop:Generator_UserColumnName="TENCTY" msprop:Generator_ColumnPropNameInRow="TENCTY" msprop:Generator_ColumnVarNameInTable="columnTENCTY" msprop:Generator_ColumnPropNameInTable="TENCTYColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

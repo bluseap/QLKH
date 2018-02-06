@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BAOCAOVTTK_LOI" targetNamespace="http://tempuri.org/BAOCAOVTTK_LOI.xsd" xmlns:mstns="http://tempuri.org/BAOCAOVTTK_LOI.xsd" xmlns="http://tempuri.org/BAOCAOVTTK_LOI.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BAOCAOVTTK_LOI" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BAOCAOVTTK_LOI" msprop:Generator_UserDSName="BAOCAOVTTK_LOI">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BAOCAOVTTK_LOI" msprop:Generator_TableClassName="BAOCAOVTTK_LOIDataTable" msprop:Generator_TableVarName="tableBAOCAOVTTK_LOI" msprop:Generator_TablePropName="_BAOCAOVTTK_LOI" msprop:Generator_RowDeletingName="BAOCAOVTTK_LOIRowDeleting" msprop:Generator_RowChangingName="BAOCAOVTTK_LOIRowChanging" msprop:Generator_RowEvHandlerName="BAOCAOVTTK_LOIRowChangeEventHandler" msprop:Generator_RowDeletedName="BAOCAOVTTK_LOIRowDeleted" msprop:Generator_UserTableName="BAOCAOVTTK_LOI" msprop:Generator_RowChangedName="BAOCAOVTTK_LOIRowChanged" msprop:Generator_RowEvArgName="BAOCAOVTTK_LOIRowChangeEvent" msprop:Generator_RowClassName="BAOCAOVTTK_LOIRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MADDK" msprop:Generator_ColumnVarNameInTable="columnMADDK" msprop:Generator_ColumnPropNameInRow="MADDK" msprop:Generator_ColumnPropNameInTable="MADDKColumn" msprop:Generator_UserColumnName="MADDK" type="xs:string" minOccurs="0" />
+              <xs:element name="MAVT" msprop:Generator_ColumnVarNameInTable="columnMAVT" msprop:Generator_ColumnPropNameInRow="MAVT" msprop:Generator_ColumnPropNameInTable="MAVTColumn" msprop:Generator_UserColumnName="MAVT" type="xs:string" minOccurs="0" />
+              <xs:element name="MAHIEU" msprop:Generator_ColumnVarNameInTable="columnMAHIEU" msprop:Generator_ColumnPropNameInRow="MAHIEU" msprop:Generator_ColumnPropNameInTable="MAHIEUColumn" msprop:Generator_UserColumnName="MAHIEU" type="xs:string" minOccurs="0" />
+              <xs:element name="MANHOM" msprop:Generator_ColumnVarNameInTable="columnMANHOM" msprop:Generator_ColumnPropNameInRow="MANHOM" msprop:Generator_ColumnPropNameInTable="MANHOMColumn" msprop:Generator_UserColumnName="MANHOM" type="xs:string" minOccurs="0" />
+              <xs:element name="TENNHOM" msprop:Generator_ColumnVarNameInTable="columnTENNHOM" msprop:Generator_ColumnPropNameInRow="TENNHOM" msprop:Generator_ColumnPropNameInTable="TENNHOMColumn" msprop:Generator_UserColumnName="TENNHOM" type="xs:string" minOccurs="0" />
+              <xs:element name="NOIDUNG" msprop:Generator_ColumnVarNameInTable="columnNOIDUNG" msprop:Generator_ColumnPropNameInRow="NOIDUNG" msprop:Generator_ColumnPropNameInTable="NOIDUNGColumn" msprop:Generator_UserColumnName="NOIDUNG" type="xs:string" minOccurs="0" />
+              <xs:element name="SOLUONG" msprop:Generator_ColumnVarNameInTable="columnSOLUONG" msprop:Generator_ColumnPropNameInRow="SOLUONG" msprop:Generator_ColumnPropNameInTable="SOLUONGColumn" msprop:Generator_UserColumnName="SOLUONG" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

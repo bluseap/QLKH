@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{218EEAD3-D699-4BCC-A274-153850ADBAED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EOSCRM.Dao</RootNamespace>
+    <AssemblyName>EOSCRM.Dao</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApToDao.cs" />
+    <Compile Include="BBNghiemThuDao.cs" />
+    <Compile Include="BBNghiemThuPoDao.cs" />
+    <Compile Include="CapBacDao.cs" />
+    <Compile Include="ChietTinhDao.cs" />
+    <Compile Include="ChietTinhSuaChuaDao.cs" />
+    <Compile Include="ChiTietChietTinhDao.cs" />
+    <Compile Include="ChiTietChietTinhND117Dao.cs" />
+    <Compile Include="ChiTietChietTinhSuaChuaDao.cs" />
+    <Compile Include="ChiTietMauBocVatTuDao.cs" />
+    <Compile Include="ChiTietQuyetToanND117Dao.cs" />
+    <Compile Include="ChiTietQuyetToanSuaChuaDao.cs" />
+    <Compile Include="ChiTietThietKeDao.cs" />
+    <Compile Include="CongViecDao.cs" />
+    <Compile Include="ChiTietChietTinhSuaChuaND117Dao.cs" />
+    <Compile Include="ChiTietQuyetToanDao.cs" />
+    <Compile Include="CongNoDao.cs" />
+    <Compile Include="ChiTietQuyetToanSuaChuaND117Dao.cs" />
+    <Compile Include="DataERPPO.cs" />
+    <Compile Include="DMDotInHDDao.cs" />
+    <Compile Include="DMThuHoDao.cs" />
+    <Compile Include="DoanDao.cs" />
+    <Compile Include="DonDangKyPoDao.cs" />
+    <Compile Include="DongHoPoDao.cs" />
+    <Compile Include="DotInHDDao.cs" />
+    <Compile Include="DuongPhoPoDao.cs" />
+    <Compile Include="DuyetQuyenDao.cs" />
+    <Compile Include="ERPPOClass.cs" />
+    <Compile Include="ExportGV_Excel.cs" />
+    <Compile Include="GhiChiSoPoDao.cs" />
+    <Compile Include="HisNgayDangKyDao.cs" />
+    <Compile Include="HistoriDao.cs" />
+    <Compile Include="HoNgheoNDao.cs" />
+    <Compile Include="HopDongPoDao.cs" />
+    <Compile Include="KhachHangPoDao.cs" />
+    <Compile Include="KhachHangTamDao.cs" />
+    <Compile Include="KhachHangTamLXDao.cs" />
+    <Compile Include="KhachHangXoaDao.cs" />
+    <Compile Include="KhachHangXoaPoDao.cs" />
+    <Compile Include="KHSoNoDHPoDao.cs" />
+    <Compile Include="KhuVucPoDao.cs" />
+    <Compile Include="KyTietKiemDao.cs" />
+    <Compile Include="LCheDoHocDao.cs" />
+    <Compile Include="LDanTocDao.cs" />
+    <Compile Include="LDaoTaoBDDao.cs" />
+    <Compile Include="LichGCSDao.cs" />
+    <Compile Include="LichGCSPoDao.cs" />
+    <Compile Include="LKhenThuongKLDao.cs" />
+    <Compile Include="LLOAIBCDao.cs" />
+    <Compile Include="LLoaiDaoTaoDao.cs" />
+    <Compile Include="LLoaiKLKTDao.cs" />
+    <Compile Include="LLoaiQHGDDao.cs" />
+    <Compile Include="LNhapNguDao.cs" />
+    <Compile Include="LNVLyLichDao.cs" />
+    <Compile Include="LoaiDongHoPoDao.cs" />
+    <Compile Include="LQanHeGDDao.cs" />
+    <Compile Include="LQTCongTacDao.cs" />
+    <Compile Include="LSucKhoeDao.cs" />
+    <Compile Include="LTonGiaoDao.cs" />
+    <Compile Include="LTPXTDao.cs" />
+    <Compile Include="LTrinhDoDao.cs" />
+    <Compile Include="MauThietKeDao.cs" />
+    <Compile Include="MucDichSuDungPoDao.cs" />
+    <Compile Include="NghiPhepDao.cs" />
+    <Compile Include="NhanVienVayDao.cs" />
+    <Compile Include="PhuongPoDao.cs" />
+    <Compile Include="QuanHuyenDao.cs" />
+    <Compile Include="SoHoaDonDao.cs" />
+    <Compile Include="SoHoaDonILDao.cs" />
+    <Compile Include="SuaDongHoDao.cs" />
+    <Compile Include="KHSoNoDHDao.cs" />
+    <Compile Include="SuaDongHoPoDao.cs" />
+    <Compile Include="TachDuongNDao.cs" />
+    <Compile Include="TachDuongPoDao.cs" />
+    <Compile Include="TenKhoVTDao.cs" />
+    <Compile Include="ThayDongHoDao.cs" />
+    <Compile Include="HeSoDao.cs" />
+    <Compile Include="PhatSinhTangDao.cs" />
+    <Compile Include="KyDuyet.cs" />
+    <Compile Include="DaoLapQuyetToanNd117Dao.cs" />
+    <Compile Include="DaoLapQuyetToanDao.cs" />
+    <Compile Include="GhiChuQuyetToanDao.cs" />
+    <Compile Include="QuyetToanDao.cs" />
+    <Compile Include="DaoLapChietTinhSuaChuaND117Dao.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="ExpressionVisitor.cs" />
+    <Compile Include="GhiChiSoDao.cs" />
+    <Compile Include="GhiChuChietTinhDao.cs" />
+    <Compile Include="GhiChuChietTinhSuaChuaDao.cs" />
+    <Compile Include="GhiChuThietKeDao.cs" />
+    <Compile Include="GhiChuMauBocVatTuDao.cs" />
+    <Compile Include="DaoLapMauBocVatTuDao.cs" />
+    <Compile Include="LinqToSqlExtensions.cs" />
+    <Compile Include="PhanCongDao.cs" />
+    <Compile Include="FunctionDao.cs" />
+    <Compile Include="DanhSachCoQuanThanhToanDao.cs" />
+    <Compile Include="DaoLapChietTinhDao.cs" />
+    <Compile Include="DaoLapChietTinhNd117Dao.cs" />
+    <Compile Include="DaoLapChietTinhSuaChuaDao.cs" />
+    <Compile Include="DaoLapChietTinhSuaChuaQtDao.cs" />
+    <Compile Include="DaoLapThietKeDao.cs" />
+    <Compile Include="DonDangKyDao.cs" />
+    <Compile Include="DongHoDao.cs" />
+    <Compile Include="DuongPhoDao.cs" />
+    <Compile Include="DvtDao.cs" />
+    <Compile Include="GiaiQuyetThongTinSuaChuaDao.cs" />
+    <Compile Include="GroupDao.cs" />
+    <Compile Include="HoaDonLapDatDao.cs" />
+    <Compile Include="HopDongDao.cs" />
+    <Compile Include="HTThanhToanDao.cs" />
+    <Compile Include="KhachHangDao.cs" />
+    <Compile Include="KhuVucDao.cs" />
+    <Compile Include="KiemDinhDongHoChiTietDao.cs" />
+    <Compile Include="KiemDinhDongHoDao.cs" />
+    <Compile Include="LoaiDongHoDao.cs" />
+    <Compile Include="LoaiKHDBDao.cs" />
+    <Compile Include="LoaiPhanHoiDao.cs" />
+    <Compile Include="MauBocVatTuDao.cs" />
+    <Compile Include="MucDichSuDungDao.cs" />
+    <Compile Include="NganHangDao.cs" />
+    <Compile Include="NhanVienDao.cs" />
+    <Compile Include="NhomPhanHoiDao.cs" />
+    <Compile Include="NhomVatTuDao.cs" />
+    <Compile Include="PhongBanDao.cs" />
+    <Compile Include="PhuongDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuyetToanSuaChuaDao.cs" />
+    <Compile Include="ReportClass.cs" />
+    <Compile Include="SystemConfigDao.cs" />
+    <Compile Include="ThayDongHoPoDao.cs" />
+    <Compile Include="ThayHopDongDao.cs" />
+    <Compile Include="ThayHopDongPoDao.cs" />
+    <Compile Include="ThiCongDao.cs" />
+    <Compile Include="ThietKeDao.cs" />
+    <Compile Include="ThietKePoDao.cs" />
+    <Compile Include="ThongTinKHDao.cs" />
+    <Compile Include="ThongTinPhanHoiDao.cs" />
+    <Compile Include="ThongTinXuLyDao.cs" />
+    <Compile Include="ThuTaiQuayDao.cs" />
+    <Compile Include="ThuTienCoQuanDao.cs" />
+    <Compile Include="TieuThuDao.cs" />
+    <Compile Include="TieuThuDCDao.cs" />
+    <Compile Include="TieuThuDCPoDao.cs" />
+    <Compile Include="TieuThuDCTGDao.cs" />
+    <Compile Include="TieuThuPoDao.cs" />
+    <Compile Include="TieuThuTTVPDao.cs" />
+    <Compile Include="TieuThuTTVPPoDao.cs" />
+    <Compile Include="TramBADao.cs" />
+    <Compile Include="TrangThaiGhiDao.cs" />
+    <Compile Include="TrangThaiThietKeDao.cs" />
+    <Compile Include="TrinhDoDao.cs" />
+    <Compile Include="TruyThuDao.cs" />
+    <Compile Include="UpDuongPhoDao.cs" />
+    <Compile Include="UpDuongPhoPoDao.cs" />
+    <Compile Include="UpLoadFileDao.cs" />
+    <Compile Include="UpSentKVDao.cs" />
+    <Compile Include="UpSentNVDao.cs" />
+    <Compile Include="UpSentPBDao.cs" />
+    <Compile Include="UserAdminDao.cs" />
+    <Compile Include="VatTuDao.cs" />
+    <Compile Include="ViTriThietBiDao.cs" />
+    <Compile Include="WPOClass.cs" />
+    <Compile Include="XaPhuongDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EOSCRM.Domain\EOSCRM.Domain.csproj">
+      <Project>{981DC80C-4611-45D2-93F5-CCD41CBC10FD}</Project>
+      <Name>EOSCRM.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EOSCRM.Util\EOSCRM.Util.csproj">
+      <Project>{335CE671-1D65-49AB-B08C-843D0E579AE9}</Project>
+      <Name>EOSCRM.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

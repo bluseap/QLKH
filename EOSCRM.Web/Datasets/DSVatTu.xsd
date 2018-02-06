@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSVatTu" targetNamespace="http://tempuri.org/DSVatTu.xsd" xmlns:mstns="http://tempuri.org/DSVatTu.xsd" xmlns="http://tempuri.org/DSVatTu.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSVatTu" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DSVatTu" msprop:Generator_UserDSName="DSVatTu" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSVatTu" msprop:Generator_UserTableName="DSVatTu" msprop:Generator_RowDeletedName="DSVatTuRowDeleted" msprop:Generator_TableClassName="DSVatTuDataTable" msprop:Generator_RowChangedName="DSVatTuRowChanged" msprop:Generator_RowClassName="DSVatTuRow" msprop:Generator_RowChangingName="DSVatTuRowChanging" msprop:Generator_RowEvArgName="DSVatTuRowChangeEvent" msprop:Generator_RowEvHandlerName="DSVatTuRowChangeEventHandler" msprop:Generator_TablePropName="_DSVatTu" msprop:Generator_TableVarName="tableDSVatTu" msprop:Generator_RowDeletingName="DSVatTuRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAVT" msprop:Generator_UserColumnName="MAVT" msprop:Generator_ColumnPropNameInRow="MAVT" msprop:Generator_ColumnVarNameInTable="columnMAVT" msprop:Generator_ColumnPropNameInTable="MAVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="MAHIEU" msprop:Generator_UserColumnName="MAHIEU" msprop:Generator_ColumnPropNameInRow="MAHIEU" msprop:Generator_ColumnVarNameInTable="columnMAHIEU" msprop:Generator_ColumnPropNameInTable="MAHIEUColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENVT" msprop:Generator_UserColumnName="TENVT" msprop:Generator_ColumnPropNameInRow="TENVT" msprop:Generator_ColumnVarNameInTable="columnTENVT" msprop:Generator_ColumnPropNameInTable="TENVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DVT" msprop:Generator_UserColumnName="DVT" msprop:Generator_ColumnPropNameInRow="DVT" msprop:Generator_ColumnVarNameInTable="columnDVT" msprop:Generator_ColumnPropNameInTable="DVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENDVT" msprop:Generator_UserColumnName="TENDVT" msprop:Generator_ColumnPropNameInRow="TENDVT" msprop:Generator_ColumnVarNameInTable="columnTENDVT" msprop:Generator_ColumnPropNameInTable="TENDVTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="GIAVT" msprop:Generator_UserColumnName="GIAVT" msprop:Generator_ColumnPropNameInRow="GIAVT" msprop:Generator_ColumnVarNameInTable="columnGIAVT" msprop:Generator_ColumnPropNameInTable="GIAVTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GIANC" msprop:Generator_UserColumnName="GIANC" msprop:Generator_ColumnPropNameInRow="GIANC" msprop:Generator_ColumnVarNameInTable="columnGIANC" msprop:Generator_ColumnPropNameInTable="GIANCColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,5 @@
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Release\EOSCRM.Controls.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Release\EOSCRM.Controls.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Release\AjaxControlToolkit.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Release\EOSCRM.Controls.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Release\EOSCRM.Controls.pdb

@@ -1,0 +1,285 @@
+﻿/*
+ * grids, tables
+ */ 
+
+.crmcontainer { 
+    font: 13px/16px arial,sans-serif; 
+    background: none repeat scroll 0 0 #FCFCFC; 
+    border: 1px solid #A5B3C5; 
+    color: #000000; 
+    border-collapse: separate; }
+
+.crmtable { 
+    font: 13px/16px arial,sans-serif; 
+    empty-cells: show; 
+    table-layout: fixed; 
+    width: 100%; 
+    border-collapse: separate; padding: 0px; 
+}
+
+.crmtable td.header
+{
+    background: none repeat scroll 0 0 #F1F5FB;
+    border-color: #F6F9FB #FFFFFF #C2CEDB #E1EAF3;
+    overflow: hidden; 
+    padding: 6px 7px 3px 7px;  
+    font-weight: bold;      
+}
+
+.crmcontainer td.header 
+{
+    background: none repeat scroll 0 0 #D4E9F9;
+    border-color: #F6F9FB #FFFFFF #C2CEDB #E1EAF3;
+    overflow: hidden; 
+    padding: 6px 7px 3px 7px;  
+    font-weight: bold; 
+    border-width: 0 1px 1px;
+    border-style: solid;     
+}
+
+.crmtable input[type=checkbox] { padding:0px; margin-top:3px;}
+
+.crmtable label { margin-bottom: 1px; font-weight: bold;}
+
+.crmcontainer td.crmcell { 
+    border-color: #FCFCFC #FFFFFF #F1F5FB; 
+    border-style: solid; 
+    border-width: 1px 0 1px 1px; 
+    padding: 2px 0; 
+}
+
+.crmcontainer .right { font-weight: bold; text-align: right; width: 150px; }
+
+.crmcontainer .rightsmall { font-weight: bold; text-align: right; width: 100px; }
+
+.crmcontainer .left { float: left; line-height: 20px; margin-top: 1px; padding: 0 5px; white-space: nowrap; }
+
+.crmcontainer .filtered { 
+    background: url('/content/images/common/filtered.png') no-repeat top left;
+    height:22px;
+	padding:0px; border:none; width: 22px; 
+}
+
+.crmcontainer .crmfilter { background: url('/content/images/common/bg.png') repeat-x scroll 0 0px #F1F5FB; } 
+
+.crmcontainer .wrap { float: left; line-height: 20px; padding: 0 10px; white-space: nowrap; color:blue}
+
+.crmcontainer .crmsplitter { 
+    background-color: #D4E9F9; 
+    color: #000000; 
+    font-weight: bold; 
+    line-height: 25px; 
+    padding-left: 10px; 
+    border-top: 1px solid #A5B3C5;
+}
+
+.crmcontainer .center { 
+    text-align: center; 
+    font-weight:bold; 
+    line-height: 20px; 
+    margin-top: 1px; 
+    padding: 0 5px; 
+    white-space: nowrap; 
+}
+
+.crmcontainer .tright { 
+    text-align: right; 
+    font-weight:bold; 
+    line-height: 20px; 
+    margin-top: 1px; 
+    padding: 0 5px; 
+    white-space: nowrap; 
+}
+
+.crmcontainer .center input[type=textbox],
+
+.crmcontainer .tright input[type=textbox]
+{
+    font-weight:bold;
+    text-align: right;
+}
+
+.ptop-10 { padding-top: 10px; }
+.pbottom-10 { padding-bottom: 10px; }     
+.btop {border-top: 1px solid #A5B3C5 !important; }
+.bbottom {border-bottom: 1px solid #A5B3C5 !important;}
+.cleantop {border-top: 0px !important;}
+.vtop { vertical-align: top !important;}
+
+.p-5 {padding: 5px;}
+.p-5 td { padding: 5px; border-color: #FCFCFC #FFFFFF #F1F5FB; border-style: solid; border-width: 1px 0 1px 1px; }
+.crmtable .listheader { background: url("/content/images/common/bg.png") repeat-x scroll 0 0 #F1F5FB; }
+.pleft-25 {padding-left: 25px !important; }
+.pleft-50 {padding-left: 50px !important; }
+.pleft-100 {padding-left: 100px !important;}
+.pleft-150 {padding-left: 150px !important;}
+.pleft-200 {padding-left: 200px !important;}
+.width-50 { width: 50px !important;}
+.width-75 { width: 75px !important;}
+.width-100 { width: 100px !important;}
+.width-125 { width: 125px !important;}
+.width-150 { width: 150px !important;}
+.width-175 { width: 175px !important;}
+.width-200 { width: 200px !important;}
+.width-225 { width: 225px !important;}
+.width-250 { width: 250px !important;}
+
+.crmdatalist {border:none 1px #666; padding:1px; width:100%;}
+.crmdatalist > tbody {border:solid 1px #444;}
+.crmdatalist > th
+{
+	background: url('/content/images/common/ghead.gif') repeat-x center center;
+	border:solid 1px #ccc;
+	padding: 4px 5px;
+	color: #000000;
+	font-weight:bold;
+	text-decoration: none;	
+}
+.crmdatalist > td { padding: 5px; border:solid 1px #CCC; }
+/*border-color: #F6F9FB #FFFFFF #C2CEDB #E1EAF3;*/
+.crmgrid {font: 12px/16px "segoe ui",arial,sans-serif; width:100%;table-layout:fixed;empty-cells:show;border-collapse: separate; }
+.crmgrid .header > th{ color: #4C607A; font-weight: normal; text-align: left;
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #F1F5FB;
+    border-color: #F6F9FB #FFFFFF #C2CEDB #E1EAF3;
+    border-right: 1px solid #FFFFFF;
+    border-style: solid;
+    border-width: 0 1px 1px;
+}
+.crmgrid .row {background-color: #ffffff;}
+.crmgrid .altrow {background-color: #EBEFF3;}
+.crmgrid .emptyrow 
+{
+    color: #4C607A;font-weight: normal; text-align: left;
+    background: none repeat scroll 0 0 #F1F5FB;
+    border-color: #F6F9FB #FFFFFF #C2CEDB #E1EAF3;
+    border-style: solid;
+}
+.crmgrid .emptyrow > td 
+{
+   overflow: hidden; 
+   padding: 6px 7px 3px 7px;
+}
+
+.crmgrid .header:first-child,
+.crmgrid .row > td:first-child,
+.crmgrid .altrow > td:first-child
+{
+   border-left-width: 0;
+   padding-left: 8px; 
+}
+
+.crmgrid .header > th, 
+.crmgrid .row > td,
+.crmgrid .altrow > td,
+.crmgrid .footer > td
+{
+   overflow: hidden; 
+   padding-bottom: 3px;
+   padding-top: 6px;
+   padding-left: 7px; 
+   padding-right: 7px;
+}
+
+.crmgrid .header .checkbox 
+{
+    width: 15px !important;
+}
+
+.crmgrid .footer { background: url('/content/images/common/bg.png') repeat-x scroll 0 0px #F1F5FB; }
+.crmgrid .footer .pager { width:100%; padding: 0px; }
+
+.crmgrid .footer .pager .cell
+{
+    padding: 5px 0 4px;
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #FCFCFC #FFFFFF #F1F5FB;
+    border-style: solid;
+    border-width: 1px 0 1px 1px;
+}
+
+.crmgrid .footer .wrap { float: left; line-height: 22px; padding: 0 2px; white-space: nowrap; }
+.crmgrid .footer .part1 { padding-right: 0; }
+.crmgrid .footer .part2 { padding-left: 0; }
+.crmgrid .footer .part1 input[type=button], 
+.crmgrid .footer .part1 input[type=submit], 
+.crmgrid .footer .part2 input[type=button],
+.crmgrid .footer .part2 input[type=submit] { border: 0 none; margin: 2px 2px 0; }
+
+.crmgrid .footer .pager .prev, 
+.crmgrid .footer .pager .next, 
+.crmgrid .footer .pager .first, 
+.crmgrid .footer .pager .last
+{
+    background-image: url('/content/images/common/bg.png');
+    height: 22px;
+    vertical-align: top;
+    width: 22px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0 none;
+    cursor: pointer;
+    font-size: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.crmgrid .footer .pager .first, 
+.crmgrid .footer .pager .prev { margin-right: 1px; }
+
+.crmgrid .footer .pager .next, 
+.crmgrid .footer .pager .last { margin-left: 1px; }
+
+.crmgrid .footer .pager .first {background-position: 0 -50px; }
+.crmgrid .footer .pager .first:hover {background-position: 0 -100px; }
+.crmgrid .footer .pager .prev {background-position: 0 -150px; }
+.crmgrid .footer .pager .prev:hover {background-position: 0 -200px; }
+.crmgrid .footer .pager .next {background-position: 0 -250px; }
+.crmgrid .footer .pager .next:hover {background-position: 0 -300px; }
+.crmgrid .footer .pager .last {background-position: 0 -350px; }
+.crmgrid .footer .pager .last:hover {background-position: 0 -400px; }
+
+.crmgrid .footer .number a:hover, 
+.crmgrid .footer .number a:hover span, 
+.crmgrid .footer .number a.current, 
+.crmgrid .footer .number a.current span { background: url('/content/images/common/bg.png') no-repeat scroll 0 0 transparent; }
+
+.crmgrid .footer .number { padding: 0; margin-top: 3px; }
+.crmgrid .footer .number a { color: #1E395B; float: left; line-height: 22px; margin: 0; padding: 0 5px 0 0; text-decoration: none; }
+.crmgrid .footer .number a:hover { background-position: 100% -600px; color: #4C607A; }
+.crmgrid .footer .number a:hover span { background-position: 0 -550px; }
+
+.crmgrid .footer .number a.current, 
+.crmgrid .footer .number a.current:hover { background-position: 100% -450px; color: #4C607A; }
+
+.crmgrid .footer .number a.current span, 
+.crmgrid .footer .number a.current:hover span { background-position: 0 -500px; }
+
+.crmgrid .footer .number span { float: left; padding: 0 0 0 5px; }
+.crmgrid .footer .number a:hover span { cursor: pointer; }
+
+.crmgrid .footer .number a.current, 
+.crmgrid .footer .number a.current:hover, 
+.crmgrid .footer .number a.current span, 
+.crmgrid .footer .number a.current:hover span { cursor: default; }
+
+.crmgrid .footer .infor { color: #5A6779; float: right; margin: 2px 2px 0; }
+.crmgrid .footer .infor strong { color: #1E395B; font-weight: normal; }
+
+.crmgrid .readonly { background-color: #dcdcdc; font-size: 15px; font-weight: bold; color: #000; text-align:right; width: 60px; }
+.crmgrid .editable { background-color: #ffffff; font-size: 15px; font-weight: bold; color: #003399; text-align:right; width: 60px; }
+
+
+
+
+
+
+

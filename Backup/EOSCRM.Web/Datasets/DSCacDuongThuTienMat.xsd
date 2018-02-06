@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCacDuongThuTienMat" targetNamespace="http://tempuri.org/DSCacDuongThuTienMat.xsd" xmlns:mstns="http://tempuri.org/DSCacDuongThuTienMat.xsd" xmlns="http://tempuri.org/DSCacDuongThuTienMat.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCacDuongThuTienMat" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DSCacDuongThuTienMat" msprop:Generator_DataSetName="DSCacDuongThuTienMat">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSCacDuongThuTienMat" msprop:Generator_UserTableName="DSCacDuongThuTienMat" msprop:Generator_RowDeletedName="DSCacDuongThuTienMatRowDeleted" msprop:Generator_TableClassName="DSCacDuongThuTienMatDataTable" msprop:Generator_RowChangedName="DSCacDuongThuTienMatRowChanged" msprop:Generator_RowClassName="DSCacDuongThuTienMatRow" msprop:Generator_RowChangingName="DSCacDuongThuTienMatRowChanging" msprop:Generator_RowEvArgName="DSCacDuongThuTienMatRowChangeEvent" msprop:Generator_RowEvHandlerName="DSCacDuongThuTienMatRowChangeEventHandler" msprop:Generator_TablePropName="_DSCacDuongThuTienMat" msprop:Generator_TableVarName="tableDSCacDuongThuTienMat" msprop:Generator_RowDeletingName="DSCacDuongThuTienMatRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAKV" msprop:Generator_UserColumnName="MAKV" msprop:Generator_ColumnPropNameInRow="MAKV" msprop:Generator_ColumnVarNameInTable="columnMAKV" msprop:Generator_ColumnPropNameInTable="MAKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="MADP" msprop:Generator_UserColumnName="MADP" msprop:Generator_ColumnPropNameInRow="MADP" msprop:Generator_ColumnVarNameInTable="columnMADP" msprop:Generator_ColumnPropNameInTable="MADPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="MANV" msprop:Generator_UserColumnName="MANV" msprop:Generator_ColumnPropNameInRow="MANV" msprop:Generator_ColumnVarNameInTable="columnMANV" msprop:Generator_ColumnPropNameInTable="MANVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKV" msprop:Generator_UserColumnName="TENKV" msprop:Generator_ColumnPropNameInRow="TENKV" msprop:Generator_ColumnVarNameInTable="columnTENKV" msprop:Generator_ColumnPropNameInTable="TENKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENDP" msprop:Generator_UserColumnName="TENDP" msprop:Generator_ColumnPropNameInRow="TENDP" msprop:Generator_ColumnVarNameInTable="columnTENDP" msprop:Generator_ColumnPropNameInTable="TENDPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENNV" msprop:Generator_UserColumnName="TENNV" msprop:Generator_ColumnPropNameInRow="TENNV" msprop:Generator_ColumnVarNameInTable="columnTENNV" msprop:Generator_ColumnPropNameInTable="TENNVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SOHD" msprop:Generator_UserColumnName="SOHD" msprop:Generator_ColumnPropNameInRow="SOHD" msprop:Generator_ColumnVarNameInTable="columnSOHD" msprop:Generator_ColumnPropNameInTable="SOHDColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SOTIEN" msprop:Generator_UserColumnName="SOTIEN" msprop:Generator_ColumnPropNameInRow="SOTIEN" msprop:Generator_ColumnVarNameInTable="columnSOTIEN" msprop:Generator_ColumnPropNameInTable="SOTIENColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

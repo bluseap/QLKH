@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SumKhoiLuongBB" targetNamespace="http://tempuri.org/SumKhoiLuongBB.xsd" xmlns:mstns="http://tempuri.org/SumKhoiLuongBB.xsd" xmlns="http://tempuri.org/SumKhoiLuongBB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SumKhoiLuongBB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SumKhoiLuongBB" msprop:Generator_UserDSName="SumKhoiLuongBB">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SumKhoiLuongBB" msprop:Generator_TableClassName="SumKhoiLuongBBDataTable" msprop:Generator_TableVarName="tableSumKhoiLuongBB" msprop:Generator_TablePropName="_SumKhoiLuongBB" msprop:Generator_RowDeletingName="SumKhoiLuongBBRowDeleting" msprop:Generator_RowChangingName="SumKhoiLuongBBRowChanging" msprop:Generator_RowEvHandlerName="SumKhoiLuongBBRowChangeEventHandler" msprop:Generator_RowDeletedName="SumKhoiLuongBBRowDeleted" msprop:Generator_UserTableName="SumKhoiLuongBB" msprop:Generator_RowChangedName="SumKhoiLuongBBRowChanged" msprop:Generator_RowEvArgName="SumKhoiLuongBBRowChangeEvent" msprop:Generator_RowClassName="SumKhoiLuongBBRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUMKL" msprop:Generator_ColumnVarNameInTable="columnSUMKL" msprop:Generator_ColumnPropNameInRow="SUMKL" msprop:Generator_ColumnPropNameInTable="SUMKLColumn" msprop:Generator_UserColumnName="SUMKL" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RPDONSUACHUA" targetNamespace="http://tempuri.org/RPDONSUACHUA.xsd" xmlns:mstns="http://tempuri.org/RPDONSUACHUA.xsd" xmlns="http://tempuri.org/RPDONSUACHUA.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RPDONSUACHUA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="RPDONSUACHUA" msprop:Generator_DataSetName="RPDONSUACHUA" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DONSUACHUA" msprop:Generator_UserTableName="DONSUACHUA" msprop:Generator_RowDeletedName="DONSUACHUARowDeleted" msprop:Generator_TableClassName="DONSUACHUADataTable" msprop:Generator_RowChangedName="DONSUACHUARowChanged" msprop:Generator_RowClassName="DONSUACHUARow" msprop:Generator_RowChangingName="DONSUACHUARowChanging" msprop:Generator_RowEvArgName="DONSUACHUARowChangeEvent" msprop:Generator_RowEvHandlerName="DONSUACHUARowChangeEventHandler" msprop:Generator_TablePropName="DONSUACHUA" msprop:Generator_TableVarName="tableDONSUACHUA" msprop:Generator_RowDeletingName="DONSUACHUARowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MADON" msprop:Generator_UserColumnName="MADON" msprop:Generator_ColumnPropNameInRow="MADON" msprop:Generator_ColumnVarNameInTable="columnMADON" msprop:Generator_ColumnPropNameInTable="MADONColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="MAKH" msprop:Generator_UserColumnName="MAKH" msprop:Generator_ColumnPropNameInRow="MAKH" msprop:Generator_ColumnVarNameInTable="columnMAKH" msprop:Generator_ColumnPropNameInTable="MAKHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKH" msprop:Generator_UserColumnName="TENKH" msprop:Generator_ColumnPropNameInRow="TENKH" msprop:Generator_ColumnVarNameInTable="columnTENKH" msprop:Generator_ColumnPropNameInTable="TENKHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DIACHI" msprop:Generator_UserColumnName="DIACHI" msprop:Generator_ColumnPropNameInRow="DIACHI" msprop:Generator_ColumnVarNameInTable="columnDIACHI" msprop:Generator_ColumnPropNameInTable="DIACHIColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENXL" msprop:Generator_UserColumnName="TENXL" msprop:Generator_ColumnPropNameInRow="TENXL" msprop:Generator_ColumnVarNameInTable="columnTENXL" msprop:Generator_ColumnPropNameInTable="TENXLColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NGAYBAO" msprop:Generator_UserColumnName="NGAYBAO" msprop:Generator_ColumnPropNameInRow="NGAYBAO" msprop:Generator_ColumnVarNameInTable="columnNGAYBAO" msprop:Generator_ColumnPropNameInTable="NGAYBAOColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NGAYHT" msprop:Generator_UserColumnName="NGAYHT" msprop:Generator_ColumnPropNameInRow="NGAYHT" msprop:Generator_ColumnVarNameInTable="columnNGAYHT" msprop:Generator_ColumnPropNameInTable="NGAYHTColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DONSUACHUAKey1">
+      <xs:selector xpath=".//mstns:DONSUACHUA" />
+      <xs:field xpath="mstns:MADON" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

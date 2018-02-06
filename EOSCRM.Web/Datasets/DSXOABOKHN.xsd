@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSXOABOKHN" targetNamespace="http://tempuri.org/DSXOABOKHN.xsd" xmlns:mstns="http://tempuri.org/DSXOABOKHN.xsd" xmlns="http://tempuri.org/DSXOABOKHN.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSXOABOKHN" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSXOABOKHN" msprop:Generator_UserDSName="DSXOABOKHN">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSXOABOKHN" msprop:Generator_TableClassName="DSXOABOKHNDataTable" msprop:Generator_TableVarName="tableDSXOABOKHN" msprop:Generator_TablePropName="_DSXOABOKHN" msprop:Generator_RowDeletingName="DSXOABOKHNRowDeleting" msprop:Generator_RowChangingName="DSXOABOKHNRowChanging" msprop:Generator_RowEvHandlerName="DSXOABOKHNRowChangeEventHandler" msprop:Generator_RowDeletedName="DSXOABOKHNRowDeleted" msprop:Generator_UserTableName="DSXOABOKHN" msprop:Generator_RowChangedName="DSXOABOKHNRowChanged" msprop:Generator_RowEvArgName="DSXOABOKHNRowChangeEvent" msprop:Generator_RowClassName="DSXOABOKHNRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDKH" msprop:Generator_ColumnVarNameInTable="columnIDKH" msprop:Generator_ColumnPropNameInRow="IDKH" msprop:Generator_ColumnPropNameInTable="IDKHColumn" msprop:Generator_UserColumnName="IDKH" type="xs:string" minOccurs="0" />
+              <xs:element name="MAKV" msprop:Generator_ColumnVarNameInTable="columnMAKV" msprop:Generator_ColumnPropNameInRow="MAKV" msprop:Generator_ColumnPropNameInTable="MAKVColumn" msprop:Generator_UserColumnName="MAKV" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKV" msprop:Generator_ColumnVarNameInTable="columnTENKV" msprop:Generator_ColumnPropNameInRow="TENKV" msprop:Generator_ColumnPropNameInTable="TENKVColumn" msprop:Generator_UserColumnName="TENKV" type="xs:string" minOccurs="0" />
+              <xs:element name="DANHSO" msprop:Generator_ColumnVarNameInTable="columnDANHSO" msprop:Generator_ColumnPropNameInRow="DANHSO" msprop:Generator_ColumnPropNameInTable="DANHSOColumn" msprop:Generator_UserColumnName="DANHSO" type="xs:string" minOccurs="0" />
+              <xs:element name="DIACHI" msprop:Generator_ColumnVarNameInTable="columnDIACHI" msprop:Generator_ColumnPropNameInRow="DIACHI" msprop:Generator_ColumnPropNameInTable="DIACHIColumn" msprop:Generator_UserColumnName="DIACHI" type="xs:string" minOccurs="0" />
+              <xs:element name="LYDO" msprop:Generator_ColumnVarNameInTable="columnLYDO" msprop:Generator_ColumnPropNameInRow="LYDO" msprop:Generator_ColumnPropNameInTable="LYDOColumn" msprop:Generator_UserColumnName="LYDO" type="xs:string" minOccurs="0" />
+              <xs:element name="GHICHU" msprop:Generator_ColumnVarNameInTable="columnGHICHU" msprop:Generator_ColumnPropNameInRow="GHICHU" msprop:Generator_ColumnPropNameInTable="GHICHUColumn" msprop:Generator_UserColumnName="GHICHU" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKH" msprop:Generator_ColumnVarNameInTable="columnTENKH" msprop:Generator_ColumnPropNameInRow="TENKH" msprop:Generator_ColumnPropNameInTable="TENKHColumn" msprop:Generator_UserColumnName="TENKH" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BangKe_HD_LD" targetNamespace="http://tempuri.org/BangKe_HD_LD.xsd" xmlns:mstns="http://tempuri.org/BangKe_HD_LD.xsd" xmlns="http://tempuri.org/BangKe_HD_LD.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BangKe_HD_LD" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BangKe_HD_LD" msprop:Generator_DataSetName="BangKe_HD_LD">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BangKe_HD_LD" msprop:Generator_UserTableName="BangKe_HD_LD" msprop:Generator_RowDeletedName="BangKe_HD_LDRowDeleted" msprop:Generator_TableClassName="BangKe_HD_LDDataTable" msprop:Generator_RowChangedName="BangKe_HD_LDRowChanged" msprop:Generator_RowClassName="BangKe_HD_LDRow" msprop:Generator_RowChangingName="BangKe_HD_LDRowChanging" msprop:Generator_RowEvArgName="BangKe_HD_LDRowChangeEvent" msprop:Generator_RowEvHandlerName="BangKe_HD_LDRowChangeEventHandler" msprop:Generator_TablePropName="_BangKe_HD_LD" msprop:Generator_TableVarName="tableBangKe_HD_LD" msprop:Generator_RowDeletingName="BangKe_HD_LDRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SOHD" msprop:Generator_UserColumnName="SOHD" msprop:Generator_ColumnPropNameInRow="SOHD" msprop:Generator_ColumnVarNameInTable="columnSOHD" msprop:Generator_ColumnPropNameInTable="SOHDColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SOCT" msprop:Generator_UserColumnName="SOCT" msprop:Generator_ColumnPropNameInRow="SOCT" msprop:Generator_ColumnVarNameInTable="columnSOCT" msprop:Generator_ColumnPropNameInTable="SOCTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENKH" msprop:Generator_UserColumnName="TENKH" msprop:Generator_ColumnPropNameInRow="TENKH" msprop:Generator_ColumnVarNameInTable="columnTENKH" msprop:Generator_ColumnPropNameInTable="TENKHColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LOAI" msprop:Generator_UserColumnName="LOAI" msprop:Generator_ColumnPropNameInRow="LOAI" msprop:Generator_ColumnVarNameInTable="columnLOAI" msprop:Generator_ColumnPropNameInTable="LOAIColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENLOAI" msprop:Generator_UserColumnName="TENLOAI" msprop:Generator_ColumnPropNameInRow="TENLOAI" msprop:Generator_ColumnVarNameInTable="columnTENLOAI" msprop:Generator_ColumnPropNameInTable="TENLOAIColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SOTIEN" msprop:Generator_UserColumnName="SOTIEN" msprop:Generator_ColumnPropNameInRow="SOTIEN" msprop:Generator_ColumnVarNameInTable="columnSOTIEN" msprop:Generator_ColumnPropNameInTable="SOTIENColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TENKV" msprop:Generator_UserColumnName="TENKV" msprop:Generator_ColumnPropNameInRow="TENKV" msprop:Generator_ColumnVarNameInTable="columnTENKV" msprop:Generator_ColumnPropNameInTable="TENKVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="MAKV" msprop:Generator_UserColumnName="MAKV" msprop:Generator_ColumnPropNameInRow="MAKV" msprop:Generator_ColumnVarNameInTable="columnMAKV" msprop:Generator_ColumnPropNameInTable="MAKVColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

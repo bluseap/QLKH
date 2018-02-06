@@ -1,0 +1,5 @@
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Release\EOSCRM.Domain.dll.config
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Release\EOSCRM.Domain.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Release\EOSCRM.Domain.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Release\EOSCRM.Domain.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Release\EOSCRM.Domain.pdb

@@ -1,0 +1,45 @@
+D:\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\Quanlykhachhang\EOSCRM.Util\obj\Debug\ResolveAssemblyReference.cache
+D:\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\CNAG\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\CNAG\Quanlykhachhang\EOSCRM.Util\obj\Debug\ResolveAssemblyReference.cache
+D:\CNAG\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Util\obj\Debug\ResolveAssemblyReference.cache
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\181113\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\181113\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\181113\Quanlykhachhang\EOSCRM.Util\obj\Debug\ResolveAssemblyReference.cache
+D:\181113\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\181113\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojResolveAssemblyReference.cache
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+C:\Users\Administrator\Downloads\554Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+C:\Users\Administrator\Downloads\554Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+C:\Users\Administrator\Downloads\554Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Downloads\554Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+C:\Users\Administrator\Downloads\554Quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojResolveAssemblyReference.cache
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojResolveAssemblyReference.cache
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojResolveAssemblyReference.cache
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb

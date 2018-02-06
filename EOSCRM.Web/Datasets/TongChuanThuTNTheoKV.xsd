@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TongChuanThuTNTheoKV" targetNamespace="http://tempuri.org/TongChuanThuTNTheoKV.xsd" xmlns:mstns="http://tempuri.org/TongChuanThuTNTheoKV.xsd" xmlns="http://tempuri.org/TongChuanThuTNTheoKV.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TongChuanThuTNTheoKV" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TongChuanThuTNTheoKV" msprop:Generator_DataSetName="TongChuanThuTNTheoKV">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TongChuanThuTNTheoKV" msprop:Generator_UserTableName="TongChuanThuTNTheoKV" msprop:Generator_RowDeletedName="TongChuanThuTNTheoKVRowDeleted" msprop:Generator_TableClassName="TongChuanThuTNTheoKVDataTable" msprop:Generator_RowChangedName="TongChuanThuTNTheoKVRowChanged" msprop:Generator_RowClassName="TongChuanThuTNTheoKVRow" msprop:Generator_RowChangingName="TongChuanThuTNTheoKVRowChanging" msprop:Generator_RowEvArgName="TongChuanThuTNTheoKVRowChangeEvent" msprop:Generator_RowEvHandlerName="TongChuanThuTNTheoKVRowChangeEventHandler" msprop:Generator_TablePropName="_TongChuanThuTNTheoKV" msprop:Generator_TableVarName="tableTongChuanThuTNTheoKV" msprop:Generator_RowDeletingName="TongChuanThuTNTheoKVRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DOITUONG" msprop:Generator_UserColumnName="DOITUONG" msprop:Generator_ColumnPropNameInRow="DOITUONG" msprop:Generator_ColumnVarNameInTable="columnDOITUONG" msprop:Generator_ColumnPropNameInTable="DOITUONGColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SOKH" msprop:Generator_UserColumnName="SOKH" msprop:Generator_ColumnPropNameInRow="SOKH" msprop:Generator_ColumnVarNameInTable="columnSOKH" msprop:Generator_ColumnPropNameInTable="SOKHColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SOM3TT" msprop:Generator_UserColumnName="SOM3TT" msprop:Generator_ColumnPropNameInRow="SOM3TT" msprop:Generator_ColumnVarNameInTable="columnSOM3TT" msprop:Generator_ColumnPropNameInTable="SOM3TTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DOANHTHU" msprop:Generator_UserColumnName="DOANHTHU" msprop:Generator_ColumnPropNameInRow="DOANHTHU" msprop:Generator_ColumnVarNameInTable="columnDOANHTHU" msprop:Generator_ColumnPropNameInTable="DOANHTHUColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PHUTHU" msprop:Generator_UserColumnName="PHUTHU" msprop:Generator_ColumnPropNameInRow="PHUTHU" msprop:Generator_ColumnVarNameInTable="columnPHUTHU" msprop:Generator_ColumnPropNameInTable="PHUTHUColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TGTGT" msprop:Generator_UserColumnName="TGTGT" msprop:Generator_ColumnPropNameInRow="TGTGT" msprop:Generator_ColumnVarNameInTable="columnTGTGT" msprop:Generator_ColumnPropNameInTable="TGTGTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TONGCONG" msprop:Generator_UserColumnName="TONGCONG" msprop:Generator_ColumnPropNameInRow="TONGCONG" msprop:Generator_ColumnVarNameInTable="columnTONGCONG" msprop:Generator_ColumnPropNameInTable="TONGCONGColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SOHD" msprop:Generator_UserColumnName="SOHD" msprop:Generator_ColumnPropNameInRow="SOHD" msprop:Generator_ColumnVarNameInTable="columnSOHD" msprop:Generator_ColumnPropNameInTable="SOHDColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

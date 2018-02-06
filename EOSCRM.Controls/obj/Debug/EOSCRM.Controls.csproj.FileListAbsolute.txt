@@ -1,0 +1,54 @@
+D:\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\Quanlykhachhang\EOSCRM.Controls\obj\Debug\ResolveAssemblyReference.cache
+D:\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\CNAG\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\CNAG\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Controls\obj\Debug\ResolveAssemblyReference.cache
+D:\CNAG\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\CNAG\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Controls\obj\Debug\ResolveAssemblyReference.cache
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\KH dung chung\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\181113\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\181113\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\181113\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\181113\Quanlykhachhang\EOSCRM.Controls\obj\Debug\ResolveAssemblyReference.cache
+D:\181113\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\181113\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csprojResolveAssemblyReference.cache
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csprojResolveAssemblyReference.cache
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\Nguyen\upload\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csprojResolveAssemblyReference.cache
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csprojResolveAssemblyReference.cache
+C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Controls\bin\Debug\EOSCRM.Controls.pdb
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Controls\bin\Debug\AjaxControlToolkit.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csprojResolveAssemblyReference.cache
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
+D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb

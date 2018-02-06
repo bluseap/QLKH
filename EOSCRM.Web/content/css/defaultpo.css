@@ -1,0 +1,407 @@
+﻿body { background:#ffffff }
+/* GENERAL TAG
+------------------------------------------------------------------ */
+#wrapper { margin:0px auto; }
+#container { margin:0px auto; }
+.fl { float:left; }
+.fr { float:right; }
+.clrfix { clear:both; }
+.bold { font-weight:bold; }
+.red { color:#ed1c24; }
+.blue { color:#255fac; }
+.gray { color:#666666; }
+
+#cheader { background: url('/content/images/common/bg_headerpo.gif') repeat-x top left; color:#fff;}
+#header { background: url('/content/images/common/alogopo.gif') no-repeat top left; line-height:35px; height:35px; }
+#hlft { position:relative; left:130px; }
+#hlft2 { position:relative; padding-left:200px; padding-right:100px; }
+#hlft .appname{ font-weight:bold; font-size:1.3em; }
+#hlft2 .appname2{ font-weight:bold; font-size:1.3em;color:#ffff00;}
+#hrgh, #hrgh2 { position:relative; right:10px; }
+#hrgh a.logout{ background: url('/content/images/icons/logout_12x12.gif') no-repeat center left; padding-left:16px; padding-right:5px; color:#ffff00; }
+#hrgh2 a.changepwd{ background: url('/content/images/icons/changepwd_12x12.png') no-repeat center left; padding-left:16px; padding-right:5px; color:#ffff00; }
+
+#cmenu {
+    background-color: #FFD5AA;
+    border-top: 1px solid #FFD5AA;
+    border-bottom: 1px solid #FFD5AA;
+    line-height: 25px;
+    height: 25px;
+}
+#ctitle { background: url('/content/images/common/bgtop.gif') repeat-x top left; border-top:1px solid #fff; border-bottom:1px solid #d4e9f9; line-height:30px; height:30px; }
+#tpage { background: url('/content/images/icons/form_16x16.gif') no-repeat center left; }
+#ctlft { position:relative; left:10px; padding-left:20px; font-weight:bold; background: url('/content/images/icons/form_16x16.gif') no-repeat center left;}
+#ctrgh { position:relative; right:10px; }
+#csearch { background: url('/content/images/common/bgsearch.gif') no-repeat center left; width:172px; line-height:30px; height:30px; }
+#csearch .ctsear { padding-left:25px; }
+#csearch .txtsear { background: transparent; border:none; padding:2px; width:115px; }
+#csearch .btnsear { background: url('/content/images/common/bgsearch.gif') no-repeat -146px 0px; border:none; height:24px; width:26px; }
+#ccontent { padding:10px; overflow-y:auto; }
+#cfooter { background: url('/content/images/common/bg_headerpo.gif') repeat-x bottom left; color:#fff; margin-top:0px; height:35px;}
+#cfooter .hori { background-color:#d4e9f9; height:10px; }
+#footer { background: url('/content/images/common/logo-21px.png') no-repeat 2px center; line-height:25px; height:25px; }
+#flft { position:relative; left:5px; }
+#frgh { position:relative; right:10px; }
+#frgh a{ background: url('/content/images/common/rtop.gif') no-repeat center right; padding-right:20px; color:#fff; }
+#bgdefault a{ background: url('/content/images/login/tgnuoc.jpg') no-repeat center right; padding-right:20px; height:600px; width:800px; color:#fff; }
+
+/*Style apply for grid*/
+.grid
+{
+	border:none 1px #666;
+	padding:1px;
+	width:100%;
+	/*border-collapse:collapse;*/
+}
+
+.grid .readonly
+{
+    background-color: #dcdcdc;    
+    font-size: 15px;
+    font-weight: bold;
+	color: #000;
+	text-align:right;
+	width: 100px;
+}
+
+.grid .editable
+{
+    background-color: #ffffff;    
+    font-size: 15px;
+    font-weight: bold;
+	color: #003399;
+	text-align:right;
+	width: 100px;
+}
+
+.grid tbody
+{
+	border:solid 1px #444;
+}
+.grid th
+{
+	background: url('/content/images/common/ghead.gif') repeat-x center center;
+	border:solid 1px #ccc;
+	padding: 4px 5px;
+	color: #000000;
+	font-weight:bold;
+	text-decoration: none;	
+}
+.grid td {
+	padding: 5px;
+	border:solid 1px #CCC;
+}
+.grid tr.odd {
+	background: #FFF;
+}
+.grid tr.even {
+	background: #f2f2f2;
+	
+}
+
+.grid tr.edit {
+	background: #D4E9F9;
+}
+
+.grid tr.edit td {
+	font-weight:bold;
+}
+
+.grid tr.odd:hover, .grid tr.even:hover {
+	cursor:default;
+	background: #e9f7fd;
+}
+.grid th a
+{
+	color:#000000;
+	text-decoration: none;
+}
+.grid th a:hover
+{
+	color:#000000;
+	text-decoration: underline;
+}
+.grid td.center {
+	text-align:center;
+}
+.grid .nodata {		
+	color: #666 !important;
+	font-weight: normal !important;
+}
+
+
+/*For Form*/
+.form td{
+	padding:2px 5px;
+}
+
+/*
+.form .right
+{
+    background: #e0eaf5;
+	height:40px;
+	text-align:right;
+	padding-right:10px;
+}
+*/
+
+.form .label{
+	background:#fff;
+	border-top:2px solid #fff;
+	border-bottom:1px dotted #ddd;
+	border-right:1px dotted #ddd;
+	text-align:right;
+	font-weight:bold;
+	/*vertical-align: top;*/
+}
+.form .required{
+	font-weight:bold;
+}
+.form .required span{
+	color:red;
+}
+
+.crmcontainer .addnew,
+.crmcontainer .approve,
+.crmcontainer .bocvattu,
+.crmcontainer .cancel,
+.crmcontainer .pickup,
+.crmcontainer .delete,
+.crmcontainer .reject,
+.crmcontainer .save,
+.crmcontainer .init,
+.crmcontainer .filter,
+.crmcontainer .report,
+.crmcontainer .change,
+.crmcontainer .inle,
+.crmcontainer .intheolotrinh,
+.crmcontainer .intheolo
+ {
+	background:url('/content/images/common/buttons.png') no-repeat top left;
+	height:22px;
+	padding:0px; border:none;
+}
+.crmcontainer .addnew { background-position:0px 0px; width:90px; }
+.crmcontainer .addnew:hover { background-position:0px -22px; width:90px; cursor: pointer; }
+.crmcontainer .approve { background-position:0px -44px; width:90px; }
+.crmcontainer .approve:hover { background-position:0px -66px; width:90px; cursor: pointer; }
+.crmcontainer .bocvattu { background-position:0px -88px; width:90px; }
+.crmcontainer .bocvattu:hover { background-position:0px -110px; width:90px; cursor: pointer; }
+.crmcontainer .cancel { background-position:0px -132px; width:60px; }
+.crmcontainer .cancel:hover { background-position:0px -154px; width:60px; cursor: pointer; }
+.crmcontainer .change { background-position:0px -176px; width:90px; }
+.crmcontainer .change:hover { background-position:0px -198px; width:90px; cursor: pointer; }
+.crmcontainer .delete { background-position:0px -220px; width:60px; cursor: pointer; }
+.crmcontainer .delete:hover { background-position:0px -242px; width:60px; cursor: pointer; }
+.crmcontainer .reject { background-position:0px -264px; width:75px; }
+.crmcontainer .reject:hover { background-position:0px -286px; width:75px; cursor: pointer; }
+.crmcontainer .save { background-position:0px -308px; width:60px; }
+.crmcontainer .save:hover { background-position:0px -330px; width:60px; cursor: pointer; }
+.crmcontainer .init { background-position:0px -352px; width:90px; }
+.crmcontainer .init:hover { background-position:0px -374px; width:90px; cursor: pointer; }
+.crmcontainer .filter { background-position:0px -396px; width:50px; }
+.crmcontainer .filter:hover { background-position:0px -418px; width:50px; cursor: pointer; }
+.crmcontainer .pickup { background-position:0px -440px; width:50px; }
+.crmcontainer .pickup:hover { background-position:0px -462px; width:50px; cursor: pointer; }
+.crmcontainer .report { background-position:0px -484px; width:90px; }
+.crmcontainer .report:hover { background-position:0px -506px; width:90px; cursor: pointer; }
+.crmcontainer .inle { background-position:0px -528px; width:60px; }
+.crmcontainer .inle:hover { background-position:0px -550px; width:60px; cursor: pointer; }
+.crmcontainer .intheolotrinh { background-position:0px -572px; width:120px; }
+.crmcontainer .intheolotrinh:hover { background-position:0px -594px; width:120px; cursor: pointer; }
+.crmcontainer .intheolo { background-position:0px -616px; width:90px; }
+.crmcontainer .intheolo:hover { background-position:0px -638px; width:90px; cursor: pointer; }
+
+.form .refresh, .form .refresh:hover{
+	background:url('/content/images/common/btnRefresh.png') no-repeat top left;
+	width:77px; height:26px;
+	padding:0px; border:none;
+}
+.form .back, .form .back:hover{
+	background:url('/content/images/common/btnBack.png') no-repeat top left;
+	width:77px; height:26px;
+	padding:0px; border:none;
+}
+
+.form .header
+{
+    background-color: #D4E9F9;
+    border-left: 1px solid #1188DC;
+    border-right: 1px solid #1188DC;
+    border-bottom: 1px solid #1188DC;
+    height: 25px;
+    line-height: 25px;
+    color: #000;
+    font-weight: bold;
+}
+
+
+
+.form .header-left
+{
+    background-color: #D4E9F9;
+    border-left: 1px solid #1188DC;
+    border-top: 1px solid #1188DC;
+    border-bottom: 1px solid #1188DC;
+    height: 25px;
+    line-height: 25px;
+    color: #000;
+    font-weight: bold;
+}
+
+.form .header-right
+{
+    background-color: #D4E9F9;
+    border: 1px solid #1188DC;
+    height: 25px;
+    line-height: 25px;
+    color: #000;
+    font-weight: bold;
+}
+
+.form .content-left
+{
+    vertical-align: top;
+    border-left: 1px solid #1188DC;
+    border-bottom: 1px solid #1188DC;
+    padding-bottom: 5px;
+}
+
+.form .content
+{
+    border-left: 1px solid #1188DC;
+    border-right: 1px solid #1188DC;
+    border-bottom: 1px solid #1188DC;
+    padding-bottom: 5px;
+}
+
+.form .content-right
+{
+    vertical-align: top;
+    border-left: 1px solid #1188DC;
+    border-bottom: 1px solid #1188DC;
+    border-right: 1px solid #1188DC;
+    padding-bottom: 5px;
+}
+
+/* End style for Pager */
+/*
+.crmcontainer .approveIndicator
+{
+    background: #ffffff url("../../content/images/indicator/green.png") repeat-x left top;
+    width: 150px !important;
+    cursor: pointer;
+}
+*/
+
+.crmcontainer .approveIndicator  
+{
+    background: #fff url('/content/images/indicator/green.png') repeat-x right top;
+    cursor: pointer;
+    width: 70px;
+    height: 20px;
+}
+
+
+.crmcontainer .rejectIndicator
+{
+    background: #fff url('/content/images/indicator/red.png') repeat-x right top;
+    cursor: pointer;
+    width: 70px;
+    height: 20px;
+}
+
+.crmcontainer .inprogressIndicator
+{
+    background: #fff url('/content/images/indicator/orange.png') repeat-x right top;
+    cursor: pointer;
+    width: 70px;
+    height: 20px;
+}
+
+.crmcontainer .newIndicator
+{
+    background: #fff url('/content/images/indicator/blue.png') repeat-x right top;  
+    cursor: pointer;
+    width: 70px;
+    height: 20px;
+}
+
+.crmcontainer .noneIndicator
+{
+    background: #fff url('/content/images/indicator/grey.png') repeat-x right top;
+    cursor: pointer;
+    width: 70px;
+    height: 20px;
+    border-left: solid 1px #cccc;
+    border-right: solid 1px #cccc;
+}
+
+.crmcontainer .issuedIndicator
+{
+    background: #fff url('/content/images/indicator/issued.png') repeat-x right top;
+    cursor: pointer;
+    width: 70px;
+    height: 20px;
+}
+
+/* hide the close x on the loading screen */
+.loadingScreenWindow .ui-dialog-titlebar-close {
+	display: none;
+}
+
+.divLoadingContent 
+{
+    height: 120px;
+    text-align: center;
+    font-weight: bold;
+    width: 250px;
+}
+
+.divLoadingContent img
+{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
+	background:-moz-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+	background:-webkit-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+	background:-o-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+	background:-ms-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
+	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
+	background-color:#ffc477;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:normal;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
+	background:-moz-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+	background:-webkit-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+	background:-o-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+	background:-ms-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
+	background:linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477',GradientType=0);
+	background-color:#fb9e25;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

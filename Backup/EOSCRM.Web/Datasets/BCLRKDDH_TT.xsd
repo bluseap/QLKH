@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BCLRKDDH_TT" targetNamespace="http://tempuri.org/BCLRKDDH_TT.xsd" xmlns:mstns="http://tempuri.org/BCLRKDDH_TT.xsd" xmlns="http://tempuri.org/BCLRKDDH_TT.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BCLRKDDH_TT" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BCLRKDDH_TT" msprop:Generator_DataSetName="BCLRKDDH_TT">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BCLRKDDH_TT" msprop:Generator_UserTableName="BCLRKDDH_TT" msprop:Generator_RowDeletedName="BCLRKDDH_TTRowDeleted" msprop:Generator_TableClassName="BCLRKDDH_TTDataTable" msprop:Generator_RowChangedName="BCLRKDDH_TTRowChanged" msprop:Generator_RowClassName="BCLRKDDH_TTRow" msprop:Generator_RowChangingName="BCLRKDDH_TTRowChanging" msprop:Generator_RowEvArgName="BCLRKDDH_TTRowChangeEvent" msprop:Generator_RowEvHandlerName="BCLRKDDH_TTRowChangeEventHandler" msprop:Generator_TablePropName="_BCLRKDDH_TT" msprop:Generator_TableVarName="tableBCLRKDDH_TT" msprop:Generator_RowDeletingName="BCLRKDDH_TTRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="STT" msprop:Generator_UserColumnName="STT" msprop:Generator_ColumnPropNameInRow="STT" msprop:Generator_ColumnVarNameInTable="columnSTT" msprop:Generator_ColumnPropNameInTable="STTColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="NDCV" msprop:Generator_UserColumnName="NDCV" msprop:Generator_ColumnPropNameInRow="NDCV" msprop:Generator_ColumnVarNameInTable="columnNDCV" msprop:Generator_ColumnPropNameInTable="NDCVColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SLKIEMD" msprop:Generator_UserColumnName="SLKIEMD" msprop:Generator_ColumnPropNameInRow="SLKIEMD" msprop:Generator_ColumnVarNameInTable="columnSLKIEMD" msprop:Generator_ColumnPropNameInTable="SLKIEMDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SLD" msprop:Generator_UserColumnName="SLD" msprop:Generator_ColumnPropNameInRow="SLD" msprop:Generator_ColumnVarNameInTable="columnSLD" msprop:Generator_ColumnPropNameInTable="SLDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SLKD" msprop:Generator_UserColumnName="SLKD" msprop:Generator_ColumnPropNameInRow="SLKD" msprop:Generator_ColumnVarNameInTable="columnSLKD" msprop:Generator_ColumnPropNameInTable="SLKDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

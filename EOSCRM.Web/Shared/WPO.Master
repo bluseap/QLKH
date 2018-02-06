@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WPO.master.cs" Inherits="EOSCRM.Web.Shared.WPO" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title>Responsive Navigation Menu using Twitter Bootstrap</title>
+    <link href="~/content/css/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    <a target="_blank" href="http://powaco.com.vn">POWACO</a>
+                </h1>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        <b>LẬP TRÌNH</b>
+        <br />
+        Website: <a target="_blank" href="http://powaco.com.vn">powaco</a> | <a target="_blank" href="http://powaco.com.vn/">
+        Văn phòng</a><br />
+        Email: <a href="mailto:khoinguyenaglx@gmail.com">khoinguyenaglx@gmail.com</a>
+    </div>
+    </form>
+</body>
+</html>
+

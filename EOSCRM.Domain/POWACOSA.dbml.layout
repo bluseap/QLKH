@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.125, 15.125" name="POWACOSA">
+  <DataContextMoniker Name="/POWACOSADataContext" />
+  <nestedChildShapes>
+    <classShape Id="01a9181b-967c-4cec-911c-ae88e1bb447d" absoluteBounds="0.75, 0.5, 2, 5.0400211588541657">
+      <DataClassMoniker Name="/POWACOSADataContext/LNVLYLICH" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e1d3bdb-4cb0-48de-90f9-aa856257d58f" absoluteBounds="0.7649999999999999, 0.96, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b57c2bfa-ccc7-4c00-a44d-6d96075a2cad" absoluteBounds="3, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/POWACOSADataContext/LHINHNVLL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5a5470aa-d4ca-4c88-89fd-a06fe9674b6b" absoluteBounds="3.015, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5e29693c-25a4-4ded-a3d9-bdd9bc15b034" absoluteBounds="3, 2.75, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/POWACOSADataContext/LDANTOC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f1269ec-60b6-4bbb-9390-d464a8b4de6a" absoluteBounds="3.0149999999999997, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="65c5cc9e-8f4a-4880-8c1c-ec7f16ee3c7d" absoluteBounds="3, 4.25, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/POWACOSADataContext/LTONGIAO" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cadfe623-b91e-4903-9973-dcf478c10c1b" absoluteBounds="3.015, 4.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d0e7f2c2-840d-41c7-b7de-7c53043ddf09" absoluteBounds="3, 5.75, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/POWACOSADataContext/LTPXT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="578ace09-5106-4265-992b-2e3326047ddd" absoluteBounds="3.015, 6.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9925786d-0740-412b-9d6c-1279a860de6f" absoluteBounds="3, 7.25, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/POWACOSADataContext/LLOAIBC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d304d759-a087-4ca9-9b0f-b1b07d296628" absoluteBounds="3.015, 7.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ac5a214-a848-49c3-8c62-0d0eafa73e08" absoluteBounds="3, 8.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/POWACOSADataContext/LCHEDOHOC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f251d2d0-332d-4244-8391-c145d2668d87" absoluteBounds="3.015, 9.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a896c7fd-a680-4d1e-bbf3-3f1734a56c9f" absoluteBounds="5.375, 0.5, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/POWACOSADataContext/LTRINHDO" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc2f8bad-3219-4dcd-aa91-fa39d795d99b" absoluteBounds="5.39, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 7.84699625651042); (5.25 : 7.84699625651042); (5.25 : 4.5); (6.375 : 4.5); (6.375 : 3.80930826822917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LLOAIBC/LLOAIBC_LTRINHDO" />
+      <nodes>
+        <classShapeMoniker Id="9925786d-0740-412b-9d6c-1279a860de6f" />
+        <classShapeMoniker Id="a896c7fd-a680-4d1e-bbf3-3f1734a56c9f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 9.09375); (5.40625 : 9.09375); (5.40625 : 3.80930826822917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LCHEDOHOC/LCHEDOHOC_LTRINHDO" />
+      <nodes>
+        <classShapeMoniker Id="5ac5a214-a848-49c3-8c62-0d0eafa73e08" />
+        <classShapeMoniker Id="a896c7fd-a680-4d1e-bbf3-3f1734a56c9f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ae8a0dfc-d35f-4812-bfef-b374d8d52161" absoluteBounds="7.875, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/POWACOSADataContext/LQTCONGTAC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb4a15e5-f4d3-4acb-8fe0-9ffdae0a2113" absoluteBounds="7.8900000000000006, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7465e171-3a19-442f-97d0-43e1b410d836" absoluteBounds="10.375, 0.5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/POWACOSADataContext/LNHAPNGU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4d182ff9-075f-4780-9b46-d7cc243a3b99" absoluteBounds="10.39, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="93fe366b-2290-434c-b5e5-4b08f26b8aa8" absoluteBounds="12.875, 0.625, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/POWACOSADataContext/LSUCKHOE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f1cfbebf-1c64-4e23-addf-f1ef7d388f5d" absoluteBounds="12.89, 1.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="89a8bcb0-fb16-4cae-9242-50d2c0158636" absoluteBounds="5.5, 4.75, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/POWACOSADataContext/LDAOTAOBD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="45a910ec-bc7a-477c-b4c5-ba340d08909a" absoluteBounds="5.515, 5.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 7.48599812825521); (5.16666666666667 : 7.48599812825521 : JumpStart); (5.33333333333333 : 7.48599812825521 : JumpEnd); (5.5 : 7.48599812825521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LLOAIBC/LLOAIBC_LDAOTAOBD" />
+      <nodes>
+        <classShapeMoniker Id="9925786d-0740-412b-9d6c-1279a860de6f" />
+        <classShapeMoniker Id="89a8bcb0-fb16-4cae-9242-50d2c0158636" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 8.75); (5.5 : 8.4439111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LCHEDOHOC/LCHEDOHOC_LDAOTAOBD" />
+      <nodes>
+        <classShapeMoniker Id="5ac5a214-a848-49c3-8c62-0d0eafa73e08" />
+        <classShapeMoniker Id="89a8bcb0-fb16-4cae-9242-50d2c0158636" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="eba97d14-3444-4426-95f4-b6e89288cd6d" absoluteBounds="3, 10.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/POWACOSADataContext/LLOAIDTBD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd76e4ca-4953-4f3b-9003-0e1f315865a8" absoluteBounds="3.015, 10.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 10.9431469726563); (5.25 : 10.9431469726563); (5.25 : 9.25); (6.531252 : 9.25); (6.531252 : 8.4439111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LLOAIDTBD/LLOAIDTBD_LDAOTAOBD" />
+      <nodes>
+        <classShapeMoniker Id="eba97d14-3444-4426-95f4-b6e89288cd6d" />
+        <classShapeMoniker Id="89a8bcb0-fb16-4cae-9242-50d2c0158636" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="534dca1b-0ac2-40c1-97fa-076d0e53f477" absoluteBounds="3, 11.875, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/POWACOSADataContext/LLOAIKYLUATKT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99beae45-ec8b-40eb-bb9b-1b2bf56dc425" absoluteBounds="3.015, 12.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1cc3358d-5451-4d84-a39b-3f6d246f3d86" absoluteBounds="3, 13.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/POWACOSADataContext/LLOAIQHGD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d96134a9-3021-4e1b-9d5a-039fed603915" absoluteBounds="3.015, 13.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a13d1d88-c0fb-4e73-869a-64f8a01226fb" absoluteBounds="0.75, 6.75, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/POWACOSADataContext/LKHENTKL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="733997b9-9ad2-4a2a-bbbc-8bf0086715b8" absoluteBounds="0.765, 7.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3 : 12.5681469726563); (1.75 : 12.5681469726563); (1.75 : 9.67470540364583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LLOAIKYLUATKT/LLOAIKYLUATKT_LKHENTKL" />
+      <nodes>
+        <classShapeMoniker Id="534dca1b-0ac2-40c1-97fa-076d0e53f477" />
+        <classShapeMoniker Id="a13d1d88-c0fb-4e73-869a-64f8a01226fb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8759ef01-f753-4e86-aa9b-d4e005b0f241" absoluteBounds="5.5, 9.5, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/POWACOSADataContext/LQUANHEGD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5086674e-dee8-4788-8327-f19b38d155db" absoluteBounds="5.515, 9.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5 : 3.44314697265625); (5.3125 : 3.44314697265625); (5.3125 : 9.40625); (6.5 : 9.40625); (6.5 : 9.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LDANTOC/LDANTOC_LQUANHEGD" />
+      <nodes>
+        <classShapeMoniker Id="5e29693c-25a4-4ded-a3d9-bdd9bc15b034" />
+        <classShapeMoniker Id="8759ef01-f753-4e86-aa9b-d4e005b0f241" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 5.06814647265625); (5.125 : 5.06814647265625); (5.125 : 8.6939111328125); (6.44791866666667 : 8.6939111328125 : JumpStart); (6.61458533333333 : 8.6939111328125 : JumpEnd); (7.0156255 : 8.6939111328125); (7.0156255 : 9.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LTONGIAO/LTONGIAO_LQUANHEGD" />
+      <nodes>
+        <classShapeMoniker Id="65c5cc9e-8f4a-4880-8c1c-ec7f16ee3c7d" />
+        <classShapeMoniker Id="8759ef01-f753-4e86-aa9b-d4e005b0f241" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 13.5); (5.5 : 13.3862125651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/POWACOSADataContext/LLOAIQHGD/LLOAIQHGD_LQUANHEGD" />
+      <nodes>
+        <classShapeMoniker Id="1cc3358d-5451-4d84-a39b-3f6d246f3d86" />
+        <classShapeMoniker Id="8759ef01-f753-4e86-aa9b-d4e005b0f241" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

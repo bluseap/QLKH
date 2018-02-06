@@ -1,0 +1,1118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_GlobalResources/Message.resx">
+      <publishTime>01/24/2014 00:07:54</publishTime>
+    </File>
+    <File Include="App_GlobalResources/SystemConfig.resx">
+      <publishTime>02/09/2012 12:53:14</publishTime>
+    </File>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="bin/AjaxPro.2.dll">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Controls.dll">
+      <publishTime>12/30/2013 00:27:44</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Controls.pdb">
+      <publishTime>12/30/2013 00:27:44</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Dao.dll">
+      <publishTime>03/29/2014 02:17:56</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Dao.pdb">
+      <publishTime>03/29/2014 02:17:56</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Domain.dll">
+      <publishTime>02/12/2014 05:51:46</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Domain.pdb">
+      <publishTime>02/12/2014 05:51:46</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Util.dll">
+      <publishTime>01/24/2014 00:08:20</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Util.pdb">
+      <publishTime>01/24/2014 00:08:20</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Web.dll">
+      <publishTime>03/31/2014 02:43:14</publishTime>
+    </File>
+    <File Include="bin/EOSCRM.Web.pdb">
+      <publishTime>03/31/2014 02:43:14</publishTime>
+    </File>
+    <File Include="content/css/Core.css">
+      <publishTime>03/08/2013 07:51:40</publishTime>
+    </File>
+    <File Include="content/css/default.css">
+      <publishTime>03/15/2013 12:06:24</publishTime>
+    </File>
+    <File Include="content/css/Fixie.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/css/fixieIE6.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/css/grid.css">
+      <publishTime>02/06/2013 09:57:10</publishTime>
+    </File>
+    <File Include="content/css/Login.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/css/wizard.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/images/asc.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/async.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/bbGotopage.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/bbPost.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/bl.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/bm.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/br.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/bullet.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/clear.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/alogo.gif">
+      <publishTime>05/16/2012 10:18:52</publishTime>
+    </File>
+    <File Include="content/images/common/arrow-down.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/arrow.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/asc.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/bg.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/bgsearch.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/bgtop.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/bg_header.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnAdd.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnAddHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnAddNew.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnApprove.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnApproveHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnBack.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnBocVatTu.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnBocVatTuHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnCancel.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnCancel.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnCancelHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnChange.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnChangeHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnDelete.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnDeleteHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnExecuted.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnFilter.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnFilterHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnPickUp.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnPickUpHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnRefresh.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnReject.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnRejectHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnSave.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnSave.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnSaveHover.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnUnlock.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/btnUnlock2.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/buttons.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/calendar.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/cpopup.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/desc.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/DropArrow.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/filtered.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/ghead.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/iconCritical.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/logo-21px.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/logo.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/navBtn.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/navCurrentBtn.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/navDoneBtn.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/navLastDoneBtn.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/rcbSprite.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/rcbSpriteIE6.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/rtop.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/sprite.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/common/tpopup.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/desc.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/eosicon.ico">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/icons/calendar.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/icons/changepwd_12x12.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/icons/collapsed.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/icons/expanded.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/icons/form_16x16.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/icons/logout_12x12.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/indicator/blue.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/indicator/green.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/indicator/grey.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/indicator/issued.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/indicator/orange.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/indicator/red.png">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/l.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/loading.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/login/bg.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/login/bg.png">
+      <publishTime>05/16/2012 09:07:26</publishTime>
+    </File>
+    <File Include="content/images/login/button.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/login/pass.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/login/tgnuoc.jpg">
+      <publishTime>12/19/2012 08:20:10</publishTime>
+    </File>
+    <File Include="content/images/login/user.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/next.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/prev.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/approve.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/c.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/inprogress.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/k.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/new.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/q.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/progress/reject.jpg">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/r.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/tl.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/tm.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/tr.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/images/transparent.gif">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/blank.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/functions.js">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/iepngfix.htc">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/iepngfix_tilebg.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/Error.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/Exclamation.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/help.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/important.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/info.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/Information.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/title.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_flat_55_999999_40x100.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_flat_75_aaaaaa_40x100.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_glass_45_0078ae_1x400.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_glass_55_f8da4e_1x400.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_glass_75_79c9ec_1x400.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_gloss-wave_45_e14f1c_500x100.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_gloss-wave_50_6eac2c_500x100.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_gloss-wave_75_2191c0_500x100.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-bg_inset-hard_100_fcfdfd_1x100.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_0078ae_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_056b93_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_d8e7f3_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_e0fdff_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_f5e175_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_f7a50d_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/images/ui-icons_fcd113_256x240.png">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery-1.4.2.min.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery-ui.css">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/jquery-ui.min.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.alerts.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.alerts.js">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.blockUI.js">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.center.min.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.freeow.js">
+      <publishTime>01/01/2012 11:09:30</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.min.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.msg.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.msg.min.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.numberformatter-1.2.2.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jquery.ui.draggable.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jshashset.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/jshashtable-2.1.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/menu/ddsmoothmenu.css">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/menu/ddsmoothmenu.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/menu/right.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/menu/s_arrow_down.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/menu/s_arrow_right.gif">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/numberformat.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/PIE.htc">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="content/scripts/protoculous-1.js">
+      <publishTime>01/01/2012 11:09:32</publishTime>
+    </File>
+    <File Include="Datasets/BBNGHIEMTHU.xsc">
+      <publishTime>01/23/2014 06:41:56</publishTime>
+    </File>
+    <File Include="Datasets/BBNGHIEMTHU.xss">
+      <publishTime>01/23/2014 06:41:56</publishTime>
+    </File>
+    <File Include="Datasets/IN_GIAYDENGHI.xsc">
+      <publishTime>01/20/2014 08:11:50</publishTime>
+    </File>
+    <File Include="Datasets/IN_GIAYDENGHI.xss">
+      <publishTime>01/20/2014 08:11:50</publishTime>
+    </File>
+    <File Include="Datasets/IN_PHIEULAPDATNUOC.xsc">
+      <publishTime>01/21/2014 00:32:20</publishTime>
+    </File>
+    <File Include="Datasets/IN_PHIEULAPDATNUOC.xss">
+      <publishTime>01/21/2014 00:32:20</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>12/19/2012 09:05:24</publishTime>
+    </File>
+    <File Include="Forms/Common/Error.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/BangChiTietChuanThu.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/BangKeChiTietThucThu.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/BangKeThuTienNuoc.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/BangKeTonHoaDonTheoDuong.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/BaoCaoTinhHinhThucThu.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/ChiTietHoaDonTon.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/ChiTietThuNoTheoThoiGian.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/KhachHangTonHoaDon.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/KhachHangTonHoaDonNhieuKy.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/rpPhieuThu.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/TinhHinhThuTienNhanVien.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/BaoCao/TongHopCongNoTheoNhanVien.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/CongNo/KiemTraHoaDonTon.aspx">
+      <publishTime>11/20/2012 13:02:04</publishTime>
+    </File>
+    <File Include="Forms/CongNo/NhapCongNo.aspx">
+      <publishTime>11/30/2012 13:14:16</publishTime>
+    </File>
+    <File Include="Forms/CongNo/NhapCongNoNguoc.aspx">
+      <publishTime>12/03/2012 08:12:02</publishTime>
+    </File>
+    <File Include="Forms/CongNo/PhanCongGhiThu.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/CongNo/PhatSinhTang.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/CongNo/ThuTaiQuay.aspx">
+      <publishTime>12/18/2012 09:00:16</publishTime>
+    </File>
+    <File Include="Forms/CongNo/TraCuuCongNo.aspx">
+      <publishTime>11/20/2012 12:42:00</publishTime>
+    </File>
+    <File Include="Forms/content/scripts/menu/s_arrow_down.gif">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/content/scripts/menu/s_arrow_right.gif">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/BaoCao/DuongPho.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/BaoCao/VatTu.aspx">
+      <publishTime>12/27/2013 02:33:58</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/CapBac.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/CongViec.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/CoQuanTt.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/Doan.aspx">
+      <publishTime>03/17/2012 19:32:04</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/DongHo.aspx">
+      <publishTime>03/21/2014 07:02:40</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/DonViTinh.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/DuongPho.aspx">
+      <publishTime>04/26/2012 14:03:20</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/HeSo.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/HeSoKH.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/KhuVuc.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/LoaiDongHo.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/LoaiKhachHangDb.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/LoaiPhanHoi.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/NganHang.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/NhanVien.aspx">
+      <publishTime>07/04/2013 08:41:10</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/NhomPhanHoi.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/NhomVatTu.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/PhongBan.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/Phuong.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/ThongTinPhanHoi.aspx">
+      <publishTime>02/24/2012 11:27:06</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/ThongTinXuLy.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/TrinhDo.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/DanhMuc/VatTu.aspx">
+      <publishTime>02/09/2012 12:53:24</publishTime>
+    </File>
+    <File Include="Forms/Default/Default.aspx">
+      <publishTime>12/19/2012 09:28:32</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/ChuanThuTheoDuong.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/DSKDO.aspx">
+      <publishTime>01/31/2013 09:46:46</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/DSKHTieuThu.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/DSKTKY.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/InSoGhiNuoc.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/rpDieuChinhHoaDon.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/rpDSKDO.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/rpDSKTKY.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/rpInHoaDon.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/rpInHoaThuy.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/SanLuongThucTe.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/BaoCao/TongHopChuanThu.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/DieuChinhHoaDon.aspx">
+      <publishTime>03/07/2014 06:30:52</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/GhiChiSo.aspx">
+      <publishTime>07/24/2013 15:25:32</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/InHoaDon.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/InHoaDonLe.aspx">
+      <publishTime>02/24/2012 12:03:40</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/InHoaDonN.aspx">
+      <publishTime>03/15/2013 13:08:56</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/KhoiTaoGhiChiSo.aspx">
+      <publishTime>02/24/2014 01:31:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/KhoiTaoGhiChiSoBoSung.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/KhoiTaoGhiChiSoLe.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/PhatHoaDon.aspx">
+      <publishTime>12/27/2013 02:34:00</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/SuaChiSo.aspx">
+      <publishTime>02/24/2014 00:54:30</publishTime>
+    </File>
+    <File Include="Forms/GhiChiSo/TinhCuoc.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/Group/Creation.aspx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/Group/Edition.aspx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/Group/GroupUI.ascx">
+      <publishTime>01/22/2013 14:00:34</publishTime>
+    </File>
+    <File Include="Forms/Group/List.aspx">
+      <publishTime>03/17/2012 17:46:44</publishTime>
+    </File>
+    <File Include="Forms/Group/PermissionUI.ascx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/HeThong/ChangePassword.aspx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/HeThong/NguoiDung.aspx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChoHopDong.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChoLapCT.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChoThiCong.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChoThietKe.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChuaHopDong.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChuaLapCT.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChuaThiCong.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_ChuaThietKe.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_DaHopDong.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_DaLapCT.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_DaThiCong.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_DaThietKe.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/DS_DonDangKy.aspx">
+      <publishTime>02/11/2014 23:58:50</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpInGiayDeNghi.aspx">
+      <publishTime>03/17/2014 06:13:12</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpLapChietTinh.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpLapChietTinhSuaChua.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpLapQuyetToan.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpPhieuCongTac.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpPhieuCongTacSuaChua.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpVatTuThietKe.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/DonLapDatMoi/rpVTTKBVT.aspx">
+      <publishTime>03/17/2014 06:08:34</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/BCDSKHMoi.aspx">
+      <publishTime>12/27/2013 02:39:20</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/DSKH.aspx">
+      <publishTime>12/27/2013 02:39:24</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/KhongThongTinThayDongHo.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/LichSuSuDungNuoc.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/SoBoCongTy.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/ThayDoiChiTietNuoc.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/ThayDongHo.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/ThongTinThayDongHo.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/TinhHinhTieuThu.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/BaoCao/QuanLyKH/TinhHinhTieuThuKhachHang.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/CapNhatDoan.aspx">
+      <publishTime>11/22/2012 09:35:48</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/CapNhatSoBo.aspx">
+      <publishTime>12/02/2013 00:18:50</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/CupMoNuoc.aspx">
+      <publishTime>01/22/2013 09:06:22</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/InHopDongKH.aspx">
+      <publishTime>03/31/2014 02:47:02</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/KhachHangTam.aspx">
+      <publishTime>08/16/2013 08:15:32</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/NhapDonLapMoi.aspx">
+      <publishTime>01/08/2014 14:57:46</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/NhapKhachHang.aspx">
+      <publishTime>03/10/2014 04:50:26</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/PhatSinhTang.aspx">
+      <publishTime>01/01/2012 11:09:16</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/ThayDanhSo.aspx">
+      <publishTime>01/25/2013 14:27:32</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/ThayDongHo.aspx">
+      <publishTime>03/26/2014 01:39:30</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/TraCuuDonLapMoi.aspx">
+      <publishTime>03/21/2014 07:01:06</publishTime>
+    </File>
+    <File Include="Forms/KhachHang/TraCuuKhachHang.aspx">
+      <publishTime>03/25/2014 07:21:12</publishTime>
+    </File>
+    <File Include="Forms/Phep_CongTac/DonNghiPhep.aspx">
+      <publishTime>07/04/2013 10:35:04</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/BaoCao/DS_ChoLapCTSC.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/BaoCao/DS_ChuaLapCTSC.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/BaoCao/DS_DaLapCTSC.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/BaoCao/DS_DonSuaChua.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/BaoCao/DS_DonSuaChua_HoanThanh.aspx">
+      <publishTime>12/27/2013 02:34:02</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/CapNhatSauSuaChua.aspx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/DuyetChietTinhSuaChua.aspx">
+      <publishTime>01/01/2012 11:09:14</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/DuyetQuyetToanSuaChua.aspx">
+      <publishTime>02/27/2012 21:23:20</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/GiaiQuyetDonSuaChua.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/LapChietTinhSuaChua.aspx">
+      <publishTime>03/05/2012 12:32:20</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/LapQuyetToanSuaChua.aspx">
+      <publishTime>03/05/2012 12:32:20</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/NhapThongTinSuaChua.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/PhanCongSuaChua.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/TraCuuQuyetToanSuaChua.aspx">
+      <publishTime>02/27/2012 21:23:20</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/TraCuuSuaChua.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/SuaChua/TraCuuTinhSuaChua.aspx">
+      <publishTime>02/24/2012 11:27:06</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/BienBanNghiemThu.aspx">
+      <publishTime>03/21/2014 06:08:08</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/CapNhatChiTietSauThiCong.aspx">
+      <publishTime>03/11/2014 01:41:02</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/DuyetQuyetToan.aspx">
+      <publishTime>03/17/2012 17:47:48</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/InBBNghiemThuN.aspx">
+      <publishTime>03/20/2014 01:24:42</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/InPhieuLapNuoc.aspx">
+      <publishTime>03/17/2014 06:08:52</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/InPhieuNiemChiNuoc.aspx">
+      <publishTime>03/17/2014 07:39:18</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/LapQuyetToan.aspx">
+      <publishTime>12/13/2012 09:29:10</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/NhapThiCong.aspx">
+      <publishTime>01/23/2014 07:39:56</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/TraCuuQuyetToan.aspx">
+      <publishTime>03/17/2012 17:15:16</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/TraCuuThiCong.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/ThiCongCongTrinh/XuLyDonChoThiCong.aspx">
+      <publishTime>01/01/2012 11:09:12</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/BaoCao/BangDeNghiXuatVatTu.aspx">
+      <publishTime>12/27/2013 02:34:04</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/BaoCao/BangTongHopQuyetToan.aspx">
+      <publishTime>12/27/2013 02:34:04</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/BocVatTu.aspx">
+      <publishTime>10/22/2013 15:07:18</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/DuyetChietTinh.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/DuyetThietKe.aspx">
+      <publishTime>01/11/2014 07:58:28</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/KhaoSatThietKe.aspx">
+      <publishTime>11/20/2013 23:33:10</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/LapChietTinh.aspx">
+      <publishTime>03/20/2014 06:24:18</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/NhapHopDong.aspx">
+      <publishTime>03/10/2014 04:01:12</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/NhapThietKe.aspx">
+      <publishTime>01/11/2014 08:05:10</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/PhanCongKhaoSatThietKe.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/QuanLyMauBocVatTu.aspx">
+      <publishTime>11/07/2013 08:02:00</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/TraCuuChietTinh.aspx">
+      <publishTime>03/17/2012 17:05:20</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/TraCuuHopDong.aspx">
+      <publishTime>03/06/2012 11:31:44</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/TraCuuThietKe.aspx">
+      <publishTime>11/14/2013 00:15:46</publishTime>
+    </File>
+    <File Include="Forms/ThietKe/XuLyDonChoHopDong.aspx">
+      <publishTime>01/01/2012 11:09:18</publishTime>
+    </File>
+    <File Include="Forms/TramBienAp/CapNhatChiSoTBA.aspx">
+      <publishTime>05/19/2012 09:01:30</publishTime>
+    </File>
+    <File Include="Forms/TramBienAp/GhiChiSoTBA.aspx">
+      <publishTime>05/19/2012 09:01:10</publishTime>
+    </File>
+    <File Include="Forms/TramBienAp/GhiSoHoTBA.aspx">
+      <publishTime>05/19/2012 09:00:48</publishTime>
+    </File>
+    <File Include="Forms/TramBienAp/KhoiTaoChiSoTBA.aspx">
+      <publishTime>05/19/2012 09:00:26</publishTime>
+    </File>
+    <File Include="Forms/TramBienAp/NhapTBA.aspx">
+      <publishTime>05/19/2012 08:59:42</publishTime>
+    </File>
+    <File Include="Forms/TruyThu/DoViPham.aspx">
+      <publishTime>04/11/2012 10:55:48</publishTime>
+    </File>
+    <File Include="Forms/TruyThu/GhiSaiChiSo.aspx">
+      <publishTime>04/06/2012 16:36:36</publishTime>
+    </File>
+    <File Include="Forms/VatTu/NhapVatTuNuoc.aspx">
+      <publishTime>11/14/2013 07:56:48</publishTime>
+    </File>
+    <File Include="Forms/VatTu/TongHopVatTuNuoc.aspx">
+      <publishTime>11/11/2013 07:37:58</publishTime>
+    </File>
+    <File Include="GisWeb/WorlMap.aspx">
+      <publishTime>03/29/2014 02:53:58</publishTime>
+    </File>
+    <File Include="Login.aspx">
+      <publishTime>01/10/2013 12:46:42</publishTime>
+    </File>
+    <File Include="PrintControl.cab">
+      <publishTime>01/05/2012 09:57:34</publishTime>
+    </File>
+    <File Include="Shared/EOS.Master">
+      <publishTime>01/01/2012 11:09:22</publishTime>
+    </File>
+    <File Include="TracNghiem/HinhTracNghiem/dangnhap.jpg">
+      <publishTime>12/26/2012 06:54:20</publishTime>
+    </File>
+    <File Include="TracNghiem/HinhTracNghiem/in.jpg">
+      <publishTime>12/26/2012 06:54:20</publishTime>
+    </File>
+    <File Include="TracNghiem/HinhTracNghiem/ketqua.jpg">
+      <publishTime>12/26/2012 06:54:20</publishTime>
+    </File>
+    <File Include="TracNghiem/HinhTracNghiem/lambai.jpg">
+      <publishTime>12/26/2012 06:54:20</publishTime>
+    </File>
+    <File Include="TracNghiem/HinhTracNghiem/logoct.png">
+      <publishTime>09/27/2012 09:31:24</publishTime>
+    </File>
+    <File Include="TracNghiem/TSLamBai.aspx">
+      <publishTime>11/01/2013 01:11:42</publishTime>
+    </File>
+    <File Include="UserControls/FilterPanel.ascx">
+      <publishTime>03/20/2014 06:25:02</publishTime>
+    </File>
+    <File Include="UserControls/Footer.ascx">
+      <publishTime>12/19/2012 07:28:40</publishTime>
+    </File>
+    <File Include="UserControls/Header.ascx">
+      <publishTime>05/16/2012 10:57:20</publishTime>
+    </File>
+    <File Include="UserControls/HopDongFilterPanel.ascx">
+      <publishTime>01/01/2012 11:09:22</publishTime>
+    </File>
+    <File Include="UserControls/KhachHangFilterPanel.ascx">
+      <publishTime>03/14/2014 02:18:06</publishTime>
+    </File>
+    <File Include="UserControls/SpecialFilterPanel.ascx">
+      <publishTime>01/01/2012 11:09:22</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/27/2013 02:38:44</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

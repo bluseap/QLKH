@@ -1,0 +1,12 @@
+input[type=file] { border:1px solid #999; }
+.conbox .ccbox td {	padding-bottom:3px; }
+#navigation input.button { padding:1px 10px; }
+input[type=checkbox] { padding:0px; margin-top:2px !important; width:13px; height:17px }
+
+#ccontent {overflow: auto;overflow-x: hidden;-ms-overflow-x: hidden;
+}
+
+.crmgrid .header .checkbox 
+{
+    width: 6px !important;
+}

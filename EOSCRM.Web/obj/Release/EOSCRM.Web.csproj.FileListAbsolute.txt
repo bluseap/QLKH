@@ -1,0 +1,2 @@
+D:\Quanlykhachhang\Quanlykhachhang\EOSCRM.Web\obj\Release\EOSCRM.Web.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Downloads\554Quanlykhachhang\Quanlykhachhang\EOSCRM.Web\obj\Release\EOSCRM.Web.csprojResolveAssemblyReference.cache

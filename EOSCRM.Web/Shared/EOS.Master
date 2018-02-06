@@ -1,0 +1,263 @@
+﻿<%@ Master Language="C#" AutoEventWireup="True" CodeBehind="EOS.master.cs" Inherits="EOSCRM.Web.Shared.EOS" %>
+
+<%@ Register Src="../UserControls/Header.ascx" TagName="Header" TagPrefix="eos" %>
+<%@ Register Src="../UserControls/Footer.ascx" TagName="Footer" TagPrefix="eosFooter" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head  runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+
+    <link rel="shortcut icon" href="../content/images/powaco.ico" />    
+    <link type="text/css" href="../content/css/core.css" rel="stylesheet" />
+    <link type="text/css" href="../content/css/default.css" rel="stylesheet" />
+    <!--[if IE]>
+		<link type="text/css" href="../content/css/fixie.css" rel="stylesheet" />
+	<![endif]-->
+    <!--[if IE 6]>
+		<link type="text/css" href="../content/css/fixieIE6.css" rel="stylesheet" />
+	<![endif]-->
+	
+    <%--<link href="/content/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <script src="/content/scripts/jquery.autocomplete.js" type="text/javascript"></script>--%>
+
+	<link rel="stylesheet" type="text/css" href="../content/scripts/Menu/ddsmoothmenu.css" />
+	<script type="text/javascript" src="/content/scripts/functions.js"></script>
+	
+    <script type="text/javascript" src="/content/scripts/menu/ddsmoothmenu.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-1.4.2.min.js"></script>
+    <!--<script type="text/javascript" src="/content/scripts/protoculous-1.js"></script>-->
+    <script type="text/javascript" src="/content/scripts/jshashtable-2.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jshashset.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery.numberformatter-1.2.2.js"></script>
+    
+    <!-- Addon for background tiling support -->
+    <script type="text/javascript" src="/content/scripts/iepngfix_tilebg.js"></script>
+    <script type="text/javascript" src="/content/scripts/functions.js"></script>
+    <style type="text/css">
+        img, div, input { behavior: url("/content/scripts/iepngfix.htc") }
+    </style>
+    
+    <link href="../content/scripts/jquery-ui.css" type="text/css" rel="stylesheet" />
+    <link href="../content/scripts/jquery.alerts.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/content/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery.alerts.js"></script>
+    <link type="text/css" href="../content/css/grid.css" rel="stylesheet" />
+    <!-- fix for 1.1em default font size in Jquery UI -->
+    <style type="text/css">
+        .ui-widget
+        {
+            font-size: 11px !important;
+        }
+        .ui-state-error-text
+        {
+            margin-left: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#divLoading").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                dialogClass: "loadingScreenWindow",
+                closeOnEscape: false,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divLoadingDlgContainer");
+                }
+            });
+        });
+
+        function openWaitingDialog() {
+            var verPos = $(document).height() / 2;
+            var horPos = $(document).width() / 2;
+
+            $("#divLoading").dialog("option", "title", "Xin chờ...");
+            $("#divLoading").dialog("option", "position", [horPos - 120, verPos - 100]);
+            $("#divLoading").dialog('open');
+
+            //block it to clean out the data
+            $("#divLoading").block({
+                message: '<img src="/content/images/loading.gif" /><br/><span>Đang tải dữ liệu...</span>',
+                css: { border: '0px' },
+                fadeIn: 0,
+                //fadeOut: 0,
+                overlayCSS: { backgroundColor: '#ffffff', opacity: 1 }
+            });
+        }
+
+        function closeWaitingDialog() {
+            $("#divLoading").dialog('close');
+        }
+
+        function unblockWaitingDialog() {
+            $("#divLoading").unblock();
+        }
+
+        function closeDialog(divId) {
+            //Could cause an infinite loop because of "on close handling"
+            $("#" + divId).dialog('close');
+        }
+
+        function openDialog(title, width, divId) {
+            var horPos = $(document).width() / 2;
+
+            $("#" + divId).dialog("option", "title", title);
+            $("#" + divId).dialog("option", "position", [horPos - (width / 2), 100]);
+
+            $("#" + divId).dialog('open');
+        }
+
+        function openDialogAndBlock(title, width, divId) {
+            openDialog(title, width, divId);
+
+            //block it to clean out the data
+            $("#" + divId).block({
+                message: '<img src="/content/images/loading.gif" />',
+                css: { border: '0px' },
+                fadeIn: 0,
+
+                //fadeOut: 0,
+                overlayCSS: { backgroundColor: '#ffffff', opacity: 1 }
+            });
+        }
+
+        function unblockDialog(divId) {
+            $("#" + divId).unblock();
+        }
+
+        function onClientClickGridItem(itemId) {
+            openWaitingDialog();
+            unblockWaitingDialog();
+
+            __doPostBack(itemId, '');
+        }
+
+        function onClientClickGridItem(itemId) {
+            openWaitingDialog();
+            unblockWaitingDialog();
+
+            __doPostBack(itemId, '');
+        }
+
+        function onClientClickGridDelete(itemId) {
+            if (confirm('Xóa các record được chọn?')) {
+                openWaitingDialog();
+                unblockWaitingDialog();
+
+                __doPostBack(itemId, '');
+            }
+        }
+
+        function onUpdating() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+        }
+
+        function onUpdated() {
+            closeWaitingDialog();
+        }
+
+       
+    </script>
+
+    <script type="text/javascript" src="/content/scripts/menu/mobile.js"></script>
+    
+    <asp:ContentPlaceHolder ID="headCPH" runat="server">    
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">         
+        
+        <ajaxToolkit:ToolkitScriptManager runat="Server" EnableScriptGlobalization="true"
+            EnableScriptLocalization="true" ID="ScriptManager1" AsyncPostBackTimeout="21600" >
+
+            <%--<Services>
+                <asp:ServiceReference Path="AutoFitter.asmx" />
+            </Services>--%>
+        </ajaxToolkit:ToolkitScriptManager>
+
+       
+            <div id="wrapper" >  
+                
+                <div id="container" >
+                    
+                    <%--<div id="headerDiv">
+                        <eos:Header ID="header2" runat="server" /> 
+                    </div>--%>
+                                          
+                    <eos:Header ID="header2" runat="server" /> 
+
+                        <div id="ccontent">
+                            <%--<div id="headerDivContent">     
+                                <eos:Header ID="header" runat="server" />
+                            </div>--%>
+                                        
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+                            </asp:ContentPlaceHolder>   
+                                         
+                        </div>
+
+                    
+
+                   
+                        <eosFooter:Footer ID="footer" runat="server" />     
+                    
+                   
+                </div>
+                       
+            </div> 
+            
+        <%--<div id="wrapper">            
+            <div id="container">                
+                <eos:Header ID="header" runat="server" />                 
+                <div id="ccontent">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>  
+            </div>
+
+            <eosFooter:Footer ID="footer" runat="server" />            
+        </div>--%>
+        
+        <div id="divLoadingDlgContainer">
+            <div id="divLoading" style="display: none">
+                <div class="divLoadingContent">
+                    <img src="<%= ResolveUrl("~") %>content/images/loading.gif" alt="Đang tải dữ liệu..." />
+                    <br/>
+                    <span>Đang tải dữ liệu...</span>
+                </div>            
+            </div> 
+        </div>
+        <asp:UpdatePanel ID="upnlJsRunner" UpdateMode="Always" runat="server">
+            <ContentTemplate>
+                <asp:PlaceHolder ID="phrJsRunner" runat="server"></asp:PlaceHolder>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+<%--<script type='text/javascript'>
+    window._sbzq || function (e) {
+        e._sbzq = [];
+        var t = e._sbzq;
+        t.push(["_setAccount", 12492]);
+        var n = e.location.protocol == "https:" ? "https:" : "http:";
+        var r = document.createElement("script");
+        r.type = "text/javascript";
+        r.async = true;
+        r.src = n + "//static.subiz.com/public/js/loader.js";
+        var i = document.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(r, i)
+    }(window);
+
+</script>--%> 
+</html>

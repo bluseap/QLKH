@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ChiTienCongNoTongQuat" targetNamespace="http://tempuri.org/ChiTienCongNoTongQuat.xsd" xmlns:mstns="http://tempuri.org/ChiTienCongNoTongQuat.xsd" xmlns="http://tempuri.org/ChiTienCongNoTongQuat.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ChiTienCongNoTongQuat" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ChiTienCongNoTongQuat" msprop:Generator_DataSetName="ChiTienCongNoTongQuat" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ChiTietCongNoTongQuat" msprop:Generator_UserTableName="ChiTietCongNoTongQuat" msprop:Generator_RowDeletedName="ChiTietCongNoTongQuatRowDeleted" msprop:Generator_RowChangedName="ChiTietCongNoTongQuatRowChanged" msprop:Generator_RowClassName="ChiTietCongNoTongQuatRow" msprop:Generator_RowChangingName="ChiTietCongNoTongQuatRowChanging" msprop:Generator_RowEvArgName="ChiTietCongNoTongQuatRowChangeEvent" msprop:Generator_RowEvHandlerName="ChiTietCongNoTongQuatRowChangeEventHandler" msprop:Generator_TableClassName="ChiTietCongNoTongQuatDataTable" msprop:Generator_TableVarName="tableChiTietCongNoTongQuat" msprop:Generator_RowDeletingName="ChiTietCongNoTongQuatRowDeleting" msprop:Generator_TablePropName="ChiTietCongNoTongQuat">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MADP" msprop:Generator_UserColumnName="MADP" msprop:Generator_ColumnVarNameInTable="columnMADP" msprop:Generator_ColumnPropNameInRow="MADP" msprop:Generator_ColumnPropNameInTable="MADPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TENDP" msprop:Generator_UserColumnName="TENDP" msprop:Generator_ColumnVarNameInTable="columnTENDP" msprop:Generator_ColumnPropNameInRow="TENDP" msprop:Generator_ColumnPropNameInTable="TENDPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="THANG" msprop:Generator_UserColumnName="THANG" msprop:Generator_ColumnVarNameInTable="columnTHANG" msprop:Generator_ColumnPropNameInRow="THANG" msprop:Generator_ColumnPropNameInTable="THANGColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="NAM" msprop:Generator_UserColumnName="NAM" msprop:Generator_ColumnVarNameInTable="columnNAM" msprop:Generator_ColumnPropNameInRow="NAM" msprop:Generator_ColumnPropNameInTable="NAMColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="SOHD" msprop:Generator_UserColumnName="SOHD" msprop:Generator_ColumnVarNameInTable="columnSOHD" msprop:Generator_ColumnPropNameInRow="SOHD" msprop:Generator_ColumnPropNameInTable="SOHDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TIENNUOC" msprop:Generator_UserColumnName="TIENNUOC" msprop:Generator_ColumnVarNameInTable="columnTIENNUOC" msprop:Generator_ColumnPropNameInRow="TIENNUOC" msprop:Generator_ColumnPropNameInTable="TIENNUOCColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PHINT" msprop:Generator_UserColumnName="PHINT" msprop:Generator_ColumnVarNameInTable="columnPHINT" msprop:Generator_ColumnPropNameInRow="PHINT" msprop:Generator_ColumnPropNameInTable="PHINTColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TONGCONG" msprop:Generator_UserColumnName="TONGCONG" msprop:Generator_ColumnVarNameInTable="columnTONGCONG" msprop:Generator_ColumnPropNameInRow="TONGCONG" msprop:Generator_ColumnPropNameInTable="TONGCONGColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

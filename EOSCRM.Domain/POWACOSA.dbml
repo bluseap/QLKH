@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="POWACOSADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.7;Initial Catalog=POWACOSA;Persist Security Info=True;User ID=sa" SettingsObjectName="EOSCRM.Domain.Properties.Settings" SettingsPropertyName="POWACOSAConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.LNVLYLICH" Member="LNVLYLICHes">
+    <Type Name="LNVLYLICH">
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HOTENKS" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TENTHUONGGOI" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TENGOIKHAC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GIOITINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NOISINH" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="QUEQUAN" Type="System.String" DbType="NVarchar(300)" CanBeNull="true" />
+      <Column Name="NOIO" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="MADT" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MATG" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MATPXT" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MATD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MAHINHNV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GHICHU" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NAMSINH" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="NGHETRUOCTD" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SOTRUONGCT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LHINHNVLL" Member="LHINHNVLLs">
+    <Type Name="LHINHNVLL">
+      <Column Name="MAHINHNV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLLV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="HINHNVLL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LDANTOCs">
+    <Type Name="LDANTOC">
+      <Column Name="MADT" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENDT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="STT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LDANTOC_LQUANHEGD" Member="LQUANHEGDs" ThisKey="MADT" OtherKey="MADT" Type="LQUANHEGD" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LTONGIAOs">
+    <Type Name="LTONGIAO">
+      <Column Name="MATG" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTG" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="STT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LTONGIAO_LQUANHEGD" Member="LQUANHEGDs" ThisKey="MATG" OtherKey="MATG" Type="LQUANHEGD" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LTPXTs">
+    <Type Name="LTPXT">
+      <Column Name="MATPXT" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTPXT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LLOAIBCs">
+    <Type Name="LLOAIBC">
+      <Column Name="MALOAIBC" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENLOAIBC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="LLOAIBC_LTRINHDO" Member="LTRINHDOs" ThisKey="MALOAIBC" OtherKey="MALOAIBC" Type="LTRINHDO" />
+      <Association Name="LLOAIBC_LDAOTAOBD" Member="LDAOTAOBDs" ThisKey="MALOAIBC" OtherKey="MALOAIBC" Type="LDAOTAOBD" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LCHEDOHOCs">
+    <Type Name="LCHEDOHOC">
+      <Column Name="MACHEDOHOC" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENCDHOC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="LCHEDOHOC_LTRINHDO" Member="LTRINHDOs" ThisKey="MACHEDOHOC" OtherKey="MACHEDOHOC" Type="LTRINHDO" />
+      <Association Name="LCHEDOHOC_LDAOTAOBD" Member="LDAOTAOBDs" ThisKey="MACHEDOHOC" OtherKey="MACHEDOHOC" Type="LDAOTAOBD" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LTRINHDOs">
+    <Type Name="LTRINHDO">
+      <Column Name="MATD" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MALOAIBC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MACHEDOHOC" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="CHUYENNGANH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TENTRUONG" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NGAYCAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HINHBC1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="HINHBC2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="LLOAIBC_LTRINHDO" Member="LLOAIBC" ThisKey="MALOAIBC" OtherKey="MALOAIBC" Type="LLOAIBC" IsForeignKey="true" />
+      <Association Name="LCHEDOHOC_LTRINHDO" Member="LCHEDOHOC" ThisKey="MACHEDOHOC" OtherKey="MACHEDOHOC" Type="LCHEDOHOC" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LQTCONGTACs">
+    <Type Name="LQTCONGTAC">
+      <Column Name="MAQTCT" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYBDCT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYKTCT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LNHAPNGUs">
+    <Type Name="LNHAPNGU">
+      <Column Name="MANNGU" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYBDNN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYKTNN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="QUANHAM" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LSUCKHOEs">
+    <Type Name="LSUCKHOE">
+      <Column Name="MASUCKHOE" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CHIEUCAO" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="CANNANG" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="TINHTRANG" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BANHMANTINH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LDAOTAOBDs">
+    <Type Name="LDAOTAOBD">
+      <Column Name="MADTBD" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MALOAIDTBD" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="NGAYBD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYKT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MALOAIBC" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MACHEDOHOC" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="CHUYENNGANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TENTRUONG" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DCDAOTAOBD" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NOIDUNGDTBD" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="LLOAIBC_LDAOTAOBD" Member="LLOAIBC" ThisKey="MALOAIBC" OtherKey="MALOAIBC" Type="LLOAIBC" IsForeignKey="true" />
+      <Association Name="LCHEDOHOC_LDAOTAOBD" Member="LCHEDOHOC" ThisKey="MACHEDOHOC" OtherKey="MACHEDOHOC" Type="LCHEDOHOC" IsForeignKey="true" />
+      <Association Name="LLOAIDTBD_LDAOTAOBD" Member="LLOAIDTBD" ThisKey="MALOAIDTBD" OtherKey="MALOAIDTBD" Type="LLOAIDTBD" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LLOAIDTBDs">
+    <Type Name="LLOAIDTBD">
+      <Column Name="MALOAIDTBD" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LLOAIDTBD_LDAOTAOBD" Member="LDAOTAOBDs" ThisKey="MALOAIDTBD" OtherKey="MALOAIDTBD" Type="LDAOTAOBD" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LLOAIKYLUATKTs">
+    <Type Name="LLOAIKYLUATKT">
+      <Column Name="MALKLKT" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LLOAIKYLUATKT_LKHENTKL" Member="LKHENTKLs" ThisKey="MALKLKT" OtherKey="MALKLKT" Type="LKHENTKL" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LLOAIQHGDs">
+    <Type Name="LLOAIQHGD">
+      <Column Name="MALQHGD" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENQHGD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="STT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LLOAIQHGD_LQUANHEGD" Member="LQUANHEGDs" ThisKey="MALQHGD" OtherKey="MALQHGD" Type="LQUANHEGD" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LKHENTKLs">
+    <Type Name="LKHENTKL">
+      <Column Name="MAKTKL" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MALKLKT" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="TUNGAY" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DENNGAY" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SOQD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="LLOAIKYLUATKT_LKHENTKL" Member="LLOAIKYLUATKT" Storage="_LLOAIKYLUATKL" ThisKey="MALKLKT" OtherKey="MALKLKT" Type="LLOAIKYLUATKT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="LQUANHEGDs">
+    <Type Name="LQUANHEGD">
+      <Column Name="MAQHGD" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANVLL" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MALQHGD" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="TEN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NAMSINH" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="QUEQUAN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MADT" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="MATG" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="NGHE" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DVCONGTAC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GHICHU" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="XOA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="LDANTOC_LQUANHEGD" Member="LDANTOC" ThisKey="MADT" OtherKey="MADT" Type="LDANTOC" IsForeignKey="true" />
+      <Association Name="LTONGIAO_LQUANHEGD" Member="LTONGIAO" ThisKey="MATG" OtherKey="MATG" Type="LTONGIAO" IsForeignKey="true" />
+      <Association Name="LLOAIQHGD_LQUANHEGD" Member="LLOAIQHGD" ThisKey="MALQHGD" OtherKey="MALQHGD" Type="LLOAIQHGD" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

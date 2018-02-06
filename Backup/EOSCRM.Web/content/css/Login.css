@@ -1,0 +1,78 @@
+body
+{
+    background: #edf5ff;
+}
+/* GENERAL TAG
+------------------------------------------------------------------ */
+#wrapper
+{
+    margin: 0px auto;
+}
+#container
+{
+    margin: 0px auto;
+    width: 476px;
+}
+#login
+{
+    background: url('/content/images/login/bg.png') no-repeat top left;
+    height: 320px;
+    width: 476px;
+    margin-top: 100px;
+}
+#version
+{
+    position: relative;
+    top: 180px;
+    text-align: right;
+    width: 175px;
+}
+#lform
+{
+    position: relative;
+    left: 235px;
+    top: 75px;
+    width: 200px;
+}
+#lform input[type=text], #lform input[type=password]
+{
+    width: 175px;
+    border: 1px solid #97d2ff;
+}
+#lform input[type=text]:hover, input[type=password]:hover, select:hover, textarea:hover
+{
+    background: #ffffdd;
+}
+#lform .btn_lg
+{
+    background: url('/content/images/login/button.gif') no-repeat 0 0;
+    height: 21px;
+    width: 69px;
+    border: none;
+    cursor: pointer;
+}
+#lform .btn_lg:hover
+{
+    background-position: 0 -21px;
+}
+#lform .btn_cc
+{
+    background: url('/content/images/login/button.gif') no-repeat -69px 0px;
+    height: 21px;
+    width: 69px;
+    border: none;
+    cursor: pointer;
+}
+#lform .btn_cc:hover
+{
+    background-position: -69px -21px;
+}
+.mr10
+{
+    margin-top: 10px;
+}
+.err
+{
+    color: red;
+    font-weight: bold;
+}
