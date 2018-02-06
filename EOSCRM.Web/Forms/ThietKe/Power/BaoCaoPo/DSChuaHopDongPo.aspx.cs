@@ -124,6 +124,12 @@ namespace EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo
             if (dt == null)
                 return;
 
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
+            var nhanvien = _nvDao.Get(b);
+
             #region FreeMemory
             var rp = (ReportDocument)Session[Constants.REPORT_FREE_MEM];
             if (rp != null)
@@ -136,11 +142,20 @@ namespace EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo
                 }                
                 catch {  }
             }
-            #endregion FreeMemory
+            #endregion FreeMemory            
 
             rp = new ReportDocument();
-            var path = Server.MapPath("~/Reports/DonLapDatMoi/DSCDDangKyPo.rpt");
-            rp.Load(path);
+
+            if (nhanvien.MAKV == "O")
+            {
+                var path = Server.MapPath("~/Reports/DonLapDatMoi/DSCDDangKyPoCT.rpt");
+                rp.Load(path);
+            }
+            else
+            {
+                var path = Server.MapPath("~/Reports/DonLapDatMoi/DSCDDangKyPo.rpt");
+                rp.Load(path);
+            }
 
             var txtTENKHUVUC = rp.ReportDefinition.ReportObjects["txtTENKHUVUC"] as TextObject;
             if (txtTENKHUVUC != null)
@@ -191,6 +206,12 @@ namespace EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo
             if (dt == null)
                 return;
 
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
+            var nhanvien = _nvDao.Get(b);
+
             #region FreeMemory
             var rp = (ReportDocument)Session[Constants.REPORT_FREE_MEM];
             if (rp != null)
@@ -204,10 +225,19 @@ namespace EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo
                 catch { }
             }
             #endregion FreeMemory
-
+                        
             rp = new ReportDocument();
-            var path = Server.MapPath("~/Reports/DonLapDatMoi/DSCDDangKyPo.rpt");
-            rp.Load(path);
+
+            if (nhanvien.MAKV == "O") // chau thanh
+            {
+                var path = Server.MapPath("~/Reports/DonLapDatMoi/DSCDDangKyPoCT.rpt");
+                rp.Load(path);
+            }
+            else
+            {
+                var path = Server.MapPath("~/Reports/DonLapDatMoi/DSCDDangKyPo.rpt");
+                rp.Load(path);
+            }
 
             var txtTENKHUVUC = rp.ReportDefinition.ReportObjects["txtTENKHUVUC"] as TextObject;
             if (txtTENKHUVUC != null)
