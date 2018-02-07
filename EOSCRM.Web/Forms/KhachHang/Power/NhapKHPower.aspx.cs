@@ -318,6 +318,53 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
         }
 
+        #region Startup script registeration
+        private void SetControlValue(string id, string value)
+        {
+            ((PO)Page.Master).SetControlValue(id, value);
+        }
+
+        private void SetLabel(string id, string value)
+        {
+            ((PO)Page.Master).SetLabel(id, value);
+        }
+
+        private void ShowError(string message, string controlId)
+        {
+            ((PO)Page.Master).ShowError(message, controlId);
+        }
+
+        private void ShowInfor(string message)
+        {
+            ((PO)Page.Master).ShowInfor(message);
+        }
+
+        private void ShowWarning(string message)
+        {
+            ((PO)Page.Master).ShowWarning(message);
+        }
+
+        private void HideDialog(string divId)
+        {
+            ((PO)Page.Master).HideDialog(divId);
+        }
+
+        private void UnblockDialog(string divId)
+        {
+            ((PO)Page.Master).UnblockDialog(divId);
+        }
+
+        private void UnblockWaitingDialog()
+        {
+            ((PO)Page.Master).UnblockWaitingDialog();
+        }
+
+        private void CloseWaitingDialog()
+        {
+            ((PO)Page.Master).CloseWaitingDialog();
+        }
+        #endregion
+
         private bool IsDataValid()
         {
             #region Thông tin khách hàng
@@ -486,7 +533,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
                 catch
                 {
-                    ShowError("Ngày hoàn thành không hợp lệ.", txtNGAYHT.ClientID);
+                    //ShowError("Ngày hoàn thành không hợp lệ.", txtNGAYHT.ClientID);
                     return false;
                 }
             }
@@ -602,54 +649,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             CommonFunc.SetPropertiesForGrid(gvHopDongDien);
             CommonFunc.SetPropertiesForGrid(gvCQTT);
             CommonFunc.SetPropertiesForGrid(gvKhachHang);
-        }
-
-        #region Startup script registeration
-        private void SetControlValue(string id, string value)
-        {
-            ((PO)Page.Master).SetControlValue(id, value);
-        }
-
-        private void SetLabel(string id, string value)
-        {
-            ((PO)Page.Master).SetLabel(id, value);
-        }
-
-        private void ShowError(string message, string controlId)
-        {
-            ((PO)Page.Master).ShowError(message, controlId);
-        }
-
-        private void ShowInfor(string message)
-        {
-            ((PO)Page.Master).ShowInfor(message);
-        }
-
-        private void ShowWarning(string message)
-        {
-            ((PO)Page.Master).ShowWarning(message);
-        }
-
-        private void HideDialog(string divId)
-        {
-            ((PO)Page.Master).HideDialog(divId);
-        }
-
-        private void UnblockDialog(string divId)
-        {
-            ((PO)Page.Master).UnblockDialog(divId);
-        }
-
-        private void UnblockWaitingDialog()
-        {
-            ((PO)Page.Master).UnblockWaitingDialog();
-        }
-
-        private void CloseWaitingDialog()
-        {
-            ((PO)Page.Master).CloseWaitingDialog();
-        }
-        #endregion
+        }        
 
         private void ClearForm()
         {
@@ -816,7 +816,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 // load phuong
                 var listPhuong = _xpDao.GetListKV(kv.MAKV);
-                ddlPHUONG.DataSource = listPhuong;
+                //ddlPHUONG.Items.Clear();
+                //ddlPHUONG.Items.Add(new ListItem("--Tất cả--", "%"));          
+                ddlPHUONG.DataSource = listPhuong;                     
                 ddlPHUONG.DataTextField = "TENXA";
                 ddlPHUONG.DataValueField = "MAXA";
                 ddlPHUONG.DataBind();                
@@ -824,6 +826,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 var item9 = ddlKHUVUCDN.Items.FindByValue(kv.MAKVPO);
                 if (item9 != null)
                     ddlKHUVUCDN.SelectedIndex = ddlKHUVUCDN.Items.IndexOf(item9);
+
+                LoadApTo(kv.MAKV, ddlPHUONG.SelectedValue);
             }
             else
             {

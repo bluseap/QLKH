@@ -46,7 +46,13 @@ namespace EOSCRM.Dao
 
         public List<APTO> GetList(string makv, string maxa)
         {
-            return _db.APTOs.Where(p => p.MAKV.Equals(makv) && p.MAXA.Equals(maxa) && p.STT != 999).OrderBy(c => c.STT).ToList();
+            var query = _db.APTOs.Where(p => p.MAKV.Equals(makv) && p.STT != 999).AsEnumerable();
+
+            if (maxa != "%")            
+                query = query.Where(p => p.MAXA.Equals(maxa));
+
+            return query.OrderBy(c => c.STT).ToList();
+            //return _db.APTOs.Where(p => p.MAKV.Equals(makv) && p.MAXA.Equals(maxa) && p.STT != 999).OrderBy(c => c.STT).ToList();
         }
 
         public List<APTO> GetListAp(string makv, string map)

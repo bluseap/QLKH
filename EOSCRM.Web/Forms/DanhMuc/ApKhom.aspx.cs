@@ -294,14 +294,14 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 {
                     var listKhuVuc = _kvDao.GetList();
                     cboKhuVuc.Items.Clear();
-                    cboKhuVuc.Items.Add(new ListItem("Tất cả", "%"));
+                    cboKhuVuc.Items.Add(new ListItem("--Tất cả--", "%"));
                     foreach (var kv in listKhuVuc)
                     {
                         cboKhuVuc.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
                     }
 
                     ddlXAPHUONG.Items.Clear();
-                    ddlXAPHUONG.Items.Add(new ListItem("Tất cả", "%"));                    
+                    ddlXAPHUONG.Items.Add(new ListItem("--Tất cả--", "%"));                    
                 }
                 else
                 {
@@ -314,6 +314,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                     var xaphuong = _xpDao.GetListKV(d);
                     ddlXAPHUONG.Items.Clear();
+                    ddlXAPHUONG.Items.Add(new ListItem("--Tất cả--", "%"));        
                     foreach (var xp in xaphuong)
                     {
                         ddlXAPHUONG.Items.Add(new ListItem(xp.TENXA + ": " + xp.MAXA, xp.MAXA));

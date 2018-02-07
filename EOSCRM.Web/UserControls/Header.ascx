@@ -47,7 +47,7 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <li <%# Container.ItemIndex == 0 ? " class=\"top\"" : "" %>>
-                            <a href="<%= ResolveUrl("~")%><%# Eval("Url") %>"> <%# Eval("Name") %></a>
+                            <a href="<%= ResolveUrl("~") %><%# Eval("Url") %>"><%# Eval("Name") %></a>
                             <asp:Repeater ID="childRepeater2" runat="server"  OnItemDataBound="childRepeater2_ItemDataBound">
                                 <HeaderTemplate>
                                     <ul>
