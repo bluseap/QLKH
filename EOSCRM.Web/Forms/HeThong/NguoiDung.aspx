@@ -177,7 +177,7 @@
                             <td class="crmcell right">Khu vực</td>
                             <td class="crmcell"> 
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" runat="server" TabIndex="3" />
+                                    <asp:DropDownList ID="ddlKHUVUC" runat="server" TabIndex="3" AutoPostBack="true" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged" />
                                 </div>                                
                             </td>
                         </tr>

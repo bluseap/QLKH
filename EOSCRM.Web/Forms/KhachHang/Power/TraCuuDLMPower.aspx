@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="TraCuuDLMPower.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.Power.TraCuuDLMPower" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="TraCuuDLMPower.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.Power.TraCuuDLMPower" Culture="vi-VN" uiCulture="vi"%>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
 <%@ Import Namespace="EOSCRM.Util" %>

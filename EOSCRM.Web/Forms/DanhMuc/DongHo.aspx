@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.master" AutoEventWireup="True"
-    Inherits="EOSCRM.Web.Forms.DanhMuc.DongHo" CodeBehind="DongHo.aspx.cs" %>
+    Inherits="EOSCRM.Web.Forms.DanhMuc.DongHo" CodeBehind="DongHo.aspx.cs" Culture="vi-VN" uiCulture="vi" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="EOSCRM.Util" %>

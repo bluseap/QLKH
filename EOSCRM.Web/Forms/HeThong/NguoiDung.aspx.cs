@@ -56,6 +56,7 @@ namespace EOSCRM.Web.Forms.HeThong
         }
         #endregion
 
+        #region Update,filter
         private Mode UpdateMode
         {
             get
@@ -79,6 +80,7 @@ namespace EOSCRM.Web.Forms.HeThong
                 Session[SessionKey.MODE] = value.GetHashCode();
             }
         }
+        #endregion
 
         public Domain.UserAdmin UserAdmin
         {
@@ -212,12 +214,14 @@ namespace EOSCRM.Web.Forms.HeThong
 
             var pbList = _pbDao.GetList();
             ddlPhongBan.Items.Clear();
-            ddlPhongBan.Items.Add(new ListItem("Tất cả", "%"));
+            ddlPhongBan.Items.Add(new ListItem("--Tất cả--", "%"));
             foreach (var pb in pbList)
             {
                 ddlPhongBan.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
             }
 
+            LoadKhuVucPhongBan(ddlKHUVUC.SelectedValue);
+            
             /*
             var grouplist = _groupdao.GetList(null);
             ddlNHOM.Items.Clear();
@@ -505,11 +509,8 @@ namespace EOSCRM.Web.Forms.HeThong
         protected void gvNguoiDung_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                // Update page index
+            {                
                 gvNguoiDung.PageIndex = e.NewPageIndex;
-
-                // Bind data for grid
                 BindDataForGrid();
             }
             catch (Exception ex)
@@ -679,6 +680,53 @@ namespace EOSCRM.Web.Forms.HeThong
                 ClearForm();
                 upnlGrid.Update();
                 CloseWaitingDialog();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }        
+
+        protected void ddlKHUVUC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadKhuVucPhongBan(ddlKHUVUC.SelectedValue);
+            }
+            catch  (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void LoadKhuVucPhongBan(string makv)
+        {
+            try
+            {
+                if (makv == "99" || makv == "%")
+                {
+                    var pbList = _pbDao.GetList();
+
+                    ddlPhongBan.Items.Clear();
+                    ddlPhongBan.Items.Add(new ListItem("--Tất cả--", "%"));
+                    foreach (var pb in pbList)
+                    {
+                        ddlPhongBan.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                    }
+                }
+                else
+                {
+                    var pbList = _pbDao.GetListKV(makv);
+
+                    ddlPhongBan.Items.Clear();
+                    ddlPhongBan.Items.Add(new ListItem("Phòng Kinh Doanh", "KD"));
+                    ddlPhongBan.Items.Add(new ListItem("Phòng KT Điện Nước", "KTDN"));
+                    ddlPhongBan.Items.Add(new ListItem("Phòng Kế Toán", "PKT"));
+                    foreach (var pb in pbList)
+                    {
+                        ddlPhongBan.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                    }
+                }
             }
             catch (Exception ex)
             {

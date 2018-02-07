@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.master" AutoEventWireup="True" EnableEventValidation="true"
-    Inherits="EOSCRM.Web.Forms.KhachHang.NhapKhachHang" CodeBehind="NhapKhachHang.aspx.cs" %>
+    Inherits="EOSCRM.Web.Forms.KhachHang.NhapKhachHang" CodeBehind="NhapKhachHang.aspx.cs" Culture="vi-VN" uiCulture="vi" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>

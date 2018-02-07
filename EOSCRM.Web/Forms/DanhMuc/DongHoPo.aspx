@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DongHoPo.aspx.cs" Inherits="EOSCRM.Web.Forms.DanhMuc.DongHoPo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DongHoPo.aspx.cs" Inherits="EOSCRM.Web.Forms.DanhMuc.DongHoPo" Culture="vi-VN" uiCulture="vi"%>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="EOSCRM.Util" %>

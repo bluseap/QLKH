@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="True"
-    Inherits="EOSCRM.Web.Forms.KhachHang.TraCuuDonLapMoi" CodeBehind="TraCuuDonLapMoi.aspx.cs" %>
+    Inherits="EOSCRM.Web.Forms.KhachHang.TraCuuDonLapMoi" CodeBehind="TraCuuDonLapMoi.aspx.cs" Culture="vi-VN" uiCulture="vi" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
 <%@ Import Namespace="EOSCRM.Util" %>

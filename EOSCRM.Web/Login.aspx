@@ -198,9 +198,9 @@
                      </table>              
                 </td>
 
-                <td width="80%">
+                <%--<td width="80%">
                     <iframe src="http://docs.google.com/gview?url=http://powaco.com.vn/UpLoadFile/powaco/060217Mau De Nghi Cong Tac.An Phu (hoan pha)5.xls&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
-                </td>
+                </td>--%>
 
 
 

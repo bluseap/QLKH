@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="TraCuuDonLapMoiLX.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.TraCuuDonLapMoiLX" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="TraCuuDonLapMoiLX.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.TraCuuDonLapMoiLX" Culture="vi-VN" uiCulture="vi"%>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
 <%@ Import Namespace="EOSCRM.Util" %>
