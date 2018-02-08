@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="EOSCRM.Util" %>
+<%@ Import Namespace="EOSCRM.Domain" %>
+<%@ Import Namespace="EOSCRM.Dao" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
@@ -136,7 +138,8 @@
                         <asp:BoundField HeaderText="Tên ấp, khóm" DataField="TENAPTO" HeaderStyle-Width="40%" /> 
                         <asp:TemplateField HeaderText="Xã, phường" HeaderStyle-Width="40%">
                             <ItemTemplate>
-                                <%# Eval("XAPHUONG.TENXA") %>
+                                <%# new XaPhuongDao().Get(Eval("MAXA").ToString(), Eval("MAKV").ToString()) != null ? 
+                                        new XaPhuongDao().Get(Eval("MAXA").ToString(), Eval("MAKV").ToString()).TENXA : ""%>
                             </ItemTemplate>
                         </asp:TemplateField>                       
                         <asp:TemplateField HeaderText="Khu vực" HeaderStyle-Width="40%">

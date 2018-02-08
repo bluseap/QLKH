@@ -303,6 +303,23 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     ddlXAPHUONG.Items.Clear();
                     ddlXAPHUONG.Items.Add(new ListItem("--Tất cả--", "%"));                    
                 }
+                else if (a.MAKV == "O")
+                {
+                    var kvList = _kvDao.GetList();
+                    cboKhuVuc.Items.Clear();
+                    foreach (var kv in kvList)
+                    {
+                        cboKhuVuc.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
+                    }
+
+                    var xaphuong = _xpDao.GetListKV(cboKhuVuc.SelectedValue);
+                    ddlXAPHUONG.Items.Clear();
+                    ddlXAPHUONG.Items.Add(new ListItem("--Tất cả--", "%"));        
+                    foreach (var xp in xaphuong)
+                    {
+                        ddlXAPHUONG.Items.Add(new ListItem(xp.TENXA + ": " + xp.MAXA, xp.MAXA));
+                    }
+                }
                 else
                 {
                     var kvList = _kvDao.GetListKV(d);
@@ -413,6 +430,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
         protected void btnFilter_Click(object sender, EventArgs e)
         {
             Filtered = FilteredMode.Filtered;
+
             BindDataForGrid();
 
             upnlGrid.Update();

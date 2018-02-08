@@ -35,6 +35,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
             }
         }
 
+        #region Update,Filter
         private Mode UpdateMode
         {
             get
@@ -82,38 +83,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 Session[SessionKey.FILTEREDMODE] = value.GetHashCode();
             }
         }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                Authenticate(Functions.DM_XaPhuong, Permission.Read);
-                PrepareUI();
-                if (!Page.IsPostBack)
-                {
-                    LoadStaticReferences();
-                    BindDataForGrid();
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
-        private void PrepareUI()
-        {
-            Page.Title = Resources.Message.TITLE_DM_XAPHUONG;
-
-            var header = (Header)Master.FindControl("header");
-            if (header != null)
-            {
-                header.ModuleName = Resources.Message.MODULE_DANHMUC;
-                header.TitlePage = Resources.Message.PAGE_DM_XAPHUONG;
-            }
-
-            CommonFunc.SetPropertiesForGrid(gvList);
-        }
+        #endregion
 
         #region Startup script registeration
         private void SetControlValue(string id, string value)
@@ -151,6 +121,38 @@ namespace EOSCRM.Web.Forms.DanhMuc
             ((EOS)Page.Master).CloseWaitingDialog();
         }
         #endregion
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Authenticate(Functions.DM_XaPhuong, Permission.Read);
+                PrepareUI();
+                if (!Page.IsPostBack)
+                {
+                    LoadStaticReferences();
+                    BindDataForGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void PrepareUI()
+        {
+            Page.Title = Resources.Message.TITLE_DM_XAPHUONG;
+
+            var header = (Header)Master.FindControl("header");
+            if (header != null)
+            {
+                header.ModuleName = Resources.Message.MODULE_DANHMUC;
+                header.TitlePage = Resources.Message.PAGE_DM_XAPHUONG;
+            }
+
+            CommonFunc.SetPropertiesForGrid(gvList);
+        }       
 
         private void Clear()
         {
@@ -285,6 +287,15 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     cboKhuVuc.Items.Clear();
                     cboKhuVuc.Items.Add(new ListItem("Tất cả", "%"));
                     foreach (var kv in listKhuVuc)
+                    {
+                        cboKhuVuc.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
+                    }
+                }
+                else if (a.MAKV == "O")
+                {
+                    var kvList = _kvDao.GetList();
+                    cboKhuVuc.Items.Clear();
+                    foreach (var kv in kvList)
                     {
                         cboKhuVuc.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
                     }

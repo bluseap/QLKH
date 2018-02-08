@@ -62,6 +62,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
             }
         }
 
+        #region filter,update
         private FilteredMode Filtered
         {
             get
@@ -85,8 +86,24 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                 Session[SessionKey.FILTEREDMODE] = value.GetHashCode();
             }
         }
+        #endregion
 
         #region Startup script registeration
+        private void SetReadonly(string id, bool isReadonly)
+        {
+            ((PO)Page.Master).SetReadonly(id, isReadonly);
+        }
+
+        private void ShowError(string message)
+        {
+            ((PO)Page.Master).ShowError(message);
+        }
+
+        private void ShowInfor(string message)
+        {
+            ((PO)Page.Master).ShowInfor(message);
+        }
+
         private void ShowError(string message, string controlId)
         {
             ((PO)Page.Master).ShowError(message, controlId);
@@ -160,26 +177,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
 
             CommonFunc.SetPropertiesForGrid(gvList);
             CommonFunc.SetPropertiesForGrid(gvNhanVien);
-        }
-
-        #region Startup script registeration
-
-
-        private void SetReadonly(string id, bool isReadonly)
-        {
-            ((PO)Page.Master).SetReadonly(id, isReadonly);
-        }
-
-        private void ShowError(string message)
-        {
-            ((PO)Page.Master).ShowError(message);
-        }
-
-        private void ShowInfor(string message)
-        {
-            ((PO)Page.Master).ShowInfor(message);
-        }
-        #endregion
+        }       
 
         private void BindDataForGrid()
         {
@@ -534,10 +532,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
         protected void gvList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                // Update page index
-                gvList.PageIndex = e.NewPageIndex;
-                // Bind data for grid
+            {                
+                gvList.PageIndex = e.NewPageIndex;               
                 BindDataForGrid();
             }
             catch (Exception ex)
@@ -692,7 +688,6 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                         CloseWaitingDialog();
 
                         break;
-
                 }
             }
             catch (Exception ex)
@@ -704,10 +699,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
         protected void gvNhanVien_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                // Update page index
-                gvNhanVien.PageIndex = e.NewPageIndex;
-                // Bind data for grid
+            {               
+                gvNhanVien.PageIndex = e.NewPageIndex;            
                 BindNhanVien();
             }
             catch (Exception ex)
