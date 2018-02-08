@@ -493,8 +493,9 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 timkv();
                 LoadDynamicReferences();
-                listPhongBan();                   
-                
+                listPhongBan();
+
+                LoadToNhaMay(ddlKHUVUC.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -1411,15 +1412,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 txtDUONGPHU.Text = "";
                 txtDIACHIKHAC.Text = "";
 
-                var phongban = _pbDao.GetListKV(ddlKHUVUC.SelectedValue);
-                ddlToNhaMay.Items.Clear();
-                ddlToNhaMay.Items.Add(new ListItem("Tất cả", "%"));
-                ddlToNhaMay.Items.Add(new ListItem("Phòng Kinh Doanh", "KD"));
-                ddlToNhaMay.Items.Add(new ListItem("Phòng KT Điện Nước", "KTDN"));
-                foreach (var pb in phongban)
-                {
-                    ddlToNhaMay.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
-                }
+                LoadToNhaMay(ddlKHUVUC.SelectedValue);
 
                 CloseWaitingDialog();
             }
@@ -1429,9 +1422,27 @@ namespace EOSCRM.Web.Forms.KhachHang
             }
         }
 
+        private void LoadToNhaMay(string makv)
+        {
+            try
+            {
+                var phongban = _pbDao.GetListKV(makv);
+                ddlToNhaMay.Items.Clear();
+                ddlToNhaMay.Items.Add(new ListItem("Tất cả", "%"));
+                ddlToNhaMay.Items.Add(new ListItem("Phòng Kinh Doanh", "KD"));
+                ddlToNhaMay.Items.Add(new ListItem("Phòng KT Điện Nước", "KTDN"));
+                foreach (var pb in phongban)
+                {
+                    ddlToNhaMay.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                }
+            }
+            catch { }
+        }
+
         protected void btnFilter_Click(object sender, EventArgs e)
         {
             Filtered = FilteredMode.Filtered;
+
             BindDataForGrid();
 
             upnlGrid.Update();

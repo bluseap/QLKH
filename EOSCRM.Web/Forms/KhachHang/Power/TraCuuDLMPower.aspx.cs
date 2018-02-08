@@ -467,9 +467,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 txtNGAYKS.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
                 timkv();
+
                 LoadDynamicReferences();
 
                 listPhongBan();
+
+                LoadToNhaMay(ddlKHUVUC.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -1101,7 +1104,21 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 txtDUONGPHU.Text = "";
                 txtDIACHIKHAC.Text = "";
 
-                var khuvucpo = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
+                LoadToNhaMay(ddlKHUVUC.SelectedValue);
+
+                CloseWaitingDialog();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void LoadToNhaMay(string makvpo)
+        {
+            try
+            {
+                var khuvucpo = _kvpoDao.Get(makvpo);
                 var phongban = _pbDao.GetListKV(khuvucpo.MAKV);
 
                 ddlToNhaMay.Items.Clear();
@@ -1112,13 +1129,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 {
                     ddlToNhaMay.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
                 }
-
-                CloseWaitingDialog();
             }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
+            catch { }
         }
 
         protected void btnFilter_Click(object sender, EventArgs e)
