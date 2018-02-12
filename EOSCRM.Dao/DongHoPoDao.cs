@@ -194,11 +194,14 @@ namespace EOSCRM.Dao
 
             if (!string.IsNullOrEmpty(query))
             {
-                var temp = int.Parse(query.Substring(7, 4)) + 1;
-                query = makv + "KD" + sToday + temp.ToString("D4");
+                //var temp = int.Parse(query.Substring(7, 4)) + 1;
+                //query = makv + "KD" + sToday + temp.ToString("D4");
+                var temp = int.Parse(query.Substring(3, 8)) + 1;
+                query = makv + "KD" +  temp.ToString("D8");
             }
             else
             {
+                //query = makv + "KD" + sToday + "0001";
                 query = makv + "KD" + sToday + "0001";
             }
 

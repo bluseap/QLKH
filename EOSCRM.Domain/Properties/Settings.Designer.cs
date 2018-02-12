@@ -83,5 +83,16 @@ namespace EOSCRM.Domain.Properties {
                 return ((string)(this["CRMPTTCConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=115.78.230.159,1438;Initial Catalog=EOSAG;User ID=bravouser;Password=" +
+            "123654$O")]
+        public string EOSAGConnectionString4 {
+            get {
+                return ((string)(this["EOSAGConnectionString4"]));
+            }
+        }
     }
 }

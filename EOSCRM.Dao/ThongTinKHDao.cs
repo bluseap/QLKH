@@ -6,13 +6,13 @@ using System.Linq;
 using EOSCRM.Domain;
 using EOSCRM.Util;
 
-
 namespace EOSCRM.Dao
 {
     public class ThongTinKHDao
     {
         private readonly EOSCRMDataContext _db;
         public static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
+
         public ThongTinKHDao()
         {
             _db = new EOSCRMDataContext(Connectionstring);

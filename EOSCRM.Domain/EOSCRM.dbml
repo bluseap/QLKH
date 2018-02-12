@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRMPTTC" Class="EOSCRMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.8;Initial Catalog=CRMPTTC;User ID=nguyen" SettingsObjectName="EOSCRM.Domain.Properties.Settings" SettingsPropertyName="CRMPTTCConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EOSAG" Class="EOSCRMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=115.78.230.159,1438;Initial Catalog=EOSAG;User ID=bravouser" SettingsObjectName="EOSCRM.Domain.Properties.Settings" SettingsPropertyName="EOSAGConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CAPBAC" Member="CAPBACs">
     <Type Name="CAPBAC">
       <Column Name="MACB" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2038,6 +2038,7 @@
       <Association Name="KHACHHANG_THAYHOPDONG" Member="THAYHOPDONGs" ThisKey="IDKH" OtherKey="IDKH" Type="THAYHOPDONG" />
       <Association Name="KHACHHANG_HONGHEON" Member="HONGHEONs" ThisKey="IDKH" OtherKey="IDKH" Type="HONGHEON" />
       <Association Name="KHACHHANG_TACHDUONGN" Member="TACHDUONGNs" ThisKey="IDKH" OtherKey="IDTACH" Type="TACHDUONGN" />
+      <Association Name="KHACHHANG_SUACHUA" Member="SUACHUAs" ThisKey="IDKH" OtherKey="KHACHHANGID" Type="SUACHUA" />
       <Association Name="HTTHANHTOAN_KHACHHANG" Member="HTTHANHTOAN" ThisKey="MAHTTT" OtherKey="MAHTTT" Type="HTTHANHTOAN" IsForeignKey="true" />
       <Association Name="DANHSACHCOQUANTT_KHACHHANG" Member="DANHSACHCOQUANTT" ThisKey="MACQ" OtherKey="MACQ" Type="DANHSACHCOQUANTT" IsForeignKey="true" />
       <Association Name="DOAN_KHACHHANG" Member="DOAN" ThisKey="MADOAN" OtherKey="MADOAN" Type="DOAN" IsForeignKey="true" />
@@ -5026,6 +5027,212 @@
       <Column Name="DACBIET" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="MAKV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="ProvinceId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUACHUA" Member="SUACHUAs">
+    <Type Name="SUACHUA">
+      <Column Name="ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="KHACHHANGID" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="MADP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MADB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENKH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="KHUVUCID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TTSUA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TTSUATK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TTSUACT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TTSUAHD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TTSUATC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TTSUANT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYSC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVSC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVSC" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TTXULYID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NOIDUNGSC" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="SDTSUA" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONHASUA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIACHISUA" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="XAID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="APID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GHICHUSUA" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYDUYETSC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVDUYETSC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NOIDUNGDUYETSC" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYDUYETNHAPSC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="SUACHUA_SUACHUATHIETKE" Member="SUACHUATHIETKEs" ThisKey="ID" OtherKey="SUACHUAID" Type="SUACHUATHIETKE" />
+      <Association Name="KHACHHANG_SUACHUA" Member="KHACHHANG" ThisKey="KHACHHANGID" OtherKey="IDKH" Type="KHACHHANG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUACHUATHIETKECT" Member="SUACHUATHIETKECTs">
+    <Type Name="SUACHUATHIETKECT">
+      <Column Name="SUACHUATKID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VATTUID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="SOLUONG" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="GIAVT" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TIENVT" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="GIANC" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TIENNC" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ISCTYDTU" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUACHUABBNT" Member="SUACHUABBNTs">
+    <Type Name="SUACHUABBNT">
+      <Column Name="ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SUACHUATCID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SUACHUAID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="KHUVUCID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MADHSUABBNTID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONOSUABBNT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MALDHSUABBNT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MANVBBNT1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVBBNT1" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVBBNT2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVBBNT2" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVBBNT3" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVBBNT3" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CHIEUCAOBBNT" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="KHOANCACHBBNT" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="VITRIBBNT" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CHINIEMBBNT1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CHINIEMBBNT2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KETLUANBBNT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NGAYLAPBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYNHANBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYCHUYENBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HETHONGCNBBNT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="GHICHUBBNT" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVNHAPBBNT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NGANHAPBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ISDHKDBBNTLAP" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYKDBBNTLAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVKDBBNTLAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYKDNHAPBBNTLAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVKDBBNT1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVKDBBNT1" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVKDBBNT2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVKDBBNT2" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVKDBBNT3" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVKDBBNT3" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CHIEUCAOKDBBNT" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="KHOANCACHKDBBNT" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="VITRIKDBBNT" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CHINIEMKDBBNT1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CHINIEMKDBBNT2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KETLUANKDBBNT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NGAYLAPKDBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYNHANKDBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYCHUYENKDBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HETHONGCNKDBBNT" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="GHICHUKDBBNT" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVNHAPKDBBNT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NGANHAPKDBBNT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="SUACHUATHICONG_SUACHUABBNT" Member="SUACHUATHICONG" ThisKey="SUACHUATCID" OtherKey="ID" Type="SUACHUATHICONG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUACHUATHICONG" Member="SUACHUATHICONGs">
+    <Type Name="SUACHUATHICONG">
+      <Column Name="ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SUACHUATKID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="SUACHUAID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="KHUVUCID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYBATDAUTC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYHOANTHANHTC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GHICHUSUATC" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVSUATC1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVSUATC1" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVSUATC2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVSUATC2" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MADHSUACUID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONOSUACU" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MADHSUAMOIID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONOSUAMOI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CHISODAUBATDAUSUA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CHIKDSUATCM1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CHIKDSUATCM2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ISDHKIEMDINHTHAO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TTXULYID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENXL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYKIEMDINHTHAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVKIEMDINHTHAO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYKIEMDINHNHAPTHAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NOIDUNUGSUAKDTHAO" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ISDHKIEMDINHLAP" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYKIEMDINHLAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVKIEMDINHLAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYKIEMDINHNHAPLAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CHISODAUBATDAULAP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CHIKDLAPM1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CHIKDLAPM2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MADHSUALAPCUID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONOSUALAPCU" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MADHSUALAPMOIID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONOSUALAPMOI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NOIDUNUGSUAKDLAP" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MANVSUALAPTC1" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVSUALAPTC1" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MANVSUALAPTC2" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVSUALAPTC2" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ISTRAHSVETK" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYTRAHSVETK" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVTRAHSVETK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LYDOTRAHSVETK" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ISTUCHOISUATC" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYTUCHOISUATC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVTUCHOISUATC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LYDOTTUCHOISUATC" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="SUACHUATHICONG_SUACHUABBNT" Member="SUACHUABBNTs" ThisKey="ID" OtherKey="SUACHUATCID" Type="SUACHUABBNT" />
+      <Association Name="SUACHUATHIETKE_SUACHUATHICONG" Member="SUACHUATHIETKE" ThisKey="SUACHUATKID" OtherKey="ID" Type="SUACHUATHIETKE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUACHUATHIETKE" Member="SUACHUATHIETKEs">
+    <Type Name="SUACHUATHIETKE">
+      <Column Name="ID" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SUACHUAID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="KHUVUCID" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYSUATK" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVSUATK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENNVSUATK" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TTXULYID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="VITRISUATK" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NOIDUNGSUATK" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ISTUCHOISUATK" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYTUCHOISUATK" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVTUCHOISUATK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LYDOTUCHOISUATK" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="SDTSUATK" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SONHASUATK" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIACHISUATK" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="XAID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="APID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MAUTHIETKEID" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="HINHSUATK1" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="HINHSUATK2" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NGAYDUYETSCTK" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVDUYETSCTK" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYDUYETNHAPTK" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="SUACHUATHIETKE_SUACHUATHICONG" Member="SUACHUATHICONGs" ThisKey="ID" OtherKey="SUACHUATKID" Type="SUACHUATHICONG" />
+      <Association Name="SUACHUA_SUACHUATHIETKE" Member="SUACHUA" ThisKey="SUACHUAID" OtherKey="ID" Type="SUACHUA" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

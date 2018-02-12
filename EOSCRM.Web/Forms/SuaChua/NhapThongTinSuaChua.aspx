@@ -143,7 +143,7 @@
                                         <HeaderStyle CssClass="header" />
                                         <PagerSettings FirstPageText="nhân viên" PageButtonCount="2" />
                                         <Columns>
-                                            <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã NV">
+                                            <asp:TemplateField HeaderStyle-Width="12%" HeaderText="Mã NV">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="lnkBtnID" runat="server" 
                                                         CommandArgument='<%# Eval("MANV") %>' CommandName="SelectMANV"                                                         
@@ -323,21 +323,16 @@
                 <table class="crmtable">
                     <tbody>
                         <tr>
-                            <td class="crmcell right">Mã đơn</td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:TextBox ID="txtMADON" runat="server" Width="100px" MaxLength="20" TabIndex="1" />
-                                </div>
-                            </td>
                             <td class="crmcell right">Khu vực</td>
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:DropDownList ID="ddlKHUVUC" TabIndex="8" runat="server" />
+                                    <asp:TextBox ID="txtMADON" runat="server" Width="100px" MaxLength="20" TabIndex="1" Visible="false"/>
                                 </div>
-                            </td>
+                            </td>                            
                         </tr>
                         <tr>
-                            <td class="crmcell right">Mã khách hàng</td>
+                            <td class="crmcell right">Danh số</td>
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:TextBox ID="txtMAKH" onkeypress="return CheckChangeMAKH(event);" runat="server" Width="100px" MaxLength="300" TabIndex="1" />
@@ -350,19 +345,78 @@
                                         OnClientClick="openDialogAndBlock('Chọn từ danh sách khách hàng', 610, 'divKhachHang')" 
                                         TabIndex="6" />
                                 </div>
-                            </td>
+                            </td>                            
+                        </tr>
+                        <tr>
                             <td class="crmcell right">Tên khách hàng</td>
                             <td class="crmcell">    
                                 <div class="left">
-                                    <asp:TextBox ID="txtTENKH" runat="server" Width="300px" MaxLength="300" TabIndex="1" />
+                                    <asp:TextBox ID="txtTENKH" runat="server" Width="200px" TabIndex="1" ReadOnly="True" />
+                                </div>  
+                                <td class="crmcell right">Mục đích sử dụng</td>
+                                <td class="crmcell">    
+                                    <div class="left">
+                                        <asp:Label ID="lbTenMDSD" runat="server" ></asp:Label>
+                                    </div>
+                                </td>                              
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Số điện thoại KH</td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:Label ID="txtSDTKH" runat="server" TabIndex="1" />
+                                </div>  
+                                <td class="crmcell right">Công suất ĐH</td>
+                                <td class="crmcell">    
+                                    <div class="left">
+                                        <asp:Label ID="lbCongSuatDH" runat="server" ></asp:Label>
+                                    </div>
+                                </td>                              
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Số No</td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:Label ID="lbSoNoDH" runat="server" ></asp:Label>
+                                </div>  
+                                <td class="crmcell right">Loại ĐH</td>
+                                <td class="crmcell">    
+                                    <div class="left">
+                                        <asp:Label ID="lbLoaiDH" runat="server" ></asp:Label>
+                                    </div>                                    
+                                </td>                              
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Thông tin báo</td>
+                            <td class="crmcell">
+                                <div class="left width-130">
+                                    <asp:DropDownList ID="ddlThongTinXuLy" runat="server"></asp:DropDownList>
+                                </div>
+                                <td class="crmcell right">Nội dung báo</td>
+                                <td class="crmcell">    
+                                    <div class="left">
+                                        <asp:TextBox ID="txtNoiDungSC" runat="server" Width="300px"></asp:TextBox>
+                                    </div>
+                                </td>                            
+                                </td>
+                        </tr>                                       
+                        <tr>
+                            <td class="crmcell right">Số điện thoại</td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:TextBox ID="txtSDTSuaKH" runat="server" Width="100px" MaxLength="15" />
                                 </div>
                             </td>
+                            
                         </tr>
                         <tr>
                             <td class="crmcell right">Nhân viên</td>
                             <td class="crmcell">
                                 <div class="left width-130">
-                                    <asp:TextBox ID="txtNV1" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtTenNVSua" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnBrowseNhanVien" runat="server" CssClass="pickup" 
@@ -370,46 +424,11 @@
                                         UseSubmitBehavior="false" CausesValidation="false" />
                                 </div>
                                 <div class="left">
-                                    <asp:Label ID="lbNV1" runat="server" Text="Label" Visible="False"></asp:Label>
+                                    <asp:Label ID="lbNhanVienSuaID" runat="server" Visible="False"></asp:Label>
                                 </div>                               
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="crmcell right">Số điện thoại</td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:TextBox ID="txtSDT" runat="server" Width="100px" MaxLength="15" />
-                                </div>
-                            </td>
-                            <td class="crmcell right">Thông tin sơ bộ</td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:TextBox ID="txtTHONGTINKH" runat="server" Width="300px" MaxLength="300" TabIndex="1" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="crmcell right">Nội dung báo</td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:DropDownList ID="cboMAPH" runat="server" />
-                                </div>
-                            </td>
-                            <td class="crmcell right">Ngày báo</td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:TextBox ID="txtNGAYBAO" runat="server" Width="100px" MaxLength="15" TabIndex="1" />
-                                </div>
-                                <div class="left"><strong>Giờ</strong></div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtGio" runat="server" Width="30px" MaxLength="15" TabIndex="1" />
-                                </div>
-                                <div class="left"><strong>Phút</strong></div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtPhut" runat="server" Width="30px" MaxLength="15" TabIndex="1" />
-                                </div>
-                            </td>
-                        </tr>
+                        </tr>         
+                        
                         <tr>    
                             <td class="crmcell right btop"></td>
                             <td class="crmcell btop" colspan="3">

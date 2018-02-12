@@ -19,7 +19,36 @@ namespace EOSCRM.Web.Forms.SuaChua
         private readonly KhachHangDao _khDao = new KhachHangDao();
         private readonly ThongTinPhanHoiDao _phDao = new ThongTinPhanHoiDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
-        private readonly ThietKeDao _tkDao = new ThietKeDao();
+        private readonly ThietKeDao _tkDao = new ThietKeDao();        
+
+        private GIAIQUYETTHONGTINSUACHUA GQTTSCObj
+        {
+            get
+            {
+                if (!IsDataValid())
+                    return null;
+
+                var gcttsc = new GIAIQUYETTHONGTINSUACHUA
+                {
+                    //NGAYBAO = DateTimeUtil.GetVietNamDate(txtNGAYBAO.Text.Trim(), txtGio.Text.Trim(), txtPhut.Text.Trim()),
+                    MADON = txtMADON.Text.Trim(),
+                    SDT = txtSDTSuaKH.Text.Trim(),
+                    //THONGTINKH = txtTHONGTINKH.Text.Trim(),
+                   // MAPH = cboMAPH.SelectedValue,
+                    MANVN = LoginInfo.MANV,
+                    MAKV = ddlKHUVUC.SelectedValue,
+                    NGAYNHAP = DateTime.Now
+                };
+
+                if (!string.IsNullOrEmpty(txtMAKH.Text.Trim()))
+                    gcttsc.IDKH = _khDao.GetKhachHangFromMadb(txtMAKH.Text.Trim()).IDKH;
+
+                if (gcttsc.IDKH != null)
+                    gcttsc.MAKV = _khDao.GetKhachHangFromMadb(txtMAKH.Text.Trim()).MAKV;
+
+                return gcttsc;
+            }
+        }
 
         #region Startup script registeration
         private void ShowError(string message, string controlId)
@@ -69,35 +98,7 @@ namespace EOSCRM.Web.Forms.SuaChua
 
         #endregion
 
-        private GIAIQUYETTHONGTINSUACHUA GQTTSCObj
-        {
-            get
-            {
-                if (!IsDataValid())
-                    return null;
-
-                var gcttsc = new GIAIQUYETTHONGTINSUACHUA
-                {
-                    NGAYBAO = DateTimeUtil.GetVietNamDate(txtNGAYBAO.Text.Trim(), txtGio.Text.Trim(), txtPhut.Text.Trim()),
-                    MADON = txtMADON.Text.Trim(),
-                    SDT = txtSDT.Text.Trim(),
-                    THONGTINKH = txtTHONGTINKH.Text.Trim(),
-                    MAPH = cboMAPH.SelectedValue,
-                    MANVN = LoginInfo.MANV,
-                    MAKV = ddlKHUVUC.SelectedValue,
-                    NGAYNHAP = DateTime.Now
-                };
-
-                if (!string.IsNullOrEmpty(txtMAKH.Text.Trim()))
-                    gcttsc.IDKH = _khDao.GetKhachHangFromMadb(txtMAKH.Text.Trim()).IDKH;
-
-                if (gcttsc.IDKH != null)
-                    gcttsc.MAKV = _khDao.GetKhachHangFromMadb(txtMAKH.Text.Trim()).MAKV;
-
-                return gcttsc;
-            }
-        }
-
+        #region Update,Filter
         private Mode UpdateMode
         {
             get
@@ -144,6 +145,7 @@ namespace EOSCRM.Web.Forms.SuaChua
                 Session[SessionKey.FILTEREDMODE] = value.GetHashCode();
             }
         }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -151,6 +153,7 @@ namespace EOSCRM.Web.Forms.SuaChua
             {
                 Authenticate(Functions.SC_NhapThongTinSuaChua, Permission.Read);
                 PrepareUI();
+
                 if (!Page.IsPostBack)
                 {
                     LoadStaticReferences();
@@ -186,10 +189,10 @@ namespace EOSCRM.Web.Forms.SuaChua
                 UpdateMode = Mode.Create;
 
                 var listThongTinPhanHoi = _phDao.GetList();
-                cboMAPH.Items.Clear();
+               // cboMAPH.Items.Clear();
                 //cboMAPH.Items.Add(new ListItem("Tất cả", "%"));
-                foreach(var maph in listThongTinPhanHoi)
-                    cboMAPH.Items.Add(new ListItem(maph.TENPH, maph.MAPH));
+              //  foreach(var maph in listThongTinPhanHoi)
+             //       cboMAPH.Items.Add(new ListItem(maph.TENPH, maph.MAPH));
 
                 var khuvuclist = _kvDao.GetList();
                 ddlKHUVUC.Items.Clear();
@@ -204,12 +207,12 @@ namespace EOSCRM.Web.Forms.SuaChua
 
                 timkv();
                 
-                txtMADON.Text = _objDao.MakeIdkhToInsertNew();
+                //txtMADON.Text = _objDao.MakeIdkhToInsertNew();
                 txtMADON.Focus();
 
-                txtNGAYBAO.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                txtGio.Text = DateTime.Now.Hour.ToString();
-                txtPhut.Text = DateTime.Now.Minute.ToString();
+              //  txtNGAYBAO.Text = DateTime.Now.ToString("dd/MM/yyyy");
+              //  txtGio.Text = DateTime.Now.Hour.ToString();
+              //  txtPhut.Text = DateTime.Now.Minute.ToString();
             }
             catch (Exception ex)
             {
@@ -273,9 +276,9 @@ namespace EOSCRM.Web.Forms.SuaChua
 
                     var objList = _objDao.GetListChuaPhanCong(txtMADON.Text.Trim(), ddlKHUVUC.SelectedValue,
                                                               txtMAKH.Text.Trim(),
-                                                              txtTENKH.Text.Trim(), txtSDT.Text.Trim(),
-                                                              txtTHONGTINKH.Text.Trim(),
-                                                              cboMAPH.SelectedValue, ngaybd, ngaykt);
+                                                              txtTENKH.Text.Trim(), "",
+                                                              "",
+                                                              "", ngaybd, ngaykt);
 
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
@@ -313,22 +316,22 @@ namespace EOSCRM.Web.Forms.SuaChua
                 return false;
             }
 
-            var ph = _phDao.Get(cboMAPH.SelectedValue);
-            if (ph == null)
-            {
-                ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Nội dung báo"));
-                return false;
-            }
+            //var ph = _phDao.Get(cboMAPH.SelectedValue);
+            //if (ph == null)
+            //{
+            //    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Nội dung báo"));
+            //    return false;
+            //}
 
-            try
-            {
-                DateTimeUtil.GetVietNamDate(txtNGAYBAO.Text.Trim(), txtGio.Text.Trim(), txtPhut.Text.Trim());
-            }
-            catch
-            {
-                ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Ngày báo"), txtNGAYBAO.ClientID); 
-                return false;
-            }
+            //try
+            //{
+            //    DateTimeUtil.GetVietNamDate(txtNGAYBAO.Text.Trim(), txtGio.Text.Trim(), txtPhut.Text.Trim());
+            //}
+            //catch
+            //{
+            //    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Ngày báo"), txtNGAYBAO.ClientID); 
+            //    return false;
+            //}
 
             return true;
         }
@@ -338,17 +341,17 @@ namespace EOSCRM.Web.Forms.SuaChua
             txtMADON.Text = _objDao.MakeIdkhToInsertNew();
             txtMADON.ReadOnly = false;
 
-            txtGio.Text = DateTime.Now.Hour.ToString();
-            txtPhut.Text = DateTime.Now.Minute.ToString();
-            txtNGAYBAO.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            txtMAKH.Text = "";
-            txtSDT.Text = "";
+            //txtGio.Text = DateTime.Now.Hour.ToString();
+            //txtPhut.Text = DateTime.Now.Minute.ToString();
+            //txtNGAYBAO.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            //txtMAKH.Text = "";
+            //txtSDT.Text = "";
 
-            ddlKHUVUC.SelectedIndex = 0;
-            cboMAPH.SelectedIndex = 0;
+            //ddlKHUVUC.SelectedIndex = 0;
+            //cboMAPH.SelectedIndex = 0;
 
-            txtTENKH.Text = "";
-            txtTHONGTINKH.Text = "";
+            //txtTENKH.Text = "";
+            //txtTHONGTINKH.Text = "";
         }    
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -382,7 +385,7 @@ namespace EOSCRM.Web.Forms.SuaChua
                 }
                 // insert
                 //msg = _objDao.Insert(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
-                msg = _objDao.InsertTKSC(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV, txtNV1.Text.Trim(), lbNV1.Text.Trim() );
+                msg = _objDao.InsertTKSC(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV, "", "" );
             }
             else
             {
@@ -393,7 +396,7 @@ namespace EOSCRM.Web.Forms.SuaChua
                     return;
                 }
                 //msg = _objDao.UpdateNhanTongTin(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
-                msg = _objDao.UpdateNhanTongTinTKSC(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV, txtNV1.Text.Trim(), lbNV1.Text.Trim());
+                msg = _objDao.UpdateNhanTongTinTKSC(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV, "", "");
             }
 
             if (!msg.MsgType.Equals(MessageType.Error))
@@ -520,22 +523,24 @@ namespace EOSCRM.Web.Forms.SuaChua
             var kh = _khDao.GetKhachHangFromMadb(gqttsc.IDKH);
             if(kh != null)
                 SetControlValue(txtTENKH.ClientID, kh.MADP + kh.DUONGPHU + kh.MADB);
-            SetControlValue(txtSDT.ClientID, gqttsc.SDT);
-            SetControlValue(txtTHONGTINKH.ClientID, gqttsc.THONGTINKH);
-            var ph = cboMAPH.Items.FindByValue(gqttsc.MAPH);
-            if (ph != null)
-                cboMAPH.SelectedIndex = cboMAPH.Items.IndexOf(ph);
-            SetControlValue(txtNGAYBAO.ClientID, gqttsc.NGAYBAO.HasValue ? String.Format("{0:dd/MM/yyyy}", gqttsc.NGAYBAO.Value) : "");
-            SetControlValue(txtGio.ClientID, gqttsc.NGAYBAO.HasValue ? gqttsc.NGAYBAO.Value.Hour.ToString() : "");
-            SetControlValue(txtPhut.ClientID, gqttsc.NGAYBAO.HasValue ? gqttsc.NGAYBAO.Value.Minute.ToString() : "");
 
-            var tk = _tkDao.Get(gqttsc.MADON);
-            lbNV1.Text = (tk.MANVTK != null) ? tk.MANVTK.ToString() : "";
-            txtNV1.Text = (tk.TENNVTK != null) ? tk.TENNVTK.ToString() : "";
+            //SetControlValue(txtSDT.ClientID, gqttsc.SDT);
+            //SetControlValue(txtTHONGTINKH.ClientID, gqttsc.THONGTINKH);
+            //var ph = cboMAPH.Items.FindByValue(gqttsc.MAPH);
+            //if (ph != null)
+            //    cboMAPH.SelectedIndex = cboMAPH.Items.IndexOf(ph);
+            //SetControlValue(txtNGAYBAO.ClientID, gqttsc.NGAYBAO.HasValue ? String.Format("{0:dd/MM/yyyy}", gqttsc.NGAYBAO.Value) : "");
+            //SetControlValue(txtGio.ClientID, gqttsc.NGAYBAO.HasValue ? gqttsc.NGAYBAO.Value.Hour.ToString() : "");
+            //SetControlValue(txtPhut.ClientID, gqttsc.NGAYBAO.HasValue ? gqttsc.NGAYBAO.Value.Minute.ToString() : "");
+
+            //var tk = _tkDao.Get(gqttsc.MADON);
+            //lbNV1.Text = (tk.MANVTK != null) ? tk.MANVTK.ToString() : "";
+            //txtNV1.Text = (tk.TENNVTK != null) ? tk.TENNVTK.ToString() : "";
 
             upnlInfor.Update();
         }
 
+        #region gvList
         protected void gvList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -593,6 +598,7 @@ namespace EOSCRM.Web.Forms.SuaChua
             if (lnkBtnID == null) return;
             lnkBtnID.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(lnkBtnID) + "')");
         }
+        #endregion
 
         protected void btnFilterKH_Click(object sender, EventArgs e)
         {
@@ -625,7 +631,7 @@ namespace EOSCRM.Web.Forms.SuaChua
         {
             SetControlValue(txtMAKH.ClientID, kh.MADP + kh.DUONGPHU + kh.MADB);
             SetControlValue(txtTENKH.ClientID, kh.TENKH);
-            SetControlValue(txtSDT.ClientID, kh.SDT);
+            //SetControlValue(txtSDT.ClientID, kh.SDT);
 
             var kv = ddlKHUVUC.Items.FindByValue(kh.MAKV);
             if (kv != null)
@@ -634,6 +640,7 @@ namespace EOSCRM.Web.Forms.SuaChua
             txtMAKH.Focus();
         }
 
+        #region gvDanhSach
         protected void gvDanhSach_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -680,6 +687,7 @@ namespace EOSCRM.Web.Forms.SuaChua
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
         }
+        #endregion
 
         protected void linkBtnHidden_Click(object sender, EventArgs e)
         {
@@ -694,7 +702,7 @@ namespace EOSCRM.Web.Forms.SuaChua
                     ddlKHUVUC.SelectedIndex = ddlKHUVUC.Items.IndexOf(kv);
 
                 txtTENKH.Text = khachhang.TENKH;
-                txtSDT.Text = khachhang.SDT;
+                //txtSDT.Text = khachhang.SDT;
 
                 CloseWaitingDialog();
             }
@@ -720,6 +728,7 @@ namespace EOSCRM.Web.Forms.SuaChua
             gvNhanVien.DataBind();
         }
 
+        #region gvNhanVien
         protected void gvNhanVien_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
@@ -740,8 +749,8 @@ namespace EOSCRM.Web.Forms.SuaChua
                         if (nv != null)
                         {
                             //txtMANV.Focus();
-                            lbNV1.Text = id.ToString();
-                            txtNV1.Text = nv.HOTEN.ToString();
+                            //lbNV1.Text = id.ToString();
+                            //txtNV1.Text = nv.HOTEN.ToString();
 
                             upnlInfor.Update();
                         }
@@ -769,6 +778,7 @@ namespace EOSCRM.Web.Forms.SuaChua
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
         }
+        #endregion
 
         protected void btnFilterNV_Click(object sender, EventArgs e)
         {

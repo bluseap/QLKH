@@ -202,15 +202,6 @@ namespace EOSCRM.Web.Forms.SuaChua {
         protected global::System.Web.UI.UpdatePanel upnlInfor;
         
         /// <summary>
-        /// txtMADON control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMADON;
-        
-        /// <summary>
         /// ddlKHUVUC control.
         /// </summary>
         /// <remarks>
@@ -218,6 +209,15 @@ namespace EOSCRM.Web.Forms.SuaChua {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlKHUVUC;
+        
+        /// <summary>
+        /// txtMADON control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMADON;
         
         /// <summary>
         /// txtMAKH control.
@@ -256,13 +256,85 @@ namespace EOSCRM.Web.Forms.SuaChua {
         protected global::System.Web.UI.WebControls.TextBox txtTENKH;
         
         /// <summary>
-        /// txtNV1 control.
+        /// lbTenMDSD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNV1;
+        protected global::System.Web.UI.WebControls.Label lbTenMDSD;
+        
+        /// <summary>
+        /// txtSDTKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtSDTKH;
+        
+        /// <summary>
+        /// lbCongSuatDH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCongSuatDH;
+        
+        /// <summary>
+        /// lbSoNoDH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSoNoDH;
+        
+        /// <summary>
+        /// lbLoaiDH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbLoaiDH;
+        
+        /// <summary>
+        /// ddlThongTinXuLy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlThongTinXuLy;
+        
+        /// <summary>
+        /// txtNoiDungSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNoiDungSC;
+        
+        /// <summary>
+        /// txtSDTSuaKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSDTSuaKH;
+        
+        /// <summary>
+        /// txtTenNVSua control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTenNVSua;
         
         /// <summary>
         /// btnBrowseNhanVien control.
@@ -274,67 +346,13 @@ namespace EOSCRM.Web.Forms.SuaChua {
         protected global::System.Web.UI.WebControls.Button btnBrowseNhanVien;
         
         /// <summary>
-        /// lbNV1 control.
+        /// lbNhanVienSuaID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNV1;
-        
-        /// <summary>
-        /// txtSDT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSDT;
-        
-        /// <summary>
-        /// txtTHONGTINKH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTHONGTINKH;
-        
-        /// <summary>
-        /// cboMAPH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMAPH;
-        
-        /// <summary>
-        /// txtNGAYBAO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNGAYBAO;
-        
-        /// <summary>
-        /// txtGio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGio;
-        
-        /// <summary>
-        /// txtPhut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPhut;
+        protected global::System.Web.UI.WebControls.Label lbNhanVienSuaID;
         
         /// <summary>
         /// btnSave control.
