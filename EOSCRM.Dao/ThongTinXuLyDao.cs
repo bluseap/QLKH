@@ -30,7 +30,7 @@ namespace EOSCRM.Dao
 
         public List<THONGTINXULY> GetList()
         {
-            return _db.THONGTINXULies.ToList();
+            return _db.THONGTINXULies.OrderBy(p => p.STT).ToList();
         }
 
         public List<THONGTINXULY> GetList(int fromIndex, int toIndex)

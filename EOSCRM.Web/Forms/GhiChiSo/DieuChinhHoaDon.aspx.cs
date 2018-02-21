@@ -566,7 +566,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                                     else { inhddc = "0"; }
 
                                     _rp.ThemTieuThuDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), int.Parse(txtCSCU.Text.Trim()),
-                                        int.Parse(txtCSMOI.Text.Trim()), "Điều chỉnh 1 giá. " + txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
+                                        int.Parse(txtCSMOI.Text.Trim()), "Điều chỉnh 1 giá. " + txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, 
+                                        int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
 
                                     //var msg = gcsDao.TinhTienDC1GIALX(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
                                     //var msg1 = gcsDao.TinhTienTTDC1GIALX(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
@@ -592,7 +593,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                                     else { inhddc = "0"; }
 
                                     _rp.ThemTieuThuDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), int.Parse(txtCSCU.Text.Trim()),
-                                        int.Parse(txtCSMOI.Text.Trim()), txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
+                                        int.Parse(txtCSMOI.Text.Trim()), txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, 
+                                        int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
 
                                     //var msg = gcsDao.TinhTienDCLX(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));//co dinh muc
                                     //var msg1 = gcsDao.TinhTienTTDCLX(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
@@ -628,7 +630,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                                     }
 
                                     _rp.ThemTieuThuDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), int.Parse(txtCSCU.Text.Trim()),
-                                        int.Parse(txtCSMOI.Text.Trim()), "Điều chỉnh 1 giá. " + txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
+                                        int.Parse(txtCSMOI.Text.Trim()), "Điều chỉnh 1 giá. " + txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, 
+                                        int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
 
                                     var msg = gcsDao.TinhTienDC1GIA(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
                                     var msg1 = gcsDao.TinhTienTTDC1GIA(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
@@ -647,7 +650,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                                     else { inhddc = "0"; }
 
                                     _rp.ThemTieuThuDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), int.Parse(txtCSCU.Text.Trim()),
-                                        int.Parse(txtCSMOI.Text.Trim()), txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
+                                        int.Parse(txtCSMOI.Text.Trim()), txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, 
+                                        int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
 
                                     //var msg = gcsDao.TinhTienDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));//co dinh muc
                                     //var msg1 = gcsDao.TinhTienTTDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
@@ -683,7 +687,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                                     }
 
                                     _rp.ThemTieuThuDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), int.Parse(txtCSCU.Text.Trim()),
-                                        int.Parse(txtCSMOI.Text.Trim()), "Điều chỉnh 1 giá. " + txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
+                                        int.Parse(txtCSMOI.Text.Trim()), "Điều chỉnh 1 giá. " + txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), 
+                                        inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
 
                                     //var msg = gcsDao.TinhTienDC1GIA(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
                                     //var msg1 = gcsDao.TinhTienTTDC1GIA(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
@@ -709,7 +714,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                                     else { inhddc = "0"; }
 
                                     _rp.ThemTieuThuDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), int.Parse(txtCSCU.Text.Trim()),
-                                        int.Parse(txtCSMOI.Text.Trim()), txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
+                                        int.Parse(txtCSMOI.Text.Trim()), txtGhiChu.Text.Trim(), txtMASOHD.Text.Trim(), inhddc, 
+                                        int.Parse(txtMTRUYTHU.Text.Trim()), int.Parse(txtSODINHMUC.Text.Trim()));
 
                                     
                                     //var msg = gcsDao.TinhTienDC(lblIDKH.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim())); // Bang TIEUTHUDC

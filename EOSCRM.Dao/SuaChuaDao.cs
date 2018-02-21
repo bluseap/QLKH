@@ -46,21 +46,21 @@ namespace EOSCRM.Dao
             return query.OrderByDescending(p => p.NGAYN).ToList();
         }
 
-        public string SuaChuaNewID()
+        public string SuaChuaNewID(string khuvucID)
         {
-            //var query = (from p in _db.SUACHUAs.Where(p => p.ID.Substring(1, 5).Contains(sToday)) select p.SOHD).Max();            
+            var query = _db.SUACHUAs.Max(p => p.ID.Substring(1,6));
 
-            //if (!string.IsNullOrEmpty(query))
-            //{
-            //    var temp = int.Parse(query.Substring(8, 3)) + 1;
-            //    query = sToday + temp.ToString("D3");
-            //}
-            //else
-            //{
-            //    query = sToday + "001";
-            //}
+            if (!string.IsNullOrEmpty(query))
+            {
+                var temp = int.Parse(query.Substring(1, 6)) + 1;
+                query = query.Substring(0,1) + temp.ToString("D6");
+            }
+            else
+            {
+                query = khuvucID + "000001";
+            }
 
-            return "0000";
+            return query;
         }
         
         public int Count( )
@@ -68,14 +68,13 @@ namespace EOSCRM.Dao
             return _db.SUACHUAs.Count();
         }
 
-        public void Insert(SUACHUA objUi, String useragent, String ipAddress, String sManv)
+        public Message Insert(SUACHUA objUi, String useragent, String ipAddress, String sManv)
         {
+            Message msg;
             try
             {
                 _db.Connection.Open();
-                _db.SUACHUAs.InsertOnSubmit(objUi);
-
-                //objUi.IDKH
+                _db.SUACHUAs.InsertOnSubmit(objUi);               
 
                 var luuvetKyduyet = new LUUVET_KYDUYET
                 {
@@ -91,8 +90,15 @@ namespace EOSCRM.Dao
                 };
                 _db.LUUVET_KYDUYETs.InsertOnSubmit(luuvetKyduyet);
                 _db.SubmitChanges();
+
+                // success message
+                msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "sữa chữa");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                msg = ExceptionHandler.HandleUpdateException(ex, "sữa chữa");
+            }
+            return msg;
         }
 
         public Message Update(SUACHUA objUi, String useragent, String ipAddress, String sManv)

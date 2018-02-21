@@ -346,8 +346,16 @@ namespace EOSCRM.Web.Forms.KhachHang
                 int namF = Convert.ToInt32(txtNAM.Text.Trim());
                 var kyF = new DateTime(namF, thangF, 1);
 
-                bool dungF = _gcsDao.IsLockTinhCuocKy(kyF, ddlKHUVUC.SelectedValue);
-                if (dungF == true)
+                //bool dungF = _gcsDao.IsLockTinhCuocKy(kyF, ddlKHUVUC.SelectedValue);
+                //if (dungF == true)
+                //{
+                //    ShowError("Đã khóa sổ kỳ ghi.");
+                //    CloseWaitingDialog();
+                //    return;
+                //}
+
+                bool lockAll = _gcsDao.IsLockAll(kyF, ddlKHUVUC.SelectedValue);
+                if (lockAll == true)
                 {
                     ShowError("Đã khóa sổ kỳ ghi.");
                     CloseWaitingDialog();

@@ -116483,8 +116483,8 @@ namespace EOSCRM.Domain
     partial void OnTTSUANTChanged();
     partial void OnNGAYSCChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYSCChanged();
-    partial void OnMANVSCChanging(string value);
-    partial void OnMANVSCChanged();
+    partial void OnNHANVIENSUAIDChanging(string value);
+    partial void OnNHANVIENSUAIDChanged();
     partial void OnTENNVSCChanging(string value);
     partial void OnTENNVSCChanged();
     partial void OnTTXULYIDChanging(string value);
@@ -116813,7 +116813,7 @@ namespace EOSCRM.Domain
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANVSC", DbType="VarChar(10)")]
-		public string MANVSC
+		public string NHANVIENSUAID
 		{
 			get
 			{
@@ -116823,11 +116823,11 @@ namespace EOSCRM.Domain
 			{
 				if ((this._MANVSC != value))
 				{
-					this.OnMANVSCChanging(value);
+					this.OnNHANVIENSUAIDChanging(value);
 					this.SendPropertyChanging();
 					this._MANVSC = value;
-					this.SendPropertyChanged("MANVSC");
-					this.OnMANVSCChanged();
+					this.SendPropertyChanged("NHANVIENSUAID");
+					this.OnNHANVIENSUAIDChanged();
 				}
 			}
 		}

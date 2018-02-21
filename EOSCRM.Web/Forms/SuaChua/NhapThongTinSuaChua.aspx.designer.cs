@@ -211,31 +211,31 @@ namespace EOSCRM.Web.Forms.SuaChua {
         protected global::System.Web.UI.WebControls.DropDownList ddlKHUVUC;
         
         /// <summary>
-        /// txtMADON control.
+        /// txtSUACHUAID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMADON;
+        protected global::System.Web.UI.WebControls.TextBox txtSUACHUAID;
         
         /// <summary>
-        /// txtMAKH control.
+        /// lbIDKH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMAKH;
+        protected global::System.Web.UI.WebControls.Label lbIDKH;
         
         /// <summary>
-        /// linkBtnHidden control.
+        /// txtDANHSO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkBtnHidden;
+        protected global::System.Web.UI.WebControls.TextBox txtDANHSO;
         
         /// <summary>
         /// btnBrowseKH control.
@@ -326,6 +326,33 @@ namespace EOSCRM.Web.Forms.SuaChua {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSDTSuaKH;
+        
+        /// <summary>
+        /// txtNgayBaoSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNgayBaoSC;
+        
+        /// <summary>
+        /// imgNgayBaoSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgNgayBaoSC;
+        
+        /// <summary>
+        /// calenNgayBaoSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender calenNgayBaoSC;
         
         /// <summary>
         /// txtTenNVSua control.

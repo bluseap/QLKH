@@ -18,6 +18,29 @@ public class ReportClass
 		
 	}
 
+    public DataSet HisTableCoBien(string idkh, string idkh2, string madon, string madon2, string makv, DateTime tungay, DateTime denngay, int thang,
+        int nam, string ghichu, string ghichu2, string cobien)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {                                       
+                    db.MakeInParam("@IDKH", SqlDbType.VarChar  , 20, idkh),
+                    db.MakeInParam("@IDKH2", SqlDbType.VarChar  , 20, idkh2),
+                    db.MakeInParam("@MADON", SqlDbType.VarChar  , 20, madon),
+                    db.MakeInParam("@MADON2", SqlDbType.VarChar  , 20, madon2),
+                    db.MakeInParam("@MAKV", SqlDbType.VarChar  , 20, makv),
+                     db.MakeInParam("@TUNGAY", SqlDbType.DateTime  , 50, tungay),
+                      db.MakeInParam("@DENNGAY", SqlDbType.DateTime  , 50, denngay),
+                    db.MakeInParam("@THANG", SqlDbType.Int  , 8, thang),
+                    db.MakeInParam("@NAM", SqlDbType.Int  , 8, nam),
+                    db.MakeInParam("@GHICHU", SqlDbType.NVarChar  , 1000, ghichu),
+                    db.MakeInParam("@GHICHU2", SqlDbType.NVarChar  , 1000, ghichu2),
+                    db.MakeInParam("@COBIEN", SqlDbType.VarChar  , 20, cobien)
+                };
+        DataSet ds = db.RunExecProc("HisTableCoBien", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet UpLoadFileDuongPho(string maup, string maup2, string makv, string mapb, string tenfile, string tenfile2,
         DateTime tungay, DateTime denngay, string cobien)
     {

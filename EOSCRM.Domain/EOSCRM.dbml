@@ -5045,7 +5045,7 @@
       <Column Name="TTSUATC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="TTSUANT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NGAYSC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="MANVSC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NHANVIENSUAID" Storage="_MANVSC" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="TENNVSC" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="TTXULYID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NOIDUNGSC" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />

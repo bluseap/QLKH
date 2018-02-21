@@ -4279,6 +4279,28 @@ namespace EOSCRM.Dao
             return lockKN.Value;
         }
 
+        public bool IsLockAll(DateTime kyghi, string makvpo)
+        {
+            int lockAll = _db.LOCKSTATUSPOs.Where(lck => lck.KYGT.Month.Equals(kyghi.Month) && lck.KYGT.Year.Equals(kyghi.Year)
+                                                     && lck.MAKVPO.Equals(makvpo)).Count();
+            int lockTinhCuocAll = _db.LOCKSTATUSPOs.Where(lck => lck.KYGT.Month.Equals(kyghi.Month) && lck.KYGT.Year.Equals(kyghi.Year)
+                                                     && lck.MAKVPO.Equals(makvpo) && lck.LOCKTINHCUOC.Equals(true))
+                                                     .Count();
+
+            if (lockAll - lockTinhCuocAll > 0)
+            {
+                return false;
+            }
+            else if (lockAll - lockTinhCuocAll == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public bool IsLockDotInHD(DateTime kyghi, String makv, string dotin)        
         {
             var lockKN = _db.LOCKDOTINs.Where(lck => lck.KYGT.Month.Equals(kyghi.Month) && lck.MADOTIN.Equals(dotin)
