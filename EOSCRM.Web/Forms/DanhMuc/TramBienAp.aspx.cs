@@ -190,7 +190,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                 if (nhanvien.MAKV != "99")
                 {
-                    LoadKhuVucXaPhuong(_nvDao.Get(b).MAKV);
+                    LoadKhuVucXaPhuong(_nvDao.Get(b).MAKV);                    
                 }
 
                 var dp = _dppoDao.GetList(_kvpoDao.GetPo(nhanvien.MAKV).MAKVPO);
@@ -221,14 +221,6 @@ namespace EOSCRM.Web.Forms.DanhMuc
             {
                 ddlQuanHuyen.Items.Add(new ListItem(h.TENQUAN, h.Id));
             }
-
-            var xp = _xpDao.GetList();
-            ddlXAPHUONG.Items.Clear();
-            ddlXAPHUONG.Items.Add(new ListItem("-- Tất cả --", "%"));
-            foreach (var x in xp)
-            {
-                ddlXAPHUONG.Items.Add(new ListItem(x.TENXA, x.MAXA));
-            }
         }
 
         private void LoadKhuVucXaPhuong(string makv)
@@ -244,13 +236,15 @@ namespace EOSCRM.Web.Forms.DanhMuc
             if (qh != null)
                 ddlQuanHuyen.SelectedIndex = ddlQuanHuyen.Items.IndexOf(qh);
 
-            var xp = _xpDao.GetListKV(makv);
-            ddlXAPHUONG.Items.Clear();
-            ddlXAPHUONG.Items.Add(new ListItem("-- Tất cả --", "%"));
-            foreach (var x in xp)
-            {
-                ddlXAPHUONG.Items.Add(new ListItem(x.TENXA, x.MAXA));
-            }
+            LoadQuanHuyen(ddlQuanHuyen.SelectedValue);
+
+            //var xp = _xpDao.GetListKV(makv);
+            //ddlXAPHUONG.Items.Clear();
+            //ddlXAPHUONG.Items.Add(new ListItem("-- Tất cả --", "%"));
+            //foreach (var x in xp)
+            //{
+            //    ddlXAPHUONG.Items.Add(new ListItem(x.TENXA, x.MAXA));
+            //}
         }
 
         public void timkv()
@@ -515,21 +509,30 @@ namespace EOSCRM.Web.Forms.DanhMuc
        
         protected void ddlQuanHuyen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlQuanHuyen.SelectedValue != "%")
-            {
-                var quanhuyen = _qhDao.Get(ddlQuanHuyen.SelectedValue);
-                //var khuvucpo = _kvpoDao.Get(quanhuyen.MAKV);
-
-                var xp = _xpDao.GetListKV(quanhuyen.MAKV);
-                ddlXAPHUONG.Items.Clear();
-                ddlXAPHUONG.Items.Add(new ListItem("-- Tất cả --", "%"));
-                foreach (var x in xp)
-                {
-                    ddlXAPHUONG.Items.Add(new ListItem(x.TENXA, x.MAXA));
-                }
-            }
+            LoadQuanHuyen(ddlQuanHuyen.SelectedValue);
 
             upnlInfor.Update();
+        }
+
+        private void LoadQuanHuyen(string quanhuyenId)
+        {
+            try
+            {
+                if (ddlQuanHuyen.SelectedValue != "%")
+                {
+                    var quanhuyen = _qhDao.Get(quanhuyenId);
+                    //var khuvucpo = _kvpoDao.Get(quanhuyen.MAKV);
+
+                    var xp = _xpDao.GetListKV(quanhuyen.MAKV);
+                    ddlXAPHUONG.Items.Clear();
+                    ddlXAPHUONG.Items.Add(new ListItem("-- Tất cả --", "%"));
+                    foreach (var x in xp)
+                    {
+                        ddlXAPHUONG.Items.Add(new ListItem(x.TENXA, x.MAXA));
+                    }
+                }                
+            }
+            catch { }
         }
 
     }
