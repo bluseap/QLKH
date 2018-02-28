@@ -172,7 +172,12 @@
                             <ItemStyle Font-Bold="true" />
                         </asp:TemplateField>  
                         <%--<asp:BoundField HeaderText="Mã đơn" ItemStyle-Font-Bold="true" HeaderStyle-Width="60px" DataField="MADDKPO" />--%>
-                        <asp:BoundField HeaderText="Tên chiết tính" HeaderStyle-Width="20%" DataField="TENCT" />
+                        <asp:TemplateField HeaderText="Tên KH" HeaderStyle-Width="20%">
+                            <ItemTemplate>
+                                <%# new DonDangKyPoDao().Get(Eval("MADDKPO").ToString()) != null ? new DonDangKyPoDao().Get(Eval("MADDKPO").ToString()).TENKH : 
+                                    Eval("TENCT").ToString() %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField HeaderText="Điện thoại" HeaderStyle-Width="60px" DataField="DIENTHOAI" />
                         <asp:BoundField HeaderText="Địa chỉ lắp đặt" HeaderStyle-Width="30%" DataField="DIACHIHM" />
                         <asp:TemplateField HeaderText="Trạng thái đơn"  HeaderStyle-Width="80px">

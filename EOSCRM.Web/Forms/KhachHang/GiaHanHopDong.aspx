@@ -467,7 +467,7 @@
             <div class="crmcontainer">
                 <eoscrm:Grid 
                     ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand" 
-                    OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound" PageSize="70">
+                    OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound" PageSize="1000">
                     <PagerSettings FirstPageText="hợp đồng" PageButtonCount="2" />
                     <Columns>                    
                         <asp:TemplateField HeaderStyle-CssClass="checkbox">
