@@ -46,31 +46,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
         private readonly KhuVucDao _kvDao = new KhuVucDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                PrepareUI();
-
-                if (!Page.IsPostBack)
-                {
-                    //TODO: Load references
-                    LoadReferences();
-                }
-                else
-                {
-                    if (lbRELOAD.Text == "1")
-                    { ReLoadBaoCao(); }
-                    if (lbRELOAD.Text == "2")
-                    { ReLoadBaoCaoMucDK(); }
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
         #region Startup script registeration
         private void SetControlValue(string id, string value)
         {
@@ -117,6 +92,31 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             ((PO)Page.Master).CloseWaitingDialog();
         }
         #endregion
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                PrepareUI();
+
+                if (!Page.IsPostBack)
+                {
+                    //TODO: Load references
+                    LoadReferences();
+                }
+                else
+                {
+                    if (lbRELOAD.Text == "1")
+                    { ReLoadBaoCao(); }
+                    if (lbRELOAD.Text == "2")
+                    { ReLoadBaoCaoMucDK(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }        
 
         private void PrepareUI()
         {
@@ -165,7 +165,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             }
             else
             {
-                var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                //var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                var dotin = _diDao.GetListKVDDP7(kvpo);
+
                 ddlDOTGCS.Items.Clear();
                 ddlDOTGCS.Items.Add(new System.Web.UI.WebControls.ListItem("Tất cả", "%"));
                 foreach (var d in dotin)

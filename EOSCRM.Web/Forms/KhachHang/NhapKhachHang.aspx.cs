@@ -1623,25 +1623,6 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 txtSOHD.Focus();
 
-                //if (!msg.MsgType.Equals(MessageType.Error))
-                //{
-                //    //ShowInfor(ResourceLabel.Get(msg));
-
-                //    ClearForm();
-
-                //    // bind grid
-                //    BindKhachHangGrid();
-
-                //    upnlCustomers.Update();
-                //    UpdateMode = Mode.Create;
-
-                //    txtSOHD.Focus();
-                //}
-                //else
-                //{
-                //    ShowError("<strong>Lỗi xảy ra</strong>. <br/><br/>Dò lỗi: <br />" +
-                //        ResourceLabel.Get(msg), txtMADP.ClientID);
-                //}
             }
             catch (Exception ex)
             {

@@ -983,6 +983,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     CloseWaitingDialog();
                     return;
                 }
+
                 kh.IDKHPO = hdfIDKH.Value;
 
                 var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
@@ -990,26 +991,25 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 string b = loginInfo.Username;
                 var query = nvDao.GetListKV(b);
 
+                int thangF = int.Parse(ddlTHANGTDCT.SelectedValue);
+                int namF = Convert.ToInt32(txtNAMTDCT.Text.Trim());
+                var kynayF = new DateTime(namF, thangF, 1);
+
                 int thang1 = int.Parse(ddlTHANG.SelectedValue);
                 string nam = txtNAM.Text.Trim();
                 var kynay1 = new DateTime(int.Parse(nam), thang1, 1);
                 //var kynay = new DateTime(2013, 6, 1);
 
                 //khoa so theo dot in hoa don
-                bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
-                if (kh.MAMDSDPO != "A" && kh.MAMDSDPO != "B" && kh.MAMDSDPO != "G" && kh.MAMDSDPO != "Z")
-                {
-                    if (p7d1 == true)
-                    {
-                        CloseWaitingDialog();
-                        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1.");
-                        return;
-                    }
-                }
+                var dotin = _dihdDao.Get(kh.DOTINHD);
+                bool p7d1 = _gcspoDao.IsLockDotInHD(kynayF, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
 
-                int thangF = int.Parse(ddlTHANGTDCT.SelectedValue);
-                int namF = Convert.ToInt32(txtNAMTDCT.Text.Trim());
-                var kynayF = new DateTime(namF, thangF, 1);
+                if (p7d1 == true)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1.");
+                    return;
+                }       
 
                 //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, ddlKHUVUC.SelectedValue);//khoa so theo duong pho, chuyen ky
                 bool dung = _gcspoDao.IsLockTinhCuocKy1(kynayF, ddlKHUVUC.SelectedValue, kh.MADPPO);
@@ -1033,26 +1033,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     CloseWaitingDialog();
                     ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
                     return;
-                }
-
-                /*var kh = KhachHang;
-                if (kh == null)
-                {
-                    CloseWaitingDialog();
-                    return;
-                }
-                kh.IDKHPO = hdfIDKH.Value;*/
-
-                /*if(ckTENKH.Checked==true)
-                {
-                    report.UPKHTEN(kh.IDKH,txtTENKH.Text.Trim(),
-                            int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
-                }*/
-                //if (ckTENKH.Checked == true)
-                //{
-                //    report.UPKHTENUP(kh.IDKHPO, txtTENKH.Text.Trim(),
-                //            int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()));
-                //}
+                }              
 
                 // doi chi so cuoi kh moi
                 if (ckUpdateKHM.Checked == true && HasPermission(Functions.KH_TraCuuKhachHangPo, Permission.Update))
@@ -1067,10 +1048,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     var kynay111 = new DateTime(int.Parse(nam11), thang111, 1);
 
                     var kht = KhachHang;
-                    var demkh = _khpoDao.IsKyKhaiThacCSCuoi(kynay111, kht.IDKHPO);
+                    var demkh = _khpoDao.IsKyKhaiThacCSCuoi(kynay111, kht.IDKHPO);                    
 
                     bool dung11 = _gcspoDao.IsLockTinhCuocKy1(kynay111, ddlKHUVUC.SelectedValue, kht.MADPPO);
-
                     foreach (var a in query11)
                     {
                         string d = a.MAKV;

@@ -871,8 +871,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
             catch { }
         }
-
-        #region Control event handlers
+       
         protected void ddlKHUVUC_SelectedIndexChanged(object sender, EventArgs e)
         {
             var kv = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
@@ -890,16 +889,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             try
             {
                 var phien7dot1 = _dihdDao.Get(ddlDOTINHD.SelectedValue);
-                if (phien7dot1 != null)
+                
+                if ((ddlMDSD.SelectedValue == "A" || ddlMDSD.SelectedValue == "B" || ddlMDSD.SelectedValue == "G" || ddlMDSD.SelectedValue == "Z")
+                        && phien7dot1.MADOTIN == "DDP7D1" )// kiem tra khong phai muc dich khac
                 {
-                    if ((ddlMDSD.SelectedValue == "A" || ddlMDSD.SelectedValue == "B" || ddlMDSD.SelectedValue == "G"
-                            || ddlMDSD.SelectedValue == "Z")
-                            && phien7dot1.MADOTIN == "DDP7D1" )// kiem tra khong phai muc dich khac
-                    {
-                        CloseWaitingDialog();
-                        ShowInfor("Kiểm tra lại Mục đích sử dung hoặc phiên cho đúng.");
-                        return;
-                    }                    
+                    CloseWaitingDialog();
+                    ShowInfor("Kiểm tra lại Mục đích sử dung hoặc phiên cho đúng.");
+                    return;
                 }
 
                 //lock cap nhap chi so
@@ -909,17 +905,20 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 string nam = txtNAM.Text.Trim();
 
                 var kynay1 = new DateTime(int.Parse(nam), thang1, 1);
-                //var kynay = new DateTime(2013, 6, 1); txtMADP.Text.Trim()
-                bool dung = _gcspoDao.IsLockTinhCuocKy1(kynay1, ddlKHUVUC.SelectedValue, txtMADP.Text.Trim());                
+                //var kynay = new DateTime(2013, 6, 1); txtMADP.Text.Trim()                
 
                 bool ksdot = _gcspoDao.IsLockDotIn(ddlDOTINHD.SelectedValue, kynay1, ddlKHUVUC.SelectedValue);
-
-                if (ksdot == true)
+                if (phien7dot1.MADOTIN == "DDP7D1")
                 {
-                    CloseWaitingDialog();
-                    ShowInfor("Đã khoá sổ ghi chỉ số.(DOT)");
-                    return;
+                    if (ksdot == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ ghi chỉ số mục đích khác. Kiểm tra lại MĐSD khách hàng cho đúng.");
+                        return;
+                    }
                 }
+
+                bool dung = _gcspoDao.IsLockTinhCuocKy1(kynay1, ddlKHUVUC.SelectedValue, txtMADP.Text.Trim()); 
                 if (dung == true)
                 {
                     CloseWaitingDialog();
@@ -1074,9 +1073,34 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
         protected void ddlMDSD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UnblockWaitingDialog();
-            SetControlEnable();
+            MDSDToDotInHD(ddlMDSD.SelectedValue);
+            
             CloseWaitingDialog();
+            upnlCustomers.Update();
+        }
+
+        private void MDSDToDotInHD(string mamdsd)
+        {
+            try
+            {
+                if (mamdsd == "A" || mamdsd == "B" || mamdsd == "G" || mamdsd == "Z") // khach hang binh thuong
+                {
+                    ddlDOTINHD.SelectedIndex = 0;
+                }
+                else // muc dich khac
+                {
+                    string phien7dot1 = "DDP7D1";
+                    var dotin = _dihdDao.GetKVDot(phien7dot1, ddlKHUVUC.SelectedValue);
+
+                    var madotin = ddlDOTINHD.Items.FindByValue(dotin.IDMADOTIN);
+                    if (madotin != null)
+                    {
+                        ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotin);
+                    }
+                }
+                
+            }
+            catch { }
         }
 
         private void SetControlEnable()
@@ -1113,8 +1137,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 txtKYHOTRO.Enabled = true;
             }
         }
-        #endregion
-
+     
         #region Khách hàng
         private void BindKhachHangGrid()
         {
@@ -1664,7 +1687,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 SetControlValue(ddlLOAIKH.ClientID, hd.LOAIHD);
 
             if (hd.MDSDPO != null)
+            {
                 SetControlValue(ddlMDSD.ClientID, hd.MAMDSDPO);
+                MDSDToDotInHD(hd.MAMDSDPO);
+            }
 
             SetControlValue(txtSOHO.ClientID, hd.SOHO.HasValue ? hd.SOHO.Value.ToString() : "1");
             SetControlValue(txtSONK.ClientID, hd.SONHANKHAU.HasValue ? hd.SONHANKHAU.Value.ToString() : "1");

@@ -1737,6 +1737,7 @@
       <Column Name="MANVTRAKD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MANVDUYETKD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NOIDUNGTRAKD" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="THIETKE_DAOLAPTK" Member="DAOLAPTKs" ThisKey="MADDK" OtherKey="MADDK" Type="DAOLAPTK" />
       <Association Name="THIETKE_GCTHIETKE" Member="GCTHIETKEs" ThisKey="MADDK" OtherKey="MAMBVT" Type="GCTHIETKE" />
       <Association Name="THIETKE_CTTHIETKE" Member="CTTHIETKEs" ThisKey="MADDK" OtherKey="MADDK" Type="CTTHIETKE" />

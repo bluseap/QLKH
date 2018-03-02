@@ -39924,6 +39924,8 @@ namespace EOSCRM.Domain
 		
 		private string _NOIDUNGTRAKD;
 		
+		private System.Nullable<System.DateTime> _NGAYUP;
+		
 		private EntitySet<DAOLAPTK> _DAOLAPTKs;
 		
 		private EntitySet<GCTHIETKE> _GCTHIETKEs;
@@ -40036,6 +40038,8 @@ namespace EOSCRM.Domain
     partial void OnMANVDUYETKDChanged();
     partial void OnNOIDUNGTRAKDChanging(string value);
     partial void OnNOIDUNGTRAKDChanged();
+    partial void OnNGAYUPChanging(System.Nullable<System.DateTime> value);
+    partial void OnNGAYUPChanged();
     #endregion
 		
 		public THIETKE()
@@ -41002,6 +41006,26 @@ namespace EOSCRM.Domain
 					this._NOIDUNGTRAKD = value;
 					this.SendPropertyChanged("NOIDUNGTRAKD");
 					this.OnNOIDUNGTRAKDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYUP", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NGAYUP
+		{
+			get
+			{
+				return this._NGAYUP;
+			}
+			set
+			{
+				if ((this._NGAYUP != value))
+				{
+					this.OnNGAYUPChanging(value);
+					this.SendPropertyChanging();
+					this._NGAYUP = value;
+					this.SendPropertyChanged("NGAYUP");
+					this.OnNGAYUPChanged();
 				}
 			}
 		}

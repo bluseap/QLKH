@@ -190,7 +190,6 @@ namespace EOSCRM.Dao
                     objDb.HINHTK1 = objUi.HINHTK1;
                     objDb.HINHTK2 = objUi.HINHTK2;
                     objDb.TONGTIENTK = objUi.TONGTIENTK;
-
                     objDb.DIACHITK = objUi.DIACHITK;
                     objDb.DUONGHEMTK = objUi.DUONGHEMTK;
                     objDb.PHUONGTK = objUi.PHUONGTK;
@@ -200,8 +199,9 @@ namespace EOSCRM.Dao
                     objDb.LYDOTRAHSKD = objUi.LYDOTRAHSKD;
                     objDb.DANHSOTK = objUi.DANHSOTK;
                     objDb.ISKHTT100 = objUi.ISKHTT100;
-
                     objDb.MADPLX = objUi.MADPLX;
+
+                    objDb.NGAYUP = objUi.NGAYUP;
 
                     // Submit changes to db
                     _db.SubmitChanges();

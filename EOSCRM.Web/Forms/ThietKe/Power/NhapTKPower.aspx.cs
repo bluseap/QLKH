@@ -477,27 +477,19 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                         var obj = _tkpoDao.Get(id);
                         if (obj == null) return;
 
-                        if (ddk2.TTTK == "TK_A" && ddk2.TTCT == "CT_N" //chi tri ton,an phu,tinh bien,thoai son,chau phu,chau doc
-                            || (ddk2.TTTK == "TK_A" && (ddk2.TTCT == null || ddk2.TTHD == null)))
-                        {
-                            BindToInfor(obj);
-                        }                       
+                        //if (ddk2.TTTK == "TK_A" && ddk2.TTCT == "CT_N" //chi tri ton,an phu,tinh bien,thoai son,chau phu,chau doc
+                        //    || (ddk2.TTTK == "TK_A" && (ddk2.TTCT == null || ddk2.TTHD == null)))
+                        //{
+                        //    BindToInfor(obj);
+                        //}    
+
+                        BindToInfor(obj);
+                   
                         UpdateMode = Mode.Update;
 
                         break;
 
-                        //if (ddk2.TTTK == "TK_A")
-                        //{
-                        //    ShowError("Đã duyệt thiết kế điện. Không được bốc vật tư");
-                        //    CloseWaitingDialog();
-                        //    return;
-                        //}
-                        //if (ddk2.TTTK == "TK_RA")
-                        //{
-                        //    ShowError("Đã từ chối thiết kế điện. Không được bốc vật tư");
-                        //    CloseWaitingDialog();
-                        //    return;
-                        //}                        
+                               
                 }
             }
             catch (Exception ex)

@@ -603,6 +603,21 @@
                                     <asp:Label ID="Label1" runat="server" Text="Số trụ TK: "></asp:Label>
                                     <asp:Label ID="lbSoTruThietKe" runat="server" ></asp:Label>
                                 </div>
+                                <td class="crmcell right">
+                                    Đợt in HĐ  <!--M<sup>3</sup> khoán tối thiểu!-->
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlDOTINHD" runat="server" >                                        
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="left">
+                                        <asp:TextBox ID="txtM3" runat="server" Width="100px" TabIndex="30" Visible="false" />
+                                    </div>
+                                    <div class="left">
+                                        <!--<strong>m<sup>3</sup></strong>!-->
+                                    </div>
+                                </td>
                             </td>
                         </tr>
                         <tr>
@@ -645,11 +660,11 @@
                                 </div>
                             </td>
                             <td class="crmcell right">
-                                Hỗ trợ
+                               
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlHOTRO" Width="112px" runat="server" TabIndex="34">
+                                    <asp:DropDownList ID="ddlHOTRO" Width="112px" runat="server" TabIndex="34" Visible="False">
                                         <asp:ListItem Text="Cho không" Value="C" />
                                         <asp:ListItem Text="Tiền mặt" Value="M" />
                                         <asp:ListItem Text="Không" Value="KK" />                                        
@@ -694,10 +709,10 @@
                                     <asp:Label ID="lblTENDUONG" runat="server" />
                                 </div>
                             </td> 
-                            <td class="crmcell right">Thu hộ</td>
+                            <td class="crmcell right"></td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlTHUHO" Width="70px" runat="server" TabIndex="23">
+                                    <asp:DropDownList ID="ddlTHUHO" Width="70px" runat="server" TabIndex="23" Visible="False">
                                         <asp:ListItem Text="Không" Value="0" />
                                         <asp:ListItem Text="Tại quầy" Value="T" />
                                         <asp:ListItem Text="Kho bạc" Value="K" />
@@ -725,21 +740,7 @@
                                         TabIndex="7" />
                                 </div>
                             </td>                            
-                            <td class="crmcell right">
-                                Phiên<!--M<sup>3</sup> khoán tối thiểu!-->
-                            </td>
-                            <td class="crmcell">
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlDOTINHD" runat="server" >                                        
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtM3" runat="server" Width="100px" TabIndex="30" Visible="false" />
-                                </div>
-                                <div class="left">
-                                    <!--<strong>m<sup>3</sup></strong>!-->
-                                </div>
-                            </td>
+                            
                         </tr>
                         <tr>
                             <td class="crmcell right">
