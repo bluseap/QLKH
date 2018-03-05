@@ -93,7 +93,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             }
             else
             {
-                var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                //var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                var dotin = _diDao.GetListKVDDP7(kvpo);
                 ddlDOTGCS.Items.Clear();
                 ddlDOTGCS.Items.Add(new System.Web.UI.WebControls.ListItem("Tất cả", "%"));
                 foreach (var d in dotin)

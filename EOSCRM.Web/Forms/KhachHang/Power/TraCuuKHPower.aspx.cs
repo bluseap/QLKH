@@ -1001,13 +1001,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 //var kynay = new DateTime(2013, 6, 1);
 
                 //khoa so theo dot in hoa don
-                var dotin = _dihdDao.Get(kh.DOTINHD);
+                var dotin = _dihdDao.Get(kh.DOTINHD != null ? kh.DOTINHD : "");
                 bool p7d1 = _gcspoDao.IsLockDotInHD(kynayF, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
 
                 if (p7d1 == true)
                 {
                     CloseWaitingDialog();
-                    ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1.");
+                    ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
                     return;
                 }       
 
@@ -1163,25 +1163,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 // bind grid
                 BindKhachHangGrid();
-                CloseWaitingDialog();
-
-                //if (!msg.MsgType.Equals(MessageType.Error))
-                //{
-                //    ClearForm();
-                //    divCustomersContainer.Visible = false;
-
-                //    // bind grid
-                //    BindKhachHangGrid();
-                //    CloseWaitingDialog();
-
-                //    ShowInfor(ResourceLabel.Get(msg));
-                //}
-                //else
-                //{
-                //    CloseWaitingDialog();
-                //    ShowError("<strong>Lỗi xảy ra</strong>. <br/><br/>Dò lỗi: <br />" +
-                //        ResourceLabel.Get(msg), txtMADP.ClientID);
-                //}
+                CloseWaitingDialog();                
 
                 report.KhachHangHis(kh.IDKHPO);
             }

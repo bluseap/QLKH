@@ -15,6 +15,7 @@ namespace EOSCRM.Dao
         private readonly EOSCRMDataContext _db;
         public static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
 
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly DuongPhoPoDao _dppoDao = new DuongPhoPoDao();
         private readonly KyDuyetDao _kdDao = new KyDuyetDao();
         private readonly GhiChiSoDao _gcsDao = new GhiChiSoDao();
@@ -279,7 +280,18 @@ namespace EOSCRM.Dao
                 // get current object in database
                 var cu = Get(obj.IDKHPO);
 
-                var dotin = _dppoDao.GetDP(cu.MADPPO);
+                var dotinhd = _dihdDao.Get(cu.DOTINHD != null ? cu.DOTINHD : "");
+
+                string idmadotin = "";
+
+                if (dotinhd.MADOTIN == "DDP7D1")
+                {
+                    idmadotin = cu.DOTINHD;
+                }
+                else
+                {
+                    idmadotin = _dppoDao.GetDP(cu.MADPPO) != null ? _dppoDao.GetDP(cu.MADPPO).IDMADOTIN : "";
+                }                
 
                 if (cu != null)
                 {
@@ -306,10 +318,10 @@ namespace EOSCRM.Dao
                         KYTHAYDH = kythay,
                         MADHCUNO = madhkh,
                         DHCAPBAN = dhcap,
-
                         MADPPO = obj.MADPPO,
                         MADBPO = obj.MADBPO,
-                        IDMADOTIN = dotin != null ? dotin.IDMADOTIN : "",
+
+                        IDMADOTIN = idmadotin, //dotin != null ? dotin.IDMADOTIN : "",
                         //KYTHAYDH =  DateTimeUtil.GetVietNamDate("01/06/2014")
                         LYDOTHAY = obj.DIACHI_INHOADON,
 

@@ -30,6 +30,48 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly ReportClass _rp = new ReportClass();
 
+        #region Startup script registeration
+        private void SetControlValue(string id, string value)
+        {
+            ((PO)Page.Master).SetControlValue(id, value);
+        }
+
+        private void SetLabel(string id, string value)
+        {
+            ((PO)Page.Master).SetLabel(id, value);
+        }
+
+        private void ShowError(string message, string controlId)
+        {
+            ((PO)Page.Master).ShowError(message, controlId);
+        }
+
+        private void ShowError(string message)
+        {
+            ((PO)Page.Master).ShowError(message);
+        }
+
+        private void ShowInfor(string message)
+        {
+            ((PO)Page.Master).ShowInfor(message);
+        }
+
+        private void HideDialog(string divId)
+        {
+            ((PO)Page.Master).HideDialog(divId);
+        }
+
+        private void UnblockDialog(string divId)
+        {
+            ((PO)Page.Master).UnblockDialog(divId);
+        }
+
+        private void CloseWaitingDialog()
+        {
+            ((PO)Page.Master).CloseWaitingDialog();
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -109,7 +151,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
                 }
                 else
                 {
-                    var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                    //var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                    var dotin = _diDao.GetListKVDDP7(kvpo);
+
                     ddlDOTGCS.Items.Clear();
                     ddlDOTGCS.Items.Add(new System.Web.UI.WebControls.ListItem("Tất cả", "%"));
                     foreach (var d in dotin)
@@ -139,49 +183,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
-        }
-
-        #region Startup script registeration
-        private void SetControlValue(string id, string value)
-        {
-            ((PO)Page.Master).SetControlValue(id, value);
-        }
-
-        private void SetLabel(string id, string value)
-        {
-            ((PO)Page.Master).SetLabel(id, value);
-        }
-
-        private void ShowError(string message, string controlId)
-        {
-            ((PO)Page.Master).ShowError(message, controlId);
-        }
-
-        private void ShowError(string message)
-        {
-            ((PO)Page.Master).ShowError(message);
-        }
-
-        private void ShowInfor(string message)
-        {
-            ((PO)Page.Master).ShowInfor(message);
-        }
-
-        private void HideDialog(string divId)
-        {
-            ((PO)Page.Master).HideDialog(divId);
-        }
-
-        private void UnblockDialog(string divId)
-        {
-            ((PO)Page.Master).UnblockDialog(divId);
-        }
-
-        private void CloseWaitingDialog()
-        {
-            ((PO)Page.Master).CloseWaitingDialog();
-        }
-        #endregion
+        }        
 
         #region Khách hàng
         protected void btnFilterKH_Click(object sender, EventArgs e)
@@ -444,18 +446,16 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
                     return;
                 }
 
-                //khoa so theo dot in hoa don
-                //var kkh = _khpoDao.Get(lblIDKH.Text.Trim());
-                bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, kvpo.MAKVPO.ToString(), "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
-                if (kkh.MAMDSDPO != "A" && kkh.MAMDSDPO != "B" && kkh.MAMDSDPO != "G" && kkh.MAMDSDPO != "Z")
+                //khoa so theo dot in hoa don              
+                var dotin = _diDao.Get(kkh.DOTINHD != null ? kkh.DOTINHD : "");
+                bool p7d1m = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
+
+                if (p7d1m == true)
                 {
-                    if (p7d1 == true)
-                    {
-                        CloseWaitingDialog();
-                        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1. Không được điều chỉnh");
-                        return;
-                    }
-                }
+                    CloseWaitingDialog();
+                    ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
+                    return;
+                }              
 
                 if (!HasPermission(Functions.GCS_DieuChinhHoaDonPo, Permission.Insert))
                 {
@@ -523,29 +523,16 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
 
                 var kkh = _khpoDao.Get(lblIDKH.Text.Trim());
 
-                //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, kvpo.MAKVPO.ToString());
-                //bool dung = _gcspoDao.IsLockTinhCuocKy1(kynay1, kvpo.MAKVPO.ToString(), kkh.MADPPO);
-                //if (dung == true)
-                //{
-                //    CloseWaitingDialog();
-                //    ClearForm();
-                //    BindGrid();
-                //    ShowInfor("Đã khoá sổ ghi chỉ số.");
-                //    return;
-                //}
+                //khoa so theo dot in hoa don              
+                var dotin = _diDao.Get(kkh.DOTINHD != null ? kkh.DOTINHD : "");
+                bool p7d1m = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
 
-                //khoa so theo dot in hoa don
-                //var kkh = _khpoDao.Get(lblIDKH.Text.Trim());
-                bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, kvpo.MAKVPO.ToString(), "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
-                if (kkh.MAMDSDPO != "A" && kkh.MAMDSDPO != "B" && kkh.MAMDSDPO != "G" && kkh.MAMDSDPO != "Z")
+                if (p7d1m == true)
                 {
-                    if (p7d1 == true)
-                    {
-                        CloseWaitingDialog();
-                        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1. Không được điều chỉnh");
-                        return;
-                    }
-                }
+                    CloseWaitingDialog();
+                    ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
+                    return;
+                }     
 
                 if (!HasPermission(Functions.GCS_DieuChinhHoaDonPo, Permission.Update))
                 {

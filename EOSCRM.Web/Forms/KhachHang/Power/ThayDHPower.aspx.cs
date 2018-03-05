@@ -34,6 +34,53 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly ReportClass rp = new ReportClass();
 
+        #region Startup script registeration
+        private void SetControlValue(string id, string value)
+        {
+            ((PO)Page.Master).SetControlValue(id, value);
+        }
+
+        private void SetLabel(string id, string value)
+        {
+            ((PO)Page.Master).SetLabel(id, value);
+        }
+
+        private void ShowError(string message, string controlId)
+        {
+            ((PO)Page.Master).ShowError(message, controlId);
+        }
+
+        private void ShowError(string message)
+        {
+            ((PO)Page.Master).ShowError(message);
+        }
+
+        private void ShowInfor(string message)
+        {
+            ((PO)Page.Master).ShowInfor(message);
+        }
+
+        private void HideDialog(string divId)
+        {
+            ((PO)Page.Master).HideDialog(divId);
+        }
+
+        private void ShowWarning(string message)
+        {
+            ((PO)Page.Master).ShowWarning(message);
+        }
+
+        private void UnblockDialog(string divId)
+        {
+            ((PO)Page.Master).UnblockDialog(divId);
+        }
+
+        private void CloseWaitingDialog()
+        {
+            ((PO)Page.Master).CloseWaitingDialog();
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -96,6 +143,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 if (kvpo == "J")
                 {
                     var dotin = _diDao.GetListKVDDP7(kvpo);
+
                     ddlDOTGCS.Items.Clear();
                     ddlDOTGCS.Items.Add(new System.Web.UI.WebControls.ListItem("Tất cả", "%"));
                     foreach (var d in dotin)
@@ -105,22 +153,16 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
                 else
                 {
-                    var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                    //var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                    var dotin = _diDao.GetListKVDDP7(kvpo);
+                    
                     ddlDOTGCS.Items.Clear();
                     ddlDOTGCS.Items.Add(new System.Web.UI.WebControls.ListItem("Tất cả", "%"));
                     foreach (var d in dotin)
                     {
                         ddlDOTGCS.Items.Add(new System.Web.UI.WebControls.ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
                     }
-                }
-                //var dmdi = _dmdiDao.GetListDienNoP7();
-                /*var dotin = _diDao.GetListKVDDNotP7(_kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO);
-                ddlDOTGCS.Items.Clear();
-                ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
-                foreach (var d in dotin)
-                {
-                    ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
-                }*/
+                }               
 
                 //trang thai ghi
                 var trangthai = _ttghiDao.GetList();
@@ -135,54 +177,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
-        }
-
-        #region Startup script registeration
-        private void SetControlValue(string id, string value)
-        {
-            ((PO)Page.Master).SetControlValue(id, value);
-        }
-
-        private void SetLabel(string id, string value)
-        {
-            ((PO)Page.Master).SetLabel(id, value);
-        }
-
-        private void ShowError(string message, string controlId)
-        {
-            ((PO)Page.Master).ShowError(message, controlId);
-        }
-
-        private void ShowError(string message)
-        {
-            ((PO)Page.Master).ShowError(message);
-        }
-
-        private void ShowInfor(string message)
-        {
-            ((PO)Page.Master).ShowInfor(message);
-        }
-
-        private void HideDialog(string divId)
-        {
-            ((PO)Page.Master).HideDialog(divId);
-        }
-
-        private void ShowWarning(string message)
-        {
-            ((PO)Page.Master).ShowWarning(message);
-        }
-
-        private void UnblockDialog(string divId)
-        {
-            ((PO)Page.Master).UnblockDialog(divId);
-        }
-
-        private void CloseWaitingDialog()
-        {
-            ((PO)Page.Master).CloseWaitingDialog();
-        }
-        #endregion
+        }       
 
         #region Khách hàng
         protected void btnFilterKH_Click(object sender, EventArgs e)
@@ -445,6 +440,23 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             int namForm = Convert.ToInt32(txtNAM1.Text.Trim());
             var kyForm = new DateTime(namForm, thangForm, 1);
 
+            var kh = _khpoDao.Get(lblIDKH.Text.Trim());
+            string h = lblIDKH.ClientID;
+            string madhkh = kh.MADHPO;
+
+            //var phien7dot1 = _diDao.Get(kh.MAMDSDPO);
+
+            //khoa so theo dot in hoa don
+            var dotin = _diDao.Get(kh.DOTINHD != null ? kh.DOTINHD : "");
+            bool p7d1m = _gcspoDao.IsLockDotInHD(kyForm, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
+
+            if (p7d1m == true)
+            {
+                CloseWaitingDialog();
+                ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
+                return;
+            }     
+
             //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, kvpo.MAKVPO.ToString());
             //bool dung = _gcspoDao.IsLockTinhCuocKy1(kynay1, kvpo.MAKVPO.ToString(), _khpoDao.Get(lblIDKH.Text.Trim()).MADPPO); 
             bool dung = _gcspoDao.IsLockTinhCuocKy1(kyForm, kvpo.MAKVPO.ToString(), _khpoDao.Get(lblIDKH.Text.Trim()).MADPPO); 
@@ -478,11 +490,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
 
             try
-            {
-                //var kh = _khDao.GetKhachHangFromMadb(txtSODB.Text.Trim());
-                var kh = _khpoDao.Get(lblIDKH.Text.Trim());
-                string h = lblIDKH.ClientID;
-                string madhkh = kh.MADHPO;
+            {   
+
                 if (kh == null)
                 {
                     CloseWaitingDialog();
@@ -575,11 +584,33 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             string nam = DateTime.Now.Year.ToString(CultureInfo.InvariantCulture);
             var kynay1 = new DateTime(int.Parse(nam), thang1, 1);
             //var kynay = new DateTime(2013, 6, 1);
+
             var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
             if (loginInfo == null) return;
             string b = loginInfo.Username;
+
             var query = _nvDao.GetKV(b);
             var kvpo = _kvpoDao.GetPo(query.MAKV);
+
+            var dh = _tdhpoDao.Get(int.Parse(lblID.Text.Trim()));
+            string h = lblIDKH.ClientID;
+
+            var kh = _khpoDao.Get(dh.IDKHPO);
+
+            int thangForm = Convert.ToUInt16(ddlTHANG1.SelectedValue);
+            int namForm = Convert.ToInt32(txtNAM1.Text.Trim());
+            var kyForm = new DateTime(namForm, thangForm, 1);
+
+            //khoa so theo dot in hoa don
+            var dotin = _diDao.Get(kh.DOTINHD != null ? kh.DOTINHD : "");
+            bool p7d1m = _gcspoDao.IsLockDotInHD(kyForm, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
+
+            if (p7d1m == true)
+            {
+                CloseWaitingDialog();
+                ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
+                return;
+            }   
 
             //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, kvpo.MAKVPO.ToString());
             bool dung = _gcspoDao.IsLockTinhCuocKy1(kynay1, kvpo.MAKVPO.ToString(), _khpoDao.Get(_tdhpoDao.Get(Convert.ToInt32(lblID.Text.Trim())).IDKHPO).MADPPO); 
@@ -608,8 +639,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
             try
             {
-                var dh = _tdhpoDao.Get(int.Parse(lblID.Text.Trim()));
-                string h = lblIDKH.ClientID;
+                
                 if (dh == null)
                 {
                     CloseWaitingDialog();
@@ -626,17 +656,17 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 } 
 
                 //khoa so theo dot in hoa don
-                var kh = _khpoDao.Get(dh.IDKHPO);
-                bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, kvpo.MAKVPO.ToString(), "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
-                if (kh.MAMDSDPO != "A" && kh.MAMDSDPO != "B" && kh.MAMDSDPO != "G" && kh.MAMDSDPO != "Z")
-                {
-                    if (p7d1 == true)
-                    {
-                        CloseWaitingDialog();
-                        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1. Không được Up thay ĐH");
-                        return;
-                    }
-                }
+                //var kh = _khpoDao.Get(dh.IDKHPO);
+                //bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, kvpo.MAKVPO.ToString(), "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
+                //if (kh.MAMDSDPO != "A" && kh.MAMDSDPO != "B" && kh.MAMDSDPO != "G" && kh.MAMDSDPO != "Z")
+                //{
+                //    if (p7d1 == true)
+                //    {
+                //        CloseWaitingDialog();
+                //        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1. Không được Up thay ĐH");
+                //        return;
+                //    }
+                //}
 
                 if (dh.MADHPO != txtMaDongho.Text.Trim())
                 {
@@ -747,25 +777,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     gvKhachHang.DataSource = list;
                     gvKhachHang.PagerInforText = list.Count.ToString();
                     gvKhachHang.DataBind();
-                }
-                //var dotin = _diDao.GetKVPoDot(ddlDOTGCS.SelectedValue, _kvpoDao.Get(_nvDao.Get(b).MAKV).MAKVPO);
-                //if (dotin != null)
-                //{
-                //    //var list = _khpoDao.GetListTDHDotIn(thang, nam, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO, dotin.IDMADOTIN);
-                //    var list = _khpoDao.GetListTDHDotIn2(thang, nam, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO, ddlDOTGCS.SelectedValue);
-                //    if (list != null)
-                //    {
-                //        gvKhachHang.DataSource = list;
-                //        gvKhachHang.PagerInforText = list.Count.ToString();
-                //        gvKhachHang.DataBind();
-                //    }
-                //}
-                //else
-                //{
-                //    ShowError("Chưa có đợt in này! Xin kiểm tra lại.");
-                //    CloseWaitingDialog();
-                //    return;
-                //}
+                }                
             }
 
             CloseWaitingDialog();
@@ -1152,23 +1164,17 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
                                             "DSTHAYDHSINHHCD").Tables[0];                    
                 }
+                else if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
+                {                        
+                    dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                        Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
+                                            "DSTDHSINHHPOP7D1").Tables[0];   
+                }
                 else
                 {
-                    //dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
-                    //    Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
-                    //                        "DSTHAYDHSINHHPODOTIN").Tables[0];
-                    if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
-                    {
-                        dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
-                            Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
-                                                "DSTDHSINHHPOP7D1").Tables[0];
-                    }
-                    else
-                    {
-                        dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
-                            Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
-                                                "DSTDHSINHHPODOTINCD").Tables[0];
-                    }
+                    dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                        Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
+                                            "DSTDHSINHHPODOTINCD").Tables[0];
                 }
 
                 //Create a dummy GridView
