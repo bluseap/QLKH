@@ -1246,6 +1246,15 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 if (ckDANHBO.Checked == true)
                 {
+                    bool khoasoDANHBO = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, txtMADP.Text.Trim());
+
+                    if (khoasoDANHBO == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ ghi chỉ số đường " + txtMADP.Text.Trim() + ". Kiểm tra lại đợt in.");
+                        return;
+                    }                        
+
                     report.UPKHDANHBO(kh.IDKH, txtMADP.Text.Trim().ToUpper(), txtMADB.Text.Trim(), txtDUONGPHU.Text.Trim(),
                         int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), txtLDDANHSO.Text.Trim());
                 }
@@ -1277,7 +1286,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 int thangtdct = Convert.ToInt32(ddlTHANGTDCT.SelectedValue);
                 int namtdct = Convert.ToInt32(txtNAMTDCT.Text.Trim());
-                //Thu ho
+                
+                #region ckThuHo
                 if (ckThuHo.Checked)
                 {                    
                     if (thangtdct == thanght && namtdct == namht)
@@ -1352,6 +1362,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                         
                     }
                 }
+                #endregion ckThuHo
 
                 // dinh muC tam
                 //if (ckDMUCTAM.Checked == true)

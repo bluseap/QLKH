@@ -544,6 +544,15 @@ namespace EOSCRM.Web.Forms.KhachHang {
         protected global::System.Web.UI.WebControls.Label lblTENDUONG;
         
         /// <summary>
+        /// ddlDOTINHD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDOTINHD;
+        
+        /// <summary>
         /// ddlHOTRO control.
         /// </summary>
         /// <remarks>

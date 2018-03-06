@@ -734,7 +734,7 @@
                             <td class="crmcell right">Thu hộ</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false">                                        
+                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false" OnSelectedIndexChanged="ddlTHUHO_SelectedIndexChanged">                                        
                                     </asp:DropDownList>                                
                                     <asp:CheckBox ID="ckThuHo" runat="server" TabIndex="24" Visible="true" AutoPostBack="true" OnCheckedChanged="ckThuHo_CheckedChanged" />
                                 </div>
@@ -763,13 +763,15 @@
                                 <div class="left">
                                     <asp:Label ID="lblTENDUONG" runat="server" Font-Bold="True" />
                                 </div>
-                            </td> 
+                            </td>                              
                             <td class="crmcell right">
-                                Hỗ trợ
-                            </td>
+                                Đợt in HĐ 
+                            </td>                                  
                             <td class="crmcell">
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlHOTRO" Width="112px" runat="server" TabIndex="34">
+                                <div class="left">                                   
+                                    <asp:DropDownList ID="ddlDOTINHD" runat="server" >                                        
+                                    </asp:DropDownList>                                    
+                                    <asp:DropDownList ID="ddlHOTRO" Width="112px" runat="server" TabIndex="34" Visible="false">
                                         <asp:ListItem Text="Cho không" Value="C" />
                                         <asp:ListItem Text="Tiền mặt" Value="M" />
                                         <asp:ListItem Text="Không" Value="KK" />                                        

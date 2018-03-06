@@ -1114,6 +1114,15 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 if (ckDANHBO.Checked == true)
                 {
+                    bool khoasoDANHBO = _gcspoDao.IsLockTinhCuocKy1(kynayF, ddlKHUVUC.SelectedValue, txtMADP.Text.Trim());
+
+                    if (khoasoDANHBO == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ ghi chỉ số đường " + txtMADP.Text.Trim() + ". Kiểm tra lại đợt in.");
+                        return;
+                    }                        
+
                     report.UPTHayDoiCTPO(kh.IDKHPO, int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), "CTDANHBOPO",
                             txtMADP.Text.Trim(), 
                             txtMADB.Text.Trim(), txtDUONGPHU.Text.Trim(), txtLDDANHSO.Text.Trim());
