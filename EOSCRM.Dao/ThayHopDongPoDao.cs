@@ -15,8 +15,9 @@ namespace EOSCRM.Dao
     {
         private readonly EOSCRMDataContext _db;
         private static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
-        private readonly KyDuyetDao _kdDao = new KyDuyetDao();
 
+        private readonly ReportClass _rpClass = new ReportClass();
+        private readonly KyDuyetDao _kdDao = new KyDuyetDao();
 
         public ThayHopDongPoDao()
         {
@@ -68,6 +69,34 @@ namespace EOSCRM.Dao
                 _db.SubmitChanges();
             }
             catch { }           
+        }
+
+        public void InsertToKHTen(THAYHOPDONGPO objUi, String useragent, String ipAddress, String sManv, string maddk, string tenkhmoi, int thang, int nam,
+            string lydothay)
+        {
+            try
+            {
+                _db.Connection.Open();
+                _db.THAYHOPDONGPOs.InsertOnSubmit(objUi);
+
+                _rpClass.UPKHTENTHDPO(maddk, tenkhmoi, thang, nam, 1, lydothay);
+
+                var luuvetKyduyet = new LUUVET_KYDUYET
+                {
+                    MADON = objUi.IDTHDPO,
+                    IPAddress = ipAddress,
+                    MANV = sManv,
+                    UserAgent = useragent,
+                    NGAYTHUCHIEN = DateTime.Now,
+                    TACVU = TACVUKYDUYET.U.ToString(),
+                    MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                    MATT = "THAYHDPO",
+                    MOTA = "Thay đổi hợp đồng điện."
+                };
+                _db.LUUVET_KYDUYETs.InsertOnSubmit(luuvetKyduyet);
+                _db.SubmitChanges();
+            }
+            catch { }
         }
 
         public void InsertGiaHanHD(THAYHOPDONGPO objUi, String useragent, String ipAddress, String sManv)

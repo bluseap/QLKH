@@ -19,6 +19,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 {
     public partial class ThayHopDongPo : Authentication
     {
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly KhachHangPoDao _khpoDao = new KhachHangPoDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
@@ -472,6 +473,19 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     Message msg;
                     Filtered = FilteredMode.None;
 
+                    var khachhangpo = _khpoDao.Get(info.IDKHPO);
+
+                    //khoa so theo dot in hoa don
+                    var dotin = _dihdDao.Get(khachhangpo.DOTINHD != null ? khachhangpo.DOTINHD : "");
+                    bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin != null && dotin.MADOTIN != null ? dotin.MADOTIN : "");//phien 7 , kh muc dich khac, ngoai sinh hoat
+
+                    if (p7d1 == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
+                        return;
+                    }  
+
                     var madpkh = _khpoDao.Get(txtMADDK.Text.Trim()).MADPPO;
                     // insert new
                     if (UpdateMode == Mode.Create)
@@ -501,10 +515,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         info.THANG = thang1;
                         info.NAM = Convert.ToInt32(nam);
 
-                        _thdpoDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-
-                        //_rpDao.UPKHTENTHDPO(txtMADDK.Text.Trim(), txtTENKHMOI.Text.Trim(), mthang, mnam, 1, txtLYDOTHAYHD.Text.Trim());
-                        _rpDao.UPKHTENTHDPO(txtMADDK.Text.Trim(), txtTENKHMOI.Text.Trim(), thang1, Convert.ToInt32(nam), 1, txtLYDOTHAYHD.Text.Trim());
+                        _thdpoDao.InsertToKHTen(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV,
+                            txtMADDK.Text.Trim(), txtTENKHMOI.Text.Trim(), thang1, Convert.ToInt32(nam), txtLYDOTHAYHD.Text.Trim());
+                       
+                        //_rpDao.UPKHTENTHDPO(txtMADDK.Text.Trim(), txtTENKHMOI.Text.Trim(), thang1, Convert.ToInt32(nam), 1, txtLYDOTHAYHD.Text.Trim());
 
                         msg = null;
 

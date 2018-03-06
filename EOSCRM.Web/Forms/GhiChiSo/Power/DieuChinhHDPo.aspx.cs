@@ -448,7 +448,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
 
                 //khoa so theo dot in hoa don              
                 var dotin = _diDao.Get(kkh.DOTINHD != null ? kkh.DOTINHD : "");
-                bool p7d1m = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
+                bool p7d1m = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin != null && dotin.MADOTIN != null ? dotin.MADOTIN : "");//phien 7 , kh muc dich khac, ngoai sinh hoat
 
                 if (p7d1m == true)
                 {
@@ -525,7 +525,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
 
                 //khoa so theo dot in hoa don              
                 var dotin = _diDao.Get(kkh.DOTINHD != null ? kkh.DOTINHD : "");
-                bool p7d1m = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin.MADOTIN);//phien 7 , kh muc dich khac, ngoai sinh hoat
+                bool p7d1m = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin != null && dotin.MADOTIN != null ? dotin.MADOTIN : "");//phien 7 , kh muc dich khac, ngoai sinh hoat
 
                 if (p7d1m == true)
                 {
