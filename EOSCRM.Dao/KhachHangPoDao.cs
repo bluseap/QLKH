@@ -284,7 +284,7 @@ namespace EOSCRM.Dao
 
                 string idmadotin = "";
 
-                if (dotinhd.MADOTIN == "DDP7D1")
+                if (dotinhd != null && dotinhd.MADOTIN == "DDP7D1")
                 {
                     idmadotin = cu.DOTINHD;
                 }
