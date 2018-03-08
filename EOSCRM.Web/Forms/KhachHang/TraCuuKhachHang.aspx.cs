@@ -2832,7 +2832,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 if (!string.IsNullOrEmpty(idkhm.MADDK) || dkDao.Get(idkhm.MADDK) != null )
                 {                        
-                    ShowError("Xin chọn khách hàng cũ! Kiểm tra lại", KhachHang.TENKH.ToString());
+                    ShowError("Xin chọn khách hàng cũ, không có mã đơn đăng ký! Kiểm tra lại", KhachHang.TENKH.ToString());
 
                     HideDialog("divUpSoNoLX");
                     CloseWaitingDialog();

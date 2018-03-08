@@ -57,6 +57,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     obj.CAPNGAY = DateTimeUtil.GetVietNamDate(txtCAPNGAY.Text.Trim());
                 else
                     obj.CAPNGAY = null;
+
                 obj.TAI = txtTAI.Text.Trim();
                 var httt = htttDao.Get(ddlHTTT.SelectedValue);
                 obj.MAHTTT = httt != null ? httt.MAHTTT : null;
@@ -591,7 +592,19 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     return false;
                 }
             }
-
+            if (!string.Empty.Equals(txtCAPNGAY.Text.Trim()))
+            {
+                try
+                {
+                    DateTimeUtil.GetVietNamDate(txtCAPNGAY.Text.Trim());
+                }
+                catch
+                {
+                    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Ngày cấp CMND"), txtCAPNGAY.ClientID);
+                    return false;
+                }
+            }
+            
             // check datetime textboxes
             if (!string.Empty.Equals(txtNGAYKS.Text.Trim()))
             {

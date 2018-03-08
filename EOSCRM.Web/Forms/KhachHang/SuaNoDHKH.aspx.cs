@@ -172,7 +172,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 if (!Page.IsPostBack)
                 {
                     LoadStaticReferences();
-                    //BindDataForGrid();
+                    BindDataForGrid();
                 }
 
                 //if (reloadm.Text == "1")
@@ -361,12 +361,23 @@ namespace EOSCRM.Web.Forms.KhachHang
         private void BindDataForGrid()
         {
             try
-            {      
-                var objList = _khsndhDao.GetListKyKV(Convert.ToInt16(txtNAM1.Text.Trim()), Convert.ToInt16(ddlTHANG1.SelectedValue), ddlKHUVUCMOI.SelectedValue);
+            {
+                if (Filtered == FilteredMode.None)
+                {
+                    var objList = _khsndhDao.GetList();
 
-                gvList.DataSource = objList;
-                gvList.PagerInforText = objList.Count.ToString();
-                gvList.DataBind();
+                    gvList.DataSource = objList;
+                    gvList.PagerInforText = objList.Count.ToString();
+                    gvList.DataBind();
+                }
+                else
+                {
+                    var objList = _khsndhDao.GetListKyKV(Convert.ToInt16(txtNAM1.Text.Trim()), Convert.ToInt16(ddlTHANG1.SelectedValue), ddlKHUVUCMOI.SelectedValue);
+
+                    gvList.DataSource = objList;
+                    gvList.PagerInforText = objList.Count.ToString();
+                    gvList.DataBind();
+                }                
             }
             catch { }
         } 
@@ -538,15 +549,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 int namF = Convert.ToInt16(txtNAM1.Text.Trim());
                 int thangF = Convert.ToInt16(ddlTHANG1.SelectedValue);
-
-                //test trung kh trong ky
-                var khsn3 = _khsndhDao.GetKyIDKV(namF, thangF, txtMADDK.Text.Trim(), ddlKHUVUCMOI.SelectedValue);
-                if (khsn3 != null)
-                {
-                    ShowError("Khách hàng này đã thay đổi số No trong kỳ rồi. Kiểm tra lại");
-                    CloseWaitingDialog();
-                    return;
-                }
+                
 
                 if (string.IsNullOrEmpty(lbMADHMOI.Text.Trim()) && lbMADHMOI.Text.Trim() == "")
                 {
@@ -562,6 +565,15 @@ namespace EOSCRM.Web.Forms.KhachHang
                     {
                         CloseWaitingDialog();
                         ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
+                        return;
+                    }
+
+                    //test trung kh trong ky
+                    var khsn3 = _khsndhDao.GetKyIDKV(namF, thangF, txtMADDK.Text.Trim(), ddlKHUVUCMOI.SelectedValue);
+                    if (khsn3 != null)
+                    {
+                        ShowError("Khách hàng này đã thay đổi số No trong kỳ rồi. Kiểm tra lại");
+                        CloseWaitingDialog();
                         return;
                     }
 
@@ -660,9 +672,14 @@ namespace EOSCRM.Web.Forms.KhachHang
 
         protected void btLOC_Click(object sender, EventArgs e)
         {
-            BindDataForGrid();
-            CloseWaitingDialog();
-            upnlGrid.Update();
+            try
+            {
+                BindDataForGrid();
+
+                CloseWaitingDialog();
+                upnlGrid.Update();
+            }
+            catch { }
         }
         
 

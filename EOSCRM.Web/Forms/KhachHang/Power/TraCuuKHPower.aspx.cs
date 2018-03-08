@@ -2165,7 +2165,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 if (!string.IsNullOrEmpty(idkhm.MADDKPO) || _dkpoDao.Get(idkhm.MADDKPO) != null)
                 {
-                    ShowError("Xin chọn khách hàng cũ! Kiểm tra tra lại", KhachHang.TENKH.ToString());
+                    ShowError("Xin chọn khách hàng cũ, chọn khách hàng chưa có mã đơn đăng ký! Kiểm tra tra lại", KhachHang.TENKH.ToString());
 
                     HideDialog("divUpSoNoPo");
                     CloseWaitingDialog();

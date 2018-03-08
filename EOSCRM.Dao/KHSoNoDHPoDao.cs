@@ -34,7 +34,7 @@ namespace EOSCRM.Dao
 
         public List<KHSONODHPO> GetList()
         {
-            return _db.KHSONODHPOs.ToList();
+            return _db.KHSONODHPOs.OrderByDescending(p => p.IDSONO).ToList();
         }
 
         public List<KHSONODHPO> GetListKy(int nam, int thang)
@@ -44,7 +44,7 @@ namespace EOSCRM.Dao
 
         public List<KHSONODHPO> GetListKyKV(int nam, int thang, string makv)
         {
-            return _db.KHSONODHPOs.Where(hn => hn.THANG.Equals(thang) && hn.NAM.Equals(nam) && hn.MAKVPO.Equals(makv)).ToList();
+            return _db.KHSONODHPOs.Where(hn => hn.THANG.Equals(thang) && hn.NAM.Equals(nam) && hn.MAKVPO.Equals(makv)).OrderByDescending(p => p.IDSONO).ToList();
         }
 
         public List<KHSONODHPO> GetListKV(string makv)

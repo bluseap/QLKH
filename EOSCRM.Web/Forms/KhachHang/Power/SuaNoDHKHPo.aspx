@@ -469,7 +469,11 @@
                                 <%# Eval("SONOMOI")%>
                             </ItemTemplate>                          
                         </asp:TemplateField> 
-                             
+                         <asp:TemplateField HeaderStyle-Width="80px" HeaderText="Kỳ đổi">
+                            <ItemTemplate>
+                                <%# Eval("THANG").ToString() + "/" + Eval("NAM").ToString() %>
+                            </ItemTemplate>                          
+                        </asp:TemplateField>     
                     </Columns>
                 </eoscrm:Grid>
             </div>
