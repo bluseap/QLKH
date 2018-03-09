@@ -962,10 +962,11 @@ namespace EOSCRM.Web.Forms.KhachHang
                 ckDINHMUCTAM.Checked = false;
                 txtSODINHMUCTAM.Enabled = false;
                 txtSODINHMUCTAM.Text = "1";
-                ckThuHo.Checked = false;
+                
                 lbVITRI.Text = "";
                 txtCongXuatDHN.Text = "";
 
+                ckThuHo.Checked = false;
                 ddlTHUHO.SelectedIndex = 0;
                 ddlDOTINHD.SelectedIndex = 0;
             }
@@ -1184,6 +1185,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                     kh.VITRICU = txtVITRI.Text.Trim();
 
                     kh.STTTS = khDao.NewSTTTS(querykv.MAKV);//stt thoai son
+
+                    if (ckThuHo.Checked && ddlTHUHO.SelectedValue != "KO")
+                        kh.IDMADOTIN = ddlDOTINHD.SelectedValue;
 
                     if (querykv.MAKV == "O")
                     {

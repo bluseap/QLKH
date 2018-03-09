@@ -1028,11 +1028,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     }
                 }
 
-                if (dotin.MADOTIN != "DDP7D1") // KIEM TRA MUC DICH KHAC
-                {
-                    if (!IsMucDichKhac(ddlMDSD.SelectedValue))
-                        return;
-                }
+                if (!IsMucDichKhac(ddlMDSD.SelectedValue, kynayF, ddlKHUVUC.SelectedValue, "DDP7D1"))
+                    return;                
 
                 if (!HasPermission(Functions.KH_TraCuuKhachHangPo, Permission.Update))
                 {
@@ -2220,12 +2217,21 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             catch { }
         }
 
-        private bool IsMucDichKhac(string mamdsd)
+        private bool IsMucDichKhac(string mamdsd, DateTime kynayF, string makv, string madotin)
         {
-            if (mamdsd != "A" && mamdsd != "B" && mamdsd != "G" && mamdsd != "Z") // khach hang sinh hoat
+            bool p7d1 = _gcspoDao.IsLockDotInHD(kynayF, makv, madotin);//phien 7 , kh muc dich khac, ngoai sinh hoat
+
+            if (mamdsd != "A" && mamdsd != "B" && mamdsd != "G" && mamdsd != "Z")
             {
-                ShowError("Chọn khách hàng sinh hoạt. Kiểm tra lại.", mamdsd);
-                return false;
+                if (p7d1 == true)
+                {
+                    ShowError("Mục đích khác đã khóa sổ, chọn khách hàng sinh hoạt. Kiểm tra lại.", mamdsd);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }           
 
             return true;
