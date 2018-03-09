@@ -548,14 +548,14 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                                                 lblSONO.Text.Trim(), lblLOAITK.Text.Trim(), DateTimeUtil.GetVietNamDate(lblNGAYTHAY.Text.Trim()),
                                                 DateTimeUtil.GetVietNamDate(lblNGAYHOANTHANH.Text.Trim()), madhkh, ddlDONGHOCAPBAN.SelectedValue, kyForm);
 
-                //rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), Convert.ToInt32(txtTRUYTHU.Text.Trim()));
+                rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), Convert.ToInt32(txtTRUYTHU.Text.Trim()));
                 
                 CloseWaitingDialog();
 
                 if (!msg.MsgType.Equals(MessageType.Error))
                 {
-                    rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), 
-                        Convert.ToInt32(txtTRUYTHU.Text.Trim()));
+                    //rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), 
+                    //    Convert.ToInt32(txtTRUYTHU.Text.Trim()));
 
                     ShowInfor(ResourceLabel.Get(msg));
                     ClearForm();
@@ -693,6 +693,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                                                 CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), Convert.ToInt32(txtTRUYTHU.Text.Trim()));
+                
                 CloseWaitingDialog();
 
                 if (!msg.MsgType.Equals(MessageType.Error))

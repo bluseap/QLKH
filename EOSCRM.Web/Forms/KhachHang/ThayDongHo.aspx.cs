@@ -577,8 +577,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 //rp.UpdateTieuThuDH(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), Convert.ToInt32(txtTRUYTHU.Text.Trim()));
 
-                //rp.UpdateTieuThuDHMoi(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()),
-                //    Convert.ToInt32(txtTRUYTHU.Text.Trim()), thangF, namF, "INTDHTOTT");
+                rp.UpdateTieuThuDHMoi(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()),
+                    Convert.ToInt32(txtTRUYTHU.Text.Trim()), thangF, namF, "INTDHTOTT");
 
                 //rp.UpdateTieuThuDHMoi2(lblIDKH.Text.Trim(), txtMaDongho.Text.Trim(), "", Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()),
                 //    Convert.ToInt32(txtTRUYTHU.Text.Trim()), thangF, namF, "INTDHTOTT2");
@@ -588,8 +588,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 if (!msg.MsgType.Equals(MessageType.Error))
                 {
-                    rp.UpdateTieuThuDHMoi(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()),
-                        Convert.ToInt32(txtTRUYTHU.Text.Trim()), thangF, namF, "INTDHTOTT");
+                    //rp.UpdateTieuThuDHMoi(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()),
+                    //    Convert.ToInt32(txtTRUYTHU.Text.Trim()), thangF, namF, "INTDHTOTT");
 
                     ShowInfor(ResourceLabel.Get(msg));
                     ClearForm();
@@ -731,6 +731,10 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 rp.UpdateTieuThuDHMoi(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), 
                     Convert.ToInt32(txtTRUYTHU.Text.Trim()), dh.KYTHAYDH.Value.Month,dh.KYTHAYDH.Value.Year,"UPTDHTOTT");
+
+                //rp.UpdateTieuThuDHMoi(lblIDKH.Text.Trim(), Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()),
+                //        Convert.ToInt32(txtTRUYTHU.Text.Trim()), thangF, namF, "INTDHTOTT");
+
                 CloseWaitingDialog();
                 ClearForm();
 
