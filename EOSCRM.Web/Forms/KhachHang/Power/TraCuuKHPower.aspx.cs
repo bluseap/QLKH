@@ -1009,7 +1009,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     CloseWaitingDialog();
                     ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
                     return;
-                }       
+                }                             
 
                 //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, ddlKHUVUC.SelectedValue);//khoa so theo duong pho, chuyen ky
                 bool dung = _gcspoDao.IsLockTinhCuocKy1(kynayF, ddlKHUVUC.SelectedValue, kh.MADPPO);
@@ -1026,6 +1026,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                             return;
                         }
                     }
+                }
+
+                if (dotin.MADOTIN != "DDP7D1") // KIEM TRA MUC DICH KHAC
+                {
+                    if (!IsMucDichKhac(ddlMDSD.SelectedValue))
+                        return;
                 }
 
                 if (!HasPermission(Functions.KH_TraCuuKhachHangPo, Permission.Update))
@@ -1136,7 +1142,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
 
                 if (ckMDSD.Checked == true)
-                {
+                {       
                     report.UPTHayDoiCTPO(kh.IDKHPO, int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), "CTMDSDPO",
                          ddlMDSD.SelectedValue,
                         "", "", txtLDMDSD.Text.Trim());
@@ -1226,11 +1232,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
         protected void ddlMDSD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UnblockWaitingDialog();
-
-            //SetControlEnable();
-
+            //UnblockWaitingDialog();
             CloseWaitingDialog();
+
+            //if (!IsMucDichKhac(ddlMDSD.SelectedValue))
+            //    return;            
         }
 
         #endregion
@@ -2214,6 +2220,16 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             catch { }
         }
 
+        private bool IsMucDichKhac(string mamdsd)
+        {
+            if (mamdsd != "A" && mamdsd != "B" && mamdsd != "G" && mamdsd != "Z") // khach hang sinh hoat
+            {
+                ShowError("Chọn khách hàng sinh hoạt. Kiểm tra lại.", mamdsd);
+                return false;
+            }           
+
+            return true;
+        }
         
 
         
