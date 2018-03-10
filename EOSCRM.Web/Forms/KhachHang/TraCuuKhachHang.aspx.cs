@@ -1289,7 +1289,26 @@ namespace EOSCRM.Web.Forms.KhachHang
                 
                 #region ckThuHo
                 if (ckThuHo.Checked)
-                {                    
+                {
+                    bool khoasodotin = _gcspoDao.IsLockDotIn(kh.IDMADOTIN, kyForm, ddlKHUVUC.SelectedValue);
+                    if (khoasodotin == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+                        return;
+                    }
+
+                    if (ddlTHUHO.SelectedValue != "KO")
+                    {
+                        bool khoasonhothu = _gcspoDao.IsLockDotInHD(kyForm, ddlKHUVUC.SelectedValue, "NNNTD1");
+                        if (khoasonhothu == true)
+                        {
+                            CloseWaitingDialog();
+                            ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+                            return;
+                        }
+                    }  
+
                     if (thangtdct == thanght && namtdct == namht)
                     {
                         if (ddlTHUHO.SelectedValue != "KO")
