@@ -154,7 +154,7 @@
     <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <div class="crmcontainer">
-                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" PageSize="50" OnRowDataBound="gvList_RowDataBound"
+                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" PageSize="500" OnRowDataBound="gvList_RowDataBound"
                     OnRowCommand="gvList_RowCommand" OnPageIndexChanging="gvList_PageIndexChanging">
                     <PagerSettings FirstPageText="đường phố" PageButtonCount="2" />
                     <Columns>

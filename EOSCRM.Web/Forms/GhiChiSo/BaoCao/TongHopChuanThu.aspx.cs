@@ -20,6 +20,13 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
         private readonly KhuVucDao _kvDao = new KhuVucDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
 
+        #region Startup script registeration
+        private void CloseWaitingDialog()
+        {
+            ((EOS)Page.Master).CloseWaitingDialog();
+        }
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -32,8 +39,17 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 }
                 else 
                 {
-                    var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU];
-                    Report(dt);
+                    if (Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO] == "GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO")
+                    {
+                        var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO];
+                        TongHopChuanThuBieuDo(dt);
+                    }
+                    
+                    if (Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU] == "GCS_BAOCAO_TONGHOPCHUANTHU")
+                    {
+                        var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU];
+                        Report(dt);
+                    }
                 }
             }
             catch (Exception ex)
@@ -53,13 +69,6 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
             }
         }
 
-        #region Startup script registeration
-        private void CloseWaitingDialog()
-        {
-            ((EOS)Page.Master).CloseWaitingDialog();
-        }
-        #endregion
-
         private void LoadReferences()
         {
             /*
@@ -74,9 +83,17 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
             */
 
             timkv();
+
             txtNAM.Text = DateTime.Now.Year.ToString();
             cboTHANG.SelectedIndex = DateTime.Now.Month - 1;
+
             txtNguoiLap.Text = LoginInfo.NHANVIEN.HOTEN;
+
+            txtTuNam.Text = DateTime.Now.Year.ToString();
+            ddlTuKy.SelectedIndex = DateTime.Now.Month - 1;
+
+            txtDenNam.Text = DateTime.Now.Year.ToString();
+            ddlDenKy.SelectedIndex = DateTime.Now.Month - 1;
         }
 
         protected void btnBaoCao_Click(object sender, EventArgs e)
@@ -86,6 +103,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
 
             if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
             Report(ds.Tables[0]);
+
             CloseWaitingDialog();
         }
 
@@ -246,5 +264,63 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 }
             }
         }
+
+        protected void btnKyChart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var tuky = DateTimeUtil.GetVietNamDate("01/" + ddlTuKy.SelectedValue + "/" + txtTuNam.Text.Trim());
+                var denky = DateTimeUtil.GetVietNamDate("01/" + ddlDenKy.SelectedValue + "/" + txtDenNam.Text.Trim());
+
+                var ds = new ReportClass().BANGTONGHOPCHUANTHUBIEUDO(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), tuky, denky,
+                    cboKhuVuc.SelectedValue, "", "", "", "BIEUDOCOTKY");
+
+                if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
+                TongHopChuanThuBieuDo(ds.Tables[0]);
+
+                CloseWaitingDialog();
+            }
+            catch { }
+        }
+
+        private void TongHopChuanThuBieuDo(DataTable dt)
+        {
+            if (dt == null)
+                return;
+
+            #region FreeMemory
+            var rp = (ReportDocument)Session[Constants.REPORT_FREE_MEM];
+            if (rp != null)
+            {
+                try
+                {
+                    rp.Close();
+                    rp.Dispose();
+                    GC.Collect();
+                }
+                // ReSharper disable EmptyGeneralCatchClause
+                catch
+                // ReSharper restore EmptyGeneralCatchClause
+                {
+
+                }
+            }
+
+            #endregion FreeMemory
+
+            rp = new ReportDocument();
+            var path = Server.MapPath("../../../Reports/QuanLyGhiDHTinhCuocInHD/TongHopChuanThuChart.rpt");
+            rp.Load(path);
+
+            rp.SetDataSource(dt);
+            rpViewer.ReportSource = rp;
+            rpViewer.DataBind();
+
+            divCR.Visible = true;
+
+            Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO] = dt;
+            Session[Constants.REPORT_FREE_MEM] = rp;
+        }
+
     }
 }

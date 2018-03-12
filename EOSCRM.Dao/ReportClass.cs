@@ -1537,6 +1537,25 @@ public class ReportClass
         return ds;
     }
 
+    public DataSet BANGTONGHOPCHUANTHUBIEUDO(int thang, int nam, DateTime tuky, DateTime denky ,string makv, string idkh, string mamdsd, string ghichu, string cobien)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                                   db.MakeInParam("@THANG", SqlDbType.Int, 4, thang),
+                                   db.MakeInParam("@NAM", SqlDbType.Int, 4, nam),
+                                   db.MakeInParam("@TUKY", SqlDbType.DateTime, 30, tuky),
+                                   db.MakeInParam("@DENKY", SqlDbType.DateTime, 30, denky),
+                                   db.MakeInParam("@MAKV", SqlDbType.VarChar, 50, makv),
+                                   db.MakeInParam("@IDKH", SqlDbType.VarChar, 50, idkh),
+                                   db.MakeInParam("@MAMDSD", SqlDbType.VarChar, 50, mamdsd),
+                                   db.MakeInParam("@GHICHU", SqlDbType.NVarChar, 100, ghichu),
+                                   db.MakeInParam("@COBIEN", SqlDbType.VarChar, 50, cobien)
+                               };
+        DataSet ds = db.RunExecProc("BANGTONGHOPCHUANTHUBIEUDO", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet InHoaDonTn(int thang, int nam, string strMadp)
     {
         Database db = new Database();

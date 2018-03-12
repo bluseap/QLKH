@@ -445,7 +445,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                     Response.Flush();
                     Response.End();
 
-
                     CloseWaitingDialog();
                     upnlBaoCao.Update();
                 }

@@ -1047,7 +1047,7 @@ namespace EOSCRM.Web.Forms.KhachHang
         {
             try
             {     
-                // doi chi so cuoi kh moi
+                #region Doi chi so cuoi kh moi
                 if (ckCSCUOIKHAITHAC.Checked == true && HasPermission(Functions.KH_NhapMoi, Permission.Update))
                 {
                     var loginInfo11 = Session[SessionKey.USER_LOGIN] as UserAdmin;
@@ -1119,8 +1119,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                         return;
                     }
                 }
+                #endregion
 
-                //up ten khach hang khong dua vao thay doi chi tiet. cap nhat ten co dau khach hang
+                #region Up ten khach hang khong dua vao thay doi chi tiet. cap nhat ten co dau khach hang
                 if (ckTENKH.Checked == true && HasPermission(Functions.KH_NhapMoi, Permission.Update))
                 {
                     var kht = KhachHang;
@@ -1137,8 +1138,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                     CloseWaitingDialog();
                    
                     ShowInfor("Cập nhật tên khách hàng thành công.");
-                    return; 
+                    return;
                 }
+                #endregion
 
                 var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
                 if (loginInfo == null) return;

@@ -905,6 +905,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TongCThuTienNuocKVVaDT.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TongHopChuanThuKyDenKyxsd.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\TongHopCongNoTheoNhanVien.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -6128,6 +6133,17 @@
     <None Include="Datasets\TongCThuTienNuocKVVaDT.xss">
       <DependentUpon>TongCThuTienNuocKVVaDT.xsd</DependentUpon>
     </None>
+    <Content Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.xsc">
+      <DependentUpon>TongHopChuanThuKyDenKyxsd.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TongHopChuanThuKyDenKyxsd.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.xss">
+      <DependentUpon>TongHopChuanThuKyDenKyxsd.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\TongHopCongNoTheoNhanVien.xsc">
       <DependentUpon>TongHopCongNoTheoNhanVien.xsd</DependentUpon>
     </None>

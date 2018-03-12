@@ -40,6 +40,51 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao {
         protected global::System.Web.UI.WebControls.DropDownList cboKhuVuc;
         
         /// <summary>
+        /// ddlTuKy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTuKy;
+        
+        /// <summary>
+        /// txtTuNam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTuNam;
+        
+        /// <summary>
+        /// ddlDenKy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDenKy;
+        
+        /// <summary>
+        /// txtDenNam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDenNam;
+        
+        /// <summary>
+        /// btnKyChart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnKyChart;
+        
+        /// <summary>
         /// txtNguoiLap control.
         /// </summary>
         /// <remarks>
