@@ -1453,7 +1453,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo
             if (txtNgayThangNam != null)
                 //txtNgayThangNam.Text = "An Giang, ngày " + DateTime.Now.Day.ToString() + " tháng " +
                 //                   DateTime.Now.Month.ToString() + " năm " + DateTime.Now.Year.ToString();
-                txtNgayThangNam.Text = "An Giang, ngày ....... tháng ....... năm ........";
+                txtNgayThangNam.Text = "An Giang, ngày .... tháng .... năm .....";
 
             var tenkv = _kvpoDao.GetPo(LoginInfo.NHANVIEN.MAKV).TENKV;
             TextObject txtTENKV = rp.ReportDefinition.ReportObjects["txtTENKV"] as TextObject;
