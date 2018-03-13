@@ -35,7 +35,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 PrepareUI();
                 if (!Page.IsPostBack)
                 {
-                    LoadReferences();
+                    LoadReferences();                    
                 }
                 else 
                 {
@@ -94,6 +94,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
 
             txtDenNam.Text = DateTime.Now.Year.ToString();
             ddlDenKy.SelectedIndex = DateTime.Now.Month - 1;
+
+
         }
 
         protected void btnBaoCao_Click(object sender, EventArgs e)
@@ -263,6 +265,15 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                     }
                 }
             }
+
+            if (b == "nguyen")
+            {
+                VisibleBieuDo(true);
+            }
+            else
+            {
+                VisibleBieuDo(false);
+            }
         }
 
         protected void btnKyChart_Click(object sender, EventArgs e)
@@ -320,6 +331,24 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
 
             Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO] = dt;
             Session[Constants.REPORT_FREE_MEM] = rp;
+        }
+
+        private void VisibleBieuDo(bool para)
+        {
+            try
+            {
+                lbTuKy.Visible = para;
+                lbDenKy.Visible = para; 
+
+                ddlTuKy.Visible = para;
+                ddlDenKy.Visible = para; 
+
+                txtTuNam.Visible = para;       
+                txtDenNam.Visible = para;
+
+                btnKyChart.Visible = para;
+            }
+            catch { }
         }
 
     }

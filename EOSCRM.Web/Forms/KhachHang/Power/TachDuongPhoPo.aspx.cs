@@ -691,6 +691,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         {
             try
             {
+                if (IsDuongPhoPo() == true)
+                {
+                    ShowError("Chưa có đường phố điện mới. Nhập đường phố điện mới");
+                    return;
+                }  
+
                 int thangF = int.Parse(ddlTHANG.SelectedValue);
                 string namF = txtNAM.Text.Trim();
                 var kynayF = new DateTime(int.Parse(namF), thangF, 1);
@@ -831,13 +837,43 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 BindTachDuongN();
 
-                ShowInfor("Tách đường phố điện thành công. Kiểm tra lại DS tách đường.");
+                //ShowInfor("Tách đường phố điện thành công. Kiểm tra lại DS tách đường.");
+
+                if (IsDuongPhoPo() == true)
+                {
+                    ShowError("Chưa có đường phố điện mới. Nhập đường phố điện mới");
+                }
+                else
+                {
+                    ShowInfor("Tách đường phố điện thành công. Kiểm tra lại DS tách đường.");
+                }
 
                 CloseWaitingDialog();
                 ClearFrom();
                 upTachDuong.Update();
             }
             catch { }
+        }
+
+        private bool IsDuongPhoPo()
+        {
+            int thangF = int.Parse(ddlTHANG.SelectedValue);
+            string namF = txtNAM.Text.Trim();
+            var kynayF = new DateTime(int.Parse(namF), thangF, 1);
+
+            var madpmoi = _rpClass.UpLoadFileDuongPho("", "", ddlKHUVUC.SelectedValue, ddlDUONGPHO.SelectedValue, "", "",
+                        kynayF, DateTime.Now, "THEMMADPMOIPO");
+
+            DataTable madpmoiTable = madpmoi.Tables[0];
+
+            if (madpmoiTable.Rows[0]["KETQUA"].ToString() == "DUNG")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void ClearFrom()

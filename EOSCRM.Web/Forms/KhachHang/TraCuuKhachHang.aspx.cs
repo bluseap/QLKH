@@ -1311,7 +1311,34 @@ namespace EOSCRM.Web.Forms.KhachHang
                         }
                     }  
 
-                    if (thangtdct == thanght && namtdct == namht)
+                    if (ddlTHUHO.SelectedValue != "KO")
+                    {
+                        var ketquakhthuho = report.UPKHTTCOBIEN(kh.IDKH, txtLyDoThuHo.Text.Trim(), kh.MAKV, thangtdct, namtdct,
+                            ddlTHUHO.SelectedValue, b, "", "", "", 0, 0, 0, "UPKHTHUHO");                       
+                        
+                        DataTable dtth = ketquakhthuho.Tables[0];
+                    
+                        if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                        {
+                            CloseWaitingDialog();
+                            ShowError("Lỗi Save thu hộ. Kiểm tra lại.", "");
+                        }
+                    }
+                    else
+                    {                        
+                        var ketqua = report.UPKHTTCOBIEN(kh.IDKH, txtLyDoThuHo.Text.Trim(), kh.MAKV, thangtdct, namtdct,
+                            "", "", "", "", "", 0, 0, 0, "UPTHUHODOTINKO");                      
+                      
+                        DataTable dtth = ketqua.Tables[0];
+                       
+                        if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                        {
+                            CloseWaitingDialog();
+                            ShowError("Lỗi Save thu hộ. Kiểm tra lại.", "");
+                        }
+                    }
+
+                    /*if (thangtdct == thanght && namtdct == namht)
                     {
                         if (ddlTHUHO.SelectedValue != "KO")
                         {
@@ -1357,7 +1384,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                         if (ddlTHUHO.SelectedValue != "KO")
                         {
                             var ketqua = report.UPKHTTCOBIEN(kh.IDKH, txtLyDoThuHo.Text.Trim(), kh.MAKV, thangtdct, namtdct,
-                                ddlTHUHO.SelectedValue, b, "", "", "", 0, 0, 0, "UPTHUHODOTIN");
+                                ddlTHUHO.SelectedValue, b, "", "", "", 0, 0, 0, "UPTHUHODOTIN");                            
 
                             DataTable dt = ketqua.Tables[0];
 
@@ -1381,7 +1408,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                             }
                         }
                         
-                    }
+                    }*/
                 }
                 #endregion ckThuHo
 
@@ -1579,7 +1606,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                             LoadHoNgheo(kh.IDKH);
                         }
-                        else { 
+                        else 
+                        { 
                             //txtSOCMND.Text = "";
                             lbDCTHUONGTRU.Text = "";
                             lbDCLAP.Text = "";

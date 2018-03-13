@@ -10,23 +10,19 @@
 
         function CheckFormReport() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
         
         function CheckFormbtnKyChart() {     
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnKyChart) %>', '');
         }
     </script>
@@ -67,7 +63,8 @@
                     </td>
                 </tr>  
                 <tr>
-                    <td class="crmcell right">Từ kỳ</td>
+                    <td class="crmcell right">
+                        <asp:Label ID="lbTuKy" runat="server" Text="Từ kỳ"></asp:Label></td>
                     <td class="crmcell">
                         <div class="left">
                             <asp:DropDownList ID="ddlTuKy" runat="server" TabIndex="1">
@@ -89,7 +86,7 @@
                             <asp:TextBox ID="txtTuNam" runat="server" Width="40px" MaxLength="4" TabIndex="2" />
                         </div>
                         <div class="left width-150">
-                            <div class="right"> đến kỳ</div>
+                            <div class="right"> <asp:Label ID="lbDenKy" runat="server" Text="đến kỳ"></asp:Label></div>
                         </div>
                         <div class="left">
                             <asp:DropDownList ID="ddlDenKy" runat="server" TabIndex="1">

@@ -698,7 +698,13 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected void btDSTachDuong_Click(object sender, EventArgs e)
         {
             try
-            {    
+            {
+                if (IsDuongPho() == true)
+                {
+                    ShowError("Chưa có đường phố mới. Nhập đường phố mới");
+                    return;
+                }                
+
                 int thangF = int.Parse(ddlTHANG.SelectedValue);
                 string namF = txtNAM.Text.Trim();
                 var kynayF = new DateTime(int.Parse(namF), thangF, 1);
@@ -839,13 +845,43 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 BindTachDuongN();
 
-                ShowInfor("Tách đường thành công. Kiểm tra lại DS tách đường.");
+                //ShowInfor("Tách đường thành công. Kiểm tra lại DS tách đường.");
+
+                if (IsDuongPho() == true)
+                {
+                    ShowError("Chưa có đường phố mới. Nhập đường phố mới");
+                }
+                else
+                {
+                    ShowInfor("Tách đường thành công. Kiểm tra lại DS tách đường.");
+                }
 
                 CloseWaitingDialog();
                 ClearFrom();
                 upTachDuong.Update();
             }
             catch { }
+        }
+
+        private bool IsDuongPho()
+        {
+            int thangF = int.Parse(ddlTHANG.SelectedValue);
+            string namF = txtNAM.Text.Trim();
+            var kynayF = new DateTime(int.Parse(namF), thangF, 1);     
+
+            var madpmoi = _rpClass.UpLoadFileDuongPho("", "", ddlKHUVUC.SelectedValue, ddlDUONGPHO.SelectedValue, "", "",
+                        kynayF, DateTime.Now, "THEMMADPMOI");
+
+            DataTable madpmoiTable = madpmoi.Tables[0];
+
+            if (madpmoiTable.Rows[0]["KETQUA"].ToString() == "DUNG")
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }            
         }
 
         private void ClearFrom()
