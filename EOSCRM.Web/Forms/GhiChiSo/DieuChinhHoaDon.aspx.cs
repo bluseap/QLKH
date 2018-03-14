@@ -482,7 +482,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 int thangF = Convert.ToInt32(ddlTHANG.SelectedValue);
                 int namF = Convert.ToInt32(txtNAM.Text.Trim());
                 int namTruoc = DateTime.Now.Year-1;
-
+                
                 if (_nvDao.Get(b).MAKV == "X")
                 {
                     if(namF == Convert.ToInt32(nam) || namF == namTruoc)
@@ -503,7 +503,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 }
                 else
                 {
-                    if (query.MAKV == "L" || query.MAKV == "M" || query.MAKV == "Q")//tri ton - tinh bien - an phu
+                    /*if (query.MAKV == "L" || query.MAKV == "M" || query.MAKV == "Q")//tri ton - tinh bien - an phu
                     {
                         var kynayF = new DateTime(namF, thangF, 1);
 
@@ -515,6 +515,17 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                             ShowInfor("Đã khoá sổ kỳ thu hộ, ghi chỉ số.");
                             return;
                         }
+                    }*/
+
+                    var kynayF = new DateTime(namF, thangF, 1);
+
+                    bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), _khDao.Get(lblIDKH.Text.Trim()).IDMADOTIN);
+
+                    if (dungdotin == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ kỳ nhờ thu, ghi chỉ số.");
+                        return;
                     }
 
                     //bool dung = gcsDao.IsLockTinhCuocKy(kynay1, query.MAKV.ToString());
@@ -790,18 +801,29 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 }
                 else
                 {
-                    if (query.MAKV == "L" || query.MAKV == "M" || query.MAKV == "Q")//tri ton - tinh bien - an phu
+                    //if (query.MAKV == "L" || query.MAKV == "M" || query.MAKV == "Q")//tri ton - tinh bien - an phu
+                    //{
+                    //    var kynayF = new DateTime(namF, thangF, 1);
+
+                    //    bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), _khDao.Get(lblIDKH.Text.Trim()).IDMADOTIN);
+
+                    //    if (dungdotin == true)
+                    //    {
+                    //        CloseWaitingDialog();
+                    //        ShowInfor("Đã khoá sổ kỳ thu hộ, ghi chỉ số.");
+                    //        return;
+                    //    }
+                    //}
+
+                    var kynayF = new DateTime(namF, thangF, 1);
+
+                    bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), _khDao.Get(lblIDKH.Text.Trim()).IDMADOTIN);
+
+                    if (dungdotin == true)
                     {
-                        var kynayF = new DateTime(namF, thangF, 1);
-
-                        bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), _khDao.Get(lblIDKH.Text.Trim()).IDMADOTIN);
-
-                        if (dungdotin == true)
-                        {
-                            CloseWaitingDialog();
-                            ShowInfor("Đã khoá sổ kỳ thu hộ, ghi chỉ số.");
-                            return;
-                        }
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ kỳ nhờ thu, ghi chỉ số.");
+                        return;
                     }
 
                     //bool dung = gcsDao.IsLockTinhCuocKy(kynay1, query.MAKV.ToString());

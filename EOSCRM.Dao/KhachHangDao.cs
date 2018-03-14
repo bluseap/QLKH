@@ -15,6 +15,7 @@ namespace EOSCRM.Dao
         private readonly EOSCRMDataContext _db;
         public static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
 
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly DuongPhoDao _dpDao = new DuongPhoDao();
         private readonly KyDuyetDao _kdDao = new KyDuyetDao();
         private readonly GhiChiSoDao _gcsDao = new GhiChiSoDao();
@@ -591,7 +592,20 @@ namespace EOSCRM.Dao
 
                 // get current object in database
                 var cu = Get(obj.IDKH);
-                var idmadp = _dpDao.GetDP(cu.MADP);
+
+                var dotin = _dihdDao.Get(cu.IDMADOTIN != null ? cu.IDMADOTIN : "");
+
+                string idmadotin = "";
+                if (dotin.MADOTIN == "NNNTD1")
+                {
+                    idmadotin = cu.IDMADOTIN;
+                }
+                else
+                {
+                    idmadotin = _dpDao.GetDP(cu.MADP).IDMADOTIN;
+                }
+
+                //var idmadp = _dpDao.GetDP(cu.MADP);
 
                 if (cu != null)
                 {
@@ -624,7 +638,7 @@ namespace EOSCRM.Dao
 
                         MADP = cu.MADP,
                         MADB = cu.MADB,
-                        IDMADOTIN = idmadp.IDMADOTIN,
+                        IDMADOTIN = idmadotin,
 
                         LYDOTHAY = obj.DIACHI_INHOADON,
 

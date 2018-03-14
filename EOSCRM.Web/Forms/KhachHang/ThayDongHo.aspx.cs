@@ -476,16 +476,24 @@ namespace EOSCRM.Web.Forms.KhachHang
             int namF = Convert.ToInt32(txtNAM1.Text.Trim());
             var kynayF = new DateTime(namF, thangF, 1);
 
-            if (query.MAKV == "L" || query.MAKV == "M" || query.MAKV == "Q")//tri ton - tinh bien - an phu
+            bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), kh.IDMADOTIN);
+            if (dungdotin == true)
             {
-                bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), kh.IDMADOTIN);
-                if (dungdotin == true)
-                {
-                    CloseWaitingDialog();
-                    ShowInfor("Đã khoá sổ kỳ thu hộ, ghi chỉ số.");
-                    return;
-                }
+                CloseWaitingDialog();
+                ShowInfor("Đã khoá sổ kỳ nhờ thu.");
+                return;
             }
+
+            //if (query.MAKV == "L" || query.MAKV == "M" || query.MAKV == "Q")//tri ton - tinh bien - an phu
+            //{
+            //    bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), kh.IDMADOTIN);
+            //    if (dungdotin == true)
+            //    {
+            //        CloseWaitingDialog();
+            //        ShowInfor("Đã khoá sổ kỳ thu hộ, ghi chỉ số.");
+            //        return;
+            //    }
+            //}
 
             bool dung = _gcsDao.IsLockTinhCuocKy1(kynayF, query.MAKV.ToString(), kh.MADP);
             if (dung == true)
@@ -813,7 +821,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 else
                 {
                     var dotinhd = _diDao.Get(ddlDOTGCS.SelectedValue);
-                    if (dotinhd.MADOTIN == "NNTHD1")
+                    if (dotinhd.MADOTIN == "NNNTD1")
                     {
                         var list = _khDao.GetThayDongHoListDotInThuHo(thang, nam, _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue);
                         if (list != null)
