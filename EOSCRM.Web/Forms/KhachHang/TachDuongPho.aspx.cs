@@ -387,7 +387,16 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 BindUpLoadFile();
 
-                ImportExcelTachDP(updp.TENPATH);
+                if (IsKhoaSoTachDuong(updp.TENPATH) == false)
+                {
+                    ShowError("Có đợt ghi chỉ số đã khóa sổ. Kiểm tra lại từng khách hàng.");
+                    CloseWaitingDialog();
+                    return;
+                }
+                else
+                {
+                    ImportExcelTachDP(updp.TENPATH);
+                }                               
 
                 //BindTachDuongN();               
                 
@@ -882,6 +891,54 @@ namespace EOSCRM.Web.Forms.KhachHang
             {
                 return false;
             }            
+        }
+
+        private bool IsKhoaSoTachDuong(string patchexcel)
+        {
+            FileInfo excel = new FileInfo(Server.MapPath("~/" + patchexcel));
+
+            int thangF = int.Parse(ddlTHANG.SelectedValue);
+            string namF = txtNAM.Text.Trim();
+            var kynayF = new DateTime(int.Parse(namF), thangF, 1);
+
+            using (var package = new ExcelPackage(excel))
+            {
+                var workbook = package.Workbook;
+                var worksheet = workbook.Worksheets.First();
+
+                int totalRows = worksheet.Dimension.End.Row;
+
+                for (int i = 2; i <= totalRows; i++)
+                {
+                    bool dungMADPCU = _gcsDao.IsLockTinhCuocKy1(kynayF, ddlKHUVUC.SelectedValue, worksheet.Cells[i, 3].Text.Trim().ToString());
+                    bool dungMADPMOI = _gcsDao.IsLockTinhCuocKy1(kynayF, ddlKHUVUC.SelectedValue, worksheet.Cells[i, 5].Text.Trim().ToString());
+
+                    if (dungMADPCU == true || dungMADPMOI == true)
+                    {
+                        return false;
+                    }
+                    
+                     //var tachduong = new TACHDUONGN
+                     //   {
+                     //       IDTACH = _tdnDao.NewId(),
+                     //       IDKH = worksheet.Cells[i, 1].Text.Trim().ToString(),
+                     //       TENKH = worksheet.Cells[i, 2].Text.Trim().ToString(),
+                     //       MADPCU = worksheet.Cells[i, 3].Text.Trim().ToString(),
+                     //       MADBCU = worksheet.Cells[i, 4].Text.Trim().ToString(),
+                     //       MADPMOI = worksheet.Cells[i, 5].Text.Trim().ToString(),
+                     //       MADBMOI = worksheet.Cells[i, 6].Text.Trim().ToString(),
+                     //       THANG = Convert.ToInt32(worksheet.Cells[i, 7].Text.ToString()),
+                     //       NAM = Convert.ToInt32(worksheet.Cells[i, 8].Text.ToString()),
+
+                     //       MAKV = ddlKHUVUC.SelectedValue,
+                     //       NGAY = DateTime.Now,
+                     //       MANVN = manv,
+                     //       GHICHU = "Tách đường."
+                     //   };         
+                    //_tdpoDao.Insert(tachduong);
+                }
+            }
+            return true;
         }
 
         private void ClearFrom()
