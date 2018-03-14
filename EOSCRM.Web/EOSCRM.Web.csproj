@@ -277,6 +277,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="WebMobi\KhachHang\KhachhangMobi.aspx" />
     <Content Include="WebMobi\MHome.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -3864,6 +3865,13 @@
     <Compile Include="UserControls\SpecialFilterPanel.ascx.designer.cs">
       <DependentUpon>SpecialFilterPanel.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebMobi\KhachHang\KhachhangMobi.aspx.cs">
+      <DependentUpon>KhachhangMobi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebMobi\KhachHang\KhachhangMobi.aspx.designer.cs">
+      <DependentUpon>KhachhangMobi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebMobi\MHome.aspx.cs">
       <DependentUpon>MHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6212,7 +6220,6 @@
     <Folder Include="Forms\TramBienAp\BaoCao\" />
     <Folder Include="NhanSu\BaoCaoNS\" />
     <Folder Include="UpLoadFile\" />
-    <Folder Include="WebMobi\KhachHang\" />
     <Folder Include="WebMobi\ThietKe\" />
   </ItemGroup>
   <ItemGroup>

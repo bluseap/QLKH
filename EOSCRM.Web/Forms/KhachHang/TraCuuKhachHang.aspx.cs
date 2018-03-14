@@ -279,12 +279,24 @@ namespace EOSCRM.Web.Forms.KhachHang
                 txtMADH.Text = value.MADH;
                 //LOAD DONG HO
 
-                var listDongHo = dhDao.GetList(value.MADH);
-                foreach (var dh1 in listDongHo)
+                var donghonuoc = dhDao.Get(value.MADH);
+                if (donghonuoc != null)
                 {
-                    lbSONO.Text = dh1.SONO;
-                    lblKICHCO.Text = dh1.CONGSUAT;
+                    lbSONO.Text = donghonuoc.SONO;
+                    lblKICHCO.Text = donghonuoc.CONGSUAT;
                 }
+                else
+                {
+                    lbSONO.Text = "";
+                    lblKICHCO.Text = "";
+                }
+                
+                //var listDongHo = dhDao.GetList(value.MADH);
+                //foreach (var dh1 in listDongHo)
+                //{
+                //    lbSONO.Text = dh1.SONO;
+                //    lblKICHCO.Text = dh1.CONGSUAT;
+                //}
 
                 //cbLADHTONG.Checked = value.ISDHT.HasValue ? value.ISDHT.Value : false;
                 txtNGAYHT.Text = value.NGAYHT.HasValue ? value.NGAYHT.Value.ToString("dd/MM/yyyy") : "";

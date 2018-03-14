@@ -711,6 +711,13 @@ namespace EOSCRM.Web.Forms.DanhMuc
             var kynayF = new DateTime(int.Parse(txtNAM1.Text.Trim()), int.Parse(ddlTHANG1.SelectedValue), 1);            
             var query = _nvDao.GetKV(b);
 
+            if (ddlDOTGCS.SelectedValue == "%")
+            {
+                ShowError("Chọn đợt ghi chỉ số. Kiểm tra lại");
+                CloseWaitingDialog();
+                return;
+            }
+
             // insert new
             if (UpdateMode == Mode.Create)
             {
