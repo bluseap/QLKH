@@ -425,6 +425,24 @@ public class ReportClass
         return ds;
     }
 
+    public DataSet DSTTMUCDICHKHAC(int tuthang, int tunam, int denthang, int dennam, string makv, string idkh, string idkh2, string cobien)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = { 
+                    db.MakeInParam("@TUTHANG", SqlDbType.Int  , 10, tuthang),        
+                    db.MakeInParam("@TUNAM", SqlDbType.Int  , 10, tunam),    
+                    db.MakeInParam("@DENTHANG", SqlDbType.Int  , 10, denthang),        
+                    db.MakeInParam("@DENNAM", SqlDbType.Int  , 10, dennam),      
+                    db.MakeInParam("@MAKV", SqlDbType.VarChar  , 10, makv ),                    
+                    db.MakeInParam("@IDKH", SqlDbType.NVarChar  , 50, idkh ),
+                    db.MakeInParam("@IDKH2", SqlDbType.NVarChar  , 50, idkh2 ),
+                    db.MakeInParam("@COBIEN", SqlDbType.VarChar  , 20, cobien )                    
+                };
+        DataSet ds = db.RunExecProc("DSTTMUCDICHKHAC", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet DSTTDK3THANG(int thang, int nam, string makv, int kltieuthu, string ghichu, string cobien)
     {
         Database db = new Database();

@@ -165,7 +165,18 @@
                     <tbody>
                         <tr>
                             <td class="crmcell right">
-                                Tháng
+                                Khu vực
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="cboKhuVuc" runat="server" >
+                                    </asp:DropDownList>
+                                </div>                               
+                            </td>
+                        </tr>     
+                        <tr>
+                            <td class="crmcell right">
+                                Từ kỳ
                             </td>
                             <td class="crmcell">
                                 <div class="left width-150">
@@ -186,16 +197,29 @@
                                     <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
                                 </div>
                                 <td class="crmcell right">
-                                    Khu vực
+                                    đến kỳ
                                 </td>
                                 <td class="crmcell">
                                     <div class="left">
-                                        <asp:DropDownList ID="cboKhuVuc" runat="server" Width="165px">
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDenThang" runat="server" TabIndex="1">
+                                        <asp:ListItem Text="01" Value="01" />
+                                        <asp:ListItem Text="02" Value="02" />
+                                        <asp:ListItem Text="03" Value="03" />
+                                        <asp:ListItem Text="04" Value="04" />
+                                        <asp:ListItem Text="05" Value="05" />
+                                        <asp:ListItem Text="06" Value="06" />
+                                        <asp:ListItem Text="07" Value="07" />
+                                        <asp:ListItem Text="08" Value="08" />
+                                        <asp:ListItem Text="09" Value="09" />
+                                        <asp:ListItem Text="10" Value="10" />
+                                        <asp:ListItem Text="11" Value="11" />
+                                        <asp:ListItem Text="12" Value="12" />
+                                    </asp:DropDownList>
+                                    <asp:TextBox ID="txtDenNam" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
                                     </div>
                                 </td>
                             </td>
-                        </tr>                        
+                        </tr>                    
                         <tr>
                             <td class="crmcell right">
                                 Khối lượng từ:

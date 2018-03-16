@@ -354,13 +354,13 @@ namespace EOSCRM.Web.Forms.KhachHang
                 //    return;
                 //}
 
-                bool lockAll = _gcsDao.IsLockAll(kyF, ddlKHUVUC.SelectedValue);
-                if (lockAll == true)
-                {
-                    ShowError("Đã khóa sổ kỳ ghi.");
-                    CloseWaitingDialog();
-                    return;
-                }
+                //bool lockAll = _gcsDao.IsLockAll(kyF, ddlKHUVUC.SelectedValue);
+                //if (lockAll == true)
+                //{
+                //    ShowError("Đã khóa sổ kỳ ghi.");
+                //    CloseWaitingDialog();
+                //    return;
+                //}
 
                 var updp = ObjUPDP;
 
@@ -841,13 +841,13 @@ namespace EOSCRM.Web.Forms.KhachHang
                 string namF = txtNAM.Text.Trim();
                 var kynayF = new DateTime(int.Parse(namF), thangF, 1);      
 
-                bool dungF = _gcsDao.IsLockTinhCuocKy(kynayF, ddlKHUVUC.SelectedValue);
-                if (dungF == true)
-                {
-                    ShowError("Đã khóa sổ kỳ ghi.");
-                    CloseWaitingDialog();
-                    return;
-                }
+                //bool dungF = _gcsDao.IsLockTinhCuocKy(kynayF, ddlKHUVUC.SelectedValue);
+                //if (dungF == true)
+                //{
+                //    ShowError("Đã khóa sổ kỳ ghi.");
+                //    CloseWaitingDialog();
+                //    return;
+                //}
 
                 _rpClass.UpLoadFileDuongPho("", "", ddlKHUVUC.SelectedValue, ddlDUONGPHO.SelectedValue, "", "",
                         kynayF, DateTime.Now, "DSTACHDUONGTOKH");

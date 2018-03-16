@@ -19,6 +19,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 {
     public partial class ThayHopDong : Authentication
     {
+        private readonly GhiChiSoPoDao _gcspoDao = new GhiChiSoPoDao();
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly DonDangKyDao _ddkDao = new DonDangKyDao();
         private readonly DuongPhoDao _dpDao = new DuongPhoDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
@@ -465,7 +467,6 @@ namespace EOSCRM.Web.Forms.KhachHang
                 var kynay1 = new DateTime(int.Parse(nam), thang1, 1);
                 var hientai1 = new DateTime(int.Parse(DateTime.Now.Year.ToString(CultureInfo.InvariantCulture)),DateTime.Now.Month,1);
 
-
                 //var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
                 //if (loginInfo == null) return;
                 //string b = loginInfo.Username;
@@ -516,6 +517,19 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                     Message msg;
                     Filtered = FilteredMode.None;
+
+                    var khachhang = _khDao.Get(info.IDKH);
+
+                    //khoa so theo dot in hoa don
+                    var dotin = _dihdDao.Get(khachhang.IDMADOTIN != null ? khachhang.IDMADOTIN : "");
+                    bool nhothud1 = _gcspoDao.IsLockDotInHD(kynay1, ddlKHUVUC.SelectedValue, dotin != null && dotin.MADOTIN != null ? dotin.MADOTIN : "");// nho thu 
+                   
+                    if (nhothud1 == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ nhờ thu, ghi chỉ số.");
+                        return;
+                    }
 
                     // insert new
                     if (UpdateMode == Mode.Create)
@@ -596,7 +610,6 @@ namespace EOSCRM.Web.Forms.KhachHang
                             lbIDTDH.Text.Trim(), txtMADDK.Text.Trim());
 
                         _rpDao.UPKHTENTHD(info.IDKH, txtTENKHMOI.Text.Trim(), mthang, mnam, 0, txtLYDOTHAYHD.Text.Trim());
-
                     }
                 }
                 else

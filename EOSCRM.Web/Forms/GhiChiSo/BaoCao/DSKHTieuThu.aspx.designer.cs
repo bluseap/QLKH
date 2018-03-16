@@ -94,6 +94,15 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao {
         protected global::System.Web.UI.WebControls.Panel contentPanel;
         
         /// <summary>
+        /// cboKhuVuc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboKhuVuc;
+        
+        /// <summary>
         /// cboTHANG control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,22 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao {
         protected global::System.Web.UI.WebControls.TextBox txtNAM;
         
         /// <summary>
-        /// cboKhuVuc control.
+        /// ddlDenThang control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboKhuVuc;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDenThang;
+        
+        /// <summary>
+        /// txtDenNam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDenNam;
         
         /// <summary>
         /// txtKLTu control.

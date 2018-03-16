@@ -126,6 +126,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
             txtNAM.Text = DateTime.Now.Year.ToString(CultureInfo.InvariantCulture);
             cboTHANG.SelectedIndex = DateTime.Now.Month - 1;
 
+            txtDenNam.Text = DateTime.Now.Year.ToString(CultureInfo.InvariantCulture);
+            ddlDenThang.SelectedIndex = DateTime.Now.Month - 1;
+
             var listkhuvuc = new KhuVucDao().GetList();
             cboKhuVuc.DataSource = listkhuvuc;
             cboKhuVuc.DataTextField = "TENKV";
@@ -1132,8 +1135,12 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 if (ddlTTG6THANG.Text == "DSKHMDK")
                 {
                     //DataTable dt = new ReportClass().DSTTBTKLD(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
-                    var ds = new ReportClass().DSTTGIAM6THANG(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                cboKhuVuc.SelectedValue, "DSKHMDK");
+                    //var ds = new ReportClass().DSTTGIAM6THANG(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                     //           cboKhuVuc.SelectedValue, "DSKHMDK");
+
+                    var ds = new ReportClass().DSTTMUCDICHKHAC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                Convert.ToInt32(ddlDenThang.SelectedValue), Convert.ToInt32(txtDenNam.Text.Trim()), cboKhuVuc.SelectedValue, "", "", "DSTTMDKPO");
+
                     DataTable dt = ds.Tables[0];
 
                     //Create a dummy GridView
