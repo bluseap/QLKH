@@ -476,7 +476,9 @@ namespace EOSCRM.Web.Forms.KhachHang
             int namF = Convert.ToInt32(txtNAM1.Text.Trim());
             var kynayF = new DateTime(namF, thangF, 1);
 
-            bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), kh.IDMADOTIN);
+            //bool dungdotin = _gcspoDao.IsLockDotInHD(kynayF, query.MAKV.ToString(), kh.IDMADOTIN != null ? kh.IDMADOTIN : "");
+            bool dungdotin = _gcspoDao.IsLockDotIn(kh.IDMADOTIN != null ? kh.IDMADOTIN : "", kynayF, query.MAKV.ToString());
+            
             if (dungdotin == true)
             {
                 CloseWaitingDialog();

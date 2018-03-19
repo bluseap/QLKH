@@ -39,17 +39,20 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 }
                 else 
                 {
-                    if (Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO] == "GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO")
-                    {
-                        var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO];
-                        TongHopChuanThuBieuDo(dt);
-                    }
+                    var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU];
+                    Report(dt);
+
+                    //if (Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO] == "GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO")
+                    //{
+                    //    var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHUBIEUDO];
+                    //    TongHopChuanThuBieuDo(dt);
+                    //}
                     
-                    if (Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU] == "GCS_BAOCAO_TONGHOPCHUANTHU")
-                    {
-                        var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU];
-                        Report(dt);
-                    }
+                    //if (Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU] == "GCS_BAOCAO_TONGHOPCHUANTHU")
+                    //{
+                    //    var dt = (DataTable)Session[SessionKey.GCS_BAOCAO_TONGHOPCHUANTHU];
+                    //    Report(dt);
+                    //}
                 }
             }
             catch (Exception ex)

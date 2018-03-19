@@ -596,7 +596,7 @@ namespace EOSCRM.Dao
                 var dotin = _dihdDao.Get(cu.IDMADOTIN != null ? cu.IDMADOTIN : "");
 
                 string idmadotin = "";
-                if (dotin.MADOTIN == "NNNTD1")
+                if (dotin != null && dotin.MADOTIN == "NNNTD1")
                 {
                     idmadotin = cu.IDMADOTIN;
                 }
