@@ -508,7 +508,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
 
                 //khoa so theo dot in hoa don
-                bool p7d1 = _gcspoDao.IsLockDotInHD(kynay1, kvpo.MAKVPO.ToString(), "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
+                bool p7d1 = _gcspoDao.IsLockDotInHD(kyForm, kvpo.MAKVPO.ToString(), "DDP7D1");//phien 7 , kh muc dich khac, ngoai sinh hoat
                 if (kh.MAMDSDPO != "A" && kh.MAMDSDPO != "B" && kh.MAMDSDPO != "G" && kh.MAMDSDPO != "Z")
                 {
                     if (p7d1 == true)
