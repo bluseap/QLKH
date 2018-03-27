@@ -1170,26 +1170,23 @@
                                          AutoPostBack="True" />
                                 </div>                                
                             </td>
-                            <td class="crmcell right">
-                                M<sup>3</sup> khoán tối thiểu
+                            <td class="crmcell right">       
+                                Thu hộ                        
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtM3" runat="server" Width="30px" TabIndex="29" />
+                                    <asp:DropDownList ID="ddlTHUHO" runat="server" TabIndex="23">                                        
+                                    </asp:DropDownList>  
+                                    <asp:CheckBox ID="ckThuHo" runat="server" TabIndex="24" AutoPostBack="true" OnCheckedChanged="ckThuHo_CheckedChanged" />                                                           
                                 </div>
                                 <div class="left">
-                                    <strong>m<sup>3</sup></strong>
+                                    <asp:TextBox ID="txtM3" runat="server" Width="30px" TabIndex="29" Visible="false"/>
+                                </div>
+                                <div class="left">                                    
                                 </div>
                                 <div class="left">
-                                    <strong>Thu hộ</strong>
-                                </div>
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlTHUHO" Width="70px" runat="server" TabIndex="23">
-                                        <asp:ListItem Text="Không" Value="0" />
-                                        <asp:ListItem Text="Tại quầy" Value="T" />
-                                        <asp:ListItem Text="Kho bạc" Value="K" />
-                                    </asp:DropDownList>                                
-                                </div>
+                                    <strong></strong>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -1199,7 +1196,15 @@
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtLDDANHSO" Width="150px" runat="server" Visible="False"></asp:TextBox>
-                                </div>                                
+                                </div>   
+                                <td class="crmcell right">                                    
+                                    <asp:Label ID="lbLyDoThuHo" runat="server" Text="Lý do" Visible="False" ForeColor="#FF3300"></asp:Label>                   
+                                </td>
+                                <td class="crmcell right"> 
+                                    <div class="left">
+                                        <asp:TextBox ID="txtLyDoThuHo" runat="server" Visible="False"></asp:TextBox>
+                                    </div>                                       
+                                </td>                             
                             </td>
                         </tr>
                         <tr>

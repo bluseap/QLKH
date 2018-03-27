@@ -1023,7 +1023,16 @@ namespace EOSCRM.Web.Forms.KhachHang
             ddlLOAIDHDOILX.DataSource = listLOAIDH;
             ddlLOAIDHDOILX.DataTextField = "MALDH";
             ddlLOAIDHDOILX.DataValueField = "MALDH";
-            ddlLOAIDHDOILX.DataBind();            
+            ddlLOAIDHDOILX.DataBind();
+
+            if (querykv.MAKV == "O" || querykv.MAKV == "99")
+            {
+                ckTENKH.Visible = true;
+            }
+            else
+            {
+                ckTENKH.Visible = false;
+            }
 
             ClearForm();            
         }

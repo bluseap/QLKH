@@ -778,15 +778,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         protected global::System.Web.UI.WebControls.CheckBox ckDANHBO;
         
         /// <summary>
-        /// txtM3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtM3;
-        
-        /// <summary>
         /// ddlTHUHO control.
         /// </summary>
         /// <remarks>
@@ -794,6 +785,24 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTHUHO;
+        
+        /// <summary>
+        /// ckThuHo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckThuHo;
+        
+        /// <summary>
+        /// txtM3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtM3;
         
         /// <summary>
         /// lbLDDANHSO control.
@@ -812,6 +821,24 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLDDANHSO;
+        
+        /// <summary>
+        /// lbLyDoThuHo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbLyDoThuHo;
+        
+        /// <summary>
+        /// txtLyDoThuHo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLyDoThuHo;
         
         /// <summary>
         /// txtSOTRUKD control.

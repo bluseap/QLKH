@@ -168,7 +168,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                 var listMTK = _mtkDao.GetListFromOrder9();
                 ddlMBTHIETKE.Items.Clear();
-                ddlMBTHIETKE.Items.Add(new ListItem("Chọn mẫu TK", "ALL"));
+                ddlMBTHIETKE.Items.Add(new ListItem("Chọn mẫu TK", "DLMK"));
                 foreach (var mtk in listMTK)
                     ddlMBTHIETKE.Items.Add(new ListItem(mtk.TENMAUTK, mtk.MAMAUTK));
 
@@ -918,7 +918,18 @@ namespace EOSCRM.Web.Forms.ThietKe
             var mamtk = ddlMBTHIETKE.SelectedValue;
             var maddk = ThietKe.MADDK;
 
-            if (mamtk.ToString() == "ALL")
+            try
+            {
+                _rpC.UPMAUTK(maddk.ToString(), mamtk.ToString(),
+                    string.Empty.Equals(txtTENKHBP.Text) ? " " : txtTENKHBP.Text.ToString(),
+                    string.Empty.Equals(txtTENKHBT.Text) ? " " : txtTENKHBT.Text.ToString(),
+                    string.Empty.Equals(txtDANHSOBP.Text) ? " " : txtDANHSOBP.Text.ToString(),
+                    string.Empty.Equals(txtDANHSOBT.Text) ? " " : txtDANHSOBT.Text.ToString());
+                ShowInFor("Cập nhật sơ đồ thiết kế thành công..");
+            }
+            catch { ShowError("Lỗi cập nhật mẫu sơ đồ thiết kế."); }
+
+           /* if (mamtk.ToString() == "ALL")
             {
                 ShowError("Chọn mẫu thiết kế...");
             }
@@ -934,7 +945,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                     ShowInFor("Cập nhật sơ đồ thiết kế thành công..");
                 }
                 catch { ShowError("Lỗi cập nhật mẫu sơ đồ thiết kế."); }
-            }
+            }*/
             
         }
 

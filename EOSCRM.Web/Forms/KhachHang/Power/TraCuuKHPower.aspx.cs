@@ -27,6 +27,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         private readonly DanhSachCoQuanThanhToanDao cqDao = new DanhSachCoQuanThanhToanDao();
         private readonly DMDotInHDDao _dmdihdDao = new DMDotInHDDao();
         private readonly DotInHDDao _dihdDao = new DotInHDDao();
+        private readonly DMThuHoDao _dmthDao = new DMThuHoDao();
 
         int thangF, namF;
 
@@ -941,7 +942,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             ddlLOAIDHDOIPO.DataSource = listLOAIDH;
             ddlLOAIDHDOIPO.DataTextField = "MALDHPO";
             ddlLOAIDHDOIPO.DataValueField = "MALDHPO";
-            ddlLOAIDHDOIPO.DataBind();      
+            ddlLOAIDHDOIPO.DataBind();
+
+            var dmth = _dmthDao.GetList();
+            ddlTHUHO.DataSource = dmth;
+            ddlTHUHO.DataTextField = "THUHO";
+            ddlTHUHO.DataValueField = "ID";
+            ddlTHUHO.DataBind();
 
             ClearForm();
         }
@@ -2235,6 +2242,28 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }           
 
             return true;
+        }
+
+        protected void ckThuHo_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ckThuHo.Checked)
+                {
+                    ddlTHUHO.Enabled = true;
+
+                    lbLyDoThuHo.Visible = true;
+                    txtLyDoThuHo.Visible = true;
+                }
+                else
+                {
+                    ddlTHUHO.Enabled = false;
+
+                    lbLyDoThuHo.Visible = false;
+                    txtLyDoThuHo.Visible = false;
+                }
+            }
+            catch { }
         }
         
 

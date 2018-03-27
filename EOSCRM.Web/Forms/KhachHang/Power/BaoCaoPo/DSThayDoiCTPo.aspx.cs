@@ -438,7 +438,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                     }
                     else
                     {
-                        if (ddlDOTGCS.SelectedValue == "DDP7D1")
+                        if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
                         {
                             var ds = new ReportClass().DSTHAYDOICTPOP7D1(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
                                 cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTPOP7D1");
@@ -468,8 +468,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                 Response.AddHeader("content-disposition", "attachment;filename=TDCT" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
+
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
@@ -479,7 +482,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                 GridView1.RenderControl(hw);
 
                 //style to format numbers to string
+                //string style = @"<style> TD { mso-number-format:\@; } </style>";
+                //Response.Write(style);
+                //style to format numbers to string
                 string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+
                 Response.Write(style);
                 Response.Output.Write(sw.ToString());
                 Response.Flush();
