@@ -2455,7 +2455,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 var query = _nvDao.GetKV(b);
 
                 var tenxa = _xpDao.Get(ddlTENXA.SelectedValue, query.MAKV);
-                txtDONVICAP.Text = tenxa.TENXA.ToString(); ;
+                txtDONVICAP.Text = tenxa.TENXA.ToString(); 
             }
             catch { }
         }

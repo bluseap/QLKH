@@ -94,5 +94,16 @@ namespace EOSCRM.Domain.Properties {
                 return ((string)(this["EOSAGConnectionString4"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.8;Initial Catalog=CRMPTTC;Persist Security Info=True;User I" +
+            "D=nguyen;Password=11@@minh")]
+        public string CRMPTTCConnectionString1 {
+            get {
+                return ((string)(this["CRMPTTCConnectionString1"]));
+            }
+        }
     }
 }

@@ -734,7 +734,7 @@
                             <td class="crmcell right">Thu hộ</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false" OnSelectedIndexChanged="ddlTHUHO_SelectedIndexChanged" AutoPostBack="true">                                        
+                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlTHUHO_SelectedIndexChanged" >                                        
                                     </asp:DropDownList>                                
                                     <asp:CheckBox ID="ckThuHo" runat="server" TabIndex="24" Visible="true" AutoPostBack="true" OnCheckedChanged="ckThuHo_CheckedChanged" />
                                 </div>
@@ -770,12 +770,7 @@
                             <td class="crmcell">
                                 <div class="left">                                   
                                     <asp:DropDownList ID="ddlDOTINHD" runat="server" >                                        
-                                    </asp:DropDownList>                                    
-                                    <asp:DropDownList ID="ddlHOTRO" Width="112px" runat="server" TabIndex="34" Visible="false">
-                                        <asp:ListItem Text="Cho không" Value="C" />
-                                        <asp:ListItem Text="Tiền mặt" Value="M" />
-                                        <asp:ListItem Text="Không" Value="KK" />                                        
-                                    </asp:DropDownList> 
+                                    </asp:DropDownList>
                                 </div>                                
                             </td>
                         </tr>
@@ -882,10 +877,15 @@
                                     </asp:DropDownList> 
                                 </div>
                             </td>
-                            <td class="crmcell right">
-                                <!--Mã giá áp dụng!--></td>
+                            <td class="crmcell right"> Hỗ trợ
+                            </td>
                             <td class="crmcell">
                                 <div class="left">
+                                    <asp:DropDownList ID="ddlHOTRO" Width="112px" runat="server" TabIndex="34" >
+                                        <asp:ListItem Text="Cho không" Value="C" />
+                                        <asp:ListItem Text="Tiền mặt" Value="M" />
+                                        <asp:ListItem Text="Không" Value="KK" />                                        
+                                    </asp:DropDownList> 
                                     <asp:DropDownList ID="ddlMAGIA" Enabled="false" Width="112px" runat="server" TabIndex="34" Visible="false">
                                         <asp:ListItem Text="" Value="NULL" />
                                         <asp:ListItem Text="A" Value="A" />

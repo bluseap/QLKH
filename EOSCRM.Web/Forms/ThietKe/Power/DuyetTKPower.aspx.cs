@@ -19,7 +19,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly ChiTietThietKeDao _cttkDao = new ChiTietThietKeDao();
 
-        string madon1;
+       // string madon1;
 
         #region Properties
 

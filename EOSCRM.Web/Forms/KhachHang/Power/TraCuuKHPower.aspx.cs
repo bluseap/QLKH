@@ -837,9 +837,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtLDDIACHI.Text = "";
             txtLDDANHSO.Text = "";
             txtLDMST.Text = "";
-            txtLDMDSD.Text = "";
-
-            ddlDOTINHD.SelectedIndex = 0;
+            txtLDMDSD.Text = "";            
 
             ClearFormCheck();
 
@@ -850,6 +848,20 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtSONHA2.Text = "";
             txtSOTRUKD.Text = "";
             lbSOTRUTK.Text = "";
+
+            ckThuHo.Checked = false;
+            ddlTHUHO.Enabled = false;
+            lbLyDoThuHo.Visible = false;
+            txtLyDoThuHo.Visible = false;
+            txtLyDoThuHo.Text = "";
+            ddlTHUHO.SelectedIndex = 0;
+
+            ckDotInHD.Checked = false;            
+            ddlDOTINHD.Enabled = false;
+            lbLyDoDotInHD.Visible = false;
+            txtLyDoDotInHD.Visible = false;
+            txtLyDoDotInHD.Text = "";
+            ddlDOTINHD.SelectedIndex = 0;
         }
 
         private void ClearFormCheck()
@@ -1148,8 +1160,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 if (ckMDSD.Checked == true)
                 {       
                     report.UPTHayDoiCTPO(kh.IDKHPO, int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), "CTMDSDPO",
-                         ddlMDSD.SelectedValue,
-                        "", "", txtLDMDSD.Text.Trim());
+                         ddlMDSD.SelectedValue, "", "", txtLDMDSD.Text.Trim());
                 }
 
                 // dinh muC
@@ -1171,6 +1182,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     report.InDinhMucTamPo(kh.IDKHPO.ToString(), Convert.ToDecimal(txtSOHO.Text.Trim()), int.Parse(txtSONK.Text.Trim()),
                         cbISDINHMUC.Checked, int.Parse(txtSODINHMUC.Text.Trim()), b.ToString(), ddlMDSD.SelectedValue,
                         txtNAMTDCT.Text.Trim() + "/" + ddlTHANGTDCT.SelectedValue + "/01", "INDMTAMPO");
+                }
+
+                if (ckDotInHD.Checked == true)
+                {
+                    report.UPTHayDoiCTPO(kh.IDKHPO, int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), "CTDOTINHDPO",
+                         ddlDOTINHD.SelectedValue, LoginInfo.MANV, "", txtLyDoDotInHD.Text.Trim());
                 }
 
                 var msg = _khpoDao.Update(kh, DateTime.Now.Month, DateTime.Now.Year, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
@@ -1237,10 +1254,47 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         protected void ddlMDSD_SelectedIndexChanged(object sender, EventArgs e)
         {
             //UnblockWaitingDialog();
-            CloseWaitingDialog();
-
+            //CloseWaitingDialog();
             //if (!IsMucDichKhac(ddlMDSD.SelectedValue))
-            //    return;            
+            //    return;  
+
+            MDSDToDotInHD(ddlMDSD.SelectedValue);
+
+            CloseWaitingDialog();
+            upnlCustomers.Update();
+        }
+
+        private void MDSDToDotInHD(string mamdsd)
+        {
+            try
+            {
+                if (mamdsd == "A" || mamdsd == "B" || mamdsd == "G" || mamdsd == "Z") // khach hang binh thuong
+                {
+                    var dp = _dppoDao.GetDP(txtMADP.Text.Trim());
+
+                    if (dp.IDMADOTIN != null)
+                    {
+                        var madotin = ddlDOTINHD.Items.FindByValue(dp.IDMADOTIN);
+                        if (madotin != null)
+                        {
+                            ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotin);
+                        }                        
+                    }    
+                }
+                else // muc dich khac
+                {
+                    string phien7dot1 = "DDP7D1";
+                    var dotin = _dihdDao.GetKVDot(phien7dot1, ddlKHUVUC.SelectedValue);
+
+                    var madotin = ddlDOTINHD.Items.FindByValue(dotin.IDMADOTIN);
+                    if (madotin != null)
+                    {
+                        ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotin);
+                    }
+                }
+
+            }
+            catch { }
         }
 
         #endregion
@@ -1314,6 +1368,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                         ClearFormCheck();
                         divCustomersContainer.Visible = true;
+
+                        MDSDToDotInHD(ddlMDSD.SelectedValue);
 
                         CloseWaitingDialog();
                         break;
@@ -2250,17 +2306,39 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             {
                 if (ckThuHo.Checked)
                 {
-                    ddlTHUHO.Enabled = true;
+                    ddlTHUHO.Enabled = false;
 
                     lbLyDoThuHo.Visible = true;
                     txtLyDoThuHo.Visible = true;
                 }
                 else
                 {
-                    ddlTHUHO.Enabled = false;
+                    ddlTHUHO.Enabled = true;
 
                     lbLyDoThuHo.Visible = false;
                     txtLyDoThuHo.Visible = false;
+                }
+            }
+            catch { }
+        }
+
+        protected void ckDotInHD_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ckDotInHD.Checked)
+                {
+                    ddlTHUHO.Enabled = true;
+
+                    lbLyDoDotInHD.Visible = true; 
+                    txtLyDoDotInHD.Visible = true;
+                }
+                else
+                {
+                    ddlTHUHO.Enabled = false;
+
+                    lbLyDoDotInHD.Visible = false;
+                    txtLyDoDotInHD.Visible = false;
                 }
             }
             catch { }

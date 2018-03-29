@@ -721,6 +721,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             lbSoTruThietKe.Text = "";
             txtSOTRUKD.Text = "";
             txtSONHA2.Text = "";
+
+            ckDotInHD.Checked = false;
+            ddlDOTINHD.Enabled = false;
         }
 
         private void LoadStaticReferences()
@@ -755,10 +758,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             ddlHTTT.DataTextField = "MOTA";
             ddlHTTT.DataValueField = "MAHTTT";
             ddlHTTT.DataBind();
-
+                       
             timkv();
             ClearForm();
-        }
+        }       
 
         public void timkv()
         {
@@ -966,16 +969,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                     var kynay = new DateTime(int.Parse(txtNAM.Text.Trim()), int.Parse(ddlTHANG.SelectedValue), 1);
                     //var kh = _khDao.GetKhachHangFromMadb(txtSODB.Text.Trim());
-                    msgkt = _gcspoDao.KhoiTaoGhiChiSo(kynay, kh);
-
-                    //if (msgkt != null && msgkt.MsgType.Equals(MessageType.Error))                    
-                    //{
-                    //    CloseWaitingDialog();
-                    //    ShowError("Trùng danh số!!..", kh.IDKHPO);
-                    //    return;
-                    //}
-                    //else
-                    //{
+                    msgkt = _gcspoDao.KhoiTaoGhiChiSo(kynay, kh);                    
 
                     var hd = HopDongPo;
                     if (hd != null && hd.SOHD == kh.SOHD)
@@ -987,21 +981,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     //update dong ho su dung
                     var dasd = _dhpoDao.Get(txtMADH.Text);
                     _dhpoDao.UpdateDASD(dasd);
-
-                    //}
-
-                    // update hop dong
-                    /*var hd = HopDong;
-                    if (hd != null && hd.SOHD == kh.SOHD)
-                    {
-                        hd.DACAPDB = true;
-                        hdDao.Update(hd, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
-                    }
-
-                    //update dong ho su dung
-                    var dasd = dhDao.Get(txtMADH.Text);
-                    dhDao.UpdateDASD(dasd);
-                    */
+                  
 
 
                 }
@@ -1012,28 +992,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         CloseWaitingDialog();
                         ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
                         return;
-                    }
-
-                    //kh.IDKHPO = hdfIDKH.Value;
-                    //var tontai = _khpoDao.ExistsAnotherMaKhachHang(kh.IDKHPO, txtMADP.Text.Trim(),
-                    //                                        txtMADB.Text.Trim());
-                    //if (tontai)
-                    //{
-                    //    CloseWaitingDialog();
-                    //    ShowError("Mã danh bộ đã tồn tại.", txtMADP.ClientID);
-                    //    return;
-                    //}
+                    }                  
 
                     msg = _khpoDao.Update(kh, DateTime.Now.Month, DateTime.Now.Year, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
-
-                    /*var kynay = new DateTime(int.Parse(txtNAM.Text.Trim()), int.Parse(ddlTHANG.SelectedValue), 1);
-                    msgkt = _gcsDao.KhoiTaoGhiChiSo(kynay, kh);
-                    if (msgkt != null && msgkt.MsgType.Equals(MessageType.Error))
-                    {
-                        CloseWaitingDialog();
-                        ShowError("Khởi tạo chỉ số cho khách hàng mới không thành công.2", kh.IDKH);
-                        return;
-                    }*/
+                                      
 
                 }
 
@@ -1739,7 +1701,23 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     txtNGAYHT.Text = ngayht + "/" + thanght + "/20" + namht;
                 }
             }
-            catch { ShowWarning("Ngày lắp đặt không hợp lệ"); }
+            catch 
+            { 
+                ShowWarning("Ngày lắp đặt không hợp lệ"); 
+            }
+
+        }
+
+        protected void ckDotInHD_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckDotInHD.Checked)
+            {
+                ddlDOTINHD.Enabled = true;
+            }
+            else
+            {
+                ddlDOTINHD.Enabled = false;
+            }
 
         }
 
@@ -1747,6 +1725,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         {
 
         }
+
+        
 
        
         

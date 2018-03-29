@@ -608,8 +608,11 @@
                                 </td>
                                 <td class="crmcell">
                                     <div class="left">
-                                        <asp:DropDownList ID="ddlDOTINHD" runat="server" >                                        
+                                        <asp:DropDownList ID="ddlDOTINHD" runat="server" Enabled="False" >                                        
                                         </asp:DropDownList>
+                                    </div>
+                                    <div class="left">
+                                        <asp:CheckBox ID="ckDotInHD" runat="server" AutoPostBack="true" OnCheckedChanged="ckDotInHD_CheckedChanged" />
                                     </div>
                                     <div class="left">
                                         <asp:TextBox ID="txtM3" runat="server" Width="100px" TabIndex="30" Visible="false" />

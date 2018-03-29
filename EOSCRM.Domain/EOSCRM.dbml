@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EOSAG" Class="EOSCRMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=115.78.230.159,1438;Initial Catalog=EOSAG;User ID=bravouser" SettingsObjectName="EOSCRM.Domain.Properties.Settings" SettingsPropertyName="EOSAGConnectionString4" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CRMPTTC" Class="EOSCRMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.1.8;Initial Catalog=CRMPTTC;Persist Security Info=True;User ID=nguyen" SettingsObjectName="EOSCRM.Domain.Properties.Settings" SettingsPropertyName="CRMPTTCConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CAPBAC" Member="CAPBACs">
     <Type Name="CAPBAC">
       <Column Name="MACB" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -5234,6 +5234,48 @@
       <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="SUACHUATHIETKE_SUACHUATHICONG" Member="SUACHUATHICONGs" ThisKey="ID" OtherKey="SUACHUATKID" Type="SUACHUATHICONG" />
       <Association Name="SUACHUA_SUACHUATHIETKE" Member="SUACHUA" ThisKey="SUACHUAID" OtherKey="ID" Type="SUACHUA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHDotInHD" Member="KHDotInHDs">
+    <Type Name="KHDotInHD">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KHACHHANGId" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="KHUVUCId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MADP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MADB" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TENKH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="THANG" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NAM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDMADOTINCU" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENDOTINCU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IDMADOTINMOI" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENDOTINMOI" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LYDO" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYNHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVNHAP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHDotInHDPo" Member="KHDotInHDPos">
+    <Type Name="KHDotInHDPo">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KHACHHANGPOId" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="KHUVUCPOId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MADPPO" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MADBPO" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="TENKH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="THANG" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NAM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDMADOTINCU" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENDOTINCU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IDMADOTINMOI" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENDOTINMOI" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LYDO" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYNHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVNHAP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

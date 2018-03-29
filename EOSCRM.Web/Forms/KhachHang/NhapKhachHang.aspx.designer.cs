@@ -553,15 +553,6 @@ namespace EOSCRM.Web.Forms.KhachHang {
         protected global::System.Web.UI.WebControls.DropDownList ddlDOTINHD;
         
         /// <summary>
-        /// ddlHOTRO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHOTRO;
-        
-        /// <summary>
         /// hdfIDKH control.
         /// </summary>
         /// <remarks>
@@ -704,6 +695,15 @@ namespace EOSCRM.Web.Forms.KhachHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlHTTT;
+        
+        /// <summary>
+        /// ddlHOTRO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHOTRO;
         
         /// <summary>
         /// ddlMAGIA control.

@@ -1076,13 +1076,30 @@
                             <td class="crmcell">
                             </td>
                             <td class="crmcell right">
-                                Phiên                                   
+                                Đợt in HĐ                                  
                             </td>
                             <td class="crmcell">
-                                <div class="left">                                    
-                                    <asp:DropDownList ID="ddlDOTINHD" runat="server" Enabled="False">                                        
+                                <div class="left">                                   
+                                    <asp:DropDownList ID="ddlDOTINHD" runat="server" Enabled="False" >                                        
                                     </asp:DropDownList>
-                                </div>                                                              
+                                </div>  
+                                <div class="left">
+                                    <asp:CheckBox ID="ckDotInHD" runat="server" AutoPostBack="true" OnCheckedChanged="ckDotInHD_CheckedChanged" />
+                                </div>                                                            
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">                               
+                            </td>
+                            <td class="crmcell">
+                            </td>
+                            <td class="crmcell right">       
+                                <asp:Label ID="lbLyDoDotInHD" runat="server" Text="Lý do" Visible="False" ForeColor="#FF3300"></asp:Label>                           
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtLyDoDotInHD" Width="150px" runat="server" Visible="False"></asp:TextBox>
+                                </div>                              
                             </td>
                         </tr>
                         <tr>
