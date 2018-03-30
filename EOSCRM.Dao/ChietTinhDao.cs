@@ -636,67 +636,13 @@ namespace EOSCRM.Dao
                     GIAMGIACPVL = 0,
                     GIAMGIACPNC = 0,
                     SDGIA = 1
-                };
-                /*
-                var quyettoan = new QUYETTOAN
-                {
-                    MADDK = obj.MADDK,
-                    TENCT = obj.DONDANGKY.TENKH,
-                    TENHM = Constants.CongTacDefault,
-                    DIACHIHM = obj.DONDANGKY.DIACHILD,
-                    GHICHU = Constants.GhiChuThietKeDefault,
-                    MANVLCT = sManv,
-                    NGAYLCT = DateTime.Now,
-                    CONGVIEC = 0,
-                    CPVATLIEU = 0,
-                    CPNHANCONG = 0,
-                    CPCHUNG = 0,
-                    CPTHUNHAP = 0,
-                    CPTHIETKE = 0,
-                    CPKHAC = 0,
-                    HSNHANCONG = GetHeSo(MAHS.HSNC1),   // he so nhan cong 1
-                    HSCHUNG = GetHeSo(MAHS.HSCPC),      // he so chi phi chung
-                    HSCPC = GetHeSo(MAHS.HSCPK),        // he so phi khac
-                    HSTHUNHAP = GetHeSo(MAHS.HSTHU),    // he so thu nhap chiu thue tinh truoc
-                    HSTHIETKE1 = GetHeSo(MAHS.HSTK1),   // he so thiet ke 1
-                    HSTHIETKE2 = GetHeSo(MAHS.HSTK2),   // he so thiet ke 2
-                    HSTHIETKE3 = GetHeSo(MAHS.HSNC2),   // he so nhan cong 2
-                    HSTHUE = GetHeSo(MAHS.HSTHE),       // he so thue
-                    TIENTHUE = 0,
-                    TONG_TT = 0,
-                    TONG_ST = 0,
-
-                    //NGAYLCT
-                    //NGAYGUI_CN
-                    //NGAYNHAN_CN
-                    //ISSTK
-                    FILECT = "",
-                    TONGCONG = 0,
-                    NHANCONG = 0,
-                    CPMAY = 0,
-                    CPTTVT = 0,
-                    CPTTMAY = 0,
-                    TCPTT = 0,
-
-                    CPTTHUE = 0,
-                    CPC = 0,
-                    HSPVL = 0,
-                    HSCPM = 0,
-                    HSTTP = 0,
-                    CPKSHS = 0,
-                    TTP = 0,
-                    CHUNGONG = 0,
-                    KPDT = "",
-                    GIAMGIACPVL = 0,
-                    GIAMGIACPNC = 0,
-                    SDGIA = 1,
-                };
-                _db.QUYETTOANs.InsertOnSubmit(quyettoan);*/
+                };               
                 _db.CHIETTINHs.InsertOnSubmit(chiettinh);
 
                 // update dondangky
                 var objDDK = _db.DONDANGKies.FirstOrDefault(p => p.MADDK.Equals(obj.MADDK));
-                if (objDDK != null) objDDK.TTCT = TTCT.CT_P.ToString();
+                if (objDDK != null) 
+                    objDDK.TTCT = TTCT.CT_P.ToString();
 
                 _db.SubmitChanges();
 

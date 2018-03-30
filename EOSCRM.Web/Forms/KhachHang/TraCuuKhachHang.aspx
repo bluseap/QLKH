@@ -1303,7 +1303,7 @@
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false">                                       
+                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false" OnSelectedIndexChanged="ddlTHUHO_SelectedIndexChanged">                                       
                                     </asp:DropDownList>   
                                     <asp:CheckBox ID="ckThuHo" runat="server" TabIndex="24" Visible="true" AutoPostBack="true" OnCheckedChanged="ckThuHo_CheckedChanged" />                             
                                 </div>  
@@ -1328,8 +1328,7 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtM3" runat="server" Width="30px" TabIndex="29" Visible="False" />
                                 </div>    
-                            </td>
-                            
+                            </td>                            
                         </tr>
                         <tr>
                             <td class="crmcell right">   
@@ -1338,8 +1337,32 @@
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtPHIENLX" Width="30px" runat="server" ></asp:TextBox>
-                                </div>                                
+                                </div>
+                                <td class="crmcell right">
+                                    Đợt in HĐ 
+                                </td>                                  
+                                <td class="crmcell">
+                                    <div class="left">                                   
+                                        <asp:DropDownList ID="ddlDOTINHD" runat="server" OnSelectedIndexChanged="ddlDOTINHD_SelectedIndexChanged" >                                        
+                                        </asp:DropDownList>
+                                        <asp:CheckBox ID="ckDotInHD" runat="server" AutoPostBack="true" OnCheckedChanged="ckDotInHD_CheckedChanged"  />
+                                    </div>                                
+                                </td>                             
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">                                                            
+                            </td>
+                            <td class="crmcell">                                                   
+                            </td>
+                            <td class="crmcell right">                                    
+                                <asp:Label ID="lbLyDoDotInHD" runat="server" Text="Lý do" Visible="False" ForeColor="#FF3300"></asp:Label>                   
+                            </td>
+                            <td class="crmcell right"> 
+                                <div class="left">
+                                    <asp:TextBox ID="txtLyDoDotInHD" runat="server" Visible="False"></asp:TextBox>
+                                </div>                                  
+                            </td>                            
                         </tr>
                         <tr>
                             <td class="crmcell right">

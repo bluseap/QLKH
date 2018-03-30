@@ -769,7 +769,7 @@
                             </td>                                  
                             <td class="crmcell">
                                 <div class="left">                                   
-                                    <asp:DropDownList ID="ddlDOTINHD" runat="server" >                                        
+                                    <asp:DropDownList ID="ddlDOTINHD" runat="server" OnSelectedIndexChanged="ddlDOTINHD_SelectedIndexChanged" >                                        
                                     </asp:DropDownList>
                                 </div>                                
                             </td>

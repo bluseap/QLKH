@@ -18,7 +18,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
         private readonly PhuongPoDao _ppoDao = new PhuongPoDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
-
         private readonly ChietTinhDao ctDao = new ChietTinhDao();
         private readonly NhanVienDao nvDao = new NhanVienDao();
         private readonly DaoLapChietTinhDao dlDao = new DaoLapChietTinhDao();
@@ -464,8 +463,10 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             var ct = ctDao.Get(tkpo.MADDKPO);
             if (ct == null)
             {
-
                 var result = ctDao.CreateChietTinh2Po(tkpo, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), nv.MANV);
+
+                //update dondangky
+                _rpDao.DSQuiTrinhPoBien(DateTime.Now, DateTime.Now, "", "", tkpo.MADDKPO, "", "UPDONPOCTP");
 
                 if (result != null && !result.MsgType.Equals(MessageType.Error))
                 {

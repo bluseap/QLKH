@@ -461,8 +461,11 @@ namespace EOSCRM.Web.Forms.ThietKe
             {
                 var result = ctDao.CreateChietTinh2(tk, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), nv.MANV);
 
+                //update dondangky
+                _rpClass.DSQuiTrinhNuocBien(DateTime.Now, DateTime.Now, "", "", tk.MADDK, "", "UPDONCTP");
+
                 if (result != null && !result.MsgType.Equals(MessageType.Error))
-                {
+                {     
                     // show chiet tinh form
                     upnlVatTu.Visible = true;
                     upnlCustomers.Visible = true;

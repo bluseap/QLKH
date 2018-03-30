@@ -895,6 +895,42 @@ namespace EOSCRM.Web.Forms.KhachHang {
         protected global::System.Web.UI.WebControls.TextBox txtPHIENLX;
         
         /// <summary>
+        /// ddlDOTINHD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDOTINHD;
+        
+        /// <summary>
+        /// ckDotInHD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckDotInHD;
+        
+        /// <summary>
+        /// lbLyDoDotInHD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbLyDoDotInHD;
+        
+        /// <summary>
+        /// txtLyDoDotInHD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLyDoDotInHD;
+        
+        /// <summary>
         /// txtSTT control.
         /// </summary>
         /// <remarks>

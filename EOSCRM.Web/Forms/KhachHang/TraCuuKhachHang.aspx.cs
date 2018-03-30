@@ -15,6 +15,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 {
     public partial class TraCuuKhachHang : Authentication
     {
+        private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly GhiChiSoPoDao _gcspoDao = new GhiChiSoPoDao();
         private readonly DMThuHoDao _dmthDao = new DMThuHoDao();
         private readonly KhachHangDao khDao = new KhachHangDao();
@@ -903,6 +905,15 @@ namespace EOSCRM.Web.Forms.KhachHang
                 ddlTHUHO.Enabled = false;
                 lbLyDoThuHo.Visible = false;
                 txtLyDoThuHo.Visible = false;
+                txtLyDoThuHo.Text = "";
+                ddlTHUHO.SelectedIndex = 0;
+
+                ckDotInHD.Checked = false;
+                ddlDOTINHD.Enabled = false;
+                lbLyDoDotInHD.Visible = false;
+                txtLyDoDotInHD.Visible = false;
+                txtLyDoDotInHD.Text = "";
+                ddlDOTINHD.SelectedIndex = 0;
             }
             catch { }
         }
@@ -1033,6 +1044,13 @@ namespace EOSCRM.Web.Forms.KhachHang
             {
                 ckTENKH.Visible = false;
             }
+
+            var kvIn = _dihdDao.GetListKVNN(querykv.MAKV);
+            ddlDOTINHD.Items.Clear();
+            foreach (var dotin in kvIn)
+            {
+                ddlDOTINHD.Items.Add(new ListItem(_dmdiDao.Get(dotin.MADOTIN).TENDOTIN, dotin.IDMADOTIN));
+            } 
 
             ClearForm();            
         }
@@ -1596,7 +1614,6 @@ namespace EOSCRM.Web.Forms.KhachHang
                             }                            
                         }
                         else lbKYXOABO.Visible = false;
-
 
                         if (kh.KYKHAITHAC != null)
                         {
@@ -2958,6 +2975,60 @@ namespace EOSCRM.Web.Forms.KhachHang
                 }
             }
             catch { }
+        }
+
+        protected void ckDotInHD_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckDotInHD.Checked)
+            {             
+                ddlDOTINHD.Enabled = true;
+
+                lbLyDoDotInHD.Visible = true;
+                txtLyDoDotInHD.Visible = true;                
+            }
+            else
+            {                
+                ddlDOTINHD.Enabled = false;
+
+                lbLyDoDotInHD.Visible = false;
+                txtLyDoDotInHD.Visible = false;                
+            }
+        }        
+
+        protected void ddlTHUHO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ThuHoToDotInHD(ddlTHUHO.SelectedValue);
+
+            CloseWaitingDialog();
+            upnlCustomers.Update();       
+        }
+
+        private void ThuHoToDotInHD(string mathuho)
+        {
+            try
+            {
+                if (mathuho != "KO")
+                {
+                    string nhothud1 = "NNNTD1";
+                    var dotin = _dihdDao.GetKVDot(nhothud1, ddlKHUVUC.SelectedValue);
+
+                    var madotinnt = ddlDOTINHD.Items.FindByValue(dotin.IDMADOTIN);
+                    if (madotinnt != null)
+                    {
+                        ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotinnt);
+                    }
+                }
+                else
+                {
+                    ddlDOTINHD.SelectedIndex = 0;
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlDOTINHD_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
         
     }
