@@ -1348,7 +1348,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                             ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
                             return;
                         }
-                    }  
+                    }
 
                     if (ddlTHUHO.SelectedValue != "KO")
                     {

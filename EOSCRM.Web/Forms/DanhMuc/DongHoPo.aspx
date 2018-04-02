@@ -259,7 +259,7 @@
                                         <asp:ListItem Text="10(30)" Value="10(30)" />
                                         <asp:ListItem Text="10(40)" Value="10(40)" />
                                         <asp:ListItem Text="10(80)" Value="10(80)" />
-                                        <asp:ListItem Text="10x3(100)" Value="10x3(100)" />
+                                        <asp:ListItem Text="3x10(100)" Value="3x10(100)" />
                                         <asp:ListItem Text="20(80)" Value="20(80)" />
                                         <asp:ListItem Text="40(120)" Value="40(120)" />
                                          <asp:ListItem Text="30(60)" Value="30(60)" />

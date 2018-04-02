@@ -445,6 +445,24 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         protected global::System.Web.UI.WebControls.DropDownList ddlKHUVUC;
         
         /// <summary>
+        /// ddlHOTRO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHOTRO;
+        
+        /// <summary>
+        /// txtSOHO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSOHO;
+        
+        /// <summary>
         /// ddlGHI2THANG1LAN control.
         /// </summary>
         /// <remarks>
@@ -470,24 +488,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPHUONG;
-        
-        /// <summary>
-        /// ddlHOTRO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHOTRO;
-        
-        /// <summary>
-        /// txtSOHO control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSOHO;
         
         /// <summary>
         /// ddlAPTO control.
