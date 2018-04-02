@@ -1451,6 +1451,31 @@ namespace EOSCRM.Web.Forms.KhachHang
                 }
                 #endregion ckThuHo
 
+                #region ckDotInHD
+                // not using change DOTINHD
+                if (ckDotInHD.Checked)
+                {
+                    bool khoasodotin = _gcspoDao.IsLockDotIn(ddlDOTINHD.SelectedValue, kyForm, ddlKHUVUC.SelectedValue);
+                    if (khoasodotin == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+                        return;
+                    }
+
+                    var ketquakhdotin = report.UPKHTTCOBIEN(kh.IDKH, txtLyDoDotInHD.Text.Trim(), kh.MAKV, thangtdct, namtdct,
+                        ddlDOTINHD.SelectedValue, b, "", "", "", 0, 0, 0, "UPKHDOTINHD");
+
+                    DataTable dtth = ketquakhdotin.Tables[0];
+
+                    if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                    {
+                        CloseWaitingDialog();
+                        ShowError("Lỗi Save thu hộ. Kiểm tra lại.", "");
+                    }   
+                }
+                #endregion
+
                 // dinh muC tam
                 //if (ckDMUCTAM.Checked == true)
                 //{
@@ -1677,6 +1702,8 @@ namespace EOSCRM.Web.Forms.KhachHang
                             txtGHICHUCSLX.Text = "";
                         }
 
+                        ThuHoToDotInHD(ddlTHUHO.SelectedValue);
+
                         CloseWaitingDialog();
                         break;
 
@@ -1760,6 +1787,8 @@ namespace EOSCRM.Web.Forms.KhachHang
                         }
 
                         lblTenKH.Text = kh1.TENKH.Trim();
+
+                        ThuHoToDotInHD(ddlTHUHO.SelectedValue);
 
                         upnlTTTT.Update();
                         UnblockDialog("divTTTT");
