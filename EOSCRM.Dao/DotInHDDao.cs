@@ -33,6 +33,11 @@ namespace EOSCRM.Dao
             return _db.DOTINHDs.Where(p => p.MADOTIN.Equals(madot) && p.MAKV.Equals(makv)).SingleOrDefault();
         }
 
+        public DOTINHD GetKVP7D1(string p7d1, string makv)
+        {
+            return _db.DOTINHDs.Where(p => p.MADOTIN.Equals(p7d1) && p.MAKV.Equals(makv)).SingleOrDefault();
+        }
+
         public DOTINHD GetKVPoDot(string madot, string makvpo)
         {
             return _db.DOTINHDs.Where(p => p.MADOTIN.Equals(madot) && p.MAKVPO.Equals(makvpo)).SingleOrDefault();

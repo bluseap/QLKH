@@ -12,7 +12,11 @@ namespace EOSCRM.Dao
     {
         private readonly EOSCRMDataContext _db;
 
+        private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
+
         public static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
+
         public TachDuongPoDao()
         {
             _db = new EOSCRMDataContext(Connectionstring);
@@ -36,12 +40,31 @@ namespace EOSCRM.Dao
         }
 
         public List<TACHDUONGPO> GetListKyMAKVDotIn(int thang, int nam, string makv, string madotin)
-        {            
-            var query = from tp in _db.TACHDUONGPOs join dp in _db.DUONGPHOPOs on tp.MADPPOCU equals dp.MADPPO
-                        where tp.THANG.Equals(thang) && tp.NAM.Equals(nam) && tp.MAKVPO.Equals(makv) && dp.IDMADOTIN.Equals(madotin)
-                        select tp;
+        {
+            var dotin = _dihdDao.Get(madotin);
+            var dotinp7 = _dihdDao.GetKVP7D1("DDP7D1", makv);
 
-            return query.ToList();
+            if (dotin.MADOTIN == "DDP7D1")
+            {
+                var query = from tp in _db.TACHDUONGPOs
+                            join dp in _db.DUONGPHOPOs on tp.MADPPOCU equals dp.MADPPO
+                            join kh in _db.KHACHHANGPOs on tp.IDKHPO equals kh.IDKHPO
+                            where tp.THANG.Equals(thang) && tp.NAM.Equals(nam) && tp.MAKVPO.Equals(makv) && kh.DOTINHD.Equals(madotin)
+                            select tp;
+
+                return query.ToList();
+            }
+            else
+            {
+                var query = from tp in _db.TACHDUONGPOs
+                            join dp in _db.DUONGPHOPOs on tp.MADPPOCU equals dp.MADPPO
+                            join kh in _db.KHACHHANGPOs on tp.IDKHPO equals kh.IDKHPO
+                            where tp.THANG.Equals(thang) && tp.NAM.Equals(nam) && tp.MAKVPO.Equals(makv) && dp.IDMADOTIN.Equals(madotin)
+                                && (kh.DOTINHD != dotinp7.IDMADOTIN || kh.DOTINHD == null)
+                            select tp;
+
+                return query.ToList();
+            }
         }
 
         public string NewId()
