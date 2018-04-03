@@ -2306,14 +2306,14 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             {
                 if (ckThuHo.Checked)
                 {
-                    ddlTHUHO.Enabled = false;
+                    ddlTHUHO.Enabled = true;
 
                     lbLyDoThuHo.Visible = true;
                     txtLyDoThuHo.Visible = true;
                 }
                 else
                 {
-                    ddlTHUHO.Enabled = true;
+                    ddlTHUHO.Enabled = false;
 
                     lbLyDoThuHo.Visible = false;
                     txtLyDoThuHo.Visible = false;
@@ -2328,14 +2328,14 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             {
                 if (ckDotInHD.Checked)
                 {
-                    ddlTHUHO.Enabled = true;
+                    ddlDOTINHD.Enabled = true;
 
                     lbLyDoDotInHD.Visible = true; 
                     txtLyDoDotInHD.Visible = true;
                 }
                 else
                 {
-                    ddlTHUHO.Enabled = false;
+                    ddlDOTINHD.Enabled = false;
 
                     lbLyDoDotInHD.Visible = false;
                     txtLyDoDotInHD.Visible = false;

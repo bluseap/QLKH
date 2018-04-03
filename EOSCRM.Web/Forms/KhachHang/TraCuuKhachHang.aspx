@@ -1299,11 +1299,11 @@
                                 </div>                                
                             </td>
                             <td class="crmcell right">
-                                Thu hộ
+                                Nhờ thu
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" TabIndex="23" Enabled="false" OnSelectedIndexChanged="ddlTHUHO_SelectedIndexChanged">                                       
+                                    <asp:DropDownList ID="ddlTHUHO"  runat="server" AutoPostBack="true" TabIndex="23" Enabled="false" OnSelectedIndexChanged="ddlTHUHO_SelectedIndexChanged">                                       
                                     </asp:DropDownList>   
                                     <asp:CheckBox ID="ckThuHo" runat="server" TabIndex="24" Visible="true" AutoPostBack="true" OnCheckedChanged="ckThuHo_CheckedChanged" />                             
                                 </div>  

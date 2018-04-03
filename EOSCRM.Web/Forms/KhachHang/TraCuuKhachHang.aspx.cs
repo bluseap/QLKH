@@ -1353,7 +1353,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                     if (ddlTHUHO.SelectedValue != "KO")
                     {
                         var ketquakhthuho = report.UPKHTTCOBIEN(kh.IDKH, txtLyDoThuHo.Text.Trim(), kh.MAKV, thangtdct, namtdct,
-                            ddlTHUHO.SelectedValue, b, "", "", "", 0, 0, 0, "UPKHTHUHO");                       
+                            ddlTHUHO.SelectedValue, b, "", "", ddlDOTINHD.SelectedValue, 0, 0, 0, "UPKHTHUHO");                       
                         
                         DataTable dtth = ketquakhthuho.Tables[0];
                     
@@ -1366,7 +1366,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                     else
                     {                        
                         var ketqua = report.UPKHTTCOBIEN(kh.IDKH, txtLyDoThuHo.Text.Trim(), kh.MAKV, thangtdct, namtdct,
-                            "", "", "", "", "", 0, 0, 0, "UPTHUHODOTINKO");                      
+                            "", "", "", "", ddlDOTINHD.SelectedValue, 0, 0, 0, "UPTHUHODOTINKO");                      
                       
                         DataTable dtth = ketqua.Tables[0];
                        
