@@ -1331,13 +1331,13 @@ namespace EOSCRM.Web.Forms.KhachHang
                 #region ckThuHo
                 if (ckThuHo.Checked)
                 {
-                    bool khoasodotin = _gcspoDao.IsLockDotIn(kh.IDMADOTIN, kyForm, ddlKHUVUC.SelectedValue);
-                    if (khoasodotin == true)
-                    {
-                        CloseWaitingDialog();
-                        ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
-                        return;
-                    }
+                    //bool khoasodotin = _gcspoDao.IsLockDotIn(kh.IDMADOTIN, kyForm, ddlKHUVUC.SelectedValue);
+                    //if (khoasodotin == true)
+                    //{
+                    //    CloseWaitingDialog();
+                    //    ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+                    //    return;
+                    //}
 
                     if (ddlTHUHO.SelectedValue != "KO")
                     {

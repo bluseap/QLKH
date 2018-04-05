@@ -322,11 +322,18 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 
                 if (ddlDSTDCT.SelectedValue == "%")
                 {
+                    var dotinhd = _diDao.Get(ddlDOTGCS.SelectedValue);
+
                     if (_nvDao.Get(b).MAKV == "X")
                     {
                         if (ddlDOTGCS.SelectedValue == "%")
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOCLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
+                        }
+                        else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
+                        {
+                            dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                    cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
                         }
                         else
                         {
@@ -335,14 +342,12 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         }
                     }
                     else
-                    {
-                        var dotinhd = _diDao.Get(ddlDOTGCS.SelectedValue);
-
+                    {      
                         if (ddlDOTGCS.SelectedValue == "%")
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
                         }
-                        else if (dotinhd.MADOTIN == "NNTHD1")
+                        else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
                                     cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];

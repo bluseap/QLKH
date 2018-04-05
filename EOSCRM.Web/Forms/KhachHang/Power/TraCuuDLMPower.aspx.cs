@@ -211,6 +211,35 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
         }
 
+        
+
+        #endregion
+
+        #region loc, up
+        private Mode UpdateMode
+        {
+            get
+            {
+                try
+                {
+                    if (Session[SessionKey.MODE] != null)
+                    {
+                        var mode = Convert.ToInt32(Session[SessionKey.MODE]);
+                        return (mode == Mode.Update.GetHashCode()) ? Mode.Update : Mode.Create;
+                    }
+                    return Mode.Create;
+                }
+                catch (Exception)
+                {
+                    return Mode.Create;
+                }
+            }
+            set
+            {
+                Session[SessionKey.MODE] = value.GetHashCode();
+            }
+        }
+
         private FilteredMode Filtered
         {
             get
@@ -236,7 +265,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 Session[SessionKey.FILTEREDMODE] = value.GetHashCode();
             }
         }
-
         #endregion
 
         #region Startup script registeration
@@ -615,6 +643,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
         private void ClearContent()
         {
+            UpdateMode = Mode.Create;
+
             //TODO: xóa UI
             txtMADDK.Text = "";
             txtMADDK.ReadOnly = false;
@@ -921,8 +951,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         if (!string.Empty.Equals(madon))
                         {
                             var don = _ddkpoDao.Get(madon);
+
                             if (don == null) return;
+
                             SetDDKToForm(don);
+
+                            UpdateMode = Mode.Update;
                         }
                         CloseWaitingDialog();
                         break;
@@ -1151,6 +1185,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 ShowError(Resources.Message.WARN_PERMISSION_DENIED);
                 return;
             }
+
+            if (UpdateMode != Mode.Update)
+                return;
 
             var don = DonDangKyObjPo;
             if (don == null)

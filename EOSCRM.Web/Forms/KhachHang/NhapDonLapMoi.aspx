@@ -259,11 +259,11 @@
                             </td>                            
                         </tr>
                         <tr>    
-                            <td class="crmcell right">Mã đơn đăng ký</td>
+                            <td class="crmcell right"> </td>
                             <td class="crmcell">
                                  <div class="left">
                                     <asp:TextBox ID="txtMADDK" runat="server" Width="85px" MaxLength="10" 
-                                        TabIndex="1" ReadOnly="True" />                            
+                                        TabIndex="1" ReadOnly="True" Visible="false"/>                            
                                 </div>                           
                             </td>
                             <td class="crmcell right">Số HK thường trú</td>

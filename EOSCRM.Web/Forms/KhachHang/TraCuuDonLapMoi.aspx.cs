@@ -237,6 +237,30 @@ namespace EOSCRM.Web.Forms.KhachHang
         #endregion
 
         #region co loc, up
+        private Mode UpdateMode
+        {
+            get
+            {
+                try
+                {
+                    if (Session[SessionKey.MODE] != null)
+                    {
+                        var mode = Convert.ToInt32(Session[SessionKey.MODE]);
+                        return (mode == Mode.Update.GetHashCode()) ? Mode.Update : Mode.Create;
+                    }
+                    return Mode.Create;
+                }
+                catch (Exception)
+                {
+                    return Mode.Create;
+                }
+            }
+            set
+            {
+                Session[SessionKey.MODE] = value.GetHashCode();
+            }
+        }
+
         private FilteredMode Filtered
         {
             get
@@ -639,6 +663,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 
         private void ClearContent()
         {
+            UpdateMode = Mode.Create;
+
             //TODO: xóa UI
             txtMADDK.Text = "";
             txtMADDK.ReadOnly = false;
@@ -1105,6 +1131,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                             if (don == null) return;
                             SetDDKToForm(don);
                         }
+
+                        UpdateMode = Mode.Update;
+
                         CloseWaitingDialog();
                         break;
                         
@@ -1460,6 +1489,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                     ShowError(Resources.Message.WARN_PERMISSION_DENIED);
                     return;
                 }
+
+                if (UpdateMode != Mode.Update)
+                    return;
 
                 var don = DonDangKyObj;
                 if (don == null)
