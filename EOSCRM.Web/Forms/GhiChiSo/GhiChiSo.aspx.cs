@@ -16,43 +16,11 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 {
     public partial class GhiChiSo : Authentication
     {
+        private readonly ReportClass _rpClass = new ReportClass();
         private readonly DuongPhoDao dpDao = new DuongPhoDao();
         private readonly GhiChiSoDao gcsDao = new GhiChiSoDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly KhuVucDao _kvDao = new KhuVucDao();
-        
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxCRM), Page);
-                PrepareUI();
-
-                if (!Page.IsPostBack)
-                {
-                    LoadStaticReferences();   
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
-        private void PrepareUI()
-        {
-            Page.Title = Resources.Message.TITLE_GCS_GHICHISO;
-
-            var header = (Header)Master.FindControl("header");
-            if (header != null)
-            {
-                header.ModuleName = Resources.Message.MODULE_GHICHISO;
-                header.TitlePage = Resources.Message.PAGE_GCS_GHICHISO;
-            }
-
-            CommonFunc.SetPropertiesForGrid(gvList);
-            CommonFunc.SetPropertiesForGrid(gvDuongPho);
-        }
 
         #region Startup script registeration
         private void SetControlValue(string id, string value)
@@ -101,15 +69,76 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         }
         #endregion
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxCRM), Page);
+                PrepareUI();
+
+                if (!Page.IsPostBack)
+                {
+                    LoadStaticReferences();   
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void PrepareUI()
+        {
+            Page.Title = Resources.Message.TITLE_GCS_GHICHISO;
+
+            var header = (Header)Master.FindControl("header");
+            if (header != null)
+            {
+                header.ModuleName = Resources.Message.MODULE_GHICHISO;
+                header.TitlePage = Resources.Message.PAGE_GCS_GHICHISO;
+            }
+
+            CommonFunc.SetPropertiesForGrid(gvList);
+            CommonFunc.SetPropertiesForGrid(gvDuongPho);
+        }       
+
         private void LoadStaticReferences()
         {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
             var listKhuVuc = new KhuVucDao().GetList();
             ddlKHUVUC.DataSource = listKhuVuc;
             ddlKHUVUC.DataTextField = "TENKV";
             ddlKHUVUC.DataValueField = "MAKV";
             ddlKHUVUC.DataBind();
+
             timkv();
+
             ClearForm();
+           
+            ddlTrangThaiTinhTien.Items.Clear();
+            ddlTrangThaiTinhTien.Items.Add(new ListItem("Tất cả", "%"));
+            ddlTrangThaiTinhTien.Items.Add(new ListItem("Tính khối lượng tiêu thụ", "TINHKLTIEUTHU"));
+            ddlTrangThaiTinhTien.Items.Add(new ListItem("Lấy giá từng bậc chưa thuế", "M3GIACHUATHUE"));
+            ddlTrangThaiTinhTien.Items.Add(new ListItem("Tính tổng tiền", "TINHTIENTUNGMUC"));
+
+            if (b == "nguyen")
+            {
+                IsVisible(true);
+            }
+            else
+            {
+                IsVisible(false);
+            }
+        }
+
+        private void IsVisible(bool para)
+        {
+            lbTrangThaiTinhTien.Visible = para;
+            ddlTrangThaiTinhTien.Visible = para;
+            btTinhTien.Visible = para;
         }
 
         public void timkv()
@@ -457,6 +486,13 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            //TinhTienCu();
+
+            //TinhTienMoi(); 
+        }       
+
+        private void TinhTienCu()
+        {
             var nam = int.Parse(txtNAM.Text.Trim());
             var thang = int.Parse(ddlTHANG.SelectedValue);
             var kv = ddlKHUVUC.SelectedValue;
@@ -474,6 +510,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             CloseWaitingDialog();
             ShowInfor(ResourceLabel.Get(msg));
         }
+
         private void ExportToExcel(string strFileName, DataGrid dg)
         {
             this.EnableViewState = false;
@@ -565,5 +602,47 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             Response.Write(oStringWriter.ToString());
             Response.End();
         }
+
+        protected void btTinhTien_Click(object sender, EventArgs e)
+        {
+            //int thangForm = int.Parse(ddlTHANG.SelectedValue);
+            //int namForm = int.Parse(txtNAM.Text.Trim());
+            //var kyForm = new DateTime(namForm, thangForm, 1);
+
+            //bool dungForm = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, kh.MADP);
+
+            //if (dungForm == true)
+            //{
+            //    CloseWaitingDialog();
+            //    ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+            //    return;
+            //}
+
+            TinhTienMoi();
+        }
+
+        private void TinhTienMoi()
+        {
+            if (ddlTrangThaiTinhTien.SelectedValue != "%")
+            {  
+                var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), 
+                    ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+
+                DataTable dtth = ketqua.Tables[0];
+
+                if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                {
+                    CloseWaitingDialog();
+                    ShowError("Lỗi tính khối lượng tiêu thụ. Kiểm tra lại.", "");
+                }
+            }
+            else
+            {
+                CloseWaitingDialog();
+                ShowError("Xin chọn trạng thái tính tiền.", "");
+            }
+        }
+
+
     }
 }

@@ -680,6 +680,19 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                 </div>
                             </td>
                         </tr>
+                        <tr style="display: none">    
+                            <td class="crmcell right">
+                                <asp:Label ID="lbTrangThaiTinhTien" runat="server" Text="Trạng thái" Visible="False" ></asp:Label>                               
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTrangThaiTinhTien" runat="server" Visible="False"></asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btTinhTien" runat="server" CssClass="myButton" Text="Tính tiền" Visible="False" OnClick="btTinhTien_Click" />
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

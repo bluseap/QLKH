@@ -40,28 +40,6 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             }
         }
 
-        
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                Authenticate(Functions.GCS_InHoaDon, Permission.Read);
-                PrepareUI();
-
-                if (!Page.IsPostBack)
-                {
-                    LoadStaticReferences();
-                    
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
         #region Startup script registeration
         private void SetControlValue(string id, string value)
         {
@@ -104,6 +82,24 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         }
         #endregion
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Authenticate(Functions.GCS_InHoaDon, Permission.Read);
+                PrepareUI();
+
+                if (!Page.IsPostBack)
+                {
+                    LoadStaticReferences();                
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }        
+
         private void PrepareUI()
         {
             Page.Title = Resources.Message.TITLE_GCS_INHOADONN;
@@ -130,8 +126,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             }
             divUpdateHDIL.Visible = false;
             divupnlGridSHDIL.Visible = false;
-            upnlGridSHDIL.Update();
+
             ClearForm();
+            upnlGridSHDIL.Update();            
         }
 
         private void ClearForm()
@@ -147,13 +144,13 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 var hddau = int.Parse(txtHDDAU.Text.Trim());
                 var hdcong = int.Parse(txtHDCONG.Text.Trim());
                 var hdcuoi = hddau + hdcong;
+
                 txtHDCUOI.Text = hdcuoi.ToString();
             }
             catch (System.Exception ex)
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
-
         }
 
         private byte[] imageToByte(System.Drawing.Image img)
@@ -176,6 +173,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                     ShowInfor("Đã in hoá đơn rồi.");
                     return ;
                 }
+
                 if (hdcuoi >= hd.SOHDDAU && hdcuoi <= hd.SOHDCUOI)
                 {
                     ShowInfor("Đã in hoá đơn rồi!");
@@ -185,7 +183,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
             if (hddau > hdcuoi)
             {
-                ShowInfor("Số HĐ đầu phải nhỏ hơn HĐ cuối.");
+                ShowInfor("Số hoá đơn đầu phải nhỏ hơn hoá đơn cuối.");
                 return;
             }
             else
@@ -196,6 +194,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                     CloseWaitingDialog();
                     return;
                 }
+
                 Message msg;
                 msg = _shdDao.Insert(info);
             }
@@ -261,7 +260,6 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         private void BindGridSHDIL()
         {
-
             var list = _shdilDao.GetList(lblMASOHD.Text.Trim());
             gvSoHoaDonIL.DataSource = list;
             gvSoHoaDonIL.PagerInforText = list.Count.ToString();
@@ -273,11 +271,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         protected void gvSoHoaDon_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                // Update page index
-                gvSoHoaDon.PageIndex = e.NewPageIndex;
-
-                // Bind data for grid
+            {               
+                gvSoHoaDon.PageIndex = e.NewPageIndex;              
                 BindGridSHD();
             }
             catch (Exception ex)
@@ -289,11 +284,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         protected void gvSoHoaDonIL_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                // Update page index
+            {               
                 gvSoHoaDonIL.PageIndex = e.NewPageIndex;
-
-                // Bind data for grid
                 BindGridSHDIL();
             }
             catch (Exception ex)
@@ -337,8 +329,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             foreach (System.Data.DataRow row in dtDSINHOADON1.Rows)
             {
                 lblSOHDCL.Text = row["SOHDCL"].ToString();
-            }
-            
+            }            
         }
 
         public void HideSHD()
@@ -391,7 +382,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 }*/
                 if (hddauil > hdcuoiil)
                 {
-                    ShowInfor("Số HĐ đầu phải nhỏ hơn HĐ cuối.");
+                    ShowInfor("Số hoá đơn đầu phải nhỏ hơn HĐ cuối.");
                     return;
                 }
                 else
@@ -429,6 +420,11 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 {
                     foreach (System.Data.DataRow row in dtDSINHOADON.Rows)
                     {
+                        code128.Code = row["BARCODE"].ToString();
+                        System.Drawing.Image bc = code128.CreateDrawingImage(System.Drawing.Color.Black, System.Drawing.Color.White);
+                        byte[] ar = imageToByte(bc);
+                        row["IMG"] = ar;
+
                         // noi dung data
                         //string data =  row["BARCODE"];
 
@@ -438,15 +434,15 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                         //row["IMG"] = ar;
 
                         
-                        code128.Code = row["BARCODE"].ToString();
+                        //code128.Code = row["BARCODE"].ToString();
 
                         //System.Drawing.Image bc = System.Drawing.Image.FromFile("http://powaco.com.vn/UpLoadFile/powaco/hinh/1465206069223-957962213.jpg");
-                        System.Drawing.Image bc = System.Drawing.Image.FromFile(Server.MapPath("~/UpLoadFile/powaco/hinh/chau1.jpg"), true);
+                        //System.Drawing.Image bc = System.Drawing.Image.FromFile(Server.MapPath("~/UpLoadFile/powaco/hinh/chau1.jpg"), true);
 
                         //bc.ImageUrl = "D:\a6101892710Penguins.jpg";
 
-                        byte[] ar = imageToByte(bc);
-                        row["IMG"] = ar;
+                       // byte[] ar = imageToByte(bc);
+                        //row["IMG"] = ar;
                        
 
                     }
@@ -464,9 +460,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             {
                 ShowInfor("Hoá đơn đã in rồi.");
                 return ;
-            }
-
-            
+            }            
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -474,8 +468,6 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             NotHideSHD();
             LoadStaticReferences();
         }
-
-
 
     }
 }

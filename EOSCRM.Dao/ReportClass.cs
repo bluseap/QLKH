@@ -18,6 +18,22 @@ public class ReportClass
 		
 	}
 
+
+    public DataSet TinhTienTheoBac(int thang, int nam, string makv, string ghichu, string cobien)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {                                       
+                    db.MakeInParam("@THANG", SqlDbType.Int  , 20, thang),
+                    db.MakeInParam("@NAM", SqlDbType.Int  , 20, nam),
+                    db.MakeInParam("@MAKV", SqlDbType.VarChar  , 20, makv),
+                    db.MakeInParam("@GHICHU", SqlDbType.NVarChar  , 1000, ghichu),
+                    db.MakeInParam("@COBIEN", SqlDbType.VarChar  , 20, cobien)
+                };
+        DataSet ds = db.RunExecProc("TinhTienTheoBac", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet HisTableCoBien(string idkh, string idkh2, string madon, string madon2, string makv, DateTime tungay, DateTime denngay, int thang,
         int nam, string ghichu, string ghichu2, string cobien)
     {
