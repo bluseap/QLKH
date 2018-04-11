@@ -2697,6 +2697,11 @@
       <Column Name="SOHDCUOI" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
       <Column Name="NGAY" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="GHICHU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TONSOHOADON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDMADOTIN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENMAYIN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MAYINID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Association Name="SOHOADON_SOHOADONIL" Member="SOHOADONILs" ThisKey="MASOHD" OtherKey="MASOHD" Type="SOHOADONIL" />
     </Type>
   </Table>
@@ -2708,6 +2713,12 @@
       <Column Name="SOHDCUOIIL" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
       <Column Name="NGAY" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="GHICHU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TONSOHOADONIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MANVN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TENMAYIN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MAYINID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Association Name="SOHOADON_SOHOADONIL" Member="SOHOADON" ThisKey="MASOHD" OtherKey="MASOHD" Type="SOHOADON" IsForeignKey="true" />
     </Type>
   </Table>

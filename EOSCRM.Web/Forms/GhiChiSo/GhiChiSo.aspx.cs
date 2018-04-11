@@ -16,6 +16,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 {
     public partial class GhiChiSo : Authentication
     {
+        private readonly GhiChiSoPoDao _gcspoDao = new GhiChiSoPoDao();
+        private readonly DotInHDDao _diDao = new DotInHDDao();
+        private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly DuongPhoDao dpDao = new DuongPhoDao();
         private readonly GhiChiSoDao gcsDao = new GhiChiSoDao();
@@ -117,7 +120,17 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             timkv();
 
             ClearForm();
-           
+
+            ThuHoToDotInHD(ddlKHUVUC.SelectedValue);
+
+            //var dotin = _diDao.GetListKVNN(ddlKHUVUC.SelectedValue);
+            //ddlDOTGCS.Items.Clear();
+            //ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+            //foreach (var d in dotin)
+            //{
+            //    ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
+            //}
+
             ddlTrangThaiTinhTien.Items.Clear();
             ddlTrangThaiTinhTien.Items.Add(new ListItem("Tất cả", "%"));
             ddlTrangThaiTinhTien.Items.Add(new ListItem("Tính khối lượng tiêu thụ", "TINHKLTIEUTHU"));
@@ -136,6 +149,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         private void IsVisible(bool para)
         {
+            lbDotInHD.Visible = para;
+            ddlDOTGCS.Visible = para;
             lbTrangThaiTinhTien.Visible = para;
             ddlTrangThaiTinhTien.Visible = para;
             btTinhTien.Visible = para;
@@ -605,18 +620,31 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         protected void btTinhTien_Click(object sender, EventArgs e)
         {
-            //int thangForm = int.Parse(ddlTHANG.SelectedValue);
-            //int namForm = int.Parse(txtNAM.Text.Trim());
-            //var kyForm = new DateTime(namForm, thangForm, 1);
+            int thangForm = int.Parse(ddlTHANG.SelectedValue);
+            int namForm = int.Parse(txtNAM.Text.Trim());
+            var kyForm = new DateTime(namForm, thangForm, 1);
+            
+            var dotinhd = _diDao.Get(ddlDOTGCS.SelectedValue);
+            if (dotinhd.MADOTIN == "NNNTD1")
+            {
+                bool khoasodotin = _gcspoDao.IsLockDotIn(ddlDOTGCS.SelectedValue, kyForm, ddlKHUVUC.SelectedValue);
+                if (khoasodotin == true)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+                    return;
+                }
+            }
 
-            //bool dungForm = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, kh.MADP);
-
-            //if (dungForm == true)
-            //{
-            //    CloseWaitingDialog();
-            //    ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
-            //    return;
-            //}
+            //khoa so theo duong pho
+            var duongphodotin = dpDao.GetDotIn(ddlDOTGCS.SelectedValue);
+            bool khoasodp = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, duongphodotin.MADP);
+            if (khoasodp == true)
+            {
+                CloseWaitingDialog();
+                ShowInfor("Đã khoá sổ ghi chỉ số.");
+                return;
+            }
 
             TinhTienMoi();
         }
@@ -625,7 +653,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         {
             if (ddlTrangThaiTinhTien.SelectedValue != "%")
             {  
-                var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), 
+                var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlDOTGCS.SelectedValue,
                     ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
 
                 DataTable dtth = ketqua.Tables[0];
@@ -643,6 +671,39 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             }
         }
 
+        protected void ddlKHUVUC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlKHUVUC.SelectedValue != "99")
+            {
+                ThuHoToDotInHD(ddlKHUVUC.SelectedValue);
+            }
+            else
+            {
+                ddlDOTGCS.SelectedIndex = 0;
+            }
+        }
+
+        private void ThuHoToDotInHD(string mathuho)
+        {
+            try
+            {
+                if (mathuho != "%")
+                {
+                    var kvIn = _diDao.GetListKVNN(ddlKHUVUC.SelectedValue);
+                    ddlDOTGCS.Items.Clear();
+                    ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+                    foreach (var dotin in kvIn)
+                    {
+                        ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(dotin.MADOTIN).TENDOTIN, dotin.IDMADOTIN));
+                    }
+                }
+                else
+                {
+                    ddlDOTGCS.SelectedIndex = 0;
+                }
+            }
+            catch { }
+        }
 
     }
 }

@@ -15,6 +15,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 {
     public partial class InHoaDonN : Authentication
     {
+        private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
+        private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly SoHoaDonDao _shdDao = new SoHoaDonDao();
         private readonly SoHoaDonILDao _shdilDao = new SoHoaDonILDao();
 
@@ -127,7 +129,16 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             divUpdateHDIL.Visible = false;
             divupnlGridSHDIL.Visible = false;
 
+            var kvIn = _dihdDao.GetListKVNN(ddlKHUVUC.SelectedValue);
+            ddlDOTGCS.Items.Clear();
+            ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+            foreach (var dotin in kvIn)
+            {
+                ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(dotin.MADOTIN).TENDOTIN, dotin.IDMADOTIN));
+            }
+
             ClearForm();
+
             upnlGridSHDIL.Update();            
         }
 
@@ -234,6 +245,29 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 ShowError("Không tìm thấy dữ liệu để làm báo cáo");
             }
 
+        }        
+
+        private void BindGridSHDIL()
+        {
+            var list = _shdilDao.GetList(lblMASOHD.Text.Trim());
+            gvSoHoaDonIL.DataSource = list;
+            gvSoHoaDonIL.PagerInforText = list.Count.ToString();
+            gvSoHoaDonIL.DataBind();
+
+            upnlGridSHDIL.Update();
+        }        
+
+        protected void gvSoHoaDonIL_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {               
+                gvSoHoaDonIL.PageIndex = e.NewPageIndex;
+                BindGridSHDIL();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
         }
 
         private void BindGridSHD()
@@ -258,35 +292,12 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             upnlGridSHD.Update();
         }
 
-        private void BindGridSHDIL()
-        {
-            var list = _shdilDao.GetList(lblMASOHD.Text.Trim());
-            gvSoHoaDonIL.DataSource = list;
-            gvSoHoaDonIL.PagerInforText = list.Count.ToString();
-            gvSoHoaDonIL.DataBind();
-
-            upnlGridSHDIL.Update();
-        }
-
         protected void gvSoHoaDon_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {               
-                gvSoHoaDon.PageIndex = e.NewPageIndex;              
-                BindGridSHD();
-            }
-            catch (Exception ex)
             {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
-        protected void gvSoHoaDonIL_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            try
-            {               
-                gvSoHoaDonIL.PageIndex = e.NewPageIndex;
-                BindGridSHDIL();
+                gvSoHoaDon.PageIndex = e.NewPageIndex;
+                BindGridSHD();
             }
             catch (Exception ex)
             {
@@ -323,6 +334,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindGridSHD();
+
             var dtDSINHOADON1 =
                 new ReportClass().InHoaDonN1(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue)
                   .Tables[0];
@@ -467,6 +479,103 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         {
             NotHideSHD();
             LoadStaticReferences();
+        }
+
+        protected void ddlKHUVUC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlKHUVUC.SelectedValue != "%")
+            {
+                ThuHoToDotInHD(ddlKHUVUC.SelectedValue);
+            }            
+        }
+
+        private void ThuHoToDotInHD(string mathuho)
+        {
+            try
+            {
+                if (mathuho != "%")
+                {
+                    var kvIn = _dihdDao.GetListKVNN(ddlKHUVUC.SelectedValue);
+                    ddlDOTGCS.Items.Clear();
+                    ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+                    foreach (var dotin in kvIn)
+                    {
+                        ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(dotin.MADOTIN).TENDOTIN, dotin.IDMADOTIN));
+                    }
+                }
+                else
+                {
+                    ddlDOTGCS.SelectedIndex = 0;
+                }
+            }
+            catch { }
+        }
+
+        private void LoadSumSoHoaDonTheoDotIn()
+        {
+            try
+            {
+                if (ddlDOTGCS.SelectedValue != "%")
+                {
+                    lbSoHoaDonSum.Text = "0";
+                    lbSoKhachHangSum.Text = "0";
+                    lbSoHoaDonDaInSum.Text = "0";
+                    lbSoHoaDonChuaInSum.Text = "0";
+                }
+                else
+                {
+
+                    lbSoHoaDonSum.Text = "0";
+                    lbSoKhachHangSum.Text = "0";
+                    lbSoHoaDonDaInSum.Text = "0";
+                    lbSoHoaDonChuaInSum.Text = "0";
+                }
+            }
+            catch { }
+        }
+
+        private void IsVisibleSumSoHoaDon(bool para)
+        {
+            lbSoHoaDon.Visible = para; 
+            lbSoKhachHang.Visible = para; 
+            lbSoHoaDonDaIn.Visible = para; 
+            lbSoHoaDonChuaIn.Visible = para;
+
+            lbSoHoaDonSum.Visible = para;
+            lbSoKhachHangSum.Visible = para;
+            lbSoHoaDonDaInSum.Visible = para;
+            lbSoHoaDonChuaInSum.Visible = para;
+
+            btXemSoHoaDonChuaIn.Visible = para;
+        }
+
+        protected void ddlDOTGCS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDOTGCS.SelectedValue != "%")
+            {
+                IsVisibleSumSoHoaDon(true);
+
+                LoadSumSoHoaDonTheoDotIn();
+            }
+            else
+            {
+                IsVisibleSumSoHoaDon(false);
+
+                LoadSumSoHoaDonTheoDotIn();
+            }
+
+            upnlTinhCuoc.Update();
+
+        }
+
+        protected void btXemSoHoaDonChuaIn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UnblockDialog("divSoThuTuHoaDonChuaIn");
+                CloseWaitingDialog();
+            }
+            catch { }
         }
 
     }

@@ -19,13 +19,14 @@ public class ReportClass
 	}
 
 
-    public DataSet TinhTienTheoBac(int thang, int nam, string makv, string ghichu, string cobien)
+    public DataSet TinhTienTheoBac(int thang, int nam, string makv, string madotin, string ghichu, string cobien)
     {
         Database db = new Database();
         SqlParameter[] prams = {                                       
                     db.MakeInParam("@THANG", SqlDbType.Int  , 20, thang),
                     db.MakeInParam("@NAM", SqlDbType.Int  , 20, nam),
                     db.MakeInParam("@MAKV", SqlDbType.VarChar  , 20, makv),
+                    db.MakeInParam("@MADOTINHD", SqlDbType.VarChar  , 20, madotin),
                     db.MakeInParam("@GHICHU", SqlDbType.NVarChar  , 1000, ghichu),
                     db.MakeInParam("@COBIEN", SqlDbType.VarChar  , 20, cobien)
                 };

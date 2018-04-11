@@ -48,6 +48,16 @@ namespace EOSCRM.Dao
             return _db.DOTINHDs.OrderBy(c => c.STT).ToList();
         }
 
+        public List<DOTINHD> GetListNN()
+        {
+            return _db.DOTINHDs.Where(p => p.MADOTIN.Substring(0, 2).Equals("NN")).OrderBy(c => c.STT).ToList();
+        }
+
+        public List<DOTINHD> GetListDD()
+        {
+            return _db.DOTINHDs.Where(p => p.MADOTIN.Substring(0, 2).Equals("DD")).OrderBy(c => c.STT).ToList();
+        }
+
         public List<DOTINHD> GetListKVPO(string makvpo)
         {
             return _db.DOTINHDs.Where(p => p.MAKVPO.Equals(makvpo)).OrderBy(c => c.STT).ToList();

@@ -39,6 +39,11 @@ namespace EOSCRM.Dao
                             p.MAKV.Equals(makv)).SingleOrDefault();
         }
 
+        public DUONGPHO GetDotIn(string madotin)
+        {
+            return _db.DUONGPHOs.Where(p => p.IDMADOTIN.Equals(madotin)).Take(1).SingleOrDefault();
+        }
+
         public List<DUONGPHO> Search(string key)
         {
             return

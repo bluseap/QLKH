@@ -1146,8 +1146,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     }                        
 
                     report.UPTHayDoiCTPO(kh.IDKHPO, int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), "CTDANHBOPO",
-                            txtMADP.Text.Trim(), 
-                            txtMADB.Text.Trim(), txtDUONGPHU.Text.Trim(), txtLDDANHSO.Text.Trim());
+                            txtMADP.Text.Trim(),
+                            txtMADB.Text.Trim(), ddlMDSD.SelectedValue, txtLDDANHSO.Text.Trim());
                 }
 
                 if (ckMSTHUE.Checked == true)

@@ -8,7 +8,19 @@
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
+            $("#divSoThuTuHoaDonChuaIn").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divSoThuTuHoaDonChuaInDlg");
+                }
+            });
+
             $("#divDuongPho").dialog({
                 autoOpen: false,
                 modal: true,
@@ -55,6 +67,56 @@
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <div id="divSoThuTuHoaDonChuaInDlg">
+        <div id="divSoThuTuHoaDonChuaIn" style="display: none">
+            <asp:UpdatePanel ID="UpdivSoThuTuHoaDonChuaIn" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Số No đổi
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtSONODOIMOILX" runat="server" />
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Loại đồng hồ đổi
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:DropDownList ID="ddlLOAIDHDOILX" runat="server"></asp:DropDownList>
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Công suất đổi
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtCONGSUATDOILX" runat="server" />
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>					
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>        
+    </div>
      <asp:UpdatePanel ID="upnlTinhCuoc" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <div id="divupnlTinhCuoc" runat="server" class="crmcontainer">
@@ -82,16 +144,71 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
-                                </div>
+                                    <asp:TextBox ID="txtNAM" runat="server" Width="40px" MaxLength="4" TabIndex="2" />
+                                </div>                                                       
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Khu vực
+                            </td>
+                            <td class="crmcell">
                                 <div class="left">
-                                    <strong>Khu vực</strong>
-                                </div>
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server"
-                                        TabIndex="3">
+                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" runat="server"
+                                            TabIndex="3" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                </div>                                
+                                </div>
+                                <td class="crmcell right">
+                                    Đợt in hóa đơn
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlDOTGCS" AutoPostBack="true"
+                                             runat="server" OnSelectedIndexChanged="ddlDOTGCS_SelectedIndexChanged"></asp:DropDownList>
+                                    </div>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                <asp:Label ID="lbSoHoaDon" runat="server" Text="Số hóa đơn" Visible="false"></asp:Label>
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbSoHoaDonSum" runat="server" Font-Bold="True" Font-Size="Larger" Visible="false"></asp:Label>
+                                </div>
+                                <td class="crmcell right">
+                                    <asp:Label ID="lbSoKhachHang" runat="server" Text="Số khách hàng" Visible="false"></asp:Label>
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Label ID="lbSoKhachHangSum" runat="server" Font-Bold="True" Font-Size="Larger" Visible="false"></asp:Label>
+                                    </div>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                <asp:Label ID="lbSoHoaDonDaIn" runat="server" Text="Số hóa đơn đã in" Visible="false"></asp:Label>
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbSoHoaDonDaInSum" runat="server" Font-Bold="True" Font-Size="Larger" Visible="false"></asp:Label>
+                                </div>
+                                <td class="crmcell right">
+                                    <asp:Label ID="lbSoHoaDonChuaIn" runat="server" Text="Số hóa đơn chưa in" Visible="false"></asp:Label>
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Label ID="lbSoHoaDonChuaInSum" runat="server" Font-Bold="True" Font-Size="Larger" ForeColor="Red" Visible="false"></asp:Label>
+                                    </div>
+                                    <div class="left">
+                                        <asp:Button ID="btXemSoHoaDonChuaIn" runat="server" Text="Số thứ tự HĐ chưa in" CssClass="myButton" OnClick="btXemSoHoaDonChuaIn_Click"
+                                            CausesValidation="false" UseSubmitBehavior="false" Visible="false"
+                                            OnClientClick="openDialogAndBlock('Xem số thứ tự hóa đơn chưa in', 500, 'divSoThuTuHoaDonChuaIn')"
+                                            />
+                                    </div>
+                                </td>
                             </td>
                         </tr>
                         <tr>

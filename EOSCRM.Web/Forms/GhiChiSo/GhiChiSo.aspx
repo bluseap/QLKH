@@ -589,7 +589,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                     <strong>Khu vực</strong>
                                 </div>
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server" TabIndex="3">
+                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server" TabIndex="3" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>                                
                                 <div class="left">
@@ -666,6 +666,25 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                 </div>
                             </td>
                         </tr>
+                        <tr >    
+                            <td class="crmcell right">
+                                <asp:Label ID="lbDotInHD" runat="server" Text="Đợt in HĐ"  ></asp:Label>                               
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server" ></asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:Label ID="lbTrangThaiTinhTien" runat="server" Text="Trạng thái" ></asp:Label>    
+                                </div>
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTrangThaiTinhTien" runat="server" ></asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btTinhTien" runat="server" CssClass="myButton" Text="Tính tiền" OnClick="btTinhTien_Click" />
+                                </div>
+                            </td>
+                        </tr>
                         <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell"> 
@@ -680,19 +699,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                 </div>
                             </td>
                         </tr>
-                        <tr style="display: none">    
-                            <td class="crmcell right">
-                                <asp:Label ID="lbTrangThaiTinhTien" runat="server" Text="Trạng thái" Visible="False" ></asp:Label>                               
-                            </td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlTrangThaiTinhTien" runat="server" Visible="False"></asp:DropDownList>
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btTinhTien" runat="server" CssClass="myButton" Text="Tính tiền" Visible="False" OnClick="btTinhTien_Click" />
-                                </div>
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>

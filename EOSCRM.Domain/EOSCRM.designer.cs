@@ -62954,6 +62954,16 @@ namespace EOSCRM.Domain
 		
 		private string _GHICHU;
 		
+		private System.Nullable<int> _TONSOHOADON;
+		
+		private string _IDMADOTIN;
+		
+		private string _MANVN;
+		
+		private string _TENMAYIN;
+		
+		private string _MAYINID;
+		
 		private EntitySet<SOHOADONIL> _SOHOADONILs;
 		
     #region Extensibility Method Definitions
@@ -62976,6 +62986,16 @@ namespace EOSCRM.Domain
     partial void OnNGAYChanged();
     partial void OnGHICHUChanging(string value);
     partial void OnGHICHUChanged();
+    partial void OnTONSOHOADONChanging(System.Nullable<int> value);
+    partial void OnTONSOHOADONChanged();
+    partial void OnIDMADOTINChanging(string value);
+    partial void OnIDMADOTINChanged();
+    partial void OnMANVNChanging(string value);
+    partial void OnMANVNChanged();
+    partial void OnTENMAYINChanging(string value);
+    partial void OnTENMAYINChanged();
+    partial void OnMAYINIDChanging(string value);
+    partial void OnMAYINIDChanged();
     #endregion
 		
 		public SOHOADON()
@@ -63144,6 +63164,106 @@ namespace EOSCRM.Domain
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONSOHOADON", DbType="Int")]
+		public System.Nullable<int> TONSOHOADON
+		{
+			get
+			{
+				return this._TONSOHOADON;
+			}
+			set
+			{
+				if ((this._TONSOHOADON != value))
+				{
+					this.OnTONSOHOADONChanging(value);
+					this.SendPropertyChanging();
+					this._TONSOHOADON = value;
+					this.SendPropertyChanged("TONSOHOADON");
+					this.OnTONSOHOADONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDMADOTIN", DbType="VarChar(20)")]
+		public string IDMADOTIN
+		{
+			get
+			{
+				return this._IDMADOTIN;
+			}
+			set
+			{
+				if ((this._IDMADOTIN != value))
+				{
+					this.OnIDMADOTINChanging(value);
+					this.SendPropertyChanging();
+					this._IDMADOTIN = value;
+					this.SendPropertyChanged("IDMADOTIN");
+					this.OnIDMADOTINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANVN", DbType="VarChar(10)")]
+		public string MANVN
+		{
+			get
+			{
+				return this._MANVN;
+			}
+			set
+			{
+				if ((this._MANVN != value))
+				{
+					this.OnMANVNChanging(value);
+					this.SendPropertyChanging();
+					this._MANVN = value;
+					this.SendPropertyChanged("MANVN");
+					this.OnMANVNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENMAYIN", DbType="NVarChar(50)")]
+		public string TENMAYIN
+		{
+			get
+			{
+				return this._TENMAYIN;
+			}
+			set
+			{
+				if ((this._TENMAYIN != value))
+				{
+					this.OnTENMAYINChanging(value);
+					this.SendPropertyChanging();
+					this._TENMAYIN = value;
+					this.SendPropertyChanged("TENMAYIN");
+					this.OnTENMAYINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAYINID", DbType="VarChar(20)")]
+		public string MAYINID
+		{
+			get
+			{
+				return this._MAYINID;
+			}
+			set
+			{
+				if ((this._MAYINID != value))
+				{
+					this.OnMAYINIDChanging(value);
+					this.SendPropertyChanging();
+					this._MAYINID = value;
+					this.SendPropertyChanged("MAYINID");
+					this.OnMAYINIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SOHOADON_SOHOADONIL", Storage="_SOHOADONILs", ThisKey="MASOHD", OtherKey="MASOHD")]
 		public EntitySet<SOHOADONIL> SOHOADONILs
 		{
@@ -63208,6 +63328,18 @@ namespace EOSCRM.Domain
 		
 		private string _GHICHU;
 		
+		private System.Nullable<int> _TONSOHOADONIL;
+		
+		private string _MANVN;
+		
+		private string _MANVUP;
+		
+		private System.Nullable<System.DateTime> _NGAYUP;
+		
+		private string _TENMAYIN;
+		
+		private string _MAYINID;
+		
 		private EntityRef<SOHOADON> _SOHOADON;
 		
     #region Extensibility Method Definitions
@@ -63226,6 +63358,18 @@ namespace EOSCRM.Domain
     partial void OnNGAYChanged();
     partial void OnGHICHUChanging(string value);
     partial void OnGHICHUChanged();
+    partial void OnTONSOHOADONILChanging(System.Nullable<int> value);
+    partial void OnTONSOHOADONILChanged();
+    partial void OnMANVNChanging(string value);
+    partial void OnMANVNChanged();
+    partial void OnMANVUPChanging(string value);
+    partial void OnMANVUPChanged();
+    partial void OnNGAYUPChanging(System.Nullable<System.DateTime> value);
+    partial void OnNGAYUPChanged();
+    partial void OnTENMAYINChanging(string value);
+    partial void OnTENMAYINChanged();
+    partial void OnMAYINIDChanging(string value);
+    partial void OnMAYINIDChanged();
     #endregion
 		
 		public SOHOADONIL()
@@ -63354,6 +63498,126 @@ namespace EOSCRM.Domain
 					this._GHICHU = value;
 					this.SendPropertyChanged("GHICHU");
 					this.OnGHICHUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONSOHOADONIL", DbType="Int")]
+		public System.Nullable<int> TONSOHOADONIL
+		{
+			get
+			{
+				return this._TONSOHOADONIL;
+			}
+			set
+			{
+				if ((this._TONSOHOADONIL != value))
+				{
+					this.OnTONSOHOADONILChanging(value);
+					this.SendPropertyChanging();
+					this._TONSOHOADONIL = value;
+					this.SendPropertyChanged("TONSOHOADONIL");
+					this.OnTONSOHOADONILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANVN", DbType="VarChar(20)")]
+		public string MANVN
+		{
+			get
+			{
+				return this._MANVN;
+			}
+			set
+			{
+				if ((this._MANVN != value))
+				{
+					this.OnMANVNChanging(value);
+					this.SendPropertyChanging();
+					this._MANVN = value;
+					this.SendPropertyChanged("MANVN");
+					this.OnMANVNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANVUP", DbType="VarChar(10)")]
+		public string MANVUP
+		{
+			get
+			{
+				return this._MANVUP;
+			}
+			set
+			{
+				if ((this._MANVUP != value))
+				{
+					this.OnMANVUPChanging(value);
+					this.SendPropertyChanging();
+					this._MANVUP = value;
+					this.SendPropertyChanged("MANVUP");
+					this.OnMANVUPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYUP", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NGAYUP
+		{
+			get
+			{
+				return this._NGAYUP;
+			}
+			set
+			{
+				if ((this._NGAYUP != value))
+				{
+					this.OnNGAYUPChanging(value);
+					this.SendPropertyChanging();
+					this._NGAYUP = value;
+					this.SendPropertyChanged("NGAYUP");
+					this.OnNGAYUPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENMAYIN", DbType="NVarChar(50)")]
+		public string TENMAYIN
+		{
+			get
+			{
+				return this._TENMAYIN;
+			}
+			set
+			{
+				if ((this._TENMAYIN != value))
+				{
+					this.OnTENMAYINChanging(value);
+					this.SendPropertyChanging();
+					this._TENMAYIN = value;
+					this.SendPropertyChanged("TENMAYIN");
+					this.OnTENMAYINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAYINID", DbType="VarChar(20)")]
+		public string MAYINID
+		{
+			get
+			{
+				return this._MAYINID;
+			}
+			set
+			{
+				if ((this._MAYINID != value))
+				{
+					this.OnMAYINIDChanging(value);
+					this.SendPropertyChanging();
+					this._MAYINID = value;
+					this.SendPropertyChanged("MAYINID");
+					this.OnMAYINIDChanged();
 				}
 			}
 		}

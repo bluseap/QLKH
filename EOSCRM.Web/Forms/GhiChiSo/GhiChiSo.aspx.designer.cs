@@ -166,22 +166,22 @@ namespace EOSCRM.Web.Forms.GhiChiSo {
         protected global::System.Web.UI.WebControls.DropDownList ddlLOAIKH;
         
         /// <summary>
-        /// btnSearch control.
+        /// lbDotInHD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Label lbDotInHD;
         
         /// <summary>
-        /// btnSave control.
+        /// ddlDOTGCS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDOTGCS;
         
         /// <summary>
         /// lbTrangThaiTinhTien control.
@@ -209,6 +209,24 @@ namespace EOSCRM.Web.Forms.GhiChiSo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btTinhTien;
+        
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
         /// upnlGrid control.
