@@ -136,6 +136,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             ddlTrangThaiTinhTien.Items.Add(new ListItem("Tính khối lượng tiêu thụ", "TINHKLTIEUTHU"));
             ddlTrangThaiTinhTien.Items.Add(new ListItem("Lấy giá từng bậc chưa thuế", "M3GIACHUATHUE"));
             ddlTrangThaiTinhTien.Items.Add(new ListItem("Tính tổng tiền", "TINHTIENTUNGMUC"));
+            ddlTrangThaiTinhTien.Items.Add(new ListItem("Reset in hóa đơn", "RESETINHD0"));
 
             if (b == "nguyen")
             {
@@ -653,21 +654,53 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         {
             if (ddlTrangThaiTinhTien.SelectedValue != "%")
             {  
-                var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlDOTGCS.SelectedValue,
-                    ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
-
-                DataTable dtth = ketqua.Tables[0];
-
-                if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                if (ddlTrangThaiTinhTien.SelectedValue == "RESETINHD0")
                 {
-                    CloseWaitingDialog();
-                    ShowError("Lỗi tính khối lượng tiêu thụ. Kiểm tra lại.", "");
+                    if (ddlDOTGCS.SelectedValue == "%")
+                    {
+                        var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlDOTGCS.SelectedValue,
+                            ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+
+                        DataTable dtth = ketqua.Tables[0];
+
+                        if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                        {
+                            CloseWaitingDialog();
+                            ShowError("Lỗi Reset in hóa đơn = 0. Kiểm tra lại.", "");
+                            return;
+                        }
+
+                        ddlTrangThaiTinhTien.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        CloseWaitingDialog();
+                        ShowError("Lỗi Reset in hóa đơn = 0. Kiểm tra lại.", "");
+                        return;
+                    }
+
+                    upnlGhiChiSo.Update();
+                }
+                else
+                {
+                    var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlDOTGCS.SelectedValue,
+                        ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+
+                    DataTable dtth = ketqua.Tables[0];
+
+                    if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                    {
+                        CloseWaitingDialog();
+                        ShowError("Lỗi tính khối lượng tiêu thụ. Kiểm tra lại.", "");
+                        return;
+                    }
                 }
             }
             else
             {
                 CloseWaitingDialog();
                 ShowError("Xin chọn trạng thái tính tiền.", "");
+                return;
             }
         }
 

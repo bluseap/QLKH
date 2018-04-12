@@ -2084,9 +2084,24 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
+                    if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else if (objDb.TTNT == "NT_A")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else
+                    {
+                        // update don dang ky
+                        objDb.TTCT = TTCT.CT_N.ToString();
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+
                     // update don dang ky
-                    objDb.TTCT = TTCT.CT_N.ToString();
-                    objDb.TTTK = TTTK.TK_A.ToString();
+                    //objDb.TTCT = TTCT.CT_N.ToString();
+                    //objDb.TTTK = TTTK.TK_A.ToString();
 
                     // update thiet ke
                     var tk = _db.THIETKEPOs.Where(t => t.MADDKPO.Equals(objDb.MADDKPO)).SingleOrDefault();
@@ -2172,9 +2187,23 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
+                    if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else if (objDb.TTNT == "NT_A")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else
+                    {
+                        // update don dang ky
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+
                     // update don dang ky
                     //objDb.TTCT = TTCT.CT_N.ToString();
-                    objDb.TTTK = TTTK.TK_A.ToString();
+                    //objDb.TTTK = TTTK.TK_A.ToString();
 
                     // update thiet ke
                     var tk = _db.THIETKEPOs.Where(t => t.MADDKPO.Equals(objDb.MADDKPO)).SingleOrDefault();
@@ -2351,9 +2380,24 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
+                    if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else if (objDb.TTNT == "NT_A")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else
+                    {
+                        // update don dang ky
+                        objDb.TTCT = TTCT.CT_N.ToString();
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+
                     // update don dang ky
-                    objDb.TTCT = TTCT.CT_N.ToString();
-                    objDb.TTTK = TTTK.TK_A.ToString();
+                    //objDb.TTCT = TTCT.CT_N.ToString();
+                    //objDb.TTTK = TTTK.TK_A.ToString();
 
                     // update thiet ke
                     var tk = _db.THIETKEPOs.Where(t => t.MADDKPO.Equals(objDb.MADDKPO)).SingleOrDefault();
@@ -2440,6 +2484,10 @@ namespace EOSCRM.Dao
                     }
 
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                    }
+                    else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
                     }

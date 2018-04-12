@@ -339,10 +339,6 @@ namespace EOSCRM.Web.Forms.DanhMuc
             lnkBtnID.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(lnkBtnID) + "')");
         }
 
-
-
-
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             var info = ItemObj;

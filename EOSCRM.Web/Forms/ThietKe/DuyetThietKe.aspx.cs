@@ -260,8 +260,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                     Message msg;
                     if (nhanvien.MAKV == "X") // long xuyen
-                    {
-                        
+                    {                        
                         msg = ddkDao.ApproveThietKeListDuyetCT(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
                         ddkDao.ApproveThietKeListDuyetCT2(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
                         ddkDao.ApproveChietTinhListDuyetCT(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
