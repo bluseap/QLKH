@@ -658,8 +658,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 {
                     if (ddlDOTGCS.SelectedValue == "%")
                     {
-                        var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlDOTGCS.SelectedValue,
-                            ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+                        var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
+                            ddlDOTGCS.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
 
                         DataTable dtth = ketqua.Tables[0];
 
@@ -683,8 +683,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 }
                 else
                 {
-                    var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlDOTGCS.SelectedValue,
-                        ddlKHUVUC.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+                    var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
+                        ddlDOTGCS.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
 
                     DataTable dtth = ketqua.Tables[0];
 

@@ -2702,6 +2702,10 @@
       <Column Name="MANVN" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="TENMAYIN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="MAYINID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TONGHOADONCONLAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGHOADON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGHOADONCONLAICHUAIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGHOADONDAIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="SOHOADON_SOHOADONIL" Member="SOHOADONILs" ThisKey="MASOHD" OtherKey="MASOHD" Type="SOHOADONIL" />
     </Type>
   </Table>
@@ -2719,6 +2723,10 @@
       <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="TENMAYIN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="MAYINID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="TONGHOADONCONLAIIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGHOADONIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGHOADONCONLAICHUAINIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGHOADONDAINIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="SOHOADON_SOHOADONIL" Member="SOHOADON" ThisKey="MASOHD" OtherKey="MASOHD" Type="SOHOADON" IsForeignKey="true" />
     </Type>
   </Table>

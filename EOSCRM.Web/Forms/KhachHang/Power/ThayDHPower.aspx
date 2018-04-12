@@ -567,7 +567,7 @@
                                         <asp:ListItem Text="Hư hỏng" Value="H" />
                                         <asp:ListItem Text="Đồng hồ gắn tạm" Value="K" />
                                         <asp:ListItem Text="Mua" Value="M" />
-                                                 
+                                        <asp:ListItem Text="Luật đo lường" Value="V" />               
                                     </asp:DropDownList>
                                 </div>                                
                             </td>

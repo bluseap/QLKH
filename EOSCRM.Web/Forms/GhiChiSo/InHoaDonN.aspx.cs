@@ -10,11 +10,13 @@ using EOSCRM.Web.Shared;
 using EOSCRM.Web.UserControls;
 using EOSCRM.Controls;
 using System.IO;
+using System.Data;
 
 namespace EOSCRM.Web.Forms.GhiChiSo
 {
     public partial class InHoaDonN : Authentication
     {
+        private readonly ReportClass _rpClass = new ReportClass();
         private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
         private readonly DotInHDDao _dihdDao = new DotInHDDao();
         private readonly SoHoaDonDao _shdDao = new SoHoaDonDao();
@@ -157,6 +159,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 var hdcuoi = hddau + hdcong;
 
                 txtHDCUOI.Text = hdcuoi.ToString();
+                lblSOHDCL.Text = (hdcuoi - hddau + 1).ToString();
+               
             }
             catch (System.Exception ex)
             {
@@ -173,6 +177,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         protected void btnBaoCaoThuy_Click(object sender, EventArgs e)
         {            
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string manvnhap = loginInfo.Username;
+
             var list = _shdDao.GetListSHD(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue);
             var hddau = int.Parse(txtHDDAU.Text.Trim());
             var hdcuoi = int.Parse(txtHDCUOI.Text.Trim());
@@ -206,7 +214,26 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                     return;
                 }
 
+                info.TENMAYIN = txtTenMayIn.Text.Trim();
+                info.MANVN = manvnhap;
+                info.IDMADOTIN = ddlDOTGCS.SelectedValue;
+
+                int tonsohoadon = (hdcuoi - hddau) + 1;
+                info.TONSOHOADON = tonsohoadon;
+
+                int tonghoadon = Convert.ToInt32(lbSoHoaDonSum.Text.Trim());
+                info.TONGHOADON = tonghoadon;
+
+                int tonghoadondain = Convert.ToInt32(lbSoHoaDonDaInSum.Text.Trim());
+                info.TONGHOADONDAIN = tonghoadondain;
+
+                int tonghoadonchuain = Convert.ToInt32(lbSoHoaDonChuaInSum.Text.Trim());
+                info.TONGHOADONCONLAI = tonghoadonchuain;                
+
+                info.TONGHOADONCONLAICHUAIN = tonghoadonchuain - tonsohoadon;
+
                 Message msg;
+
                 msg = _shdDao.Insert(info);
             }
 
@@ -335,13 +362,14 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         {
             BindGridSHD();
 
-            var dtDSINHOADON1 =
-                new ReportClass().InHoaDonN1(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue)
-                  .Tables[0];
-            foreach (System.Data.DataRow row in dtDSINHOADON1.Rows)
-            {
-                lblSOHDCL.Text = row["SOHDCL"].ToString();
-            }            
+            //var dtDSINHOADON1 =
+            //    new ReportClass().InHoaDonN1(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue)
+            //      .Tables[0];
+
+            //foreach (System.Data.DataRow row in dtDSINHOADON1.Rows)
+            //{
+            //    lblSOHDCL.Text = row["SOHDCL"].ToString();
+            //}            
         }
 
         public void HideSHD()
@@ -509,30 +537,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 }
             }
             catch { }
-        }
-
-        private void LoadSumSoHoaDonTheoDotIn()
-        {
-            try
-            {
-                if (ddlDOTGCS.SelectedValue != "%")
-                {
-                    lbSoHoaDonSum.Text = "0";
-                    lbSoKhachHangSum.Text = "0";
-                    lbSoHoaDonDaInSum.Text = "0";
-                    lbSoHoaDonChuaInSum.Text = "0";
-                }
-                else
-                {
-
-                    lbSoHoaDonSum.Text = "0";
-                    lbSoKhachHangSum.Text = "0";
-                    lbSoHoaDonDaInSum.Text = "0";
-                    lbSoHoaDonChuaInSum.Text = "0";
-                }
-            }
-            catch { }
-        }
+        }       
 
         private void IsVisibleSumSoHoaDon(bool para)
         {
@@ -555,17 +560,50 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             {
                 IsVisibleSumSoHoaDon(true);
 
-                LoadSumSoHoaDonTheoDotIn();
+                LoadSumSoHoaDonTheoDotIn("nguyen");
             }
             else
             {
                 IsVisibleSumSoHoaDon(false);
 
-                LoadSumSoHoaDonTheoDotIn();
+                LoadSumSoHoaDonTheoDotIn("%");
             }
 
             upnlTinhCuoc.Update();
 
+        }
+
+        private void LoadSumSoHoaDonTheoDotIn(string para)
+        {
+            try
+            {
+                if (para != "%")
+                {
+                    var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
+                        ddlDOTGCS.SelectedValue, "", "SumSoHoaDonKH");
+
+                    DataTable dtth = ketqua.Tables[0];
+
+                    var sokhachhang = dtth.Rows[0]["SOKHACHHANG"].ToString();
+                    var sohoadon = dtth.Rows[0]["SOHOADON"].ToString();
+                    var sohoadondain = dtth.Rows[0]["SOHOADONDAIN"].ToString();
+                    var sohoadonchuain = dtth.Rows[0]["SOHOADONCHUAIN"].ToString();
+
+                    lbSoKhachHangSum.Text = sokhachhang;
+                    lbSoHoaDonSum.Text = sohoadon;
+
+                    lbSoHoaDonDaInSum.Text = sohoadondain;
+                    lbSoHoaDonChuaInSum.Text = sohoadonchuain;
+                }
+                else
+                {
+                    lbSoHoaDonSum.Text = "0";
+                    lbSoKhachHangSum.Text = "0";
+                    lbSoHoaDonDaInSum.Text = "0";
+                    lbSoHoaDonChuaInSum.Text = "0";
+                }
+            }
+            catch { }
         }
 
         protected void btXemSoHoaDonChuaIn_Click(object sender, EventArgs e)
@@ -574,6 +612,18 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             {
                 UnblockDialog("divSoThuTuHoaDonChuaIn");
                 CloseWaitingDialog();
+            }
+            catch { }
+        }
+
+        protected void txtHDCUOI_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var hddau = int.Parse(txtHDDAU.Text.Trim());
+                var hdcuoi = int.Parse(txtHDCUOI.Text.Trim());
+
+                lblSOHDCL.Text = (hdcuoi - hddau + 1).ToString();
             }
             catch { }
         }

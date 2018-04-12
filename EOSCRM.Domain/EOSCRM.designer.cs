@@ -62964,6 +62964,14 @@ namespace EOSCRM.Domain
 		
 		private string _MAYINID;
 		
+		private System.Nullable<int> _TONGHOADONCONLAI;
+		
+		private System.Nullable<int> _TONGHOADON;
+		
+		private System.Nullable<int> _TONGHOADONCONLAICHUAIN;
+		
+		private System.Nullable<int> _TONGHOADONDAIN;
+		
 		private EntitySet<SOHOADONIL> _SOHOADONILs;
 		
     #region Extensibility Method Definitions
@@ -62996,6 +63004,14 @@ namespace EOSCRM.Domain
     partial void OnTENMAYINChanged();
     partial void OnMAYINIDChanging(string value);
     partial void OnMAYINIDChanged();
+    partial void OnTONGHOADONCONLAIChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONCONLAIChanged();
+    partial void OnTONGHOADONChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONChanged();
+    partial void OnTONGHOADONCONLAICHUAINChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONCONLAICHUAINChanged();
+    partial void OnTONGHOADONDAINChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONDAINChanged();
     #endregion
 		
 		public SOHOADON()
@@ -63264,6 +63280,86 @@ namespace EOSCRM.Domain
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONCONLAI", DbType="Int")]
+		public System.Nullable<int> TONGHOADONCONLAI
+		{
+			get
+			{
+				return this._TONGHOADONCONLAI;
+			}
+			set
+			{
+				if ((this._TONGHOADONCONLAI != value))
+				{
+					this.OnTONGHOADONCONLAIChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONCONLAI = value;
+					this.SendPropertyChanged("TONGHOADONCONLAI");
+					this.OnTONGHOADONCONLAIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADON", DbType="Int")]
+		public System.Nullable<int> TONGHOADON
+		{
+			get
+			{
+				return this._TONGHOADON;
+			}
+			set
+			{
+				if ((this._TONGHOADON != value))
+				{
+					this.OnTONGHOADONChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADON = value;
+					this.SendPropertyChanged("TONGHOADON");
+					this.OnTONGHOADONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONCONLAICHUAIN", DbType="Int")]
+		public System.Nullable<int> TONGHOADONCONLAICHUAIN
+		{
+			get
+			{
+				return this._TONGHOADONCONLAICHUAIN;
+			}
+			set
+			{
+				if ((this._TONGHOADONCONLAICHUAIN != value))
+				{
+					this.OnTONGHOADONCONLAICHUAINChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONCONLAICHUAIN = value;
+					this.SendPropertyChanged("TONGHOADONCONLAICHUAIN");
+					this.OnTONGHOADONCONLAICHUAINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONDAIN", DbType="Int")]
+		public System.Nullable<int> TONGHOADONDAIN
+		{
+			get
+			{
+				return this._TONGHOADONDAIN;
+			}
+			set
+			{
+				if ((this._TONGHOADONDAIN != value))
+				{
+					this.OnTONGHOADONDAINChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONDAIN = value;
+					this.SendPropertyChanged("TONGHOADONDAIN");
+					this.OnTONGHOADONDAINChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SOHOADON_SOHOADONIL", Storage="_SOHOADONILs", ThisKey="MASOHD", OtherKey="MASOHD")]
 		public EntitySet<SOHOADONIL> SOHOADONILs
 		{
@@ -63340,6 +63436,14 @@ namespace EOSCRM.Domain
 		
 		private string _MAYINID;
 		
+		private System.Nullable<int> _TONGHOADONCONLAIIL;
+		
+		private System.Nullable<int> _TONGHOADONIL;
+		
+		private System.Nullable<int> _TONGHOADONCONLAICHUAINIL;
+		
+		private System.Nullable<int> _TONGHOADONDAINIL;
+		
 		private EntityRef<SOHOADON> _SOHOADON;
 		
     #region Extensibility Method Definitions
@@ -63370,6 +63474,14 @@ namespace EOSCRM.Domain
     partial void OnTENMAYINChanged();
     partial void OnMAYINIDChanging(string value);
     partial void OnMAYINIDChanged();
+    partial void OnTONGHOADONCONLAIILChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONCONLAIILChanged();
+    partial void OnTONGHOADONILChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONILChanged();
+    partial void OnTONGHOADONCONLAICHUAINILChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONCONLAICHUAINILChanged();
+    partial void OnTONGHOADONDAINILChanging(System.Nullable<int> value);
+    partial void OnTONGHOADONDAINILChanged();
     #endregion
 		
 		public SOHOADONIL()
@@ -63618,6 +63730,86 @@ namespace EOSCRM.Domain
 					this._MAYINID = value;
 					this.SendPropertyChanged("MAYINID");
 					this.OnMAYINIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONCONLAIIL", DbType="Int")]
+		public System.Nullable<int> TONGHOADONCONLAIIL
+		{
+			get
+			{
+				return this._TONGHOADONCONLAIIL;
+			}
+			set
+			{
+				if ((this._TONGHOADONCONLAIIL != value))
+				{
+					this.OnTONGHOADONCONLAIILChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONCONLAIIL = value;
+					this.SendPropertyChanged("TONGHOADONCONLAIIL");
+					this.OnTONGHOADONCONLAIILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONIL", DbType="Int")]
+		public System.Nullable<int> TONGHOADONIL
+		{
+			get
+			{
+				return this._TONGHOADONIL;
+			}
+			set
+			{
+				if ((this._TONGHOADONIL != value))
+				{
+					this.OnTONGHOADONILChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONIL = value;
+					this.SendPropertyChanged("TONGHOADONIL");
+					this.OnTONGHOADONILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONCONLAICHUAINIL", DbType="Int")]
+		public System.Nullable<int> TONGHOADONCONLAICHUAINIL
+		{
+			get
+			{
+				return this._TONGHOADONCONLAICHUAINIL;
+			}
+			set
+			{
+				if ((this._TONGHOADONCONLAICHUAINIL != value))
+				{
+					this.OnTONGHOADONCONLAICHUAINILChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONCONLAICHUAINIL = value;
+					this.SendPropertyChanged("TONGHOADONCONLAICHUAINIL");
+					this.OnTONGHOADONCONLAICHUAINILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TONGHOADONDAINIL", DbType="Int")]
+		public System.Nullable<int> TONGHOADONDAINIL
+		{
+			get
+			{
+				return this._TONGHOADONDAINIL;
+			}
+			set
+			{
+				if ((this._TONGHOADONDAINIL != value))
+				{
+					this.OnTONGHOADONDAINILChanging(value);
+					this.SendPropertyChanging();
+					this._TONGHOADONDAINIL = value;
+					this.SendPropertyChanged("TONGHOADONDAINIL");
+					this.OnTONGHOADONDAINILChanged();
 				}
 			}
 		}
