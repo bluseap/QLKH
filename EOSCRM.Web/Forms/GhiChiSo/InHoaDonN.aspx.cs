@@ -16,6 +16,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 {
     public partial class InHoaDonN : Authentication
     {
+        private readonly KhachHangDao _khDao = new KhachHangDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
         private readonly DotInHDDao _dihdDao = new DotInHDDao();
@@ -113,7 +114,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 header.ModuleName = Resources.Message.MODULE_GHICHISO;
                 header.TitlePage = Resources.Message.PAGE_GCS_INHOADONN;
             }
-            //CommonFunc.SetPropertiesForGrid(gvDuongPho);
+
+            CommonFunc.SetPropertiesForGrid(gvTTTT);
         }
 
         private void LoadStaticReferences()
@@ -219,23 +221,37 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 info.IDMADOTIN = ddlDOTGCS.SelectedValue;
 
                 int tonsohoadon = (hdcuoi - hddau) + 1;
-                info.TONSOHOADON = tonsohoadon;
+                info.TONSOHOADON = tonsohoadon; // so hoa don dang in
 
                 int tonghoadon = Convert.ToInt32(lbSoHoaDonSum.Text.Trim());
-                info.TONGHOADON = tonghoadon;
+                info.TONGHOADON = tonghoadon; // tong so hoa don in KLTT > 0
 
                 int tonghoadondain = Convert.ToInt32(lbSoHoaDonDaInSum.Text.Trim());
-                info.TONGHOADONDAIN = tonghoadondain;
+                info.TONGHOADONDAIN = tonghoadondain; // tong hoa don da in
 
                 int tonghoadonchuain = Convert.ToInt32(lbSoHoaDonChuaInSum.Text.Trim());
-                info.TONGHOADONCONLAI = tonghoadonchuain;                
+                info.TONGHOADONCONLAI = tonghoadonchuain; // tong hoa don chua in               
 
-                info.TONGHOADONCONLAICHUAIN = tonghoadonchuain - tonsohoadon;
+                info.TONGHOADONCONLAICHUAIN = tonghoadonchuain - tonsohoadon;  // tong hoa don con lai chua in
 
                 Message msg;
 
                 msg = _shdDao.Insert(info);
             }
+
+
+            var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
+                        ddlDOTGCS.SelectedValue, hddau, hdcuoi,  "", "UPKHDANGIN");
+
+            DataTable dtth = ketqua.Tables[0];
+
+            if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+            {
+                CloseWaitingDialog();
+                ShowError("Lỗi tính khối lượng tiêu thụ. Kiểm tra lại.", "");
+                return;
+            }
+
 
             var dtDSINHOADON =
                 new ReportClass().InHoaDonN(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,int.Parse(txtHDDAU.Text.Trim()),int.Parse(txtHDCUOI.Text.Trim())).
@@ -580,7 +596,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 if (para != "%")
                 {
                     var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
-                        ddlDOTGCS.SelectedValue, "", "SumSoHoaDonKH");
+                        ddlDOTGCS.SelectedValue, 0, 0, "", "SumSoHoaDonKH");
 
                     DataTable dtth = ketqua.Tables[0];
 
@@ -609,7 +625,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         protected void btXemSoHoaDonChuaIn_Click(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 UnblockDialog("divSoThuTuHoaDonChuaIn");
                 CloseWaitingDialog();
             }
@@ -627,6 +643,34 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             }
             catch { }
         }
+
+        private void BindSoHoaDonTieuthu()
+        {        
+            var list = _khDao.GetListTieuThuSoHoaDonChuaIn(Convert.ToInt16(txtNAM.Text.Trim()), Convert.ToInt16(ddlTHANG.SelectedValue), ddlKHUVUC.SelectedValue) ;
+
+            gvTTTT.DataSource = list;
+            gvTTTT.PagerInforText = list.Count.ToString();
+            gvTTTT.DataBind();
+        }
+
+        #region gvTTTT
+        protected void gvTTTT_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                gvTTTT.PageIndex = e.NewPageIndex;
+
+                BindSoHoaDonTieuthu();
+
+                UpdivSoThuTuHoaDonChuaIn.Update();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }        
+        #endregion
+
 
     }
 }

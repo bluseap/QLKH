@@ -71,47 +71,34 @@
         <div id="divSoThuTuHoaDonChuaIn" style="display: none">
             <asp:UpdatePanel ID="UpdivSoThuTuHoaDonChuaIn" runat="server" UpdateMode="Conditional">
 				<ContentTemplate>
-				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
+				    <table cellpadding="3" cellspacing="1" style="width: 800px;">
                         <tr>
-                            <td class="crmcontainer">
-                                <table class="crmtable">
-                                    <tbody>
-                                        <tr>
-                                            <td class="crmcell right">
-                                                Số No đổi
-                                            </td>
-                                            <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:TextBox ID="txtSONODOIMOILX" runat="server" />
-                                                </div>                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">
-                                                Loại đồng hồ đổi
-                                            </td>
-                                            <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:DropDownList ID="ddlLOAIDHDOILX" runat="server"></asp:DropDownList>
-                                                </div>                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">
-                                                Công suất đổi
-                                            </td>
-                                            <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:TextBox ID="txtCONGSUATDOILX" runat="server" />
-                                                </div>
-                                                
-                                            </td>
-                                        </tr>
-                                       
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>					
+							<td class="crmcontainer">	
+							    <eoscrm:Grid ID="gvTTTT" runat="server" UseCustomPager="true" PageSize="15"
+                                    OnPageIndexChanging="gvTTTT_PageIndexChanging" > 
+                                    <PagerSettings FirstPageText="kỳ" PageButtonCount="2" />
+                                    <Columns>
+                                        <asp:TemplateField HeaderStyle-Width="1%" HeaderText="#">
+                                            <ItemTemplate>
+                                                <%# Container.DataItemIndex + 1%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField HeaderStyle-Width="6%" HeaderText="#" DataField="IDKH" />                                        
+                                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Danh số">
+                                            <ItemTemplate>
+                                                <%# Eval("MADP").ToString() + Eval("MADB").ToString() %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>                                                                                
+                                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Số hóa đơn">
+                                            <ItemTemplate>
+                                                <%# Eval("STTNI").ToString() %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>      
+                                      
+                                    </Columns>
+                                </eoscrm:Grid>                                 
+							</td>
+						</tr>
 					</table>
 				</ContentTemplate>
 	        </asp:UpdatePanel>

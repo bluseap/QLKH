@@ -1514,6 +1514,12 @@ namespace EOSCRM.Dao
                 .OrderByDescending(tt => tt.NAM).ToList();
         }
 
+        public List<TIEUTHU> GetListTieuThuSoHoaDonChuaIn(int nam, int thang, string makv)
+        {
+            return _db.TIEUTHUs.Where(tt => tt.MAKV.Equals(makv) && tt.NAM.Equals(nam) && tt.THANG.Equals(thang) && tt.INHD.Equals(false))
+                .OrderBy(tt => tt.STTNI).ToList();
+        }
+
         public List<TTSDKHACHHANG> GetTTSDList(int thang, int nam, string ttsd)
         {
             return

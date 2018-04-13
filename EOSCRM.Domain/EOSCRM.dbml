@@ -2379,6 +2379,7 @@
       <Column Name="GHICHUCSLX" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Column Name="MANVGCCSLX" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NGAYGCCSLX" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STTNI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="TIEUTHU_INHOADON" Member="INHOADONs" ThisKey="IDKH,NAM,THANG" OtherKey="IDKH,NAM,THANG" Type="INHOADON" />
       <Association Name="TIEUTHU_THUTAIQUAY" Member="THUTAIQUAYs" ThisKey="IDKH,NAM,THANG" OtherKey="IDKH,NAM,THANG" Type="THUTAIQUAY" />
       <Association Name="DANHSACHCOQUANTT_TIEUTHU" Member="DANHSACHCOQUANTT" ThisKey="MACQ" OtherKey="MACQ" Type="DANHSACHCOQUANTT" IsForeignKey="true" />

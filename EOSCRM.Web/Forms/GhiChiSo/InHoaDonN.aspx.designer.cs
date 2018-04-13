@@ -22,31 +22,13 @@ namespace EOSCRM.Web.Forms.GhiChiSo {
         protected global::System.Web.UI.UpdatePanel UpdivSoThuTuHoaDonChuaIn;
         
         /// <summary>
-        /// txtSONODOIMOILX control.
+        /// gvTTTT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSONODOIMOILX;
-        
-        /// <summary>
-        /// ddlLOAIDHDOILX control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLOAIDHDOILX;
-        
-        /// <summary>
-        /// txtCONGSUATDOILX control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCONGSUATDOILX;
+        protected global::EOSCRM.Controls.Grid gvTTTT;
         
         /// <summary>
         /// upnlTinhCuoc control.

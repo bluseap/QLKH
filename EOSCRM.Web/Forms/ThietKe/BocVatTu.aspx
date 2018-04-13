@@ -616,6 +616,20 @@
                         </table>
                      </td>
                 </tr>
+                <tr>
+                    <td>
+		               <table class="crmtable">
+		                    <tr>
+                                <td class="crmcell right"> </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Button ID="btSaveMauThietKe" runat="server" CssClass="myButton" Text="Lưu mẫu thiết kế" OnClick="btSaveMauThietKe_Click" />
+                                    </div>                                                                      
+                                </td>
+                                </tr>
+                        </table>
+                     </td>
+                </tr>
 		        <tr>
                     <td class="header">Chi phí đào lắp</td> 
 		        </tr>

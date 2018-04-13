@@ -629,22 +629,24 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             if (dotinhd.MADOTIN == "NNNTD1")
             {
                 bool khoasodotin = _gcspoDao.IsLockDotIn(ddlDOTGCS.SelectedValue, kyForm, ddlKHUVUC.SelectedValue);
-                if (khoasodotin == true)
+                if (khoasodotin == false)
                 {
                     CloseWaitingDialog();
-                    ShowInfor("Đã khoá sổ nhờ thu ghi chỉ số.");
+                    ShowInfor("Chưa khoá sổ nhờ thu ghi chỉ số.");
                     return;
                 }
             }
-
-            //khoa so theo duong pho
-            var duongphodotin = dpDao.GetDotIn(ddlDOTGCS.SelectedValue);
-            bool khoasodp = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, duongphodotin.MADP);
-            if (khoasodp == true)
+            else
             {
-                CloseWaitingDialog();
-                ShowInfor("Đã khoá sổ ghi chỉ số.");
-                return;
+                //khoa so theo duong pho
+                var duongphodotin = dpDao.GetDotIn(ddlDOTGCS.SelectedValue);
+                bool khoasodp = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, duongphodotin.MADP);
+                if (khoasodp == false)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Chưa khoá sổ ghi chỉ số.");
+                    return;
+                }
             }
 
             TinhTienMoi();
@@ -659,7 +661,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                     if (ddlDOTGCS.SelectedValue == "%")
                     {
                         var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
-                            ddlDOTGCS.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+                            ddlDOTGCS.SelectedValue, 0, 0, "", ddlTrangThaiTinhTien.SelectedValue);
 
                         DataTable dtth = ketqua.Tables[0];
 
@@ -684,7 +686,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 else
                 {
                     var ketqua = _rpClass.TinhTienTheoBac(Convert.ToInt16(ddlTHANG.SelectedValue), Convert.ToInt16(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue,
-                        ddlDOTGCS.SelectedValue, "", ddlTrangThaiTinhTien.SelectedValue);
+                        ddlDOTGCS.SelectedValue, 0, 0, "", ddlTrangThaiTinhTien.SelectedValue);
 
                     DataTable dtth = ketqua.Tables[0];
 

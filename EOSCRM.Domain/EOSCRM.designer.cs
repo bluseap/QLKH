@@ -53702,6 +53702,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<System.DateTime> _NGAYGCCSLX;
 		
+		private System.Nullable<int> _STTNI;
+		
 		private EntitySet<INHOADON> _INHOADONs;
 		
 		private EntitySet<THUTAIQUAY> _THUTAIQUAYs;
@@ -53952,6 +53954,8 @@ namespace EOSCRM.Domain
     partial void OnMANVGCCSLXChanged();
     partial void OnNGAYGCCSLXChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYGCCSLXChanged();
+    partial void OnSTTNIChanging(System.Nullable<int> value);
+    partial void OnSTTNIChanged();
     #endregion
 		
 		public TIEUTHU()
@@ -56231,6 +56235,26 @@ namespace EOSCRM.Domain
 					this._NGAYGCCSLX = value;
 					this.SendPropertyChanged("NGAYGCCSLX");
 					this.OnNGAYGCCSLXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STTNI", DbType="Int")]
+		public System.Nullable<int> STTNI
+		{
+			get
+			{
+				return this._STTNI;
+			}
+			set
+			{
+				if ((this._STTNI != value))
+				{
+					this.OnSTTNIChanging(value);
+					this.SendPropertyChanging();
+					this._STTNI = value;
+					this.SendPropertyChanged("STTNI");
+					this.OnSTTNIChanged();
 				}
 			}
 		}

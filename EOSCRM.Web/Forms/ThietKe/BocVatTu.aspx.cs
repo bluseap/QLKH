@@ -914,20 +914,8 @@ namespace EOSCRM.Web.Forms.ThietKe
         }        
 
         protected void ddlMBTHIETKE_SelectedIndexChanged1(object sender, EventArgs e)
-        {               
-            var mamtk = ddlMBTHIETKE.SelectedValue;
-            var maddk = ThietKe.MADDK;
-
-            try
-            {
-                _rpC.UPMAUTK(maddk.ToString(), mamtk.ToString(),
-                    string.Empty.Equals(txtTENKHBP.Text) ? " " : txtTENKHBP.Text.ToString(),
-                    string.Empty.Equals(txtTENKHBT.Text) ? " " : txtTENKHBT.Text.ToString(),
-                    string.Empty.Equals(txtDANHSOBP.Text) ? " " : txtDANHSOBP.Text.ToString(),
-                    string.Empty.Equals(txtDANHSOBT.Text) ? " " : txtDANHSOBT.Text.ToString());
-                ShowInFor("Cập nhật sơ đồ thiết kế thành công..");
-            }
-            catch { ShowError("Lỗi cập nhật mẫu sơ đồ thiết kế."); }
+        {
+            SaveMauThietke();
 
            /* if (mamtk.ToString() == "ALL")
             {
@@ -947,6 +935,27 @@ namespace EOSCRM.Web.Forms.ThietKe
                 catch { ShowError("Lỗi cập nhật mẫu sơ đồ thiết kế."); }
             }*/
             
+        }
+
+        private void SaveMauThietke()
+        {
+            try
+            {
+                var mamtk = ddlMBTHIETKE.SelectedValue;
+                var maddk = ThietKe.MADDK;
+
+                _rpC.UPMAUTK(maddk.ToString(), mamtk.ToString(),
+                    string.Empty.Equals(txtTENKHBP.Text) ? " " : txtTENKHBP.Text.ToString(),
+                    string.Empty.Equals(txtTENKHBT.Text) ? " " : txtTENKHBT.Text.ToString(),
+                    string.Empty.Equals(txtDANHSOBP.Text) ? " " : txtDANHSOBP.Text.ToString(),
+                    string.Empty.Equals(txtDANHSOBT.Text) ? " " : txtDANHSOBT.Text.ToString());
+
+                ShowInFor("Cập nhật sơ đồ thiết kế thành công..");
+            }
+            catch 
+            { 
+                ShowError("Lỗi cập nhật mẫu sơ đồ thiết kế."); 
+            }
         }
 
         private void LoadKhuVucUpdate()
@@ -1021,6 +1030,15 @@ namespace EOSCRM.Web.Forms.ThietKe
             { 
                 ShowError(ex.ToString()); 
             }
+        }
+
+        protected void btSaveMauThietKe_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveMauThietke();
+            }
+            catch { }
         }
 
 
