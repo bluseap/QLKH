@@ -626,7 +626,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             var kyForm = new DateTime(namForm, thangForm, 1);
             
             var dotinhd = _diDao.Get(ddlDOTGCS.SelectedValue);
-            if (dotinhd.MADOTIN == "NNNTD1")
+            if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
             {
                 bool khoasodotin = _gcspoDao.IsLockDotIn(ddlDOTGCS.SelectedValue, kyForm, ddlKHUVUC.SelectedValue);
                 if (khoasodotin == false)
@@ -640,12 +640,15 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             {
                 //khoa so theo duong pho
                 var duongphodotin = dpDao.GetDotIn(ddlDOTGCS.SelectedValue);
-                bool khoasodp = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, duongphodotin.MADP);
-                if (khoasodp == false)
+                if (duongphodotin != null)
                 {
-                    CloseWaitingDialog();
-                    ShowInfor("Chưa khoá sổ ghi chỉ số.");
-                    return;
+                    bool khoasodp = gcsDao.IsLockTinhCuocKy1(kyForm, ddlKHUVUC.SelectedValue, duongphodotin.MADP);
+                    if (khoasodp == false)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Chưa khoá sổ ghi chỉ số.");
+                        return;
+                    }
                 }
             }
 
@@ -665,14 +668,18 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
                         DataTable dtth = ketqua.Tables[0];
 
-                        if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                        if (dtth.Rows[0]["KETQUA"].ToString() == "DUNG")
+                        {
+                            ddlTrangThaiTinhTien.SelectedIndex = 0;
+                            CloseWaitingDialog();
+                            ShowInfor("Reset sớ in hóa đơn, in hóa đơn = 0.");
+                        }
+                        else
                         {
                             CloseWaitingDialog();
                             ShowError("Lỗi Reset in hóa đơn = 0. Kiểm tra lại.", "");
                             return;
-                        }
-
-                        ddlTrangThaiTinhTien.SelectedIndex = 0;
+                        }                        
                     }
                     else
                     {
@@ -690,11 +697,16 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
                     DataTable dtth = ketqua.Tables[0];
 
-                    if (dtth.Rows[0]["KETQUA"].ToString() != "DUNG")
+                    if (dtth.Rows[0]["KETQUA"].ToString() == "DUNG")
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Tính sản lượng, tính tiền theo trạng thái.");
+                    }
+                    else
                     {
                         CloseWaitingDialog();
                         ShowError("Lỗi tính khối lượng tiêu thụ. Kiểm tra lại.", "");
-                        return;
+                        return;                            
                     }
                 }
             }

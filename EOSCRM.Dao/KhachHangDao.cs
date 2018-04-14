@@ -1514,10 +1514,27 @@ namespace EOSCRM.Dao
                 .OrderByDescending(tt => tt.NAM).ToList();
         }
 
-        public List<TIEUTHU> GetListTieuThuSoHoaDonChuaIn(int nam, int thang, string makv)
+        public List<TIEUTHU> GetListTieuThuSoHoaDonChuaInDotIn(int nam, int thang, string makv, string idmadotin)
         {
-            return _db.TIEUTHUs.Where(tt => tt.MAKV.Equals(makv) && tt.NAM.Equals(nam) && tt.THANG.Equals(thang) && tt.INHD.Equals(false))
-                .OrderBy(tt => tt.STTNI).ToList();
+            var query = from tt in _db.TIEUTHUs
+                        join kh in _db.KHACHHANGs on tt.IDKH equals kh.IDKH
+                        join dp in _db.DUONGPHOs on kh.MADP equals dp.MADP
+                        where tt.THANG.Equals(thang) && tt.NAM.Equals(nam) && kh.MAKV.Equals(makv) && tt.INHD.Equals(false) && tt.KLTIEUTHU > 0
+                            && (kh.IDMADOTIN != idmadotin || kh.IDMADOTIN == null) && dp.IDMADOTIN.Equals(idmadotin)
+                        select tt;
+
+            return query.OrderBy(tt => tt.STTNI).ToList();
+        }
+
+        public List<TIEUTHU> GetListTieuThuSoHoaDonChuaInDotInNhoThu(int nam, int thang, string makv, string idmadotin)
+        {
+            var query = from tt in _db.TIEUTHUs
+                        join kh in _db.KHACHHANGs on tt.IDKH equals kh.IDKH
+                        where tt.THANG.Equals(thang) && tt.NAM.Equals(nam) && kh.MAKV.Equals(makv) && tt.INHD.Equals(false)
+                            && tt.KLTIEUTHU > 0 && kh.IDMADOTIN.Equals(idmadotin) 
+                        select tt;
+
+            return query.OrderBy(tt => tt.STTNI).ToList();
         }
 
         public List<TTSDKHACHHANG> GetTTSDList(int thang, int nam, string ttsd)

@@ -625,8 +625,12 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         protected void btXemSoHoaDonChuaIn_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
+                BindSoHoaDonTieuthu();
+                UpdivSoThuTuHoaDonChuaIn.Update();
+
                 UnblockDialog("divSoThuTuHoaDonChuaIn");
+
                 CloseWaitingDialog();
             }
             catch { }
@@ -646,11 +650,26 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         private void BindSoHoaDonTieuthu()
         {        
-            var list = _khDao.GetListTieuThuSoHoaDonChuaIn(Convert.ToInt16(txtNAM.Text.Trim()), Convert.ToInt16(ddlTHANG.SelectedValue), ddlKHUVUC.SelectedValue) ;
+            var dotinhd = _dihdDao.Get(ddlDOTGCS.SelectedValue);
 
-            gvTTTT.DataSource = list;
-            gvTTTT.PagerInforText = list.Count.ToString();
-            gvTTTT.DataBind();
+            if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
+            {
+                var list = _khDao.GetListTieuThuSoHoaDonChuaInDotInNhoThu(Convert.ToInt16(txtNAM.Text.Trim()), Convert.ToInt16(ddlTHANG.SelectedValue), ddlKHUVUC.SelectedValue,
+                        ddlDOTGCS.SelectedValue);
+
+                gvTTTT.DataSource = list;
+                gvTTTT.PagerInforText = list.Count.ToString();
+                gvTTTT.DataBind();
+            }
+            else
+            {
+                var list = _khDao.GetListTieuThuSoHoaDonChuaInDotIn(Convert.ToInt16(txtNAM.Text.Trim()), Convert.ToInt16(ddlTHANG.SelectedValue), ddlKHUVUC.SelectedValue,
+                        ddlDOTGCS.SelectedValue);
+
+                gvTTTT.DataSource = list;
+                gvTTTT.PagerInforText = list.Count.ToString();
+                gvTTTT.DataBind();
+            }
         }
 
         #region gvTTTT
@@ -659,10 +678,7 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             try
             {
                 gvTTTT.PageIndex = e.NewPageIndex;
-
                 BindSoHoaDonTieuthu();
-
-                UpdivSoThuTuHoaDonChuaIn.Update();
             }
             catch (Exception ex)
             {
