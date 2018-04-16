@@ -220,6 +220,33 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         protected global::System.Web.UI.WebControls.TextBox txtSONHA;
         
         /// <summary>
+        /// txtSoNhaNhapDon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSoNhaNhapDon;
+        
+        /// <summary>
+        /// lbTenDuongNhapDon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTenDuongNhapDon;
+        
+        /// <summary>
+        /// txtTenDuongNhapDon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTenDuongNhapDon;
+        
+        /// <summary>
         /// txtDIACHILAPDAT control.
         /// </summary>
         /// <remarks>
@@ -229,13 +256,22 @@ namespace EOSCRM.Web.Forms.KhachHang.Power {
         protected global::System.Web.UI.WebControls.TextBox txtDIACHILAPDAT;
         
         /// <summary>
-        /// Label1 control.
+        /// lbTextApXa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lbTextApXa;
+        
+        /// <summary>
+        /// ddlPhuongXa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPhuongXa;
         
         /// <summary>
         /// txtHUYEN control.

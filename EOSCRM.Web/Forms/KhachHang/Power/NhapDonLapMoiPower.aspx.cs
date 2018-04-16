@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 {
     public partial class NhapDonLapMoiPower : Authentication
     {
+        private readonly XaPhuongDao _xpDao = new XaPhuongDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
@@ -163,7 +164,18 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 //obj.DIACHILD = string.Format("{0}{1}{2}{3}", sn, tenduong, tenphuong, tenkv);
                 //obj.DIACHILD = txtDIACHILAPDAT.Text.Trim() + huyentinhct; 
                 //"," + txtHUYEN.Text.Trim();
-                obj.DIACHILD = txtDIACHILAPDAT.Text.Trim() + "," + txtHUYENDCLAP.Text.Trim();
+
+                var sonhanhapdon = string.IsNullOrEmpty(txtSoNhaNhapDon.Text.Trim()) ? "" : txtSoNhaNhapDon.Text.Trim();
+                var tenduongnhapdon = string.IsNullOrEmpty(txtTenDuongNhapDon.Text.Trim()) ? "" : txtTenDuongNhapDon.Text.Trim();
+                var maxaphuong = ddlPhuongXa.SelectedValue;
+                var tenxaphuong = ddlPhuongXa.SelectedItem;
+
+                obj.SONHA2 = sonhanhapdon;
+                obj.TENDUONG = tenduongnhapdon;
+                obj.MAXA = maxaphuong;
+                obj.TENXA = tenxaphuong.ToString();
+                obj.DIACHILD = sonhanhapdon + " " + tenduongnhapdon + "," + tenxaphuong + "," + txtHUYENDCLAP.Text.Trim();
+                //obj.DIACHILD = txtDIACHILAPDAT.Text.Trim() + "," + txtHUYENDCLAP.Text.Trim();
 
                 if (!txtSONK.Text.Trim().Equals(String.Empty))
                     obj.SONK = Convert.ToInt32(txtSONK.Text.Trim());
@@ -420,6 +432,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 ddlHTTT.DataTextField = "MOTA";
                 ddlHTTT.DataValueField = "MAHTTT";
                 ddlHTTT.DataBind();
+
+                var khuvuc = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
+                var xaphuong = _xpDao.GetListKV(khuvuc.MAKV);
+                ddlPhuongXa.Items.Clear();
+                ddlPhuongXa.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var xp in xaphuong)
+                    ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA));
 
             }
             catch (Exception ex)
@@ -685,8 +704,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtDIACHILAPDAT.Text = "";
             cbISTUYENONGCHUNG.Checked = false;
             txtSOTRUPO.Text = "";
-
             lbTENTRAMPO.Text = "";
+
+            txtSoNhaNhapDon.Text = "";
+            txtTenDuongNhapDon.Text = "";
+            ddlPhuongXa.SelectedIndex = 0;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -695,7 +717,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             if (loginInfo == null) return;
             string b = loginInfo.Username;
             var makvpots = _kvpoDao.GetPo(_nvDao.Get(b).MAKV);
-
 
             var don = DonDangKyPo;
             if (don == null)
@@ -741,6 +762,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     count++;
                 }
 
+                if (ddlPhuongXa.SelectedValue != "%")
+                {
+                    CloseWaitingDialog();                    
+                    return;
+                }
                 // default value
                 don.LOAIDK = LOAIDK.DK.ToString();
                 don.TTDK = TTDK.DK_A.ToString();

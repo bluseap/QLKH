@@ -37469,6 +37469,14 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<decimal> _TIENVATTULX;
 		
+		private string _SONHANHAPDON2;
+		
+		private string _TENDUONG;
+		
+		private string _MAXA;
+		
+		private string _TENXA;
+		
 		private EntitySet<HOADONLAPDAT> _HOADONLAPDATs;
 		
 		private EntityRef<CHIETTINH> _CHIETTINH;
@@ -37655,6 +37663,14 @@ namespace EOSCRM.Domain
     partial void OnTIENCOCLXChanged();
     partial void OnTIENVATTULXChanging(System.Nullable<decimal> value);
     partial void OnTIENVATTULXChanged();
+    partial void OnSONHANHAPDON2Changing(string value);
+    partial void OnSONHANHAPDON2Changed();
+    partial void OnTENDUONGChanging(string value);
+    partial void OnTENDUONGChanged();
+    partial void OnMAXAChanging(string value);
+    partial void OnMAXAChanged();
+    partial void OnTENXAChanging(string value);
+    partial void OnTENXAChanged();
     #endregion
 		
 		public DONDANGKY()
@@ -39078,6 +39094,86 @@ namespace EOSCRM.Domain
 					this._TIENVATTULX = value;
 					this.SendPropertyChanged("TIENVATTULX");
 					this.OnTIENVATTULXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SONHANHAPDON2", DbType="NVarChar(20)")]
+		public string SONHANHAPDON2
+		{
+			get
+			{
+				return this._SONHANHAPDON2;
+			}
+			set
+			{
+				if ((this._SONHANHAPDON2 != value))
+				{
+					this.OnSONHANHAPDON2Changing(value);
+					this.SendPropertyChanging();
+					this._SONHANHAPDON2 = value;
+					this.SendPropertyChanged("SONHANHAPDON2");
+					this.OnSONHANHAPDON2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENDUONG", DbType="NVarChar(100)")]
+		public string TENDUONG
+		{
+			get
+			{
+				return this._TENDUONG;
+			}
+			set
+			{
+				if ((this._TENDUONG != value))
+				{
+					this.OnTENDUONGChanging(value);
+					this.SendPropertyChanging();
+					this._TENDUONG = value;
+					this.SendPropertyChanged("TENDUONG");
+					this.OnTENDUONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAXA", DbType="VarChar(10)")]
+		public string MAXA
+		{
+			get
+			{
+				return this._MAXA;
+			}
+			set
+			{
+				if ((this._MAXA != value))
+				{
+					this.OnMAXAChanging(value);
+					this.SendPropertyChanging();
+					this._MAXA = value;
+					this.SendPropertyChanged("MAXA");
+					this.OnMAXAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENXA", DbType="NVarChar(100)")]
+		public string TENXA
+		{
+			get
+			{
+				return this._TENXA;
+			}
+			set
+			{
+				if ((this._TENXA != value))
+				{
+					this.OnTENXAChanging(value);
+					this.SendPropertyChanging();
+					this._TENXA = value;
+					this.SendPropertyChanged("TENXA");
+					this.OnTENXAChanged();
 				}
 			}
 		}
@@ -78524,6 +78620,14 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<System.DateTime> _NGAYN;
 		
+		private string _SONHA2;
+		
+		private string _TENDUONG;
+		
+		private string _MAXA;
+		
+		private string _TENXA;
+		
 		private EntitySet<THICONG> _THICONGs;
 		
 		private EntitySet<DUYET_QUYEN> _DUYET_QUYENs;
@@ -78668,6 +78772,14 @@ namespace EOSCRM.Domain
     partial void OnSOTRUPOChanged();
     partial void OnNGAYNChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYNChanged();
+    partial void OnSONHA2Changing(string value);
+    partial void OnSONHA2Changed();
+    partial void OnTENDUONGChanging(string value);
+    partial void OnTENDUONGChanged();
+    partial void OnMAXAChanging(string value);
+    partial void OnMAXAChanged();
+    partial void OnTENXAChanging(string value);
+    partial void OnTENXAChanged();
     #endregion
 		
 		public DONDANGKYPO()
@@ -79743,6 +79855,86 @@ namespace EOSCRM.Domain
 					this._NGAYN = value;
 					this.SendPropertyChanged("NGAYN");
 					this.OnNGAYNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SONHA2", DbType="NVarChar(20)")]
+		public string SONHA2
+		{
+			get
+			{
+				return this._SONHA2;
+			}
+			set
+			{
+				if ((this._SONHA2 != value))
+				{
+					this.OnSONHA2Changing(value);
+					this.SendPropertyChanging();
+					this._SONHA2 = value;
+					this.SendPropertyChanged("SONHA2");
+					this.OnSONHA2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENDUONG", DbType="NVarChar(100)")]
+		public string TENDUONG
+		{
+			get
+			{
+				return this._TENDUONG;
+			}
+			set
+			{
+				if ((this._TENDUONG != value))
+				{
+					this.OnTENDUONGChanging(value);
+					this.SendPropertyChanging();
+					this._TENDUONG = value;
+					this.SendPropertyChanged("TENDUONG");
+					this.OnTENDUONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAXA", DbType="VarChar(10)")]
+		public string MAXA
+		{
+			get
+			{
+				return this._MAXA;
+			}
+			set
+			{
+				if ((this._MAXA != value))
+				{
+					this.OnMAXAChanging(value);
+					this.SendPropertyChanging();
+					this._MAXA = value;
+					this.SendPropertyChanged("MAXA");
+					this.OnMAXAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENXA", DbType="NVarChar(100)")]
+		public string TENXA
+		{
+			get
+			{
+				return this._TENXA;
+			}
+			set
+			{
+				if ((this._TENXA != value))
+				{
+					this.OnTENXAChanging(value);
+					this.SendPropertyChanging();
+					this._TENXA = value;
+					this.SendPropertyChanged("TENXA");
+					this.OnTENXAChanged();
 				}
 			}
 		}

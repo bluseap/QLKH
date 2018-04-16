@@ -158,6 +158,8 @@ namespace EOSCRM.Web.Forms.DanhMuc
         {
             try
             {
+                UpdateMode = Mode.Create;
+
                 txtMaXaPhuong.Text = "";
                 txtMaXaPhuong.Enabled = true;
                 cboKhuVuc.SelectedIndex = 0;
@@ -328,7 +330,8 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 string b = loginInfo.Username;
 
                 Message msg;
-                Filtered = FilteredMode.None;
+
+                //Filtered = FilteredMode.None;
 
                 if (txtMaXaPhuong.Text.ToUpper().Length > 4)
                 {
@@ -381,7 +384,9 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 {
                     ShowInfor(ResourceLabel.Get(msg));
 
-                    Clear();                                        
+                    Clear();
+
+                    BindDataForGrid();
 
                     upnlGrid.Update();
                 }
@@ -403,6 +408,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
         protected void btnFilter_Click(object sender, EventArgs e)
         {
             Filtered = FilteredMode.Filtered;
+
             BindDataForGrid();
 
             upnlGrid.Update();

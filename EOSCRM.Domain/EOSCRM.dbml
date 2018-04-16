@@ -1662,6 +1662,10 @@
       <Column Name="NGAYDUYETHSTRA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="TIENCOCLX" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
       <Column Name="TIENVATTULX" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="SONHANHAPDON2" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="TENDUONG" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MAXA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENXA" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="DONDANGKY_HOADONLAPDAT" Member="HOADONLAPDATs" ThisKey="MADDK" OtherKey="MADDK" Type="HOADONLAPDAT" />
       <Association Name="DONDANGKY_CHIETTINH" Member="CHIETTINH" ThisKey="MADDK" OtherKey="MADDK" Type="CHIETTINH" Cardinality="One" />
       <Association Name="DONDANGKY_HOPDONG" Member="HOPDONG" ThisKey="MADDK" OtherKey="MADDK" Type="HOPDONG" Cardinality="One" />
@@ -3416,6 +3420,10 @@
       <Column Name="NOILAPDHHN" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Column Name="SOTRUPO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="NGAYN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SONHA2" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="TENDUONG" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MAXA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TENXA" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="DONDANGKYPO_THICONG" Member="THICONGs" ThisKey="MADDKPO" OtherKey="MADDK" Type="THICONG" />
       <Association Name="DONDANGKYPO_DUYET_QUYEN" Member="DUYET_QUYENs" ThisKey="MADDKPO" OtherKey="MADDK" Type="DUYET_QUYEN" />
       <Association Name="DONDANGKYPO_DONDANGKYPO" Member="DONDANGKYPOs" ThisKey="MADDKPO" OtherKey="MADDKTONG" Type="DONDANGKYPO" />
