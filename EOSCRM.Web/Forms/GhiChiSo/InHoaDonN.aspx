@@ -312,6 +312,27 @@
                                 
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Tên máy in in lại
+                            </td>
+                            <td>
+                                <div class="left">
+                                    <asp:TextBox ID="txtTenMayInInLai" runat="server" Width="300px" MaxLength="100" TabIndex="2" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Ghi chú in lại
+                            </td>
+                            <td>
+                                <div class="left">
+                                         <asp:TextBox ID="txtGhiChuInLai" 
+                                            runat="server" Width="300px" MaxLength="100" TabIndex="2" />
+                                </div>
+                            </td>
+                        </tr>
                         <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell"> 

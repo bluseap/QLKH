@@ -2759,8 +2759,7 @@ namespace EOSCRM.Dao
             ttlist.Add(tongtientra);
 
             var query = ttlist;
-            return query            
-                .AsEnumerable().Select(x => new TINHTIEN
+            return query.AsEnumerable().Select(x => new TINHTIEN
                 {
                     TienNuoc = tonggia,         
                     TienThue = tonggiathue,

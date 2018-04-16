@@ -416,6 +416,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo
 
         protected void btnINLAI_Click(object sender, EventArgs e)
         {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string manvnhap = loginInfo.Username;
+
             var list = _shdilDao.GetListSHDIL(int.Parse(lblMASOHD.Text.Trim()));
             var hddauil = int.Parse(txtSOHDDAUIL.Text.Trim());
             var hdcuoiil = int.Parse(txtSOHDCUOIIL.Text.Trim());
@@ -449,20 +453,24 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                         SOHDDAUIL = int.Parse(txtSOHDDAUIL.Text.Trim()),
                         SOHDCUOIIL = int.Parse(txtSOHDCUOIIL.Text.Trim()),
                         NGAY = DateTime.Now,
-                        GHICHU = ""
+                        GHICHU = "",
+                        MANVN = manvnhap,
+                        TENMAYIN = txtTenMayInInLai.Text.Trim()                        
                     };
+
                     if (info == null)
                     {
                         CloseWaitingDialog();
                         return;
                     }
+
                     Message msg;
+
                     msg = _shdilDao.Insert(info);
                 }
 
-                var dtDSINHOADON =
-                    new ReportClass().InHoaDonN(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue, int.Parse(txtSOHDDAUIL.Text.Trim()), int.Parse(txtSOHDCUOIIL.Text.Trim())).
-                        Tables[0];
+                var dtDSINHOADON = new ReportClass().InHoaDonN(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), ddlKHUVUC.SelectedValue, 
+                        int.Parse(txtSOHDDAUIL.Text.Trim()), int.Parse(txtSOHDCUOIIL.Text.Trim())).Tables[0];
 
                 dtDSINHOADON.Columns.Add("IMG", typeof(byte[]));
                 Barcode128 code128 = new Barcode128();
