@@ -570,6 +570,7 @@ namespace EOSCRM.Web.Forms.KhachHang
             CommonFunc.SetPropertiesForGrid(gvTDH);
             CommonFunc.SetPropertiesForGrid(gvDSVATTU);
             CommonFunc.SetPropertiesForGrid(gvDuongPhoKHM);
+            CommonFunc.SetPropertiesForGrid(gvDongHoSoNoKHM);
         }
 
         private bool IsDataValid()
@@ -914,6 +915,8 @@ namespace EOSCRM.Web.Forms.KhachHang
                 txtLyDoDotInHD.Visible = false;
                 txtLyDoDotInHD.Text = "";
                 ddlDOTINHD.SelectedIndex = 0;
+
+                lbMaDongHoKHM.Text = "";
             }
             catch { }
         }
@@ -1138,9 +1141,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                             cbISDINHMUC.Checked, int.Parse(txtSODINHMUCTAM.Text.Trim()), b11.ToString(), ddlMDSD.SelectedValue,
                             txtNAMTDCT.Text.Trim() + "/" + ddlTHANGTDCT.SelectedValue + "/01", "UPDMTAMKHLX");
 
-                        //var msg9 = khDao.UpdateKHMCSC(khtt, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                        //report.KhachHangHis(kh.IDKH);
-                        //UpdateTieuThu();
+                        // doi so No dong ho khai thac mới bị nham
+                        if (!string.IsNullOrEmpty(lbMaDongHoKHM.Text.Trim()))
+                            report.BienKHNuoc(kht.IDKH, kht.MAKV, lbMaDongHoKHM.Text.Trim(), "", 0, 0, "UPSONODHKHM" );
 
                         ClearForm();
                         divCustomersContainer.Visible = false;
@@ -2760,8 +2763,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                     txtDANHBOKHM.Enabled = true;
                     txtSONHA2KHTAM.Enabled = true;
                     ddlMDSDKHMTAM.Enabled = true;
-
                     txtSODINHMUCTAM.Enabled = true;
+
+                    btDoiSoNoKHM.Visible = true;
                 }
                 else
                 {
@@ -2773,8 +2777,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                     txtDANHBOKHM.Enabled = false;
                     txtSONHA2KHTAM.Enabled = false;
                     ddlMDSDKHMTAM.Enabled = false;
-
                     txtSODINHMUCTAM.Enabled = false;
+
+                    btDoiSoNoKHM.Visible = false;
                 }
             }
             else
@@ -2784,11 +2789,6 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 //upnlCustomers.Update();
             }        
-        }
-
-        protected void txtSOHO_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         protected void ckDMUCTAM_CheckedChanged(object sender, EventArgs e)
@@ -3054,11 +3054,96 @@ namespace EOSCRM.Web.Forms.KhachHang
             }
             catch { }
         }
+        
+        protected void btDoiSoNoKHM_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UnblockDialog("divUpSoNoKHM");
+
+                BindDongHoSoNoKHM();
+
+                UpdivUpSoNoKHM.Update();
+            }
+            catch { }
+        }
+
+        protected void btnFilterDHSONOKHM_Click(object sender, EventArgs e)
+        {
+            BindDongHoSoNoKHM();
+
+            UnblockDialog("divUpSoNoKHM");
+            CloseWaitingDialog();
+        }
+
+        private void BindDongHoSoNoKHM()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+            
+            var list = dhDao.GetListDASDKV(txtKeywordDHSONOKHM.Text.Trim(), nvDao.Get(b).MAKV);
+
+            gvDongHoSoNoKHM.DataSource = list;
+            gvDongHoSoNoKHM.PagerInforText = list.Count.ToString();
+            gvDongHoSoNoKHM.DataBind();
+        }
+
+        #region gvDongHoSoNoKHM
+        protected void gvDongHoSoNoKHM_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                var id = e.CommandArgument.ToString();
+
+                switch (e.CommandName)
+                {
+                    case "SelectMADH":
+                        var dh = dhDao.Get(id);
+                        if (dh != null)
+                        {                           
+                            lbMaDongHoKHM.Text = id;
+
+                            SetControlValue(lbLoaiDongHoKHM.ClientID, dh.MALDH != null ? dh.MALDH : "");
+                            SetControlValue(lbCongSuatDongHoKHM.ClientID, dh.CONGSUAT != null ? dh.CONGSUAT : "");
+                            SetControlValue(lbSoNoKHM.ClientID, dh.SONO);
+
+                            upnlCustomers.Update();
+                            HideDialog("divUpSoNoKHM");
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvDongHoSoNoKHM_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                gvDongHoSoNoKHM.PageIndex = e.NewPageIndex;
+                BindDongHoSoNoKHM();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+        #endregion
+
+        protected void txtSOHO_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         protected void ddlDOTINHD_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
         
     }
 }

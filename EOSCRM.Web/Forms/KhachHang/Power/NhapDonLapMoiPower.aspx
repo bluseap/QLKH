@@ -264,7 +264,7 @@
                                         <asp:TextBox ID="txtSoNhaNhapDon" runat="server" Width="50px" MaxLength="200" TabIndex="15" />
                                     </div>
                                     <div class="left">
-                                        <asp:Label ID="lbTenDuongNhapDon" runat="server" Text=",tên đường" Font-Bold="True" ></asp:Label>
+                                        <asp:Label ID="lbTenDuongNhapDon" runat="server" Text=",tên đường (ấp tổ)" Font-Bold="True" ></asp:Label>
                                     </div>
                                     <div class="left">
                                         <asp:TextBox ID="txtTenDuongNhapDon" runat="server" Width="180px" MaxLength="200" TabIndex="15" />

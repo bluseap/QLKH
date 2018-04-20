@@ -571,7 +571,10 @@
                                     <asp:TextBox ID="txtSONHA2" runat="server" MaxLength="100" Width="50px" TabIndex="77" />
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtDIACHILD" runat="server" MaxLength="150" Width="250px" TabIndex="77" />
+                                        <asp:Label ID="lbTenDuongNhapDon" runat="server" Text=",tên đường" Font-Bold="True" ></asp:Label>
+                                    </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtDIACHILD" runat="server" MaxLength="150" Width="200px" TabIndex="77" />
                                 </div>
                             </td>
                             <td class="crmcell right">
@@ -601,7 +604,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:Label ID="Label1" runat="server" Text="Số trụ TK: "></asp:Label>
-                                    <asp:Label ID="lbSoTruThietKe" runat="server" ></asp:Label>
+                                    <asp:Label ID="lbSoTruThietKe" runat="server" Font-Bold="True" ></asp:Label>
                                 </div>
                                 <td class="crmcell right">
                                     Đợt in HĐ  <!--M<sup>3</sup> khoán tối thiểu!-->
@@ -691,12 +694,12 @@
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtMADP" onblur="checkDuongPhoForm();" runat="server" MaxLength="4" Width="40px" TabIndex="6" />
+                                    <asp:TextBox ID="txtMADP" onblur="checkDuongPhoForm();" runat="server" MaxLength="4" Width="50px" TabIndex="6" />
                                     <asp:LinkButton ID="linkBtnHidden" CausesValidation="false" style="display:none"  
                                         OnClick="linkBtnHidden_Click" runat="server">Update MADP</asp:LinkButton>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="25px" TabIndex="91" />
+                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="25px" TabIndex="91" Visible="false" />
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnBrowseDP" runat="server" CssClass="pickup" OnClick="btnBrowseDP_Click"

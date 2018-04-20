@@ -762,11 +762,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     count++;
                 }
 
-                if (ddlPhuongXa.SelectedValue != "%")
+                if (ddlPhuongXa.SelectedValue == "%")
                 {
+                    ShowError("Nhập phường, xã. Kiểm tra lại.");
                     CloseWaitingDialog();                    
                     return;
                 }
+
                 // default value
                 don.LOAIDK = LOAIDK.DK.ToString();
                 don.TTDK = TTDK.DK_A.ToString();

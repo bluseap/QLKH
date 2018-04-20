@@ -193,9 +193,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
         private void EventEnter()
         {
-            txtSOKD.Attributes.Add("onkeypress", "return clickButton(event)");
             ddlMALDH.Attributes.Add("onkeypress", "return clickButtonddlMALDH(event)");
             txtSONO.Attributes.Add("onkeypress", "return clickButtonddltxtSONO(event)");
+            ddlCONGSUATD.Attributes.Add("onkeypress", "return clickButtonddlCONGSUATD(event)");
+
+
+            txtSOKD.Attributes.Add("onkeypress", "return clickButton(event)");
             txtSXTAI.Attributes.Add("onkeypress", "return clickButtontxtSXTAI(event)");
             txtNAMSX.Attributes.Add("onkeypress", "return clickButtontxtNAMSX(event)");
             txtTEMKD.Attributes.Add("onkeypress", "return clickButtontxtTEMKD(event)");
@@ -448,23 +451,24 @@ namespace EOSCRM.Web.Forms.DanhMuc
         {
             UpdateMode = Mode.Create;
 
-            txtMADH.Text = "";
-            txtMADH.Focus();
-            txtMADH.ReadOnly = false;
-            ddlMALDH.SelectedIndex = 0;
+            txtMADH.Text = "";            
+            txtMADH.ReadOnly = false;    
             txtNAMSX.Text = "";
             txtNAMTT.Text = "";
             txtNGAYXK.Text = "";
             txtNGAYNK.Text = "";
             chkDASD.Checked = false;
             txtTRANGTHAI.Text = "";
-            txtSONO.Text = "";
+           
             txtSOKD.Text = "";
             txtTEMKD.Text = "";
             txtHANKD.Text = "";
             txtNGAYKD.Text = "";
             txtTENCTKD.Text = "";
 
+            ddlMALDH.SelectedIndex = 0;
+            txtSONO.Focus();
+            txtSONO.Text = "";
             ddlCONGSUATD.SelectedIndex = 0;
         }
 
@@ -693,24 +697,25 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         ShowError("Mã đồng hồ đã tồn tại", txtMADH.ClientID);
                         return;
                     }
+
                     //txtMADH.Text= _objDao.NewId();
                     info.MADHPO = _dhpoDao.NewIdMAKV(_kvpoDao.GetPo(_nvDao.Get(LoginInfo.MANV).MAKV).MAKVPO);
                     info.MANVNHAP = LoginInfo.MANV;
+
                     //msg = _objDao.Insert(info);
                     _dhpoDao.Insert2(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                    msg = null;
-                    BindDataForGrid();
-                    upnlGrid.Update();
-                    txtSOKD.Text = "";
-                    txtSONO.Text = "";
-                    txtTEMKD.Text = "";
-                    //txtSONO.Focus();
-                    txtSOKD.Focus();
 
-                    ddlCONGSUATD.SelectedIndex = 0;
+                    msg = null;                
+
+                    txtSOKD.Text = "";                   
+                    txtTEMKD.Text = "";
+                    
+                    txtSONO.Focus();
+                    txtSONO.Text = "";
+
+                    UpdateMode = Mode.Create;
                 }
-                // update
-                else
+                else // update
                 {
                     if (!HasPermission(Functions.DM_DongHoPo, Permission.Update))
                     {
@@ -725,8 +730,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                     if (_dhpoDao.Get(txtMADH.Text).DASD != true)
                     {
-                        msg = _dhpoDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                    
-                        
+                        msg = _dhpoDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);           
                     }
                     else
                     {
@@ -742,25 +746,15 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         dhsua.MAKVPO = ddlKHUVUC.SelectedValue;
                         dhsua.CONGSUAT = ddlCONGSUATD.SelectedValue;
 
-                        msg = _dhpoDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);        
-
-                        //if (LoginInfo.MANV == "nguyen")
-                        //{
-                        //    msg = _dhpoDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                        //}
-                        //else
-                        //{
-                        //    ShowInfor("Đồng hồ đang sử dụng. Bạn không đủ quyền sửa!");
-                        //}
+                        msg = _dhpoDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                         
                     }
+
                     ClearForm();  
                 }
 
-                CloseWaitingDialog();
-                //ClearForm();  
-                ddlCONGSUATD.SelectedIndex = 0;
-
+                CloseWaitingDialog();          
                 BindDataForGrid();
+
                 upnlGrid.Update();
             }
             catch (Exception ex)
@@ -780,9 +774,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     ShowError(Resources.Message.WARN_PERMISSION_DENIED);
                     return;
                 }
+
                 DeleteList();
+
                 BindDataForGrid();
                 ClearForm();
+
                 upnlGrid.Update();
             }
             catch (Exception ex)

@@ -65,7 +65,6 @@
                 return false;
             }
         }
-
         function clickButtonddlMALDH(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -73,14 +72,20 @@
                 return false;
             }
         }
-
         function clickButtonddltxtSONO(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
-                $('#<%=txtSXTAI.ClientID %>').focus();
+                $('#<%=ddlCONGSUATD.ClientID %>').focus();
                 return false;
             }
         }
+        function clickButtonddlCONGSUATD(e) {
+            var evt = e ? e : window.event;
+            if (evt.keyCode == 13) {
+                $('#<%=btnSave.ClientID %>').focus();
+                return false;
+            }
+        }          
 
         function clickButtontxtSXTAI(e) {
             var evt = e ? e : window.event;

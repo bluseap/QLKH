@@ -8,6 +8,18 @@
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#divUpSoNoKHM").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divUpSoNoKHMDlgContainer");
+                }
+            });
+
             $("#divDuongPho").dialog({
                 autoOpen: false,
                 modal: true,
@@ -266,13 +278,76 @@
         function CheckFormFilterDPKHM() {
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDPKHM) %>', '');
             return false;
+        }       
+
+        function CheckFormFilterDHSONOKHM() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDHSONOKHM) %>', '');
+            return false;
         }
-       
 
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
-    
+    <div id="divUpSoNoKHMDlgContainer">
+        <div id="divUpSoNoKHM" style="display: none">
+            <asp:UpdatePanel ID="UpdivUpSoNoKHM" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Từ khóa
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtKeywordDHSONOKHM" onchange="return CheckFormFilterDHSONOKHM();" runat="server" Width="250px" MaxLength="200" />
+                                                </div>
+                                                <div class="left">
+                                                    <asp:Button ID="btnFilterDHSONOKHM" OnClick="btnFilterDHSONOKHM_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilterDHSONOKHM();" 
+                                                        runat="server" CssClass="filter" Text="" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+						<tr>
+							<td class="ptop-10">
+							    <div class="crmcontainer">
+							        <eoscrm:Grid ID="gvDongHoSoNoKHM" runat="server" UseCustomPager="true" 
+							            OnPageIndexChanging="gvDongHoSoNoKHM_PageIndexChanging" OnRowCommand="gvDongHoSoNoKHM_RowCommand">
+                                        <PagerSettings FirstPageText="Đồng hồ" PageButtonCount="2" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderStyle-Width="15%" HeaderText="Mã ĐH">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="linkMa" runat="server" 
+                                                        CommandArgument='<%# Eval("MADH") %>' 
+                                                        CommandName="SelectMADH" CssClass="link" 
+                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MADH").ToString()) %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderStyle-Width="30%" HeaderText="Loại ĐH" DataField="MALDH" />
+                                            <asp:BoundField HeaderStyle-Width="30%" HeaderText="Năm SX" DataField="NAMSX" />
+                                            <asp:BoundField HeaderStyle-Width="30%" HeaderText="Số No" DataField="SONO" />
+                                            <asp:BoundField HeaderStyle-Width="30%" HeaderText="Số ĐK" DataField="SOKD" /> 
+                                            <asp:BoundField HeaderStyle-Width="30%" HeaderText="Số tem" DataField="TEMKD" />                                            
+                                        </Columns>
+                                    </eoscrm:Grid>
+                                </div>
+							</td>
+						</tr>
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>        
+    </div>
     <div id="divUpSoNoPoDlgContainer">
         <div id="divUpSoNoPo" style="display: none">
             <asp:UpdatePanel ID="UpdivUpSoNoPo" runat="server" UpdateMode="Conditional">
@@ -942,6 +1017,40 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="crmcell right">    </td>
+                            <td class="crmcell">
+                                <div class="left">                   
+                                </div>                                
+                            </td>
+                            <td class="crmcell right">
+                                Hệ số nhân
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtHeSoNhan" Width="50px" runat="server" Enabled="False" ></asp:TextBox>       
+                                </div>
+                                <div class="left">
+                                    <asp:CheckBox ID="ckHeSoNhan" runat="server" TabIndex="28"  
+                                         AutoPostBack="True" OnCheckedChanged="ckHeSoNhan_CheckedChanged" />
+                                </div>  
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">   </td>
+                            <td class="crmcell">
+                                <div class="left">          
+                                </div>                                
+                            </td>
+                            <td class="crmcell right"> 
+                                <asp:Label ID="lbLyDoHeSoNhan" runat="server" Text="Lý do" Visible="False" ForeColor="Red"></asp:Label>                              
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">                                    
+                                    <asp:TextBox ID="txtLyDoHeSoNhan" Width="150px" runat="server" Visible="False" ></asp:TextBox>                                    
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right">
                                 Số CMND
                             </td>
@@ -1029,6 +1138,17 @@
                                     <asp:TextBox ID="txtLDDIACHI" Width="150px" runat="server" Visible="False" ></asp:TextBox>                                    
                                 </div>                                
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Phường, xã
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlPhuongXa" runat="server" TabIndex="5"  >
+                                    </asp:DropDownList>
+                                </div>
+                            </td>                            
                         </tr>
                         <tr>
                             <td class="crmcell right">
@@ -1542,6 +1662,38 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtSODINHMUCTAM" runat="server" Enabled="False"/>
                                 </div>                                                                   
+                            </td>
+                            <td class="crmcell right">
+                                    Loại đồng hồ
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbLoaiDongHoKHM" runat="server" ></asp:Label>     
+                                    <asp:Label ID="lbMaDongHoKHM" runat="server" Visible="false"></asp:Label>                       
+                                </div>                                                                   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                    Công suất đồng hồ
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbCongSuatDongHoKHM" runat="server" ></asp:Label>   
+                                </div>                                                                                                   
+                            </td>
+                             <td class="crmcell right">
+                                    Số No đồng hồ
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbSoNoKHM" runat="server" Font-Bold="True" ></asp:Label>                         
+                                </div>
+                                <div class="left" >
+                                    <asp:Button ID="btDoiSoNoKHM" runat="server" CssClass="myButton" Text="Đổi No KHM" 
+                                        CausesValidation="false" UseSubmitBehavior="false" Visible="true"
+                                        OnClientClick="openDialogAndBlock('Đổi số No đồng hồ KHM', 500, 'divUpSoNoKHM')" OnClick="btDoiSoNoKHM_Click"  />                                    
+                                </div>                                                                
                             </td>
                         </tr>
                         <tr>

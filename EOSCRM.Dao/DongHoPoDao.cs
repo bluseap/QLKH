@@ -44,6 +44,13 @@ namespace EOSCRM.Dao
                 .OrderByDescending(dh => dh.MADHPO).ToList();
         }
 
+        public List<DONGHOPO> GetListDASDKV(string keyword, string makvpo)
+        {           
+            return _db.DONGHOPOs.Where(p => p.DASD.Equals(0) && p.MAKVPO.Equals(makvpo)
+                        && (p.MALDHPO.ToLower().Contains(keyword.ToLower())
+                        || p.SONO.ToLower().Contains(keyword.ToLower()))).ToList();
+        }
+
         public List<DONGHOPO> GetListKV(String madh, String maldh, String namsx, String namtt,
             DateTime? fromDate, DateTime? toDate, String trangthai, string maKV)
         {

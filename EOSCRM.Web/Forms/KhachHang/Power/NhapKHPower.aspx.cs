@@ -12,6 +12,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 {
     public partial class NhapKHPower : Authentication
     {
+        private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
         private readonly ApToDao _atDao = new ApToDao();
         private readonly XaPhuongDao _xpDao = new XaPhuongDao();
@@ -813,7 +814,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
             if (nhanvien.MAKV == "T" || nhanvien.MAKV == "P" || nhanvien.MAKV == "N" || nhanvien.MAKV == "O" // tan chau, phu tan,CHAU PHU, CHAU THANH
                 || nhanvien.MAKV == "S" || nhanvien.MAKV == "K" || nhanvien.MAKV == "L" || nhanvien.MAKV == "M" || nhanvien.MAKV == "Q"
-                    )
+                 || nhanvien.MAKV == "U")
             {
                 if (kv == null) return;
 
@@ -980,10 +981,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                     //update dong ho su dung
                     var dasd = _dhpoDao.Get(txtMADH.Text);
-                    _dhpoDao.UpdateDASD(dasd);
-                  
-
-
+                    _dhpoDao.UpdateDASD(dasd);       
                 }
                 else
                 {
@@ -1581,8 +1579,15 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
             SetControlValue(txtSDT.ClientID, hd.DONDANGKYPO != null ? hd.DONDANGKYPO.DIENTHOAI : "");
             SetControlValue(txtTENKH.ClientID, hd.DONDANGKYPO != null ? hd.DONDANGKYPO.TENKH : "");
+            
+            //txtDIACHILD.Text = hd.SONHA != null ? hd.SONHA : "";
+            var dondangky = _ddkpoDao.Get(hd.MADDKPO);
+            txtSONHA2.Text = dondangky.SONHA2 != null ? dondangky.SONHA2  : "";
+            txtDIACHILD.Text = dondangky.TENDUONG != null ? dondangky.TENDUONG : "";
 
-            txtDIACHILD.Text = hd.SONHA != null ? hd.SONHA : "";
+            var phuongxa = ddlPHUONG.Items.FindByValue(dondangky.MAXA != null ? dondangky.MAXA : "");
+            if (phuongxa != null)
+                ddlPHUONG.SelectedIndex = ddlPHUONG.Items.IndexOf(phuongxa);
 
             SetControlValue(txtMSTHUE.ClientID, hd.MST);
 

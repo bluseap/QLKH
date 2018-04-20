@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 {
     public partial class TraCuuKHPower : Authentication
     {
+        private readonly XaPhuongDao _xpDao = new XaPhuongDao();
         private readonly KhachHangPoDao _khpoDao = new KhachHangPoDao();
         private readonly DuongPhoPoDao _dppoDao = new DuongPhoPoDao();
         private readonly LoaiDongHoPoDao _ldhpoDao = new LoaiDongHoPoDao();
@@ -524,6 +525,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             CommonFunc.SetPropertiesForGrid(gvTDCT);
             CommonFunc.SetPropertiesForGrid(gvTDH);
             CommonFunc.SetPropertiesForGrid(gvDuongPhoKHM);
+            CommonFunc.SetPropertiesForGrid(gvDongHoSoNoKHM);
             
         }
 
@@ -862,6 +864,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtLyDoDotInHD.Visible = false;
             txtLyDoDotInHD.Text = "";
             ddlDOTINHD.SelectedIndex = 0;
+
+            ckHeSoNhan.Checked = false;
+            txtHeSoNhan.Enabled = false;
+            lbLyDoHeSoNhan.Visible = false;
+            txtLyDoHeSoNhan.Visible = false;
+            txtLyDoHeSoNhan.Text = "";
         }
 
         private void ClearFormCheck()
@@ -894,6 +902,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtSODINHMUCTAM.Enabled = false;
 
             ckUpdateKHM.Checked = false;
+
+            
         }
 
         private void LoadStaticReferences()
@@ -963,6 +973,17 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             ddlTHUHO.DataBind();
 
             ClearForm();
+
+            // load phuong, xa
+            var khuvucpo = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
+            var listPhuongXa = _xpDao.GetListKV(khuvucpo.MAKV);
+
+            ddlPhuongXa.Items.Clear();
+            ddlPhuongXa.Items.Add(new ListItem("Tất cả", "%"));
+            foreach (var phuongxa in listPhuongXa)
+            {
+                ddlPhuongXa.Items.Add(new ListItem(phuongxa.TENXA, phuongxa.MAXA));
+            }
         }
 
         private void LoadDynamicReferences(KHUVUCPO kv)
@@ -1099,6 +1120,18 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                             cbISDINHMUC.Checked, int.Parse(txtSODINHMUCTAM.Text.Trim()), b11.ToString(), ddlMDSD.SelectedValue,
                             txtNAMTDCT.Text.Trim() + "/" + ddlTHANGTDCT.SelectedValue + "/01", "UPDMTAMKHPO");
 
+                        // doi so No dong ho khai thac mới bị nham
+                        if (!string.IsNullOrEmpty(lbMaDongHoKHM.Text.Trim()))
+                        {
+                            var ketquadonghosai = report.BienKHNuoc(kht.IDKHPO, kht.MAKVPO, lbMaDongHoKHM.Text.Trim(), "", 0, 0, "UPSONODHPOKHM").Tables[0];
+                            if (ketquadonghosai.Rows[0]["KETQUA"].ToString() != "DUNG" )
+                            {
+                                ShowError("Lỗi đổi số No nhầm của khách hàng mới.", "");
+                                CloseWaitingDialog();
+                                return;
+                            }
+                        }
+
                         DataTable dt = ketqua.Tables[0];
                         DataTable dt2 = ketqua2.Tables[0];
 
@@ -1189,6 +1222,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     report.UPTHayDoiCTPO(kh.IDKHPO, int.Parse(ddlTHANGTDCT.SelectedValue), int.Parse(txtNAMTDCT.Text.Trim()), "CTDOTINHDPO",
                          ddlDOTINHD.SelectedValue, LoginInfo.MANV, "", txtLyDoDotInHD.Text.Trim());
                 }
+
+                if (ckHeSoNhan.Checked == true)
+                {
+                    
+                }
+
+                kh.MAXA = ddlPhuongXa.SelectedValue;
 
                 var msg = _khpoDao.Update(kh, DateTime.Now.Month, DateTime.Now.Year, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 //report.KhachHangHis(kh.IDKH);
@@ -1370,6 +1410,16 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         divCustomersContainer.Visible = true;
 
                         MDSDToDotInHD(ddlMDSD.SelectedValue);
+
+                        var phuongxa = ddlPhuongXa.Items.FindByValue(kh.MAXA != null ? kh.MAXA : "");
+                        if (phuongxa != null)
+                        {
+                            ddlPhuongXa.SelectedIndex = ddlPhuongXa.Items.IndexOf(phuongxa);
+                        }
+                        else
+                        {
+                            ddlPhuongXa.SelectedIndex = 0;
+                        }
 
                         CloseWaitingDialog();
                         break;
@@ -2343,8 +2393,104 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
             catch { }
         }
-        
 
+        protected void btDoiSoNoKHM_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UnblockDialog("divUpSoNoKHM");
+
+                BindDongHoSoNoKHM();
+
+                UpdivUpSoNoKHM.Update();
+            }
+            catch { }
+        }
+
+        protected void btnFilterDHSONOKHM_Click(object sender, EventArgs e)
+        {
+            BindDongHoSoNoKHM();
+
+            UnblockDialog("divUpSoNoKHM");
+            CloseWaitingDialog();
+        }
+
+        private void BindDongHoSoNoKHM()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
+            var khuvucpo = _khpoDao.Get(nvDao.Get(b).MAKV);
+            var list = _dhpoDao.GetListDASDKV(txtKeywordDHSONOKHM.Text.Trim(), khuvucpo.MAKVPO);
+
+            gvDongHoSoNoKHM.DataSource = list;
+            gvDongHoSoNoKHM.PagerInforText = list.Count.ToString();
+            gvDongHoSoNoKHM.DataBind();
+        }
+
+        #region gvDongHoSoNoKHM
+        protected void gvDongHoSoNoKHM_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                var id = e.CommandArgument.ToString();
+
+                switch (e.CommandName)
+                {
+                    case "SelectMADH":
+                        var dh = _dhpoDao.Get(id);
+                        if (dh != null)
+                        {
+                            lbMaDongHoKHM.Text = id;
+
+                            SetControlValue(lbLoaiDongHoKHM.ClientID, dh.MALDHPO != null ? dh.MALDHPO : "");
+                            SetControlValue(lbCongSuatDongHoKHM.ClientID, dh.CONGSUAT != null ? dh.CONGSUAT : "");
+                            SetControlValue(lbSoNoKHM.ClientID, dh.SONO);
+
+                            upnlCustomers.Update();
+                            HideDialog("divUpSoNoKHM");
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvDongHoSoNoKHM_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                gvDongHoSoNoKHM.PageIndex = e.NewPageIndex;
+                BindDongHoSoNoKHM();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+        #endregion
+
+        protected void ckHeSoNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckHeSoNhan.Checked)
+            {
+                txtHeSoNhan.Enabled = true;
+
+                lbLyDoHeSoNhan.Visible = true;
+                txtLyDoHeSoNhan.Visible = true;
+            }
+            else
+            {
+                txtHeSoNhan.Enabled = false;
+
+                lbLyDoHeSoNhan.Visible = false;
+                txtLyDoHeSoNhan.Visible = false;
+            }
+        }
         
 
     }
