@@ -1319,8 +1319,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 Response.AddHeader("content-disposition", "attachment;filename=DSKHDP" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
+
                 System.IO.StringWriter sw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"); 
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
@@ -1365,8 +1367,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 Response.AddHeader("content-disposition", "attachment;filename=DSKHMDSD" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
+
                 System.IO.StringWriter sw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"); 
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
@@ -1411,8 +1415,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 Response.AddHeader("content-disposition", "attachment;filename=DSKHLDH" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
+
                 System.IO.StringWriter sw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"); 
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
@@ -1457,8 +1463,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 Response.AddHeader("content-disposition", "attachment;filename=DSKHCSDH" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
+
                 System.IO.StringWriter sw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"); 
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
@@ -1564,8 +1572,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 Response.AddHeader("content-disposition", "attachment;filename=TT3T" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
+
                 System.IO.StringWriter sw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"); 
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
