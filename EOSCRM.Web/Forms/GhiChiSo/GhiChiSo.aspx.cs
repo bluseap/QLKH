@@ -142,6 +142,15 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             {
                 IsVisible(true);
             }
+            else if (ddlKHUVUC.SelectedValue == "O") // chau thanh
+            {
+                lbDotInHD.Visible = true;
+                ddlDOTGCS.Visible = true;
+
+                lbTrangThaiTinhTien.Visible = false;
+                ddlTrangThaiTinhTien.Visible = false;
+                btTinhTien.Visible = false;
+            }
             else
             {
                 IsVisible(false);
@@ -271,6 +280,95 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             }
         }
 
+        private bool BindDataChauThanhNhoThu()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return false;
+            string b = loginInfo.Username;
+            var nhanvien = _nvDao.Get(b);
+
+            if (nhanvien.MAPB != "KD")
+            {
+                if (txtMADP.Text.Trim() == "")
+                    return false;
+
+                var dp = dpDao.Get(txtMADP.Text.Trim(), txtDUONGPHU.Text.Trim());
+                if (dp == null) return false;
+
+                var kynay = new DateTime(int.Parse(txtNAM.Text.Trim()), int.Parse(ddlTHANG.SelectedValue), 1);
+                var list = gcsDao.GetList(kynay, dp);
+
+                gvList.DataSource = list;
+                gvList.PagerInforText = list.Count.ToString(CultureInfo.InvariantCulture);
+                gvList.DataBind();
+
+                //TODO: kiểm tra kỳ khai thác có bị lock tính cước trên đường được chọn hay không
+                gvList.Enabled = false;
+                divList.Visible = true;
+                //divWarning.Visible = dp.GIAKHAC.HasValue && dp.GIAKHAC.Value;
+
+                upnlGrid.Update();
+
+                return true;
+            }
+            else
+            {
+                //if (txtMADP.Text.Trim() == "")
+                //    return false;
+
+                if (txtMADP.Text.Trim() == "")
+                {
+                    if (ddlDOTGCS.SelectedValue != "%")
+                    {
+                        //var dp = dpDao.Get(txtMADP.Text.Trim(), txtDUONGPHU.Text.Trim());
+                        //if (dp == null) return false;
+
+                        var kynay = new DateTime(int.Parse(txtNAM.Text.Trim()), int.Parse(ddlTHANG.SelectedValue), 1);
+
+                        var list = gcsDao.GetListChauThanhNhoThu(kynay, ddlDOTGCS.SelectedValue);
+
+                        gvList.DataSource = list;
+                        gvList.PagerInforText = list.Count.ToString(CultureInfo.InvariantCulture);
+                        gvList.DataBind();
+
+                        //TODO: kiểm tra kỳ khai thác có bị lock tính cước trên đường được chọn hay không
+                        gvList.Enabled = !gcsDao.IsLockTinhCuocDotIn(kynay, ddlKHUVUC.SelectedValue, ddlDOTGCS.SelectedValue);
+                        divList.Visible = true;
+                        //divWarning.Visible = dp.GIAKHAC.HasValue && dp.GIAKHAC.Value;
+
+                        upnlGrid.Update();
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    var dp = dpDao.Get(txtMADP.Text.Trim(), txtDUONGPHU.Text.Trim());
+                    if (dp == null) return false;
+
+                    var kynay = new DateTime(int.Parse(txtNAM.Text.Trim()), int.Parse(ddlTHANG.SelectedValue), 1);
+                    var list = gcsDao.GetList(kynay, dp);
+
+                    gvList.DataSource = list;
+                    gvList.PagerInforText = list.Count.ToString(CultureInfo.InvariantCulture);
+                    gvList.DataBind();
+
+                    //TODO: kiểm tra kỳ khai thác có bị lock tính cước trên đường được chọn hay không
+                    gvList.Enabled = !gcsDao.IsLockTinhCuoc(kynay, dp);
+                    divList.Visible = true;
+                    //divWarning.Visible = dp.GIAKHAC.HasValue && dp.GIAKHAC.Value;
+
+                    upnlGrid.Update();
+
+                    return true;
+                }
+            }
+        }
+
         private bool BindDataTTKYTRUOC()
         {
             if (txtMADP.Text.Trim() == "")
@@ -328,9 +426,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo
             // Update page index
             gvList.PageIndex = 0;
 
-            if (query.MAKV != "O")
+            if (query.MAKV == "O")
             {
-                if (!BindData())
+                if (!BindDataChauThanhNhoThu())
                 //if (!BindDataTTKYTRUOC())
                 {
                     CloseWaitingDialog();
