@@ -527,7 +527,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 
             if (query.MAKV != "O" && query.MAKV != "N" && query.MAKV != "S" && query.MAKV != "P"
                 && query.MAKV != "K" && query.MAKV != "L" && query.MAKV != "M" && query.MAKV != "Q"
-                && query.MAKV != "T")
+                )   //chi lay khu vuc thoai son, tan chau
             {
                 if (string.IsNullOrEmpty(txtSODB.Text.Trim()))
                 {

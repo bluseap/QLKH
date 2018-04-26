@@ -735,25 +735,28 @@ namespace EOSCRM.Web.Forms.KhachHang
 
         private void SetDDKToForm(DONDANGKY ddk)
         {
-            SetControlValue(txtMADDK.ClientID, ddk.MADDK);
+            txtMADDK.Text = ddk.MADDK;
+
             SetReadonly(txtMADDK.ClientID, true);
-            SetControlValue(txtTENKH.ClientID, ddk.TENKH);
-            SetControlValue(txtSONHA.ClientID, ddk.SONHA);
-            SetControlValue(txtDIENTHOAI.ClientID, ddk.DIENTHOAI);
-            SetControlValue(txtDIACHIKHAC.ClientID, ddk.TEN_DC_KHAC);
-            SetControlValue(txtDCLAPDAT.ClientID, ddk.DIACHILD);
+
+            txtTENKH.Text = ddk.TENKH;
+
+            txtSONHA.Text = ddk.SONHA;
+            txtDIENTHOAI.Text = ddk.DIENTHOAI;
+            txtDIACHIKHAC.Text = ddk.TEN_DC_KHAC;
+            txtDCLAPDAT.Text = ddk.DIACHILD;
 
             if (ddk.DUONGPHO != null)
             {
-                SetControlValue(txtMADP.ClientID, ddk.MADP);
-                SetControlValue(txtDUONGPHU.ClientID, ddk.DUONGPHU);
+                txtMADP.Text = ddk.MADP;
+                txtDUONGPHU.Text = ddk.DUONGPHU;
             }
             
-            SetControlValue(txtSOHODN.ClientID, ddk.SOHODN.HasValue ? String.Format("{0:0,0}", ddk.SOHODN.Value) : "");
-            SetControlValue(txtSONK.ClientID, ddk.SONK.HasValue ? String.Format("{0:0,0}", ddk.SONK.Value) : "");
-            SetControlValue(txtDMNK.ClientID, ddk.DMNK.HasValue ? String.Format("{0:0,0}", ddk.DMNK.Value) : "");
-            SetControlValue(txtNGAYCD.ClientID, ddk.NGAYDK.HasValue ? String.Format("{0:dd/MM/yyyy}", ddk.NGAYDK.Value) : "");
-            SetControlValue(txtNGAYKS.ClientID, ddk.NGAYHKS.HasValue ? String.Format("{0:dd/MM/yyyy}", ddk.NGAYHKS.Value) : "");
+            txtSOHODN.Text = ddk.SOHODN.HasValue ? String.Format("{0:0,0}", ddk.SOHODN.Value) : "";
+            txtSONK.Text = ddk.SONK.HasValue ? String.Format("{0:0,0}", ddk.SONK.Value) : "";
+            txtDMNK.Text = ddk.DMNK.HasValue ? String.Format("{0:0,0}", ddk.DMNK.Value) : "";
+            txtNGAYCD.Text = ddk.NGAYDK.HasValue ? String.Format("{0:dd/MM/yyyy}", ddk.NGAYDK.Value) : "";
+            txtNGAYKS.Text = ddk.NGAYHKS.HasValue ? String.Format("{0:dd/MM/yyyy}", ddk.NGAYHKS.Value) : "";
 
             txtNGAYCAPCMND.Text = ddk.CAPNGAY.HasValue ? String.Format("{0:dd/MM/yyyy}", ddk.CAPNGAY.Value) : "";
 

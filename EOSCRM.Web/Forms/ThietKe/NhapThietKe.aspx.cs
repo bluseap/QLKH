@@ -500,9 +500,9 @@ namespace EOSCRM.Web.Forms.ThietKe
             string b = loginInfo.Username;
             var query = _nvDao.GetKV(b);
 
-            if (query.MAKV != "O" && query.MAKV != "N" && query.MAKV != "X" && query.MAKV != "S" && query.MAKV != "P" 
+            if (query.MAKV != "O" && query.MAKV != "N" && query.MAKV != "X" && query.MAKV != "S" && query.MAKV != "P"  
                 && query.MAKV != "K" && query.MAKV != "L" && query.MAKV != "M" && query.MAKV != "Q"
-                    && query.MAKV != "T") //chi lay khu vuc thoai son
+                  ) //chi lay khu vuc thoai son, tan chau
             {
                 if (string.IsNullOrEmpty(txtSODB.Text.Trim()))
                 {
