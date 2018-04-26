@@ -1225,7 +1225,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 if (ckHeSoNhan.Checked == true)
                 {
-                    
+                    report.UPTHayDoiCTPO(kh.IDKHPO, Convert.ToInt16(ddlTHANGTDCT.SelectedValue),  Convert.ToInt16(txtNAMTDCT.Text.Trim()), "InHeSoNhan",
+                        ddlDOTINHD.SelectedValue, LoginInfo.MANV, txtHeSoNhan.Text.Trim(),  txtLyDoHeSoNhan.Text.Trim()  );
                 }
 
                 kh.MAXA = ddlPhuongXa.SelectedValue;
