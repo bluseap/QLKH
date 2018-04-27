@@ -433,7 +433,8 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 var query = _nvDao.GetKV(b);
 
                 //bool dung = gcsDao.IsLockTinhCuocKy(kynay1, query.MAKV.ToString());
-                bool dung = gcsDao.IsLockTinhCuocKy1(kynay1, query.MAKV.ToString(), _khDao.Get(lblIDKH.Text.Trim()).MADP);
+                //bool dung = gcsDao.IsLockTinhCuocKy1(kynay1, query.MAKV.ToString(), _khDao.Get(lblIDKH.Text.Trim()).MADP);
+                bool dung = false;
 
                 if (dung == true)
                 {
@@ -548,7 +549,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 string b = loginInfo.Username;
                 var query = _nvDao.GetKV(b);
 
-                bool dung = gcsDao.IsLockTinhCuocKy(kynay1, query.MAKV.ToString());
+                //bool dung = gcsDao.IsLockTinhCuocKy(kynay1, query.MAKV.ToString());
+                bool dung = false;
+
                 if (dung == true)
                 {
                     CloseWaitingDialog();

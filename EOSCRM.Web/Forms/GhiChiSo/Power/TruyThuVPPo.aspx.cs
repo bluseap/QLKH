@@ -436,7 +436,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
                 string b = loginInfo.Username;
                 var query = _nvDao.GetKV(b);
 
-                bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, _kvpoDao.GetPo(query.MAKV).MAKVPO.ToString());
+                //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, _kvpoDao.GetPo(query.MAKV).MAKVPO.ToString());
+                bool dung = false;
+
                 if (dung == true)
                 {
                     CloseWaitingDialog();
@@ -546,7 +548,9 @@ namespace EOSCRM.Web.Forms.GhiChiSo.Power
                 string b = loginInfo.Username;
                 var query = _nvDao.GetKV(b);
 
-                bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, _kvpoDao.GetPo(query.MAKV.ToString()).MAKVPO);
+                //bool dung = _gcspoDao.IsLockTinhCuocKy(kynay1, _kvpoDao.GetPo(query.MAKV.ToString()).MAKVPO);
+                bool dung = false;
+
                 if (dung == true)
                 {
                     CloseWaitingDialog();
