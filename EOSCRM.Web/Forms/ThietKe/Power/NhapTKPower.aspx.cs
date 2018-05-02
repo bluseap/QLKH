@@ -537,7 +537,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 }
                 else
                 {
-                    if (txtSODB.Text.Trim().ToUpper().Substring(0, 1) != "I")
+                    if (txtSODB.Text.Trim().ToUpper().Substring(0, 1) != "I" || txtSODB.Text.Trim().ToUpper().Substring(0, 1) != "H")
                     {
                         ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Nhập đường phố trước. VD: IA01"), txtSODB.ClientID);
                         CloseWaitingDialog();

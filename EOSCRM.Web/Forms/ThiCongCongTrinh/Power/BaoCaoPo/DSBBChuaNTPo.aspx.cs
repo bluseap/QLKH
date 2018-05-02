@@ -35,6 +35,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power.BaoCaoPo
                 if (!Page.IsPostBack)
                 {
                     LoadReferences();
+                    listPhongBan();
                 }
                 else
                 {
@@ -69,7 +70,94 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power.BaoCaoPo
 
             divReport.Visible = false;
 
-            txtNguoiLap.Text = LoginInfo.NHANVIEN != null ? LoginInfo.NHANVIEN.HOTEN : "";
+            txtNguoiLap.Text = LoginInfo.NHANVIEN != null ? LoginInfo.NHANVIEN.HOTEN : "";           
+        }
+
+        protected void listPhongBan()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
+            var query = _nvDao.GetListKV(b);
+            foreach (var a in query)
+            {
+                string d = a.MAKV;
+
+                if (a.MAKV == "O")
+                {
+                    if (a.MAPB == "NB")
+                    {
+                        ddlPHONGBAN.Items.Clear();
+                        ddlPHONGBAN.Items.Add(new ListItem("Nhà máy nước Bình Hoà", "NB"));
+                    }
+                    if (a.MAPB == "TA")
+                    {
+                        ddlPHONGBAN.Items.Clear();
+                        ddlPHONGBAN.Items.Add(new ListItem("Tổ An Châu", "TA"));
+                    }
+                    if (a.MAPB == "TD")
+                    {
+                        ddlPHONGBAN.Items.Clear();
+                        ddlPHONGBAN.Items.Add(new ListItem("Tổ Vĩnh Hanh", "TD"));
+                    }
+                    if (a.MAPB == "KD")
+                    {
+                        ddlPHONGBAN.Items.Clear();
+                        ddlPHONGBAN.Items.Add(new ListItem("Tất cả", "%"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Phòng Kinh Doanh", "KD"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Phòng Kỹ Thuật Điện Nước", "KTDN"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Nhà máy nước Bình Hoà", "NB"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Tổ An Châu", "TA"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Tổ Vĩnh Hanh", "TD"));
+                    }
+                }
+                else if (a.MAKV == "U" || a.MAKV == "S" || a.MAKV == "P" || a.MAKV == "T")
+                {
+                    ddlPHONGBAN.Items.Clear();
+                    if (a.MAPB == "KD")
+                    {
+                        var kvList = _pbDao.GetListKV(a.MAKV);
+                        ddlPHONGBAN.Items.Add(new ListItem("Tất cả", "%"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Phòng Kinh Doanh", "KD"));
+                        foreach (var pb in kvList)
+                        {
+                            ddlPHONGBAN.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                        }
+                    }
+                    else
+                    {
+                        var pbList = _pbDao.GetListPB(a.MAPB);
+                        foreach (var pb in pbList)
+                        {
+                            ddlPHONGBAN.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                        }
+                    }
+                }
+                else
+                {
+                    ddlPHONGBAN.Items.Clear();
+                    if (a.MAPB == "KD")
+                    {
+                        var kvList = _pbDao.GetListKV(a.MAKV);
+                        ddlPHONGBAN.Items.Add(new ListItem("Tất cả", "%"));
+                        ddlPHONGBAN.Items.Add(new ListItem("Phòng Kinh Doanh", "KD"));
+                        foreach (var pb in kvList)
+                        {
+                            ddlPHONGBAN.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                        }
+                    }
+                    else
+                    {
+                        var pbList = _pbDao.GetListPB(a.MAPB);
+                        foreach (var pb in pbList)
+                        {
+                            ddlPHONGBAN.Items.Add(new ListItem(pb.TENPB, pb.MAPB));
+                        }
+                    }
+                }
+
+            }
         }
 
         public void timkv()
@@ -115,7 +203,9 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power.BaoCaoPo
             var TuNgay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
             var DenNgay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());
 
-            var ds = new ReportClass().DSQuiTrinhPoBien(TuNgay, DenNgay, cboKhuVuc.Text, ddlPHONGBAN.SelectedValue, "", "", "DSBBCHUANTPO");
+            //var ds = new ReportClass().DSQuiTrinhPoBien(TuNgay, DenNgay, cboKhuVuc.Text, ddlPHONGBAN.SelectedValue, "", "", "DSBBCHUANTPO");
+            var ds = new ReportClass().DSQuiTrinhPoBien(TuNgay, DenNgay, cboKhuVuc.Text, ddlPHONGBAN.SelectedValue, "", "", "DSBBCHUANTPOTO");
+
             if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
             Report(ds.Tables[0]);
 

@@ -18,6 +18,40 @@ public class ReportClass
 		
 	}
 
+    public DataSet UPDATETTDHPOMOI(string idkh, string makv, string idmadotin, int nam, int thang, decimal chisongung, decimal truythu,
+        string madhpo, string sono, decimal chisodau, decimal chisocuoi, decimal mtruythu, int hesonhan, DateTime ngaythay, DateTime ngaybamchi,
+        string donghocapban, string lydo, string ghichu, string idkh2, string ghichu2, string manv, string cobien)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {      
+                                   db.MakeInParam("@IDKH", SqlDbType.VarChar  , 11, idkh),
+                                   db.MakeInParam("@MAKV", SqlDbType.VarChar  , 20, makv),
+                                   db.MakeInParam("@IDMAODTIN", SqlDbType.VarChar  , 20, idmadotin),
+                                   db.MakeInParam("@NAM", SqlDbType.Int  , 20, nam),
+                                   db.MakeInParam("@THANG", SqlDbType.Int  , 20, thang),
+                                   db.MakeInParam("@CHISONGUNG", SqlDbType.Decimal  , 20, chisongung),
+                                   db.MakeInParam("@TRUYTHU", SqlDbType.Decimal  , 20, truythu),
+                                   db.MakeInParam("@MADHPO", SqlDbType.VarChar  , 20, madhpo),
+                                   db.MakeInParam("@SONO", SqlDbType.NVarChar  , 50, sono),
+                                   db.MakeInParam("@CHISODAU", SqlDbType.Decimal  , 20, chisodau),
+                                   db.MakeInParam("@CHISOCUOI", SqlDbType.Decimal  , 20, chisocuoi),
+                                   db.MakeInParam("@MTRUYTHU", SqlDbType.Decimal  , 20, mtruythu),
+                                   db.MakeInParam("@HESONHAN", SqlDbType.Int  , 20, hesonhan),
+                                   db.MakeInParam("@NGAYTHAY", SqlDbType.DateTime  , 20, ngaythay),
+                                   db.MakeInParam("@NGAYBAMCHI", SqlDbType.DateTime  , 20, ngaybamchi),
+                                   db.MakeInParam("@DONGHOCAPBAN", SqlDbType.NVarChar  , 20, donghocapban),
+                                   db.MakeInParam("@LYDO", SqlDbType.NVarChar  , 50, lydo),
+                                   db.MakeInParam("@GHICHU", SqlDbType.NVarChar  , 1000, ghichu),
+                                   db.MakeInParam("@IDKH2", SqlDbType.VarChar  , 11, idkh2),
+                                   db.MakeInParam("@GHICHU2", SqlDbType.NVarChar  , 1000, ghichu2),                    
+
+                                   db.MakeInParam("@MANV", SqlDbType.VarChar  , 20, manv),
+                                   db.MakeInParam("@COBIEN", SqlDbType.VarChar  , 20, cobien)
+                };
+        DataSet ds = db.RunExecProc("UPDATETTDHPOMOI", prams);
+        db.Dispose();
+        return ds;
+    }
 
     public DataSet TinhTienTheoBac(int thang, int nam, string makv, string madotin, int sohoadondau, int sohoadoncuoi, string ghichu, string cobien)
     {

@@ -434,7 +434,15 @@
                                     <asp:Label ID="lblCSCUOI" runat="server" Text=""></asp:Label>
                                 </div>                                
                             </td>
-                        </tr>                        
+                        </tr>   
+                        <tr>
+                            <td class="crmcell right">Hệ số nhân</td>
+                            <td class="crmcell">                                
+                                <div class="left width-200">
+                                    <asp:TextBox ID="txtHeSoNhan" Width="50px" runat="server" ></asp:TextBox>
+                                </div>                               
+                            </td>
+                        </tr>                     
                         <tr>
                             <td class="crmcell right">Chỉ số ngưng</td>
                             <td class="crmcell">                                

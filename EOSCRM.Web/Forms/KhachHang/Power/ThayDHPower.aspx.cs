@@ -132,7 +132,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 cboLoaiDh.DataValueField = "MALDHPO";
                 cboLoaiDh.DataSource = loaiDhList;
                 cboLoaiDh.DataBind();
+
                 ClearForm();
+
                 //txtNAM.Text = DateTime.Now.Year.ToString();
                 //ddlTHANG.SelectedIndex = DateTime.Now.Month - 1;
                 //txtNgayThay.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -421,6 +423,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
             lbMaLoaiDH.Text = "";
             lbCongSuat.Text = "";
+
+            txtHeSoNhan.Text = "1";
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -499,7 +503,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     return;
                 }
 
-                var isTHD = _tdhpoDao.GetKy(kh.IDKHPO, DateTime.Now.Month, DateTime.Now.Year);
+                //var isTHD = _tdhpoDao.GetKy(kh.IDKHPO, DateTime.Now.Month, DateTime.Now.Year);namForm
+                var isTHD = _tdhpoDao.GetKy(kh.IDKHPO, thangForm, namForm);
                 if (isTHD != null)
                 {
                     ShowError("Khách hàng thay đồng hồ rồi. Kiểm tra lại.");
@@ -549,7 +554,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                                                 DateTimeUtil.GetVietNamDate(lblNGAYHOANTHANH.Text.Trim()), madhkh, ddlDONGHOCAPBAN.SelectedValue, kyForm);
 
                 rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), Convert.ToInt32(txtTRUYTHU.Text.Trim()));
-                
+
+                rp.UPDATETTDHPOMOI(kh.IDKHPO, kvpo.MAKVPO, "", namForm, thangForm, 0, 0, "", "", 0, 0, 0, Convert.ToInt16(txtHeSoNhan.Text.Trim())
+                    , DateTime.Now, DateTime.Now, "", "", "", "", "", LoginInfo.MANV, "UPHESONHANPO");
+
+                //rp.UPTHayDoiCTPO(kh.IDKHPO, Convert.ToInt16(ddlTHANGTDCT.SelectedValue), Convert.ToInt16(txtNAMTDCT.Text.Trim()), "UpHeSoNhanTDH",
+                 //       ddlDOTINHD.SelectedValue, LoginInfo.MANV, txtHeSoNhan.Text.Trim(), txtLyDoHeSoNhan.Text.Trim());
+
                 CloseWaitingDialog();
 
                 if (!msg.MsgType.Equals(MessageType.Error))
@@ -693,7 +704,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                                                 CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 rp.UpdateTieuThuDHPo(kh.IDKHPO, Convert.ToInt32(txtCSBATDAU.Text.Trim()), Convert.ToInt32(txtCSMOI.Text.Trim()), Convert.ToInt32(txtTRUYTHU.Text.Trim()));
-                
+
+                rp.UPDATETTDHPOMOI(kh.IDKHPO, kvpo.MAKVPO, "", namForm, thangForm, 0, 0, "", "", 0, 0, 0, Convert.ToInt16(txtHeSoNhan.Text.Trim())
+                    , DateTime.Now, DateTime.Now, "", "", "", "", "", LoginInfo.MANV, "UPHESONHANPO");
+
                 CloseWaitingDialog();
 
                 if (!msg.MsgType.Equals(MessageType.Error))

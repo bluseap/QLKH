@@ -2894,9 +2894,20 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
-                    if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
+                    if (objDb.TTCT == "CT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+                        objDb.TTCT = TTCT.CT_P.ToString();
+                    }
+                    else if (objDb.TTTC == "TC_RA")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                        //objDb.TTTC = "TC_P";
+                    }
+                    else if (objDb.TTNT == "NT_RA")
+                    {
+                        objDb.TTTK = TTTK.TK_A.ToString();
+                        objDb.TTNT = "NT_A";
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
@@ -2905,8 +2916,8 @@ namespace EOSCRM.Dao
                     else
                     {
                         // update don dang ky
-                        objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+                        objDb.TTCT = TTCT.CT_N.ToString();                        
                     }
 
                     // update thiet ke

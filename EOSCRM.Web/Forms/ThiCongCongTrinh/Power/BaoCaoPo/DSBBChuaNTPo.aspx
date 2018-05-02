@@ -55,10 +55,10 @@
                     </td>
                 </tr>
                  <tr>
-                    <td class="crmcell right"> </td>
+                    <td class="crmcell right"> Nhà máy, tổ </td>
                     <td class="crmcell">    
                         <div class="left">
-                            <asp:DropDownList ID="ddlPHONGBAN" runat="server" TabIndex="4" Visible="false"/>
+                            <asp:DropDownList ID="ddlPHONGBAN" runat="server" TabIndex="4" />
                         </div>                        
                     </td>
                 </tr>
