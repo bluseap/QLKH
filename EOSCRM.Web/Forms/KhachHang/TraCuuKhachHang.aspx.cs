@@ -917,6 +917,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                 ddlDOTINHD.SelectedIndex = 0;
 
                 lbMaDongHoKHM.Text = "";
+                lbLoaiDongHoKHM.Text = "";
+                lbCongSuatDongHoKHM.Text = "";
+                lbSoNoKHM.Text = ""; 
             }
             catch { }
         }
@@ -2785,10 +2788,10 @@ namespace EOSCRM.Web.Forms.KhachHang
             else
             {
                 ckCSCUOIKHAITHAC.Checked = false;
-                ShowInfor("Khách hàng đã khai thác. Xin chọn khách hàng mới khai thác.");
+                ShowInfor("Khách hàng đã khai thác. Xin chọn khách hàng mới khai thác.");               
+            }
 
-                //upnlCustomers.Update();
-            }        
+            upnlCustomers.Update();
         }
 
         protected void ckDMUCTAM_CheckedChanged(object sender, EventArgs e)
@@ -3104,9 +3107,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                         {                           
                             lbMaDongHoKHM.Text = id;
 
-                            SetControlValue(lbLoaiDongHoKHM.ClientID, dh.MALDH != null ? dh.MALDH : "");
-                            SetControlValue(lbCongSuatDongHoKHM.ClientID, dh.CONGSUAT != null ? dh.CONGSUAT : "");
-                            SetControlValue(lbSoNoKHM.ClientID, dh.SONO);
+                            lbLoaiDongHoKHM.Text = dh.MALDH != null ? dh.MALDH : "";
+                            lbCongSuatDongHoKHM.Text = dh.CONGSUAT != null ? dh.CONGSUAT : "";
+                            lbSoNoKHM.Text = dh.SONO != null ? dh.SONO : "";
 
                             upnlCustomers.Update();
                             HideDialog("divUpSoNoKHM");

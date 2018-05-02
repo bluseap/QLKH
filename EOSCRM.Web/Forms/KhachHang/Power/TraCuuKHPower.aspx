@@ -1691,7 +1691,7 @@
                                 </div>
                                 <div class="left" >
                                     <asp:Button ID="btDoiSoNoKHM" runat="server" CssClass="myButton" Text="Đổi No KHM" 
-                                        CausesValidation="false" UseSubmitBehavior="false" Visible="true"
+                                        CausesValidation="false" UseSubmitBehavior="false" Visible="False"
                                         OnClientClick="openDialogAndBlock('Đổi số No đồng hồ KHM', 500, 'divUpSoNoKHM')" OnClick="btDoiSoNoKHM_Click"  />                                    
                                 </div>                                                                
                             </td>

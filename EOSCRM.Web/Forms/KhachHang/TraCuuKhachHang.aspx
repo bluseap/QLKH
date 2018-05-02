@@ -1815,7 +1815,7 @@
                                 </div>
                                 <div class="left" >
                                     <asp:Button ID="btDoiSoNoKHM" runat="server" CssClass="myButton" Text="Đổi No KHM" 
-                                        CausesValidation="false" UseSubmitBehavior="false" Visible="true"
+                                        CausesValidation="false" UseSubmitBehavior="false" Visible="False"
                                         OnClientClick="openDialogAndBlock('Đổi số No đồng hồ KHM', 500, 'divUpSoNoKHM')" OnClick="btDoiSoNoKHM_Click"  />                                    
                                 </div>                                                                
                             </td>
@@ -2100,7 +2100,7 @@
                                 <%# Eval("KYKHAITHAC") != null ? String.Format("{0:MM/yyyy}", Eval("KYKHAITHAC")) : ""  %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderStyle-Width="50px" HeaderText="Số No">
+                        <asp:TemplateField HeaderStyle-Width="80px" HeaderText="Số No">
                             <ItemTemplate>
                                 <%# Eval("DONGHO.SONO") %>
                             </ItemTemplate>
