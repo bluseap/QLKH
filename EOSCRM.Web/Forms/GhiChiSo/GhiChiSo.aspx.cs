@@ -351,7 +351,11 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                     if (dp == null) return false;
 
                     var kynay = new DateTime(int.Parse(txtNAM.Text.Trim()), int.Parse(ddlTHANG.SelectedValue), 1);
-                    var list = gcsDao.GetList(kynay, dp);
+
+                    var idmadotinnhothu = _diDao.GetKVP7D1("NNNTD1", ddlKHUVUC.SelectedValue);
+
+                    //var list = gcsDao.GetList(kynay, dp);
+                    var list = gcsDao.GetListKhongNhoThu(kynay, dp, idmadotinnhothu.IDMADOTIN);
 
                     gvList.DataSource = list;
                     gvList.PagerInforText = list.Count.ToString(CultureInfo.InvariantCulture);

@@ -4893,6 +4893,58 @@ namespace EOSCRM.Dao
             }).ToList();
         }
 
+        public List<GHICHISO> GetListKhongNhoThu(DateTime kyghi, DUONGPHO dp, string idmadotin)
+        {
+            /*var query = _db.TIEUTHUs
+                .Join(_db.KHACHHANGs, tt => tt.SODB.Trim(), kh => (kh.MADP + kh.DUONGPHU + kh.MADB).Trim(), 
+                      (tt, kh) => new { tt, kh })*/
+            var query = _db.TIEUTHUs
+                .Join(_db.KHACHHANGs, tt => tt.IDKH.Trim(), kh => kh.IDKH.Trim(),
+                      (tt, kh) => new { tt, kh })
+                .Where(
+                        @res => @res.tt.NAM.Equals(kyghi.Year) &&   // nam trong tieu thu
+                        @res.tt.THANG.Equals(kyghi.Month) &&        // thang trong tieu thu
+                        @res.tt.SODB.StartsWith(dp.MADP + dp.DUONGPHU) // so danh bo bat dau bang madp + duong phu
+                            && @res.kh.KYKHAITHAC < kyghi && @res.kh.XOABOKH.Equals(0)
+                            && (@res.kh.IDMADOTIN != idmadotin || @res.kh.IDMADOTIN == null)
+                //!@res.tt.TTSD.Equals("CUP")                 // trang thai ghi
+                //@res.tt.SODB.StartsWith(dp.MADP.Substring(0,3))
+                    );
+
+            query = query.OrderBy(tt => tt.kh.DUONGPHU).OrderBy(tt => tt.kh.MADP).OrderBy(tt => tt.kh.MADB);
+
+            return query.Select(@res => new
+            {
+                @res.kh.IDKH,
+                @res.tt.SODB,
+                @res.tt.MADP,
+                @res.tt.NAM,
+                @res.tt.THANG,
+                @res.kh.SONHA,
+                @res.kh.TENKH,
+                @res.kh.KYKHAITHAC,
+                @res.tt.CHISODAU,
+                @res.tt.CHISOCUOI,
+                @res.tt.KLTIEUTHU,
+                TTHAIGHI = @res.tt.TTHAIGHI ?? "GDH_BT",
+                @res.tt.MANVN_CS
+            }).AsEnumerable().Select(x => new GHICHISO
+            {
+                IDKH = x.IDKH,
+                SODB = x.SODB,
+                MADP = x.MADP,
+                NAM = x.NAM,
+                THANG = x.THANG,
+                SONHA = x.SONHA,
+                TENKH = x.TENKH,
+                CHISODAU = x.CHISODAU,
+                CHISOCUOI = x.CHISOCUOI,
+                KLTIEUTHU = x.KLTIEUTHU,
+                TTHAIGHI = x.TTHAIGHI,
+                MANV_CS = x.MANVN_CS
+            }).ToList();
+        }
+
         //GCSTTKYTRUOC
         public List<GCSTTKYTRUOC> GetListTTKYTRUOC(DateTime kyghi, DUONGPHO dp)
         {

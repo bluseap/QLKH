@@ -162,7 +162,7 @@ public class ReportClass
         Database db = new Database();
         SqlParameter[] prams = {
                     db.MakeInParam("@IDKH", SqlDbType.VarChar  , 11, idkh),
-                    db.MakeInParam("@IDKH2", SqlDbType.VarChar  , 11, idkh2),
+                    db.MakeInParam("@IDKH2", SqlDbType.NVarChar  , 11, idkh2),
                     db.MakeInParam("@MAKV", SqlDbType.VarChar  , 10, makv),
                     db.MakeInParam("@THANG", SqlDbType.Int  , 11, thang),
                     db.MakeInParam("@NAM", SqlDbType.Int  , 11, nam),

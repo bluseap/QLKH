@@ -36,7 +36,7 @@ namespace EOSCRM.Dao
         public DOTINHD GetKVP7D1(string p7d1, string makv)
         {
             return _db.DOTINHDs.Where(p => p.MADOTIN.Equals(p7d1) && p.MAKV.Equals(makv)).SingleOrDefault();
-        }
+        }        
 
         public DOTINHD GetKVPoDot(string madot, string makvpo)
         {
