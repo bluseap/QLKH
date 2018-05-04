@@ -2637,6 +2637,21 @@ public class ReportClass
         return ds;
     }
 
+    public DataSet UPKHMSTPO(string idkh, string mst, int thang, int nam, string lydo)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                     db.MakeInParam("@IDKH", SqlDbType.VarChar  , 11, idkh ),
+                     db.MakeInParam("@MST", SqlDbType.VarChar  , 20, mst ),
+                     db.MakeInParam("@THANG", SqlDbType.Int  , 2, thang),
+                     db.MakeInParam("@NAM", SqlDbType.Int  , 4, nam),
+                     db.MakeInParam("@LYDO", SqlDbType.NVarChar  , 100, lydo )
+                };
+        DataSet ds = db.RunExecProc("UPKHMSTPO", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet UPKHMAMDSD(string idkh, string mamdsd, int thang, int nam, string lydo)
     {
         Database db = new Database();

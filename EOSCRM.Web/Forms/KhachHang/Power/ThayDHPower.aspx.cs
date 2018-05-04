@@ -1232,5 +1232,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             catch { }
         }
 
+        protected void ddlLYDOTHAYDH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

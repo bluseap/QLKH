@@ -12,6 +12,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 {
     public partial class NhapKHPower : Authentication
     {
+        private readonly ReportClass _rpClass = new ReportClass();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
         private readonly ApToDao _atDao = new ApToDao();
@@ -983,7 +984,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     var dasd = _dhpoDao.Get(txtMADH.Text);
                     _dhpoDao.UpdateDASD(dasd);       
                 }
-                else
+                else // update khach hang
                 {
                     if (!HasPermission(Functions.KH_NhapMoiDien, Permission.Update))
                     {
@@ -993,8 +994,14 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     }                  
 
                     msg = _khpoDao.Update(kh, DateTime.Now.Month, DateTime.Now.Year, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
-                                      
+                
+                }
 
+                //update ma so thue
+                if (!string.IsNullOrEmpty(txtMSTHUE.Text.Trim()) || txtMSTHUE.Text != "")
+                {
+                    _rpClass.UPKHMSTPO(kh.IDKHPO, txtMSTHUE.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()),
+                        "KHÁCH HÀNG MỚI GẮN MST");
                 }
 
                 CloseWaitingDialog();

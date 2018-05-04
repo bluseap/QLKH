@@ -1280,8 +1280,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                             //update ma so thue
                             if (!string.IsNullOrEmpty(txtMSTHUE.Text.Trim()) || txtMSTHUE.Text != "")
                             {
-                                _rpClass.UPKHMST(kh.IDKH, txtMSTHUE.Text.Trim(),
-                                    int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "");
+                                _rpClass.UPKHMST(kh.IDKH, txtMSTHUE.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "");
                             }
 
                             //insert hongheo
@@ -1371,8 +1370,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 //update ma so thue
                                 if (!string.IsNullOrEmpty(txtMSTHUE.Text.Trim()) || txtMSTHUE.Text != "")
                                 {
-                                    _rpClass.UPKHMST(kh.IDKH, txtMSTHUE.Text.Trim(),
-                                        int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "");
+                                    _rpClass.UPKHMST(kh.IDKH, txtMSTHUE.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "");
                                 }
 
                                 //insert hongheo
@@ -1438,26 +1436,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 return; 
                             }// chau doc
                             else
-                            {
-                                //if (querykv.MAKV == "N") // chau phu dua vao tam, ko co chuyen VAO KHACHHANG
-                                //{
-                                //    khtlx.IDKH = _khtlxDao.NewId();
-                                //    hdfIDKH.Value = khtlx.IDKH;
-                                //    khtlx.ISTACHDUONG = false;
-
-                                //    msg = _khtlxDao.InsertLX(khtlx, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-
-                                //    ClearForm();
-                                //    // bind grid
-                                //    BindKhachHangGrid();
-                                //    upnlCustomers.Update();
-                                //    UpdateMode = Mode.Create;
-                                //    txtSOHD.Focus();
-                                //    CloseWaitingDialog();
-                                //    return;
-                                //}
-                                //else
-                                //{                                
+                            {                              
 
                                 msg = khDao.InsertTS(kh, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
@@ -1573,23 +1552,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                     //update ma so thue
                     if (!string.IsNullOrEmpty(txtMSTHUE.Text.Trim()) || txtMSTHUE.Text != "")
                     {
-                        _rpClass.UPKHMST(kh.IDKH, txtMSTHUE.Text.Trim(),
-                            int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "KHÁCH HÀNG MỚI GẮN MST");
+                        _rpClass.UPKHMST(kh.IDKH, txtMSTHUE.Text.Trim(), int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), 
+                            "KHÁCH HÀNG MỚI GẮN MST");
                     }
-
-                    // update hop dong
-                    /*var hd = HopDong;
-                    if (hd != null && hd.SOHD == kh.SOHD)
-                    {
-                        hd.DACAPDB = true;
-                        hdDao.Update(hd, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
-                    }
-
-                    //update dong ho su dung
-                    var dasd = dhDao.Get(txtMADH.Text);
-                    dhDao.UpdateDASD(dasd);
-                    */
-
                 }
                 else //update save
                 {

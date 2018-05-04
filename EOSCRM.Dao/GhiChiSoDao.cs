@@ -4825,7 +4825,7 @@ namespace EOSCRM.Dao
                 //@res.tt.SODB.StartsWith(dp.MADP.Substring(0,3))
                     );
 
-            query = query.OrderBy(tt => tt.kh.DUONGPHU).OrderBy(tt => tt.kh.MADP).OrderBy(tt => tt.kh.MADB);
+            query = query.OrderBy(tt => tt.kh.MADP).OrderBy(tt => tt.kh.MADB);            
 
             return query.Select(@res => new
             {
@@ -4856,7 +4856,9 @@ namespace EOSCRM.Dao
                 KLTIEUTHU = x.KLTIEUTHU,
                 TTHAIGHI = x.TTHAIGHI,
                 MANV_CS = x.MANVN_CS
-            }).ToList();
+            })
+            .OrderBy(p => p.SODB)
+            .ToList();
         }
 
         public List<GHICHISO> GetList(DateTime kyghi, DUONGPHO dp)
@@ -4911,7 +4913,7 @@ namespace EOSCRM.Dao
                 //@res.tt.SODB.StartsWith(dp.MADP.Substring(0,3))
                     );
 
-            query = query.OrderBy(tt => tt.kh.DUONGPHU).OrderBy(tt => tt.kh.MADP).OrderBy(tt => tt.kh.MADB);
+            query = query.OrderBy(tt => tt.kh.MADP).OrderBy(tt => tt.kh.MADB);
 
             return query.Select(@res => new
             {

@@ -1708,7 +1708,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                             txtGHICHUCSLX.Text = "";
                         }
 
-                        ThuHoToDotInHD(ddlTHUHO.SelectedValue);
+                        LoadThuHoDotInFromKhachHang(kh.IDKH);                               
 
                         CloseWaitingDialog();
                         break;
@@ -1794,7 +1794,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                         lblTenKH.Text = kh1.TENKH.Trim();
 
-                        ThuHoToDotInHD(ddlTHUHO.SelectedValue);
+                        LoadThuHoDotInFromKhachHang(kh3.IDKH);
 
                         upnlTTTT.Update();
                         UnblockDialog("divTTTT");
@@ -3058,6 +3058,70 @@ namespace EOSCRM.Web.Forms.KhachHang
             catch { }
         }
         
+        private void LoadThuHoDotInFromKhachHang(string idkh)
+        {
+            try
+            {
+                var khachhang = khDao.Get(idkh);
+
+                string nhothud1 = "NNNTD1";
+                var dotin = _dihdDao.GetKVDot(nhothud1, ddlKHUVUC.SelectedValue);
+                if (dotin == null)
+                {                    
+                    CloseWaitingDialog();
+                    return;
+                }
+
+                if (khachhang.IDMADOTIN == dotin.IDMADOTIN)//dot in nho thu
+                {
+                    var madotinnt = ddlDOTINHD.Items.FindByValue(khachhang.IDMADOTIN);
+                    if (madotinnt != null)
+                    {
+                        ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotinnt);
+                    }
+
+                    var thuho = ddlTHUHO.Items.FindByValue("TQ");
+                    if (thuho != null)
+                    {
+                        ddlTHUHO.SelectedIndex = ddlTHUHO.Items.IndexOf(thuho);
+                    }
+                }
+                else
+                {
+                    var duongpho = dpDao.GetDP(khachhang.MADP);
+                    if (duongpho == null)
+                    {                    
+                        CloseWaitingDialog();
+                        return;
+                    }
+
+                    var madotinnt = ddlDOTINHD.Items.FindByValue(duongpho.IDMADOTIN);
+                    if (madotinnt != null)
+                    {
+                        ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotinnt);
+                    }
+                    var thuho = ddlTHUHO.Items.FindByValue("KO");
+                    if (thuho != null)
+                    {
+                        ddlTHUHO.SelectedIndex = ddlTHUHO.Items.IndexOf(thuho);
+                    }
+                }                    
+               
+
+                //if (ddlTHUHO.SelectedValue == "Q" || ddlTHUHO.SelectedValue == "T" || ddlTHUHO.SelectedValue == "TQ")
+                //{
+                //    ss
+                    
+                //}
+                //else if (ddlTHUHO.SelectedValue == "KO")
+                //{
+                //    // load dot in
+                //    ThuHoToDotInHD(ddlTHUHO.SelectedValue);
+                //}
+            }
+            catch{}
+        }
+
         protected void btDoiSoNoKHM_Click(object sender, EventArgs e)
         {
             try
