@@ -53,19 +53,22 @@
         }
 
         function CheckFormKhoiLuongKeyPress(e) {
+
             var code = (e.keyCode ? e.keyCode : e.which);
-            jQuery.fn.exists = function() { return jQuery(this).length > 0; }
-            if (code == 13 || code == 9) {
+            jQuery.fn.exists = function () { return jQuery(this).length > 0; }
+
+            if (code == 13) {
                 openWaitingDialog();
                 unblockWaitingDialog();
-                __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnChangeKhoiLuong) %>', '');
+                //__doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnChangeKhoiLuong) %>', '');
             }
         }
 
         function CheckFormAddVatTu() {
             openWaitingDialog();
             unblockWaitingDialog();
-            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnChangeKhoiLuong) %>', '');
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btAddVatTu) %>', '');
+            //__doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnChangeKhoiLuong) %>', '');
         }
 
         function CheckFormAddGhiChu() {
@@ -399,7 +402,7 @@
 		                            </div>
 		                            <div class="left">
 		                                <asp:TextBox ID="txtKHOILUONG" Width="60px" runat="server"
-		                                    onkeypress="return CheckFormKhoiLuongKeyPress(event);" />
+		                                    onkeypress="return CheckFormKhoiLuongKeyPress(event);" OnTextChanged="txtKHOILUONG_TextChanged" />
 		                                <asp:LinkButton ID="linkBtnChangeKhoiLuong" CausesValidation="false" style="display:none"  
                                             OnClick="linkBtnChangeKhoiLuong_Click" runat="server">Change KL</asp:LinkButton>
 		                            </div>

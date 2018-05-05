@@ -442,14 +442,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         {
             try
             {
-                var hopdongpo = HopDongPo;
-                if (hopdongpo == null)
-                {
-                    CloseWaitingDialog();
-                    return;
-                }
-
-                Message msg, msghdtcpo;
                 if (ddlKHUVUC.SelectedValue != "J")
                 {
                     if (string.Empty.Equals(txtMADB.Text.Trim()) || txtMADB.Text.Trim().Length != 8)
@@ -460,6 +452,15 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                         return;
                     }
                 }
+
+                var hopdongpo = HopDongPo;
+                if (hopdongpo == null)
+                {
+                    CloseWaitingDialog();
+                    return;
+                }
+                
+                Message msg, msghdtcpo;                
 
                 if (UpdateMode.Equals(Mode.Create))
                 {

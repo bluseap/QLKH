@@ -445,7 +445,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                 var TuNgay = DateTimeUtil.GetVietNamDate("01/" + ddlTHANG.SelectedValue + "/" + txtNAM.Text.Trim());     //thang
                 var DenNgay = DateTimeUtil.GetVietNamDate("01/" + ddlTHANG.SelectedValue + "/" + txtNAM.Text.Trim());    //nam
                                 
-                var ds = new ReportClass().dsKHCBiKT(_kvpoDao.GetPo(query.MAKV).MAKVPO.ToString(), ddlPHUONGXA.SelectedValue.ToString(), "dsCBIKTPOPX", TuNgay, DenNgay);
+                var ds = new ReportClass().dsKHCBiKT(_kvpoDao.GetPo(query.MAKV).MAKVPO.ToString(), ddlPHUONGXA.SelectedValue.ToString(), "dsCBIKTPOPX", 
+                    TuNgay, DenNgay);
 
                 if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
                 ReportNgayNTangGiam(ds.Tables[0]);

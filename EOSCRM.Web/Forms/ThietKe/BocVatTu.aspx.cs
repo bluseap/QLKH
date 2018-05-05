@@ -518,6 +518,8 @@ namespace EOSCRM.Web.Forms.ThietKe
             gvSelectedVatTu.DataSource = list;
             gvSelectedVatTu.PagerInforText = list.Count.ToString();
             gvSelectedVatTu.DataBind();
+
+            upnlMBVT.Update();
         }
 
         protected void gvSelectedVatTu_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -825,6 +827,70 @@ namespace EOSCRM.Web.Forms.ThietKe
 
         protected void linkBtnChangeKhoiLuong_Click(object sender, EventArgs e)
         {
+            //if (ThietKe == null)
+            //{
+            //    CloseWaitingDialog();
+            //    return;
+            //}
+
+            //if (txtMAVT.Text.Trim() == "")
+            //{
+            //    CloseWaitingDialog();
+            //    ShowError("Vui lòng nhập mã vật tư", txtMAVT.ClientID);
+            //    return;
+            //}
+
+            //try
+            //{
+            //    decimal.Parse(txtKHOILUONG.Text.Trim());
+            //}
+            //catch
+            //{
+            //    CloseWaitingDialog();
+            //    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Khối lượng"), txtKHOILUONG.ClientID);
+            //    return;
+            //}
+
+            //var vt = vtDao.Get(txtMAVT.Text.Trim());
+            //if (vt == null)
+            //{
+            //    CloseWaitingDialog();
+            //    ShowError("Vật tư không có trong cơ sở dữ liệu. Vui lòng chọn lại.");
+            //    return;
+            //}
+
+            //// add to grid
+            //var cttk = new CTTHIETKE
+            //{
+            //    MADDK = ThietKe.MADDK,
+            //    MAVT = vt.MAVT,
+            //    NOIDUNG = vt.TENVT,
+            //    SOLUONG = decimal.Parse(txtKHOILUONG.Text.Trim()),
+            //    GIAVT = vt.GIAVT.HasValue ? vt.GIAVT.Value : 0,
+            //    GIANC = vt.GIANC.HasValue ? vt.GIANC.Value : 0,
+            //    TIENVT = vt.GIAVT.HasValue ? decimal.Parse(txtKHOILUONG.Text.Trim()) * vt.GIAVT.Value : 0,
+            //    TIENNC = vt.GIANC.HasValue ? decimal.Parse(txtKHOILUONG.Text.Trim()) * vt.GIANC.Value : 0,
+            //    ISCTYDTU = chkIsCtyDauTu.Checked
+            //};
+
+            //Message msg;
+            //msg = cttkdao.Insert(cttk);
+
+            //BindSelectedVatTuGrid();
+
+            //txtMAVT.Text = "";
+            //txtKHOILUONG.Text = "";
+            //lblTENVT.Text = "";
+            //FocusAndSelect(txtMAVT.ClientID);
+
+            //CloseWaitingDialog();   
+            //upnlMBVT.Update();
+
+            lnkChangeKhoiLuong();
+        }
+
+        private void lnkChangeKhoiLuong()
+        {
             if (ThietKe == null)
             {
                 CloseWaitingDialog();
@@ -833,8 +899,8 @@ namespace EOSCRM.Web.Forms.ThietKe
 
             if (txtMAVT.Text.Trim() == "")
             {
-                CloseWaitingDialog();
-                ShowError("Vui lòng nhập mã vật tư", txtMAVT.ClientID);
+                //CloseWaitingDialog();
+                //ShowError("Vui lòng nhập mã vật tư", txtMAVT.ClientID);
                 return;
             }
 
@@ -871,7 +937,9 @@ namespace EOSCRM.Web.Forms.ThietKe
                 ISCTYDTU = chkIsCtyDauTu.Checked
             };
 
-            cttkdao.Insert(cttk);
+            Message msg;
+            msg = cttkdao.Insert(cttk);
+
             BindSelectedVatTuGrid();
 
             txtMAVT.Text = "";
@@ -879,8 +947,8 @@ namespace EOSCRM.Web.Forms.ThietKe
             lblTENVT.Text = "";
             FocusAndSelect(txtMAVT.ClientID);
 
-            upnlMBVT.Update();
             CloseWaitingDialog();
+            upnlMBVT.Update();            
         }
 
         protected void linkBtnChangeMAVT_Click(object sender, EventArgs e)
@@ -1024,7 +1092,10 @@ namespace EOSCRM.Web.Forms.ThietKe
         {
             try
             {
+                lnkChangeKhoiLuong();
+
                 CloseWaitingDialog();
+                upnlMBVT.Update();
             }
             catch (Exception ex) 
             { 
@@ -1039,6 +1110,21 @@ namespace EOSCRM.Web.Forms.ThietKe
                 SaveMauThietke();
             }
             catch { }
+        }
+
+        protected void txtKHOILUONG_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lnkChangeKhoiLuong();
+
+                CloseWaitingDialog();
+                upnlMBVT.Update();
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.ToString());
+            }
         }
 
 
