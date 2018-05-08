@@ -1504,7 +1504,16 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     if (mathicong.MADH != null)
                     {
                         var dhno = _dhpoDao.Get(mathicong.MADH);
-                        lbSONODH.Text = dhno.SONO.ToString();
+
+                        if (dhno != null)
+                        {
+                            lbSONODH.Text = dhno.SONO.ToString();
+                        }
+                        else
+                        {
+                            lbSONODH.Text = "";
+                            ShowError("Số No đồng hồ điện sai. Kiểm tra lại. Vào phần sửa đồng hồ chưa khai thác nhập lại. ", "");
+                        }                        
                     }
                     else { lbSONODH.Text = ""; }
                 }

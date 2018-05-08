@@ -1802,9 +1802,21 @@ namespace EOSCRM.Web.Forms.KhachHang
                     if (mathicong.MADH != null)
                     {
                         var dhno = _dhDao.Get(mathicong.MADH);
-                        lbSONODH.Text = dhno.SONO.ToString();
+
+                        if (dhno != null)
+                        {
+                            lbSONODH.Text = dhno.SONO.ToString();
+                        }
+                        else
+                        {
+                            lbSONODH.Text = "";
+                            ShowError("Số No đồng hồ sai. Kiểm tra lại. Vào phần sửa đồng hồ chưa khai thác nhập lại. ","");
+                        }
                     }
-                    else { lbSONODH.Text = ""; }
+                    else 
+                    { 
+                        lbSONODH.Text = ""; 
+                    }
                 }
                 else { lbSONODH.Text = ""; }
             }
