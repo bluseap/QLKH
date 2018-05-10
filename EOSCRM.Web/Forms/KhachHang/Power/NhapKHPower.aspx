@@ -887,16 +887,22 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="left">
-                                    <strong></strong>
+                                    <strong>CS Đầu</strong>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtCHISODAU" runat="server" Width="100px" TabIndex="43" Visible="false" />
+                                    <asp:TextBox ID="txtCHISODAU" runat="server" Width="50px" TabIndex="43" />
                                 </div>
                                 <div class="left">
-                                    <strong>Chỉ số cuối</strong>
+                                    <strong>CS Cuối</strong>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtCHISOCUOI" runat="server" Width="100px" TabIndex="14" />
+                                    <asp:TextBox ID="txtCHISOCUOI" runat="server" Width="50px" TabIndex="14" />
+                                </div>
+                                <div class="left">
+                                    <strong>CS Truy thu</strong>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtChiSoTruyThu" runat="server" Width="50px" TabIndex="14" />
                                 </div>
                             </td>
                         </tr>

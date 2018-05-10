@@ -3804,6 +3804,7 @@
       <Column Name="SONHA2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="SOTRUKD" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="STTTS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MTRUYTHU" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Association Name="KHACHHANGPO_TIEUTHUPO" Member="TIEUTHUPOs" ThisKey="IDKHPO" OtherKey="IDKHPO" Type="TIEUTHUPO" />
       <Association Name="KHACHHANGPO_THAYDONGHOPO" Member="THAYDONGHOPOs" ThisKey="IDKHPO" OtherKey="IDKHPO" Type="THAYDONGHOPO" />
       <Association Name="KHACHHANGPO_THAYHOPDONGPO" Member="THAYHOPDONGPOs" ThisKey="IDKHPO" OtherKey="IDKHPO" Type="THAYHOPDONGPO" />

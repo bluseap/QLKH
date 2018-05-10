@@ -86803,6 +86803,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<int> _STTTS;
 		
+		private System.Nullable<decimal> _MTRUYTHU;
+		
 		private EntitySet<TIEUTHUPO> _TIEUTHUPOs;
 		
 		private EntitySet<THAYDONGHOPO> _THAYDONGHOPOs;
@@ -86975,6 +86977,8 @@ namespace EOSCRM.Domain
     partial void OnSOTRUKDChanged();
     partial void OnSTTTSChanging(System.Nullable<int> value);
     partial void OnSTTTSChanged();
+    partial void OnMTRUYTHUChanging(System.Nullable<decimal> value);
+    partial void OnMTRUYTHUChanged();
     #endregion
 		
 		public KHACHHANGPO()
@@ -88522,6 +88526,26 @@ namespace EOSCRM.Domain
 					this._STTTS = value;
 					this.SendPropertyChanged("STTTS");
 					this.OnSTTTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MTRUYTHU", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MTRUYTHU
+		{
+			get
+			{
+				return this._MTRUYTHU;
+			}
+			set
+			{
+				if ((this._MTRUYTHU != value))
+				{
+					this.OnMTRUYTHUChanging(value);
+					this.SendPropertyChanging();
+					this._MTRUYTHU = value;
+					this.SendPropertyChanged("MTRUYTHU");
+					this.OnMTRUYTHUChanged();
 				}
 			}
 		}

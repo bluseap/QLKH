@@ -1955,8 +1955,11 @@ namespace EOSCRM.Dao
                     {
                         IDKHPO = kh.IDKHPO, NAM = date.Year, THANG = date.Month, MAKVPO = kh.MAKVPO, MAKVDN = kh.MAKVDN,
                         MADPPO = kh.MADPPO, DUONGPHUPO = kh.DUONGPHUPO, MADBPO = kh.MADBPO, SODBPO = kh.MADPPO + kh.MADBPO,
+
                         CHISODAU = kh.CHISODAU.HasValue ? kh.CHISODAU.Value : 0,
                         CHISOCUOI = kh.CHISOCUOI.HasValue ? kh.CHISOCUOI.Value : 0,
+                        MTRUYTHU = kh.MTRUYTHU.HasValue ? kh.MTRUYTHU.Value : 0,
+
                         KLDHTONG = kh.CHISODAU.HasValue && kh.CHISOCUOI.HasValue ?
                                                          kh.CHISOCUOI.Value - kh.CHISODAU.Value : 0,
                         KLTIEUTHU = kh.CHISODAU.HasValue && kh.CHISOCUOI.HasValue ?
@@ -1982,7 +1985,7 @@ namespace EOSCRM.Dao
                         TIENPHI = 0,TIENTHUE = 0,KOPHINT = true, KOVAT = false, M3MUC1 = 0, GIAMUC1 = 0,
                         M3MUC2 = 0, GIAMUC2 = 0, M3MUC3 = 0, GIAMUC3 = 0, TNUOCMUC1 = 0, THUEMUC1 = 0,
                         PHIMUC1 = 0,TNUOCMUC2 = 0,THUEMUC2 = 0,PHIMUC2 = 0, TNUOCMUC3 = 0, THUEMUC3 = 0, PHIMUC3 = 0,
-                        THBT = "BT", MTRUYTHU = 0,  //TINHTIEN2THANG = x.TINHTIEN2THANG,
+                        THBT = "BT", //MTRUYTHU = 0,  //TINHTIEN2THANG = x.TINHTIEN2THANG,
                         //GHI2THANG1LAN = kh.GHI2THANG1LAN,
                         ING2T1L = 0,
                         M3MUC4 = 0,

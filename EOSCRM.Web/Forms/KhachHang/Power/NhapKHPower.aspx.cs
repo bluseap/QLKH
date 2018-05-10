@@ -145,12 +145,20 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 kh.THANGBDKT = DateTime.Now.Month;
                 //if (!string.Empty.Equals(txtCHISODAU.Text.Trim()))
                 //    kh.CHISODAU = decimal.Parse(txtCHISODAU.Text.Trim());
-                kh.CHISODAU = 0;
 
-                kh.DOTINHD = ddlDOTINHD.SelectedValue;
+                //kh.CHISODAU = txtCHISODAU;
+                if (!string.Empty.Equals(txtCHISODAU.Text.Trim()))
+                    kh.CHISODAU = decimal.Parse(txtCHISODAU.Text.Trim());
 
                 if (!string.Empty.Equals(txtCHISOCUOI.Text.Trim()))
                     kh.CHISOCUOI = decimal.Parse(txtCHISOCUOI.Text.Trim());
+
+                if (!string.Empty.Equals(txtChiSoTruyThu.Text.Trim()))
+                    kh.MTRUYTHU = decimal.Parse(txtChiSoTruyThu.Text.Trim());
+
+                kh.DOTINHD = ddlDOTINHD.SelectedValue;
+
+                
 
                 kh.XOABOKHPO = false;
 
@@ -715,8 +723,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
              * clear thông số tiêu thụ áp dụng cho kỳ đầu tiên 
              */
             ddlTT.SelectedIndex = 0;
+
             txtCHISODAU.Text = "0";
             txtCHISOCUOI.Text = "0";
+            txtChiSoTruyThu.Text = "0";
+
             ddlDOTINHD.SelectedIndex = 0;
             lblKICHCO.Text = "";
 
