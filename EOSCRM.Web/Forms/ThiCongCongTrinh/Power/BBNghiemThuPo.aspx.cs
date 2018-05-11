@@ -433,11 +433,13 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                 {
                     case "EditItem":
                         var obj = _ddkpoDao.Get(id);
+
                         if (obj == null)
                         {
                             ShowInfor("Không có hồ sơ thiết kế..");
                             return;
                         }
+
                         if (id == null || id == "")
                         {
                             ShowInfor("Không có hồ sơ thiết kế....");
@@ -504,8 +506,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                     var dh = _dhpoDao.Get(tc.MADH.ToString());
                     var ldh = _ldhpoDao.Get(dh.MALDHPO.ToString());
                     lbCSDAU.Text = tc.CSDAU.ToString();
-                    lbMACHIM1.Text = tc.CHIKDM1.ToString();
-                    lbMACHIM2.Text = tc.CHIKDM2.ToString();
+                    lbMACHIM1.Text = tc.CHIKDM1 != null ? tc.CHIKDM1.ToString() : "";
+                    lbMACHIM2.Text = tc.CHIKDM2 != null ? tc.CHIKDM2.ToString() : "";
                     lbKICHCO.Text = dh.CONGSUAT != null ? dh.CONGSUAT : "";
                     lbMALDH.Text = dh.MALDHPO.ToString();
                     lbNSX.Text = "";// ldh.NSX.ToString();
