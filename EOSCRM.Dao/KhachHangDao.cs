@@ -1440,6 +1440,17 @@ namespace EOSCRM.Dao
 
             if (TENKH != null)
                 dskh = dskh.Where(kh => kh.TENKH.Contains(TENKH));
+            
+            //if (TENKH != null)
+            //{
+            //    dskh = dskh.Where(delegate(KHACHHANG c)
+            //    {
+            //        if (ConvertUtil.ConvertToUnSign(c.TENKH).IndexOf(TENKH.ToUpper(), StringComparison.CurrentCultureIgnoreCase) >= 0)
+            //            return true;
+            //        else
+            //            return false;
+            //    }).();
+            //}
 
             if (SONHA != null)
                 dskh = dskh.Where(kh => kh.SONHA.Contains(SONHA));

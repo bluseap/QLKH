@@ -1312,5 +1312,71 @@ namespace EOSCRM.Web.Forms.KhachHang
             catch { }
         }
 
+        protected void btDSChuaThay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                //var TuNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(ddlTHANG1.Text.Trim()) + "/" + int.Parse(txtNAM1.Text.Trim()));
+                //var DenNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(ddlDenThang.Text.Trim()) + "/" + int.Parse(txtDenNam.Text.Trim()));
+
+                DataTable dt;
+                if (_nvDao.Get(b).MAKV == "X")
+                {
+                    //var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), "", "dsKHMOI_ExLX2", TuNgay, DenNgay);
+                    var ds = new ReportClass().BienKHNuoc("", _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue, "",
+                        int.Parse(ddlTHANG1.Text.Trim()), int.Parse(txtNAM1.Text.Trim()), "DSNOTHAYDHNLX");
+                    dt = ds.Tables[0];
+                }
+                else
+                {
+                    var ds = new ReportClass().BienKHNuoc("", _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue, "",
+                       int.Parse(ddlTHANG1.Text.Trim()), int.Parse(txtNAM1.Text.Trim()), "DSNOTHAYDHNLX");
+                    dt = ds.Tables[0];
+                }
+
+                //Create a dummy GridView
+                GridView GridView1 = new GridView();
+                GridView1.AllowPaging = false;
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=TDH" + ddlTHANG1.Text.Trim() + txtNAM1.Text.Trim().Substring(2, 2) + ".xls");
+                //Response.AddHeader("content-disposition", "attachment;filename=KHM" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".doc");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                //Response.ContentType = "application/vnd.ms-word ";
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    //Apply text style to each Row
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+                }
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                //string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                //Response.Write(style);
+                string style = @"<style> TD { mso-number-format:\@; } </style>";
+                Response.Write(style);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                CloseWaitingDialog();
+                upnlThongTin.Update();
+            }
+            catch { }
+        }
+
     }
 }

@@ -112,7 +112,12 @@
         function CheckFormXuatExcel() {            
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcel) %>', '');
             return false;
-        }      
+        }
+
+        function CheckFormbtDSChuaThay() {
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btDSChuaThay) %>', '');
+            return false;
+        }
         
     </script>
 
@@ -644,7 +649,10 @@
                                     <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" OnClientClick="return CheckFormXuatExcel();" 
                                         Text="Xuất Excel" UseSubmitBehavior="false" OnClick="btXuatExcel_Click" />
                                 </div>
-                               
+                               <div class="left">
+                                    <asp:Button ID="btDSChuaThay" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtDSChuaThay();"
+                                             TabIndex="19" UseSubmitBehavior="false" Text="DS chưa thay ĐH" OnClick="btDSChuaThay_Click"/>
+                                </div>
                                 <%--<div class="left">
                                     <div class="right">Kỳ áp dụng</div>
                                 </div>

@@ -1051,6 +1051,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
         protected void ddlMDSD_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             MDSDToDotInHD(ddlMDSD.SelectedValue);
             
             CloseWaitingDialog();

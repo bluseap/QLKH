@@ -557,7 +557,7 @@
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlMDSD" AutoPostBack="true" onchange="openWaitingDialog()" 
+                                    <asp:DropDownList ID="ddlMDSD" AutoPostBack="true" 
                                     OnSelectedIndexChanged="ddlMDSD_SelectedIndexChanged" runat="server" Width="200px" TabIndex="12" />
                                 </div>                        
                             </td>

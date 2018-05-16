@@ -9,6 +9,14 @@ using EOSCRM.Web.Common;
 using EOSCRM.Web.Shared;
 using EOSCRM.Web.UserControls;
 using CrystalDecisions.CrystalReports.Engine;
+using System.Linq;
+
+
+using System.Web.UI;
+using System.IO;
+using System.Web;
+
+
 namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
 {
     public partial class DSKHCBiKTPo : Authentication
@@ -775,6 +783,71 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
 
             upKHCHUANBIKT.Update();
 
+        }
+
+        protected void btXuatExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                var nhanvien = _nvDao.Get(b);
+
+                var TuNgay = DateTimeUtil.GetVietNamDate("01/" + ddlTHANG.SelectedValue + "/" + txtNAM.Text.Trim());     //thang
+                var DenNgay = DateTimeUtil.GetVietNamDate("01/" + ddlTHANG.SelectedValue + "/" + txtNAM.Text.Trim());    //nam
+
+                DataTable dt;
+
+                var ds = new ReportClass().dsKHCBiKT(_kvpoDao.GetPo(nhanvien.MAKV).MAKVPO.ToString(), ddlPHUONGXA.SelectedValue.ToString(), "dsCBIKTPOPXEX",
+                    TuNgay, DenNgay);
+                dt = ds.Tables[0];     
+               
+
+                //Create a dummy GridView
+                GridView GridView1 = new GridView();
+                GridView1.AllowPaging = false;
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=KHTG" + ddlTHANG.SelectedValue.ToString().Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
+                //Response.AddHeader("content-disposition", "attachment;filename=KHM" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".doc");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                //Response.ContentType = "application/vnd.ms-word ";
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    //Apply text style to each Row
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+                }
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                //string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                //Response.Write(style);
+                string style = @"<style> TD { mso-number-format:\@; } </style>";
+                Response.Write(style);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                CloseWaitingDialog();
+                upKHCHUANBIKT.Update();
+            }
+            catch ( Exception ex )
+            {
+                ShowError(ex.ToString(), "");
+            }
         }
 
     }

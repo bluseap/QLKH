@@ -28,6 +28,11 @@
             return false;
         }
 
+        function CheckFormbtXuatExcel() {    
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcel) %>', '');
+            return false;
+        }
+       
     </script>
 </asp:Content>
 
@@ -179,6 +184,10 @@
                                         <asp:Button ID="btDSTANGGIAM" runat="server" CssClass="myButton" OnClick="btDSTANGGIAM_Click" Text="DS Tăng giảm SH, MĐK (XÃ)"
                                             TabIndex="15" UseSubmitBehavior="false"/>   
                                     </div> 
+                                    <div class="left">
+                                        <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" Text="Excel" TabIndex="15" UseSubmitBehavior="false"
+                                            OnClientClick="return CheckFormbtXuatExcel();"  OnClick="btXuatExcel_Click"/>   
+                                    </div> 
                                 </td>                                 
                             </td>                            
                         </tr>
@@ -216,6 +225,9 @@
                 </table>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btXuatExcel" />
+        </Triggers>
     </asp:UpdatePanel>
     <br />
     <asp:UpdatePanel ID="upnlCrystalReport" UpdateMode="Conditional" runat="server">
