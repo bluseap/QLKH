@@ -94,6 +94,7 @@
     <Compile Include="KhachHangTamLXDao.cs" />
     <Compile Include="KhachHangXoaDao.cs" />
     <Compile Include="KhachHangXoaPoDao.cs" />
+    <Compile Include="KhoDanhMucDao.cs" />
     <Compile Include="KHSoNoDHPoDao.cs" />
     <Compile Include="KhuVucPoDao.cs" />
     <Compile Include="KyTietKiemDao.cs" />

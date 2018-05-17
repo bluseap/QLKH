@@ -886,6 +886,11 @@
       <Column Name="GIANCNHAP" Type="System.Decimal" DbType="Decimal(19,0)" CanBeNull="true" />
       <Column Name="LOAIVT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MAVTCTY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="KeToanMaSoVatTu" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KhoDanhMucId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NhanVienId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NgayUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="VATTU_CTCHIETTINH" Member="CTCHIETTINHs" ThisKey="MAVT" OtherKey="MAVT" Type="CTCHIETTINH" />
       <Association Name="VATTU_CTCHIETTINH_ND117" Member="CTCHIETTINH_ND117s" ThisKey="MAVT" OtherKey="MAVT" Type="CTCHIETTINH_ND117" />
       <Association Name="VATTU_CTCHIETTINHSUACHUA" Member="CTCHIETTINHSUACHUAs" ThisKey="MAVT" OtherKey="MAVT" Type="CTCHIETTINHSUACHUA" />
@@ -5305,6 +5310,18 @@
       <Column Name="MANVNHAP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MANVUP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhoDanhMuc" Member="KhoDanhMucs">
+    <Type Name="KhoDanhMuc">
+      <Column Name="Id" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenKho" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="KhuVucId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NhanVienNhap" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NhanVienSua" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SoThuTu" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

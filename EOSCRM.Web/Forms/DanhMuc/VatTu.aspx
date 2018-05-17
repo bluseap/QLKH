@@ -117,6 +117,20 @@
                             </td>                            
                         </tr>
                         <tr>    
+                            <td class="crmcell right">Mã vật tư kế toán</td>
+                            <td class="crmcell"> 
+                                <div class="left">
+                                    <asp:TextBox ID="txtMaVatTuKeToan" runat="server" Width="100px" MaxLength="15" TabIndex="6" />
+                                </div>                                
+                                <div class="left width-150">
+                                    <div class="right">Kho vật tư kế toán</div>
+                                </div>
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKhoVatTuKeToan" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                            
+                        </tr>
+                        <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell"> 
                                 <div class="left">

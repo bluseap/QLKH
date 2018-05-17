@@ -1113,6 +1113,17 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         }
                     }
 
+                    //khoa so theo dot in hoa don
+                    var dotinp7 = _dihdDao.Get(kht.DOTINHD != null ? kht.DOTINHD : "");
+                    bool p7d1khm = _gcspoDao.IsLockDotInHD(kynayF, ddlKHUVUC.SelectedValue, dotinp7 != null && dotinp7.MADOTIN != null ? dotinp7.MADOTIN : "");//phien 7 , kh muc dich khac, ngoai sinh hoat
+                   
+                    if (p7d1khm == true)
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor("Đã khoá sổ ghi chỉ số. Đợt 1 P7.");
+                        return;
+                    }    
+
                     report.KhachHangHis(kht.IDKHPO);
 
                     if (demkh == 1)

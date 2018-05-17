@@ -14,6 +14,8 @@ namespace EOSCRM.Web.Forms.DanhMuc
 {
     public partial class VatTu : Authentication
     {
+        private readonly ReportClass _rpClass = new ReportClass();
+        private readonly KhoDanhMucDao _kdmDao = new KhoDanhMucDao();
         private readonly KhuVucDao _kvDao = new KhuVucDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly VatTuDao _objDao = new VatTuDao();
@@ -343,6 +345,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 ddlLOAIVATTU.Items.Add(new ListItem("Vật tư ĐIỆN", "DD"));
             }
 
+            var khoList = _kdmDao.GetList();
+            ddlKhoVatTuKeToan.Items.Clear();
+            ddlKhoVatTuKeToan.Items.Add(new ListItem("Tất cả", "%"));
+            foreach (var kho in khoList)
+                ddlKhoVatTuKeToan.Items.Add(new ListItem(kho.TenKho, kho.Id));
+
             ClearForm();
         }
 
@@ -455,11 +463,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
             ddlLOAIVATTU.SelectedIndex = 0;
             ddlLOAIVATTU.Enabled = true;
             txtMAVT.Focus();
-
             lbMAVT.Text = "";
 
-            UpdateMode = Mode.Create;
+            txtMaVatTuKeToan.Text = "";
+            ddlKhoVatTuKeToan.SelectedIndex = 0;
 
+            UpdateMode = Mode.Create;
             upnlInfor.Update();
         }
 
@@ -579,6 +588,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 ddlLOAIVATTU.Enabled = false;
             }
 
+            txtMaVatTuKeToan.Text = obj.KeToanMaSoVatTu != null ? obj.KeToanMaSoVatTu : "";
+
+            var khovattu = ddlKhoVatTuKeToan.Items.FindByValue(obj.KhoDanhMucId != null ? obj.KhoDanhMucId : "%");
+            if (khovattu != null)
+                ddlKhoVatTuKeToan.SelectedIndex = ddlKhoVatTuKeToan.Items.IndexOf(khovattu);
+
             upnlInfor.Update();
         }
 
@@ -683,6 +698,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 }
 
                 string mavt1, mavt2, mavtcty ;
+
                 if (_nvDao.Get(b).MAKV == "X")
                 {
                     info.MAVT = ddlLOAIVATTU.SelectedValue + _objDao.NewId(ddlKHUVUC.SelectedValue);
@@ -732,18 +748,39 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 if (_nvDao.Get(b).MAKV == "X")
                 {
                     info.MAVT = lbMAVT.Text.Trim();
+
+                    info.KeToanMaSoVatTu = txtMaVatTuKeToan.Text.Trim();
+                    info.KhoDanhMucId = ddlKhoVatTuKeToan.SelectedValue;
+
+                    info.NhanVienId = b;
+                    info.NgayUpdate = DateTime.Now;
+
+                    _rpClass.HisTableCoBien(info.MAVT, "", "", "", "", DateTime.Now, DateTime.Now, 0, 0, "", "", "HISVATTU");
+
                     msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                     
                 }
                 else
                 {
                     info.MAVT = txtMAVT.Text.Trim();
+
+                    info.KeToanMaSoVatTu = txtMaVatTuKeToan.Text.Trim();
+                    info.KhoDanhMucId = ddlKhoVatTuKeToan.SelectedValue;
+
+                    info.NhanVienId = b;
+                    info.NgayUpdate = DateTime.Now;
+
+                    _rpClass.HisTableCoBien(info.MAVT, "", "", "", "", DateTime.Now, DateTime.Now, 0, 0, "", "", "HISVATTU");
+
                     msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
 
                 if (_nvDao.Get(b).MAKV == "X")
                 {
                     info.MAVT = lbMAVTCTY.Text.Trim();
+
+                    _rpClass.HisTableCoBien(info.MAVT, "", "", "", "", DateTime.Now, DateTime.Now, 0, 0, "", "", "HISVATTU");
+
                     msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 }

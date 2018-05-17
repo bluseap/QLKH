@@ -537,6 +537,9 @@ namespace EOSCRM.Domain
     partial void InsertKHDotInHDPo(KHDotInHDPo instance);
     partial void UpdateKHDotInHDPo(KHDotInHDPo instance);
     partial void DeleteKHDotInHDPo(KHDotInHDPo instance);
+    partial void InsertKhoDanhMuc(KhoDanhMuc instance);
+    partial void UpdateKhoDanhMuc(KhoDanhMuc instance);
+    partial void DeleteKhoDanhMuc(KhoDanhMuc instance);
     #endregion
 		
 		public EOSCRMDataContext() : 
@@ -2006,6 +2009,14 @@ namespace EOSCRM.Domain
 			get
 			{
 				return this.GetTable<KHDotInHDPo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<KhoDanhMuc> KhoDanhMucs
+		{
+			get
+			{
+				return this.GetTable<KhoDanhMuc>();
 			}
 		}
 	}
@@ -21159,6 +21170,16 @@ namespace EOSCRM.Domain
 		
 		private string _MAVTCTY;
 		
+		private string _KeToanMaSoVatTu;
+		
+		private string _KhoDanhMucId;
+		
+		private System.Nullable<System.DateTime> _NgayNhap;
+		
+		private string _NhanVienId;
+		
+		private System.Nullable<System.DateTime> _NgayUpdate;
+		
 		private EntitySet<CTCHIETTINH> _CTCHIETTINHs;
 		
 		private EntitySet<CTCHIETTINH_ND117> _CTCHIETTINH_ND117s;
@@ -21231,6 +21252,16 @@ namespace EOSCRM.Domain
     partial void OnLOAIVTChanged();
     partial void OnMAVTCTYChanging(string value);
     partial void OnMAVTCTYChanged();
+    partial void OnKeToanMaSoVatTuChanging(string value);
+    partial void OnKeToanMaSoVatTuChanged();
+    partial void OnKhoDanhMucIdChanging(string value);
+    partial void OnKhoDanhMucIdChanged();
+    partial void OnNgayNhapChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayNhapChanged();
+    partial void OnNhanVienIdChanging(string value);
+    partial void OnNhanVienIdChanged();
+    partial void OnNgayUpdateChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayUpdateChanged();
     #endregion
 		
 		public VATTU()
@@ -21660,6 +21691,106 @@ namespace EOSCRM.Domain
 					this._MAVTCTY = value;
 					this.SendPropertyChanged("MAVTCTY");
 					this.OnMAVTCTYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KeToanMaSoVatTu", DbType="VarChar(50)")]
+		public string KeToanMaSoVatTu
+		{
+			get
+			{
+				return this._KeToanMaSoVatTu;
+			}
+			set
+			{
+				if ((this._KeToanMaSoVatTu != value))
+				{
+					this.OnKeToanMaSoVatTuChanging(value);
+					this.SendPropertyChanging();
+					this._KeToanMaSoVatTu = value;
+					this.SendPropertyChanged("KeToanMaSoVatTu");
+					this.OnKeToanMaSoVatTuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhoDanhMucId", DbType="VarChar(20)")]
+		public string KhoDanhMucId
+		{
+			get
+			{
+				return this._KhoDanhMucId;
+			}
+			set
+			{
+				if ((this._KhoDanhMucId != value))
+				{
+					this.OnKhoDanhMucIdChanging(value);
+					this.SendPropertyChanging();
+					this._KhoDanhMucId = value;
+					this.SendPropertyChanged("KhoDanhMucId");
+					this.OnKhoDanhMucIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayNhap", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayNhap
+		{
+			get
+			{
+				return this._NgayNhap;
+			}
+			set
+			{
+				if ((this._NgayNhap != value))
+				{
+					this.OnNgayNhapChanging(value);
+					this.SendPropertyChanging();
+					this._NgayNhap = value;
+					this.SendPropertyChanged("NgayNhap");
+					this.OnNgayNhapChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhanVienId", DbType="VarChar(20)")]
+		public string NhanVienId
+		{
+			get
+			{
+				return this._NhanVienId;
+			}
+			set
+			{
+				if ((this._NhanVienId != value))
+				{
+					this.OnNhanVienIdChanging(value);
+					this.SendPropertyChanging();
+					this._NhanVienId = value;
+					this.SendPropertyChanged("NhanVienId");
+					this.OnNhanVienIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayUpdate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayUpdate
+		{
+			get
+			{
+				return this._NgayUpdate;
+			}
+			set
+			{
+				if ((this._NgayUpdate != value))
+				{
+					this.OnNgayUpdateChanging(value);
+					this.SendPropertyChanging();
+					this._NgayUpdate = value;
+					this.SendPropertyChanged("NgayUpdate");
+					this.OnNgayUpdateChanged();
 				}
 			}
 		}
@@ -122720,6 +122851,236 @@ namespace EOSCRM.Domain
 					this._MANVUP = value;
 					this.SendPropertyChanged("MANVUP");
 					this.OnMANVUPChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KhoDanhMuc")]
+	public partial class KhoDanhMuc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Id;
+		
+		private string _TenKho;
+		
+		private string _KhuVucId;
+		
+		private string _NhanVienNhap;
+		
+		private System.Nullable<System.DateTime> _NgayNhap;
+		
+		private string _NhanVienSua;
+		
+		private System.Nullable<System.DateTime> _NgaySua;
+		
+		private System.Nullable<int> _SoThuTu;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnTenKhoChanging(string value);
+    partial void OnTenKhoChanged();
+    partial void OnKhuVucIdChanging(string value);
+    partial void OnKhuVucIdChanged();
+    partial void OnNhanVienNhapChanging(string value);
+    partial void OnNhanVienNhapChanged();
+    partial void OnNgayNhapChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayNhapChanged();
+    partial void OnNhanVienSuaChanging(string value);
+    partial void OnNhanVienSuaChanged();
+    partial void OnNgaySuaChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgaySuaChanged();
+    partial void OnSoThuTuChanging(System.Nullable<int> value);
+    partial void OnSoThuTuChanged();
+    #endregion
+		
+		public KhoDanhMuc()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenKho", DbType="NVarChar(1000)")]
+		public string TenKho
+		{
+			get
+			{
+				return this._TenKho;
+			}
+			set
+			{
+				if ((this._TenKho != value))
+				{
+					this.OnTenKhoChanging(value);
+					this.SendPropertyChanging();
+					this._TenKho = value;
+					this.SendPropertyChanged("TenKho");
+					this.OnTenKhoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhuVucId", DbType="VarChar(20)")]
+		public string KhuVucId
+		{
+			get
+			{
+				return this._KhuVucId;
+			}
+			set
+			{
+				if ((this._KhuVucId != value))
+				{
+					this.OnKhuVucIdChanging(value);
+					this.SendPropertyChanging();
+					this._KhuVucId = value;
+					this.SendPropertyChanged("KhuVucId");
+					this.OnKhuVucIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhanVienNhap", DbType="VarChar(20)")]
+		public string NhanVienNhap
+		{
+			get
+			{
+				return this._NhanVienNhap;
+			}
+			set
+			{
+				if ((this._NhanVienNhap != value))
+				{
+					this.OnNhanVienNhapChanging(value);
+					this.SendPropertyChanging();
+					this._NhanVienNhap = value;
+					this.SendPropertyChanged("NhanVienNhap");
+					this.OnNhanVienNhapChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayNhap", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayNhap
+		{
+			get
+			{
+				return this._NgayNhap;
+			}
+			set
+			{
+				if ((this._NgayNhap != value))
+				{
+					this.OnNgayNhapChanging(value);
+					this.SendPropertyChanging();
+					this._NgayNhap = value;
+					this.SendPropertyChanged("NgayNhap");
+					this.OnNgayNhapChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhanVienSua", DbType="VarChar(20)")]
+		public string NhanVienSua
+		{
+			get
+			{
+				return this._NhanVienSua;
+			}
+			set
+			{
+				if ((this._NhanVienSua != value))
+				{
+					this.OnNhanVienSuaChanging(value);
+					this.SendPropertyChanging();
+					this._NhanVienSua = value;
+					this.SendPropertyChanged("NhanVienSua");
+					this.OnNhanVienSuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySua", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgaySua
+		{
+			get
+			{
+				return this._NgaySua;
+			}
+			set
+			{
+				if ((this._NgaySua != value))
+				{
+					this.OnNgaySuaChanging(value);
+					this.SendPropertyChanging();
+					this._NgaySua = value;
+					this.SendPropertyChanged("NgaySua");
+					this.OnNgaySuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoThuTu", DbType="Int")]
+		public System.Nullable<int> SoThuTu
+		{
+			get
+			{
+				return this._SoThuTu;
+			}
+			set
+			{
+				if ((this._SoThuTu != value))
+				{
+					this.OnSoThuTuChanging(value);
+					this.SendPropertyChanging();
+					this._SoThuTu = value;
+					this.SendPropertyChanged("SoThuTu");
+					this.OnSoThuTuChanged();
 				}
 			}
 		}
