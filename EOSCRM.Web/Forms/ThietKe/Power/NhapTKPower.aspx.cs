@@ -17,6 +17,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 {
     public partial class NhapTKPower : Authentication
     {
+        private readonly HinhThucThanhToanDao _hhttDao = new HinhThucThanhToanDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
@@ -223,17 +224,10 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             //TODO: Load các đối tượng có liên quan lên UI
             try
             {
-                UpdateMode = Mode.Create;
-
-                /*var list = kvDao.GetList();
-                ddlMaKV.Items.Clear();
-                ddlMaKV.Items.Add(new ListItem("Tất cả", "%"));
-                foreach (var kv in list)
-                {
-                    ddlMaKV.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
-                }*/
+                UpdateMode = Mode.Create;              
 
                 timkv();
+
                 txtNGAYTK.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
                 //ten tram la danh so duong pho
@@ -243,6 +237,13 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 foreach (var tram in lTRAMDP)
                 {
                     ddlTENTRAMDS.Items.Add(new ListItem(tram.MADPPO + ": " + tram.TENDP , tram.MADPPO));
+                }
+
+                var hhtt = _hhttDao.GetListIsKeToan();
+                ddlLoaiHinhThu.Items.Clear();
+                foreach (var tt in hhtt)
+                {
+                    ddlLoaiHinhThu.Items.Add(new ListItem(tt.MOTA, tt.MAHTTT));
                 }
             }
             catch (Exception ex)
@@ -408,8 +409,9 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             cbTHAMGIAONGCAI.Checked = false;
             txtSOTRUKH.Text = "";            
             txtTUYENDAYHATHEKH.Text = "";
-
             ddlTENTRAMDS.SelectedIndex = 0;
+
+            ddlLoaiHinhThu.SelectedIndex = 0;
         }
 
         private void BindToInfor(THIETKEPO obj)
@@ -435,6 +437,16 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 ddlTENTRAMDS.SelectedIndex = ddlTENTRAMDS.Items.IndexOf(item);
             //ddlTENTRAMDS
 
+            if (obj.MAHTTT != null)
+            {
+                var mahttt = ddlLoaiHinhThu.Items.FindByValue(obj.MAHTTT);
+                if (mahttt != null)
+                    ddlLoaiHinhThu.SelectedIndex = ddlLoaiHinhThu.Items.IndexOf(mahttt);
+            }
+            else
+            {
+                ddlLoaiHinhThu.SelectedIndex = 0;
+            }
 
             upnlInfor.Update();
         }
@@ -578,6 +590,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                     return;
                 }
 
+                don.MAHTTT = ddlLoaiHinhThu.SelectedValue;
+
                 msg = _tkpoDao.Insert(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 _rpClass.HisNgayDangKyBienPo(don.MADDKPO, LoginInfo.MANV, _kvpoDao.GetPo(query.MAKV).MAKVPO, DateTime.Now, DateTime.Now, DateTime.Now,
@@ -591,6 +605,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                     ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
                     return;
                 }
+
+                don.MAHTTT = ddlLoaiHinhThu.SelectedValue;
 
                 msg = _tkpoDao.Update(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 

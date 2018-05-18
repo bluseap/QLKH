@@ -16,6 +16,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 {
     public partial class NhapThietKe : Authentication
     {
+        private readonly HinhThucThanhToanDao _hhttDao = new HinhThucThanhToanDao();
         private readonly DuongPhoDao _dpDao = new DuongPhoDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly DonDangKyDao ddkDao = new DonDangKyDao();
@@ -211,22 +212,21 @@ namespace EOSCRM.Web.Forms.ThietKe
         }       
 
         private void LoadStaticReferences()
-        {
-            //TODO: Load các đối tượng có liên quan lên UI
+        {            
             try
             {
-                UpdateMode = Mode.Create;
-
-                /*var list = kvDao.GetList();
-                ddlMaKV.Items.Clear();
-                ddlMaKV.Items.Add(new ListItem("Tất cả", "%"));
-                foreach (var kv in list)
-                {
-                    ddlMaKV.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
-                }*/
+                UpdateMode = Mode.Create;              
 
                 timkv();
+
                 txtNGAYTK.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+                var hhtt = _hhttDao.GetListIsKeToan();
+                ddlLoaiHinhThu.Items.Clear();
+                foreach (var tt in hhtt)
+                {
+                    ddlLoaiHinhThu.Items.Add(new ListItem(tt.MOTA, tt.MAHTTT));
+                }
             }
             catch (Exception ex)
             {
@@ -381,6 +381,8 @@ namespace EOSCRM.Web.Forms.ThietKe
             txtSODB.Text = "";
             txtNV1.Text = "";
             cbTHAMGIAONGCAI.Checked = false;
+
+            ddlLoaiHinhThu.SelectedIndex = 0;
         }        
 
         private void BindToInfor(THIETKE obj)
@@ -394,12 +396,21 @@ namespace EOSCRM.Web.Forms.ThietKe
             txtNGAYTK.Text = obj.NGAYLTK.HasValue ? String.Format("{0:dd/MM/yyyy}", obj.NGAYLTK.Value) : "";
             SetControlValue(txtTHECHAP.ClientID, obj.THECHAP.HasValue ? obj.THECHAP.Value.ToString() : "");
             cbTHAMGIAONGCAI.Checked = obj.THAMGIAONGCAI.HasValue && obj.THAMGIAONGCAI.Value;
-
             lbNV1.Text = (obj.MANVTK != null) ? obj.MANVTK.ToString() : "";
             txtNV1.Text = (obj.TENNVTK != null) ? obj.TENNVTK.ToString() : "";
             txtSODB.Text = (obj.SODB != null) ? obj.SODB.ToString() : "";
-
             txtCHUTHICH.Text = obj.CHUTHICH != null ? obj.CHUTHICH : "";
+
+            if (obj.MAHTTT != null)
+            {
+                var item = ddlLoaiHinhThu.Items.FindByValue(obj.MAHTTT);
+                if (item != null)
+                    ddlLoaiHinhThu.SelectedIndex = ddlLoaiHinhThu.Items.IndexOf(item);
+            }
+            else
+            {
+                ddlLoaiHinhThu.SelectedIndex = 0;
+            }
 
             upnlInfor.Update();
         }
@@ -546,6 +557,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                     return;
                 }
 
+                don.MAHTTT = ddlLoaiHinhThu.SelectedValue;
+
                 msg = tkDao.Insert(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 _rpClass.HisNgayDangKyBien(don.MADDK, LoginInfo.MANV, query.MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
@@ -558,12 +571,13 @@ namespace EOSCRM.Web.Forms.ThietKe
                     CloseWaitingDialog();
                     ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
                     return;
-                }
+                }                
 
                 _rpClass.HisNgayDangKyBien(don.MADDK, LoginInfo.MANV, query.MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                         "", "", "", "", "UPTHIETKE");
 
                 don.NGAYUP = DateTime.Now;
+                don.MAHTTT = ddlLoaiHinhThu.SelectedValue;
 
                 msg = tkDao.Update(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                
             }

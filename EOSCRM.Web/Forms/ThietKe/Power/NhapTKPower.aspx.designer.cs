@@ -175,6 +175,15 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         protected global::System.Web.UI.WebControls.TextBox txtSODB;
         
         /// <summary>
+        /// ddlLoaiHinhThu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLoaiHinhThu;
+        
+        /// <summary>
         /// txtSOTRUKH control.
         /// </summary>
         /// <remarks>

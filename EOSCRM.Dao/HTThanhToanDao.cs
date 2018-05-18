@@ -33,6 +33,11 @@ namespace EOSCRM.Dao
             return _db.HTTHANHTOANs.OrderBy(h => h.ORDER).ToList();
         }
 
+        public List<HTTHANHTOAN> GetListIsKeToan()
+        {
+            return _db.HTTHANHTOANs.Where(p => p.IsKeToan.Equals(true)).OrderBy(h => h.ORDER).ToList();
+        }
+
         public List<HTTHANHTOAN> GetList(int fromIndex, int toIndex)
         {
             return GetList().Skip(fromIndex).Take(toIndex - fromIndex).ToList();

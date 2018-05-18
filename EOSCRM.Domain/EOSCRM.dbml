@@ -921,6 +921,7 @@
       <Column Name="MAHTTT" Type="System.String" DbType="VarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MOTA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[ORDER]" Member="ORDER" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsKeToan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="HTTHANHTOAN_HOADONLAPDAT" Member="HOADONLAPDATs" ThisKey="MAHTTT" OtherKey="MAHTTT" Type="HOADONLAPDAT" />
       <Association Name="HTTHANHTOAN_HOPDONG" Member="HOPDONGs" ThisKey="MAHTTT" OtherKey="MAHTTT" Type="HOPDONG" />
       <Association Name="HTTHANHTOAN_KHACHHANG" Member="KHACHHANGs" ThisKey="MAHTTT" OtherKey="MAHTTT" Type="KHACHHANG" />
@@ -1747,6 +1748,7 @@
       <Column Name="MANVDUYETKD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NOIDUNGTRAKD" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="NGAYUP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MAHTTT" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
       <Association Name="THIETKE_DAOLAPTK" Member="DAOLAPTKs" ThisKey="MADDK" OtherKey="MADDK" Type="DAOLAPTK" />
       <Association Name="THIETKE_GCTHIETKE" Member="GCTHIETKEs" ThisKey="MADDK" OtherKey="MAMBVT" Type="GCTHIETKE" />
       <Association Name="THIETKE_CTTHIETKE" Member="CTTHIETKEs" ThisKey="MADDK" OtherKey="MADDK" Type="CTTHIETKE" />
@@ -3511,6 +3513,7 @@
       <Column Name="HINHTK1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="HINHTK2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="KETLUANTK" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="MAHTTT" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
       <Association Name="THIETKEPO_CTTHIETKE" Member="CTTHIETKEs" ThisKey="MADDKPO" OtherKey="MADDK" Type="CTTHIETKE" />
       <Association Name="DONDANGKYPO_THIETKEPO" Member="DONDANGKYPO" ThisKey="MADDKPO" OtherKey="MADDKPO" Type="DONDANGKYPO" IsForeignKey="true" />
       <Association Name="NHANVIEN_THIETKEPO" Member="NHANVIEN" ThisKey="MANVDTK" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />

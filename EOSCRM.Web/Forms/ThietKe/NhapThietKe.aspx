@@ -263,6 +263,14 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="crmcell right">Loại hình thu</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlLoaiHinhThu" runat="server"></asp:DropDownList>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right">Nhân viên</td>
                             <td class="crmcell">
                                 <div class="left width-200">

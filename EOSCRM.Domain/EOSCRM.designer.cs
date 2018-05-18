@@ -22304,6 +22304,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<int> _ORDER;
 		
+		private System.Nullable<bool> _IsKeToan;
+		
 		private EntitySet<HOADONLAPDAT> _HOADONLAPDATs;
 		
 		private EntitySet<HOPDONG> _HOPDONGs;
@@ -22326,6 +22328,8 @@ namespace EOSCRM.Domain
     partial void OnMOTAChanged();
     partial void OnORDERChanging(System.Nullable<int> value);
     partial void OnORDERChanged();
+    partial void OnIsKeToanChanging(System.Nullable<bool> value);
+    partial void OnIsKeToanChanged();
     #endregion
 		
 		public HTTHANHTOAN()
@@ -22395,6 +22399,26 @@ namespace EOSCRM.Domain
 					this._ORDER = value;
 					this.SendPropertyChanged("ORDER");
 					this.OnORDERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsKeToan", DbType="Bit")]
+		public System.Nullable<bool> IsKeToan
+		{
+			get
+			{
+				return this._IsKeToan;
+			}
+			set
+			{
+				if ((this._IsKeToan != value))
+				{
+					this.OnIsKeToanChanging(value);
+					this.SendPropertyChanging();
+					this._IsKeToan = value;
+					this.SendPropertyChanged("IsKeToan");
+					this.OnIsKeToanChanged();
 				}
 			}
 		}
@@ -40175,6 +40199,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<System.DateTime> _NGAYUP;
 		
+		private string _MAHTTT;
+		
 		private EntitySet<DAOLAPTK> _DAOLAPTKs;
 		
 		private EntitySet<GCTHIETKE> _GCTHIETKEs;
@@ -40289,6 +40315,8 @@ namespace EOSCRM.Domain
     partial void OnNOIDUNGTRAKDChanged();
     partial void OnNGAYUPChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYUPChanged();
+    partial void OnMAHTTTChanging(string value);
+    partial void OnMAHTTTChanged();
     #endregion
 		
 		public THIETKE()
@@ -41275,6 +41303,26 @@ namespace EOSCRM.Domain
 					this._NGAYUP = value;
 					this.SendPropertyChanged("NGAYUP");
 					this.OnNGAYUPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAHTTT", DbType="VarChar(2)")]
+		public string MAHTTT
+		{
+			get
+			{
+				return this._MAHTTT;
+			}
+			set
+			{
+				if ((this._MAHTTT != value))
+				{
+					this.OnMAHTTTChanging(value);
+					this.SendPropertyChanging();
+					this._MAHTTT = value;
+					this.SendPropertyChanged("MAHTTT");
+					this.OnMAHTTTChanged();
 				}
 			}
 		}
@@ -81178,6 +81226,8 @@ namespace EOSCRM.Domain
 		
 		private string _KETLUANTK;
 		
+		private string _MAHTTT;
+		
 		private EntitySet<CTTHIETKE> _CTTHIETKEs;
 		
 		private EntityRef<DONDANGKYPO> _DONDANGKYPO;
@@ -81274,6 +81324,8 @@ namespace EOSCRM.Domain
     partial void OnHINHTK2Changed();
     partial void OnKETLUANTKChanging(string value);
     partial void OnKETLUANTKChanged();
+    partial void OnMAHTTTChanging(string value);
+    partial void OnMAHTTTChanged();
     #endregion
 		
 		public THIETKEPO()
@@ -82118,6 +82170,26 @@ namespace EOSCRM.Domain
 					this._KETLUANTK = value;
 					this.SendPropertyChanged("KETLUANTK");
 					this.OnKETLUANTKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAHTTT", DbType="VarChar(2)")]
+		public string MAHTTT
+		{
+			get
+			{
+				return this._MAHTTT;
+			}
+			set
+			{
+				if ((this._MAHTTT != value))
+				{
+					this.OnMAHTTTChanging(value);
+					this.SendPropertyChanging();
+					this._MAHTTT = value;
+					this.SendPropertyChanged("MAHTTT");
+					this.OnMAHTTTChanged();
 				}
 			}
 		}
