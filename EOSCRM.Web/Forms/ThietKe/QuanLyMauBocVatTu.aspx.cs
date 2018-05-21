@@ -15,6 +15,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 {
     public partial class QuanLyMauBocVatTu : Authentication
     {
+        private readonly KhoDanhMucDao _kdmDao = new KhoDanhMucDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly KhuVucDao kvDao = new KhuVucDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
@@ -185,7 +186,34 @@ namespace EOSCRM.Web.Forms.ThietKe
 
         private void LoadDataToForm()
         {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
             timkv();
+
+            var nhanvien = _nvDao.Get(b);
+            if (nhanvien.MAKV == "X")
+            {
+                var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("X", "NN");
+                ddlKhoXiNghiep.Items.Clear();
+                ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var kho in khoxn)
+                {
+                    ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                }
+            }
+            else
+            {
+                var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("XN", "NN");
+                ddlKhoXiNghiep.Items.Clear();
+                ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var kho in khoxn)
+                {
+                    ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                }
+            }
+            
         }    
 
         public void timkv()
@@ -566,16 +594,20 @@ namespace EOSCRM.Web.Forms.ThietKe
             string b = loginInfo.Username;
             var khuvuc = _nvDao.Get(b).MAKV;
 
-            if (khuvuc == "X" || khuvuc == "S")
+            //if (khuvuc == "X" || khuvuc == "S")
+            if (khuvuc == "X")
             {
                 var list = vtDao.SearchMAKVAll(txtFilterVatTu.Text.Trim(), khuvuc);
+
                 gvVatTu.DataSource = list;
                 gvVatTu.PagerInforText = list.Count.ToString();
                 gvVatTu.DataBind();
             }
             else
             {
-                var list = vtDao.Search(txtFilterVatTu.Text.Trim());
+                //var list = vtDao.Search(txtFilterVatTu.Text.Trim());
+                var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+                
                 gvVatTu.DataSource = list;
                 gvVatTu.PagerInforText = list.Count.ToString();
                 gvVatTu.DataBind();

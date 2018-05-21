@@ -22,7 +22,7 @@ namespace EOSCRM.Dao
         public KhoDanhMuc Get(string id)
         {
             return _db.KhoDanhMucs.Where(p => p.Id.Equals(id)).SingleOrDefault();
-        }
+        }        
 
         public List<KhoDanhMuc> Search(string key)
         {
@@ -32,6 +32,18 @@ namespace EOSCRM.Dao
         public List<KhoDanhMuc> GetList()
         {
             return _db.KhoDanhMucs.OrderBy(c => c.SoThuTu).ToList();
+        }
+
+        public List<KhoDanhMuc> GetListXiNghiep(string makvxn)
+        {
+            return _db.KhoDanhMucs.Where(p => p.KhuVucId.Equals(makvxn) )
+                .OrderBy(c => c.SoThuTu).ToList();
+        }
+
+        public List<KhoDanhMuc> GetListXiNghiepLoaiVatTu(string makvxn, string maloaivt)
+        {
+            return _db.KhoDanhMucs.Where(p => p.KhuVucId.Equals(makvxn) && p.LoaiVatTuId.Equals(maloaivt))
+                .OrderBy(c => c.SoThuTu).ToList();
         }
 
         public string NewId()

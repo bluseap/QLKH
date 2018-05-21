@@ -433,18 +433,28 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 ddlHTTT.DataValueField = "MAHTTT";
                 ddlHTTT.DataBind();
 
-                var khuvuc = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
-                var xaphuong = _xpDao.GetListKV(khuvuc.MAKV);
-                ddlPhuongXa.Items.Clear();
-                ddlPhuongXa.Items.Add(new ListItem("Tất cả", "%"));
-                foreach (var xp in xaphuong)
-                    ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA));
+                PhuongXa(ddlKHUVUC.SelectedValue);
 
             }
             catch (Exception ex)
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
+        }
+
+        private void PhuongXa(string makv)
+        {
+            try
+            {
+                var khuvuc = _kvpoDao.Get(makv);
+                var xaphuong = _xpDao.GetListKV(khuvuc.MAKV);
+
+                ddlPhuongXa.Items.Clear();
+                ddlPhuongXa.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var xp in xaphuong)
+                    ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA));
+            }
+            catch { }
         }
 
         private void LoadDynamicReferences()
@@ -1180,6 +1190,37 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
             catch { }
 
+        }
+
+        protected void ckDoiPhuongXa_CheckedChanged(object sender, EventArgs e)
+        {
+            var khuvuc = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
+
+            if (ckDoiPhuongXa.Checked)
+            {  
+                var xaphuong = _xpDao.GetListActive(true);
+
+                ddlPhuongXa.Items.Clear();                
+                foreach (var xp in xaphuong)
+                    ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA));
+
+                if (ddlKHUVUC.SelectedValue == "J")
+                {
+                    txtHUYENDCLAP.Text = " CHÂU PHÚ,AN GIANG";
+                }
+                else
+                {
+                    txtHUYENDCLAP.Text = "";
+                }
+            }
+            else
+            {
+                PhuongXa(ddlKHUVUC.SelectedValue);
+
+                txtHUYENDCLAP.Text = " " + khuvuc.TENKV.ToUpper() + ",AN GIANG" ;
+            }
+
+            upnlInfor.Update();
         }
 
 

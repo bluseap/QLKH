@@ -100127,6 +100127,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<int> _STT;
 		
+		private System.Nullable<bool> _Active;
+		
 		private EntitySet<KHACHHANGXOA> _KHACHHANGXOAs;
 		
 		private EntitySet<HONGHEON> _HONGHEONs;
@@ -100147,6 +100149,8 @@ namespace EOSCRM.Domain
     partial void OnTENXAChanged();
     partial void OnSTTChanging(System.Nullable<int> value);
     partial void OnSTTChanged();
+    partial void OnActiveChanging(System.Nullable<bool> value);
+    partial void OnActiveChanged();
     #endregion
 		
 		public XAPHUONG()
@@ -100238,6 +100242,26 @@ namespace EOSCRM.Domain
 					this._STT = value;
 					this.SendPropertyChanged("STT");
 					this.OnSTTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit")]
+		public System.Nullable<bool> Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
 				}
 			}
 		}
@@ -122970,6 +122994,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<int> _SoThuTu;
 		
+		private string _LoaiVatTuId;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -122990,6 +123016,8 @@ namespace EOSCRM.Domain
     partial void OnNgaySuaChanged();
     partial void OnSoThuTuChanging(System.Nullable<int> value);
     partial void OnSoThuTuChanged();
+    partial void OnLoaiVatTuIdChanging(string value);
+    partial void OnLoaiVatTuIdChanged();
     #endregion
 		
 		public KhoDanhMuc()
@@ -123153,6 +123181,26 @@ namespace EOSCRM.Domain
 					this._SoThuTu = value;
 					this.SendPropertyChanged("SoThuTu");
 					this.OnSoThuTuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiVatTuId", DbType="VarChar(20)")]
+		public string LoaiVatTuId
+		{
+			get
+			{
+				return this._LoaiVatTuId;
+			}
+			set
+			{
+				if ((this._LoaiVatTuId != value))
+				{
+					this.OnLoaiVatTuIdChanging(value);
+					this.SendPropertyChanging();
+					this._LoaiVatTuId = value;
+					this.SendPropertyChanged("LoaiVatTuId");
+					this.OnLoaiVatTuIdChanged();
 				}
 			}
 		}

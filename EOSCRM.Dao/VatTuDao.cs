@@ -34,6 +34,38 @@ namespace EOSCRM.Dao
                 .OrderBy(p => p.MAHIEU).ToList();
         }
 
+        public List<VATTU> SearchMaSoKeToan(string makhoxn, string key)
+        {
+            var query = _db.VATTUs.Where(p => p.MAVT.Substring(0, 2) != "DD"
+                                    && p.KeToanMaSoVatTu != null      
+                                 //   && (p.MAVT.ToUpper().Contains(key.ToUpper()) || p.TENVT.ToUpper().Contains(key.ToUpper()) 
+                                //        || p.MAHIEU.ToUpper().Contains(key.ToUpper()))                                     
+                                    );
+
+            if (makhoxn == "%")
+            {
+                query = query.Where(p => (p.MAVT.ToUpper().Contains(key.ToUpper()) || p.TENVT.ToUpper().Contains(key.ToUpper())
+                            || p.MAHIEU.ToUpper().Contains(key.ToUpper())))
+                    .OrderBy(p => p.MAHIEU);
+            }
+            else 
+            {
+                if (!string.IsNullOrEmpty(key))
+                {
+                    query = query.Where(p => (p.MAVT.ToUpper().Contains(key.ToUpper()) || p.TENVT.ToUpper().Contains(key.ToUpper())
+                            || p.MAHIEU.ToUpper().Contains(key.ToUpper())) && p.KhoDanhMucId.Equals(makhoxn)
+                            )
+                    .OrderBy(p => p.MAHIEU);
+                }
+                else                
+                {
+                    query = query.Where(p => p.KhoDanhMucId.Equals(makhoxn)).OrderBy(p => p.MAHIEU);
+                }                
+            }
+
+            return query.ToList();
+        }
+
         public List<VATTU> SearchMAKVAll(string key, string makv)
         {
             return _db.VATTUs.Where(p => p.MAVT.Substring(0, 2) != "DD" && p.MAKV.Equals(makv) 

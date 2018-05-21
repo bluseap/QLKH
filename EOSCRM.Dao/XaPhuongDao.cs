@@ -39,6 +39,11 @@ namespace EOSCRM.Dao
             return _db.XAPHUONGs.Where(p => p.MAKV.Equals(makv) && p.STT < 999).OrderBy(c => c.STT).ToList();
         }
 
+        public List<XAPHUONG> GetListActive(bool active)
+        {
+            return _db.XAPHUONGs.Where(p => p.Active.Equals(active)).ToList();
+        }
+
         public List<XAPHUONG> GetList(int fromIndex, int toIndex)
         {
             return GetList().Skip(fromIndex).Take(toIndex - fromIndex).ToList();

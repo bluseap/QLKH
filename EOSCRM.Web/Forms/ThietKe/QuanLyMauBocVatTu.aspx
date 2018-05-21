@@ -347,8 +347,16 @@
                                 <table class="crmtable">
                                     <tbody>
                                         <tr>
-                                            <td class="crmcell right">Từ khóa</td>
+                                            <td class="crmcell right">Kho Xí nghiệp</td>
                                             <td class="crmcell">
+                                                <div class="left">                                                
+                                                    <asp:DropDownList ID="ddlKhoXiNghiep" runat="server" Width="300px"></asp:DropDownList>
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Từ khóa</td>
+                                            <td class="crmcell">                                                
                                                 <div class="left">                                                
                                                     <asp:TextBox ID="txtFilterVatTu" onchange="return CheckFormFilterVatTu();" runat="server" />
                                                 </div>
@@ -376,12 +384,17 @@
                                                         CommandName="EditItem" Text='<%# Eval("MAVT") %>'></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="15%" />
-                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="55%" />
-                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="15%" />
+                                            <asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="10%" />
+                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="40%" />
+                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="10%" />
                                             <asp:TemplateField HeaderText="Loại VT" HeaderStyle-Width="10%">
                                                 <ItemTemplate>
                                                     <%# Eval("LOAIVT") != null ? Eval("LOAIVT").ToString() : "" %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>  
+                                            <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="25%">
+                                                <ItemTemplate>
+                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString()    %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>                                            
                                         </Columns>
@@ -453,9 +466,14 @@
                                             <%# Container.DataItemIndex + 1%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mã hiệu" HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="STT" HeaderStyle-Width="60px">
                                         <ItemTemplate>
                                             <%# Eval("VATTU.STT") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Mã số" HeaderStyle-Width="80px">
+                                        <ItemTemplate>
+                                            <%# Eval("VATTU.KeToanMaSoVatTu") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Ký hiệu" HeaderStyle-Width="60px">
