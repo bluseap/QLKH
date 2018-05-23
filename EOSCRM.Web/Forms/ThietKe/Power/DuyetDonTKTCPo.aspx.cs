@@ -280,7 +280,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 
                     Message msg;
 
-                    if (_nvDao.Get(b).MAKV == "T") // tan chau
+                    if (_nvDao.Get(b).MAKV == "T" || _nvDao.Get(b).MAKV == "K" || _nvDao.Get(b).MAKV == "O") // tan chau,cho moi, chau thanh
                     {
                         msg = _ddkpoDao.ApproveDonThietKeKDTanChau(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
                     }

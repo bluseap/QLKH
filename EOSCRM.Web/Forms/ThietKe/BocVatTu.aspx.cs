@@ -15,6 +15,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 {
     public partial class BocVatTu : Authentication
     {
+        private readonly KhoDanhMucDao _kdmDao = new KhoDanhMucDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly ThietKeDao tkDao = new ThietKeDao();
         private readonly MauBocVatTuDao mbvtDao = new MauBocVatTuDao();
@@ -267,7 +268,29 @@ namespace EOSCRM.Web.Forms.ThietKe
                 }
                 else { txtDANHSOBT.Text = ""; }
 
-                LoadMauTK();
+                LoadMauTK();                
+            }
+
+            var nhanvien = _nvDao.Get(manv);
+            if (nhanvien.MAKV == "X")
+            {
+                var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("X", "NN");
+                ddlKhoXiNghiep.Items.Clear();
+                ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var kho in khoxn)
+                {
+                    ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                }
+            }
+            else
+            {
+                var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("XN", "NN");
+                ddlKhoXiNghiep.Items.Clear();
+                ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var kho in khoxn)
+                {
+                    ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                }
             }
 
         }
@@ -376,11 +399,11 @@ namespace EOSCRM.Web.Forms.ThietKe
                 if (loginInfo == null) return;
                 string manv = loginInfo.Username;
                 string makvnv = _nvDao.Get(manv).MAKV;
-
+                
                 if (makvnv == "S")
-                {
-                    //var list = vtDao.Search(txtFilterVatTu.Text.Trim());   
-                    var list = vtDao.SearchMAKVAll(txtFilterVatTu.Text.Trim(), makvnv);
+                {                    
+                    //var list = vtDao.SearchMAKVAll(txtFilterVatTu.Text.Trim(), makvnv);
+                    var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
 
                     gvVatTu.DataSource = list;
                     gvVatTu.PagerInforText = list.Count.ToString();
@@ -388,7 +411,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 }
                 else
                 {
-                    var list = vtDao.Search(txtFilterVatTu.Text.Trim());   
+                    //var list = vtDao.Search(txtFilterVatTu.Text.Trim());   
+                    var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
 
                     gvVatTu.DataSource = list;
                     gvVatTu.PagerInforText = list.Count.ToString();

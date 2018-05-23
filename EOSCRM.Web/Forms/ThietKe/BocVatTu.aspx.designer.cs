@@ -103,6 +103,15 @@ namespace EOSCRM.Web.Forms.ThietKe {
         protected global::System.Web.UI.UpdatePanel upnlVatTu;
         
         /// <summary>
+        /// ddlKhoXiNghiep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlKhoXiNghiep;
+        
+        /// <summary>
         /// txtFilterVatTu control.
         /// </summary>
         /// <remarks>

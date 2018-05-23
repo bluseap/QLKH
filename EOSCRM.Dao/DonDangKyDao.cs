@@ -2610,16 +2610,22 @@ namespace EOSCRM.Dao
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
 
                     // update don dang ky
@@ -2797,16 +2803,22 @@ namespace EOSCRM.Dao
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
 
                     // update don dang ky
@@ -2824,7 +2836,7 @@ namespace EOSCRM.Dao
 
                     tk.MANVDTK = sManv;
                     tk.NGAYDTK = ngayduyet;
-                    tk.NGAYDUYETN = DateTime.Now;
+                    tk.NGAYDUYETN = DateTime.Now;                    
 
                     _rpClass.HisNgayDangKyBien(tk.MADDK, sManv, objDb.MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                             "", "", "", "", "DUYETTHIETKE");
@@ -2898,26 +2910,36 @@ namespace EOSCRM.Dao
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
                         objDb.TTCT = TTCT.CT_P.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTTC == "TC_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
                         //objDb.TTTC = "TC_P";
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
                         objDb.TTNT = "NT_A";
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTTK = TTTK.TK_A.ToString();
-                        objDb.TTCT = TTCT.CT_N.ToString();                        
+                        objDb.TTCT = TTCT.CT_N.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
 
                     // update thiet ke
@@ -3004,15 +3026,21 @@ namespace EOSCRM.Dao
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        //_rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        //_rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        //_rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
 
                     // update don dang ky
@@ -3104,6 +3132,8 @@ namespace EOSCRM.Dao
                     objDb.TTCT = TTCT.CT_N.ToString();
                     //objDb.TTTK = TTTK.TK_A.ToString();
 
+                    _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
+
                     // update thiet ke
                     var tk = _db.THIETKEs.Where(t => t.MADDK.Equals(objDb.MADDK)).SingleOrDefault();
                     if (tk == null)
@@ -3192,16 +3222,22 @@ namespace EOSCRM.Dao
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {                       
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDK, objDb.MAKV, "", "", "", "", "DONTKTOCT");
                     }                   
 
                     // update thiet ke

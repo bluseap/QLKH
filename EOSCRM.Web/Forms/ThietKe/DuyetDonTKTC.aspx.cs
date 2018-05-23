@@ -337,8 +337,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                     objs.AddRange(listIds.Select(ma => ddkDao.Get(ma)));
 
                     Message msg;
-                    
-                    if (_nvDao.Get(b).MAKV == "T") // tan chau
+
+                    if (_nvDao.Get(b).MAKV == "T" || _nvDao.Get(b).MAKV == "K") // tan chau,cho moi
                     {
                         msg = ddkDao.AppDuyetDonThietKeTanChau(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
                     }

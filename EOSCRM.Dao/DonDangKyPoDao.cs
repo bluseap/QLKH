@@ -11,6 +11,7 @@ namespace EOSCRM.Dao
 {
     public class DonDangKyPoDao
     {
+        private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly HopDongPoDao _hdpoDao = new HopDongPoDao();
         private readonly KyDuyetDao _kdDao = new KyDuyetDao();        
@@ -2084,19 +2085,28 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
+                    var khuvucpo = _kvpoDao.Get(objDb.MAKVPO);
+                    //_rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
+
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
 
                     // update don dang ky
@@ -2185,7 +2195,7 @@ namespace EOSCRM.Dao
                         msg = new Message(MessageConstants.E_OBJECT_NOT_EXISTS, MessageType.Error, "Đơn đăng ký",
                                           objUi.TENKH);
                         return msg;
-                    }
+                    }                    
 
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
@@ -2293,6 +2303,9 @@ namespace EOSCRM.Dao
                     objDb.TTCT = TTCT.CT_N.ToString();
                     //objDb.TTTK = TTTK.TK_A.ToString();
 
+                    var khuvucpo = _kvpoDao.Get(objDb.MAKVPO);
+                    _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
+
                     // update thiet ke
                     var tk = _db.THIETKEPOs.Where(t => t.MADDKPO.Equals(objDb.MADDKPO)).SingleOrDefault();
                     if (tk == null)
@@ -2380,19 +2393,28 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
+                    var khuvucpo = _kvpoDao.Get(objDb.MAKVPO);
+                    //_rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
+
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
 
                     // update don dang ky
@@ -2483,19 +2505,27 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
+                    var khuvucpo = _kvpoDao.Get(objDb.MAKVPO);
+
                     if (objDb.TTCT == "CT_RA" || objDb.TTTC == "TC_RA" || objDb.TTNT == "NT_RA")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
                     else if (objDb.TTNT == "NT_A")
                     {
                         objDb.TTTK = TTTK.TK_A.ToString();
+
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
                     else
                     {
                         // update don dang ky
                         objDb.TTCT = TTCT.CT_N.ToString();
                         objDb.TTTK = TTTK.TK_A.ToString();
+                       
+                        _rpClass.DonToKeToan(objDb.MADDKPO, khuvucpo.MAKV, objDb.MAKVPO, "", "", "", "DONTKTOCTPO");
                     }
 
                     // update thiet ke

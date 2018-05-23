@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 {
     public partial class DuyetThietKe : Authentication
     {
+        private readonly ReportClass _rpClass = new ReportClass();
         private readonly PhongBanDao _pbDao = new PhongBanDao();
         private readonly ChietTinhDao _ctDao = new ChietTinhDao();
         private readonly DonDangKyDao ddkDao = new DonDangKyDao();
@@ -296,7 +297,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                     else
                     {                        
                         msg = ddkDao.ApproveThietKeList(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);                       
-                    }
+                    }                   
 
                     if ((msg != null) && (msg.MsgType != MessageType.Error))
                     {

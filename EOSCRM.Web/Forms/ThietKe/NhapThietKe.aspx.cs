@@ -577,6 +577,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                         "", "", "", "", "UPTHIETKE");
 
                 don.NGAYUP = DateTime.Now;
+
                 don.MAHTTT = ddlLoaiHinhThu.SelectedValue;
 
                 msg = tkDao.Update(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                

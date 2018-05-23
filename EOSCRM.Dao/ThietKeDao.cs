@@ -200,8 +200,9 @@ namespace EOSCRM.Dao
                     objDb.DANHSOTK = objUi.DANHSOTK;
                     objDb.ISKHTT100 = objUi.ISKHTT100;
                     objDb.MADPLX = objUi.MADPLX;
-
                     objDb.NGAYUP = objUi.NGAYUP;
+
+                    objDb.MAHTTT = objUi.MAHTTT;
 
                     // Submit changes to db
                     _db.SubmitChanges();

@@ -167,10 +167,11 @@ namespace EOSCRM.Dao
                     objDb.THECHAP = objUi.THECHAP;
                     objDb.THAMGIAONGCAI = objUi.THAMGIAONGCAI;
                     objDb.SODB = objUi.SODB;
-
                     objDb.SOTRUKH = objUi.SOTRUKH;
                     objDb.TENTRAMKH = objUi.TENTRAMKH;
                     objDb.TUYENDAYHATHE = objUi.TUYENDAYHATHE;
+
+                    objDb.MAHTTT = objUi.MAHTTT;
                   
                     // Submit changes to db
                     _db.SubmitChanges();

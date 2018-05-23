@@ -18,6 +18,25 @@ public class ReportClass
 		
 	}
 
+    public DataSet DonToKeToan(string maddk, string maddk2, string maddk3, string ghichu, string ghichu2, string ghichu3, string cobien)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {                                       
+                    db.MakeInParam("@MADDK", SqlDbType.NVarChar  , 100, maddk),                   
+                     db.MakeInParam("@MADDK2", SqlDbType.NVarChar  , 100, maddk2), 
+                     db.MakeInParam("@MADDK3", SqlDbType.NVarChar  , 100, maddk3),
+
+                     db.MakeInParam("@GHICHU", SqlDbType.NVarChar  , 100, ghichu),                   
+                     db.MakeInParam("@GHICHU2", SqlDbType.NVarChar  , 100, ghichu2), 
+                     db.MakeInParam("@GHICHU3", SqlDbType.NVarChar  , 100, ghichu3),
+
+                    db.MakeInParam("@COBIEN", SqlDbType.VarChar  , 20, cobien)
+                };
+        DataSet ds = db.RunExecProc("DonToKeToan", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet UPDATETTDHPOMOI(string idkh, string makv, string idmadotin, int nam, int thang, decimal chisongung, decimal truythu,
         string madhpo, string sono, decimal chisodau, decimal chisocuoi, decimal mtruythu, int hesonhan, DateTime ngaythay, DateTime ngaybamchi,
         string donghocapban, string lydo, string ghichu, string idkh2, string ghichu2, string manv, string cobien)

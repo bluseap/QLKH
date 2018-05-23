@@ -15,14 +15,15 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 {
     public partial class QuanLyMauBVTPower : Authentication
     {
+        private readonly NhanVienDao _nvDao = new NhanVienDao();
+        private readonly KhoDanhMucDao _kdmDao = new KhoDanhMucDao();
+        private readonly ReportClass _rpClass = new ReportClass();
         private readonly MauBocVatTuDao _mbvtDao = new MauBocVatTuDao();
         private readonly ChiTietMauBocVatTuDao ctmbvtDao = new ChiTietMauBocVatTuDao();
         private readonly DaoLapMauBocVatTuDao dlmbvtDao = new DaoLapMauBocVatTuDao();
         private readonly GhiChuMauBocVatTuDao gcmbvtDao = new GhiChuMauBocVatTuDao();
         private readonly VatTuDao vtDao = new VatTuDao();
         private readonly DvtDao dvtDao = new DvtDao();
-
-
 
         #region Properties
         /*private MAUBOCVATTU MauBocVatTu
@@ -94,50 +95,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 Session[SessionKey.MODE] = value.GetHashCode();
             }
         }
-
         #endregion
-
-
-
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                Authenticate(Functions.TK_QuanLyMauBocVatTuPo, Permission.Read);
-                AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxCRM), Page);
-                PrepareUI();
-
-                if (!Page.IsPostBack)
-                {
-                    BindDataForGrid();
-                    tblMBVT.Visible = false;
-                    UpdateMode = Mode.Create;
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
-        private void PrepareUI()
-        {
-            Page.Title = Resources.Message.TITLE_TK_QUANLYMAUBOCVATTU1PO;
-
-            var header = (Header)Master.FindControl("header");
-            if (header != null)
-            {
-                header.ModuleName = Resources.Message.MODULE_THIETKE;
-                header.TitlePage = Resources.Message.PAGE_TK_QUANLYMAUBOCVATTUPO;
-            }
-
-            CommonFunc.SetPropertiesForGrid(gvList);
-            CommonFunc.SetPropertiesForGrid(gvVatTu);
-            CommonFunc.SetPropertiesForGrid(gvSelectedVatTu);
-            CommonFunc.SetPropertiesForGrid(gvGhiChu);
-            CommonFunc.SetPropertiesForGrid(gvChiPhi);
-        }
 
         #region Startup script registeration
         private void ShowError(string message, string controlId)
@@ -186,9 +144,82 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         }
         #endregion
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Authenticate(Functions.TK_QuanLyMauBocVatTuPo, Permission.Read);
+                AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxCRM), Page);
+                PrepareUI();
 
+                if (!Page.IsPostBack)
+                {
+                    LoadDataForm();
 
+                    BindDataForGrid();
 
+                    tblMBVT.Visible = false;
+
+                    UpdateMode = Mode.Create;
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void PrepareUI()
+        {
+            Page.Title = Resources.Message.TITLE_TK_QUANLYMAUBOCVATTU1PO;
+
+            var header = (Header)Master.FindControl("header");
+            if (header != null)
+            {
+                header.ModuleName = Resources.Message.MODULE_THIETKE;
+                header.TitlePage = Resources.Message.PAGE_TK_QUANLYMAUBOCVATTUPO;
+            }
+
+            CommonFunc.SetPropertiesForGrid(gvList);
+            CommonFunc.SetPropertiesForGrid(gvVatTu);
+            CommonFunc.SetPropertiesForGrid(gvSelectedVatTu);
+            CommonFunc.SetPropertiesForGrid(gvGhiChu);
+            CommonFunc.SetPropertiesForGrid(gvChiPhi);
+        }
+
+        private void LoadDataForm()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                var nhanvien = _nvDao.Get(b);
+                if (nhanvien.MAKV == "X")
+                {
+                    var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("X", "NN");
+                    ddlKhoXiNghiep.Items.Clear();
+                    ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                    foreach (var kho in khoxn)
+                    {
+                        ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                    }
+                }
+                else
+                {
+                    var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("XN", "DD");
+                    ddlKhoXiNghiep.Items.Clear();
+                    ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                    foreach (var kho in khoxn)
+                    {
+                        ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                    }
+                }
+            }
+            catch { }
+        }
+        
         private void BindDataForGrid()
         {
             try
@@ -237,9 +268,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             txtMADDK.Text = "";
             txtTENTK.Text = "";
         }
-
-
-
 
         protected void btnSave_Click(object sender, EventArgs e)
         {            
@@ -510,7 +538,14 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 
         private void BindVatTu()
         {
-            var list = vtDao.SearchDien(txtFilterVatTu.Text.Trim());
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+            var khuvuc = _nvDao.Get(b).MAKV;
+
+            //var list = vtDao.SearchDien(txtFilterVatTu.Text.Trim());
+            var list = vtDao.SearchDienMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+
             gvVatTu.DataSource = list;
             gvVatTu.PagerInforText = list.Count.ToString();
             gvVatTu.DataBind();
@@ -585,9 +620,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             BindVatTu();
             CloseWaitingDialog();
         }
-
-
-
 
         private void BindSelectedVatTuGrid()
         {
