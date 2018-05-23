@@ -203,8 +203,9 @@ namespace EOSCRM.Web.Forms.ThietKe
                     || (nhanvien.MAKV == "U" && nhanvien.MAPB == "KD") || (nhanvien.MAKV == "U" && nhanvien.MAPB == "KTDN")
                     )// || nhanvien.MAKV == "T")    chau thanh, long xuyen, chau doc, thoai son
                 {
-                    var objList = ddkDao.GetListForDuyetThietKe(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV); 
-
+                    //var objList = ddkDao.GetListForDuyetThietKe(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV); 
+                    var objList = ddkDao.GetListForDuyetThietKeBravo(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV); 
+                    
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
                     gvList.DataBind();

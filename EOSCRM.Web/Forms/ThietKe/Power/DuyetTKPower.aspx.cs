@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 {
     public partial class DuyetTKPower : Authentication
     {
+        private readonly TrangThaiThietKeDao _tttkDao = new TrangThaiThietKeDao();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
@@ -470,7 +471,44 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
-        }        
+        }
+
+        protected void gvList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
+
+            var source = gvList.DataSource as List<DUYETTHIETKEPO>;
+            if (source == null) return;
+
+            var index = e.Row.RowIndex + gvList.PageSize * gvList.PageIndex;
+
+            var imgTK = e.Row.FindControl("imgTK") as Button;
+
+            try
+            {
+                if (imgTK != null)
+                {
+                    imgTK.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(imgTK) + "')");
+                    var madon = source[index].MADDKPO;
+                    var dondk = _ddkpoDao.Get(madon);
+
+                    var maTTTK = dondk.TTTK;
+                    var tttk = _tttkDao.Get(maTTTK);
+
+                    if (tttk != null)
+                    {
+                        imgTK.Attributes.Add("class", tttk.COLOR);
+                        imgTK.ToolTip = tttk.TENTT;
+                    }
+                    else
+                    {
+                        imgTK.ToolTip = "Chưa nhập thiết kế";
+                        imgTK.Attributes.Add("class", "noneIndicator");
+                    }
+                }
+            }
+            catch { }
+        }
 
         private void BindTKVT(string madon)
         {
@@ -495,5 +533,75 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
         }
+
+        protected void btThietKeLaiChuaChietTinh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var nhanvien = _nvDao.Get(b);
+
+                // Authenticate
+                if (!HasPermission(Functions.TK_DuyetThietKePo, Permission.Update))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                DateTime? ngayduyet = null;
+                //try { ngayduyet = Convert.ToDateTime(txtApproveDate.Text); } catch { }
+                try { ngayduyet = DateTimeUtil.GetVietNamDate(txtApproveDate.Text); }
+                catch { }
+
+                // Get list of ids that to be update
+                var strIds = Request["listIds"];
+                if ((strIds != null) && (!string.Empty.Equals(strIds)))
+                {
+                    var objs = new List<DONDANGKYPO>();
+                    var listIds = strIds.Split(',');
+
+                    //Add ma vao danh sách cần delete
+                    objs.AddRange(listIds.Select(ma => _ddkpoDao.Get(ma)));
+
+                    Message msg;
+                    if (nhanvien.MAKV == "X")
+                    {
+                        msg = _ddkpoDao.ApproveThietKeLaiChuaChietTinh(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
+                    }
+                    else 
+                    {
+                        msg = _ddkpoDao.ApproveThietKeLaiChuaChietTinh(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
+                    }                    
+
+                    if ((msg != null) && (msg.MsgType != MessageType.Error))
+                    {
+                        CloseWaitingDialog();
+
+                        ShowInfor(ResourceLabel.Get(msg));
+
+                        BindDataForGrid();
+                    }
+                    else
+                    {
+                        CloseWaitingDialog();
+                        ShowError(ResourceLabel.Get(msg));
+                    }
+                }
+                else
+                {
+                    CloseWaitingDialog();
+                    ShowError("Vui lòng chọn thiết kế cần duyệt.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
     }
 }

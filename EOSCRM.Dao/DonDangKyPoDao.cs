@@ -2174,6 +2174,98 @@ namespace EOSCRM.Dao
             return msg;
         }
 
+        public Message ApproveThietKeLaiChuaChietTinh(List<DONDANGKYPO> objList, String useragent, String ipAddress, String sManv, DateTime? ngayduyet)
+        {
+            Message msg;
+            DbTransaction trans = null;
+
+            try
+            {
+                _db.Connection.Open();
+                trans = _db.Connection.BeginTransaction();
+                _db.Transaction = trans;
+
+                foreach (var objUi in objList)
+                {
+                    // Get current Item in db
+                    var objDb = Get(objUi.MADDKPO);
+                    if (objDb == null)
+                    {
+                        // error message
+                        msg = new Message(MessageConstants.E_OBJECT_NOT_EXISTS, MessageType.Error, "Đơn đăng ký",
+                                          objUi.TENKH);
+                        return msg;
+                    }
+
+                    if (objDb.TTCT == "CT_N" || objDb.TTCT == null)
+                    {
+                        objDb.TTTK = TTTK.TK_P.ToString();
+                        objDb.TTCT = TTCT.CT_RA.ToString();                       
+                    }                    
+
+                    // update don dang ky
+                    //objDb.TTCT = TTCT.CT_N.ToString();
+                    //objDb.TTTK = TTTK.TK_A.ToString();
+
+                    // update thiet ke
+                    var tk = _db.THIETKEPOs.Where(t => t.MADDKPO.Equals(objDb.MADDKPO)).SingleOrDefault();
+                    if (tk == null)
+                    {
+                        // error message
+                        msg = new Message(MessageConstants.E_OBJECT_NOT_EXISTS, MessageType.Error, "Thiết kế",
+                                          objUi.TENKH);
+                        return msg;
+                    }
+
+                    //tk.MANVDTK = sManv;
+                    //tk.NGAYDTK = tk.NGAYLTK;
+                    //tk.NGAYN = DateTime.Now;
+                    //_rpClass.HisNgayDangKyBienPo(tk.MADDKPO, sManv, objDb.MAKVPO, DateTime.Now, DateTime.Now, DateTime.Now,
+                    //        "", "", "", "", "DUYETTHIETKE");
+
+                    // luu vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = objDb.MADDKPO,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.A.ToString(),
+                        MACN = CHUCNANGKYDUYET.CT01.ToString(),
+                        MATT = "TK_P",
+                        MOTA = @"Trả về thiết kế lại."
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+                }
+
+                // commit
+                trans.Commit();
+
+                _db.Connection.Close();
+
+                // success message
+                msg = new Message(MessageConstants.I_APPROVE_SUCCEED, MessageType.Info, "danh sách thiết kế");
+
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                // rollback transaction
+                if (trans != null)
+                    trans.Rollback();
+
+                _db.Connection.Close();
+
+                msg = ExceptionHandler.HandleUpdateException(ex, "duyệt danh sách thiết kế", ex.Message);
+            }
+
+            return msg;
+        }
+
         public Message ApproveDonThietKeTanChau(List<DONDANGKYPO> objList, String useragent, String ipAddress, String sManv, DateTime? ngayduyet)
         {
             Message msg;

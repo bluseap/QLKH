@@ -935,6 +935,37 @@ namespace EOSCRM.Dao
                         .ToList();
         }
 
+        public List<DUYETTHIETKE> GetListForDuyetThietKeBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode)
+        {
+            
+            var result = _db.DUYETTHIETKEs.Where(d => (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode) &&
+                                                (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString() || d.TTCT == null || d.TTCT == "CT_N"));            
+            
+            if (keyword != null)
+                result = result.Where(d => d.MADDK.Contains(keyword) ||
+                                      d.MADDKTONG.Contains(keyword) ||
+                                      d.TENKH.Contains(keyword) ||
+                                      d.DIACHILD.Contains(keyword) ||
+                                      d.DIENTHOAI.Contains(keyword));
+            if (fromDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value >= fromDate.Value);
+
+            if (toDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value <= toDate.Value);
+
+            if (stateCode != null)
+                result = result.Where(d => d.TTTK == stateCode);
+
+            if (areaCode != null)
+                result = result.Where(d => d.MAKV == areaCode);
+
+            //return result.OrderByDescending(d => d.MADDK)
+            return result.OrderByDescending(d => d.MADDK.Substring(3, 8))
+                        .ToList();
+        }
+
         public List<DUYETTHIETKE> GetListForDuyetThietKePB(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode, string mapb)
         {
 
@@ -976,7 +1007,7 @@ namespace EOSCRM.Dao
             var result = from d in _db.DUYETTHIETKEs
                          join duyet in _db.DUYET_QUYENs on d.MADDK equals duyet.MADDK
                          where (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode)
-                            && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString())// || d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_P") 
+                            && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString() || d.TTCT == null || d.TTCT == "CT_N")// || d.TTCT == "CT_P") 
                             && duyet.MAPB.Equals(mapb)
                          select d;
 
