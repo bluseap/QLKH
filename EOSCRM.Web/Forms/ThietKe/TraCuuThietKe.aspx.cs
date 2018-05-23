@@ -263,7 +263,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                         if (list.TTTK.Equals("TK_A"))
                         {
-                            if (LoginInfo.MANV == "tam")
+                            if (LoginInfo.MANV == "tam" && list.TTCT == "CT_N")
                             {
                                 Session["NHAPTHIETKE_MADDK"] = id;
                                 var url = ResolveUrl("~") + "Forms/ThietKe/BocVatTu.aspx";
@@ -274,8 +274,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                             {
                                 Session["NHAPTHIETKE_MADDK"] = id;
                                 var url = ResolveUrl("~") + "Forms/ThietKe/BocVatTu.aspx";
-                                Response.Redirect(url, false);                                
-
+                                Response.Redirect(url, false); 
                                 break;
                             }
                             else

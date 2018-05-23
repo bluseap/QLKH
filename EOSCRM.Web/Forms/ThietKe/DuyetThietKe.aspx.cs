@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 {
     public partial class DuyetThietKe : Authentication
     {
+        private readonly TrangThaiThietKeDao _tttkDao = new TrangThaiThietKeDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly PhongBanDao _pbDao = new PhongBanDao();
         private readonly ChietTinhDao _ctDao = new ChietTinhDao();
@@ -200,19 +201,18 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                 if (nhanvien.MAKV == "O" || nhanvien.MAKV == "X" || nhanvien.MAKV == "S"
                     || (nhanvien.MAKV == "U" && nhanvien.MAPB == "KD") || (nhanvien.MAKV == "U" && nhanvien.MAPB == "KTDN")
-                    )// || nhanvien.MAKV == "T")
+                    )// || nhanvien.MAKV == "T")    chau thanh, long xuyen, chau doc, thoai son
                 {
-                    var objList = ddkDao.GetListForDuyetThietKe(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV);                
-                    //var objList = ddkDao.GetListForDuyetThietKePB(Keyword, FromDate, ToDate, StateCode, _nvDao.Get(b).MAKV, _nvDao.Get(b).MAPB);
+                    var objList = ddkDao.GetListForDuyetThietKe(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV); 
 
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
                     gvList.DataBind();
                 }
                 else
-                {
-                    //var objList = ddkDao.GetListForDuyetThietKe(Keyword, FromDate, ToDate, StateCode, _nvDao.Get(b).MAKV);                
-                    var objList = ddkDao.GetListForDuyetThietKePB(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV, nhanvien.MAPB);
+                {                   
+                    //var objList = ddkDao.GetListForDuyetThietKePB(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV, nhanvien.MAPB);
+                    var objList = ddkDao.GetListForDuyetThietKePBBravo(Keyword, FromDate, ToDate, StateCode, nhanvien.MAKV, nhanvien.MAPB);
 
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
@@ -475,6 +475,43 @@ namespace EOSCRM.Web.Forms.ThietKe
             }
         }
 
+        protected void gvList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
+
+            var source = gvList.DataSource as List<DUYETTHIETKE>;
+            if (source == null) return;
+
+            var index = e.Row.RowIndex + gvList.PageSize * gvList.PageIndex;
+
+            var imgTK = e.Row.FindControl("imgTK") as Button;
+
+            try
+            {
+                if (imgTK != null)
+                {
+                    imgTK.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(imgTK) + "')");
+                    var madon = source[index].MADDK;
+                    var dondk = ddkDao.Get(madon);
+
+                    var maTTTK = dondk.TTTK;
+                    var tttk = _tttkDao.Get(maTTTK);
+
+                    if (tttk != null)
+                    {
+                        imgTK.Attributes.Add("class", tttk.COLOR);
+                        imgTK.ToolTip = tttk.TENTT;
+                    }
+                    else
+                    {
+                        imgTK.ToolTip = "Chưa nhập thiết kế";
+                        imgTK.Attributes.Add("class", "noneIndicator");
+                    }
+                }
+            }
+            catch  {    }            
+        }
+
         private void BindTKVT(string madon)
         {
             var list = _cttkDao.GetList(madon);
@@ -543,6 +580,75 @@ namespace EOSCRM.Web.Forms.ThietKe
                         msg = ddkDao.ApproveChoThietKeListCD(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(),
                             LoginInfo.MANV, ngayduyet, txtNoiDung.Text.Trim());
                     }                    
+
+                    if ((msg != null) && (msg.MsgType != MessageType.Error))
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor(ResourceLabel.Get(msg));
+
+                        BindDataForGrid();
+                    }
+                    else
+                    {
+                        CloseWaitingDialog();
+                        ShowError(ResourceLabel.Get(msg));
+                    }
+                }
+                else
+                {
+                    CloseWaitingDialog();
+                    ShowError("Vui lòng chọn thiết kế cần duyệt.");
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void btThietKeLaiChuaChietTinh_Click(object sender, EventArgs e)
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+            var nhanvien = _nvDao.Get(b);
+
+            // duyet:   -> TTTK = TK_A
+            //          -> TTCT = CT_N
+            try
+            {
+                // Authenticate
+                if (!HasPermission(Functions.TK_DuyetThietKe, Permission.Update))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                DateTime? ngayduyet = null;
+                //try { ngayduyet = Convert.ToDateTime(txtApproveDate.Text); } catch { }
+                try { ngayduyet = DateTimeUtil.GetVietNamDate(txtApproveDate.Text); }
+                catch { }
+
+                // Get list of ids that to be update
+                var strIds = Request["listIds"];
+                if ((strIds != null) && (!string.Empty.Equals(strIds)))
+                {
+                    var objs = new List<DONDANGKY>();
+                    var listIds = strIds.Split(',');
+
+                    //Add ma vao danh sách cần delete
+                    objs.AddRange(listIds.Select(ma => ddkDao.Get(ma)));
+
+                    Message msg;
+                    if (nhanvien.MAKV == "X") // long xuyen
+                    {
+                        msg = ddkDao.ApproveThietKeListLaiChuaChietTinh(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
+                    }
+                    else 
+                    {
+                        msg = ddkDao.ApproveThietKeListLaiChuaChietTinh(objs, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ngayduyet);
+                    }                   
 
                     if ((msg != null) && (msg.MsgType != MessageType.Error))
                     {

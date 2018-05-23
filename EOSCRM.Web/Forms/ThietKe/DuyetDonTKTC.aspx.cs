@@ -170,7 +170,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                 string b = loginInfo.Username;
                 var query = _nvDao.Get(b);//nhan vien khu vuc ??
 
-                if (query.MAKV == "T") // tan chau
+                if (query.MAKV == "T" || query.MAKV == "K") // tan chau, cho moi
                 {
                     var objList = ddkDao.GetListKhaoSatKVTanChau(Keyword, FromDate, ToDate, StateCode, LoginInfo.MANV, query.MAKV);
                     

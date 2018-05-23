@@ -564,7 +564,7 @@ namespace EOSCRM.Dao
         {           
             var dsdon = from don in _db.DONDANGKies
                         where (don.TTDK.Equals(TTDK.DK_A.ToString()) && don.MAKV.Equals(maKV)
-                               && (don.TTCT.Equals(null) && don.TTTK.Equals(TTTK.TK_A.ToString())))
+                               && ((don.TTCT.Equals(null) || don.TTCT.Equals("CT_N") || don.TTCT.Equals("CT_RA")) && don.TTTK.Equals(TTTK.TK_A.ToString())))
                         select don;
 
             if (keyword != null)
@@ -943,6 +943,41 @@ namespace EOSCRM.Dao
                          where (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode) &&
                                                              (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString())
                              && duyet.MAPB.Equals(mapb)
+                         select d;
+
+            if (keyword != null)
+                result = result.Where(d => d.MADDK.Contains(keyword) ||
+                                      d.MADDKTONG.Contains(keyword) ||
+                                      d.TENKH.Contains(keyword) ||
+                                      d.DIACHILD.Contains(keyword) ||
+                                      d.DIENTHOAI.Contains(keyword));
+            if (fromDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value >= fromDate.Value);
+
+            if (toDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value <= toDate.Value);
+
+            if (stateCode != null)
+                result = result.Where(d => d.TTTK == stateCode);
+
+            if (areaCode != null)
+                result = result.Where(d => d.MAKV == areaCode);
+
+            //return result.OrderByDescending(d => d.MADDK)
+            return result.OrderByDescending(d => d.MADDK.Substring(3, 8))
+                        .ToList();
+        }
+
+        public List<DUYETTHIETKE> GetListForDuyetThietKePBBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode, string mapb)
+        {
+
+            var result = from d in _db.DUYETTHIETKEs
+                         join duyet in _db.DUYET_QUYENs on d.MADDK equals duyet.MADDK
+                         where (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode)
+                            && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString())// || d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_P") 
+                            && duyet.MAPB.Equals(mapb)
                          select d;
 
             if (keyword != null)
@@ -3075,6 +3110,97 @@ namespace EOSCRM.Dao
                         MACN = CHUCNANGKYDUYET.CT01.ToString(),
                         MATT = "TK_A",
                         MOTA = @"Duyệt thiết kế"
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+                }
+
+                // commit
+                trans.Commit();
+
+                _db.Connection.Close();
+
+                // success message
+                msg = new Message(MessageConstants.I_APPROVE_SUCCEED, MessageType.Info, "danh sách thiết kế");
+
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                // rollback transaction
+                if (trans != null)
+                    trans.Rollback();
+
+                _db.Connection.Close();
+
+                msg = ExceptionHandler.HandleUpdateException(ex, "duyệt danh sách thiết kế", ex.Message);
+            }
+
+            return msg;
+        }
+
+        public Message ApproveThietKeListLaiChuaChietTinh(List<DONDANGKY> objList, String useragent, String ipAddress, String sManv, DateTime? ngayduyet)
+        {
+            Message msg;
+            DbTransaction trans = null;
+
+            try
+            {
+                _db.Connection.Open();
+                trans = _db.Connection.BeginTransaction();
+                _db.Transaction = trans;
+
+                foreach (var objUi in objList)
+                {
+                    // Get current Item in db
+                    var objDb = Get(objUi.MADDK);
+                    if (objDb == null)
+                    {
+                        // error message
+                        msg = new Message(MessageConstants.E_OBJECT_NOT_EXISTS, MessageType.Error, "Đơn đăng ký", objUi.TENKH);
+                        return msg;
+                    }
+
+                    if (objDb.TTCT == "CT_N" || objDb.TTCT == null)
+                    {
+                        objDb.TTTK = TTTK.TK_P.ToString();
+                        objDb.TTCT = TTCT.CT_RA.ToString();
+                    }                   
+
+                    // update don dang ky
+                    //objDb.TTCT = TTCT.CT_N.ToString();
+                    // objDb.TTTK = TTTK.TK_A.ToString();
+
+                    // update thiet ke
+                    var tk = _db.THIETKEs.Where(t => t.MADDK.Equals(objDb.MADDK)).SingleOrDefault();
+                    if (tk == null)
+                    {
+                        // error message
+                        msg = new Message(MessageConstants.E_OBJECT_NOT_EXISTS, MessageType.Error, "Thiết kế", objUi.TENKH);
+                        return msg;
+                    }
+
+                    //tk.MANVDTK = sManv;
+                    //tk.NGAYDTK = ngayduyet;
+                    //tk.NGAYDUYETN = DateTime.Now;
+
+                    //_rpClass.HisNgayDangKyBien(tk.MADDK, sManv, objDb.MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
+                    //        "", "", "", "", "DUYETTHIETKE");
+
+                    // luu vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = objDb.MADDK,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.A.ToString(),
+                        MACN = CHUCNANGKYDUYET.CT01.ToString(),
+                        MATT = "TK_P",
+                        MOTA = @"Trả về thiết kế lại."
                     };
                     _kdDao.Insert(luuvetKyduyet);
 
