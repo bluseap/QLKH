@@ -486,6 +486,7 @@ namespace EOSCRM.Web.Forms.ThietKe
             var index = e.Row.RowIndex + gvList.PageSize * gvList.PageIndex;
 
             var imgTK = e.Row.FindControl("imgTK") as Button;
+            var imgCT = e.Row.FindControl("imgCT") as Button;
 
             try
             {
@@ -507,6 +508,27 @@ namespace EOSCRM.Web.Forms.ThietKe
                     {
                         imgTK.ToolTip = "Chưa nhập thiết kế";
                         imgTK.Attributes.Add("class", "noneIndicator");
+                    }
+                }
+
+                if (imgCT != null)
+                {
+                    imgCT.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(imgCT) + "')");
+                    var madon = source[index].MADDK;
+                    var dondk = ddkDao.Get(madon);
+
+                    var maTTTK = dondk.TTCT;
+                    var tttk = _tttkDao.Get(maTTTK);
+
+                    if (tttk != null)
+                    {
+                        imgCT.Attributes.Add("class", tttk.COLOR);
+                        imgCT.ToolTip = tttk.TENTT;
+                    }
+                    else
+                    {
+                        imgCT.ToolTip = "Chưa nhập chiết tính";
+                        imgCT.Attributes.Add("class", "noneIndicator");
                     }
                 }
             }

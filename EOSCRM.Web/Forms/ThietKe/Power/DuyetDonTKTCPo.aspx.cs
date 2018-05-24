@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 {
     public partial class DuyetDonTKTCPo : Authentication
     {
+        private readonly TrangThaiThietKeDao _ttDao = new TrangThaiThietKeDao();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
@@ -218,6 +219,69 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             catch (Exception ex)
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
+
+            var lastCell = e.Row.Cells[e.Row.Cells.Count - 1];
+            if (lastCell == null) return;
+            
+            var source = gvList.DataSource as List<DUYETTHIETKEPO>;
+            if (source == null) return;
+
+            lastCell.Attributes.Add("style", "border-left: none 0px; padding: 6px 0 4px !important;");
+
+            var imgTT = e.Row.FindControl("imgTT") as Button;
+            var imgCT = e.Row.FindControl("imgCT") as Button;
+
+            try
+            {
+                var index = e.Row.RowIndex + gvList.PageSize * gvList.PageIndex;
+                var ddk = _ddkpoDao.Get(source[index].MADDKPO);
+                var dct = source[index];
+
+                if (imgTT != null && ddk != null)
+                {
+                    var maTTCT = dct.TTTK;
+                    var ttct = _ttDao.Get(maTTCT);
+
+                    if (ttct != null)
+                    {
+                        imgTT.Attributes.Add("class", ttct.COLOR);
+                        imgTT.ToolTip = ttct.TENTT + (ddk.NOIDUNG != null ? ". " + ddk.NOIDUNG.ToString() : "");
+                    }
+                    else
+                    {
+                        imgTT.ToolTip = "Chưa duyệt khảo sát";
+                        imgTT.Attributes.Add("class", "noneIndicator");
+                    }
+                }
+
+                if (imgCT != null)
+                {
+                    imgCT.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(imgCT) + "')");
+
+                    var maTTTK = dct.TTCT;
+                    var tttk = _ttDao.Get(maTTTK);
+
+                    if (tttk != null)
+                    {
+                        imgCT.Attributes.Add("class", tttk.COLOR);
+                        imgCT.ToolTip = tttk.TENTT;
+                    }
+                    else
+                    {
+                        imgCT.ToolTip = "Chưa nhập chiết tính";
+                        imgCT.Attributes.Add("class", "noneIndicator");
+                    }
+                }
+            }
+            catch //(Exception ex)
+            {
+                // DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
         }
 

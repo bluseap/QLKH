@@ -123,7 +123,7 @@
             </div>    
             <br />    
             <div class="crmcontainer">
-                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand"                    
+                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand"  OnRowDataBound="gvList_RowDataBound"                   
                     OnPageIndexChanging="gvList_PageIndexChanging" PageSize="20">                    
                     <PagerSettings FirstPageText="thiết kế" PageButtonCount="2" />
                     <Columns>
@@ -146,7 +146,7 @@
                             <ItemStyle Font-Bold="true" />
                         </asp:TemplateField>                        
                         <asp:BoundField HeaderText="Tên khách hàng" HeaderStyle-Width="200px" DataField="TENKH" />
-                        <asp:BoundField HeaderText="Tên công trình" HeaderStyle-Width="25%" DataField="TENTK" />
+                        <asp:BoundField HeaderText="Tên công trình" HeaderStyle-Width="10%" DataField="TENTK" />
                         <asp:BoundField HeaderText="Điện thoại" HeaderStyle-Width="60px" DataField="DIENTHOAI" />
                         <asp:BoundField HeaderText="Địa chỉ lắp đặt" HeaderStyle-Width="35%" DataField="DIACHILD" />
                         <asp:TemplateField HeaderText="Ngày thiết kế" HeaderStyle-Width="80px">
@@ -155,6 +155,19 @@
                                             String.Format("{0:dd/MM/yyyy}", Eval("NGAYLTK")) : "" %>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TT T.Kế"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgTT" runat="server" Width="90px" CausesValidation="false" UseSubmitBehavior="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TT Ch.Tính"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgCT" runat="server" Width="90px" OnClientClick="return false;"
+                                     CausesValidation="false" UseSubmitBehavior="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+
                     </Columns>
                 </eoscrm:Grid>
             </div>

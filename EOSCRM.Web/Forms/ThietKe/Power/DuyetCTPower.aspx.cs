@@ -168,7 +168,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 var kvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV);
 
                 var objList = _ddkpoDao.GetListForDuyetChietTinh(Keyword, FromDate, ToDate, null, kvpo.MAKVPO);
-
+                //var objList = _ddkpoDao.GetListForDuyetChietTinhBravo(Keyword, FromDate, ToDate, null, kvpo.MAKVPO);
+                
                 gvList.DataSource = objList;
                 gvList.PagerInforText = objList.Count.ToString();
                 gvList.DataBind();

@@ -883,14 +883,48 @@ namespace EOSCRM.Dao
                         .ToList();
         }
 
+        public List<DUYETTHIETKEPO> GetListForDuyetThietKePoBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode)
+        {
+            // increase performance later
+            var result = _db.DUYETTHIETKEPOs.Where(d => (d.TTDK == TTDK.DK_A.ToString()) && d.MAKVPO.Equals(areaCode) 
+                    && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString()
+                         || (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_RA")))
+                    );
+            if (keyword != null)
+                result = result.Where(d => d.MADDKPO.Contains(keyword) ||
+                                      d.MADDKTONG.Contains(keyword) ||
+                                      d.TENKH.Contains(keyword) ||
+                                      d.DIACHILD.Contains(keyword) ||
+                                      d.DIENTHOAI.Contains(keyword));
+            if (fromDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value >= fromDate.Value);
+
+            if (toDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value <= toDate.Value);
+
+            if (stateCode != null)
+                result = result.Where(d => d.TTTK == stateCode);
+
+            if (areaCode != null)
+                result = result.Where(d => d.MAKVPO == areaCode);
+
+            //return result.OrderByDescending(d => d.MADDK)
+            return result.OrderByDescending(d => d.MADDKPO.Substring(3, 8))
+                        .ToList();
+        }
+
         public List<DUYETTHIETKEPO> GetListForDuyetThietKeTCPo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, string areaCode)
         {
             // increase performance later
             //var result = _db.DUYETTHIETKEPOs.Where(d => d.MAKVPO.Equals(makvpo) && d.TTDK.Equals("DK_A")
               // && d.TTTK.Equals("TK_A") && d.TTCT.Equals(null));         
 
-            var result = _db.DUYETTHIETKEPOs.Where(d => d.TTDK.Equals("DK_A") && d.MAKVPO.Equals(areaCode) &&
-                                                        (d.TTTK.Equals("TK_A") || d.TTTK == TTTK.TK_RA.ToString()) && d.TTCT.Equals(null));
+            var result = _db.DUYETTHIETKEPOs.Where(d => d.TTDK.Equals("DK_A") && d.MAKVPO.Equals(areaCode) 
+                                            && (d.TTTK.Equals("TK_A") || d.TTTK == TTTK.TK_RA.ToString())
+                                            && (d.TTCT.Equals(null) || d.TTCT.Equals("CT_RA") || d.TTCT.Equals("CT_N"))
+                                            );
             if (keyword != null)
                 result = result.Where(d => d.MADDKPO.Contains(keyword) ||                                    
                                       d.TENKH.Contains(keyword) ||                                    
@@ -925,6 +959,41 @@ namespace EOSCRM.Dao
                                                         (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString())
                         && duyet.MAPB.Equals(mapb)
                     select d;
+
+            if (keyword != null)
+                result = result.Where(d => d.MADDKPO.Contains(keyword) ||
+                                      d.MADDKTONG.Contains(keyword) ||
+                                      d.TENKH.Contains(keyword) ||
+                                      d.DIACHILD.Contains(keyword) ||
+                                      d.DIENTHOAI.Contains(keyword));
+            if (fromDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value >= fromDate.Value);
+
+            if (toDate.HasValue)
+                result = result.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value <= toDate.Value);
+
+            if (stateCode != null)
+                result = result.Where(d => d.TTTK == stateCode);
+
+            if (areaCode != null)
+                result = result.Where(d => d.MAKVPO == areaCode);
+
+            //return result.OrderByDescending(d => d.MADDK)
+            return result.OrderByDescending(d => d.MADDKPO.Substring(3, 8))
+                        .ToList();
+        }
+
+        public List<DUYETTHIETKEPO> GetListForDuyetThietKePBPoBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode, string mapb)
+        {           
+            var result = from d in _db.DUYETTHIETKEPOs
+                         join duyet in _db.DUYET_QUYENs on d.MADDKPO equals duyet.MADDK
+                         where (d.TTDK == TTDK.DK_A.ToString()) && d.MAKVPO.Equals(areaCode) 
+                            && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString()
+                                 || (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_RA")))
+                            && duyet.MAPB.Equals(mapb)
+                         select d;
 
             if (keyword != null)
                 result = result.Where(d => d.MADDKPO.Contains(keyword) ||
@@ -989,6 +1058,37 @@ namespace EOSCRM.Dao
                 result = result.Where(d => d.MAKVPO == areaCode);
 
             return result.OrderByDescending(d => d.MADDKPO).OrderByDescending(d=>d.NGAYLCT).ToList();
+        }
+
+        public List<DUYETCHIETTINHPO> GetListForDuyetChietTinhBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode)
+        {
+            // increase performance later
+            var result = _db.DUYETCHIETTINHPOs.Where(d => (d.TTDK == TTDK.DK_A.ToString()) && d.MAKVPO.Equals(areaCode) 
+                    && ((d.TTCT == TTCT.CT_P.ToString()) || (d.TTCT == TTCT.CT_RA.ToString()))
+                    && (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N")) // || d.TTCT == "CT_P") 
+                    );
+            if (keyword != null)
+                result = result.Where(d => d.MADDKPO.Contains(keyword) ||
+                                      d.MADDKTONG.Contains(keyword) ||
+                                      d.TENKH.Contains(keyword) ||
+                                      d.TENCT.Contains(keyword) ||
+                                      d.DIACHILD.Contains(keyword) ||
+                                      d.DIENTHOAI.Contains(keyword));
+            if (fromDate.HasValue)
+                result = result.Where(d => d.NGAYLCT.HasValue
+                                           && d.NGAYLCT.Value >= fromDate.Value);
+
+            if (toDate.HasValue)
+                result = result.Where(d => d.NGAYLCT.HasValue
+                                           && d.NGAYLCT.Value <= toDate.Value);
+
+            if (stateCode != null)
+                result = result.Where(d => d.TTCT == stateCode);
+
+            if (areaCode != null)
+                result = result.Where(d => d.MAKVPO == areaCode);
+
+            return result.OrderByDescending(d => d.MADDKPO).OrderByDescending(d => d.NGAYLCT).ToList();
         }
 
         /*

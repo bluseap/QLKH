@@ -188,9 +188,15 @@
                                             String.Format("{0:dd/MM/yyyy}", Eval("NGAYLTK")) : "" %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Trạng thái đơn"  HeaderStyle-Width="80px">
+                        <asp:TemplateField HeaderText="TT T.Kế"  HeaderStyle-Width="80px">
                             <ItemTemplate>
                                 <asp:Button ID="imgTK" runat="server" Width="90px" OnClientClick="return false;"
+                                     CausesValidation="false" UseSubmitBehavior="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TT Ch.Tính"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgCT" runat="server" Width="90px" OnClientClick="return false;"
                                      CausesValidation="false" UseSubmitBehavior="false" />
                             </ItemTemplate>
                         </asp:TemplateField>

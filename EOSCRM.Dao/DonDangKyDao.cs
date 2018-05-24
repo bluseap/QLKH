@@ -564,7 +564,8 @@ namespace EOSCRM.Dao
         {           
             var dsdon = from don in _db.DONDANGKies
                         where (don.TTDK.Equals(TTDK.DK_A.ToString()) && don.MAKV.Equals(maKV)
-                               && ((don.TTCT.Equals(null) || don.TTCT.Equals("CT_N") || don.TTCT.Equals("CT_RA")) && don.TTTK.Equals(TTTK.TK_A.ToString())))
+                                && (don.TTTK.Equals(TTTK.TK_A.ToString()) || don.TTTK.Equals(TTTK.TK_RA.ToString()))
+                                && ((don.TTCT.Equals(null) || don.TTCT.Equals("CT_N") || don.TTCT.Equals("CT_RA")) ))
                         select don;
 
             if (keyword != null)
@@ -581,13 +582,13 @@ namespace EOSCRM.Dao
                 dsdon = dsdon.Where(d => d.NGAYDK.HasValue
                                            && d.NGAYDK.Value <= toDate.Value);
 
-            if (stateCode != null)
-            {
-                if (stateCode == "NULL")
-                    dsdon = dsdon.Where(d => d.TTTK.Equals(null));
-                else
-                    dsdon = dsdon.Where(d => d.TTTK.Equals(stateCode));
-            }
+            //if (stateCode != null)
+            //{
+            //    if (stateCode == "NULL")
+            //        dsdon = dsdon.Where(d => d.TTTK.Equals(null));
+            //    else
+            //        dsdon = dsdon.Where(d => d.TTTK.Equals(stateCode));
+            //}
 
             return dsdon.OrderByDescending(d => d.MADDK).OrderByDescending(d => d.NGAYDK).ToList();
         }
@@ -937,9 +938,11 @@ namespace EOSCRM.Dao
 
         public List<DUYETTHIETKE> GetListForDuyetThietKeBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode)
         {
-            
-            var result = _db.DUYETTHIETKEs.Where(d => (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode) &&
-                                                (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString() || d.TTCT == null || d.TTCT == "CT_N"));            
+
+            var result = _db.DUYETTHIETKEs.Where(d => (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode)
+                        && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString()
+                            || (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_RA")))
+                        ); 
             
             if (keyword != null)
                 result = result.Where(d => d.MADDK.Contains(keyword) ||
@@ -955,8 +958,8 @@ namespace EOSCRM.Dao
                 result = result.Where(d => d.NGAYDK.HasValue
                                            && d.NGAYDK.Value <= toDate.Value);
 
-            if (stateCode != null)
-                result = result.Where(d => d.TTTK == stateCode);
+            //if (stateCode != null)
+            //    result = result.Where(d => d.TTTK == stateCode);
 
             if (areaCode != null)
                 result = result.Where(d => d.MAKV == areaCode);
@@ -1003,11 +1006,12 @@ namespace EOSCRM.Dao
 
         public List<DUYETTHIETKE> GetListForDuyetThietKePBBravo(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode, string mapb)
         {
-
             var result = from d in _db.DUYETTHIETKEs
                          join duyet in _db.DUYET_QUYENs on d.MADDK equals duyet.MADDK
                          where (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode)
-                            && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString() || d.TTCT == null || d.TTCT == "CT_N")// || d.TTCT == "CT_P") 
+                            && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString()
+                                || (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_RA")))
+                            //&& (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N")) 
                             && duyet.MAPB.Equals(mapb)
                          select d;
 

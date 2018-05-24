@@ -250,6 +250,7 @@ namespace EOSCRM.Web.Forms.ThietKe
             lastCell.Attributes.Add("style", "border-left: none 0px; padding: 6px 0 4px !important;");
 
             var imgTT = e.Row.FindControl("imgTT") as Button;
+            var imgCT = e.Row.FindControl("imgCT") as Button;
 
             try
             {
@@ -271,6 +272,25 @@ namespace EOSCRM.Web.Forms.ThietKe
                     {
                         imgTT.ToolTip = "Chưa duyệt khảo sát";
                         imgTT.Attributes.Add("class", "noneIndicator");
+                    }
+                }
+
+                if (imgCT != null)
+                {
+                    imgCT.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(imgCT) + "')");
+
+                    var maTTTK = dct.TTCT;
+                    var tttk = ttDao.Get(maTTTK);
+
+                    if (tttk != null)
+                    {
+                        imgCT.Attributes.Add("class", tttk.COLOR);
+                        imgCT.ToolTip = tttk.TENTT;
+                    }
+                    else
+                    {
+                        imgCT.ToolTip = "Chưa nhập chiết tính";
+                        imgCT.Attributes.Add("class", "noneIndicator");
                     }
                 }
             }
