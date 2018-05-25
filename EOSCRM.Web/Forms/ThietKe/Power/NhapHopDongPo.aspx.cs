@@ -187,6 +187,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 {
                     LoadStaticReferences();
                     BindDataForGrid();
+
+                    ChayChietTinhPo();
                 }
             }
             catch (Exception ex)
@@ -209,7 +211,21 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             CommonFunc.SetPropertiesForGrid(gvDuongPho);
             CommonFunc.SetPropertiesForGrid(gvDDK);
             CommonFunc.SetPropertiesForGrid(gvList);
-        }       
+        }
+
+        private void ChayChietTinhPo()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;
+
+                _rpClass.DonToKeToan("", makvpo, "", "", "", "", "UPCTKTTOCTKHPO");
+            }
+            catch { }
+        }
 
         private void LoadStaticReferences()
         {
@@ -901,13 +917,16 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 )
             {
                 var list = _ddkpoDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+
                 gvDDK.DataSource = list;
                 gvDDK.PagerInforText = list.Count.ToString();
                 gvDDK.DataBind();
             }
             else
             {
-                var list = _ddkpoDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+                //var list = _ddkpoDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+                var list = _ddkpoDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+
                 gvDDK.DataSource = list;
                 gvDDK.PagerInforText = list.Count.ToString();
                 gvDDK.DataBind();

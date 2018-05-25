@@ -3756,8 +3756,9 @@ namespace EOSCRM.Dao
             var result = _db.DONDANGKYPOs.Where(d => (d.TTDK == TTDK.DK_A.ToString()) &&
                                                         (d.TTTK == TTTK.TK_A.ToString()) &&
                                                         //(d.TTCT == TTCT.CT_A.ToString()) &&
-                                                        (d.TTHD == TTHD.HD_A.ToString()) &&
-                                                        (d.TTTC.Equals(TTTC.TC_N)));
+                                                        (d.TTHD == TTHD.HD_A.ToString()) 
+                                                       // &&   (d.TTTC.Equals(TTTC.TC_N))
+                                                        );
             if (keyword != null)
                 result = result.Where(d => d.MADDKPO.Contains(keyword) ||
                                       d.MADDKTONG.Contains(keyword) ||
@@ -3779,18 +3780,12 @@ namespace EOSCRM.Dao
 
 
         public List<DONDANGKYPO> GetListDonChoThiCongPB(String keyword, DateTime? fromDate, DateTime? toDate, String areaCode, String mapb)
-        {
-            // increase performance later                     
-            /*var result = _db.DONDANGKies.Where(d => (d.TTDK == TTDK.DK_A.ToString()) &&
-                                                        (d.TTTK == TTTK.TK_A.ToString()) &&
-                                                        (d.TTCT == TTCT.CT_A.ToString()) &&
-                                                        (d.TTHD == TTHD.HD_A.ToString()) &&
-                                                        (d.TTTC.Equals(TTTC.TC_N)));*/
+        {            
             var result = from d in _db.DONDANGKYPOs
                          join quyen in _db.DUYET_QUYENs on d.MADDKPO equals quyen.MADDK
                          where d.TTDK == TTDK.DK_A.ToString() && d.TTTK == TTTK.TK_A.ToString() && d.MAKVPO.Equals(areaCode) &&
-                               d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString() &&
-                               d.TTTC.Equals(TTTC.TC_N) && quyen.MAPB.Equals(mapb)
+                               d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString()
+                              // && d.TTTC.Equals(TTTC.TC_N) && quyen.MAPB.Equals(mapb)
                          select d;
 
             if (keyword != null)

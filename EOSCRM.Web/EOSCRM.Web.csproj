@@ -254,6 +254,11 @@
     <Content Include="Forms\ThietKe\Power\TraCuuCTPower.aspx" />
     <Content Include="Forms\ThietKe\Power\TraCuuHopDongPo.aspx" />
     <Content Include="Forms\ThietKe\Power\TraCuuTKPower.aspx" />
+    <Content Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\GhiChiSoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\GhiSoHoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\NhapTBA.aspx" />
     <Content Include="Forms\VayCongDoan\NhanVienVayTK.aspx" />
     <Content Include="Forms\VayCongDoan\TietKiemCD.aspx" />
     <Content Include="Forms\VayCongDoan\TraCuNhanVienVayTK.aspx" />
@@ -2593,41 +2598,6 @@
     <Compile Include="Forms\ThietKe\PhanCongKhaoSatThietKe.aspx.designer.cs">
       <DependentUpon>PhanCongKhaoSatThietKe.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx.cs">
-      <DependentUpon>CapNhatChiSoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx.designer.cs">
-      <DependentUpon>CapNhatChiSoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiChiSoTBA.aspx.cs">
-      <DependentUpon>GhiChiSoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiChiSoTBA.aspx.designer.cs">
-      <DependentUpon>GhiChiSoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiSoHoTBA.aspx.cs">
-      <DependentUpon>GhiSoHoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiSoHoTBA.aspx.designer.cs">
-      <DependentUpon>GhiSoHoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx.cs">
-      <DependentUpon>KhoiTaoChiSoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx.designer.cs">
-      <DependentUpon>KhoiTaoChiSoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\NhapTBA.aspx.cs">
-      <DependentUpon>NhapTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\NhapTBA.aspx.designer.cs">
-      <DependentUpon>NhapTBA.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Forms\TruyThu\DoViPham.aspx.cs">
       <DependentUpon>DoViPham.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4197,11 +4167,6 @@
     <Content Include="Forms\ThietKe\KhaoSatThietKe.aspx" />
     <Content Include="Forms\ThietKe\DuyetThietKe.aspx" />
     <Content Include="Forms\ThietKe\PhanCongKhaoSatThietKe.aspx" />
-    <Content Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\GhiChiSoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\GhiSoHoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\NhapTBA.aspx" />
     <Content Include="Forms\TruyThu\DoViPham.aspx" />
     <Content Include="Forms\TruyThu\GhiSaiChiSo.aspx" />
     <Content Include="Forms\VatTu\NhapVatTuNuoc.aspx" />

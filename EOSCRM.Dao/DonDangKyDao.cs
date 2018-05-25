@@ -4968,18 +4968,13 @@ namespace EOSCRM.Dao
         }
 
         public List<DONDANGKY> GetListDonChoThiCongPB(String keyword, DateTime? fromDate, DateTime? toDate, String areaCode, String mapb)
-        {
-            // increase performance later                     
-            /*var result = _db.DONDANGKies.Where(d => (d.TTDK == TTDK.DK_A.ToString()) &&
-                                                        (d.TTTK == TTTK.TK_A.ToString()) &&
-                                                        (d.TTCT == TTCT.CT_A.ToString()) &&
-                                                        (d.TTHD == TTHD.HD_A.ToString()) &&
-                                                        (d.TTTC.Equals(TTTC.TC_N)));*/
+        {           
             var result = from d in _db.DONDANGKies
                          join quyen in _db.DUYET_QUYENs on d.MADDK equals quyen.MADDK
                          where d.TTDK == TTDK.DK_A.ToString() && d.TTTK == TTTK.TK_A.ToString() &&
-                               d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString() &&
-                               d.TTTC.Equals(TTTC.TC_N) && quyen.MAPB.Equals(mapb) && d.MAKV.Equals(areaCode)
+                               d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString() 
+                            //   &&  d.TTTC.Equals(TTTC.TC_N) 
+                               && quyen.MAPB.Equals(mapb) && d.MAKV.Equals(areaCode)
                          select d;
 
             if (keyword != null)
@@ -5002,19 +4997,14 @@ namespace EOSCRM.Dao
         }
 
         public List<DONDANGKY> GetListDonChoThiCongKhuVuc(String keyword, DateTime? fromDate, DateTime? toDate, String areaCode, String mapb)
-        {
-            // increase performance later                     
-            /*var result = _db.DONDANGKies.Where(d => (d.TTDK == TTDK.DK_A.ToString()) &&
-                                                        (d.TTTK == TTTK.TK_A.ToString()) &&
-                                                        (d.TTCT == TTCT.CT_A.ToString()) &&
-                                                        (d.TTHD == TTHD.HD_A.ToString()) &&
-                                                        (d.TTTC.Equals(TTTC.TC_N)));*/
+        {            
             var result = from d in _db.DONDANGKies
                          join quyen in _db.DUYET_QUYENs on d.MADDK equals quyen.MADDK
                          where d.TTDK == TTDK.DK_A.ToString() && d.TTTK == TTTK.TK_A.ToString() &&
-                               d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString() &&
+                               d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString()
                                //d.TTTC.Equals(TTTC.TC_N) && quyen.MAPB.Equals(mapb) && d.MAKV.Equals(areaCode)
-                               d.TTTC.Equals(TTTC.TC_N) && d.MAKV.Equals(areaCode)
+                              // d.TTTC.Equals(TTTC.TC_N) 
+                               && d.MAKV.Equals(areaCode)
                          select d;
 
             if (keyword != null)
@@ -5048,9 +5038,10 @@ namespace EOSCRM.Dao
                          join quyen in _db.DUYET_QUYENs on d.MADDK equals quyen.MADDK
                          where d.TTDK == TTDK.DK_A.ToString() && d.TTTK == TTTK.TK_A.ToString() &&
                                //d.TTCT == TTCT.CT_A.ToString() &&
-                               d.TTHD == TTHD.HD_A.ToString() &&
+                               d.TTHD == TTHD.HD_A.ToString() 
                              //d.TTTC.Equals(TTTC.TC_N) && quyen.MAPB.Equals(mapb) && d.MAKV.Equals(areaCode)
-                               d.TTTC.Equals(TTTC.TC_N) && d.MAKV.Equals(areaCode)
+                             //  d.TTTC.Equals(TTTC.TC_N) 
+                                   && d.MAKV.Equals(areaCode)
                          select d;
 
             if (keyword != null)

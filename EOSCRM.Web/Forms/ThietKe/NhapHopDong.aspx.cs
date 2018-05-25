@@ -186,6 +186,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 {
                     LoadStaticReferences();
                     BindDataForGrid();
+
+                    ChayChietTinh();
                 }
             }
             catch (Exception ex)
@@ -208,7 +210,21 @@ namespace EOSCRM.Web.Forms.ThietKe
             CommonFunc.SetPropertiesForGrid(gvDuongPho);
             CommonFunc.SetPropertiesForGrid(gvDDK);
             CommonFunc.SetPropertiesForGrid(gvList);
-        }      
+        }
+
+        private void ChayChietTinh()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makv = _nvDao.Get(b).MAKV;
+
+                _rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+            }
+            catch { }
+        }
 
         private void LoadStaticReferences()
         {
@@ -1006,13 +1022,16 @@ namespace EOSCRM.Web.Forms.ThietKe
             )
             {
                 var list = ddkDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+
                 gvDDK.DataSource = list;
                 gvDDK.PagerInforText = list.Count.ToString();
                 gvDDK.DataBind();
             }
             else
             {   
-                var list = ddkDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+                //var list = ddkDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+                var list = ddkDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+
                 gvDDK.DataSource = list;
                 gvDDK.PagerInforText = list.Count.ToString();
                 gvDDK.DataBind();

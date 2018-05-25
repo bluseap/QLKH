@@ -1224,6 +1224,60 @@ namespace EOSCRM.Dao
             }
             return msg;
         }
+
+        public Message UpdateKhachHangMaDH(KHACHHANG moi, int nam, int thang, String useragent, String ipAddress, String sManv)
+        {
+            Message msg;
+            try
+            {
+              
+                _db.Connection.Close();
+                _db.Connection.Open();
+
+                // get current object in database
+                var cu = Get(moi.IDKH);
+
+                if (cu != null)
+                {
+                    cu.MADH = moi.MADH;                    
+
+                    #region Luu Vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = moi.IDKH,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = moi.MADH,
+                        MACN = CHUCNANGKYDUYET.KH05.ToString(),
+                        MATT = CHUCNANGKYDUYET.KH05.ToString(),
+                        MOTA = "Cập nhập thay đồng hồ(sửa đồng hồ khách hàng khi nhập nhầm"
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+                    #endregion
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+
+                    _db.Connection.Close();
+
+                    // success message
+                    msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "khách hàng ");
+                }
+                else
+                {
+                    // error message
+                    msg = new Message(MessageConstants.E_OBJECT_IN_USED, MessageType.Error, "Khách hàng ", moi.TENKH);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                msg = ExceptionHandler.HandleUpdateException(ex, "Khách hàng ", ex.ToString());
+            }
+            return msg;
+        }
         
         public bool IsInUse(string ma)
         {

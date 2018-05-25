@@ -12,6 +12,8 @@ namespace EOSCRM.Dao
     {
         private readonly EOSCRMDataContext _db;
 
+        private readonly KhachHangDao _khDao = new KhachHangDao();
+
         public static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
         public KHSoNoDHDao()
         {
@@ -59,7 +61,7 @@ namespace EOSCRM.Dao
             try
             {
                 _db.Connection.Open();
-                _db.KHSONODHs.InsertOnSubmit(objUi);             
+                _db.KHSONODHs.InsertOnSubmit(objUi);               
 
                 var luuvetKyduyet = new LUUVET_KYDUYET
                 {
@@ -92,7 +94,7 @@ namespace EOSCRM.Dao
             try
             {
                 // get current object in database
-                var objDb = Get(objUi.IDSONO);
+                var objDb = Get(objUi.IDSONO);                                  
 
                 if (objDb != null)
                 {
@@ -101,7 +103,7 @@ namespace EOSCRM.Dao
                     objDb.SONOMOI = objUi.SONOMOI;
                     objDb.GHICHU = objUi.GHICHU;
                     objDb.NGAYN = objUi.NGAYN;
-                    objDb.MANVN = objUi.MANVN;                   
+                    objDb.MANVN = objUi.MANVN;                                
 
                     var luuvetKyduyet = new LUUVET_KYDUYET
                     {

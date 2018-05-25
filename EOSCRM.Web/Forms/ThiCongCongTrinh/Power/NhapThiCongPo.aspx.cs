@@ -18,31 +18,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
         private readonly DuongPhoPoDao _dppoDao = new DuongPhoPoDao();
         private readonly PhuongPoDao _ppoDao = new PhuongPoDao();
         private readonly ThiCongDao tcdao = new ThiCongDao();
-        private readonly NhanVienDao nvdao = new NhanVienDao();        
-
-        private Mode UpdateMode
-        {
-            get
-            {
-                try
-                {
-                    if (Session[SessionKey.MODE] != null)
-                    {
-                        var mode = Convert.ToInt32(Session[SessionKey.MODE]);
-                        return (mode == Mode.Update.GetHashCode()) ? Mode.Update : Mode.Create;
-                    }
-                    return Mode.Create;
-                }
-                catch (Exception)
-                {
-                    return Mode.Create;
-                }
-            }
-            set
-            {
-                Session[SessionKey.MODE] = value.GetHashCode();
-            }
-        }
+        private readonly NhanVienDao nvdao = new NhanVienDao();
 
         private THICONG ThiCong
         {
@@ -69,6 +45,31 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
             }
         }
 
+        #region Update, Filtered
+        private Mode UpdateMode
+        {
+            get
+            {
+                try
+                {
+                    if (Session[SessionKey.MODE] != null)
+                    {
+                        var mode = Convert.ToInt32(Session[SessionKey.MODE]);
+                        return (mode == Mode.Update.GetHashCode()) ? Mode.Update : Mode.Create;
+                    }
+                    return Mode.Create;
+                }
+                catch (Exception)
+                {
+                    return Mode.Create;
+                }
+            }
+            set
+            {
+                Session[SessionKey.MODE] = value.GetHashCode();
+            }
+        }        
+
         private FilteredMode Filtered
         {
             get
@@ -92,41 +93,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                 Session[SessionKey.FILTEREDMODE] = value.GetHashCode();
             }
         }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                Authenticate(Functions.TC_NhapDonThiCongPo, Permission.Read);
-                PrepareUI();
-
-                if (!Page.IsPostBack)
-                {
-                    LoadStaticReferences();
-                    //BindDataForGrid();
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
-        }
-
-        private void PrepareUI()
-        {
-            Page.Title = Resources.Message.TITLE_TC_NHAPTHICONGPO;
-
-            var header = (Header)Master.FindControl("header");
-            if (header != null)
-            {
-                header.ModuleName = Resources.Message.MODULE_THICONG;
-                header.TitlePage = Resources.Message.PAGE_TC_NHAPTHICONGPO;
-            }
-
-            CommonFunc.SetPropertiesForGrid(gvNhanVien);
-            CommonFunc.SetPropertiesForGrid(gvDDK);
-            CommonFunc.SetPropertiesForGrid(gvList);
-        }
+        #endregion
 
         #region Startup script registeration
         private void SetControlValue(string id, string value)
@@ -170,6 +137,56 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
         }
         #endregion
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Authenticate(Functions.TC_NhapDonThiCongPo, Permission.Read);
+                PrepareUI();
+
+                if (!Page.IsPostBack)
+                {
+                    LoadStaticReferences();
+                    //BindDataForGrid();
+
+                    ChayChietTinhPo();
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void PrepareUI()
+        {
+            Page.Title = Resources.Message.TITLE_TC_NHAPTHICONGPO;
+
+            var header = (Header)Master.FindControl("header");
+            if (header != null)
+            {
+                header.ModuleName = Resources.Message.MODULE_THICONG;
+                header.TitlePage = Resources.Message.PAGE_TC_NHAPTHICONGPO;
+            }
+
+            CommonFunc.SetPropertiesForGrid(gvNhanVien);
+            CommonFunc.SetPropertiesForGrid(gvDDK);
+            CommonFunc.SetPropertiesForGrid(gvList);
+        }
+
+        private void ChayChietTinhPo()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makvpo = _kvpodao.GetPo(nvdao.Get(b).MAKV).MAKVPO;
+
+                _rpClass.DonToKeToan("", makvpo, "", "", "", "", "UPCTKTTOCTKHPO");
+            }
+            catch { }
+        }
 
         private void LoadStaticReferences()
         {
@@ -700,6 +717,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                 else
                 {
                     var list = _ddkpoDao.GetListDonChoThiCongPB(txtFilter.Text.Trim(), tungay, denngay, ddlMaKV.SelectedValue, pb.MAPB.ToString());
+
                     gvDDK.DataSource = list;
                     gvDDK.PagerInforText = list.Count.ToString();
                     gvDDK.DataBind();
