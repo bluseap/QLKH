@@ -3198,7 +3198,7 @@ namespace EOSCRM.Dao
                         return msg;
                     }
 
-                    if (objDb.TTCT == "CT_N" || objDb.TTCT == null)
+                    if (objDb.TTCT == "CT_N" || objDb.TTCT == "CT_RA" || objDb.TTCT == null)
                     {
                         objDb.TTTK = TTTK.TK_P.ToString();
                         objDb.TTCT = TTCT.CT_RA.ToString();

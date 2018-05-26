@@ -15685,6 +15685,8 @@ namespace EOSCRM.Domain
 		
 		private string _MAKV;
 		
+		private string _MauCuaAi;
+		
 		private EntitySet<DAOLAPMAUBOCVATTU> _DAOLAPMAUBOCVATTUs;
 		
 		private EntitySet<GCMAUBOCVATTU> _GCMAUBOCVATTUs;
@@ -15719,6 +15721,8 @@ namespace EOSCRM.Domain
     partial void OnLOAIMBVTChanged();
     partial void OnMAKVChanging(string value);
     partial void OnMAKVChanged();
+    partial void OnMauCuaAiChanging(string value);
+    partial void OnMauCuaAiChanged();
     #endregion
 		
 		public MAUBOCVATTU()
@@ -15965,6 +15969,26 @@ namespace EOSCRM.Domain
 					this._MAKV = value;
 					this.SendPropertyChanged("MAKV");
 					this.OnMAKVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MauCuaAi", DbType="VarChar(10)")]
+		public string MauCuaAi
+		{
+			get
+			{
+				return this._MauCuaAi;
+			}
+			set
+			{
+				if ((this._MauCuaAi != value))
+				{
+					this.OnMauCuaAiChanging(value);
+					this.SendPropertyChanging();
+					this._MauCuaAi = value;
+					this.SendPropertyChanged("MauCuaAi");
+					this.OnMauCuaAiChanged();
 				}
 			}
 		}

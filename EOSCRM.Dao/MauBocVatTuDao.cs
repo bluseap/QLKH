@@ -33,6 +33,16 @@ namespace EOSCRM.Dao
             return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN")).ToList();
         }
 
+        public List<MAUBOCVATTU> GetListCuaAi(string cuaai)
+        {
+            return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN") && p.MauCuaAi.Equals(cuaai)).ToList();
+        }
+
+        public List<MAUBOCVATTU> GetListCuaAiPo(string cuaai)
+        {
+            return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("DD") && p.MauCuaAi.Equals(cuaai)).ToList();
+        }
+
         public List<MAUBOCVATTU> GetListMAKV(string makv)
         {
             return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN") && p.MAKV.Equals(makv)).ToList();

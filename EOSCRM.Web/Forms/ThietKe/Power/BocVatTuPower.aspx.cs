@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 {
     public partial class BocVatTuPower : Authentication
     {
+        private readonly KhoDanhMucDao _kdmDao = new KhoDanhMucDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
@@ -130,7 +131,9 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             if (ThietKePo == null)
                 return;            
 
-            var list = mbvtDao.GetListDien();
+            //var list = mbvtDao.GetListDien();
+            var list = mbvtDao.GetListCuaAiPo("KT"); 
+
             ddlMBVT.Items.Clear();
             ddlMBVT.Items.Add(new ListItem("", ""));
 
@@ -220,6 +223,33 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 txtKetLuanSauTK.Text = ThietKePo.KETLUANTK.ToString();
             }
             else { txtKetLuanSauTK.Text = ""; }
+
+            
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;            
+            string manv = loginInfo.Username;
+
+            var nhanvien = _nvDao.Get(manv);
+            if (nhanvien.MAKV == "X")
+            {
+                var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("X", "NN");
+                ddlKhoXiNghiep.Items.Clear();
+                ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var kho in khoxn)
+                {
+                    ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                }
+            }
+            else
+            {
+                var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("XN", "DD");
+                ddlKhoXiNghiep.Items.Clear();
+                ddlKhoXiNghiep.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var kho in khoxn)
+                {
+                    ddlKhoXiNghiep.Items.Add(new ListItem(kho.TenKho, kho.Id));
+                }
+            }
         }
 
         private void LoadMauTK()
@@ -259,7 +289,9 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 
         private void BindVatTu()
         {
-            var list = vtDao.SearchDien(txtFilterVatTu.Text.Trim());
+            //var list = vtDao.SearchDien(txtFilterVatTu.Text.Trim());
+            var list = vtDao.SearchMaKeToanDien(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+
             gvVatTu.DataSource = list;
             gvVatTu.PagerInforText = list.Count.ToString();
             gvVatTu.DataBind();
@@ -307,10 +339,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         protected void gvVatTu_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                // Update page index
-                gvVatTu.PageIndex = e.NewPageIndex;
-                // Bind data for grid
+            {               
+                gvVatTu.PageIndex = e.NewPageIndex;              
                 BindVatTu();
             }
             catch (Exception ex)

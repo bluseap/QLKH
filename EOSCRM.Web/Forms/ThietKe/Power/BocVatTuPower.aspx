@@ -290,6 +290,14 @@
                                 <table class="crmtable">
                                     <tbody>
                                         <tr>
+                                            <td class="crmcell right">Kho Xí nghiệp</td>
+                                            <td class="crmcell">
+                                                <div class="left">                                                
+                                                    <asp:DropDownList ID="ddlKhoXiNghiep" runat="server" ></asp:DropDownList>
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="crmcell right">Từ khóa</td>
                                             <td class="crmcell">
                                                 <div class="left">                                                
@@ -313,17 +321,23 @@
 						                OnPageIndexChanging="gvVatTu_PageIndexChanging">
 							            <PagerSettings FirstPageText="vật tư" PageButtonCount="2" />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Mã VT" HeaderStyle-Width="15%">
+                                            <asp:TemplateField HeaderText="Mã VT K.Toán" HeaderStyle-Width="90px">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("MAVT") %>'
-                                                        CommandName="EditItem" Text='<%# Eval("MAVT") %>'></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("MAVT") %>'  CommandName="EditItem" 
+                                                        Text='<%# Eval("KeToanMaSoVatTu") != null ?  Eval("KeToanMaSoVatTu").ToString() : "" %>'></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="15%" />
-                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="35%" />
-                                            <asp:BoundField HeaderText="Giá VT" DataField="GIAVT" HeaderStyle-Width="10%" />
-                                            <asp:BoundField HeaderText="Giá NC" DataField="GIANC" HeaderStyle-Width="10%" />
-                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="15%" />
+                                            <%--<asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="15%" />--%>
+                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="240px" />
+                                            <%--<asp:BoundField HeaderText="Giá VT" DataField="GIAVT" HeaderStyle-Width="10%" />
+                                            <asp:BoundField HeaderText="Giá NC" DataField="GIANC" HeaderStyle-Width="10%" />--%>
+                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="40px" />
+                                            <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
+                                                 <ItemTemplate>
+                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ) != null ? 
+                                                    new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </eoscrm:Grid>
                                 </div>

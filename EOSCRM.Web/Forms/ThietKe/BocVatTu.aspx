@@ -375,8 +375,9 @@
                                             <asp:BoundField HeaderText="Giá NC" DataField="GIANC" HeaderStyle-Width="10%" />--%>
                                             <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="40px" />
                                             <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
-                                                <ItemTemplate>
-                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString()    %>
+                                                 <ItemTemplate>
+                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ) != null ? 
+                                                    new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>

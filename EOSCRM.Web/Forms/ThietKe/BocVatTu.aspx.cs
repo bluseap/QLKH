@@ -143,8 +143,9 @@ namespace EOSCRM.Web.Forms.ThietKe
             var madon2 = _ddk.Get(ThietKe.MADDK.ToString());            
             if ( madon2 != null)
             {
-                var list = mbvtDao.GetList();
-                //var list = mbvtDao.GetListMAKV(makvnv);
+                //var list = mbvtDao.GetList();
+                var list = mbvtDao.GetListCuaAi("KT");                
+
                 ddlMBVT.Items.Clear();
                 ddlMBVT.Items.Add(new ListItem("", ""));
                 
@@ -216,7 +217,9 @@ namespace EOSCRM.Web.Forms.ThietKe
 
             if (donsc != null)
             {
-                var list = mbvtDao.GetList();
+                //var list = mbvtDao.GetList();
+                var list = mbvtDao.GetListCuaAi("KT");                     
+
                 ddlMBVT.Items.Clear();
                 ddlMBVT.Items.Add(new ListItem("", ""));
 

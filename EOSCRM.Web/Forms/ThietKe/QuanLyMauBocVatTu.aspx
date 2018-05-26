@@ -395,7 +395,8 @@
                                             </asp:TemplateField>  --%>
                                             <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
                                                 <ItemTemplate>
-                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString()    %>
+                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ) != null ? 
+                                                    new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>                                            
                                         </Columns>
