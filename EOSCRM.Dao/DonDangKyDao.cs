@@ -1010,7 +1010,7 @@ namespace EOSCRM.Dao
                          join duyet in _db.DUYET_QUYENs on d.MADDK equals duyet.MADDK
                          where (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode)
                             && (d.TTTK == TTTK.TK_P.ToString() || d.TTTK == TTTK.TK_RA.ToString()
-                                || (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_RA")))
+                                || (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N" || d.TTCT == "CT_RA"))    )
                             //&& (d.TTTK == TTTK.TK_A.ToString() && (d.TTCT == null || d.TTCT == "CT_N")) 
                             && duyet.MAPB.Equals(mapb)
                          select d;
@@ -1029,8 +1029,8 @@ namespace EOSCRM.Dao
                 result = result.Where(d => d.NGAYDK.HasValue
                                            && d.NGAYDK.Value <= toDate.Value);
 
-            if (stateCode != null)
-                result = result.Where(d => d.TTTK == stateCode);
+            //if (stateCode != null)
+            //    result = result.Where(d => d.TTTK == stateCode);
 
             if (areaCode != null)
                 result = result.Where(d => d.MAKV == areaCode);

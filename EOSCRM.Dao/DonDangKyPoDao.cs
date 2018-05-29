@@ -1009,8 +1009,8 @@ namespace EOSCRM.Dao
                 result = result.Where(d => d.NGAYDK.HasValue
                                            && d.NGAYDK.Value <= toDate.Value);
 
-            if (stateCode != null)
-                result = result.Where(d => d.TTTK == stateCode);
+            //if (stateCode != null)
+            //    result = result.Where(d => d.TTTK == stateCode);
 
             if (areaCode != null)
                 result = result.Where(d => d.MAKVPO == areaCode);
@@ -3785,7 +3785,8 @@ namespace EOSCRM.Dao
                          join quyen in _db.DUYET_QUYENs on d.MADDKPO equals quyen.MADDK
                          where d.TTDK == TTDK.DK_A.ToString() && d.TTTK == TTTK.TK_A.ToString() && d.MAKVPO.Equals(areaCode) &&
                                d.TTCT == TTCT.CT_A.ToString() && d.TTHD == TTHD.HD_A.ToString()
-                              // && d.TTTC.Equals(TTTC.TC_N) && quyen.MAPB.Equals(mapb)
+                              // && d.TTTC.Equals(TTTC.TC_N)
+                              && quyen.MAPB.Equals(mapb)
                          select d;
 
             if (keyword != null)
