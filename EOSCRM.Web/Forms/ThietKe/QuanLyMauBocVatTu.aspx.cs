@@ -328,7 +328,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 NGAYTK = DateTime.Now,
                 SOBCT = null,
                 LOAIMBVT="NN",
-                MAKV = ddlKHUVUC.SelectedValue
+                MAKV = ddlKHUVUC.SelectedValue,
+                MauCuaAi = "KT"
             };
 
             var don = MauBocVatTu;

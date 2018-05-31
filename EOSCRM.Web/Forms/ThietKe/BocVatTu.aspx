@@ -458,27 +458,33 @@
                                             <%# Container.DataItemIndex + 1%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Stt" HeaderStyle-Width="20px">
+                                        <ItemTemplate>
+                                            <%# Eval("VATTU.MAHIEU") != null ? Convert.ToInt32(Eval("VATTU.MAHIEU")).ToString() : ""  %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Mã VT K.Toán" HeaderStyle-Width="60px">
                                         <ItemTemplate>
                                              <%# Eval("VATTU.KeToanMaSoVatTu") != null ?  Eval("VATTU.KeToanMaSoVatTu").ToString() : "" %>
                                         </ItemTemplate> 
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="#" HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
                                         <ItemTemplate>
-                                            <%# Eval("VATTU.MAHIEU") != null ? Eval("VATTU.MAHIEU").ToString() : ""  %>
+                                            <%# new KhoDanhMucDao().Get(Eval("VATTU.KhoDanhMucId") != null ? Eval("VATTU.KhoDanhMucId").ToString() : "" ) != null ? 
+                                            new KhoDanhMucDao().Get(Eval("VATTU.KhoDanhMucId") != null ? Eval("VATTU.KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Nội dung công việc">
+                                    </asp:TemplateField>                                    
+                                    <asp:TemplateField HeaderText="Tên V.tư">
                                         <ItemTemplate>
                                             <%# Eval("VATTU.TENVT") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Công ty đầu tư" HeaderStyle-Width="100px">
+                                    <asp:TemplateField HeaderText="Công ty đầu tư" HeaderStyle-Width="20px">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="cbISCTYDTU" runat="server" />                                           
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="ĐVT" HeaderStyle-Width="50px">
+                                    <asp:TemplateField HeaderText="ĐVT" HeaderStyle-Width="30px">
                                         <ItemTemplate>
                                             <%# Eval("VATTU.DVT") %>
                                         </ItemTemplate>
@@ -494,17 +500,14 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Tiền vật tư" HeaderStyle-Width="70px">
-                                        <ItemStyle HorizontalAlign="Right" Width="12%"></ItemStyle>                                         
-
+                                        <ItemStyle HorizontalAlign="Right" Width="12%"></ItemStyle> 
                                         <ItemTemplate>
                                             <asp:Label ID="lblTIENVT" Text='<%# Bind("TIENVT") %>' runat="server"></asp:Label>
-                                        </ItemTemplate>                                        
-                                                                         
+                                        </ItemTemplate>                 
                                         <FooterTemplate>                                            
                                             <asp:Label ID="lblPageTotal" runat="server"/>                                            
                                             <asp:Label ID="lblGrandTotal" runat="server"/>
-                                        </FooterTemplate>
-                                       
+                                        </FooterTemplate>                                       
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Giá NC" HeaderStyle-Width="70px">
                                         <ItemTemplate>

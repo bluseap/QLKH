@@ -283,7 +283,9 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 NGAYNHAN_CT = null,
                 NGAYTK = DateTime.Now,
                 SOBCT = null,
-                LOAIMBVT = "DD"
+                LOAIMBVT = "DD",
+                //MAKV = ddlKHUVUC.SelectedValue,
+                MauCuaAi = "KT"
             };
 
             var don = MauBocVatTu;
