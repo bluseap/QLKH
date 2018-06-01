@@ -224,7 +224,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         {
             try
             {
-                var objList = _mbvtDao.GetListDD();
+                var objList = _mbvtDao.GetListDDBravo();
 
                 gvList.DataSource = objList;
                 gvList.PagerInforText = objList.Count.ToString();

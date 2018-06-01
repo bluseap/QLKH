@@ -33,6 +33,17 @@ namespace EOSCRM.Dao
             return ctvt.ToList();
             //return _db.CTMAUBOCVATTUs.Where( p=>p.MADDK .Equals( maDon)).ToList();
         }
+
+        public List<CTMAUBOCVATTU> GetListBravo(string maDon)
+        {
+            var ctvt = from ctv in _db.CTMAUBOCVATTUs
+                       join vt in _db.VATTUs on ctv.MAVT equals vt.MAVT
+                       orderby Convert.ToInt32(vt.MAHIEU)
+                       where (ctv.MADDK.Equals(maDon))
+                       select ctv;
+            return ctvt.ToList();
+            //return _db.CTMAUBOCVATTUs.Where( p=>p.MADDK .Equals( maDon)).ToList();
+        }
    
         public Message Insert(CTMAUBOCVATTU objUi)
         {

@@ -48,6 +48,11 @@ namespace EOSCRM.Dao
             return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN") && p.MAKV.Equals(makv)).ToList();
         }
 
+        public List<MAUBOCVATTU> GetListMAKVBravo(string makv)
+        {
+            return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN") && p.MAKV.Equals(makv) && p.MauCuaAi.Equals("KT")).ToList();
+        }
+
         public List<MAUBOCVATTU> GetListDien()
         {
             return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("DD")).ToList();
@@ -63,9 +68,19 @@ namespace EOSCRM.Dao
             return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN")).ToList();
         }
 
+        public List<MAUBOCVATTU> GetListNNBravo()
+        {
+            return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("NN") && p.MauCuaAi.Equals("KT")).ToList();
+        }
+
         public List<MAUBOCVATTU> GetListDD()
         {
             return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("DD")).ToList();
+        }
+
+        public List<MAUBOCVATTU> GetListDDBravo()
+        {
+            return _db.MAUBOCVATTUs.Where(p => p.LOAIMBVT.Equals("DD") && p.MauCuaAi.Equals("KT")).ToList();
         }
 
         public List<MAUBOCVATTU> GetList(int fromIndex, int toIndex)

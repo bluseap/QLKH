@@ -178,7 +178,24 @@ namespace EOSCRM.Web.Forms.DanhMuc
         {
             if (Filtered == FilteredMode.None)
             {
-                if (ddlKHUVUC.SelectedValue == "X" || ddlKHUVUC.SelectedValue == "S")
+                if (ddlKHUVUC.SelectedValue == "X" )
+                {
+                    if (ddlLOAIVATTU.SelectedValue == "%")
+                    {
+                        var objList = _objDao.GetListKhuVuc(ddlKHUVUC.SelectedValue);
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
+                    else
+                    {
+                        var objList = _objDao.GetListLoaiVTKhuVucKHTT(ddlLOAIVATTU.SelectedValue, ddlKHUVUC.SelectedValue);
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
+                }
+                else if (ddlKHUVUC.SelectedValue == "S")
                 {
                     if (ddlLOAIVATTU.SelectedValue == "%")
                     {
@@ -197,16 +214,16 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 }
                 else
                 {
-                    if (ddlLOAIVATTU.SelectedValue == "%")
+                    if (ddlKhoVatTuKeToan.SelectedValue == "%")
                     {
-                        var objList = _objDao.GetList();
+                        var objList = _objDao.GetListMaKeToan();
                         gvList.DataSource = objList;
                         gvList.PagerInforText = objList.Count.ToString();
                         gvList.DataBind();
                     }
                     else
                     {
-                        var objList = _objDao.GetListLoaiVT(ddlLOAIVATTU.SelectedValue);
+                        var objList = _objDao.GetListKho(ddlLOAIVATTU.SelectedValue);
                         gvList.DataSource = objList;
                         gvList.PagerInforText = objList.Count.ToString();
                         gvList.DataBind();
@@ -215,7 +232,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
             }
             else
             {
-                if (ddlKHUVUC.SelectedValue == "X" || ddlKHUVUC.SelectedValue == "S")
+                if (ddlKHUVUC.SelectedValue == "X" )
                 {
                     if (ddlLOAIVATTU.SelectedValue == "%")
                     {
@@ -268,9 +285,9 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         }
                     }
                 }
-                else
+                else if (ddlKHUVUC.SelectedValue == "S")
                 {
-                    if (ddlLOAIVATTU.SelectedValue == "%")
+                    if (ddlKhoVatTuKeToan.SelectedValue == "%")
                     {
                         decimal? giavt = null;
                         decimal? gianc = null;
@@ -300,7 +317,48 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
                         catch { }
                         // ReSharper restore EmptyGeneralCatchClause
-                        var objList = _objDao.GetListLoaiVTKHTT(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
+                        var objList = _objDao.GetListKhoKT(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
+                                    ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
+                                    gianc, giavt, ddlLOAIVATTU.SelectedValue);
+
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
+                }
+                else
+                {
+                    if (ddlKhoVatTuKeToan.SelectedValue == "%")
+                    {
+                        decimal? giavt = null;
+                        decimal? gianc = null;
+
+                        // ReSharper disable EmptyGeneralCatchClause
+                        try { giavt = decimal.Parse(txtGIAVT.Text.Trim()); }
+                        catch { }
+                        try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
+                        catch { }
+                        // ReSharper restore EmptyGeneralCatchClause
+                        var objList = _objDao.GetList(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
+                                    ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
+                                    gianc, giavt);
+
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
+                    else
+                    {
+                        decimal? giavt = null;
+                        decimal? gianc = null;
+
+                        // ReSharper disable EmptyGeneralCatchClause
+                        try { giavt = decimal.Parse(txtGIAVT.Text.Trim()); }
+                        catch { }
+                        try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
+                        catch { }
+                        // ReSharper restore EmptyGeneralCatchClause
+                        var objList = _objDao.GetListKhoKT(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
                                     ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
                                     gianc, giavt, ddlLOAIVATTU.SelectedValue);
 
@@ -675,6 +733,9 @@ namespace EOSCRM.Web.Forms.DanhMuc
             // insert new
             if (UpdateMode == Mode.Create)
             {
+                ShowError("Không được thêm vật tư mới!");
+                return;
+
                 if (!HasPermission(Functions.DM_VatTu, Permission.Insert))
                 {
                     CloseWaitingDialog();
@@ -783,12 +844,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                     msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
-                }
-                //else
-                //{
-                //    info.MAVT = lbMAVTCTY.Text.Trim();
-                //    msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                //}
+                }                
             }
 
             CloseWaitingDialog();

@@ -265,9 +265,17 @@ namespace EOSCRM.Web.Forms.ThietKe
                     gvList.PagerInforText = objList.Count.ToString();
                     gvList.DataBind();
                 }
+                else if (_nvDao.Get(b).MAKV == "S")
+                {
+                    var objList = ddkDao.GetListMAKVBravo(ddlKHUVUC.SelectedValue);
+
+                    gvList.DataSource = objList;
+                    gvList.PagerInforText = objList.Count.ToString();
+                    gvList.DataBind();
+                }
                 else
                 {
-                    var objList = ddkDao.GetListNN();
+                    var objList = ddkDao.GetListNNBravo();
 
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
@@ -554,9 +562,7 @@ namespace EOSCRM.Web.Forms.ThietKe
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
-        }
-
-        
+        }        
 
         protected void gvList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -687,7 +693,7 @@ namespace EOSCRM.Web.Forms.ThietKe
             var mbvt = SelectedMBVT;
 
             if (mbvt == null) return;
-            var list = ctmbvtDao.GetList(mbvt.MADDK);
+            var list = ctmbvtDao.GetListBravo(mbvt.MADDK);
 
             gvSelectedVatTu.DataSource = list;
             gvSelectedVatTu.PagerInforText = list.Count.ToString();
