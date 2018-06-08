@@ -257,7 +257,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                 if (loginInfo == null) return;
                 string b = loginInfo.Username;
 
-                if (_nvDao.Get(b).MAKV == "X" || _nvDao.Get(b).MAKV =="S")
+                if (_nvDao.Get(b).MAKV == "X" )
                 {
                     var objList = ddkDao.GetListMAKV(ddlKHUVUC.SelectedValue);
 
@@ -267,7 +267,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                 }
                 else if (_nvDao.Get(b).MAKV == "S")
                 {
-                    var objList = ddkDao.GetListMAKVBravo(ddlKHUVUC.SelectedValue);
+                    var objList = ddkDao.GetListNNBravo();
 
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();

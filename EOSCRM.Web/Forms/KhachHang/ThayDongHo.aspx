@@ -566,16 +566,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="crmcell right">Xã, phường</td>
+                            <td class="crmcell right"></td>
                             <td class="crmcell">
                                 <div class="left width-200">
-                                    <asp:DropDownList ID="ddlXAPHUONG" runat="server" OnSelectedIndexChanged="ddlXAPHUONG_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlXAPHUONG" runat="server" OnSelectedIndexChanged="ddlXAPHUONG_SelectedIndexChanged" AutoPostBack="true"
+                                        Visible="false"></asp:DropDownList>
                                 </div>
                                 <div class="left">
-                                    <div class="right">Ấp, khóm</div>
+                                    <div class="right"></div>
                                 </div>
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlAPKHOM" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlAPKHOM" runat="server" Visible="false"></asp:DropDownList>
                                 </div>
                             </td>                                  
                         </tr>
@@ -687,7 +688,8 @@
             </div>
         </ContentTemplate>
         <Triggers>
-            <asp:PostBackTrigger ControlID="btXuatExcel" />           
+            <asp:PostBackTrigger ControlID="btXuatExcel" />     
+            <asp:PostBackTrigger ControlID="btDSChuaThay" />         
         </Triggers>
     </asp:UpdatePanel>  
     <br />

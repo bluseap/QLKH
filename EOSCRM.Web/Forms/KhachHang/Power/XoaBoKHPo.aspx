@@ -59,6 +59,11 @@
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterKH) %>', '');
             return false;
         }
+
+        function CheckFormbtExcelXoa() {
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btExcelXoa) %>', '');
+            return false;
+        }
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -344,13 +349,22 @@
                                 </div>   
                                 <div class="left">
                                     <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="report" />
-                                </div>                             
+                                </div>   
+                                <td class="crmcell right">
+                                     <div class="left ">
+                                        <asp:Button ID="btExcelXoa" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtExcelXoa();"
+                                                 OnClick="btExcel_Click" TabIndex="19" UseSubmitBehavior="false" Text="Xuất Excel"/>
+                                    </div>                          
+                                </td>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btExcelXoa" />
+        </Triggers>
     </asp:UpdatePanel>
     <br />
     <asp:UpdatePanel ID="upnlCustomers" UpdateMode="Conditional" runat="server">

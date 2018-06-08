@@ -61,6 +61,8 @@
                 openWaitingDialog();
                 unblockWaitingDialog();
                 //__doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnChangeKhoiLuong) %>', '');
+                __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btAddVatTu) %>', '');
+                
             }
         }
 

@@ -717,18 +717,18 @@ namespace EOSCRM.Web.Forms.KhachHang
                 }
             }
 
-            //if (!string.Empty.Equals(txtCAPNGAY.Text.Trim()))
-            //{
-            //    try
-            //    {
-            //        DateTimeUtil.GetVietNamDate(txtCAPNGAY.Text.Trim());
-            //    }
-            //    catch
-            //    {
-            //        ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Kiểm tra lại ngày cấp CMND."), txtCAPNGAY.ClientID);
-            //        return false;
-            //    }
-            //}
+            if (!string.Empty.Equals(txtCAPNGAY.Text.Trim()))
+            {
+                try
+                {
+                    DateTimeUtil.GetVietNamDate(txtCAPNGAY.Text.Trim());
+                }
+                catch
+                {
+                    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Kiểm tra lại ngày cấp CMND."), txtCAPNGAY.ClientID);
+                    return false;
+                }
+            }
 
             //nam sinh
             /*if (!string.Empty.Equals(txtNGAYSINH.Text.Trim()) )

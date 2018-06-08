@@ -392,6 +392,7 @@
                                             <asp:ListItem Value="DSKHMDK">DS Khách hàng Mục đích khác</asp:ListItem>
                                             <asp:ListItem Value="TTCUPTT">Cúp nước</asp:ListItem>
                                             <asp:ListItem Value="TTCHETTT">Chết</asp:ListItem>
+                                            <asp:ListItem Value="TKLDHKY">Thống kê loại đồng hồ theo kỳ</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="right">

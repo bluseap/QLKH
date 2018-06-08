@@ -1175,6 +1175,46 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                     Response.End();
                 }
 
+                if (ddlTTG6THANG.Text == "TKLDHKY")
+                {                    
+
+                    var ds = new ReportClass().DSTTMUCDICHKHAC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                Convert.ToInt32(ddlDenThang.SelectedValue), Convert.ToInt32(txtDenNam.Text.Trim()), cboKhuVuc.SelectedValue, "", "", "TKLDHKY");
+
+                    DataTable dt = ds.Tables[0];
+
+                    //Create a dummy GridView
+                    GridView GridView1 = new GridView();
+                    GridView1.AllowPaging = false;
+
+                    GridView1.Font.Name = "Times New Roman";
+
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.AddHeader("content-disposition", "attachment;filename=TKLDH" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
+                    Response.Charset = "";
+                    Response.ContentType = "application/vnd.ms-excel";
+                    System.IO.StringWriter sw = new System.IO.StringWriter();
+                    System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
+                    hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+                    for (int i = 0; i < GridView1.Rows.Count; i++)
+                    {
+                        //Apply text style to each Row
+                        GridView1.Rows[i].Attributes.Add("class", "textmode");
+                    }
+                    GridView1.RenderControl(hw);
+
+                    //style to format numbers to string
+                    string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                    Response.Write(style);
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
+                }
+
                 CloseWaitingDialog();
                 upnlGhiChiSo.Update();                  
             }
