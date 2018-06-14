@@ -5330,4 +5330,14 @@
       <Column Name="LoaiVatTuId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.VatTuKeToanBravo" Member="VatTuKeToanBravos">
+    <Type Name="VatTuKeToanBravo">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VatTuId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TenVatTu" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="DonViId" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="NgayTaoBravo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

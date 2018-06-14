@@ -258,7 +258,7 @@
                                     <asp:TextBox ID="txtSONHA" runat="server" Width="180px" MaxLength="150" 
                                         TabIndex="6" />
                                 </div>
-                                <td class="crmcell right">Số nhà</td>
+                                <td class="crmcell right">Số nhà (Đ/c lắp)</td>
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
                                         <asp:TextBox ID="txtSoNhaNhapDon" runat="server" Width="50px" MaxLength="200" TabIndex="15" />
@@ -281,7 +281,7 @@
                             <td class="crmcell">    
                                 <div class="left">                                    
                                 </div>
-                                <td class="crmcell right">Phường, xã</td>
+                                <td class="crmcell right">Phường, xã (Đ/c lắp)</td>
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
                                         <asp:DropDownList ID="ddlPhuongXa" runat="server"></asp:DropDownList>

@@ -1216,7 +1216,8 @@ namespace EOSCRM.Dao
             // increase performance later
             var result = _db.DONDANGKies.Where(d => (d.TTDK == TTDK.DK_A.ToString()) && d.MAKV.Equals(areaCode) &&
                                                         (d.TTTK == TTTK.TK_A.ToString()) &&
-                                                        (d.TTCT == TTCT.CT_N.ToString()) && (d.TTHD == null)).AsQueryable();
+                                                        (d.TTCT == TTCT.CT_N.ToString()))// && (d.TTHD == null))
+                                                        .AsQueryable();
 
             if (keyword != null)
                 result = result.Where(d => d.MADDK.Contains(keyword) ||

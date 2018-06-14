@@ -593,6 +593,7 @@
                                         <asp:ListItem Text="Đồng hồ gắn tạm" Value="K" />
                                         <asp:ListItem Text="Mua" Value="M" />
                                         <asp:ListItem Text="Chống thất thoát" Value="T" />
+
                                         <asp:ListItem Text="Luật đo lường" Value="V" />   
                                         <asp:ListItem Text="Nâng công suất" Value="N" />                                  
                                     </asp:DropDownList>

@@ -217,6 +217,7 @@
     <Compile Include="UpSentPBDao.cs" />
     <Compile Include="UserAdminDao.cs" />
     <Compile Include="VatTuDao.cs" />
+    <Compile Include="VatTuKeToanBravoDao.cs" />
     <Compile Include="ViTriThietBiDao.cs" />
     <Compile Include="WPOClass.cs" />
     <Compile Include="XaPhuongDao.cs" />

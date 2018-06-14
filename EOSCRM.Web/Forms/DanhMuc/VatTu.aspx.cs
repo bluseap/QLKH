@@ -14,6 +14,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
 {
     public partial class VatTu : Authentication
     {
+        private readonly VatTuKeToanBravoDao _vtktDao = new VatTuKeToanBravoDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly KhoDanhMucDao _kdmDao = new KhoDanhMucDao();
         private readonly KhuVucDao _kvDao = new KhuVucDao();
@@ -105,6 +106,16 @@ namespace EOSCRM.Web.Forms.DanhMuc
         #endregion
 
         #region Startup script registeration
+        private void HideDialog(string divId)
+        {
+            ((EOS)Page.Master).HideDialog(divId);
+        }
+
+        private void UnblockDialog(string divId)
+        {
+            ((EOS)Page.Master).UnblockDialog(divId);
+        }
+
         private void SetControlValue(string id, string value)
         {
             ((EOS)Page.Master).SetControlValue(id, value);
@@ -172,6 +183,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
             }
 
             CommonFunc.SetPropertiesForGrid(gvList);
+            CommonFunc.SetPropertiesForGrid(gvVatTuKeToan);
         }       
 
         private void BindDataForGrid()
@@ -390,10 +402,16 @@ namespace EOSCRM.Web.Forms.DanhMuc
             foreach (var dvt in dvtList)
                 ddlDVT.Items.Add(new ListItem(dvt.TENDVT, dvt.DVT1));
 
+            var khoList = _kdmDao.GetList();
+            ddlKhoVatTuKeToan.Items.Clear();
+            ddlKhoVatTuKeToan.Items.Add(new ListItem("Tất cả", "%"));
+            foreach (var kho in khoList)
+                ddlKhoVatTuKeToan.Items.Add(new ListItem(kho.TenKho, kho.Id));
+
             if (_nvDao.Get(b).MAKV == "X")
             {
                 ddlLOAIVATTU.Items.Clear();                
-                ddlLOAIVATTU.Items.Add(new ListItem("Vật tư NƯỚC", "NN"));                
+                ddlLOAIVATTU.Items.Add(new ListItem("Vật tư NƯỚC", "NN"));               
             }
             else
             {
@@ -401,15 +419,16 @@ namespace EOSCRM.Web.Forms.DanhMuc
                 ddlLOAIVATTU.Items.Add(new ListItem("Tất cả", "%"));
                 ddlLOAIVATTU.Items.Add(new ListItem("Vật tư NƯỚC", "NN"));
                 ddlLOAIVATTU.Items.Add(new ListItem("Vật tư ĐIỆN", "DD"));
-            }
-
-            var khoList = _kdmDao.GetList();
-            ddlKhoVatTuKeToan.Items.Clear();
-            ddlKhoVatTuKeToan.Items.Add(new ListItem("Tất cả", "%"));
-            foreach (var kho in khoList)
-                ddlKhoVatTuKeToan.Items.Add(new ListItem(kho.TenKho, kho.Id));
+            }            
 
             ClearForm();
+
+            if (_nvDao.Get(b).MAKV == "X")
+            {
+                var kholx = ddlKhoVatTuKeToan.Items.FindByValue("KHOLX");
+                if (kholx != null)
+                    ddlKhoVatTuKeToan.SelectedIndex = ddlKhoVatTuKeToan.Items.IndexOf(kholx);
+            }
         }
 
         public void timkv()
@@ -762,36 +781,46 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                 if (_nvDao.Get(b).MAKV == "X")
                 {
-                    info.MAVT = ddlLOAIVATTU.SelectedValue + _objDao.NewId(ddlKHUVUC.SelectedValue);
+                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuId(ddlKHUVUC.SelectedValue);
                     mavtcty = info.MAVT;
                     mavt1 = info.MAVT;
+
                     msg = _objDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
                 else
                 {
-                    info.MAVT = ddlLOAIVATTU.SelectedValue + txtMAVT.Text.Trim();
+                    //info.MAVT = ddlLOAIVATTU.SelectedValue + txtMAVT.Text.Trim();
+                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuId(ddlKHUVUC.SelectedValue);
+
                     mavt1 = info.MAVT;
                     mavtcty = info.MAVT;
+
                     msg = _objDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
 
                 if (_nvDao.Get(b).MAKV == "X")
                 {
-                    info.MAVT = ddlLOAIVATTU.SelectedValue + _objDao.NewId(ddlKHUVUC.SelectedValue);
+                    //info.MAVT = ddlLOAIVATTU.SelectedValue + _objDao.NewId(ddlKHUVUC.SelectedValue);
+                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuId(ddlKHUVUC.SelectedValue);
+
                     info.MAVTCTY = mavtcty;
                     mavt2 = info.MAVT;
 
                     info.MAHIEU = mavt1;
                     info.LOAIVT = "KHTT";
+
                     _objDao.InsertKHTT(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
                 else
                 {
-                    info.MAVT = ddlLOAIVATTU.SelectedValue + txtMAVT.Text.Trim();
+                    //info.MAVT = ddlLOAIVATTU.SelectedValue + txtMAVT.Text.Trim();
+                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuId(ddlKHUVUC.SelectedValue);
+
                     info.MAVTCTY = mavtcty;
                     mavt2 = info.MAVT;                    
                     info.MAHIEU = mavt1;
                     info.LOAIVT = "KHTT";
+
                     _objDao.InsertKHTT(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
                 
@@ -898,5 +927,108 @@ namespace EOSCRM.Web.Forms.DanhMuc
             Filtered = FilteredMode.None;
             ClearForm();
         }
+
+        protected void btnVatTuKeToan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _rpClass.DonToKeToan("", "", "", "", "", "", "InBangVTKTToVatTu");
+
+                BindVatTuKeToan();
+
+                upnlVatTu.Update();
+
+                UnblockDialog("divVatTu");
+            }
+            catch { }
+        }
+
+        private void BindVatTuKeToan()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
+            var nhanvien = _nvDao.Get(b);
+
+            if (nhanvien.MAKV != "X")
+            {
+                var list = _vtktDao.Search(txtFilterVatTuKeToan.Text.Trim());
+                gvVatTuKeToan.DataSource = list;
+                gvVatTuKeToan.PagerInforText = list.Count.ToString();
+                gvVatTuKeToan.DataBind();
+            }
+            else
+            {
+                var list = _vtktDao.SearchDonVi(txtFilterVatTuKeToan.Text.Trim(), "A02");
+                gvVatTuKeToan.DataSource = list;
+                gvVatTuKeToan.PagerInforText = list.Count.ToString();
+                gvVatTuKeToan.DataBind();
+            }
+        }
+
+        #region gvVatTu
+        protected void gvVatTuKeToan_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                var id = e.CommandArgument.ToString();
+
+                switch (e.CommandName)
+                {
+                    case "EditItem":
+                        var vt = _vtktDao.Get(id);
+                        if (vt != null)
+                        {
+                            txtMaVatTuKeToan.Text = vt.VatTuId;
+                            txtTENVT.Text = vt.TenVatTu;
+                        }
+
+                        HideDialog("divVatTu");
+                        CloseWaitingDialog();
+
+                        upnlInfor.Update();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvVatTuKeToan_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                gvVatTuKeToan.PageIndex = e.NewPageIndex;
+                BindVatTuKeToan();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvVatTuKeToan_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
+
+            var lnkBtnVatTuKeToanID = e.Row.FindControl("lnkBtnVatTuKeToanID") as LinkButton;
+            if (lnkBtnVatTuKeToanID == null) return;
+            lnkBtnVatTuKeToanID.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(lnkBtnVatTuKeToanID) + "')");
+
+        }
+        #endregion
+
+        protected void btnFilterVatTuKeToan_Click(object sender, EventArgs e)
+        {
+            BindVatTuKeToan();
+
+            CloseWaitingDialog();
+            upnlVatTu.Update();
+        }
+
+
     }
 }

@@ -577,7 +577,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 kh.CHISOCUOI = Convert.ToInt32(txtCSBATDAU.Text.Trim());
                 kh.m4Poor = Convert.ToInt32(txtTRUYTHU.Text.Trim());
                 kh.KLKHOAN = Convert.ToInt32(txtCSMOI.Text.Trim());
-                kh.DIACHI_INHOADON = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
+                kh.DIACHI_INHOADON = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue == "V" ? "5" : ddlLYDOTHAYDH.SelectedValue;
 
                 var msg = _khDao.UpdateThayDongHoKyForm(kh, DateTimeUtil.GetVietNamDate(txtNgayHoanThanh.Text.Trim()), txtSoTem.Text.Trim(), txtGhiChu.Text.Trim(),
                                                 CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV,
@@ -731,7 +731,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 dh.MAXA = ddlXAPHUONG.SelectedValue;
                 dh.MAAPTO = ddlAPKHOM.SelectedValue;
 
-                dh.LYDOTHAY = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
+                dh.LYDOTHAY = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue == "V" ? "5" : ddlLYDOTHAYDH.SelectedValue;
 
                 var msg = _thaydonghoDao.UpThayDongHo(dh, DateTimeUtil.GetVietNamDate(txtNgayHoanThanh.Text.Trim()), txtSoTem.Text.Trim(), txtGhiChu.Text.Trim(),
                                                 CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);

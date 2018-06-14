@@ -13,6 +13,42 @@ namespace EOSCRM.Web.Forms.DanhMuc {
     public partial class VatTu {
         
         /// <summary>
+        /// upnlVatTu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upnlVatTu;
+        
+        /// <summary>
+        /// txtFilterVatTuKeToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFilterVatTuKeToan;
+        
+        /// <summary>
+        /// btnFilterVatTuKeToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFilterVatTuKeToan;
+        
+        /// <summary>
+        /// gvVatTuKeToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::EOSCRM.Controls.Grid gvVatTuKeToan;
+        
+        /// <summary>
         /// upnlInfor control.
         /// </summary>
         /// <remarks>
@@ -173,6 +209,15 @@ namespace EOSCRM.Web.Forms.DanhMuc {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
+        /// btnVatTuKeToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVatTuKeToan;
         
         /// <summary>
         /// upnlGrid control.

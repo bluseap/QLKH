@@ -674,6 +674,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btExcel" />
+            <asp:PostBackTrigger ControlID="btDSChuaThay" />
         </Triggers>
     </asp:UpdatePanel>  
     <br />
