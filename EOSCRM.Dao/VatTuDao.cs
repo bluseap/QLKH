@@ -679,10 +679,27 @@ namespace EOSCRM.Dao
 
         public string MaxVatTuId(string makv)
         {
-            var query = _db.VATTUs.Where(p => p.MAVT.ToString().Substring(0, 2) == "NN" || p.MAVT.ToString().Substring(0, 2) == "DD")
+            var query = _db.VATTUs.Where(p => p.KeToanMaSoVatTu != null
+                    && p.MAVT.Length == 9
+                    && (p.MAVT.ToString().Substring(0, 2) == "NN" || p.MAVT.ToString().Substring(0, 2) == "DD")                     
+                    && p.MAVT.ToString().Substring(2,1).Equals(makv)
+                    )
                 .Max(p => p.MAVT);
 
-            var temp = int.Parse(query.Substring(3, 6)) + 1;
+            var temp = int.Parse(query.Substring(3, 6)) + 2;
+            return temp.ToString("D6");
+        }
+
+        public string MaxVatTuKHTTId(string makv)
+        {
+            var query = _db.VATTUs.Where(p => p.KeToanMaSoVatTu != null
+                    && p.MAVT.Length == 9
+                    && (p.MAVT.ToString().Substring(0, 2) == "NN" || p.MAVT.ToString().Substring(0, 2) == "DD")
+                    && p.MAVT.ToString().Substring(2, 1).Equals(makv)
+                    )
+                .Max(p => p.MAVT);
+
+            var temp = int.Parse(query.Substring(3, 6)) + 3;
             return temp.ToString("D6");
         }
 

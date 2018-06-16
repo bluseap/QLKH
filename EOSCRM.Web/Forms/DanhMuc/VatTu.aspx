@@ -2,6 +2,8 @@
     Inherits="EOSCRM.Web.Forms.DanhMuc.VatTu" CodeBehind="VatTu.aspx.cs" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
+<%@ Import Namespace="EOSCRM.Dao" %>
+<%@ Import Namespace="EOSCRM.Util"%>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">    
@@ -276,15 +278,28 @@
                                 <a href="javascript:ToggleAll(true)"><strong>Chọn hết</strong></a> / <a href="javascript:ToggleAll(false)">
                                     <strong>Bỏ chọn hết</strong></a>
                             </FooterTemplate>
-                        </asp:TemplateField>                        
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Mã kế toán">
+                            <ItemTemplate>
+                                 <%# Eval("KeToanMaSoVatTu") !=null ?  Eval("KeToanMaSoVatTu").ToString() : "" %>    
+                            </ItemTemplate>
+                            <ItemStyle Font-Bold="false" />
+                            <HeaderStyle Width="12%" />
+                        </asp:TemplateField>  
+                        <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
+                            <ItemTemplate>
+                                <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ) != null ? 
+                                new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
+                            </ItemTemplate>
+                        </asp:TemplateField>                      
                         <asp:TemplateField HeaderText="Ký hiệu&nbsp;">
                             <ItemTemplate>
                                  <%# Eval("KYHIEUVT") !=null ?  Eval("KYHIEUVT").ToString() : "" %>    
                             </ItemTemplate>
                             <ItemStyle Font-Bold="false" />
-                            <HeaderStyle Width="12%" />
+                            <HeaderStyle Width="8%" />
                         </asp:TemplateField>
-                        <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="25%" />                            
+                        <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="25%" />  
                         <asp:TemplateField HeaderText="Giá vật tư&nbsp;">
                             <ItemTemplate>
                                 <%# String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"), "{0:#,##}", Eval("GIAVT"))%>

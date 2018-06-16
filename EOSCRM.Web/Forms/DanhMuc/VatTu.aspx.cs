@@ -466,11 +466,11 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
         public bool ValidateData()
         {
-            if (string.Empty.Equals(txtMAVT.Text))
-            {
-                ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Mã vật tư"), txtMAVT.ClientID);
-                return false;
-            }
+            //if (string.Empty.Equals(txtMAVT.Text))
+            //{
+            //    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Mã vật tư"), txtMAVT.ClientID);
+            //    return false;
+            //}
 
             if (string.Empty.Equals(txtMAHIEU.Text))
             {
@@ -752,8 +752,8 @@ namespace EOSCRM.Web.Forms.DanhMuc
             // insert new
             if (UpdateMode == Mode.Create)
             {
-                ShowError("Không được thêm vật tư mới!");
-                return;
+                //ShowError("Không được thêm vật tư mới!");
+                //return;
 
                 if (!HasPermission(Functions.DM_VatTu, Permission.Insert))
                 {
@@ -762,13 +762,13 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     return;
                 }
 
-                var tontai = _objDao.Get(txtMAVT.Text.Trim());
-                if (tontai != null)
-                {
-                    CloseWaitingDialog();
-                    ShowError("Mã vật tư đã tồn tại", txtMAVT.ClientID);
-                    return;
-                }
+                //var tontai = _objDao.Get(txtMAVT.Text.Trim());
+                //if (tontai != null)
+                //{
+                //    CloseWaitingDialog();
+                //    ShowError("Mã vật tư đã tồn tại", txtMAVT.ClientID);
+                //    return;
+                //}
 
                 if (ddlLOAIVATTU.SelectedValue == "%")
                 {
@@ -785,6 +785,11 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     mavtcty = info.MAVT;
                     mavt1 = info.MAVT;
 
+                    info.KeToanMaSoVatTu = txtMaVatTuKeToan.Text.Trim();
+                    info.KhoDanhMucId = ddlKhoVatTuKeToan.SelectedValue;
+                    info.MANVN = b;
+                    info.NgayNhap = DateTime.Now;
+
                     msg = _objDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
                 else
@@ -795,13 +800,18 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     mavt1 = info.MAVT;
                     mavtcty = info.MAVT;
 
+                    info.KeToanMaSoVatTu = txtMaVatTuKeToan.Text.Trim();
+                    info.KhoDanhMucId = ddlKhoVatTuKeToan.SelectedValue;
+                    info.MANVN = b;
+                    info.NgayNhap = DateTime.Now;
+
                     msg = _objDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
 
                 if (_nvDao.Get(b).MAKV == "X")
                 {
                     //info.MAVT = ddlLOAIVATTU.SelectedValue + _objDao.NewId(ddlKHUVUC.SelectedValue);
-                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuId(ddlKHUVUC.SelectedValue);
+                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuKHTTId(ddlKHUVUC.SelectedValue);
 
                     info.MAVTCTY = mavtcty;
                     mavt2 = info.MAVT;
@@ -809,17 +819,27 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     info.MAHIEU = mavt1;
                     info.LOAIVT = "KHTT";
 
+                    info.KeToanMaSoVatTu = txtMaVatTuKeToan.Text.Trim();
+                    info.KhoDanhMucId = ddlKhoVatTuKeToan.SelectedValue;
+                    info.MANVN = b;
+                    info.NgayNhap = DateTime.Now;
+
                     _objDao.InsertKHTT(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
                 else
                 {
                     //info.MAVT = ddlLOAIVATTU.SelectedValue + txtMAVT.Text.Trim();
-                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuId(ddlKHUVUC.SelectedValue);
+                    info.MAVT = ddlLOAIVATTU.SelectedValue + ddlKHUVUC.SelectedValue + _objDao.MaxVatTuKHTTId(ddlKHUVUC.SelectedValue);
 
                     info.MAVTCTY = mavtcty;
                     mavt2 = info.MAVT;                    
                     info.MAHIEU = mavt1;
                     info.LOAIVT = "KHTT";
+
+                    info.KeToanMaSoVatTu = txtMaVatTuKeToan.Text.Trim();
+                    info.KhoDanhMucId = ddlKhoVatTuKeToan.SelectedValue;
+                    info.MANVN = b;
+                    info.NgayNhap = DateTime.Now;
 
                     _objDao.InsertKHTT(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
