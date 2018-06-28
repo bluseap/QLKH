@@ -67,6 +67,24 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao {
         protected global::System.Web.UI.WebControls.DropDownList ddlDuongPhoPo;
         
         /// <summary>
+        /// ddlDuongPhoDienSTT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDuongPhoDienSTT;
+        
+        /// <summary>
+        /// btEXCELPo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btEXCELPo;
+        
+        /// <summary>
         /// btnBaoCao control.
         /// </summary>
         /// <remarks>

@@ -24,7 +24,9 @@ using System.Text;
 namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
 {
     public partial class DSKDO : Authentication
-    {        
+    {
+        private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
+        private readonly DuongPhoPoDao _dppoDao = new DuongPhoPoDao();
         private readonly DotInHDDao _diDao = new DotInHDDao();
         private readonly DMDotInHDDao _dmdiDao = new DMDotInHDDao();
         private readonly DuongPhoDao dpDao = new DuongPhoDao();
@@ -94,7 +96,18 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
             foreach (var d in duongpho)
             {
                 ddlDuongPhoPo.Items.Add(new ListItem(d.MADP + ": " + d.TENDP, d.MADP));
-            }            
+            }
+
+            var khuvucpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV);
+            var duongphopo = _dppoDao.GetListKV(khuvucpo.MAKVPO);
+
+            ddlDuongPhoDienSTT.Items.Clear();
+            ddlDuongPhoDienSTT.Items.Add(new ListItem("Tất cả", "%"));
+            foreach (var d in duongphopo)
+            {
+                ddlDuongPhoDienSTT.Items.Add(new ListItem(d.MADPPO + ": " + d.TENDP, d.MADPPO));
+            }   
+            
         }
 
         public void timkv()
@@ -270,6 +283,57 @@ namespace EOSCRM.Web.Forms.GhiChiSo.BaoCao
                 Response.Output.Write(sw.ToString());
                 Response.Flush();
                 Response.End();               
+            }
+            catch { }
+        }
+
+        protected void btEXCELPo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt;
+
+                var khuvucpo = _kvpoDao.GetPo(ddlKHUVUC.SelectedValue);
+
+                dt = new ReportClass().KiemDo3TDotIn(int.Parse(ddlTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), khuvucpo.MAKVPO,
+                        ddlDOTGCS.SelectedValue, ddlDuongPhoDienSTT.SelectedValue, "KD3TSTTTS").Tables[0];  
+                              
+                if (dt == null) { CloseWaitingDialog(); return; }
+
+                //Create a dummy GridView
+                GridView GridView1 = new GridView();
+                GridView1.AllowPaging = false;
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                CloseWaitingDialog();
+                UpINFO.Update();
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=KD3T" + ddlTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                //Response.ContentType = "application/vnd.ms-word ";
+
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    //Apply text style to each Row
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+                }
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
             }
             catch { }
         }

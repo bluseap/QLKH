@@ -10,10 +10,12 @@
     <script type="text/javascript">        
 
         
-        function CheckFormExcel() {
-            //openWaitingDialog();
-            //unblockWaitingDialog();
+        function CheckFormExcel() {            
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btEXCEL) %>', '');
+        }
+
+        function CheckFormExcelPo() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btEXCELPo) %>', '');
         }
 
         function CheckFormReport() {
@@ -24,7 +26,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
-   <asp:UpdatePanel ID="UpINFO" UpdateMode="Conditional" runat="server">
+    <asp:UpdatePanel ID="UpINFO" UpdateMode="Conditional" runat="server">
         <ContentTemplate>    
             <div class="crmcontainer">
                 <table class="crmtable">
@@ -77,7 +79,22 @@
                                     </div>
                                 </td>                                    
                             </td>                                  
-                        </tr>                 
+                        </tr>   
+                        <tr>
+                            <td class="crmcell right">Đường phố điện </td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDuongPhoDienSTT" runat="server" TabIndex="3">
+                                        </asp:DropDownList>
+                                </div>
+                                <td class="crmcell right"> </td>
+                                <td class="crmcell">                                
+                                    <div class="left">
+                                        <asp:Button ID="btEXCELPo" Text="Xuất điện Số thứ tự (TS)" OnClientClick="return CheckFormExcelPo();" runat="server" CssClass="myButton" OnClick="btEXCELPo_Click" Visible="true" />
+                                    </div>
+                                </td>                                    
+                            </td>                                  
+                        </tr>                
                         <tr>
                             <td class="crmcell right"></td>
                             <td class="crmcell">    
@@ -89,6 +106,7 @@
                                     <div class="left">
                                         <asp:Button ID="btEXCEL" Text="Xuất Excel" OnClientClick="return CheckFormExcel();" runat="server" CssClass="myButton" OnClick="btEXCEL_Click" />
                                     </div>
+                                    
                                 </td>
                             </td>
                         </tr>
@@ -98,6 +116,8 @@
         </ContentTemplate>
        <Triggers>
             <asp:PostBackTrigger ControlID="btEXCEL" />
+           <asp:PostBackTrigger ControlID="btEXCELPo" />
+<asp:PostBackTrigger ControlID="btnBaoCao"></asp:PostBackTrigger>
         </Triggers>
        <Triggers>
             <asp:PostBackTrigger ControlID="btnBaoCao" />

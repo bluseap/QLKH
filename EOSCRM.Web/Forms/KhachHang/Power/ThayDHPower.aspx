@@ -365,13 +365,13 @@
                             <td class="crmcell right">Danh số</td>
                             <td class="crmcell">    
                                 <div class="left">
-                                    <asp:TextBox ID="txtSODB" runat="server" OnTextChanged="txtSODB_TextChanged" 
-                                        onchange="CheckSearchKH();" MaxLength="8" Width="90px" TabIndex="7" 
-                                        ReadOnly="True" />
+                                    <asp:TextBox ID="txtSODB" runat="server" OnTextChanged="txtSODB_TextChanged" AutoPostBack="true"
+                                       MaxLength="8" Width="90px" TabIndex="7" 
+                                        ReadOnly="false" />
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnBrowseKH" runat="server" CssClass="pickup" OnClick="btnBrowseKH_Click"
-                                        CausesValidation="false" UseSubmitBehavior="false" 
+                                        CausesValidation="false" UseSubmitBehavior="false" AutoPostBack="true"
                                         OnClientClick="openDialogAndBlock('Chọn từ danh sách khách hàng', 610, 'divKhachHang')" 
                                         TabIndex="1" />
                                 </div>

@@ -220,7 +220,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
         protected void btnBrowseKH_Click(object sender, EventArgs e)
         {
-            UnblockDialog("divKhachHang");
+            UnblockDialog("divKhachHang");               
         }
 
         private void BindStatus(KHACHHANGPO kh)
@@ -734,36 +734,21 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
         protected void txtSODB_TextChanged(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtSODB.Text.Trim()))
+            {              
+                txtIDKH.Text = txtSODB.Text.Trim();
+                upnlKhachHang.Update();
 
-            txtIDKH.Text = txtSODB.Text.Trim();
-            BindKhachHang();
-            //upnlKhachHang.Update();
-            CloseWaitingDialog();
-
-
-            /*
-            var khachhang = _khDao.GetKhachHangFromMadb(txtSODB.Text.Trim());            
-            
-            if (khachhang != null)
-            {
-                lblTENKH.Text = khachhang.TENKH;
-                lblIDKH.Text = khachhang.IDKH;
-                lblTENDP.Text = khachhang.DUONGPHO != null ? khachhang.DUONGPHO.TENDP : "";
-                lblTENKV.Text = khachhang.KHUVUC != null ? khachhang.KHUVUC.TENKV : "";
-                lblLOAITK.Text = khachhang.MALDH ;
-                lblSONO.Text = khachhang.MADH ;
-                //lblCSDAU.Text = tieuthu.CHISODAU.ToString();
-                //lblCSCUOI.Text = tieuthu.CHISOCUOI.ToString();
-                
-
+                BindKhachHang();                
                 CloseWaitingDialog();
-                txtSODB.Focus();
             }
             else
             {
+                txtIDKH.Text = txtSODB.Text.Trim();
+                //BindKhachHang();               
                 CloseWaitingDialog();
-                ShowError("Khách hàng không tồn tại", txtSODB.ClientID);
-            }*/
+            }
+            
         }
 
         private void BindGrid()
@@ -999,11 +984,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         }
 
         private void BindDongHoSoNo()
-        {
+        {            
             var list = _dhpoDao.GetListDASD(txtKeywordDHSONO.Text.Trim(), ddlKHUVUC.SelectedValue);
             gvDongHoSoNo.DataSource = list;
             gvDongHoSoNo.PagerInforText = list.Count.ToString();
-            gvDongHoSoNo.DataBind();
+            gvDongHoSoNo.DataBind();            
         }
 
         protected void gvDongHoSoNo_RowCommand(object sender, GridViewCommandEventArgs e)

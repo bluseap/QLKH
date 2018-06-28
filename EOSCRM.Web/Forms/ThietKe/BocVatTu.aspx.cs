@@ -136,6 +136,8 @@ namespace EOSCRM.Web.Forms.ThietKe
             string manv = loginInfo.Username;
             string makvnv = _nvDao.Get(manv).MAKV;
 
+            var nhanvien = _nvDao.Get(manv);
+
             if (ThietKe == null)
                 return;
 
@@ -143,8 +145,17 @@ namespace EOSCRM.Web.Forms.ThietKe
             var madon2 = _ddk.Get(ThietKe.MADDK.ToString());            
             if ( madon2 != null)
             {
-                //var list = mbvtDao.GetList();
-                var list = mbvtDao.GetListCuaAi("KT");                
+                List<MAUBOCVATTU> list = new List<MAUBOCVATTU>();
+
+                if (nhanvien.MAKV == "P")
+                {
+                    list = mbvtDao.GetListCuaAiKhuVuc("KT", nhanvien.MAKV);
+                }
+                else
+                {
+                    //var list = mbvtDao.GetList(); 
+                    list = mbvtDao.GetListCuaAi("KT");
+                }
 
                 ddlMBVT.Items.Clear();
                 ddlMBVT.Items.Add(new ListItem("", ""));
@@ -217,8 +228,17 @@ namespace EOSCRM.Web.Forms.ThietKe
 
             if (donsc != null)
             {
-                //var list = mbvtDao.GetList();
-                var list = mbvtDao.GetListCuaAi("KT");                     
+                List<MAUBOCVATTU> list = new List<MAUBOCVATTU>();
+
+                if (nhanvien.MAKV == "P")
+                {
+                    list = mbvtDao.GetListCuaAiKhuVuc("KT", nhanvien.MAKV);
+                }
+                else
+                {
+                    //var list = mbvtDao.GetList(); 
+                    list = mbvtDao.GetListCuaAi("KT");
+                }           
 
                 ddlMBVT.Items.Clear();
                 ddlMBVT.Items.Add(new ListItem("", ""));
@@ -273,8 +293,7 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                 LoadMauTK();                
             }
-
-            var nhanvien = _nvDao.Get(manv);
+            
             if (nhanvien.MAKV == "X")
             {
                 var khoxn = _kdmDao.GetListXiNghiepLoaiVatTu("X", "NN");
