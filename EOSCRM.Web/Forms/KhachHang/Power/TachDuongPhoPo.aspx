@@ -23,6 +23,11 @@
             
         });
 
+        function CheckFormbtDSKhachHang() {
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btDSKhachHang) %>', '');
+            return false;
+        }
+
         function CheckFormTaiDuongPho() {
             //openWaitingDialog();
             //unblockWaitingDialog();
@@ -170,6 +175,10 @@
                                         <asp:Button ID="btTAIDUONGPHO" runat="server" CssClass="myButton" Text="Tải về đường phố" OnClick="btTAIDUONGPHO_Click"
                                             UseSubmitBehavior="false" OnClientClick="return CheckFormTaiDuongPho();" />
                                     </div>
+                                    <div class="left">
+                                        <asp:Button ID="btDSKhachHang" runat="server" CssClass="myButton" Text="KH CT"
+                                            UseSubmitBehavior="false" OnClientClick="return CheckFormbtDSKhachHang();" OnClick="btDSKhachHang_Click" />
+                                    </div>
                                 </td>
                             </td>
                         </tr>
@@ -231,6 +240,7 @@
         <Triggers>
             <asp:PostBackTrigger ControlID="btTAIDUONGPHO" /> 
             <asp:PostBackTrigger ControlID="btUpDuongPho" /> 
+            <asp:PostBackTrigger ControlID="btDSKhachHang" /> 
         </Triggers> 
     </asp:UpdatePanel>
     <br />       

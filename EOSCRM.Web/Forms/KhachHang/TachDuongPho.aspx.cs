@@ -939,6 +939,65 @@ namespace EOSCRM.Web.Forms.KhachHang
                 }
             }
             return true;
+        }        
+
+        protected void btDSKhachHang_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                int thangF = int.Parse(ddlTHANG.SelectedValue);
+                string namF = txtNAM.Text.Trim();
+                var kynayF = new DateTime(int.Parse(namF), thangF, 1);
+
+                var listDP = _rpClass.UpLoadFileDuongPho("", "", ddlKHUVUC.SelectedValue, ddlDUONGPHO.SelectedValue, "", "",
+                        kynayF, DateTime.Now, "DSKHDPTV");
+
+                using (DataSet ds2 = listDP)
+                {
+                    if (ds2 != null && ds2.Tables.Count > 0)
+                    {
+                        using (ExcelPackage xp = new ExcelPackage())
+                        {
+                            foreach (DataTable dt2 in ds2.Tables)
+                            {
+                                ExcelWorksheet ws = xp.Workbook.Worksheets.Add(dt2.TableName);
+
+                                int rowstart = 0;
+                                int colstart = 1;
+                                int rowend = rowstart;
+                                int colend = colstart + dt2.Columns.Count;                              
+
+                                rowstart += 1;
+
+                                rowend = rowstart + dt2.Rows.Count;
+                                ws.Cells[rowstart, colstart].LoadFromDataTable(dt2, true);
+                                int i = 1;
+                                foreach (DataColumn dc in dt2.Columns)
+                                {
+                                    i++;
+                                    if (dc.DataType == typeof(decimal))
+                                        //ws.Column(i).Style.Numberformat.Format = "#0.00";
+                                        ws.Column(i).Style.Numberformat.Format = "#0";
+                                }
+                                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+                                ws.Cells[rowstart, colstart, rowend, colend].Style.Border.Top.Style =
+                                   ws.Cells[rowstart, colstart, rowend, colend].Style.Border.Bottom.Style =
+                                   ws.Cells[rowstart, colstart, rowend, colend].Style.Border.Left.Style =
+                                   ws.Cells[rowstart, colstart, rowend, colend].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+                            }
+                            Response.AddHeader("content-disposition", "attachment;filename=" + ds2.DataSetName + ".xlsx");
+                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                            Response.BinaryWrite(xp.GetAsByteArray());
+                            Response.End();
+                        }
+                    }
+                }
+
+            }
+            catch { }
         }
 
         private void ClearFrom()
@@ -948,8 +1007,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             }
             catch { }
-        }      
-              
+        }
 
     }
 
