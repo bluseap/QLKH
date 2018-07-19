@@ -1493,6 +1493,39 @@ namespace EOSCRM.Dao
 
             return dsdon.OrderByDescending(d => d.MADDK).OrderByDescending(d => d.NGAYDK).ToList();
         }
+
+        public List<DONDANGKY> GetListDaDuyetTK_CT(String keyword, DateTime? fromDate, DateTime? toDate, String stateCode, String areaCode)
+        {
+            var dsdon = from don in _db.DONDANGKies
+                        where (don.TTTK.Equals(TTTK.TK_A.ToString()) && don.TTCT.Equals("TTCT_A")
+                            && (don.TTHD.Equals(TTHD.HD_N.ToString()) || don.TTHD == null))
+                        select don;
+
+            if (keyword != null)
+                dsdon = dsdon.Where(d => d.MADDK.Contains(keyword) ||
+                                      d.MADDKTONG.Contains(keyword) ||
+                                      d.TENKH.Contains(keyword) ||
+                                      d.DIACHILD.Contains(keyword) ||
+                                      d.DIENTHOAI.Contains(keyword));
+            if (fromDate.HasValue)
+                dsdon = dsdon.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value >= fromDate.Value);
+
+            if (toDate.HasValue)
+                dsdon = dsdon.Where(d => d.NGAYDK.HasValue
+                                           && d.NGAYDK.Value <= toDate.Value);
+
+            if (stateCode != null)
+            {
+                if (stateCode != "NULL")
+                    dsdon = dsdon.Where(d => d.TTHD.Equals(stateCode));
+            }
+
+            if (!string.IsNullOrEmpty(areaCode) && areaCode != "%")
+                dsdon = dsdon.Where(d => d.MAKV == areaCode);
+
+            return dsdon.OrderByDescending(d => d.MADDK).OrderByDescending(d => d.NGAYDK).ToList();
+        }
         
         public List<DONDANGKY> GetListForXuLyDonChoThiCong(String keyword, DateTime? fromDate, DateTime? toDate, String areaCode)
         {

@@ -374,6 +374,10 @@ namespace EOSCRM.Web.Forms.GhiChiSo
         {
             try
             {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
                 int namht = DateTime.Now.Year;
                 int thanght = DateTime.Now.Month;
 
@@ -382,29 +386,60 @@ namespace EOSCRM.Web.Forms.GhiChiSo
                 switch (e.CommandName)
                 {
                     case "SelectSODB":
-                        //var khachhang = _khDao.GetKhachHangFromMadb(id);
-                        var khachhang = _khDao.Get(id);
-                        if (khachhang != null)
+                        if (_nvDao.Get(b).MAKV == "T")  // tan chau
                         {                            
-                            var kyhientai = new DateTime(namht, thanght, 1);
-                            bool dung = gcsDao.IsLockTinhCuocKy1(kyhientai, ddlKHUVUC1.SelectedValue, khachhang.MADP);    
-
-                            if (dung == false)
+                            var khachhang = _khDao.Get(id);
+                            if (khachhang != null)
                             {
+                                var kyhientai = new DateTime(namht, thanght, 1);
+                                bool dung = gcsDao.IsLockTinhCuocKy1(kyhientai, ddlKHUVUC1.SelectedValue, khachhang.MADP);
+
                                 BindStatus(khachhang);
                                 HideDialog("divKhachHang");
                                 CloseWaitingDialog();
                                 txtMASOHD.Focus();
-                            }
-                            else
-                            {
-                                CloseWaitingDialog();
-                                HideDialog("divKhachHang");
-                                ShowInfor("Đã khoá sổ. Không được điều chỉnh.");
-                            }                            
-                        }
-                        break;
 
+                                //if (dung == false)
+                                //{
+                                //    BindStatus(khachhang);
+                                //    HideDialog("divKhachHang");
+                                //    CloseWaitingDialog();
+                                //    txtMASOHD.Focus();
+                                //}
+                                //else
+                                //{
+                                //    CloseWaitingDialog();
+                                //    HideDialog("divKhachHang");
+                                //    ShowInfor("Đã khoá sổ. Không được điều chỉnh.");
+                                //}
+                            }
+                        }
+                        else
+                        {
+                            //var khachhang = _khDao.GetKhachHangFromMadb(id);
+                            var khachhang = _khDao.Get(id);
+                            if (khachhang != null)
+                            {
+                                var kyhientai = new DateTime(namht, thanght, 1);
+                                bool dung = gcsDao.IsLockTinhCuocKy1(kyhientai, ddlKHUVUC1.SelectedValue, khachhang.MADP);
+
+                                if (dung == false)
+                                {
+                                    BindStatus(khachhang);
+                                    HideDialog("divKhachHang");
+                                    CloseWaitingDialog();
+                                    txtMASOHD.Focus();
+                                }
+                                else
+                                {
+                                    CloseWaitingDialog();
+                                    HideDialog("divKhachHang");
+                                    ShowInfor("Đã khoá sổ. Không được điều chỉnh.");
+                                }
+                            }
+                        }
+
+                        break;
                 }
             }
             catch (Exception ex)

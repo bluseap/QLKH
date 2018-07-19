@@ -1027,9 +1027,17 @@ namespace EOSCRM.Web.Forms.ThietKe
                 gvDDK.PagerInforText = list.Count.ToString();
                 gvDDK.DataBind();
             }
-            else
-            {   
+            else if (makv == "U") // chau thanh
+            {
                 //var list = ddkDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+                var list = ddkDao.GetListDaDuyetTK_CT(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+
+                gvDDK.DataSource = list;
+                gvDDK.PagerInforText = list.Count.ToString();
+                gvDDK.DataBind();
+            }
+            else
+            {
                 var list = ddkDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
 
                 gvDDK.DataSource = list;
