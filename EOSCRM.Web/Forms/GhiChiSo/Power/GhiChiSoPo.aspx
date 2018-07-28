@@ -787,6 +787,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                     <asp:ListItem Value="P" Text="P_Đứt chì" />
 
                                     <asp:ListItem Value="E" Text="E_Đề nghị xóa bộ" />
+                                    <asp:ListItem Value="V" Text="V_Nhà trọ tháng" />
                                 </asp:DropDownList>
                             </ItemTemplate>
                             <HeaderStyle Width="115px" />
