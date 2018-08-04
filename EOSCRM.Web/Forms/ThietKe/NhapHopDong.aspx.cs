@@ -187,7 +187,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                     LoadStaticReferences();
                     BindDataForGrid();
 
-                    ChayChietTinh();
+                    //ChayChietTinh();
                 }
             }
             catch (Exception ex)
@@ -1027,15 +1027,15 @@ namespace EOSCRM.Web.Forms.ThietKe
                 gvDDK.PagerInforText = list.Count.ToString();
                 gvDDK.DataBind();
             }
-            else if (makv == "U") // chau thanh
-            {
-                //var list = ddkDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
-                var list = ddkDao.GetListDaDuyetTK_CT(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+            //else if (makv == "U") // chau thanh
+            //{
+            //    //var list = ddkDao.GetListForDonChoHopdong(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
+            //    var list = ddkDao.GetListDaDuyetTK_CT(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
 
-                gvDDK.DataSource = list;
-                gvDDK.PagerInforText = list.Count.ToString();
-                gvDDK.DataBind();
-            }
+            //    gvDDK.DataSource = list;
+            //    gvDDK.PagerInforText = list.Count.ToString();
+            //    gvDDK.DataBind();
+            //}
             else
             {
                 var list = ddkDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);
@@ -1150,6 +1150,12 @@ namespace EOSCRM.Web.Forms.ThietKe
                     ddlPHUONG.DataBind();
                 }
             }
+        }
+
+        protected void btnChayChietTinhBravo_Click(object sender, EventArgs e)
+        {
+            CloseWaitingDialog();
+            ChayChietTinh();
         }
 
 

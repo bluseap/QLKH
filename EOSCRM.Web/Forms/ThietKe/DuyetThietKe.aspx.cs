@@ -250,6 +250,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 try { ngayduyet = DateTimeUtil.GetVietNamDate(txtApproveDate.Text); }
                 catch { }
 
+                //ChayChietTinh();
+
                 // Get list of ids that to be update
                 var strIds = Request["listIds"];
                 if ((strIds != null) && (!string.Empty.Equals(strIds)))
@@ -306,6 +308,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                         ShowInfor(ResourceLabel.Get(msg));
                      
                         BindDataForGrid();
+
+                        ChayChietTinh();
                     }
                     else
                     {
@@ -698,7 +702,19 @@ namespace EOSCRM.Web.Forms.ThietKe
             }
         }
 
+        private void ChayChietTinh()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makv = _nvDao.Get(b).MAKV;
 
+                _rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+            }
+            catch { }
+        }
 
     }
 }

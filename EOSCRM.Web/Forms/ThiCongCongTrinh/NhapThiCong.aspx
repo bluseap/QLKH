@@ -51,72 +51,56 @@
         function CheckFormFilterNV() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV) %>', '');
-
             return false;
         }
 
         function CheckFormFilterNV2() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV2) %>', '');
-
             return false;
         }
 
         function CheckFormFilterDDK() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDDK) %>', '');
-
             return false;
         }
 
         function CheckFormCancel() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnCancel) %>', '');
-
             return false;
         }
 
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
 
         function CheckFormFitler() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
-
             return false;
         }
 
         function CheckFormMANV() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnMANV) %>', '');
-
             return false;
         }
 
         function CheckFormMANV2() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnMANV2) %>', '');
-
             return false;
         }
 
@@ -135,6 +119,14 @@
                 return CheckFormMANV2();
             }
         }
+
+        function CheckFormChayChietTinhBravo() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnChayChietTinhBravo) %>', '');
+            return false;
+        }
+
     </script>
 
 </asp:Content>
@@ -363,13 +355,16 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtMADDK" runat="server" Width="90px" MaxLength="10" TabIndex="1" />
                                 </div>
-                                <div class="left">  
+                                <div class="left width-250">  
                                     <asp:Button ID="btnBrowseDDK" runat="server" CssClass="addnew" 
 		                                OnClick="btnBrowseDDK_Click" CausesValidation="false" UseSubmitBehavior="false"
 		                                OnClientClick="openDialogAndBlock('Chọn đơn đăng ký', 700, 'divDonDangKy')" 
                                         TabIndex="2"  />
                                 </div>
-                                <div class="left filtered"></div>
+                               <div class="left">  
+                                    <asp:Button ID="btnChayChietTinhBravo" runat="server" CssClass="myButton" OnClientClick="return CheckFormChayChietTinhBravo();" 
+                                        TabIndex="31" UseSubmitBehavior="false" Text="Chạy CT Bravo" OnClick="btnChayChietTinhBravo_Click" />
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -377,8 +372,7 @@
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKH" runat="server" Width="400px" MaxLength="200" TabIndex="3" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -397,8 +391,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtKHUVUC" runat="server" Width="150px" MaxLength="200" TabIndex="7" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                               
                             </td>
                         </tr>
                         <%--<tr>
@@ -430,8 +423,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtTENNV" runat="server" Width="250px" MaxLength="200" TabIndex="4" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -454,8 +446,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtTENNV2" runat="server" Width="250px" MaxLength="200" TabIndex="4" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                             </td>
                         </tr>                        
                         <tr>

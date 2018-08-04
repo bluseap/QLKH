@@ -188,7 +188,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                     LoadStaticReferences();
                     BindDataForGrid();
 
-                    ChayChietTinhPo();
+                    //ChayChietTinhPo();
                 }
             }
             catch (Exception ex)
@@ -1038,6 +1038,12 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
+        }
+
+        protected void btnChayChietTinhBravo_Click(object sender, EventArgs e)
+        {
+            CloseWaitingDialog();
+            ChayChietTinhPo();
         }
 
 

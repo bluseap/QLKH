@@ -147,7 +147,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     LoadStaticReferences();
                     BindDataForGrid();
 
-                    ChayChietTinh();
+                    //ChayChietTinh();
                 }
             }
             catch (Exception ex)
@@ -904,6 +904,12 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     }
                 }
             }
+        }
+
+        protected void btnChayChietTinhBravo_Click(object sender, EventArgs e)
+        {
+            CloseWaitingDialog();
+            ChayChietTinh();
         }
 
 

@@ -13,6 +13,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 {
     public partial class DuyetTKPower : Authentication
     {
+        private readonly ReportClass _rpClass = new ReportClass();
         private readonly TrangThaiThietKeDao _tttkDao = new TrangThaiThietKeDao();
         private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
         private readonly ThietKePoDao _tkpoDao = new ThietKePoDao();
@@ -302,6 +303,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                         ShowInfor(ResourceLabel.Get(msg));
                        
                         BindDataForGrid();
+
+                        ChayChietTinhPo();
                     }
                     else
                     {
@@ -623,6 +626,20 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             {
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
+        }
+
+        private void ChayChietTinhPo()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;
+
+                _rpClass.DonToKeToan("", makvpo, "", "", "", "", "UPCTKTTOCTKHPO");
+            }
+            catch { }
         }
 
     }

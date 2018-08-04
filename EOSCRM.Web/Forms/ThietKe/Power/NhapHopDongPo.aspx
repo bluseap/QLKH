@@ -70,6 +70,12 @@
             return false;
         }
 
+        function CheckFormChayChietTinhBravo() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnChayChietTinhBravo) %>', '');
+            return false;
+        }
        
 	</script>
 </asp:Content>
@@ -510,10 +516,14 @@
                                     <asp:Button ID="btnSave" runat="server" CssClass="save" OnClientClick="return CheckFormSave();"
                                         OnClick="btnSave_Click" TabIndex="30" UseSubmitBehavior="false" />
                                 </div>
-                                <div class="left">
+                                <div class="left width-250">
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" OnClientClick="return CheckFormCancel();" 
                                         OnClick="btnCancel_Click" TabIndex="31" UseSubmitBehavior="false" />
                                 </div>
+                                <div class="left">
+                                    <asp:Button ID="btnChayChietTinhBravo" runat="server" CssClass="myButton" OnClientClick="return CheckFormChayChietTinhBravo();" 
+                                        TabIndex="31" UseSubmitBehavior="false" Text="Chạy CT Bravo" OnClick="btnChayChietTinhBravo_Click" />
+                                </div> 
                             </td>
                         </tr>
                     </tbody>
