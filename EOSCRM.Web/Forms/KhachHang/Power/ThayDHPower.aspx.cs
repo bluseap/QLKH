@@ -546,7 +546,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 kh.m4Poor = Convert.ToInt32(txtTRUYTHU.Text.Trim());
                 kh.KLKHOAN = Convert.ToInt32(txtCSMOI.Text.Trim());
 
-                kh.DIACHI_INHOADON = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
+                string tenlydothay = ddlLYDOTHAYDH.SelectedItem.ToString() + ": ";
+                string malydothay = ddlLYDOTHAYDH.SelectedValue == "V" ? "5" : ddlLYDOTHAYDH.SelectedValue.ToString();
+
+                kh.DIACHI_INHOADON = tenlydothay + malydothay;
+                //kh.DIACHI_INHOADON = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
 
                 var msg = _khpoDao.UpdateThayDongHoKyThay(kh, DateTimeUtil.GetVietNamDate(txtNgayHoanThanh.Text.Trim()), txtSoTem.Text.Trim(), txtGhiChu.Text.Trim(),
                                                 CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV,
@@ -696,7 +700,11 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 dh.KICHCO = lbCongSuat.Text.Trim();//ddlKICHCODH.SelectedValue;
                 dh.DHCAPBAN = ddlDONGHOCAPBAN.SelectedValue;
 
-                dh.LYDOTHAY = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
+                string tenlydothay = ddlLYDOTHAYDH.SelectedItem.ToString() + ": ";
+                string malydothay = ddlLYDOTHAYDH.SelectedValue == "V" ? "5" : ddlLYDOTHAYDH.SelectedValue.ToString();
+
+                dh.LYDOTHAY = tenlydothay + malydothay;
+                //dh.LYDOTHAY = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
 
                 var msg = _tdhpoDao.UpThayDongHo(dh, DateTimeUtil.GetVietNamDate(txtNgayHoanThanh.Text.Trim()), txtSoTem.Text.Trim(), txtGhiChu.Text.Trim(),
                                                 CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
