@@ -693,6 +693,22 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
             //BindDDK();
             upnlDonDangKy.Update();
             UnblockDialog("divDonDangKy");
+
+            ChayChietTinh1LanPo();
+        }
+
+        private void ChayChietTinh1LanPo()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makvpo = _kvpodao.GetPo(nvdao.Get(b).MAKV).MAKVPO;
+
+                _rpClass.DonToKeToan("", makvpo, "", "", "", "", "UPCTKTTOCTKH1LPO");
+            }
+            catch { }
         }
 
         private void BindDDK()

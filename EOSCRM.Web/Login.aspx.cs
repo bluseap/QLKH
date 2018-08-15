@@ -117,9 +117,7 @@ namespace EOSCRM.Web
                 //MANVN = "",
                 NGAYN = DateTime.Now                
             };
-            _vttbDao.Insert(vitri);
-           
-
+            _vttbDao.Insert(vitri);     
         }
 
     }

@@ -217,19 +217,38 @@ namespace EOSCRM.Web.Forms.ThietKe
             CommonFunc.SetPropertiesForGrid(gvList);
         }
 
+        private void ChayChietTinh1Lan()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+            var makv = _nvDao.Get(b).MAKV;
+
+            //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+            _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH1LAN");
+        }
+
         private void ChayChietTinh()
         {
-            try
-            {
-                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
-                if (loginInfo == null) return;
-                string b = loginInfo.Username;
-                var makv = _nvDao.Get(b).MAKV;
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+            var makv = _nvDao.Get(b).MAKV;
 
-                //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
-                _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH");
-            }
-            catch { }
+            _rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+           // _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH1LAN");
+
+            //try
+            //{
+            //    var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            //    if (loginInfo == null) return;
+            //    string b = loginInfo.Username;
+            //    var makv = _nvDao.Get(b).MAKV;
+
+            //    //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+            //    _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH");
+            //}
+            //catch { }
         }
 
         private void LoadStaticReferences()
@@ -1010,7 +1029,7 @@ namespace EOSCRM.Web.Forms.ThietKe
             upnlDonDangKy.Update();
             UnblockDialog("divDonDangKy");
 
-            //ChayChietTinh();
+            ChayChietTinh1Lan();
         }
 
         private void BindDDK()

@@ -227,6 +227,20 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             catch { }
         }
 
+        private void ChayChietTinh1LanPo()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;
+
+                _rpClass.DonToKeToan("", makvpo, "", "", "", "", "UPCTKTTOCTKH1LPO");
+            }
+            catch { }
+        }
+
         private void LoadStaticReferences()
         {
             try
@@ -898,6 +912,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             //BindDDK();
             upnlDonDangKy.Update();
             UnblockDialog("divDonDangKy");
+
+            ChayChietTinh1LanPo();
         }
 
         private void BindDDK()
