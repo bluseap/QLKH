@@ -5,6 +5,9 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
+<%@ Import Namespace="EOSCRM.Util" %>
+
+
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
 		$(document).ready(function() {
@@ -40,10 +43,26 @@
 		    return false;
 		}
 
-		function CheckFormFilterDDK() {
+        function CheckFormFilterDDK() {
+            //jQuery.fn.exists = function () { return jQuery(this).length > 0; }
+
 		    openWaitingDialog();
 		    unblockWaitingDialog();
-		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDDK) %>', '');
+
+		    //var cobien = 'UPCTKTTOCTKH';
+		    //var makv = 'O';
+
+		    ////var savingMsg = EOSCRM.Web.Common.AjaxCRM.DonChietTinhBravo("", makv, "", "", "", "", cobien);
+
+		    //$.ajax({
+		    //    type: "POST",
+		    //    url: "EOSCRM.Web.Common.AjaxCRM.cs/DonChietTinhBravo",
+		    //    data: '{"", makv, "", "", "", "",  cobien}',
+		    //    contentType: "json"
+		    //});
+
+		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDDK) %>', '');		    
+
 		    return false;
 		}
 
@@ -67,9 +86,10 @@
 		}
 
         function CheckFormChayChietTinhBravo() {
-            openWaitingDialog();
-            unblockWaitingDialog();
-            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnChayChietTinhBravo) %>', '');
+            //openWaitingDialog();
+            //unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnChayChietTinhBravo) %>', '');            
+
 		    return false;
         }       
 		

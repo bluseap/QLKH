@@ -71,6 +71,18 @@ namespace EOSCRM.Web.Common
 
         #endregion
 
+        #region ReportClass
+
+        [AjaxPro.AjaxMethod]
+        public string DonChietTinhBravo(string maddk, string makv, string maddk3, string ghichu, string ghichu2, string ghichu3, string cobien)
+        {
+            report.DonToKeToan("", makv, "", "", "", "", cobien);
+
+            return "OK";
+        }
+
+        #endregion
+
         #region Methods for MauBocVatTu
         [AjaxPro.AjaxMethod]
         public string UpdateCTMBVT(string maMBVT, string maVT, string sl, string giavt, string gianc, string cb)

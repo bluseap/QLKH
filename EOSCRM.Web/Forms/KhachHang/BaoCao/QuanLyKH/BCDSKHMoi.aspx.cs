@@ -188,6 +188,11 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
             }
             else
             {
+                //if (_nvDao.Get(b).MAKV == "P")
+                //{
+                //    lkXuatExcelTS.Visible = false;
+                //}
+
                 lbDenThang.Visible = false;
                 ddlDenThang.Visible = false;
                 txtDenNam.Visible = false;
@@ -1023,7 +1028,12 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMExDotTS", TuNgay, DenNgay);
                         dt = ds.Tables[0];
                     }
-                    else
+                    else if (_nvDao.Get(b).MAKV == "P") // phu tan
+                    {
+                        var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMExDotPT", TuNgay, DenNgay);
+                        dt = ds.Tables[0];
+                    }
+                    else 
                     {
                         var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMExDot", TuNgay, DenNgay);
                         dt = ds.Tables[0];

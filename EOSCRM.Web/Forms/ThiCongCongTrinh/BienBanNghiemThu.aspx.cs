@@ -274,8 +274,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     {
                         if (nv.MANV == "cthtq" || nv.MANV == "dnl")
                         {
-                            txtCHIM1.Text = "E2N/ĐNAG"; //"CT/ĐNAG";
-                            txtCHIM2.Text = "CT/2001"; //"N1/2007";
+                            txtCHIM1.Text = "N3/2018"; //"E2N/ĐNAG"; //"CT/ĐNAG";
+                            txtCHIM2.Text = "CT/ĐNAG"; //"CT/2001"; //"N1/2007";
                         }
                         else
                         {

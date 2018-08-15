@@ -740,7 +740,9 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
         protected void btnBrowseDDK_Click(object sender, EventArgs e)
         {
-            BindDDK();
+            //ChayChietTinh();
+
+            //BindDDK();
             upnlDonDangKy.Update();
             UnblockDialog("divDonDangKy");
         }

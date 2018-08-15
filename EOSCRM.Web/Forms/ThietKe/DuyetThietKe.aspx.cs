@@ -711,7 +711,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 string b = loginInfo.Username;
                 var makv = _nvDao.Get(b).MAKV;
 
-                _rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+                //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+                _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH");
             }
             catch { }
         }

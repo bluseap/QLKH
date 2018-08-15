@@ -723,11 +723,11 @@
                         </tr>
                         <tr>
                             <td class="crmcell right">
-                                Phường, Xã
+                                
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlPHUONG" runat="server" Width="160px" TabIndex="5">
+                                    <asp:DropDownList ID="ddlPHUONG" runat="server" Width="160px" TabIndex="5" Visible="False">
                                     </asp:DropDownList>
                                 </div>
                             </td>

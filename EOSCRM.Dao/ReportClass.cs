@@ -18,6 +18,15 @@ public class ReportClass
 		
 	}
 
+    public void DonToBravo(string maddk, string makv, string maddk3, string ghichu, string ghichu2, string ghichu3, string cobien)
+    {
+        try
+        {
+            DonToKeToan("", makv, "", "", "", "", cobien);
+        }
+        catch { }
+    }
+
     public DataSet DonToKeToan(string maddk, string maddk2, string maddk3, string ghichu, string ghichu2, string ghichu3, string cobien)
     {
         Database db = new Database();

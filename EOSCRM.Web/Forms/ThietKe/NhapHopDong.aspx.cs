@@ -7,6 +7,10 @@ using EOSCRM.Web.Common;
 using EOSCRM.Web.Shared;
 using EOSCRM.Web.UserControls;
 
+using System.Collections.Generic;
+using System.Globalization;
+using System.Web.UI;
+using System.Data;
 
 namespace EOSCRM.Web.Forms.ThietKe
 {
@@ -179,7 +183,8 @@ namespace EOSCRM.Web.Forms.ThietKe
         {
             try
             {
-                Authenticate(Functions.TK_NhapHopDong, Permission.Read);
+                AjaxPro.Utility.RegisterTypeForAjax(typeof(AjaxCRM), Page);
+                //Authenticate(Functions.TK_NhapHopDong, Permission.Read);
                 PrepareUI();
 
                 if(!Page.IsPostBack)
@@ -221,7 +226,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 string b = loginInfo.Username;
                 var makv = _nvDao.Get(b).MAKV;
 
-                _rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+                //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+                _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH");
             }
             catch { }
         }
@@ -994,13 +1000,17 @@ namespace EOSCRM.Web.Forms.ThietKe
             }            
 
             upnlInfor.Update();
+
+            //ChayChietTinh();
         }
 
         protected void btnBrowseDDK_Click(object sender, EventArgs e)
-        {
-            BindDDK();
+        {         
+            //BindDDK();
             upnlDonDangKy.Update();
             UnblockDialog("divDonDangKy");
+
+            //ChayChietTinh();
         }
 
         private void BindDDK()
@@ -1086,6 +1096,8 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                         UpdateMode = Mode.Create;
 
+                        //ChayChietTinh();
+
                         break;
                 }
             }
@@ -1099,6 +1111,8 @@ namespace EOSCRM.Web.Forms.ThietKe
         {
             BindDDK();
             CloseWaitingDialog();
+
+            //ChayChietTinh();
         }
 
         protected void btDUONGPHO_Click(object sender, EventArgs e)

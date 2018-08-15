@@ -1276,12 +1276,12 @@
                         </tr>
                         <tr>
                             <td class="crmcell right">
-                                Phường
+                                
                             </td>
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:DropDownList ID="ddlPHUONG" runat="server" Width="150px" TabIndex="8" 
-                                        Enabled="False">
+                                        Enabled="False" Visible="False">
                                     </asp:DropDownList>
                                 </div>
                             </td>
