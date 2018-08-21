@@ -230,25 +230,25 @@ namespace EOSCRM.Web.Forms.ThietKe
 
         private void ChayChietTinh()
         {
-            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
-            if (loginInfo == null) return;
-            string b = loginInfo.Username;
-            var makv = _nvDao.Get(b).MAKV;
+            //var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            //if (loginInfo == null) return;
+            //string b = loginInfo.Username;
+            //var makv = _nvDao.Get(b).MAKV;
+            //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
 
-            _rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
            // _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH1LAN");
 
-            //try
-            //{
-            //    var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
-            //    if (loginInfo == null) return;
-            //    string b = loginInfo.Username;
-            //    var makv = _nvDao.Get(b).MAKV;
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var makv = _nvDao.Get(b).MAKV;
 
-            //    //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
-            //    _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH");
-            //}
-            //catch { }
+                //_rpClass.DonToKeToan("", makv, "", "", "", "", "UPCTKTTOCTKH");
+                _rpClass.DonToBravo("", makv, "", "", "", "", "UPCTKTTOCTKH");
+            }
+            catch { }
         }
 
         private void LoadStaticReferences()

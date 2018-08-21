@@ -1325,7 +1325,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         {
             try
             {
-                if (mamdsd == "A" || mamdsd == "B" || mamdsd == "G" || mamdsd == "Z" || mamdsd == "V") // khach hang binh thuong
+                if (mamdsd == "A" || mamdsd == "B" || mamdsd == "G" || mamdsd == "Z" ) // khach hang binh thuong
                 {
                     var dp = _dppoDao.GetDP(txtMADP.Text.Trim());
 
