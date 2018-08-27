@@ -304,7 +304,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                        
                         BindDataForGrid();
 
-                        ChayChietTinhPo();
+                        //ChayChietTinhPo();
                     }
                     else
                     {

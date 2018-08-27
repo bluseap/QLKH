@@ -309,7 +309,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                      
                         BindDataForGrid();
 
-                        ChayChietTinh();
+                        //ChayChietTinh();
                     }
                     else
                     {
