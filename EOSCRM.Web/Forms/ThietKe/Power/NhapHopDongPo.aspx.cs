@@ -931,7 +931,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             catch { txtDenNgay.Text = ""; }
 
             if (makv == "S" || makv == "P" || makv == "T" || makv == "K" || makv == "L"//chau doc, phu tan, tan chau,CHOMOI, tri ton
-                || makv == "M" || makv == "Q" // tinh bien,an phu
+                || makv == "M" || makv == "Q" || makv == "N" // tinh bien,an phu, chau phu
                 )
             {
                 var list = _ddkpoDao.GetListDaDuyetTK_CD(txtFilter.Text.Trim(), tungay, denngay, null, ddlMaKV.SelectedValue);

@@ -547,7 +547,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 kh.KLKHOAN = Convert.ToInt32(txtCSMOI.Text.Trim());
 
                 string tenlydothay = ddlLYDOTHAYDH.SelectedItem.ToString() + ": ";
-                string malydothay = ddlLYDOTHAYDH.SelectedValue == "V" ? "5" : ddlLYDOTHAYDH.SelectedValue.ToString();
+                string malydothay = (ddlLYDOTHAYDH.SelectedValue == "V" || ddlLYDOTHAYDH.SelectedValue == "P" ) ? "5" : ddlLYDOTHAYDH.SelectedValue.ToString();
 
                 kh.DIACHI_INHOADON = tenlydothay + malydothay;
                 //kh.DIACHI_INHOADON = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;
@@ -701,7 +701,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 dh.DHCAPBAN = ddlDONGHOCAPBAN.SelectedValue;
 
                 string tenlydothay = ddlLYDOTHAYDH.SelectedItem.ToString() + ": ";
-                string malydothay = ddlLYDOTHAYDH.SelectedValue == "V" ? "5" : ddlLYDOTHAYDH.SelectedValue.ToString();
+                string malydothay = ( ddlLYDOTHAYDH.SelectedValue == "V" || ddlLYDOTHAYDH.SelectedValue == "P" ) ? "5" : ddlLYDOTHAYDH.SelectedValue.ToString();
 
                 dh.LYDOTHAY = tenlydothay + malydothay;
                 //dh.LYDOTHAY = ddlLYDOTHAYDH.SelectedItem + ": " + ddlLYDOTHAYDH.SelectedValue;

@@ -206,6 +206,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 
                 if (nhanvien.MAKV == "S" || nhanvien.MAKV == "T" || nhanvien.MAKV == "K" // chau doc-tan chau-cho moi
                     || nhanvien.MAKV == "P" || nhanvien.MAKV == "L" || nhanvien.MAKV == "M" || nhanvien.MAKV == "Q" //phu tan,tri ton,tinh bien,anphu
+                    || nhanvien.MAKV == "N" // chau phu
                     )
                 {
                     // Get list of ids that to be update
