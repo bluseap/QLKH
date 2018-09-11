@@ -36,6 +36,11 @@
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
             return false;
         }
+
+        function CheckFormXuatExcelDotGhi() {
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcelDotGhi) %>', '');
+            return false;
+        }
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -143,12 +148,19 @@
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" UseSubmitBehavior="false"
                                         OnClick="btnCancel_Click" TabIndex="22" OnClientClick="return CheckFormCancel();" />
                                 </div>
+                                <div class="left">
+                                    <asp:Button ID="btXuatExcelDotGhi" runat="server" Text="Xuất Excel DS đợt GCS" CssClass="myButton" UseSubmitBehavior="false" 
+                                        OnClick="btXuatExcelDotGhi_Click" OnClientClick="return CheckFormXuatExcelDotGhi();" />
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </ContentTemplate>
+         <Triggers>
+            <asp:PostBackTrigger ControlID="btXuatExcelDotGhi" />
+        </Triggers>
     </asp:UpdatePanel>  
     <br />    
     <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">

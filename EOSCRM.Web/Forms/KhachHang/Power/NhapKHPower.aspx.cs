@@ -797,6 +797,23 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         ddlKHUVUC.Items.Add(new ListItem(kv.TENKV, kv.MAKVPO));
                     }
                 }
+                else if (d == "J")
+                {
+                    var kvList = _kvpoDao.GetListKV(d);
+                    ddlKHUVUC.Items.Clear();
+                    foreach (var kv in kvList)
+                    {
+                        ddlKHUVUC.Items.Add(new ListItem(kv.TENKV, kv.MAKVPO));
+                    }
+                    ddlKHUVUC.Items.Add(new ListItem("Châu Phú", "D"));
+
+                    var kvIn = _dihdDao.GetListKVPO(d);
+                    ddlDOTINHD.Items.Clear();
+                    foreach (var dotin in kvIn)
+                    {
+                        ddlDOTINHD.Items.Add(new ListItem(_dmdihdDao.Get(dotin.MADOTIN).TENDOTIN, dotin.IDMADOTIN));
+                    }                    
+                }
                 else
                 {
                     var kvList = _kvpoDao.GetListKV(d);
@@ -805,6 +822,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     {
                         ddlKHUVUC.Items.Add(new ListItem(kv.TENKV, kv.MAKVPO));
                     }
+                    //ddlKHUVUC.Items.Add(new ListItem("Châu Phú", "N"));
 
                     var kvIn = _dihdDao.GetListKVPO(d);
                     ddlDOTINHD.Items.Clear();

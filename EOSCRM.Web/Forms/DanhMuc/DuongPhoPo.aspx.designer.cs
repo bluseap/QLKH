@@ -148,6 +148,15 @@ namespace EOSCRM.Web.Forms.DanhMuc {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
+        /// btXuatExcelDotGhi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btXuatExcelDotGhi;
+        
+        /// <summary>
         /// upnlGrid control.
         /// </summary>
         /// <remarks>
