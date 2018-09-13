@@ -875,6 +875,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             lbLoaiDongHoKHM.Text = "";
             lbCongSuatDongHoKHM.Text = "";
             lbSoNoKHM.Text = "";
+
+            ckDMUCTAM.Checked = false;
+            cbISDINHMUC.Checked = false;
         }
 
         private void ClearFormCheck()
@@ -1252,6 +1255,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 UpdateTieuThu();
 
                 ClearForm();
+                upnlCustomers.Update();
+
                 divCustomersContainer.Visible = false;
 
                 // bind grid
