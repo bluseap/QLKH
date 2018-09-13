@@ -284,7 +284,7 @@
                                 <td class="crmcell right">Phường, xã (Đ/c lắp)</td>
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
-                                        <asp:DropDownList ID="ddlPhuongXa" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPhuongXa" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPhuongXa_SelectedIndexChanged"></asp:DropDownList>
                                     </div> 
                                     <div class="left">
                                         <asp:CheckBox ID="ckDoiPhuongXa" runat="server" TabIndex="28" AutoPostBack="True" Text=" Phường, xã khác huyện" 

@@ -719,6 +719,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtSoNhaNhapDon.Text = "";
             txtTenDuongNhapDon.Text = "";
             ddlPhuongXa.SelectedIndex = 0;
+            ckDoiPhuongXa.Checked = false;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -814,10 +815,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 BindDataForGrid();
 
                 upnlGrid.Update();
+                upnlInfor.Update();
 
                 // bind pager
                 UpdateMode = Mode.Create;
-
             }
             else
             {
@@ -1198,15 +1199,26 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
             if (ckDoiPhuongXa.Checked)
             {  
-                var xaphuong = _xpDao.GetListActive(true);
-
-                ddlPhuongXa.Items.Clear();                
-                foreach (var xp in xaphuong)
-                    ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA));
-
                 if (ddlKHUVUC.SelectedValue == "J")
                 {
+                    var xaphuong = _xpDao.GetListActive(true);
+
+                    ddlPhuongXa.Items.Clear();
+                    foreach (var xp in xaphuong)
+                        ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA));
+
                     txtHUYENDCLAP.Text = " CHÂU PHÚ,AN GIANG";
+                }
+                else if (ddlKHUVUC.SelectedValue == "E")
+                {
+                    var xaphuong = _xpDao.GetListActiveKV2("N" , "U" , true); // chau phu, thoai son
+
+                    ddlPhuongXa.Items.Clear();
+                    ddlPhuongXa.Items.Add(new ListItem("-- Lựa chọn --", "%"));
+                    foreach (var xp in xaphuong)
+                        ddlPhuongXa.Items.Add(new ListItem(xp.TENXA, xp.MAXA + xp.MAKV));
+
+                    txtHUYENDCLAP.Text = "";
                 }
                 else
                 {
@@ -1221,6 +1233,27 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
 
             upnlInfor.Update();
+        }
+
+        protected void ddlPhuongXa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlKHUVUC.SelectedValue == "E")
+                {
+                    var maxaphuong = ddlPhuongXa.SelectedValue.ToString().Substring(0,4);
+                    var maxaphuongkv = ddlPhuongXa.SelectedValue.ToString().Substring(4, 1);
+
+                    var xaphuong = _xpDao.Get(maxaphuong, maxaphuongkv);
+                    var khuvuc = _kvDao.Get(maxaphuongkv);
+
+
+                    txtHUYENDCLAP.Text =  " " + khuvuc.TENKV.ToUpper() + ",AN GIANG";
+
+                    upnlInfor.Update();
+                }                
+            }
+            catch { }
         }
 
 
