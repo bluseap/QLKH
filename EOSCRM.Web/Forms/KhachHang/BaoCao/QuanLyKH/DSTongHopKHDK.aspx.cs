@@ -95,6 +95,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 ddlDieuKien.Items.Add(new ListItem("Tất cả", "%"));
                 ddlDieuKien.Items.Add(new ListItem("DS 3 tháng chưa nhập thi công", "DS3TKOTC"));
                 ddlDieuKien.Items.Add(new ListItem("DS 1 tháng nhập đơn chưa thiết kế", "DS1TKOTK"));
+                ddlDieuKien.Items.Add(new ListItem("DS nghiệm thu chưa khai thác", "DSNTKOKHM"));
                 //ddlDieuKien.Items.Add(new ListItem("DS 6 tháng chưa nhập thi công", "DS6TKOTC"));
                 
             }
@@ -306,6 +307,12 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                     {
                         var ds = new ReportClass().DSTongHopDDK(tungay, denngay, cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue,
                             "", ddlDieuKien.SelectedValue, "DS1TKOTK"); //LAY NGAY NHAP TREN MAY
+                        dt = ds.Tables[0];
+                    }
+                    else if (ddlDieuKien.SelectedValue == "DSNTKOKHM") // nhap nghiem thu chua khai thac moi
+                    {
+                        var ds = new ReportClass().DSTongHopDDK(tungay, denngay, cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue,
+                            "", ddlDieuKien.SelectedValue, "DSNTKOKHM"); //LAY NGAY NHAP TREN MAY
                         dt = ds.Tables[0];
                     }
                     else
