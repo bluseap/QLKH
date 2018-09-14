@@ -1340,6 +1340,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         if (madotin != null)
                         {
                             ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotin);
+
+                            ckDotInHD.Checked = false;
                         }                        
                     }    
                 }
@@ -1352,6 +1354,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     if (madotin != null)
                     {
                         ddlDOTINHD.SelectedIndex = ddlDOTINHD.Items.IndexOf(madotin);
+
+                        ckDotInHD.Checked = true;
                     }
                 }
 
