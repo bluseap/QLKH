@@ -317,21 +317,18 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                 {
                     if (nv.MANV == "ctpth")
                     {
-                        txtCHIM1.Text = "CT/ĐNAG";
-                        txtCHIM2.Text = "Đ1/2007";
+                        txtCHIM1.Text = "Đ2/2018"; //"CT/ĐNAG";
+                        txtCHIM2.Text = "CT/ĐNAG"; //"Đ1/2007";
+                    }
+                    else if (nv.MANV == "cthtq" )
+                    {
+                        txtCHIM1.Text = "Đ1/2018"; //"CT/ĐNAG";
+                        txtCHIM2.Text = "CT/ĐNAG"; //"Đ1/2007";
                     }
                     else
-                    {
-                        if (nv.MANV == "cthtq" || nv.MANV == "dnl")
-                        {
-                            txtCHIM1.Text = "CT/ĐNAG";
-                            txtCHIM2.Text = "Đ2/2007";
-                        }
-                        else
-                        {
-                            txtCHIM1.Text = "";
-                            txtCHIM2.Text = "";
-                        }
+                    { 
+                        txtCHIM1.Text = "";
+                        txtCHIM2.Text = "";                       
                     }
                 }
                 else

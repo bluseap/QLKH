@@ -267,22 +267,24 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 {
                     if (nv.MANV == "ctpth")
                     {
-                        txtCHIM1.Text = "CT/ĐNAG";
-                        txtCHIM2.Text = "N2/2007";
+                        txtCHIM1.Text = "N2/2018"; //"CT/ĐNAG";
+                        txtCHIM2.Text = "CT/ĐNAG"; //"N2/2007";
+                    }
+                    else if (nv.MANV == "cthtq" )
+                    {
+                        txtCHIM1.Text = "N1/2018"; //"E2N/ĐNAG"; //"CT/ĐNAG";
+                        txtCHIM2.Text = "CT/ĐNAG"; //"CT/2001"; //"N1/2007";
+                    }
+                    else if ( nv.MANV == "dnl")
+                    {
+                        txtCHIM1.Text = "N3/2018"; //"E2N/ĐNAG"; //"CT/ĐNAG";
+                        txtCHIM2.Text = "CT/ĐNAG"; //"CT/2001"; //"N1/2007";
                     }
                     else
                     {
-                        if (nv.MANV == "cthtq" || nv.MANV == "dnl")
-                        {
-                            txtCHIM1.Text = "N3/2018"; //"E2N/ĐNAG"; //"CT/ĐNAG";
-                            txtCHIM2.Text = "CT/ĐNAG"; //"CT/2001"; //"N1/2007";
-                        }
-                        else
-                        {
-                            txtCHIM1.Text = "";
-                            txtCHIM2.Text = "";
-                        }
-                    }
+                        txtCHIM1.Text = "";
+                        txtCHIM2.Text = "";
+                    }                    
 
                     //nguyễn thị thanh thuy
                     lbNV1.Text = "nttt";
