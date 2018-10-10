@@ -174,6 +174,15 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 {
                     ddlTrangThaiGhi.Items.Add(new ListItem(tt.TENTTHAIGHI, tt.TTHAIGHI));
                 }
+
+                if (b == "tam" || b == "nguyen")
+                {
+                    btnDSChiSoCuoiThangTruoc.Visible = true;
+                }
+                else
+                {
+                    btnDSChiSoCuoiThangTruoc.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1297,11 +1306,89 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
             catch { }
         }
+        
+        protected void btnDSChiSoCuoiThangTruoc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string username = loginInfo.Username;
+                string makvpo = _kvpoDao.GetPo(_nvDao.Get(username).MAKV).MAKVPO;
+
+                //var TuNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(ddlTHANG1.Text.Trim()) + "/" + int.Parse(txtNAM1.Text.Trim()));
+                //var DenNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(ddlDenThang.Text.Trim()) + "/" + int.Parse(txtDenNam.Text.Trim()));
+
+                DataTable dt;
+
+                if (ddlDOTGCS.SelectedValue == "%")
+                {
+                    //dt = new ReportClass().BienKHPo("", makvpo, "", "",
+                    //    Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
+                    //                        "DSTHAYDHSINHH").Tables[0];
+
+                    dt = new ReportClass().BienKHPo("", makvpo, "", "",
+                        Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
+                                            "DSCOCSCTTCT").Tables[0];                    
+                }
+                else if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
+                {                        
+                    dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                        Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
+                                            "DSCOCSCTTP7D1CT").Tables[0];   
+                }
+                else
+                {
+                    dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                        Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
+                                            "DSCOCSCTTDOTINCT").Tables[0];
+                }
+
+                //Create a dummy GridView
+                GridView GridView1 = new GridView();
+                GridView1.AllowPaging = false;
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=TDH" + ddlTHANG1.Text.Trim() + txtNAM1.Text.Trim().Substring(2, 2) + ".xls");
+                //Response.AddHeader("content-disposition", "attachment;filename=KHM" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".doc");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                //Response.ContentType = "application/vnd.ms-word ";
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    //Apply text style to each Row
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+                }
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                //string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                //Response.Write(style);
+                string style = @"<style> TD { mso-number-format:\@; } </style>";
+                Response.Write(style);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                CloseWaitingDialog();
+                upnlThongTin.Update();    
+            }
+            catch { }           
+        }
 
         protected void ddlLYDOTHAYDH_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
 
 
     }

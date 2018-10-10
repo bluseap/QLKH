@@ -119,7 +119,13 @@
         function CheckFormbtDSChuaThay() {            
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btDSChuaThay) %>', '');
             return false;
-        }      
+        }
+
+        function CheckFormbtnDSChiSoCuoiThangTruoc() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnDSChiSoCuoiThangTruoc) %>', '');
+            return false;
+        }
+
         
     </script>
 </asp:Content>
@@ -639,6 +645,7 @@
                                     <asp:Button ID="btDSChuaThay" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtDSChuaThay();"
                                              TabIndex="19" UseSubmitBehavior="false" Text="DS chưa thay ĐH" OnClick="btDSChuaThay_Click"/>
                                 </div>
+                               
                                 <%--<div class="left">
                                     <div class="right">Kỳ áp dụng</div>
                                 </div>
@@ -668,6 +675,15 @@
                                 </div>--%>
                             </td>
                         </tr>
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
+                                 <div class="left">
+                                    <asp:Button ID="btnDSChiSoCuoiThangTruoc" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtnDSChiSoCuoiThangTruoc();"
+                                          Visible="false"   TabIndex="19" UseSubmitBehavior="false" Text="Excel có Chỉ số Cuối tháng trước" OnClick="btnDSChiSoCuoiThangTruoc_Click" />
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -675,6 +691,7 @@
         <Triggers>
             <asp:PostBackTrigger ControlID="btExcel" />
             <asp:PostBackTrigger ControlID="btDSChuaThay" />
+            <asp:PostBackTrigger ControlID="btnDSChiSoCuoiThangTruoc" />
         </Triggers>
     </asp:UpdatePanel>  
     <br />
