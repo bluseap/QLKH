@@ -592,6 +592,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         msdhcu = _dhpoDao.UpdateKoSD(dhcu); //update dh cu ko su dung
                         msddhmoi = _dhpoDao.UpdateDASD(dhmoi); //update dh moi da su dung
 
+                        kh.MADHPO = sonokysau.MADHPOMOI; // update MADH to khachhang
+                        Message msg9;
+                        msg9 = _khpoDao.UpdateKhachHangMaDHPo(kh, 1, 1, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), b);  
+
                         ShowInfor("Kỳ này đã khóa sổ, tự động chuyển qua kỳ sau.");
                         CloseWaitingDialog();
                     }
@@ -617,6 +621,10 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         var dhmoi = _dhpoDao.Get(lbMADHMOI.Text.Trim());
                         msdhcu = _dhpoDao.UpdateKoSD(dhcu); //update dh cu ko su dung
                         msddhmoi = _dhpoDao.UpdateDASD(dhmoi); //update dh moi da su dung
+
+                        kh.MADHPO = sono.MADHPOMOI; // update MADH to khachhang
+                        Message msg9;
+                        msg9 = _khpoDao.UpdateKhachHangMaDHPo(kh, 1, 1, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), b);  
                     }
                 }
                 else
@@ -641,6 +649,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     Message msddhmoi2;
                     var dhmoi2 = _dhpoDao.Get(lbMADHMOI.Text.Trim());
                     msddhmoi2 = _dhpoDao.UpdateDASD(dhmoi2); //update dh da su dung
+
+
+                    var khachhang = _khpoDao.Get(sono.IDKHPO);// update MADH to khachhang
+                    khachhang.MADHPO = sono.MADHPOMOI;
+                    Message msg9;
+                    msg9 = _khpoDao.UpdateKhachHangMaDHPo(khachhang, 1, 1, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), b);  
+                                         
                 }
 
                 Clear();
