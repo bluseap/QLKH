@@ -385,8 +385,13 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 _updpDao.Insert(updp, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
-                BindUpLoadFile();
+                var nhanvienmoi = _nvDao.Get(LoginInfo.MANV);
 
+                if (nhanvienmoi.MAKV != "L") // bo tri ton
+                {
+                    BindUpLoadFile();
+                }              
+                
                 if (IsKhoaSoTachDuong(updp.TENPATH) == false)
                 {
                     ShowError("Có đợt ghi chỉ số đã khóa sổ. Kiểm tra lại từng khách hàng.");
