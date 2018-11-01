@@ -1523,7 +1523,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 if (don.TTTK != null)
                 {
                     if ((_nvDao.Get(LoginInfo.MANV).MAPB.Equals("KD") || LoginInfo.MANV.Equals("nguyen")) && don.TTDK.Equals("DK_A")
-                        && (don.TTTK.Equals("TK_N") || don.TTTK.Equals("TK_P")))
+                        && (don.TTTK.Equals("TK_N") || don.TTTK.Equals("TK_P") || don.TTTK == null))
                     {
                         var msqDQ = _dqDao.Update(don.MADDK, LoginInfo.MANV, ddlPHONGBAN2.SelectedValue, don.MAKV);
                     }

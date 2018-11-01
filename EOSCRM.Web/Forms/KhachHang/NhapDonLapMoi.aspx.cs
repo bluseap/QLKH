@@ -827,20 +827,7 @@ namespace EOSCRM.Web.Forms.KhachHang
             if (txtTENKH.Text.Trim() == "") { 
                 CloseWaitingDialog(); 
                 return; 
-            }
-
-            //if (!string.Empty.Equals(txtCMND.Text.Trim()))
-            //{
-            //    if (makvts.MAKV != "O")
-            //    {
-            //        if (ddkDao.GetListCMNV1(txtCMND.Text.Trim(), makvts.MAKV) != null)//kiem tra cmnd trùng.
-            //        {
-            //            CloseWaitingDialog();
-            //            ShowError(Resources.Message.WARN_PERMISSION_DENIED);                        
-            //            return;
-            //        }
-            //    }
-            //}            
+            }                   
 
             Message msg;
             Filtered = FilteredMode.None;
@@ -904,16 +891,14 @@ namespace EOSCRM.Web.Forms.KhachHang
                
                 upnlGrid.Update();
                 CloseWaitingDialog();
-                // bind pager
+               
                 UpdateMode = Mode.Create;
             }
             else
             {
                 ShowError(ResourceLabel.Get(msg));
             }
-
-            //upnlGrid.Update();
-            //CloseWaitingDialog();
+           
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
