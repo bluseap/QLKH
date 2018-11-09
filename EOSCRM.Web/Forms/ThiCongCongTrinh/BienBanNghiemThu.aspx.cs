@@ -1013,10 +1013,19 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     gvNhanVien2.PagerInforText = list.Count.ToString();
                     gvNhanVien2.DataBind();                    
                 }
-                else
+                else if (nvdao.Get(LoginInfo.MANV).MAKV.Equals("P"))
+                {
+                    var list = nvdao.SearchKV3(txtKeywordNV3.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
+
+                    gvNhanVien2.DataSource = list;
+                    gvNhanVien2.PagerInforText = list.Count.ToString();
+                    gvNhanVien2.DataBind();                    
+                }
+                else 
                 {
                     //var list = nvdao.SearchKV3(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);                
                     var list = nvdao.TimNVKyThuat(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
+                    //var list = nvdao.TimNV_NM_To(txtKeywordNV3.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
 
                     gvNhanVien2.DataSource = list;
                     gvNhanVien2.PagerInforText = list.Count.ToString();

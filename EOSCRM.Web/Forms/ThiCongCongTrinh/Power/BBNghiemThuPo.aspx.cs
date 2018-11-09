@@ -1120,13 +1120,20 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
         {
             string makv = nvdao.Get(LoginInfo.MANV).MAKV;
 
-            if (makv == "P" || makv == "T")            
+            if (makv == "T")            
             {
                 var list = nvdao.TimNVKyThuat(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
 
                 gvNhanVien2.DataSource = list;
                 gvNhanVien2.PagerInforText = list.Count.ToString();
                 gvNhanVien2.DataBind();      
+            }
+            else if (makv == "P")        
+            {
+                var list = nvdao.SearchKV3(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
+                gvNhanVien2.DataSource = list;
+                gvNhanVien2.PagerInforText = list.Count.ToString();
+                gvNhanVien2.DataBind();
             }
             else
             {
