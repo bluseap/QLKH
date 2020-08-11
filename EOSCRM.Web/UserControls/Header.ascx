@@ -25,7 +25,7 @@
             [<%= hoten %>]
         </div>
         <div id="hrgh2" class="fr">
-            <a href="http://powaco.com.vn/index.html" class="changepwd">Chat</a>
+           <%-- <a href="http://powaco.com.vn/index.html" class="changepwd">Chat</a>--%>
             <a href="<%= ResolveUrl("~")%>Forms/HeThong/ChangePassword.aspx" class="changepwd">Pass</a>          
         </div>
 

@@ -130,7 +130,6 @@ D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Domain.dll
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Util.dll
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Domain.pdb
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Util.pdb
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.csprojResolveAssemblyReference.cache
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.dll
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.pdb
 D:\New folder\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Dao.dll
@@ -151,3 +150,7 @@ D:\Luu\nguyen\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Util.pdb
 D:\Luu\nguyen\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.csprojResolveAssemblyReference.cache
 D:\Luu\nguyen\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.dll
 D:\Luu\nguyen\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.pdb
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Dao\bin\Debug\EOSCRM.Domain.dll.config
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.csprojAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.csproj.CoreCompileInputs.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Dao\obj\Debug\EOSCRM.Dao.csproj.CopyComplete

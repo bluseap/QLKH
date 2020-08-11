@@ -69,4 +69,5 @@ D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csproj.CoreCompileInputs.cache

@@ -1,0 +1,7 @@
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\obj\Debug\POWACO.Dapper.csprojAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\obj\Debug\POWACO.Dapper.csproj.CoreCompileInputs.cache
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\bin\Debug\POWACO.Dapper.dll.config
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\bin\Debug\POWACO.Dapper.dll
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\bin\Debug\POWACO.Dapper.pdb
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\obj\Debug\POWACO.Dapper.dll
+D:\nguyen\QLKH\Quanlykhachhang\POWACO.Dapper\obj\Debug\POWACO.Dapper.pdb

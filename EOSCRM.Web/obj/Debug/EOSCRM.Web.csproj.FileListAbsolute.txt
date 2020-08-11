@@ -199,9 +199,6 @@ C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Web\obj\Debug\RdlCompile.cache
 C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Web\obj\Debug\RdlCompile.compiled
 C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.dll
 C:\Users\nguyen\Downloads\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.pdb
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.csprojResolveAssemblyReference.cache
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Web\obj\Debug\RdlCompile.cache
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Web\obj\Debug\RdlCompile.compiled
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.dll
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.pdb
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Web\bin\EOSCRM.Web.dll
@@ -274,3 +271,8 @@ C:\ArcGis\Quanlykhachhang\EOSCRM.Web\bin\EPPlus.xml
 C:\ArcGis\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.csprojResolveAssemblyReference.cache
 C:\ArcGis\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.dll
 C:\ArcGis\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.pdb
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Web\bin\EOSCRM.Web.dll.config
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Web\bin\EOSCRM.Domain.dll.config
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.csprojAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.csproj.CoreCompileInputs.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Web\obj\Debug\EOSCRM.Web.csproj.CopyComplete

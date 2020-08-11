@@ -40,6 +40,7 @@ D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
 D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.dll
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\bin\Debug\EOSCRM.Util.pdb
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojResolveAssemblyReference.cache
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.dll
 D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.pdb
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csprojAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Util\obj\Debug\EOSCRM.Util.csproj.CoreCompileInputs.cache

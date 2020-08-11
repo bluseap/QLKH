@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>EOS-CRM > Đăng nhập hệ thống</title>
+    <title>POWACO-CRM > Đăng nhập hệ thống</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="content/images/powaco.ico" />
     <link type="text/css" href="content/css/core.css" rel="stylesheet" />
@@ -31,9 +31,7 @@
         }
     </style>
 
-    <script type="text/javascript">
-        
-       
+    <script type="text/javascript">     
         //var x = document.getElementById("demo");
         function getLocation() {
             if (navigator.geolocation) {
@@ -91,49 +89,19 @@
             document.getElementById("<%=hfLONGVT.ClientID %>").value = position.coords.longitude;
 
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReset) %>', '');
-        }            
+        }           
       
-       
      </script>
-        
-   
-   
-
 </head>
-<body >    
-
-    <%--<div class="container">
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-
-       
-
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-    </div> <!-- /container -->
-    <script src="/content/js/ie10-viewport-bug-workaround.js"></script>--%>
-    
-    <form id="form1" runat="server">     
+<body >       
+    <form id="form1" runat="server">    
              
         <asp:HiddenField ID="hfLATVT" runat="server" />
         <asp:HiddenField ID="hfLONGVT" runat="server" />
 
-        <table cellpadding="2" cellspacing="10" style="width: auto;" width="100%" >      
-                 
-            <tr>
-                
-
-
-                <td width="80%">                                       
+        <table cellpadding="2" cellspacing="10" style="width: auto;" width="100%" >   
+            <tr>     
+               <%-- <td width="80%">                                       
                      <table cellpadding="3" cellspacing="10" style="width: auto;" width="80%" >
                         <tr>
                             <td width="10%">
@@ -198,15 +166,9 @@
                             </td>
                         </tr>    
                      </table>              
-                </td>
+                </td>    --%>        
 
-                <%--<td width="80%">
-                    <iframe src="http://docs.google.com/gview?url=http://powaco.com.vn/UpLoadFile/powaco/060217Mau De Nghi Cong Tac.An Phu (hoan pha)5.xls&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
-                </td>--%>
-
-
-
-                <td width="20%">
+               <td width="20%">
                     <div id="wrapper">
                         <div id="container">
                             <div id="login">
@@ -220,9 +182,11 @@
                                             SetFocusOnError="True"></asp:RequiredFieldValidator></div>
                                     <div class="mr10">
                                         <label for="txtPassword">
-                                            Password</label></div>
+                                            Password</label>
+                                    </div>
                                     <div>
-                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" TabIndex="2" /></div>
+                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" TabIndex="2" />
+                                    </div>
                                     <div class="mr10">
                                         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" CssClass="btn_lg" TabIndex="3"  />
                                         <asp:Button ID="btnReset" TabIndex="4" runat="server" CssClass="btn_cc" OnClick="btnReset_Click"/>
@@ -230,42 +194,41 @@
                                     <div class="mr10 err">
                                         <asp:Label ID="lblErrorMsg" runat="server" Font-Bold="True"></asp:Label>
                                     </div>
+                                     <div >
+                                        <label > Phiên bản 2.0.0  </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>   
-                        <div id="longxuyen" align="center" style="font-size: large" >
-              <asp:HyperLink ID="hpLONGXUYEN" runat="server" NavigateUrl="~/GisWeb/glongxuyen.aspx" Visible="true">
-                                Long Xuyên
-              </asp:HyperLink>        
-         </div>
-        <div id="phutan" align="center" style="font-size: large" >
-              <asp:HyperLink ID="hpPHUTAN" runat="server" NavigateUrl="~/GisWeb/gphutan.aspx" Visible="true">
-                                Phú Tân
-              </asp:HyperLink>        
-         </div>
-        <div id="thoaison" align="center" style="font-size: large" >
-              <asp:HyperLink ID="hpTHOAISON" runat="server" NavigateUrl="~/GisWeb/gthoaison.aspx" Visible="true">
-                                Thoại Sơn
-              </asp:HyperLink>        
-         </div>     
+                        <%--<div id="longxuyen" align="center" style="font-size: large" >
+                              <asp:HyperLink ID="hpLONGXUYEN" runat="server" NavigateUrl="~/GisWeb/glongxuyen.aspx" Visible="true">
+                                                Long Xuyên
+                              </asp:HyperLink>        
+                        </div>
+                        <div id="phutan" align="center" style="font-size: large" >
+                              <asp:HyperLink ID="hpPHUTAN" runat="server" NavigateUrl="~/GisWeb/gphutan.aspx" Visible="true">
+                                                Phú Tân
+                              </asp:HyperLink>        
+                         </div>
+                        <div id="thoaison" align="center" style="font-size: large" >
+                              <asp:HyperLink ID="hpTHOAISON" runat="server" NavigateUrl="~/GisWeb/gthoaison.aspx" Visible="true">
+                                                Thoại Sơn
+                              </asp:HyperLink>        
+                         </div>     
                         <div id="TracNghiem" align="center" style="font-size: x-large" >
                             <asp:HyperLink ID="TSLamBai" runat="server" NavigateUrl="~/TracNghiem/TSLamBai.aspx" Visible="false">
                                 Hướng dẫn làm bài thi Trắc nghiệm
-                            </asp:HyperLink>
-        
-                        </div>
+                            </asp:HyperLink>        
+                        </div>--%>
                     </div>
-                    </td>
+               </td>
 
                 
 
-                </tr>
-                
-          
+            </tr>
        </table>
         
     </form>
     
 </body>
-<script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 12492]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script> 
 </html>
