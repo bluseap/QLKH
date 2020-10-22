@@ -150,17 +150,17 @@
                 <table class="crmtable">
                     <tbody>
                         <tr>    
-                            <td class="crmcell right width-125">Mã đơn đăng ký</td>
+                            <td class="crmcell right width-125"> </td>
                             <td class="crmcell width-250">    
                                 <div class="left">
                                     <asp:TextBox ID="txtMADDK" runat="server" Width="95px" MaxLength="10" 
-                                        TabIndex="1" ReadOnly="True" />                            
+                                        TabIndex="1" ReadOnly="True" Visible="false"/>                            
                                 </div>
                                 <div class="left">
-                                    <asp:CheckBox ID="cbDAIDIEN" Enabled="false" runat="server" />
+                                    <asp:CheckBox ID="cbDAIDIEN" Enabled="false" runat="server" Visible="false" />
                                 </div>
                                 <div class="left width-50">
-                                    <strong>Là đại diện</strong>
+                                    <strong> </strong>
                                 </div>
                                 <td class="crmcell right"></td>
                                 <td class="crmcell">    
@@ -230,12 +230,12 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtNGAYSINH" runat="server" Width="100px" MaxLength="4" TabIndex="5" />
                                 </div>
-                                <div class="left">
+                                <%--<div class="left">
                                     <asp:ImageButton runat="Server" ID="imgNGAYSINH" ImageUrl="~/content/images/icons/calendar.png"
                                         AlternateText="Click to show calendar" Visible="False" />
                                     <ajaxToolkit:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtNGAYSINH"
                                         PopupButtonID="imgNGAYSINH" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
-                                </div>
+                                </div>--%>
                                 <td class="crmcell right">Mục đích sử dụng</td>
                                 <td class="crmcell"> 
                                     <div class="left">
@@ -258,12 +258,38 @@
                                     <asp:TextBox ID="txtSONHA" runat="server" Width="180px" MaxLength="150" 
                                         TabIndex="6" />
                                 </div>
-                                <td class="crmcell right">Địa chỉ mới mua điện</td>
+                                <td class="crmcell right">Số nhà (Đ/c lắp)</td>
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
-                                        <asp:TextBox ID="txtDIACHILAPDAT" runat="server" Width="180px" MaxLength="200" TabIndex="15" />
+                                        <asp:TextBox ID="txtSoNhaNhapDon" runat="server" Width="50px" MaxLength="200" TabIndex="15" />
                                     </div>
-                                    <asp:Label ID="Label1" runat="server" Text="Chỉ nhập ấp, xã." Font-Bold="True"></asp:Label>                                                              
+                                    <div class="left">
+                                        <asp:Label ID="lbTenDuongNhapDon" runat="server" Text=",tên đường (ấp tổ)" Font-Bold="True" ></asp:Label>
+                                    </div>
+                                    <div class="left">
+                                        <asp:TextBox ID="txtTenDuongNhapDon" runat="server" Width="180px" MaxLength="200" TabIndex="15" />
+                                    </div>
+                                    <div class="left">
+                                        <asp:TextBox ID="txtDIACHILAPDAT" runat="server" Width="50px" MaxLength="200" TabIndex="15" Visible="false" />
+                                    </div>
+                                    <asp:Label ID="lbTextApXa" runat="server" Text="Chỉ nhập ấp, xã." Font-Bold="True" Visible="false"></asp:Label>                                                              
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">    
+                                <div class="left">                                    
+                                </div>
+                                <td class="crmcell right">Phường, xã (Đ/c lắp)</td>
+                                <td class="crmcell" colspan="3">    
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlPhuongXa" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPhuongXa_SelectedIndexChanged"></asp:DropDownList>
+                                    </div> 
+                                    <div class="left">
+                                        <asp:CheckBox ID="ckDoiPhuongXa" runat="server" TabIndex="28" AutoPostBack="True" Text=" Phường, xã khác huyện" 
+                                            OnCheckedChanged="ckDoiPhuongXa_CheckedChanged" />
+                                    </div>                                                                                          
                                 </td>
                             </td>
                         </tr>
@@ -274,7 +300,7 @@
                                     <asp:TextBox ID="txtHUYEN" runat="server" Width="180px" MaxLength="150" 
                                         TabIndex="6" />
                                 </div>
-                                <td class="crmcell right">Huyện, tỉnh ĐC lắp</td>
+                                <td class="crmcell right">Huyện, tỉnh (Đ/C lắp)</td>
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
                                         <asp:TextBox ID="txtHUYENDCLAP" runat="server" Width="180px" MaxLength="200" TabIndex="15" />
@@ -286,7 +312,7 @@
                             <td class="crmcell right">Số CMND (số KD)</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtCMND" runat="server" Width="130px" MaxLength="9" onblur="checkCMNDForm();"
+                                    <asp:TextBox ID="txtCMND" runat="server" Width="130px" MaxLength="20" onblur="checkCMNDForm();"
                                         TabIndex="7" />                                    
                                     <asp:LinkButton ID="lkKTCMND" CausesValidation="false" style="display:none"  
                                         OnClick="lkKTCMND_Click" runat="server"></asp:LinkButton>    
@@ -294,7 +320,7 @@
                                 <td class="crmcell right">Điện thoại</td>
                                 <td class="crmcell"> 
                                     <div class="left">
-                                        <asp:TextBox ID="txtDIENTHOAI" runat="server" Width="90px" MaxLength="20" TabIndex="16" />
+                                        <asp:TextBox ID="txtDIENTHOAI" runat="server" Width="90px" MaxLength="20" TabIndex="16"  />
                                     </div>   
                                 </td>
                             </td>                            
@@ -314,7 +340,7 @@
                                 <td class="crmcell right">MST</td>
                                 <td class="crmcell">
                                     <div class="left">
-                                        <asp:TextBox ID="txtMST" runat="server" Width="90px" MaxLength="30" TabIndex="98" />
+                                        <asp:TextBox ID="txtMST" runat="server" Width="90px" MaxLength="30" TabIndex="16" />
                                     </div>
                                 </td>
                             </td>
@@ -377,12 +403,12 @@
                             <td class="crmcell right">Đ/c lắp </td>
                             <td class="crmcell">                                  
                                 <div class="left">
-                                    <asp:TextBox ID="txtNOILAPDHN" runat="server" MaxLength="200" TabIndex="15" />
+                                    <asp:TextBox ID="txtNOILAPDHN" runat="server" MaxLength="200" TabIndex="18" />
                                 </div>
                                 <td class="crmcell right">Số trụ</td>
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
-                                        <asp:TextBox ID="txtSOTRUPO" runat="server" width="70px" MaxLength="50" TabIndex="15" />
+                                        <asp:TextBox ID="txtSOTRUPO" runat="server" width="70px" MaxLength="50" TabIndex="18" />
                                     </div>                             
                                 </td>
                             </td>

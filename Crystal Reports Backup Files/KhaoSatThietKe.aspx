@@ -26,16 +26,33 @@
         function CheckFormApprove() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnApprove) %>', '');
         }
 
         function CheckFormReject() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReject) %>', '');
         }
+
+        function CheckFormChapNhan() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btCHAPNHAN) %>', '');
+        }
+
+        function CheckFormKhongDuDieuKien() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btKODUDIEUKIEN) %>', '');
+        }
+
+        function CheckFormChoXuLy() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btChoXuLy) %>', '');
+        }
+        
     </script>
 </asp:Content>
 
@@ -118,6 +135,14 @@
                                     <asp:Button ID="btnReject" CssClass="reject" runat="server" OnClientClick="return CheckFormReject();" 
                                         UseSubmitBehavior="false" onclick="btnReject_Click" />  
                                 </div>
+                                <div class="left">
+                                    <asp:Button ID="btCHAPNHAN" CssClass="myButton" runat="server" OnClientClick="return CheckFormChapNhan();"
+                                        UseSubmitBehavior="false" onclick="btCHAPNHAN_Click" Text ="Chấp nhận"/> 
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btKODUDIEUKIEN" CssClass="myButton" runat="server" OnClientClick="return CheckFormKhongDuDieuKien();" 
+                                        UseSubmitBehavior="false" onclick="btKODUDIEUKIEN_Click" Text ="Không đủ điều kiện"/>  
+                                </div>
                             </td>                        
                         </tr>
                         <tr>
@@ -136,13 +161,22 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right vtop"></td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Button ID="btChoXuLy" CssClass="myButton" runat="server" OnClientClick="return CheckFormChoXuLy();" 
+                                        UseSubmitBehavior="false" onclick="btChoXuLy_Click" Text ="Chờ xử lý" Visible="False"/>  
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>    
             <br />
             <div class="crmcontainer">
                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowDataBound="gvList_RowDataBound"
-                    OnRowCommand="gvList_RowCommand"  OnPageIndexChanging="gvList_PageIndexChanging" PageSize="20">
+                    OnRowCommand="gvList_RowCommand"  OnPageIndexChanging="gvList_PageIndexChanging" PageSize="20" >
                     <PagerSettings FirstPageText="đơn" PageButtonCount="2" />
                     <Columns>
                         <asp:TemplateField HeaderStyle-CssClass="checkbox">
@@ -158,8 +192,7 @@
                        
                         <asp:TemplateField HeaderText="Mã đơn&nbsp;">
                             <ItemTemplate>
-                                <asp:LinkButton ID="linkMa" runat="server" CommandArgument='<%# Eval("MADDK") %>'
-                                    OnClientClick="openDialogAndBlock('Thiết kế vật tư', 700, 'divThietKeVatTu')"
+                                <asp:LinkButton ID="linkMa" runat="server" CommandArgument='<%# Eval("MADDK") %>'                                    
                                     CommandName="EditHoSo" CssClass="link" Text='<%# Eval("MADDK") %>'></asp:LinkButton>
                             </ItemTemplate>
                             <ItemStyle Font-Bold="True" />

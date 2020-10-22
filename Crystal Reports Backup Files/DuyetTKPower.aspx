@@ -26,16 +26,21 @@
         function CheckFormApprove() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnApprove) %>', '');
         }
 
         function CheckFormReject() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReject) %>', '');
         }
+
+        function CheckFormbtThietKeLaiChuaChietTinh() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btThietKeLaiChuaChietTinh) %>', '');
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -53,6 +58,7 @@
                                             <td class="crmcell">
                                                 <div class="left">
                                                     <asp:Label ID="lbTENKH" runat="server" Text="tenkh"></asp:Label>
+                                                    <asp:Label ID="lbMADDK" runat="server" Visible="false"></asp:Label>
                                                 </div>                                               
                                             </td>
                                         </tr>                                        
@@ -63,10 +69,8 @@
 						<tr>
 							<td class="ptop-10">
 							    <div class="crmcontainer">
-							        <eoscrm:Grid ID="gvTKVT" runat="server" AutoGenerateColumns="false" CssClass="crmgrid"							            
+							        <eoscrm:Grid ID="gvTKVT" runat="server" UseCustomPager="true" AutoGenerateColumns="false" 					            
 							            OnPageIndexChanging="gvTKVT_PageIndexChanging">
-							            <RowStyle CssClass="row" />
-                                        <AlternatingRowStyle CssClass="altrow" />
                                         <PagerSettings FirstPageText="đơn đăng ký" PageButtonCount="2" />
                                         <Columns>                                            
                                             <asp:BoundField HeaderStyle-Width="25%" DataField="MAVT" HeaderText="Mã vật tư" />
@@ -110,6 +114,11 @@
                                     <asp:Button ID="btnReject" CssClass="reject" runat="server" UseSubmitBehavior="false" 
                                         OnClientClick="return CheckFormReject();" onclick="btnReject_Click" />    
                                 </div>
+                                <div class="left">                                   
+                                    <asp:Button ID="btThietKeLaiChuaChietTinh" CssClass="myButton" runat="server" UseSubmitBehavior="false" 
+                                        Text="Thiết kế lại chưa Chiết tính"
+                                        OnClientClick="return CheckFormbtThietKeLaiChuaChietTinh();" OnClick="btThietKeLaiChuaChietTinh_Click" />                                       
+                                </div> 
                             </td>                                                    
                         </tr>
                         <tr>
@@ -125,7 +134,7 @@
             </div>    
             <br />    
             <div class="crmcontainer">
-                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand"                    
+                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand"  OnRowDataBound="gvList_RowDataBound"                  
                     OnPageIndexChanging="gvList_PageIndexChanging" PageSize="20">                    
                     <PagerSettings FirstPageText="thiết kế" PageButtonCount="2" />
                     <Columns>
@@ -155,6 +164,18 @@
                             <ItemTemplate>
                                 <%# (Eval("NGAYLTK") != null) ?
                                             String.Format("{0:dd/MM/yyyy}", Eval("NGAYLTK")) : "" %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Trạng thái đơn"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgTK" runat="server" Width="90px" OnClientClick="return false;"
+                                     CausesValidation="false" UseSubmitBehavior="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TT Ch.Tính"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgCT" runat="server" Width="90px" OnClientClick="return false;"
+                                     CausesValidation="false" UseSubmitBehavior="false" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

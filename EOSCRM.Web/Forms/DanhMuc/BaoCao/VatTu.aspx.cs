@@ -85,6 +85,7 @@ namespace EOSCRM.Web.Forms.DanhMuc.BaoCao
             #endregion FreeMemory
 
             rp = new ReportDocument();
+            
             var path = Server.MapPath("../../../Reports/DanhMucHeThong/DSVatTu.rpt");
             rp.Load(path);
 

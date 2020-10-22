@@ -7,7 +7,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <bwaco:FilterPanel ID="filterPanel" runat="server" />
     <br />
@@ -28,7 +27,7 @@
                         <%# Eval("DONDANGKY.TENKH")%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField HeaderText="Lý do thiết kế" HeaderStyle-Width="25%" DataField="TENTK" />
+                <%--<asp:BoundField HeaderText="Lý do thiết kế" HeaderStyle-Width="25%" DataField="TENTK" />--%>
                 <asp:TemplateField HeaderText="Điện thoại" HeaderStyle-Width="80px">
                     <ItemTemplate>
                         <%# Eval("DONDANGKY.DIENTHOAI")%>
@@ -43,6 +42,11 @@
                     <ItemTemplate>
                         <%# (Eval("NGAYLTK") != null) ?
                                     String.Format("{0:dd/MM/yyyy}", Eval("NGAYLTK")) : "" %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Tên NV TK" HeaderStyle-Width="100px">
+                    <ItemTemplate>
+                        <%# (Eval("MANVLTK") != null) ? Eval("NHANVIEN1.HOTEN").ToString() : "" %>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="120px">

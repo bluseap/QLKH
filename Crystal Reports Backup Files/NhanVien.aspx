@@ -8,6 +8,7 @@
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">   
     <script type="text/javascript">
+
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
@@ -46,8 +47,7 @@
                 img.style.display = "inline";
             };
             reader.readAsDataURL(f.files[0]);
-
-        }
+        }       
 		
     </script>
 </asp:Content>
@@ -60,14 +60,20 @@
                         <tr>
                             <td class="crmcell right"></td>
                             <td class="crmcell">                                 
+                                    <asp:FileUpload ID="UpHINHCHUP" runat="server" type="file" onchange="file_change(this)" Width="85px"  Visible="false"
+                                        accept="image/*" capture="camera"/>     
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">                                 
                                     <asp:FileUpload ID="UpHINH" runat="server" type="file" onchange="file_change(this)" Width="85px" />
                                     <input id="f" type="file" onchange="file_change(this)" style="display: none" />
                                     <input type="button" onclick="document.getElementById('f').click()" />
                                 <div class="left">                                   
-                                    <img id="img" style="display: none" />
-                                    <asp:Image ID="imgHINHNV" runat="server" />
-                                </div>
-                                    
+                                    <img id="img" style="display: none" Height="80px" Width="60px"/>
+                                    <asp:Image ID="imgHINHNV" runat="server" Height="80px" Width="60px"/>
+                                </div>                                    
                             </td>
                         </tr>
                         <tr>    

@@ -22,6 +22,10 @@
             unblockWaitingDialog();
         }
 
+        function CheckFormbtXuatExcel() {
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcel) %>', '');
+        }
+        
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -58,9 +62,18 @@
                         <div class="left">
                             <asp:DropDownList ID="cboKhuVuc" runat="server" Height="24px" Width="200px">
                             </asp:DropDownList>
+                            <asp:Label ID="lbRELOAD" runat="server" Visible="false"></asp:Label>
                         </div>
                     </td>
-                </tr>                
+                </tr>
+                <tr>
+                    <td class="crmcell right">Đợt GCS</td>
+                    <td class="crmcell">
+                        <div class="left width-200">
+                            <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                        </div>                                
+                    </td>                                  
+                </tr>               
                 <tr>
                     <td class="crmcell right">Người lập</td>
                     <td class="crmcell">
@@ -70,6 +83,20 @@
                         <div class="left ">
                             <asp:Button ID="btnBaoCao" runat="server" CssClass="report" OnClick="btnBaoCao_Click"
                                 OnClientClick="return CheckFormReport();" />
+                        </div>                         
+                    </td>
+                </tr>
+                <tr>
+                    <td class="crmcell right"></td>
+                    <td class="crmcell"> 
+                        <div class="left ">
+                            <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" OnClick="btXuatExcel_Click"
+                                Text="Xuất Excel"
+                                OnClientClick="return CheckFormbtXuatExcel();" />
+                        </div>                      
+                        <div class="left ">
+                            <asp:Button ID="btBCKHMUCDK" runat="server" CssClass="myButton" Text="BC Khách hàng mục đích khác"
+                                Visible="false" OnClientClick="return CheckFormReport();" OnClick="btBCKHMUCDK_Click" />
                         </div>
                     </td>
                 </tr>

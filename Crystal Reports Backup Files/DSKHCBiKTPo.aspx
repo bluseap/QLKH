@@ -28,6 +28,11 @@
             return false;
         }
 
+        function CheckFormbtXuatExcel() {    
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcel) %>', '');
+            return false;
+        }
+       
     </script>
 </asp:Content>
 
@@ -69,16 +74,16 @@
                                             <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã ĐP">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="lnkBtnID" runat="server" 
-                                                        CommandArgument='<%# Eval("MAPHUONG") %>' 
+                                                        CommandArgument='<%# Eval("MAPHUONGPO") %>' 
                                                         CommandName="SelectMAPHUONG" 
-                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MAPHUONG").ToString()) %>'></asp:LinkButton>
+                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MAPHUONGPO").ToString()) %>'></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>                                           
                                             <asp:BoundField DataField="TENPHUONG" HeaderStyle-Width="50%" 
                                                 HeaderText="Tên đường phố" />
                                             <asp:TemplateField HeaderStyle-Width="25%" HeaderText="Khu vực">
                                                 <ItemTemplate>
-                                                    <%# Eval("KHUVUC.TENKV") %>
+                                                    <%# Eval("KHUVUCPO.TENKV") %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -97,13 +102,52 @@
             <div class="crmcontainer">
                 <table class="crmtable">
                     <tbody>
+                        <tr>    
+                            <td class="crmcell right">
+                                Kỳ khai thác
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTHANG" runat="server" TabIndex="1">
+                                        <asp:ListItem Text="01" Value="01" />
+                                        <asp:ListItem Text="02" Value="02" />
+                                        <asp:ListItem Text="03" Value="03" />
+                                        <asp:ListItem Text="04" Value="04" />
+                                        <asp:ListItem Text="05" Value="05" />
+                                        <asp:ListItem Text="06" Value="06" />
+                                        <asp:ListItem Text="07" Value="07" />
+                                        <asp:ListItem Text="08" Value="08" />
+                                        <asp:ListItem Text="09" Value="09" />
+                                        <asp:ListItem Text="10" Value="10" />
+                                        <asp:ListItem Text="11" Value="11" />
+                                        <asp:ListItem Text="12" Value="12" />
+                                    </asp:DropDownList>                                    
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtNAM" runat="server" Width="35px" MaxLength="4" TabIndex="2" />
+                                    <asp:Label ID="lbReLoad" runat="server" Visible="false"></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>                           
+                            <td class="crmcell right">Khu vực</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKHUVUC1" runat="server" >
+                                    </asp:DropDownList>
+                                </div>                                                             
+                            </td>
+                        </tr>
                         <tr>
                             <td class="crmcell right">
-                                Mã phường
+                                Nhà máy, tổ
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlMAPHUONG" runat="server" />
+                                    <asp:DropDownList ID="ddlNHAMAYTO" runat="server" />                                    
+                                </div>
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlMAPHUONG" runat="server" Visible="False"  />
                                     <asp:TextBox ID="txtMAPHUONG" runat="server" Width="50px" MaxLength="20" TabIndex="3" Font-Names="Times New Roman" Visible="false" />
                                 </div>
                                 <div class="left">
@@ -112,25 +156,78 @@
                                         OnClientClick="openDialogAndBlock('Chọn từ danh sách phường', 500, 'divPhuong')" 
                                         TabIndex="44" Visible="false"/>
                                 </div>
+                                <td class="crmcell right"></td>
+                                <td class="crmcell"> 
+                                    <div class="left">
+                                        <asp:Button ID="btDSTANGGIAMTO" runat="server" CssClass="myButton" Text="DS Tăng giảm (TỔ)"
+                                            TabIndex="15" UseSubmitBehavior="false" OnClick="btDSTANGGIAMTO_Click1"/>   
+                                    </div> 
+                                </td>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Th.Phố, Huyện
                             </td>
-                            
+                            <td class="crmcell">
+                                 <div class="left">
+                                    <asp:DropDownList ID="ddlQuanHuyen" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlQuanHuyen_SelectedIndexChanged" ></asp:DropDownList>                                 
+                                </div>
+                                <td class="crmcell right">
+                                    <div class="left">
+                                        <asp:Label ID="lbPhuongXa" runat="server" Text="Phường, Xã"></asp:Label>
+                                        <asp:DropDownList ID="ddlPHUONGXA" runat="server" />                 
+                                    </div>
+                                </td>                                
+                                <td class="crmcell"> 
+                                    <div class="left">
+                                        <asp:Button ID="btDSTANGGIAM" runat="server" CssClass="myButton" OnClick="btDSTANGGIAM_Click" Text="DS Tăng giảm SH, MĐK (XÃ)"
+                                            TabIndex="15" UseSubmitBehavior="false"/>   
+                                    </div> 
+                                    <div class="left">
+                                        <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" Text="Excel" TabIndex="15" UseSubmitBehavior="false"
+                                            OnClientClick="return CheckFormbtXuatExcel();"  OnClick="btXuatExcel_Click"/>   
+                                    </div> 
+                                </td>                                 
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
                         </tr>
                         <tr>
                             <td class="crmcell right">
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:Button ID="btnDSKHCBiKT" runat="server" CssClass="report"
-                                        OnClick="btnDSKHCBiKT_Click"
-                                        TabIndex="15" UseSubmitBehavior="false"/>
-                                    
-                                </div>                                  
+                                    <asp:Button ID="btnDSKHCBiKT" runat="server" CssClass="myButton" OnClick="btnDSKHCBiKT_Click"
+                                        TabIndex="15" UseSubmitBehavior="false" Text="DS Sinh hoạt"/>                                    
+                                </div>                                
+                                <td class="crmcell right">
+                                    <div class="left">
+                                        <asp:Button ID="btnDSKHCBiKTMDK" runat="server" CssClass="myButton" OnClick="btnDSKHCBiKTMDK_Click"
+                                            TabIndex="15" UseSubmitBehavior="false" Text="DS MĐ.Khác"/>                                    
+                                    </div>
+                                </td>
+                                <td class="crmcell"> 
+                                    <div class="left">
+                                        <asp:Button ID="btDSTGMDK" runat="server" CssClass="myButton" Text="DS TG MĐ.Khác"
+                                            TabIndex="15" UseSubmitBehavior="false" OnClick="btDSTGMDK_Click"/>   
+                                    </div> 
+                                </td>                                                              
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btXuatExcel" />
+        </Triggers>
     </asp:UpdatePanel>
     <br />
     <asp:UpdatePanel ID="upnlCrystalReport" UpdateMode="Conditional" runat="server">

@@ -25,42 +25,48 @@
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
 
+        function CheckFormbtPrint() {   
+            //window.frames["print_frame"].document.body.innerHTML = document.getElementById("printableTable").innerHTML;
+            //window.frames["print_frame"].window.focus();
+            //window.frames["print_frame"].window.print();
+
+            window.frames["print_frame2"].document.body.innerHTML = document.getElementById("printableTable2").innerHTML;
+            window.frames["print_frame2"].window.focus();
+            window.frames["print_frame2"].window.print();
+        }
+        
         function CheckFormDelete() {
             if (CheckRecordSelected('delete')) {
                 openWaitingDialog();
                 unblockWaitingDialog();
-
                 __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnDelete) %>', '');
             }
-
             return false;
         }        
 
         function CheckFormFilter() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
-
             return false;
         }
 
         function CheckFormFilterNV() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV) %>', '');
-
             return false;
         }
 
-       
+        function CheckFormbtImportExcel() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btImportExcel) %>', '');
+            return false;
+        }       
+
         CheckFormFilterNV
     </script>
    <style type="text/css">
@@ -170,6 +176,11 @@
                                         UseSubmitBehavior="false" OnClientClick="return CheckFormSave();"
                                         runat="server" CssClass="save" Text="" TabIndex="12" />                                   
                                 </div> 
+                                <div class="left">                                    
+                                    <asp:Button ID="btImportExcel" 
+                                        UseSubmitBehavior="false" OnClientClick="return CheckFormbtImportExcel();"
+                                        runat="server" CssClass="myButton" Text="Import Excel" TabIndex="12" OnClick="btImportExcel_Click" />                                   
+                                </div> 
                             </td>
                         </tr>
                         <tr>    
@@ -187,17 +198,12 @@
                                 </div>   
                                                            
                             </td>
-                        </tr>   
-                        
-                        <tr>
-                            <td class="header">Chọn nơi cần gửi file</td> 
-		                </tr>
-                                             
+                        </tr>                                      
                         <tr>    
                             <td class="crmcell right">Khu vực</td>
                             <td class="crmcell"> 
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" runat="server" Width="262px" TabIndex="3" />
+                                    <asp:DropDownList ID="ddlKHUVUC" runat="server" TabIndex="3" />
                                 </div>
                             </td>
                         </tr>
@@ -205,62 +211,79 @@
                             <td class="crmcell right">Phòng ban</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlPHONGBAN" Width="262px" runat="server" TabIndex="4" />
+                                    <asp:DropDownList ID="ddlPHONGBAN" runat="server" TabIndex="4" />
                                 </div>
                             </td>
                         </tr>
+                         <tr>
+                            <td class="header btop" colspan="6">
+                                <div class="left">
+                                    Tìm nhân viên cần gửi file
+                                </div>                                                              
+                            </td>
+                        </tr>  
                         <tr>
-                            <td class="crmcell right">Nhân viên cần gửi file</td>
+                            <td class="crmcell right">Mã nhân viên</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtMANV" runat="server" Width="90px" Readonly="true"
+                                    <asp:TextBox ID="txtMANV" runat="server" Readonly="true"
                                         onkeypress="return CheckFormMANVKeyPress(event);"
                                         MaxLength="200" TabIndex="4" />
                                     <asp:LinkButton ID="linkBtnMANV" CausesValidation="false" style="display:none"  
                                             OnClick="linkBtnMANV_Click" runat="server">Change MANV</asp:LinkButton>
-                                </div>
-                                <div class="left">
+                               
+                                
                                     <asp:Button ID="btnBrowseNhanVien" runat="server" CssClass="pickup" 
                                         OnClick="btnBrowseNhanVien_Click" OnClientClick="openDialogAndBlock('Chọn từ danh sách nhân viên', 800, 'divNhanVien')"
                                         UseSubmitBehavior="false" CausesValidation="false" />
                                 </div>
-                                <div class="left">
-                                    <strong>Tên nhân viên</strong>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtTENNV" runat="server" Width="250px" MaxLength="200" TabIndex="4" ReadOnly="true" />
-                                </div>
-                                <div class="left filtered"></div>
+                                <td class="crmcell">
+                                    <td class="crmcell right">
+                                        <div class="left">
+                                            Tên nhân viên
+                                        </div>
+                                    </td>
+                                    <td class="crmcell">
+                                        <div class="left">
+                                            <asp:TextBox ID="txtTENNV" runat="server" MaxLength="200" TabIndex="4" ReadOnly="true" />
+                                        </div>  
+                                    </td>               
+                                </td>               
                             </td>
                         </tr>
                         <tr>
-                <td class="crmcell right"></td>   
-                <td>
-                    <div ><i class="fa fa-spinner fa-2x fa-pulse"></i>
-
+                            <td class="crmcell right"></td>   
+                            <td>
+                                <div ><i class="fa fa-spinner fa-2x fa-pulse"></i>
                         
-                                        <asp:LinkButton ID="linkTKMAU"  runat="server" class="myButton"
-                                             OnClick="linkSETNFILE_Click"  >
-                                            Báo cáo
-                                        </asp:LinkButton>
-                    </div>                    
-                </td>
-            </tr>
+                                                    <asp:LinkButton ID="linkTKMAU"  runat="server" class="myButton"
+                                                         OnClick="linkSETNFILE_Click"  >
+                                                        Báo cáo
+                                                    </asp:LinkButton>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btPrint" runat="server" Text="In bảng" class="myButton" OnClick="btPrint_Click"
+                                        OnClientClick="return CheckFormbtPrint();" UseSubmitBehavior="false" 
+                                        />
+                                </div>                   
+                            </td>
+                        </tr>
                    </tbody>
                 </table>
                 </div>
            </ContentTemplate>
         <Triggers>
-            <asp:PostBackTrigger ControlID="btnSave" />            
+            <asp:PostBackTrigger ControlID="btnSave" /> 
+            <asp:PostBackTrigger ControlID="btPrint" />                   
         </Triggers> 
         </asp:UpdatePanel>      
             
-    <br />   
-    <eoscrm:Grid ID="gvDetails" runat="server" UseCustomPager="true"  AutoGenerateColumns="False" DataKeyNames="TENPATH" EnableModelValidation="True"    
-        AllowPaging="false"  CssClass="crmgrid" PageSize=100>
-            <RowStyle CssClass="row" />
-            <AlternatingRowStyle CssClass="altrow" />
-            <HeaderStyle CssClass="header" />
+    <br />
+    <div id="printableTable"> 
+        <eoscrm:Grid ID="gvDetails" runat="server" UseCustomPager="true"  AutoGenerateColumns="False" DataKeyNames="TENPATH" EnableModelValidation="True"    
+            AllowPaging="false"  CssClass="crmgrid" PageSize="100">
+            
+            <HeaderStyle CssClass="header" />            
             <Columns>
                 <asp:TemplateField HeaderStyle-CssClass="checkbox">
                             <HeaderTemplate>
@@ -274,11 +297,11 @@
                     <HeaderStyle CssClass="checkbox"></HeaderStyle>
                  </asp:TemplateField>
                 <asp:BoundField DataField="TENFILE" HeaderText="Tên file" >
-                <ItemStyle Font-Bold="True" />
+                    <ItemStyle Font-Bold="True" />
                 </asp:BoundField>
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
-                    <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="lnkDownload_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="lnkDownload_Click"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Ngày up file" HeaderStyle-Width="100px">
@@ -289,6 +312,119 @@
                             </ItemTemplate>
                     <HeaderStyle Width="100px"></HeaderStyle>
                 </asp:TemplateField>               
-            </Columns>
-    </eoscrm:Grid>  
+            </Columns>            
+        </eoscrm:Grid> 
+        <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe> 
+    </div>  
+
+    <div id="printableTable2" >
+          <table class="crmtable">
+                    <tbody>
+                        <tr>    
+                            <td class="crmcell right">Chọn file cần up</td>
+                            <td class="crmcell"> 
+
+                                <div class="left">
+                                    <asp:FileUpload ID="fileUpload2" type="file" runat="server" /> <br />
+                                </div>
+                                <div class="left">                                    
+                                    <asp:Button ID="Button1" 
+                                        UseSubmitBehavior="false" 
+                                        runat="server" CssClass="save" Text="" TabIndex="12" />                                   
+                                </div> 
+                                <div class="left">                                    
+                                    <asp:Button ID="Button2" 
+                                        UseSubmitBehavior="false" 
+                                        runat="server" CssClass="myButton" Text="Import Excel" TabIndex="12"  />                                   
+                                </div> 
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">                                
+                                
+                                <div class="left">
+                                    <asp:Button ID="Button3" 
+                                        UseSubmitBehavior="false"
+                                        runat="server" CssClass="filter" Text="" TabIndex="12" Visible="False" />
+                                </div>   
+                                <div class="left">
+                                    <asp:Button ID="Button4" runat="server" CssClass="delete" UseSubmitBehavior="false" 
+                                        TabIndex="13"  Visible="False" />
+                                </div>   
+                                                           
+                            </td>
+                        </tr>                                      
+                        <tr>    
+                            <td class="crmcell right">Khu vực</td>
+                            <td class="crmcell"> 
+                                <div class="left">
+                                    <asp:DropDownList ID="DropDownList1" runat="server" TabIndex="3" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Phòng ban</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="DropDownList2" runat="server" TabIndex="4" />
+                                </div>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td class="header btop" colspan="6">
+                                <div class="left">
+                                    Tìm nhân viên cần gửi file
+                                </div>                                                              
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td class="crmcell right">Mã nhân viên</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="TextBox1" runat="server" Readonly="true"
+                                        onkeypress="return CheckFormMANVKeyPress(event);"
+                                        MaxLength="200" TabIndex="4" />
+                                    <asp:LinkButton ID="LinkButton1" CausesValidation="false" style="display:none"  
+                                          runat="server">Change MANV</asp:LinkButton>                               
+                                
+                                    <asp:Button ID="Button5" runat="server" CssClass="pickup"                                        
+                                        UseSubmitBehavior="false" CausesValidation="false" />
+                                </div>
+                                <td class="crmcell">
+                                    <td class="crmcell right">
+                                        <div class="left">
+                                            Tên nhân viên
+                                        </div>
+                                    </td>
+                                    <td class="crmcell">
+                                        <div class="left">
+                                            <asp:TextBox ID="TextBox2" runat="server" MaxLength="200" TabIndex="4" ReadOnly="true" />
+                                        </div>  
+                                    </td>               
+                                </td>               
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>   
+                            <td>
+                                <div ><i class="fa fa-spinner fa-2x fa-pulse"></i>
+                        
+                                                    <asp:LinkButton ID="LinkButton2"  runat="server" class="myButton"
+                                                          >
+                                                        Báo cáo
+                                                    </asp:LinkButton>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="Button6" runat="server" Text="In bảng" class="myButton" 
+                                        UseSubmitBehavior="false" 
+                                        />
+                                </div>                   
+                            </td>
+                        </tr>
+                   </tbody>
+                </table>
+
+        <iframe name="print_frame2" width="0" height="0" frameborder="0" src="about:blank"></iframe> 
+    </div>
 </asp:Content>

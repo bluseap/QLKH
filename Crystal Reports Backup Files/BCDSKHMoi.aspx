@@ -1,9 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="True"
     CodeBehind="BCDSKHMoi.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH.BCDSKHMoi" %>
+
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="System.Data" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="CrystalDecisions.Web,  Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
     
@@ -41,13 +42,21 @@
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkEXCEL) %>', '');
         }
 
-        function CheckFormWord() {
-            //openWaitingDialog();
+        function CheckFormlkExcelLX() {            
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkExcelLX) %>', '');
+        }
+        
+        function CheckFormWord() {            
             unblockWaitingDialog();
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkWORD) %>', '');
         }
         
-
+        function CheckFormExcelTS() {            
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkXuatExcelTS) %>', '');
+        }
+       
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -137,10 +146,30 @@
                                     <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
                                     <asp:Label ID="lbRELOAD" runat="server" Visible="false"></asp:Label>
                                 </div>
-                                </td>
+                                <div class="left">
+                                    <asp:Label ID="lbDenThang" runat="server" Text="đến tháng" Font-Bold="True"></asp:Label>
+                                </div>
+                                 <div class="left width-150">
+                                    <asp:DropDownList ID="ddlDenThang" runat="server" TabIndex="1">
+                                        <asp:ListItem Text="01" Value="01" />
+                                        <asp:ListItem Text="02" Value="02" />
+                                        <asp:ListItem Text="03" Value="03" />
+                                        <asp:ListItem Text="04" Value="04" />
+                                        <asp:ListItem Text="05" Value="05" />
+                                        <asp:ListItem Text="06" Value="06" />
+                                        <asp:ListItem Text="07" Value="07" />
+                                        <asp:ListItem Text="08" Value="08" />
+                                        <asp:ListItem Text="09" Value="09" />
+                                        <asp:ListItem Text="10" Value="10" />
+                                        <asp:ListItem Text="11" Value="11" />
+                                        <asp:ListItem Text="12" Value="12" />
+                                    </asp:DropDownList>
+                                    <asp:TextBox ID="txtDenNam" runat="server" Width="30px" MaxLength="4" TabIndex="2" />  
+                                    <asp:Label ID="lbGhiChuDenThang" runat="server" Text="(Lấy tháng, năm nhập thi công đồng hồ)" Font-Bold="True"></asp:Label>                                  
+                                </div>
+                             </td>
                         </tr>
-                        <tr>
-                           
+                        <tr>                           
                             <td class="crmcell right">Khu vực</td>
                             <td class="crmcell">
                                 <div class="left">
@@ -160,6 +189,29 @@
                                 </div>                                
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <div class="right">Phiên (Long Xuyên)</div>
+                                </div>
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlPHIENLX" runat="server">
+                                        <asp:ListItem Value ="%">Tất cả</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
+                                        <asp:ListItem Value="2">2</asp:ListItem>
+                                        <asp:ListItem Value="3">3</asp:ListItem>
+                                        <asp:ListItem Value="4">4</asp:ListItem>
+                                        <asp:ListItem Value="5">5</asp:ListItem>
+                                        <asp:ListItem Value="6">6</asp:ListItem>
+                                        <asp:ListItem Value="A">A</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>                                
+                            </td>                            
+                        </tr> 
                         <tr>
                             <td class="crmcell right">Mục đích sử dụng</td>
                             <td class="crmcell">
@@ -200,8 +252,20 @@
                                 </div>
                                 <div class="left">
                                     <div class="right">
+                                        <asp:LinkButton ID="lkXuatExcelTS" runat="server" UseSubmitBehavior="false" CssClass="myButton"  
+                                            OnClientClick="return CheckFormExcelTS();" OnClick="lkXuatExcelTS_Click" >Xuất Excel(TS)</asp:LinkButton>
+                                    </div>
+                                </div>
+                                <div class="left">
+                                    <div class="right">
                                         <asp:LinkButton ID="lkWORD" runat="server" OnClick="lkWORD_Click" UseSubmitBehavior="false" CssClass="myButton"  
-                                            OnClientClick="return CheckFormWord();">Xuất Word</asp:LinkButton>
+                                            OnClientClick="return CheckFormWord();" Visible="False">Xuất Word</asp:LinkButton>
+                                    </div>
+                                </div>
+                                <div class="left">
+                                    <div class="right">
+                                        <asp:LinkButton ID="lkExcelLX" runat="server" OnClick="lkExcelLX_Click" UseSubmitBehavior="false" CssClass="myButton"  
+                                            OnClientClick="return CheckFormlkExcelLX();">Xuất Excel (LX)</asp:LinkButton>
                                     </div>
                                 </div>
                             </td>
@@ -212,6 +276,9 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="lkEXCEL" />
+            <asp:PostBackTrigger ControlID="lkWORD"></asp:PostBackTrigger>
+            <asp:PostBackTrigger ControlID="lkExcelLX"></asp:PostBackTrigger>
+            <asp:PostBackTrigger ControlID="lkXuatExcelTS"></asp:PostBackTrigger>
         </Triggers>
         <Triggers>
             <asp:PostBackTrigger ControlID="lkWORD" />
@@ -229,5 +296,5 @@
             <asp:PostBackTrigger ControlID="rpViewer" />
         </Triggers>
     </asp:UpdatePanel>
-    
+    <br/>
 </asp:Content>

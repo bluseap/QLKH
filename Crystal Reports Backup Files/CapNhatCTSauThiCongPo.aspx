@@ -344,6 +344,7 @@
 		                                OnClick="btnBrowseDDK_Click" CausesValidation="false" UseSubmitBehavior="false"
 		                                OnClientClick="openDialogAndBlock('Chọn đơn đăng ký', 700, 'divDonDangKy')" 
                                         TabIndex="2"  />
+                                    <asp:Label ID="lbMADDTRAHSTK" runat="server" Visible="false"></asp:Label>
                                 </div>
                                 <div class="left filtered"></div>
                             </td>
@@ -459,7 +460,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtChiSo" runat="server" Width="120px" MaxLength="200" 
-                                        TabIndex="4" ReadOnly="True" />
+                                        TabIndex="4" ReadOnly="false" />
                                 </div>
                                 <div class="left filtered"></div>
                                 <div class="left">
@@ -600,11 +601,23 @@
                                 <asp:Button ID="imgTT" runat="server" Width="90px" OnClientClick="return false;"
                                      CausesValidation="false" UseSubmitBehavior="false" />
                             </ItemTemplate>
-                        </asp:TemplateField>                      
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText=" " HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkTRAHSTK" runat="server" CommandArgument='<%# Eval("MADDK") %>'
+                                    CommandName="TraHSVeTK" Text='Trả HS về TK'></asp:LinkButton>                                                    
+                            </ItemTemplate>
+                        </asp:TemplateField>                    
                         <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="75px">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lnkBtnIDReport" runat="server" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="ReportItem" Text='Báo cáo'></asp:LinkButton>                                                    
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="" HeaderStyle-Width="40px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lkSUAMACHIKD" runat="server" CommandArgument='<%# Eval("MADDK") %>'
+                                    CommandName="SuaMaChiKD" Text='Sửa Mã chì KĐ'></asp:LinkButton>                                                    
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

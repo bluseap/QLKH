@@ -772,11 +772,22 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                     <asp:ListItem Value="Q" Text="Q_Điều chỉnh - Qua số" />
                                     <asp:ListItem Value="1" Text="Ghi 2 tháng" />
                                     <asp:ListItem Value="GDH_KH" Text="Khoán" />
-                                    <asp:ListItem Value="R" Text="R_Đồng hồ mờ" />
-                                    <asp:ListItem Value="X" Text="X_Bể ống sau ĐH" />
-                                    <asp:ListItem Value="NV" Text="V_Ngưng do vi phạm" />                                    
                                     <asp:ListItem Value="K" Text="K_Khác" />
+                                    <asp:ListItem Value="NV" Text="V_Ngưng do vi phạm" />
+                                    <asp:ListItem Value="A" Text="A_KH cung cấp" /> 
+                                    <asp:ListItem Value="M" Text="M_Bỏ địa phương" />
+                                    <asp:ListItem Value="U" Text="U_Tạm tính" />
+                                    <asp:ListItem Value="R" Text="R_Đồng hồ mờ" />
+                                    <asp:ListItem Value="X" Text="X_Bể ống sau ĐH" />        
                                     <asp:ListItem Value="TNHAM" Text="Thay nhầm" />
+                                    <asp:ListItem Value="S" Text="S_Điều chỉnh chỉ số cũ" />
+                                    <asp:ListItem Value="V" Text="V_Nghi ngờ" />                                
+                                    <asp:ListItem Value="Z" Text="Z_Đồng hồ nghiêng" />
+                                    <asp:ListItem Value="O" Text="O_Không chì" />
+                                    <asp:ListItem Value="P" Text="P_Đứt chì" />
+
+                                    <asp:ListItem Value="E" Text="E_Đề nghị xóa bộ" />
+                                    <asp:ListItem Value="V" Text="V_Nhà trọ tháng" />
                                 </asp:DropDownList>
                             </ItemTemplate>
                             <HeaderStyle Width="115px" />

@@ -9,8 +9,7 @@
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server"> 
-    <script type="text/javascript">
-        
+    <script type="text/javascript">        
        $(document).ready(function() {
             $("#divThietKeVatTu").dialog({
                 autoOpen: false,
@@ -23,22 +22,32 @@
                     $(this).parent().appendTo("#divTKVTDlgContainer");
                 }
             });
-        });
-    
+        });    
     
         function CheckFormApprove() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnApprove) %>', '');
         }
 
         function CheckFormReject() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReject) %>', '');
         }
+
+        function CheckFormbtChoTK() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btChoTK) %>', '');
+        }
+        
+        function CheckFormbtThietKeLaiChuaChietTinh() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btThietKeLaiChuaChietTinh) %>', '');
+        }
+        
     </script>
 </asp:Content>
 
@@ -57,6 +66,7 @@
                                             <td class="crmcell">
                                                 <div class="left">
                                                     <asp:Label ID="lbTENKH" runat="server" Text="tenkh"></asp:Label>
+                                                    <asp:Label ID="lbMADDK" runat="server" Visible="false"></asp:Label>
                                                 </div>                                               
                                             </td>
                                         </tr>                                        
@@ -67,13 +77,17 @@
 						<tr>
 							<td class="ptop-10">
 							    <div class="crmcontainer">
-							        <eoscrm:Grid ID="gvTKVT" runat="server" AutoGenerateColumns="false" CssClass="crmgrid"							            
+							        <eoscrm:Grid ID="gvTKVT" runat="server"  UseCustomPager="true"			            
 							            OnPageIndexChanging="gvTKVT_PageIndexChanging">
 							            <RowStyle CssClass="row" />
                                         <AlternatingRowStyle CssClass="altrow" />
                                         <PagerSettings FirstPageText="đơn đăng ký" PageButtonCount="2" />
-                                        <Columns>                                            
-                                            <asp:BoundField HeaderStyle-Width="25%" DataField="MAVT" HeaderText="Mã vật tư" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Ký hiệu" HeaderStyle-Width="25%">
+                                                <ItemTemplate>
+                                                    <%# Eval("VATTU.KYHIEUVT") != null ? Eval("VATTU.KYHIEUVT").ToString() : ""%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>            
                                             <asp:BoundField HeaderStyle-Width="25%" DataField="NOIDUNG" HeaderText="Tên vật tư" />
                                             <asp:BoundField HeaderStyle-Width="35%" DataField="SOLUONG" HeaderText="Số lương" />
                                         </Columns>
@@ -85,8 +99,7 @@
 				</ContentTemplate>
 	        </asp:UpdatePanel>
         </div>
-    </div>
-    
+    </div>    
     <bwaco:FilterPanel ID="filterPanel" runat="server" />
     <br />    
     <asp:UpdatePanel ID="upnlInfor" UpdateMode="Conditional" runat="server">
@@ -114,6 +127,11 @@
                                     <asp:Button ID="btnReject" CssClass="reject" runat="server" UseSubmitBehavior="false" 
                                         OnClientClick="return CheckFormReject();" onclick="btnReject_Click" />    
                                 </div>
+                                <div class="left">                                   
+                                    <asp:Button ID="btThietKeLaiChuaChietTinh" CssClass="myButton" runat="server" UseSubmitBehavior="false" 
+                                        Text="Thiết kế lại chưa Chiết tính"
+                                        OnClientClick="return CheckFormbtThietKeLaiChuaChietTinh();" OnClick="btThietKeLaiChuaChietTinh_Click" />                                       
+                                </div> 
                             </td>                                                    
                         </tr>
                         <tr>
@@ -124,12 +142,21 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right vtop"></td>
+                            <td class="crmcell">
+                                <div class="left">                                   
+                                    <asp:Button ID="btChoTK" CssClass="myButton" runat="server" UseSubmitBehavior="false" Text="Chờ TK"
+                                        OnClientClick="return CheckFormbtChoTK();" OnClick="btChoTK_Click" />                                       
+                                </div>                               
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>    
             <br />    
             <div class="crmcontainer">
-                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand"                    
+                <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand" OnRowDataBound="gvList_RowDataBound"                   
                     OnPageIndexChanging="gvList_PageIndexChanging" PageSize="20">                    
                     <PagerSettings FirstPageText="thiết kế" PageButtonCount="2" />
                     <Columns>
@@ -152,7 +179,7 @@
                             <ItemStyle Font-Bold="true" />
                         </asp:TemplateField>                        
                         <asp:BoundField HeaderText="Tên khách hàng" HeaderStyle-Width="200px" DataField="TENKH" />
-                        <asp:BoundField HeaderText="Tên công trình" HeaderStyle-Width="25%" DataField="TENTK" />
+                        <asp:BoundField HeaderText="Tên công trình" HeaderStyle-Width="20%" DataField="TENTK" />
                         <asp:BoundField HeaderText="Điện thoại" HeaderStyle-Width="60px" DataField="DIENTHOAI" />
                         <asp:BoundField HeaderText="Địa chỉ lắp đặt" HeaderStyle-Width="35%" DataField="DIACHILD" />
                         <asp:TemplateField HeaderText="Ngày thiết kế" HeaderStyle-Width="80px">
@@ -161,7 +188,18 @@
                                             String.Format("{0:dd/MM/yyyy}", Eval("NGAYLTK")) : "" %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        
+                        <asp:TemplateField HeaderText="TT T.Kế"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgTK" runat="server" Width="90px" OnClientClick="return false;"
+                                     CausesValidation="false" UseSubmitBehavior="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TT Ch.Tính"  HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:Button ID="imgCT" runat="server" Width="90px" OnClientClick="return false;"
+                                     CausesValidation="false" UseSubmitBehavior="false" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </eoscrm:Grid>
             </div>

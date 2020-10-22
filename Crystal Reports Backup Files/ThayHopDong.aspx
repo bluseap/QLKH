@@ -9,7 +9,6 @@
 <%@ Import Namespace="EOSCRM.Dao" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
-
     <script type="text/javascript">
         $(document).ready(function () {
             $("#divKhachHang").dialog({
@@ -199,7 +198,7 @@
 							                OnRowDataBound="gvDanhSach_RowDataBound" OnRowCommand="gvDanhSach_RowCommand">
                                             <PagerSettings FirstPageText="khách hàng" PageButtonCount="2" />
                                             <Columns>
-                                                <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã KH">
+                                                <asp:TemplateField HeaderStyle-Width="12%" HeaderText="Mã KH">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkBtnID" runat="server" CommandName="SelectSODB" 
                                                             CommandArgument='<%# Eval("IDKH") %>'
@@ -231,11 +230,37 @@
             <div class="crmcontainer">
                 <table class="crmtable">
                     <tbody>
+                        <tr>    
+                            <td class="crmcell right">
+                                Kỳ 
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTHANG" runat="server" TabIndex="1">
+                                        <asp:ListItem Text="01" Value="01" />
+                                        <asp:ListItem Text="02" Value="02" />
+                                        <asp:ListItem Text="03" Value="03" />
+                                        <asp:ListItem Text="04" Value="04" />
+                                        <asp:ListItem Text="05" Value="05" />
+                                        <asp:ListItem Text="06" Value="06" />
+                                        <asp:ListItem Text="07" Value="07" />
+                                        <asp:ListItem Text="08" Value="08" />
+                                        <asp:ListItem Text="09" Value="09" />
+                                        <asp:ListItem Text="10" Value="10" />
+                                        <asp:ListItem Text="11" Value="11" />
+                                        <asp:ListItem Text="12" Value="12" />
+                                    </asp:DropDownList>                                    
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtNAM" runat="server" Width="40px" MaxLength="4" TabIndex="2" />
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="crmcell right">Danh bộ</td>
                             <td class="crmcell">
                                 <div class="left width-250">
-                                    <asp:TextBox ID="txtMADDK" runat="server" Width="60px" MaxLength="11" 
+                                    <asp:TextBox ID="txtMADDK" runat="server" Width="80px" MaxLength="11" 
                                         TabIndex="1" ReadOnly="True" Visible="False" />          
                                     <asp:Label ID="lbMADDK" runat="server" Visible="False" ></asp:Label>                          
                                     <asp:Label ID="lbDANHSO" runat="server" ForeColor="#3333CC" ></asp:Label>   
@@ -286,21 +311,50 @@
                             </td>          
                         </tr> 
                         <tr>
+                            <td class="crmcell right">Danh số</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbMADPLX" runat="server" Text="Mã DP" ForeColor="#3333CC"></asp:Label>
+                                </div>
+                                 <div class="left">
+                                    <div class="right">Tên đường phố</div>
+                                </div>
+                                <div class="left">
+                                    <asp:Label ID="lbTENDPLX" runat="server" Text="Tên DP" ForeColor="#3333CC"></asp:Label>
+                                </div>
+                                <div class="left">
+                                    <div class="right">Phiên (LX)</div>
+                                </div>
+                                <div class="left">
+                                    <asp:Label ID="lbPHIENLX" runat="server" Text="Phiên LX" ForeColor="#3333CC"></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right">Tên khách hàng mới</td>
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKHMOI" runat="server" Width="250px" MaxLength="200" 
                                         TabIndex="2" Font-Names="Times New Roman" />
-                                </div>
-                                <div class="left">
-                                    <div class="right">Tên uỷ quyền</div>
-                                </div>
+                                </div>                                
+                            </td>            
+                        </tr>  
+                        <tr>
+                            <td class="crmcell right">Tên uỷ quyền</td>
+                            <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtUYQUYEN" runat="server" Width="250px" MaxLength="200" 
                                         TabIndex="3" Font-Names="Times New Roman" />
                                 </div>
+                                <div class="left">
+                                    <div class="right">Tên chức vụ</div>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtTENCHUCVU" runat="server" Width="250px" MaxLength="100" 
+                                        TabIndex="3" Font-Names="Times New Roman" />
+                                </div>
                             </td>            
-                        </tr>  
+                        </tr> 
                         <tr>
                             <td class="crmcell right">Địa chỉ lắp đặt(nhập tổ,xã)</td>
                             <td class="crmcell">

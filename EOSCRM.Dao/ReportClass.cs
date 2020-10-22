@@ -163,6 +163,20 @@ public class ReportClass
         return ds;
     }
 
+    public DataSet DSTongHopKHDK_ByKVToNgay(string khuVuc, string mapb, DateTime tuNgay, DateTime denNgay)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@MaKV", SqlDbType.VarChar  , 10, khuVuc ),
+                    db.MakeInParam("@MaPB", SqlDbType.VarChar  , 10, mapb ),
+                    db.MakeInParam("@TuNgay", SqlDbType.DateTime  ,30, tuNgay),
+                    db.MakeInParam("@DenNgay", SqlDbType.DateTime  ,30, denNgay)                    
+                };
+        DataSet ds = db.RunExecProc("DSTongHopKHDK_ByKVToNgay", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet HisTieuThuBien(string idkh, string idkh2, int thang, int nam, string makv, DateTime ngaynhap, DateTime tungay,
             DateTime denngay, string ghichu, string ghichu2, string cobien)
     {

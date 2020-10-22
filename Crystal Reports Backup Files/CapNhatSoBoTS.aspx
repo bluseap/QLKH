@@ -101,8 +101,7 @@
                     if (msg.value == "<%= DELIMITER.Failed %>") {
                         alertWithFocusSelect(stt + " " + idArr[0], txtMADPGId);
                         return;
-                    }
-                    
+                    }                   
 
 
                     var val = idArr[0] + "<%= DELIMITER.Delimiter %>" +
@@ -329,7 +328,6 @@
             return controlId.substring(controlId.lastIndexOf('_') + 1, controlId.length);
         }
 
-
         function getNextId(controlId) {
             var ctrlName = controlId.substring(controlId.lastIndexOf('_') + 1, controlId.length);
             var prefix = controlId.substring(0, controlId.lastIndexOf('_'));
@@ -355,9 +353,6 @@
 
             return shortPrefix + nextIndex + '_' + ctrlName;
         }
-
-
-
 
         function onKeyDownEventHandlerTD(txtSTTId, txtTENKHId, txtSONHAId, txtMADPGId, txtMADBGId, hfCNSBId, order, e) {
             var code = (e.keyCode ? e.keyCode : e.which);
@@ -458,7 +453,6 @@
                                 idArr[4] + "<%= DELIMITER.Delimiter %>" +
                                 idArr[5];
                     $("#" + hfCNSBId).val(val);
-
 
                     var madbId = getNextId(txtMADBGId) + "";
                     if ($("#" + madbId).exists()) {
@@ -681,10 +675,10 @@
                             <td class="crmcell right">Đường phố</td>
                             <td class="crmcell">    
                                 <div class="left">
-                                    <asp:TextBox ID="txtMADP" runat="server" onkeydown="return CheckChangeDP(event);" MaxLength="4" Width="40px" TabIndex="1" readonly="true" />
+                                    <asp:TextBox ID="txtMADP" runat="server" onkeydown="return CheckChangeDP(event);" MaxLength="4" Width="40px" TabIndex="1" readonly="false" />
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="30px" TabIndex="2" />
+                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="30px" TabIndex="2" Visible="false" />
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnBrowseDP" runat="server" CssClass="pickup" OnClick="btnBrowseDP_Click"
@@ -701,15 +695,15 @@
                             <td class="crmcell right"></td>
                             <td class="crmcell"> 
                                 <div class="left" >                                    
-                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click" Visible="false"
+                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click" Visible="true"
                                         UseSubmitBehavior="false" OnClientClick="return CheckFormFilter();" 
                                         runat="server" CssClass="filter" Text="" TabIndex="4" />
                                 </div>                                
                                 <div >     
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
-                                    <asp:LinkButton ID="lkLOCTACKDUONG"  runat="server" class="myButton" 
+                                    <asp:LinkButton ID="lkLOCTACKDUONG"  runat="server" class="myButton" Visible="false"
                                             OnClick="lkLOCTACKDUONG_Click"  >
-                                        Tìm tách đường
+                                        Xếp lại danh số
                                     </asp:LinkButton>
                                 </div> 
                                 <td class="crmcell right"></td>
@@ -717,7 +711,7 @@
                                     <div class="left">
                                         <asp:Button ID="btSAVE" OnClick="btSAVE_Click"
                                             UseSubmitBehavior="false" OnClientClick="return CheckFormSAVE();" 
-                                            runat="server" CssClass="save" Text="" TabIndex="4" />
+                                            runat="server" CssClass="myButton" Text="Bắt đầu tách đường" TabIndex="4" />
                                     </div>  
                                 </td>  
                             </td>
@@ -726,22 +720,25 @@
                             <td class="crmcell right"></td>
                             <td>
                                <div class="left">
-                                    <asp:Label ID="lbGHICHU2" runat="server" Text="Nhập STT đến 1.000. Lớn hơn 1.000 hãy tách đường." Font-Bold="True" Font-Size="Large" ForeColor="#FF3300"></asp:Label>
+                                    <asp:Label ID="lbGHICHU2" runat="server" Text="Nhập STT từ 1 đến 1999. Bước nhảy 5" Font-Bold="True" Font-Size="Large" ForeColor="#FF3300"></asp:Label>
                                 </div>
                              </td>
                         </tr>
                         <tr>    
-                            <td class="crmcell right"></td>
+                            <td class="crmcell right">Đợt GCS</td>
                             <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>
                                 <td class="crmcell right"></td>
                                 <td class="crmcell"> 
                                     <div >     
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
-                                    <asp:LinkButton ID="lkBAOCAOQUAKH"  runat="server" class="myButton" 
-                                            OnClick="lkBAOCAOQUAKH_Click"  >
-                                        Báo cáo - Chuyển qua KH
-                                    </asp:LinkButton>
-                                </div> 
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                
+                                        <asp:LinkButton ID="lkBAOCAOQUAKH"  runat="server" class="myButton" 
+                                                OnClick="lkBAOCAOQUAKH_Click"  >
+                                            Chuyển qua KH - Báo cáo
+                                        </asp:LinkButton>
+                                    </div> 
                                 </td>                                
                             </td>
                         </tr>

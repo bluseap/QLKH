@@ -106,11 +106,11 @@
             </tr>
             <tr>
                 <td class="crmcell right">
-                    Khu vực
+                   
                 </td>
                 <td class="crmcell">
                     <div class="left">
-                        <asp:DropDownList ID="ddlKHUVUC" Width="120px" AutoPostBack="false" runat="server">
+                        <asp:DropDownList ID="ddlKHUVUC" Width="120px" AutoPostBack="false" runat="server" Visible="false">
                         </asp:DropDownList>
                     </div>
                 </td>

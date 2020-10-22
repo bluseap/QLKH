@@ -2,7 +2,6 @@
     EnableEventValidation="true" CodeBehind="NhapThietKe.aspx.cs" Inherits="EOSCRM.Web.Forms.ThietKe.NhapThietKe" %>
     
 <%@ Import Namespace="EOSCRM.Web.Common"%>
-
 <%@ Register Src="../../UserControls/FilterPanel.ascx" TagName="FilterPanel" TagPrefix="bwaco" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
@@ -63,6 +62,13 @@
             return false;
         }
 
+        function CheckFormFilterNV() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV) %>', '');
+            return false;
+        }
+        
     </script>
 
 </asp:Content>
@@ -253,6 +259,14 @@
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtSODB" runat="server" Width="100px" MaxLength="8" TabIndex="3" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Loại hình thu</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlLoaiHinhThu" runat="server"></asp:DropDownList>
                                 </div>
                             </td>
                         </tr>

@@ -229,10 +229,10 @@
                             </td>          
                         </tr> 
                         <tr>
-                            <td class="crmcell right">Cỡ đồng hồ nước</td>
+                            <td class="crmcell right"></td>
                             <td class="crmcell">
                                 <div class="left width-250">
-                                    <asp:DropDownList ID="ddlKICHCODH" Width="94px" runat="server" TabIndex="14">
+                                    <asp:DropDownList ID="ddlKICHCODH" Width="94px" runat="server" TabIndex="14" Visible="false">
                                         <asp:ListItem Text="15" Value="15" />
                                         <asp:ListItem Text="20" Value="20" />
                                         <asp:ListItem Text="34" Value="34" />
@@ -419,7 +419,6 @@
                             <ItemTemplate>
                                 <%# Eval("SONHA").ToString().Trim() != "" ?  Eval("SONHA").ToString().Trim() + ", " : "" %>
                                 <%# Eval("DUONGPHOPO") != null ? Eval("DUONGPHOPO.TENDP") + ", " : Eval("DONDANGKYPO.TEN_DC_KHAC") + ", " %>
-                                <%# Eval("PHUONGPO") != null ? Eval("PHUONGPO.TENPHUONG") + ", " : ""%>
                                 <%# Eval("KHUVUCPO.TENKV")%>
                             </ItemTemplate>
                         </asp:TemplateField>            

@@ -26,12 +26,9 @@
         });
 
         function CheckFormFilterDP() {
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDP) %>', '');
-
             return false;
         }
 
@@ -41,7 +38,6 @@
             if (code == 13 || code == 9) {
                 openWaitingDialog();
                 unblockWaitingDialog();
-
                 __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
             }
         }
@@ -49,9 +45,7 @@
         function CheckFormFilter() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
-
             return false;
         }
 
@@ -147,7 +141,7 @@
                     var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBoTachDuong(idArr[0], oldSTT, stt, tenkh, sonha, madp, madb);                  
                     
                     if (msg.value == "<%= DELIMITER.Failed %>") {
-                        alertWithFocusSelect(failedMsg, txtMADBGId);
+                        alertWithFocusSelect("LỖI:" + idArr[0]+","+madp+","+madb, txtMADBGId);
                         return;
                     }                    
 
@@ -254,7 +248,7 @@
             var madb = $("#" + txtMADBGId).val();
             var failedMsg = 'Cập nhật khách hàng không thành công.';
 
-            var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBo(idkh, oldSTT, stt, tenkh, sonha, madp, madb, manv);
+            //var msg = EOSCRM.Web.Common.AjaxCRM.UpdateSoBo(idkh, oldSTT, stt, tenkh, sonha, madp, madb, manv);
 
             if (msg.value != "<%= DELIMITER.Passed %>") {
                 setControlValue(txtSTTId, oldSTT);

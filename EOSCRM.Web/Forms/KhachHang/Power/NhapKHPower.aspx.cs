@@ -579,12 +579,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
             }
 
-            int namm = int.Parse(txtNGAYHT.Text.Substring(6, 4));
-            if (namm <= 2010 || namm >= 2020)
-            {
-                ShowError("Ngày hoàn thành không dúng.", txtNGAYHT.ClientID);
-                return false;
-            }
+            //int namm = int.Parse(txtNGAYHT.Text.Substring(6, 4));
+            //if (namm <= 2010 || namm >= 2020)
+            //{
+            //    ShowError("Ngày hoàn thành không dúng.", txtNGAYHT.ClientID);
+            //    return false;
+            //}
 
             // check chỉ số đầu là số
             if (!string.IsNullOrEmpty(txtCHISODAU.Text.Trim()) ||

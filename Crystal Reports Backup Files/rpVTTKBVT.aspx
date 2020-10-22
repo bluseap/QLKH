@@ -2,10 +2,11 @@
     CodeBehind="rpVTTKBVT.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.rpVTTKBVT" %>
     
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web,  Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
      namespace="CrystalDecisions.Web" tagprefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
+
 </asp:Content>
 
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -14,7 +15,7 @@
     <table class="crmtable">
         <tbody>
             <tr>
-                <td class="crmcell right">Tên Nhân viên in</td>
+                <td class="crmcell right">Tên nhân viên in</td>
                 <td class="crmcell">
                     <div class="left">
                         <asp:TextBox ID="txtNguoiLap" runat="server" Width="200px" OnTextChanged="txtNguoiLap_TextChanged" ReadOnly="true" />
@@ -33,10 +34,13 @@
                 </td>
             </tr>
             <tr>
-                <td class="crmcell right"></td>                
+                <td class="crmcell right">Tên phòng Kỹ thuật</td>                
                 <td class="crmcell" colspan="3">
                     <div class="left">
-                        <asp:TextBox ID="txtGiamDoc" runat="server" Width="200px" Text = "" Visible="false"/>
+                        <asp:TextBox ID="txtPHONGKYTHUAT" runat="server" Width="200px" />
+                    </div>
+                    <div class="left">
+                        <asp:TextBox ID="txtGiamDoc" runat="server" Width="200px"  Visible="false"/>
                     </div>
                 </td>
             </tr>

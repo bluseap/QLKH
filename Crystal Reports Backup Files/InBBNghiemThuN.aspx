@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="InBBNghiemThuN.aspx.cs" Inherits="EOSCRM.Web.Forms.ThiCongCongTrinh.InBBNghiemThuN" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="InBBNghiemThuN.aspx.cs" Inherits="EOSCRM.Web.Forms.ThiCongCongTrinh.InBBNghiemThuN" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="EOSCRM.Util" %>
@@ -10,7 +10,7 @@
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         $("#divHopDong").dialog({
             autoOpen: false,

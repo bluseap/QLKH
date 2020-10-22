@@ -154,9 +154,9 @@
                             <td class="crmcell right">Mã đơn</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtMADDK" runat="server" Width="90px" MaxLength="10" TabIndex="1" />
+                                    <asp:TextBox ID="txtMADDK" runat="server" TabIndex="1" />
                                 </div>
-                                <div class="left filtered"></div>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -165,7 +165,7 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKH" runat="server" Width="400px" MaxLength="200" TabIndex="3" />
                                 </div>
-                                <div class="left filtered"></div>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -179,7 +179,7 @@
                                     <asp:TextBox ID="txtPHUONG" runat="server" Width="100px" MaxLength="200" TabIndex="6" />
                                     <asp:TextBox ID="txtKHUVUC" runat="server" Width="150px" MaxLength="200" TabIndex="7" />
                                 </div>
-                                <div class="left filtered"></div>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -203,7 +203,7 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtTENNV" runat="server" Width="250px" MaxLength="200" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
+                               
                             </td>
                         </tr>
                         <tr>
@@ -248,19 +248,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="crmcell right">Mã đồng hồ</td>
+                            <td class="crmcell right">Số No</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtMaDH" runat="server" Width="120px" MaxLength="200" TabIndex="4" />
+                                    <asp:TextBox ID="txtSONODH" runat="server" Width="120px" MaxLength="200" TabIndex="4" ReadOnly="True" />
+                                    <asp:TextBox ID="txtMaDH" runat="server" Width="120px" MaxLength="200" TabIndex="4" Visible="false"/>
                                 </div>
-                                <div class="left filtered"></div>
+                                
                                 <div class="left">
                                     <div class="right">Chỉ số khi lắp</div>
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtChiSo" runat="server" Width="120px" MaxLength="200" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
+                                
                                 <div class="left">
                                     <asp:CheckBox ID="chkLapQuyetToan" Checked="false" runat="server" Text="" />
                                 </div>
@@ -275,12 +276,11 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtOngChinh" runat="server" Width="120px" MaxLength="200" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
+                                
                                 <div class="left"><div class="right">Số serial</div></div>
                                 <div class="left">
                                     <asp:TextBox ID="txtSOSERIAL" runat="server" Width="120px" MaxLength="50" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                         </tr>      
                         <tr>
@@ -289,22 +289,23 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtDuongKinh" runat="server" Width="120px" MaxLength="200" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
                                 <div class="left"><div class="right">Số mét thực tế</div></div>
                                 <div class="left">
                                     <asp:TextBox ID="txtMetThucTe" runat="server" Width="50px" MaxLength="200" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                         </tr>  
                         <tr>
-                            <td class="crmcell right">Ghi chú</td>
+                            <td class="crmcell right">
+                                <asp:Label ID="lbLyDoTC" runat="server" Text="Lý do" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label></td>
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtGhiChu" runat="server" Width="600px" MaxLength="200" TabIndex="4"
                                             TextMode="MultiLine" />
                                 </div>
-                                <div class="left filtered"></div>
+                                <div class="left">
+                                    <asp:CheckBox ID="ckPhucHoiTuChoi" runat="server" Text="  Phục hồi từ chối thi công" />
+                                </div>
                             </td>
                         </tr>                              
                         <tr>
@@ -411,6 +412,18 @@
                             <ItemTemplate>
                                 <asp:LinkButton ID="lnkBtnIDReport" runat="server" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="ReportItem" Text='Báo cáo'></asp:LinkButton>                                                    
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="" HeaderStyle-Width="75px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lkbtSuaNgayHT" runat="server" CommandArgument='<%# Eval("MADDK") %>'
+                                    CommandName="SuaNgayHT" Text='Sửa Ngày HT'></asp:LinkButton>                                                    
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="" HeaderStyle-Width="75px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lkbtTuChoi" runat="server" CommandArgument='<%# Eval("MADDK") %>'
+                                    CommandName="TuChoiTC" Text='Từ chối TC'></asp:LinkButton>                                                    
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

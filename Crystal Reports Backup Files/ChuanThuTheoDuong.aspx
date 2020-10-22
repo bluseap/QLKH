@@ -1,40 +1,46 @@
-<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true"
     CodeBehind="ChuanThuTheoDuong.aspx.cs" Inherits="EOSCRM.Web.Forms.GhiChiSo.BaoCao.ChuanThuTheoDuong" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
-<%@ Register Assembly="CrystalDecisions.Web,  Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
 
     <script type="text/javascript">
         function CheckFormReport() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
-                return false;
-            
+                return false;            
             }
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
 
         function CheckFormReportTTHAI() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
-
             }
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lnTTHAIGHITHEODUONG) %>', '');
+        }
+
+        function CheckFormbtChuanThuTheoKV() {
+            var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
+            if (!IsNumeric(nam) ||
+                    parseInt(nam) < 1990 || parseInt(nam) > 2999) {
+                showError('Chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
+                return false;
+            }
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btChuanThuTheoKV) %>', '');
         }
         
     </script>
@@ -101,23 +107,32 @@
                     <td class="crmcell">
                         <div class="left">
                             <asp:TextBox ID="txtNguoiLap" runat="server" Width="180px" />
+                        </div>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="crmcell right"></td>
+                    <td class="crmcell">
+                        <div class="left">
+                            <asp:Button ID="btnBaoCao" runat="server" CssClass="myButton" OnClick="btnBaoCao_Click" Text="Chuẩn thu theo đường"
+                                OnClientClick="return CheckFormReport();" />
                         </div>
                         <div class="left ">
-                            <asp:Button ID="btnBaoCao" runat="server" CssClass="report" OnClick="btnBaoCao_Click"
-                                OnClientClick="return CheckFormReport();" />
+                            <asp:Button ID="btChuanThuTheoKV" runat="server" CssClass="myButton" Text="Chuẩn thu theo khu vực"
+                                OnClientClick="return CheckFormbtChuanThuTheoKV();" OnClick="btChuanThuTheoKV_Click" />
                         </div>
                     </td>
                 </tr>
                 <tr>
-                      <td class="crmcell right"> </td>
-                       <td class="crmcell left">
-                                <div class="right">
-                                    <asp:LinkButton ID="lnTTHAIGHITHEODUONG"  runat="server" onclick="lnTTHAIGHITHEODUONG_Click" 
-                                        OnClientClick="return CheckFormReportTTHAI();" >
-                                        Thống kê trạng thái ghi chỉ số theo đường.
-                                    </asp:LinkButton>
-                                </div>                                                               
-                       </td>
+                    <td class="crmcell right"> </td>
+                    <td class="crmcell left">
+                        <div class="right">
+                            <asp:LinkButton ID="lnTTHAIGHITHEODUONG"  runat="server" onclick="lnTTHAIGHITHEODUONG_Click" 
+                                OnClientClick="return CheckFormReportTTHAI();" >
+                                Thống kê trạng thái ghi chỉ số theo đường.
+                            </asp:LinkButton>
+                        </div>                                                               
+                    </td>
                 </tr>
             </tbody>
         </table>

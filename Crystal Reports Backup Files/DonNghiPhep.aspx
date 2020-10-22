@@ -76,14 +76,23 @@
                             <td class="crmcell right">Địa điểm </td>
                             <td class="crmcell">
                                 <div class="left width-200">
-                                    <asp:TextBox ID = "txtNOIDUNG" runat ="server" Width="180px" TabIndex="10" />
+                                    <asp:TextBox ID = "txtNOIDUNG" runat ="server" Width="180px" TabIndex="10" />    
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Số ngày nghĩ</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID = "txtSONGAY" runat ="server" Width="30px" TabIndex="10" />
                                 </div>
                                 <div class="left">
-                                    <div class="right">Số ngày nghĩ </div>
-                                </div>
-                                <div class="left">
-                                    <asp:Label ID="lblNGAYNGHI" runat="server" Text=""></asp:Label>
-                                </div>
+                                    <asp:DropDownList ID="ddlBUOINGHI" runat="server" >
+                                        <asp:ListItem Value="NGAY" Text="Ngày" />                                    
+                                        <asp:ListItem Value="SANG" Text="Sáng" />
+                                        <asp:ListItem Value="CHIE" Text="Chiều" />
+                                    </asp:DropDownList>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>    

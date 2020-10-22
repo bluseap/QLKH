@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true"
     CodeBehind="ChuanThuTheoDuong.aspx.cs" Inherits="EOSCRM.Web.Forms.GhiChiSo.BaoCao.ChuanThuTheoDuong" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
-<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
 

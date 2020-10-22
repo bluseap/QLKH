@@ -99,13 +99,71 @@
             <div class="crmcontainer">
                 <table class="crmtable">
                     <tbody>
+                        <tr>    
+                            <td class="crmcell right">
+                                Kỳ khai thác
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTHANG" runat="server" TabIndex="1">
+                                        <asp:ListItem Text="01" Value="01" />
+                                        <asp:ListItem Text="02" Value="02" />
+                                        <asp:ListItem Text="03" Value="03" />
+                                        <asp:ListItem Text="04" Value="04" />
+                                        <asp:ListItem Text="05" Value="05" />
+                                        <asp:ListItem Text="06" Value="06" />
+                                        <asp:ListItem Text="07" Value="07" />
+                                        <asp:ListItem Text="08" Value="08" />
+                                        <asp:ListItem Text="09" Value="09" />
+                                        <asp:ListItem Text="10" Value="10" />
+                                        <asp:ListItem Text="11" Value="11" />
+                                        <asp:ListItem Text="12" Value="12" />
+                                    </asp:DropDownList>                                    
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtNAM" runat="server" Width="35px" MaxLength="4" TabIndex="2" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>                           
+                            <td class="crmcell right">Khu vực</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKHUVUC1" runat="server" >
+                                    </asp:DropDownList>
+                                </div>                                                             
+                            </td>
+                        </tr>
                         <tr>
                             <td class="crmcell right">
-                                Mã phường
+                                Nhà máy, tổ
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlMAPHUONG" runat="server" />
+                                    <asp:DropDownList ID="ddlNHAMAYTO" runat="server" />                                    
+                                </div>
+                                <td class="crmcell right">Xã, phường</td>
+                                <td class="crmcell" colspan="3">    
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlXAPHUONG" runat="server" />       
+                                    </div>                                              
+                                </td>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">                                
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlMAPHUONG" runat="server" Visible="False"/>
                                     <asp:TextBox ID="txtMAPHUONG" runat="server" Width="50px" MaxLength="20" TabIndex="3" Font-Names="Times New Roman" Visible="false" />
                                 </div>
                                 <div class="left">
@@ -115,7 +173,6 @@
                                         TabIndex="44" Visible="false"/>
                                 </div>
                             </td>
-                            
                         </tr>
                         <tr>
                             <td class="crmcell right">

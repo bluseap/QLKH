@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using EOSCRM.Util;
 using EOSCRM.Web.Common;
 using EOSCRM.Dao;
 using EOSCRM.Web.Shared;
 using EOSCRM.Web.UserControls;
-
+using EOSCRM.Web.Controllers.DanhMuc.BaoCao;
+using FastMember;
+using POWACO.Dapper.DanhMuc.BaoCao.DuongPho;
 
 namespace EOSCRM.Web.Forms.DanhMuc.BaoCao
 {
     public partial class DuongPho : Authentication
     {
         private readonly KhuVucDao kvDao = new KhuVucDao();
+
+        private readonly DuongPhoService duongphoService = new DuongPhoService();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -69,10 +75,22 @@ namespace EOSCRM.Web.Forms.DanhMuc.BaoCao
 
         protected void btnBaoCao_Click(object sender, EventArgs e)
         {
-            var ds = new ReportClass().DuongPho(cboKhuVuc.SelectedValue);
 
-            if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
-            Report(ds.Tables[0]);
+            var ds = duongphoService.GetAll();
+            if (ds == null || ds.Count == 0) { CloseWaitingDialog(); return; }
+
+            DataTable table = new DataTable();
+            using (var reader = ObjectReader.Create(ds))
+            {
+                table.Load(reader);
+            }
+
+            Report(table);
+
+            //var ds = new ReportClass().DuongPho(cboKhuVuc.SelectedValue);
+            //if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
+            //var danhsach = ds.Tables[0];
+            //Report(ds.Tables[0]);
 
             CloseWaitingDialog();
         }
@@ -103,6 +121,8 @@ namespace EOSCRM.Web.Forms.DanhMuc.BaoCao
             #endregion FreeMemory
 
             rp = new ReportDocument();
+            rpViewer.Enabled = true;
+
             var path = Server.MapPath("../../../Reports/DanhMucHeThong/DUONGPHO.rpt");
             rp.Load(path);
 

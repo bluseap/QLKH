@@ -218,8 +218,6 @@
                 }                
             }
 
-
-
         }
 
         function getPrefixId(controlId) {
@@ -355,23 +353,41 @@
                                         <asp:ListItem Text="12" Value="12" />
                                     </asp:DropDownList>
                                     <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" OnTextChanged="txtNAM_TextChanged" />
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btLOCDSKHCBKT" runat="server" CssClass="filter" 
-                                        CausesValidation="false" UseSubmitBehavior="false" TabIndex="44" OnClick="btLOCDSKHCBKT_Click" />
-                                </div>
+                                </div>                                
                                 <div class="left">
                                     <asp:Button ID="btnBrowseSOHD" runat="server" CssClass="addnew" OnClick="btnBrowseSOHD_Click"
                                         CausesValidation="false" UseSubmitBehavior="false" Visible="false"
                                         OnClientClick="openDialogAndBlock('Danh sách hợp đồng', 900, 'divHopDong')" 
                                         TabIndex="44" />
-                                </div>
-                               
-                            </td>
-                                                   
+                                </div>                               
+                            </td>                                                   
                         </tr>
-                       
-                                    
+                        <tr>                           
+                            <td class="crmcell right">Khu vực</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKHUVUC1" runat="server" >
+                                    </asp:DropDownList>
+                                </div>                                                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Button ID="btLOCDSKHCBKT" runat="server" CssClass="filter" 
+                                        CausesValidation="false" UseSubmitBehavior="false" TabIndex="44" OnClick="btLOCDSKHCBKT_Click" />
+                                </div>
+                            </td>
+                        </tr>     
                     </tbody>
                 </table>
             </div> 

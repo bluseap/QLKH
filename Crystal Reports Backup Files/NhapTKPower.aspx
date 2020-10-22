@@ -61,6 +61,13 @@
             return false;
         }
 
+        function CheckFormFilterNV() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV) %>', '');
+            return false;
+        }
+        
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -262,10 +269,18 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="crmcell right">Loại hình thu</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlLoaiHinhThu" runat="server"></asp:DropDownList>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right">Số trụ</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtSOTRUKH" runat="server" Width="50px" MaxLength="10" TabIndex="3" />
+                                    <asp:TextBox ID="txtSOTRUKH" runat="server" Width="50px" MaxLength="100" TabIndex="3" />
                                 </div>
                                 <div class="left">
                                     <div class="right"></div>

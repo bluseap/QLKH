@@ -1,132 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="DSKDO.aspx.cs" Inherits="EOSCRM.Web.Forms.GhiChiSo.BaoCao.DSKDO" %>
 
-<%@ Import Namespace="EOSCRM.Web.Common" %>
-<%@ Import Namespace="EOSCRM.Util" %>
-<%@ Import Namespace="EOSCRM.Dao" %>
-
+<%@ Import Namespace="EOSCRM.Web.Common"%>
+<%@ Import Namespace="System.Data" %>
+<%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="powacocrm" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
-
+<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#divDuongPho").dialog({
-                autoOpen: false,
-                modal: true,
-                minHeight: 100,
-                height: 'auto',
-                width: 'auto',
-                resizable: false,
-                open: function(event, ui) {
-                    $(this).parent().appendTo("#divDuongPhoDlgContainer");
-                }
-            });
-        });
+    <script type="text/javascript">        
 
-
-        function CheckFormFilterDP() {
-
-            openWaitingDialog();
-            unblockWaitingDialog();
-
-            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDP) %>', '');
+        
+        function CheckFormExcel() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btEXCEL) %>', '');
         }
 
-        function CheckChangeDP(e) {
-            var code = (e.keyCode ? e.keyCode : e.which);
-            jQuery.fn.exists = function() { return jQuery(this).length > 0; }
-            if (code == 13) {
-                return CheckFormSearch();
-            }
-        }
-
-        function CheckFormSearch() {
-            var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
-            if (!IsNumeric(nam) ||
-                    parseInt(nam) < 1990 || parseInt(nam) > 2999) {
-                showError('Chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
-                return false;
-            }
-
-            openWaitingDialog();
-            unblockWaitingDialog();
-
-            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
+        function CheckFormExcelPo() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btEXCELPo) %>', '');
         }
 
         function CheckFormReport() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
-    <div id="divDuongPhoDlgContainer">
-        <div id="divDuongPho" style="display: none">
-            <asp:UpdatePanel ID="upnlDuongPho" runat="server" UpdateMode="Conditional">
-				<ContentTemplate>
-				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
-                        <tr>
-                            <td class="crmcontainer">
-                                <table class="crmtable">
-                                    <tbody>
-                                        <tr>
-                                            <td class="crmcell right">
-                                                Từ khóa
-                                            </td>
-                                            <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:TextBox ID="txtKeywordDP" onchange="return CheckFormFilterDP();" runat="server" Width="250px" MaxLength="200" />
-                                                </div>
-                                                <div class="left">
-                                                    <asp:Button ID="btnFilterDP" OnClick="btnFilterDP_Click"
-                                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilterDP();" 
-                                                        runat="server" CssClass="filter" Text="" />
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-						<tr>
-							<td class="ptop-10">
-							    <div class="crmcontainer">
-							        <eoscrm:Grid ID="gvDuongPho" runat="server" UseCustomPager="true" 
-							            OnRowDataBound="gvDuongPho_RowDataBound" OnRowCommand="gvDuongPho_RowCommand" 
-							            OnPageIndexChanging="gvDuongPho_PageIndexChanging">
-                                        <PagerSettings FirstPageText="đường phố" PageButtonCount="2" />
-                                        <Columns>
-                                            <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã ĐP">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkBtnID" runat="server" 
-                                                        CommandArgument='<%# Eval("MADP") + "-" + Eval("DUONGPHU") %>' CommandName="SelectMADP"                                                         
-                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MADP").ToString()) %>'></asp:LinkButton>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField HeaderStyle-Width="15%" DataField="DUONGPHU" HeaderText="Đường phụ" />
-                                            <asp:BoundField HeaderStyle-Width="50%" DataField="TENDP" HeaderText="Tên đường phố" />
-                                            <asp:TemplateField HeaderStyle-Width="25%" HeaderText="Khu vực">
-                                                <ItemTemplate>
-                                                    <%# Eval("KHUVUC.TENKV") %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </eoscrm:Grid>
-                                </div>
-							</td>
-						</tr>
-					</table>
-				</ContentTemplate>
-	        </asp:UpdatePanel>
-        </div>
-    </div>
-    <asp:UpdatePanel ID="upnlTinhCuoc" UpdateMode="Conditional" runat="server">
-        <ContentTemplate>
+    <asp:UpdatePanel ID="UpINFO" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>    
             <div class="crmcontainer">
                 <table class="crmtable">
                     <tbody>
@@ -154,113 +55,84 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
                                 </div>
-                                <div class="left">
-                                    <strong>Khu vực</strong>
-                                </div>
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server"
-                                        TabIndex="3">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="left">
-                                    <strong>Đường phố</strong>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtMADP" runat="server" onkeydown="return CheckChangeDP(event);" MaxLength="4"
-                                        Width="30px" TabIndex="4" />
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="30px" TabIndex="5" />
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btnBrowseDP" runat="server" CssClass="pickup" OnClick="btnBrowseDP_Click"
-                                        CausesValidation="false" UseSubmitBehavior="false" OnClientClick="openDialogAndBlock('Chọn từ danh sách đường phố', 500, 'divDuongPho')"
-                                        TabIndex="6" />
-                                </div>
-                                <div class="left">
-                                    <asp:Label ID="lblTENDUONG" runat="server" />
-                                </div>
+                                <td class="crmcell right">Khu vực</td>
+                                <td class="crmcell">                                
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server"
+                                            TabIndex="3">
+                                        </asp:DropDownList>
+                                    </div>
+                                </td>                            
                             </td>
                         </tr>
                         <tr>
-                            <td class="crmcell right">
-                            </td>
+                            <td class="crmcell right">Đợt GCS</td>
                             <td class="crmcell">
-                                <div class="left">
-                                    <asp:Button ID="btnSearch" OnClick="btnSearch_Click"  OnClientClick="return CheckFormSearch();" 
-                                        runat="server" CssClass="filter" TabIndex="12" Visible="false" />
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
                                 </div>
-                                <div class="left">
-                                    <asp:Button ID="btnBaoCao" OnClick="btnBaoCao_Click"  OnClientClick="return CheckFormReport();" 
-                                        runat="server" CssClass="report" TabIndex="13" />
+                                <td class="crmcell right">Đường phố</td>
+                                <td class="crmcell">                                
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlDuongPhoPo" runat="server" TabIndex="3">
+                                        </asp:DropDownList>
+                                    </div>
+                                </td>                                    
+                            </td>                                  
+                        </tr>   
+                        <tr>
+                            <td class="crmcell right">Đường phố điện </td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDuongPhoDienSTT" runat="server" TabIndex="3">
+                                        </asp:DropDownList>
                                 </div>
+                                <td class="crmcell right"> </td>
+                                <td class="crmcell">                                
+                                    <div class="left">
+                                        <asp:Button ID="btEXCELPo" Text="Xuất điện Số thứ tự (TS)" OnClientClick="return CheckFormExcelPo();" runat="server" CssClass="myButton" OnClick="btEXCELPo_Click" Visible="true" />
+                                    </div>
+                                </td>                                    
+                            </td>                                  
+                        </tr>                
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="report" />
+                                </div>
+                                <td class="crmcell right"></td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Button ID="btEXCEL" Text="Xuất Excel" OnClientClick="return CheckFormExcel();" runat="server" CssClass="myButton" OnClick="btEXCEL_Click" />
+                                    </div>
+                                    
+                                </td>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </ContentTemplate>
+       <Triggers>
+            <asp:PostBackTrigger ControlID="btEXCEL" />
+           <asp:PostBackTrigger ControlID="btEXCELPo" />
+<asp:PostBackTrigger ControlID="btnBaoCao"></asp:PostBackTrigger>
+        </Triggers>
+       <Triggers>
+            <asp:PostBackTrigger ControlID="btnBaoCao" />
+        </Triggers>
     </asp:UpdatePanel>
-    <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server" Visible="false" >
+    <asp:UpdatePanel ID="upBAOCAO" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
-            <br />            
-            <asp:DataList ID="dpDataList" RepeatColumns="3" RepeatDirection="Vertical" RepeatLayout="Table" 
-                runat="server" CssClass="crmcontainer" Width="100%">
-                <HeaderTemplate>
-                    <table class="crmtable p-5">
-                        <tbody>
-                            <tr class="listheader">
-                                <td style="width: 4%; border: 0px;">
-                                <img src="<%= ResolveUrl("~")%>content/images/common/arrow-down.png" />
-                                </td>
-                                <td style="border: 0px">
-                                    <a href="#" onclick="SelectAll('chkDuongPho', true); return false;">
-                                        <strong>Chọn hết</strong></a> 
-                                    / 
-                                    <a href="#" onclick="SelectAll('chkDuongPho', false); return false;">
-                                        <strong>Bỏ chọn hết</strong></a>                                        
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </HeaderTemplate>
-                <FooterTemplate>
-                    <table class="crmtable p-5">
-                        <tbody>
-                            <tr class="listheader">
-                                <td style="width: 4%; border: 0px;">
-                                    <img src="<%= ResolveUrl("~")%>content/images/common/arrow.png" />
-                                </td>
-                                <td style="border: 0px">
-                                    <a href="#" onclick="SelectAll('chkDuongPho', true); return false;">
-                                        <strong>Chọn hết</strong></a> 
-                                    / 
-                                    <a href="#" onclick="SelectAll('chkDuongPho', false); return false;">
-                                        <strong>Bỏ chọn hết</strong></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </FooterTemplate>
-                <ItemTemplate>
-                    <table class="crmtable p-5">
-                        <tbody>
-                            <tr>
-                                <td style="width: 5%; border: 0px;">
-                                    <input id="chkDuongPho" runat="server" type="checkbox" 
-                                        title='<%# Eval("MADP") %>' />
-                                </td>                                    
-                                <td style="width: 15%; border: 0px;">
-                                    <%# Eval("MADP") %>
-                                </td>                                
-                                <td style="width: 76%; border: 0px;">
-                                    <%# Eval("TENDP")%>
-                                </td> 
-                            </tr>
-                        </tbody>
-                    </table>
-                </ItemTemplate>
-            </asp:DataList>
+            <div class="crmcontainer" id="divCR" runat="server" >
+                <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX" 
+                    DisplayGroupTree="False" />
+            </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="rpViewer" />
+        </Triggers>
     </asp:UpdatePanel>
+    
 </asp:Content>

@@ -8,7 +8,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <bwaco:FilterPanel ID="filterPanel" runat="server" />
     <br />
-    <div class="crmcontainer">    
+    
+    <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>         
+            <div class="crmcontainer">    
         <eoscrm:Grid ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand"  
             OnRowDataBound = "gvList_RowDataBound" OnPageIndexChanging="gvList_PageIndexChanging" PageSize="20">
             <PagerSettings FirstPageText="thiết kế" PageButtonCount="2" />
@@ -46,8 +49,9 @@
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkBtnIDReport" runat="server" CommandArgument='<%# Eval("MADDKPO") %>'
                             CommandName="ReportItem" Text='Báo cáo'></asp:LinkButton>
-                        &nbsp;&nbsp;<asp:LinkButton ID="lnkBtnIDEdit" runat="server" CommandArgument='<%# Eval("MADDKPO") %>'
-                            CommandName="EditItem" Text='Chỉnh sửa'></asp:LinkButton>
+                        &nbsp;&nbsp;
+                        <asp:LinkButton ID="lnkBtnIDEdit" runat="server" CommandArgument='<%# Eval("MADDKPO") %>'
+                            CommandName="EditItem" Text='Chỉnh sửa'></asp:LinkButton>                        
                     </ItemTemplate>
                 </asp:TemplateField>                        
                 <asp:TemplateField HeaderText="Trạng thái đơn"  HeaderStyle-Width="80px">
@@ -59,5 +63,7 @@
             </Columns>
        </eoscrm:Grid>   
   </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true"
     CodeBehind="LichSuSuDungNuoc.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH.LichSuSuDungNuoc" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
@@ -33,12 +33,12 @@
                     <td class="crmcell right">Năm</td>
                     <td class="crmcell">
                         <div class="left">
-                            <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="1" />
+                            <asp:TextBox ID="txtNAM" runat="server" Width="60px" MaxLength="4" TabIndex="1" />
                         </div>
                         <div class="left"><strong>Mã đường</strong>
                         </div>
                         <div class="left">
-                            <asp:TextBox ID="txtMaDp" runat="server" Width="30px" />
+                            <asp:TextBox ID="txtMaDp" runat="server" Width="80px" />
                         </div>
                         <div class="left"><strong>Khu vực</strong></div>
                         <div class="left">

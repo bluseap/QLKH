@@ -391,10 +391,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="crmcell right">Trạm</td>
+                            <td class="crmcell right"></td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlPHUONG" TabIndex="3" runat="server">
+                                    <asp:DropDownList ID="ddlPHUONG" TabIndex="3" runat="server" Visible="false"
+                                        >
                                     </asp:DropDownList>
                                 </div>
                             </td>
@@ -408,10 +409,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="crmcell right">Công tác</td>
+                            <td class="crmcell right"></td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtTenHM" runat="server" MaxLength="200" Width="300px" />
+                                    <asp:TextBox ID="txtTenHM" runat="server" MaxLength="200" Width="300px" Visible="false"/>
                                 </div>
                             </td>
                         </tr>

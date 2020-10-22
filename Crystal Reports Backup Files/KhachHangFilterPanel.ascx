@@ -89,6 +89,16 @@
             </tr>
             <tr>
                 <td class="crmcell right">
+                    Số điện thoại
+                </td>
+                <td class="crmcell">
+                    <div class="left">
+                        <asp:TextBox ID="txtSODIENTHOAI" onkeypress="return CheckKeywordFilter(event);" runat="server" Width="200px" MaxLength="200" />
+                    </div>                    
+                </td>
+            </tr>
+            <tr>
+                <td class="crmcell right">
                     Khu vực
                 </td>
                 <td class="crmcell">

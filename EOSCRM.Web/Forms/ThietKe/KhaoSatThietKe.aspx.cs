@@ -751,9 +751,11 @@ namespace EOSCRM.Web.Forms.ThietKe
 
                     foreach (var obj in objs)
                     {
-// ReSharper disable EmptyGeneralCatchClause
-                        try { obj.NGAYKS = Convert.ToDateTime(txtApproveDate.Text); } catch { }
-// ReSharper restore EmptyGeneralCatchClause
+                        try 
+                        { 
+                            obj.NGAYKS = Convert.ToDateTime(txtApproveDate.Text); 
+                        } 
+                        catch { }
 
                         obj.TTTK = TTTK.TK_RA.ToString();
 
@@ -781,8 +783,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                         {
                             CloseWaitingDialog();
                             ShowError(ResourceLabel.Get(msg));
-                        }
-                            
+                        }                            
                     }
                     else
                     {

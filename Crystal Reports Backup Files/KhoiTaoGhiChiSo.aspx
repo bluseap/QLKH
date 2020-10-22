@@ -6,31 +6,25 @@
     <script type="text/javascript">
         function CheckFormKhoiTao() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Vui lòng chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
-            }
-            
+            }            
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnKhoiTao) %>', '');
         } 
 
         function CheckFormbtnNguyen() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Vui lòng chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnNguyen) %>', '');
         }
         

@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DSThayDHPo.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo.DSThayDHPo" %>
 
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">        
         
@@ -45,6 +46,7 @@
                         </div>
                         <div class="left">
                             <asp:TextBox ID="txtMADP" runat="server" Visible="false"/>
+                            <asp:Label ID="lbRELOAD" runat="server" Visible="false"></asp:Label>
                         </div>                        
                     </td>
                 </tr>
@@ -82,6 +84,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="crmcell right">Đợt GCS</td>
+                    <td class="crmcell">
+                        <div class="left width-200">
+                            <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                        </div>                                
+                    </td>                                  
+                </tr> 
+                <tr>
                     <td class="crmcell right">
                         Người lập
                     </td>
@@ -92,6 +102,16 @@
                         <div class="left">
                             <asp:Button ID="btnBaoCao" runat="server" OnClick="btnBaoCao_Click" CssClass="report" 
                             />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="crmcell right">                        
+                    </td>
+                    <td class="crmcell">                        
+                        <div class="left">
+                            <asp:Button ID="btBCMucDK" runat="server" Text="BC Mục đích khác" CssClass="myButton" OnClick="btBCMucDK_Click"
+                                Visible="false"/>
                         </div>
                     </td>
                 </tr>

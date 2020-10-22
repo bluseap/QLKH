@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DieuChinhHDPo.aspx.cs" Inherits="EOSCRM.Web.Forms.GhiChiSo.Power.DieuChinhHDPo" %>
+
 <%@ Import Namespace="EOSCRM.Web.Common" %>
 <%@ Import Namespace="EOSCRM.Util" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Src="/UserControls/FilterPanel.ascx" TagName="FilterPanel" TagPrefix="bwaco" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
@@ -38,9 +41,7 @@
 
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterKH) %>', '');
-
             return false;
         }
 
@@ -86,19 +87,26 @@
 
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
-
             return false;
         }
 
         function CheckFormReport() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
 
+        function CheckFormBCMUCDK() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btBCDCMUCDK) %>', '');
+        }
+
+        function CheckFormExcelDieuChinhPo() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btExcelDieuChinhPo) %>', '');
+        }
+        
         function CheckFormDelete() {
             if (CheckRecordSelected('delete')) {
                 openWaitingDialog();
@@ -315,6 +323,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:Label ID="lblIDKH" runat="server" Visible="False"></asp:Label>
+                                    <asp:Label ID="reloadm" runat="server" Visible="False"></asp:Label>
                                 </div>                               
                             </td>
                         </tr>
@@ -398,8 +407,15 @@
                                 <div class="left">                                    
                                     <asp:CheckBox ID="ckINHDDC" runat="server" TabIndex="28"  
                                          />
-                                </div>
-                                </div>                             
+                                </div>                                                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Định mức</td>
+                            <td class="crmcell">
+                                <div class="left width-100">
+                                    <asp:TextBox ID="txtSODINHMUC" runat="server" Width="50px" TabIndex="8" />
+                                </div>                                                                                         
                             </td>
                         </tr>
                         <tr>
@@ -430,6 +446,14 @@
                                         MaxLength="500" runat="server" Font-Names="Times New Roman" />
                                 </div>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
                         </tr>   
                         <tr>    
                             <td class="crmcell right">  </td>
@@ -452,9 +476,18 @@
                                         runat="server" CssClass="filter" Text="" TabIndex="12" />
                                 </div>                                
                                 <div class="left">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <asp:Button ID="btnBaoCao" OnClick="btnBaoCao_Click"  OnClientClick="return CheckFormReport();" 
                                         runat="server" CssClass="report" TabIndex="13" />
+                                </div>
+                                <div class="left">                                    
+                                    <asp:Button ID="btExcelDieuChinhPo" OnClientClick="return CheckFormExcelDieuChinhPo();" Text="Xuất Excel"
+                                        runat="server" CssClass="myButton" TabIndex="13" OnClick="btExcelDieuChinhPo_Click"  />
+                                </div>
+                                <div class="left">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btBCDCMUCDK" OnClientClick="return CheckFormBCMUCDK();" Text="BC Mục đích khác"
+                                        runat="server" CssClass="myButton" TabIndex="13" OnClick="btBCDCMUCDK_Click" Visible="False" />
                                 </div>
                             </td>
                         </tr>
@@ -462,6 +495,9 @@
                 </table>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btExcelDieuChinhPo" />           
+        </Triggers>
     </asp:UpdatePanel>
     <br />
     <asp:UpdatePanel ID="upnlTTDC" UpdateMode="Conditional" runat="server">
@@ -511,5 +547,17 @@
                 </eoscrm:Grid> 
             </div>
         </ContentTemplate>
+    </asp:UpdatePanel>
+    <br />  
+    <asp:UpdatePanel ID="upnlCrystalReport" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <div class="crmcontainer" id="divCR" runat="server" visible="false">
+                <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX" 
+                    DisplayGroupTree="False" />
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="rpViewer" />
+        </Triggers>
     </asp:UpdatePanel> 
 </asp:Content>

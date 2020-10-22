@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EOSCRM.Web</RootNamespace>
     <AssemblyName>EOSCRM.Web</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -23,6 +23,9 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,39 +44,44 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
     <Reference Include="AjaxPro.2, Version=9.2.17.1, Culture=neutral, PublicKeyToken=4735ae9824c7d3ec, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web.Extensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -80,6 +89,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\css\bootstrap-theme.css" />
@@ -90,10 +100,17 @@
     <Content Include="content\css\defaultpo.css" />
     <Content Include="content\css\font-awesome.css" />
     <Content Include="content\css\font-awesome.min.css" />
+    <Content Include="content\css\ie10-viewport-bug-workaround.css" />
     <Content Include="content\css\jquery.autocomplete.css" />
     <Content Include="content\css\signin.css" />
+    <Content Include="content\css\Site.css" />
     <Content Include="content\fonts\fontawesome-webfont.svg" />
     <Content Include="content\jquery\jquery-1.11.3.min.js" />
+    <Content Include="content\js\bootstrap.js" />
+    <Content Include="content\js\bootstrap.min.js" />
+    <Content Include="content\js\ie-emulation-modes-warning.js" />
+    <Content Include="content\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="content\js\npm.js" />
     <Content Include="content\scripts\jquery-latest.min.js" />
     <Content Include="content\jquery\jquery-ui.css" />
     <Content Include="content\jquery\jquery-ui.js" />
@@ -102,10 +119,13 @@
     <Content Include="content\scripts\functions.js" />
     <Content Include="content\scripts\jquery.autocomplete.css" />
     <Content Include="content\scripts\menu\ddlevelsmenu-base.css" />
+    <Content Include="content\scripts\menu\ddlevelsmenu-mobile.css" />
     <Content Include="content\scripts\menu\ddlevelsmenu-sidebar.css" />
     <Content Include="content\scripts\menu\ddlevelsmenu-topbar.css" />
+    <Content Include="content\scripts\menu\ddlevelsmenu.css" />
     <Content Include="content\scripts\menu\ddlevelsmenu.js" />
     <Content Include="content\scripts\menu\ddsmoothmenupo.css" />
+    <Content Include="content\scripts\menu\mobile.js" />
     <Content Include="Forms\Common\Error.aspx" />
     <Content Include="Forms\DanhMuc\ApKhom.aspx" />
     <Content Include="Forms\DanhMuc\CapBac.aspx" />
@@ -115,6 +135,7 @@
     <Content Include="Forms\DanhMuc\DongHoPo.aspx" />
     <Content Include="Forms\DanhMuc\DonViTinh.aspx" />
     <Content Include="Forms\DanhMuc\DuongPho.aspx" />
+    <Content Include="Forms\DanhMuc\DuongPhoPo.aspx" />
     <Content Include="Forms\DanhMuc\KhuVuc.aspx" />
     <Content Include="Forms\DanhMuc\LoaiDongHo.aspx" />
     <Content Include="Forms\DanhMuc\LoaiDongHoPo.aspx" />
@@ -128,19 +149,25 @@
     <Content Include="Forms\DanhMuc\Phuong.aspx" />
     <Content Include="Forms\DanhMuc\ThongTinPhanHoi.aspx" />
     <Content Include="Forms\DanhMuc\ThongTinXuLy.aspx" />
+    <Content Include="Forms\DanhMuc\TramBienAp.aspx" />
     <Content Include="Forms\DanhMuc\TrinhDo.aspx" />
     <Content Include="Forms\DanhMuc\UpLoadFile.aspx" />
     <Content Include="Forms\DanhMuc\VatTu.aspx" />
     <Content Include="Forms\DanhMuc\XaPhuong.aspx" />
     <Content Include="Forms\Default\Default.aspx" />
     <Content Include="Forms\Default\MDefault.aspx" />
+    <Content Include="Forms\GhiChiSo\BaoCao\DSKDO.aspx" />
     <Content Include="Forms\GhiChiSo\DieuChinhHDTangG.aspx" />
+    <Content Include="Forms\GhiChiSo\DotInHD.aspx" />
     <Content Include="Forms\GhiChiSo\GhiChiSoTBTT.aspx" />
     <Content Include="Forms\GhiChiSo\Power\DieuChinhHDPo.aspx" />
+    <Content Include="Forms\GhiChiSo\Power\DotInHDPo.aspx" />
     <Content Include="Forms\GhiChiSo\Power\GhiChiSoPo.aspx" />
     <Content Include="Forms\GhiChiSo\Power\KhoiTaoChiSoPo.aspx" />
     <Content Include="Forms\GhiChiSo\Power\SuaChiSoPo.aspx" />
     <Content Include="Forms\GhiChiSo\Power\TinhCuocPo.aspx" />
+    <Content Include="Forms\GhiChiSo\Power\TruyThuVPPo.aspx" />
+    <Content Include="Forms\GhiChiSo\TruyThuVP.aspx" />
     <Content Include="Forms\Group\Creation.aspx" />
     <Content Include="Forms\Group\Edition.aspx" />
     <Content Include="Forms\Group\GroupUI.ascx" />
@@ -148,16 +175,23 @@
     <Content Include="Forms\Group\PermissionUI.ascx" />
     <Content Include="Forms\KhachHang\BaoCao\DonLapDatMoi\rpInGiayDeNghi.aspx" />
     <Content Include="Forms\KhachHang\BaoCao\QuanLyKH\DSKHCBiKT.aspx" />
+    <Content Include="Forms\KhachHang\BaoCao\QuanLyKH\DSTongHopKHDK.aspx" />
     <Content Include="Forms\KhachHang\CapNhatSoBoTS.aspx" />
     <Content Include="Forms\KhachHang\GiaHanHopDong.aspx" />
     <Content Include="Forms\KhachHang\HoNgheoN.aspx" />
     <Content Include="Forms\KhachHang\InHopDongKH.aspx" />
-    <Content Include="Forms\KhachHang\KHViPham.aspx" />
+    <Content Include="Forms\KhachHang\NhapKHCDoc.aspx" />
+    <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx" />
+    <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSTongHopKHDKPo.aspx" />
+    <Content Include="Forms\KhachHang\Power\SuaNoDHKHPo.aspx" />
+    <Content Include="Forms\KhachHang\Power\TachDuongPhoPo.aspx" />
+    <Content Include="Forms\KhachHang\Power\ThongTinKHPo.aspx" />
+    <Content Include="Forms\KhachHang\Power\XoaBoKHPo.aspx" />
+    <Content Include="Forms\KhachHang\SuaNoDHKH.aspx" />
     <Content Include="Forms\KhachHang\NhapKhachHang.aspx" />
     <Content Include="Forms\KhachHang\NhapKHTSon.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSDonDKPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSKHCBiKTPo.aspx" />
-    <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSThayDHPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSThayDoiCTPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\InGiayDeNghiPo.aspx" />
@@ -166,36 +200,50 @@
     <Content Include="Forms\KhachHang\Power\NhapKHMoiPoTS.aspx" />
     <Content Include="Forms\KhachHang\Power\NhapKHPower.aspx" />
     <Content Include="Forms\KhachHang\Power\ThayDHPower.aspx" />
+    <Content Include="Forms\KhachHang\Power\ThayHopDongPo.aspx" />
     <Content Include="Forms\KhachHang\Power\TraCuuDLMPower.aspx" />
     <Content Include="Forms\KhachHang\Power\TraCuuKHPower.aspx" />
+    <Content Include="Forms\KhachHang\TachDuongPho.aspx" />
     <Content Include="Forms\KhachHang\ThayHopDong.aspx" />
     <Content Include="Forms\KhachHang\ThongTinKH.aspx" />
+    <Content Include="Forms\KhachHang\TraCuuDonLapMoiLX.aspx" />
     <Content Include="Forms\KhachHang\XoaBoKHN.aspx" />
     <Content Include="Forms\SuaChua\NhapThongTinSuaChua.aspx" />
+    <Content Include="Forms\ThiCongCongTrinh\BaoCao\DSBBChuaNT.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\BaoCao\DSBBNT.aspx" />
+    <Content Include="Forms\ThiCongCongTrinh\BaoCao\DSChuaTC.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\BBNTSuaChua.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\InBBNghiemThuN.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\InPhieuLapNuoc.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\InPhieuNiemChiNuoc.aspx" />
+    <Content Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSBBChuaNTPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSBBNTPo.aspx" />
+    <Content Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSChuaTCPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\InBBNghiemThuPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\InPhieuLDNCPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\InPhieuNiemChiPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\BBNghiemThuPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\CapNhatCTSauThiCongPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\NhapThiCongPo.aspx" />
+    <Content Include="Forms\ThiCongCongTrinh\Power\SuaDongHoPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\Power\TraCuuThiCongPo.aspx" />
     <Content Include="Forms\ThiCongCongTrinh\SuaDongHo.aspx" />
     <Content Include="Forms\ThietKe\BaoCao\DS_ChietTinhKoKhaiThac.aspx" />
+    <Content Include="Forms\ThietKe\BocVatTuLX.aspx" />
+    <Content Include="Forms\ThietKe\DuyetDonTKTC.aspx" />
     <Content Include="Forms\ThietKe\NhapHopDong.aspx" />
+    <Content Include="Forms\ThietKe\NhapThietKeLX.aspx" />
+    <Content Include="Forms\ThietKe\Power\BaoCaoPo\DSChuaHopDongPo.aspx" />
     <Content Include="Forms\ThietKe\Power\BaoCaoPo\DSCTKoKhaiThacPo.aspx" />
     <Content Include="Forms\ThietKe\Power\BaoCaoPo\DSDaDuyetTKPo.aspx" />
     <Content Include="Forms\ThietKe\Power\BaoCaoPo\DSHopDongKoKhaiThacPo.aspx" />
     <Content Include="Forms\ThietKe\Power\BaoCaoPo\DSLapHDKhaiThac.aspx" />
+    <Content Include="Forms\ThietKe\Power\BaoCaoPo\DSNoBVTTKPo.aspx" />
     <Content Include="Forms\ThietKe\Power\BaoCaoPo\InChietTinhPo.aspx" />
     <Content Include="Forms\ThietKe\Power\BaoCaoPo\InThietKePo.aspx" />
     <Content Include="Forms\ThietKe\Power\BocVatTuPower.aspx" />
     <Content Include="Forms\ThietKe\Power\DuyetCTPower.aspx" />
+    <Content Include="Forms\ThietKe\Power\DuyetDonTKTCPo.aspx" />
     <Content Include="Forms\ThietKe\Power\DuyetTKPower.aspx" />
     <Content Include="Forms\ThietKe\Power\KhaoSatThietKePo.aspx" />
     <Content Include="Forms\ThietKe\Power\LapCTPower.aspx" />
@@ -205,19 +253,27 @@
     <Content Include="Forms\ThietKe\Power\TraCuuCTPower.aspx" />
     <Content Include="Forms\ThietKe\Power\TraCuuHopDongPo.aspx" />
     <Content Include="Forms\ThietKe\Power\TraCuuTKPower.aspx" />
+    <Content Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\GhiChiSoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\GhiSoHoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx" />
+    <Content Include="Forms\TramBienAp\NhapTBA.aspx" />
     <Content Include="Forms\VayCongDoan\NhanVienVayTK.aspx" />
     <Content Include="Forms\VayCongDoan\TietKiemCD.aspx" />
     <Content Include="Forms\VayCongDoan\TraCuNhanVienVayTK.aspx" />
     <Content Include="Forms\VayCongDoan\VayTietKiemCD.aspx" />
-    <Content Include="GisWeb\GisMap.aspx" />
-    <Content Include="GisWeb\gisweb.js" />
-    <Content Include="GisWeb\glongxuyen.aspx" />
-    <Content Include="GisWeb\gphutan.aspx" />
-    <Content Include="GisWeb\gthoaison.aspx" />
-    <Content Include="GisWeb\gtriton.aspx" />
-    <Content Include="GisWeb\WorldMap.aspx" />
-    <Content Include="GisWeb\WorlMap.aspx" />
+    <Content Include="Forms\GisWeb\GisMap.aspx" />
+    <Content Include="Forms\GisWeb\GISNguoiDung.aspx" />
+    <Content Include="Forms\GisWeb\gisweb.js" />
+    <Content Include="Forms\GisWeb\glongxuyen.aspx" />
+    <Content Include="Forms\GisWeb\gphutan.aspx" />
+    <Content Include="Forms\GisWeb\gthoaison.aspx" />
+    <Content Include="Forms\GisWeb\gtriton.aspx" />
+    <Content Include="Forms\GisWeb\WebForm1.aspx" />
+    <Content Include="Forms\GisWeb\WorldMap.aspx" />
+    <Content Include="Forms\GisWeb\WorlMap.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="NhanSu\AboutPo.aspx" />
     <Content Include="NhanSu\NVLyLich.aspx" />
     <Content Include="UserControls\Footer.ascx" />
     <Content Include="UserControls\Header.ascx" />
@@ -225,8 +281,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="WebMobi\KhachHang\MNhapDLM.aspx" />
-    <Content Include="WebMobi\KhachHang\MNhapDonLM.aspx" />
+    <Content Include="WebMobi\KhachHang\KhachhangMobi.aspx" />
     <Content Include="WebMobi\MHome.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +296,13 @@
       <DependentUpon>SystemConfig.resx</DependentUpon>
     </Compile>
     <Compile Include="Common\AjaxCRM.cs" />
+    <Compile Include="Common\SpeedSMSAPI.cs" />
+    <Compile Include="content\scripts\menu\mobile.js.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="content\scripts\menu\mobile.js.designer.cs">
+      <DependentUpon>mobile.js.cs</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\BANGKECHITIETTHUCTHU.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,6 +333,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BangTDTT_KH.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\BaoCaoBVTCTLX.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaoCaoBVTCTLX.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\BAOCAOVTTK_LOI.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -290,6 +357,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BCDSKHMoi.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\BCDSVTTKPO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCDSVTTKPO.xsd</DependentUpon>
     </Compile>
     <Compile Include="Datasets\BCKDDH.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -378,7 +450,6 @@
     </Compile>
     <Compile Include="Datasets\ChiThietHoaDonTon.cs">
       <DependentUpon>ChiThietHoaDonTon.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Datasets\ChiThietHoaDonTon.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -548,6 +619,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSKiemTraKy.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\DSLICHGCSN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSLICHGCSN.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\DSPhanCong_TC.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -562,6 +638,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSThayDongHoDC.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\DSThongTinKH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSThongTinKH.xsd</DependentUpon>
     </Compile>
     <Compile Include="Datasets\DSThongTinSCKH.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -578,10 +659,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSThuTaiQuayNgay.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\DSTONGHOPDDK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSTONGHOPDDK.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\DSTTBANG.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSTTBANG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\DSTTVPPO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSTTVPPO.xsd</DependentUpon>
     </Compile>
     <Compile Include="Datasets\DSTuChoiThietKe.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -668,7 +759,6 @@
     </Compile>
     <Compile Include="Datasets\InHoaDonLo.cs">
       <DependentUpon>InHoaDonLo.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Datasets\InHoaDonLo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -677,7 +767,6 @@
     </Compile>
     <Compile Include="Datasets\InhoadonTN.cs">
       <DependentUpon>InhoadonTN.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Datasets\InhoadonTN.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -786,7 +875,6 @@
     </Compile>
     <Compile Include="Datasets\THONGTINTHAYDONGHO.cs">
       <DependentUpon>THONGTINTHAYDONGHO.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Datasets\THONGTINTHAYDONGHO.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -818,6 +906,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TongCThuTienNuocKVVaDT.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TongHopChuanThuKyDenKyxsd.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\TongHopCongNoTheoNhanVien.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -827,6 +920,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TONGHOPTRANGTHAI.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\TRUYTHUVPN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TRUYTHUVPN.xsd</DependentUpon>
     </Compile>
     <Compile Include="Datasets\TTTTKH.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1020,6 +1118,13 @@
     <Compile Include="Forms\DanhMuc\DongHoPo.aspx.designer.cs">
       <DependentUpon>DongHoPo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\DuongPhoPo.aspx.cs">
+      <DependentUpon>DuongPhoPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\DuongPhoPo.aspx.designer.cs">
+      <DependentUpon>DuongPhoPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\HeSoKH.aspx.cs">
       <DependentUpon>HeSoKH.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1086,6 +1191,13 @@
     <Compile Include="Forms\DanhMuc\ThongTinXuLy.aspx.designer.cs">
       <DependentUpon>ThongTinXuLy.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\TramBienAp.aspx.cs">
+      <DependentUpon>TramBienAp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\TramBienAp.aspx.designer.cs">
+      <DependentUpon>TramBienAp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\TrinhDo.aspx.designer.cs">
       <DependentUpon>TrinhDo.aspx</DependentUpon>
     </Compile>
@@ -1123,19 +1235,19 @@
     <Compile Include="Forms\GhiChiSo\BaoCao\ChuanThuTheoDuong.aspx.designer.cs">
       <DependentUpon>ChuanThuTheoDuong.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GhiChiSo\BaoCao\InSoGhiNuoc.aspx.cs">
-      <DependentUpon>InSoGhiNuoc.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\GhiChiSo\BaoCao\InSoGhiNuoc.aspx.designer.cs">
-      <DependentUpon>InSoGhiNuoc.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Forms\GhiChiSo\BaoCao\DSKDO.aspx.cs">
       <DependentUpon>DSKDO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Forms\GhiChiSo\BaoCao\DSKDO.aspx.designer.cs">
       <DependentUpon>DSKDO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\BaoCao\InSoGhiNuoc.aspx.cs">
+      <DependentUpon>InSoGhiNuoc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\BaoCao\InSoGhiNuoc.aspx.designer.cs">
+      <DependentUpon>InSoGhiNuoc.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\GhiChiSo\BaoCao\rpDieuChinhHoaDon.aspx.cs">
       <DependentUpon>rpDieuChinhHoaDon.aspx</DependentUpon>
@@ -1199,6 +1311,13 @@
     </Compile>
     <Compile Include="Forms\GhiChiSo\DieuChinhHoaDon.aspx.designer.cs">
       <DependentUpon>DieuChinhHoaDon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\DotInHD.aspx.cs">
+      <DependentUpon>DotInHD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\DotInHD.aspx.designer.cs">
+      <DependentUpon>DotInHD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\GhiChiSo\GhiChiSo.aspx.cs">
       <DependentUpon>GhiChiSo.aspx</DependentUpon>
@@ -1277,6 +1396,13 @@
     <Compile Include="Forms\GhiChiSo\Power\DieuChinhHDPo.aspx.designer.cs">
       <DependentUpon>DieuChinhHDPo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GhiChiSo\Power\DotInHDPo.aspx.cs">
+      <DependentUpon>DotInHDPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\Power\DotInHDPo.aspx.designer.cs">
+      <DependentUpon>DotInHDPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GhiChiSo\Power\GhiChiSoPo.aspx.cs">
       <DependentUpon>GhiChiSoPo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1305,6 +1431,13 @@
     <Compile Include="Forms\GhiChiSo\Power\TinhCuocPo.aspx.designer.cs">
       <DependentUpon>TinhCuocPo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GhiChiSo\Power\TruyThuVPPo.aspx.cs">
+      <DependentUpon>TruyThuVPPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\Power\TruyThuVPPo.aspx.designer.cs">
+      <DependentUpon>TruyThuVPPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GhiChiSo\SuaChiSo.aspx.cs">
       <DependentUpon>SuaChiSo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1325,6 +1458,13 @@
     </Compile>
     <Compile Include="Forms\GhiChiSo\KhoiTaoGhiChiSo.aspx.designer.cs">
       <DependentUpon>KhoiTaoGhiChiSo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\TruyThuVP.aspx.cs">
+      <DependentUpon>TruyThuVP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GhiChiSo\TruyThuVP.aspx.designer.cs">
+      <DependentUpon>TruyThuVP.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Group\Creation.aspx.designer.cs">
       <DependentUpon>Creation.aspx</DependentUpon>
@@ -1516,6 +1656,13 @@
     <Compile Include="Forms\KhachHang\BaoCao\QuanLyKH\DSKHCBiKT.aspx.designer.cs">
       <DependentUpon>DSKHCBiKT.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KhachHang\BaoCao\QuanLyKH\DSTongHopKHDK.aspx.cs">
+      <DependentUpon>DSTongHopKHDK.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\BaoCao\QuanLyKH\DSTongHopKHDK.aspx.designer.cs">
+      <DependentUpon>DSTongHopKHDK.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\KhachHang\BaoCao\QuanLyKH\LichSuSuDungNuoc.aspx.cs">
       <DependentUpon>LichSuSuDungNuoc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1628,12 +1775,61 @@
     <Compile Include="Forms\KhachHang\KhachHangTam.aspx.designer.cs">
       <DependentUpon>KhachHangTam.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\KhachHang\KHViPham.aspx.cs">
-      <DependentUpon>KHViPham.aspx</DependentUpon>
+    <Compile Include="Forms\KhachHang\NhapKHCDoc.aspx.cs">
+      <DependentUpon>NhapKHCDoc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\KhachHang\KHViPham.aspx.designer.cs">
-      <DependentUpon>KHViPham.aspx</DependentUpon>
+    <Compile Include="Forms\KhachHang\NhapKHCDoc.aspx.designer.cs">
+      <DependentUpon>NhapKHCDoc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx.cs">
+      <DependentUpon>DSKHMoiPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx.designer.cs">
+      <DependentUpon>DSKHMoiPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSTongHopKHDKPo.aspx.cs">
+      <DependentUpon>DSTongHopKHDKPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSTongHopKHDKPo.aspx.designer.cs">
+      <DependentUpon>DSTongHopKHDKPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\SuaNoDHKHPo.aspx.cs">
+      <DependentUpon>SuaNoDHKHPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\SuaNoDHKHPo.aspx.designer.cs">
+      <DependentUpon>SuaNoDHKHPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\TachDuongPhoPo.aspx.cs">
+      <DependentUpon>TachDuongPhoPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\TachDuongPhoPo.aspx.designer.cs">
+      <DependentUpon>TachDuongPhoPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\ThongTinKHPo.aspx.cs">
+      <DependentUpon>ThongTinKHPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\ThongTinKHPo.aspx.designer.cs">
+      <DependentUpon>ThongTinKHPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\XoaBoKHPo.aspx.cs">
+      <DependentUpon>XoaBoKHPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\XoaBoKHPo.aspx.designer.cs">
+      <DependentUpon>XoaBoKHPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\SuaNoDHKH.aspx.cs">
+      <DependentUpon>SuaNoDHKH.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\SuaNoDHKH.aspx.designer.cs">
+      <DependentUpon>SuaNoDHKH.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\KhachHang\NhapKHTSon.aspx.cs">
       <DependentUpon>NhapKHTSon.aspx</DependentUpon>
@@ -1655,13 +1851,6 @@
     </Compile>
     <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHCBiKTPo.aspx.designer.cs">
       <DependentUpon>DSKHCBiKTPo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx.cs">
-      <DependentUpon>DSKHMoiPo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx.designer.cs">
-      <DependentUpon>DSKHMoiPo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSThayDHPo.aspx.cs">
       <DependentUpon>DSThayDHPo.aspx</DependentUpon>
@@ -1719,6 +1908,13 @@
     <Compile Include="Forms\KhachHang\Power\ThayDHPower.aspx.designer.cs">
       <DependentUpon>ThayDHPower.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KhachHang\Power\ThayHopDongPo.aspx.cs">
+      <DependentUpon>ThayHopDongPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\ThayHopDongPo.aspx.designer.cs">
+      <DependentUpon>ThayHopDongPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\KhachHang\Power\TraCuuDLMPower.aspx.cs">
       <DependentUpon>TraCuuDLMPower.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1732,6 +1928,13 @@
     </Compile>
     <Compile Include="Forms\KhachHang\Power\TraCuuKHPower.aspx.designer.cs">
       <DependentUpon>TraCuuKHPower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\TachDuongPho.aspx.cs">
+      <DependentUpon>TachDuongPho.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\TachDuongPho.aspx.designer.cs">
+      <DependentUpon>TachDuongPho.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\KhachHang\ThayDanhSo.aspx.cs">
       <DependentUpon>ThayDanhSo.aspx</DependentUpon>
@@ -1774,6 +1977,13 @@
     </Compile>
     <Compile Include="Forms\KhachHang\ThongTinKH.aspx.designer.cs">
       <DependentUpon>ThongTinKH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\TraCuuDonLapMoiLX.aspx.cs">
+      <DependentUpon>TraCuuDonLapMoiLX.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\TraCuuDonLapMoiLX.aspx.designer.cs">
+      <DependentUpon>TraCuuDonLapMoiLX.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\KhachHang\TraCuuKhachHang.aspx.cs">
       <DependentUpon>TraCuuKhachHang.aspx</DependentUpon>
@@ -1921,12 +2131,26 @@
     <Compile Include="Forms\SuaChua\TraCuuTinhSuaChua.aspx.designer.cs">
       <DependentUpon>TraCuuTinhSuaChua.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\BaoCao\DSBBChuaNT.aspx.cs">
+      <DependentUpon>DSBBChuaNT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\BaoCao\DSBBChuaNT.aspx.designer.cs">
+      <DependentUpon>DSBBChuaNT.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\BaoCao\DSBBNT.aspx.cs">
       <DependentUpon>DSBBNT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\BaoCao\DSBBNT.aspx.designer.cs">
       <DependentUpon>DSBBNT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\BaoCao\DSChuaTC.aspx.cs">
+      <DependentUpon>DSChuaTC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\BaoCao\DSChuaTC.aspx.designer.cs">
+      <DependentUpon>DSChuaTC.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\BBNTSuaChua.aspx.cs">
       <DependentUpon>BBNTSuaChua.aspx</DependentUpon>
@@ -1970,12 +2194,26 @@
     <Compile Include="Forms\ThiCongCongTrinh\InPhieuNiemChiNuoc.aspx.designer.cs">
       <DependentUpon>InPhieuNiemChiNuoc.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSBBChuaNTPo.aspx.cs">
+      <DependentUpon>DSBBChuaNTPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSBBChuaNTPo.aspx.designer.cs">
+      <DependentUpon>DSBBChuaNTPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSBBNTPo.aspx.cs">
       <DependentUpon>DSBBNTPo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSBBNTPo.aspx.designer.cs">
       <DependentUpon>DSBBNTPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSChuaTCPo.aspx.cs">
+      <DependentUpon>DSChuaTCPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\DSChuaTCPo.aspx.designer.cs">
+      <DependentUpon>DSChuaTCPo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\Power\BaoCaoPo\InBBNghiemThuPo.aspx.cs">
       <DependentUpon>InBBNghiemThuPo.aspx</DependentUpon>
@@ -2018,6 +2256,13 @@
     </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\Power\NhapThiCongPo.aspx.designer.cs">
       <DependentUpon>NhapThiCongPo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\Power\SuaDongHoPo.aspx.cs">
+      <DependentUpon>SuaDongHoPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThiCongCongTrinh\Power\SuaDongHoPo.aspx.designer.cs">
+      <DependentUpon>SuaDongHoPo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ThiCongCongTrinh\Power\TraCuuThiCongPo.aspx.cs">
       <DependentUpon>TraCuuThiCongPo.aspx</DependentUpon>
@@ -2103,12 +2348,40 @@
     <Compile Include="Forms\ThiCongCongTrinh\LapQuyetToan.aspx.designer.cs">
       <DependentUpon>LapQuyetToan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ThietKe\BocVatTuLX.aspx.cs">
+      <DependentUpon>BocVatTuLX.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThietKe\BocVatTuLX.aspx.designer.cs">
+      <DependentUpon>BocVatTuLX.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThietKe\DuyetDonTKTC.aspx.cs">
+      <DependentUpon>DuyetDonTKTC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThietKe\DuyetDonTKTC.aspx.designer.cs">
+      <DependentUpon>DuyetDonTKTC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ThietKe\NhapHopDong.aspx.cs">
       <DependentUpon>NhapHopDong.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Forms\ThietKe\NhapHopDong.aspx.designer.cs">
       <DependentUpon>NhapHopDong.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThietKe\NhapThietKeLX.aspx.cs">
+      <DependentUpon>NhapThietKeLX.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThietKe\NhapThietKeLX.aspx.designer.cs">
+      <DependentUpon>NhapThietKeLX.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThietKe\Power\BaoCaoPo\DSChuaHopDongPo.aspx.cs">
+      <DependentUpon>DSChuaHopDongPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThietKe\Power\BaoCaoPo\DSChuaHopDongPo.aspx.designer.cs">
+      <DependentUpon>DSChuaHopDongPo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ThietKe\Power\BaoCaoPo\DSCTKoKhaiThacPo.aspx.cs">
       <DependentUpon>DSCTKoKhaiThacPo.aspx</DependentUpon>
@@ -2138,6 +2411,13 @@
     <Compile Include="Forms\ThietKe\Power\BaoCaoPo\DSLapHDKhaiThac.aspx.designer.cs">
       <DependentUpon>DSLapHDKhaiThac.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ThietKe\Power\BaoCaoPo\DSNoBVTTKPo.aspx.cs">
+      <DependentUpon>DSNoBVTTKPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThietKe\Power\BaoCaoPo\DSNoBVTTKPo.aspx.designer.cs">
+      <DependentUpon>DSNoBVTTKPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ThietKe\Power\BaoCaoPo\InChietTinhPo.aspx.cs">
       <DependentUpon>InChietTinhPo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2165,6 +2445,13 @@
     </Compile>
     <Compile Include="Forms\ThietKe\Power\DuyetCTPower.aspx.designer.cs">
       <DependentUpon>DuyetCTPower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ThietKe\Power\DuyetDonTKTCPo.aspx.cs">
+      <DependentUpon>DuyetDonTKTCPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ThietKe\Power\DuyetDonTKTCPo.aspx.designer.cs">
+      <DependentUpon>DuyetDonTKTCPo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\ThietKe\Power\DuyetTKPower.aspx.cs">
       <DependentUpon>DuyetTKPower.aspx</DependentUpon>
@@ -2306,41 +2593,6 @@
     <Compile Include="Forms\ThietKe\PhanCongKhaoSatThietKe.aspx.designer.cs">
       <DependentUpon>PhanCongKhaoSatThietKe.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx.cs">
-      <DependentUpon>CapNhatChiSoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx.designer.cs">
-      <DependentUpon>CapNhatChiSoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiChiSoTBA.aspx.cs">
-      <DependentUpon>GhiChiSoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiChiSoTBA.aspx.designer.cs">
-      <DependentUpon>GhiChiSoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiSoHoTBA.aspx.cs">
-      <DependentUpon>GhiSoHoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\GhiSoHoTBA.aspx.designer.cs">
-      <DependentUpon>GhiSoHoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx.cs">
-      <DependentUpon>KhoiTaoChiSoTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx.designer.cs">
-      <DependentUpon>KhoiTaoChiSoTBA.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\NhapTBA.aspx.cs">
-      <DependentUpon>NhapTBA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\TramBienAp\NhapTBA.aspx.designer.cs">
-      <DependentUpon>NhapTBA.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Forms\TruyThu\DoViPham.aspx.cs">
       <DependentUpon>DoViPham.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2397,53 +2649,67 @@
     <Compile Include="Forms\VayCongDoan\VayTietKiemCD.aspx.designer.cs">
       <DependentUpon>VayTietKiemCD.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\GisMap.aspx.cs">
+    <Compile Include="Forms\GisWeb\GisMap.aspx.cs">
       <DependentUpon>GisMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\GisMap.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\GisMap.aspx.designer.cs">
       <DependentUpon>GisMap.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\glongxuyen.aspx.cs">
+    <Compile Include="Forms\GisWeb\GISNguoiDung.aspx.cs">
+      <DependentUpon>GISNguoiDung.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GisWeb\GISNguoiDung.aspx.designer.cs">
+      <DependentUpon>GISNguoiDung.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GisWeb\glongxuyen.aspx.cs">
       <DependentUpon>glongxuyen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\glongxuyen.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\glongxuyen.aspx.designer.cs">
       <DependentUpon>glongxuyen.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\gphutan.aspx.cs">
+    <Compile Include="Forms\GisWeb\gphutan.aspx.cs">
       <DependentUpon>gphutan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\gphutan.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\gphutan.aspx.designer.cs">
       <DependentUpon>gphutan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\gthoaison.aspx.cs">
+    <Compile Include="Forms\GisWeb\gthoaison.aspx.cs">
       <DependentUpon>gthoaison.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\gthoaison.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\gthoaison.aspx.designer.cs">
       <DependentUpon>gthoaison.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\gtriton.aspx.cs">
+    <Compile Include="Forms\GisWeb\gtriton.aspx.cs">
       <DependentUpon>gtriton.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\gtriton.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\gtriton.aspx.designer.cs">
       <DependentUpon>gtriton.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\WorldMap.aspx.cs">
+    <Compile Include="Forms\GisWeb\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\GisWeb\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GisWeb\WorldMap.aspx.cs">
       <DependentUpon>WorldMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\WorldMap.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\WorldMap.aspx.designer.cs">
       <DependentUpon>WorldMap.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GisWeb\WorlMap.aspx.cs">
+    <Compile Include="Forms\GisWeb\WorlMap.aspx.cs">
       <DependentUpon>WorlMap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GisWeb\WorlMap.aspx.designer.cs">
+    <Compile Include="Forms\GisWeb\WorlMap.aspx.designer.cs">
       <DependentUpon>WorlMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
@@ -2457,6 +2723,13 @@
     <Compile Include="Common\SystemConfig.cs" />
     <Compile Include="Common\WebConstants.cs" />
     <Compile Include="Common\WebUrlConstants.cs" />
+    <Compile Include="NhanSu\AboutPo.aspx.cs">
+      <DependentUpon>AboutPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NhanSu\AboutPo.aspx.designer.cs">
+      <DependentUpon>AboutPo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NhanSu\NVLyLich.aspx.cs">
       <DependentUpon>NVLyLich.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2980,12 +3253,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\QuanLyGhiDHTinhCuocInHD\DSKiemTraDo.cs">
-      <DependentUpon>DSKiemTraDo.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\QuanLyGhiDHTinhCuocInHD\DSKHTieuThu.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3500,12 +3767,12 @@
     <Compile Include="Shared\PO.Master.designer.cs">
       <DependentUpon>PO.Master</DependentUpon>
     </Compile>
-    <Compile Include="Shared\WebMobi.Master.cs">
-      <DependentUpon>WebMobi.Master</DependentUpon>
+    <Compile Include="Shared\WPO.Master.cs">
+      <DependentUpon>WPO.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Shared\WebMobi.Master.designer.cs">
-      <DependentUpon>WebMobi.Master</DependentUpon>
+    <Compile Include="Shared\WPO.Master.designer.cs">
+      <DependentUpon>WPO.Master</DependentUpon>
     </Compile>
     <Compile Include="TracNghiem\TSLamBai.aspx.cs">
       <DependentUpon>TSLamBai.aspx</DependentUpon>
@@ -3563,19 +3830,12 @@
     <Compile Include="UserControls\SpecialFilterPanel.ascx.designer.cs">
       <DependentUpon>SpecialFilterPanel.ascx</DependentUpon>
     </Compile>
-    <Compile Include="WebMobi\KhachHang\MNhapDLM.aspx.cs">
-      <DependentUpon>MNhapDLM.aspx</DependentUpon>
+    <Compile Include="WebMobi\KhachHang\KhachhangMobi.aspx.cs">
+      <DependentUpon>KhachhangMobi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebMobi\KhachHang\MNhapDLM.aspx.designer.cs">
-      <DependentUpon>MNhapDLM.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebMobi\KhachHang\MNhapDonLM.aspx.cs">
-      <DependentUpon>MNhapDonLM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebMobi\KhachHang\MNhapDonLM.aspx.designer.cs">
-      <DependentUpon>MNhapDonLM.aspx</DependentUpon>
+    <Compile Include="WebMobi\KhachHang\KhachhangMobi.aspx.designer.cs">
+      <DependentUpon>KhachhangMobi.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebMobi\MHome.aspx.cs">
       <DependentUpon>MHome.aspx</DependentUpon>
@@ -3802,7 +4062,6 @@
     <Content Include="Forms\DanhMuc\HeSo.aspx" />
     <Content Include="Forms\GhiChiSo\BaoCao\ChuanThuTheoDuong.aspx" />
     <Content Include="Forms\GhiChiSo\BaoCao\InSoGhiNuoc.aspx" />
-    <Content Include="Forms\GhiChiSo\BaoCao\DSKDO.aspx" />
     <Content Include="Forms\GhiChiSo\BaoCao\rpDieuChinhHoaDon.aspx" />
     <Content Include="Forms\GhiChiSo\BaoCao\rpDSKDO.aspx" />
     <Content Include="Forms\GhiChiSo\BaoCao\rpInHoaThuy.aspx" />
@@ -3903,11 +4162,6 @@
     <Content Include="Forms\ThietKe\KhaoSatThietKe.aspx" />
     <Content Include="Forms\ThietKe\DuyetThietKe.aspx" />
     <Content Include="Forms\ThietKe\PhanCongKhaoSatThietKe.aspx" />
-    <Content Include="Forms\TramBienAp\CapNhatChiSoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\GhiChiSoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\GhiSoHoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\KhoiTaoChiSoTBA.aspx" />
-    <Content Include="Forms\TramBienAp\NhapTBA.aspx" />
     <Content Include="Forms\TruyThu\DoViPham.aspx" />
     <Content Include="Forms\TruyThu\GhiSaiChiSo.aspx" />
     <Content Include="Forms\VatTu\NhapVatTuNuoc.aspx" />
@@ -4206,6 +4460,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>VatTuThietKe.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GhiChiSo\DSDOTINHD.rdlc" />
     <EmbeddedResource Include="Reports\HoaDonLapDatSuaChua\DSThuTaiQuayHD.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>DSThuTaiQuayHD.cs</LastGenOutput>
@@ -4261,10 +4516,6 @@
     <EmbeddedResource Include="Reports\QuanLyGhiDHTinhCuocInHD\INSOGHINUOC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>INSOGHINUOC.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\QuanLyGhiDHTinhCuocInHD\DSKiemTraDo.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>DSKiemTraDo.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\QuanLyGhiDHTinhCuocInHD\InHoaDon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4375,6 +4626,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>DSTHAYDOICTNUOC.cs</LastGenOutput>
     </EmbeddedResource>
+    <CodeAnalysisDictionary Include="Reports\QuanLyKhachHang\rdDSKHM.rdlc" />
     <EmbeddedResource Include="Reports\QuanLyKhachHang\SoBoCongTy2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SoBoCongTy2.cs</LastGenOutput>
@@ -4631,6 +4883,17 @@
     <Content Include="Datasets\BAOCAOVTTK_LOI.xsc">
       <DependentUpon>BAOCAOVTTK_LOI.xsd</DependentUpon>
     </Content>
+    <Content Include="Datasets\BaoCaoBVTCTLX.xsc">
+      <DependentUpon>BaoCaoBVTCTLX.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\BaoCaoBVTCTLX.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BaoCaoBVTCTLX.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\BaoCaoBVTCTLX.xss">
+      <DependentUpon>BaoCaoBVTCTLX.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\BAOCAOVTTK_LOI.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4672,6 +4935,17 @@
     <None Include="Datasets\BCDSKHMoi.xss">
       <DependentUpon>BCDSKHMoi.xsd</DependentUpon>
     </None>
+    <Content Include="Datasets\BCDSVTTKPO.xsc">
+      <DependentUpon>BCDSVTTKPO.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\BCDSVTTKPO.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BCDSVTTKPO.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\BCDSVTTKPO.xss">
+      <DependentUpon>BCDSVTTKPO.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\BCKDDH.xsc">
       <DependentUpon>BCKDDH.xsd</DependentUpon>
     </None>
@@ -5222,6 +5496,17 @@
     <None Include="Datasets\DSKiemTraKy.xss">
       <DependentUpon>DSKiemTraKy.xsd</DependentUpon>
     </None>
+    <Content Include="Datasets\DSLICHGCSN.xsc">
+      <DependentUpon>DSLICHGCSN.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\DSLICHGCSN.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSLICHGCSN.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\DSLICHGCSN.xss">
+      <DependentUpon>DSLICHGCSN.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\DSPhanCong_TC.xsc">
       <DependentUpon>DSPhanCong_TC.xsd</DependentUpon>
     </None>
@@ -5254,6 +5539,17 @@
     </None>
     <Content Include="Datasets\DSThayDongHoDC.xss">
       <DependentUpon>DSThayDongHoDC.xsd</DependentUpon>
+    </Content>
+    <Content Include="Datasets\DSThongTinKH.xsc">
+      <DependentUpon>DSThongTinKH.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\DSThongTinKH.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSThongTinKH.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\DSThongTinKH.xss">
+      <DependentUpon>DSThongTinKH.xsd</DependentUpon>
     </Content>
     <None Include="Datasets\DSThongTinSCKH.xsc">
       <DependentUpon>DSThongTinSCKH.xsd</DependentUpon>
@@ -5288,6 +5584,17 @@
     <None Include="Datasets\DSThuTaiQuayNgay.xss">
       <DependentUpon>DSThuTaiQuayNgay.xsd</DependentUpon>
     </None>
+    <Content Include="Datasets\DSTONGHOPDDK.xsc">
+      <DependentUpon>DSTONGHOPDDK.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\DSTONGHOPDDK.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSTONGHOPDDK.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\DSTONGHOPDDK.xss">
+      <DependentUpon>DSTONGHOPDDK.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\DSTTBANG.xsc">
       <DependentUpon>DSTTBANG.xsd</DependentUpon>
     </None>
@@ -5299,6 +5606,17 @@
     <None Include="Datasets\DSTTBANG.xss">
       <DependentUpon>DSTTBANG.xsd</DependentUpon>
     </None>
+    <Content Include="Datasets\DSTTVPPO.xsc">
+      <DependentUpon>DSTTVPPO.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\DSTTVPPO.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSTTVPPO.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\DSTTVPPO.xss">
+      <DependentUpon>DSTTVPPO.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\DSTuChoiThietKe.xsc">
       <DependentUpon>DSTuChoiThietKe.xsd</DependentUpon>
     </None>
@@ -5783,6 +6101,17 @@
     <None Include="Datasets\TongCThuTienNuocKVVaDT.xss">
       <DependentUpon>TongCThuTienNuocKVVaDT.xsd</DependentUpon>
     </None>
+    <Content Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.xsc">
+      <DependentUpon>TongHopChuanThuKyDenKyxsd.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TongHopChuanThuKyDenKyxsd.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\TongHopChuanThu\TongHopChuanThuKyDenKyxsd.xss">
+      <DependentUpon>TongHopChuanThuKyDenKyxsd.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\TongHopCongNoTheoNhanVien.xsc">
       <DependentUpon>TongHopCongNoTheoNhanVien.xsd</DependentUpon>
     </None>
@@ -5805,6 +6134,17 @@
     <Content Include="Datasets\TONGHOPTRANGTHAI.xss">
       <DependentUpon>TONGHOPTRANGTHAI.xsd</DependentUpon>
     </Content>
+    <Content Include="Datasets\TRUYTHUVPN.xsc">
+      <DependentUpon>TRUYTHUVPN.xsd</DependentUpon>
+    </Content>
+    <None Include="Datasets\TRUYTHUVPN.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TRUYTHUVPN.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Datasets\TRUYTHUVPN.xss">
+      <DependentUpon>TRUYTHUVPN.xsd</DependentUpon>
+    </Content>
     <None Include="Datasets\TTTTKH.xsc">
       <DependentUpon>TTTTKH.xsd</DependentUpon>
     </None>
@@ -5816,6 +6156,7 @@
     <None Include="Datasets\TTTTKH.xss">
       <DependentUpon>TTTTKH.xsd</DependentUpon>
     </None>
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\n.pubxml" />
     <None Include="Properties\PublishProfiles\QL.pubxml" />
     <Content Include="Reports\DonLapDatMoi\VatTuThietKe_DBP.rpt" />
@@ -5828,16 +6169,22 @@
     <Content Include="Reports\DonLapDatMoi\VatTuThietKe_LTEBT.rpt" />
     <Content Include="Reports\QuanLyKhachHang\DSChietTinhKoKhaiThac.rpt" />
     <Content Include="Shared\PO.Master" />
-    <Content Include="Shared\WebMobi.Master" />
     <Content Include="Shared\ERPPO.Master" />
+    <Content Include="Shared\WPO.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="content\scripts\data\thietke\" />
+    <Folder Include="Controllers\KhachHang\" />
+    <Folder Include="Controllers\ThietKe\" />
+    <Folder Include="Forms\GhiChiSo\Power\BaoCao\" />
     <Folder Include="Forms\TramBienAp\BaoCao\" />
     <Folder Include="NhanSu\BaoCaoNS\" />
     <Folder Include="UpLoadFile\" />
     <Folder Include="WebMobi\ThietKe\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

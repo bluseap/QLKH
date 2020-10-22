@@ -21,6 +21,16 @@
              });
          });
 
+         function file_change(f) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+                 var img = document.getElementById("imgTK1");
+                 img.src = e.target.result;
+                 img.style.display = "inline";
+             };
+             reader.readAsDataURL(f.files[0]);
+         }
+
          function CheckFormMAVTKeyPress(e) {
              var code = (e.keyCode ? e.keyCode : e.which);
              jQuery.fn.exists = function () { return jQuery(this).length > 0; }
@@ -41,26 +51,28 @@
             }
         }
 
+        function CheckFormAddVatTu() {
+             openWaitingDialog();
+             unblockWaitingDialog();
+             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnChangeKhoiLuong) %>', '');
+        }
+
         function CheckFormAddGhiChu() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnAddGhiChu) %>', '');
         }
 
         function CheckFormAddChiPhi() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnAddChiPhi) %>', '');
         }
 
         function CheckFormFilterVatTu() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterVatTu) %>', '');
-
             return;
         }
 
@@ -73,7 +85,6 @@
         function CheckFormBaoCao() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
 
@@ -85,7 +96,6 @@
             var gvt = document.getElementById(txtGIAVTId).value;
             var gnc = document.getElementById(txtGIANCId).value;
             var cb = document.getElementById(cbISCTYDTU).checked ? "true" : "false";
-
 
             var msg = EOSCRM.Web.Common.AjaxCRM.UpdateCTTK(maMBVT, maVT, sl, gvt, gnc, cb);
 
@@ -280,6 +290,14 @@
                                 <table class="crmtable">
                                     <tbody>
                                         <tr>
+                                            <td class="crmcell right">Kho Xí nghiệp</td>
+                                            <td class="crmcell">
+                                                <div class="left">                                                
+                                                    <asp:DropDownList ID="ddlKhoXiNghiep" runat="server" ></asp:DropDownList>
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="crmcell right">Từ khóa</td>
                                             <td class="crmcell">
                                                 <div class="left">                                                
@@ -303,17 +321,23 @@
 						                OnPageIndexChanging="gvVatTu_PageIndexChanging">
 							            <PagerSettings FirstPageText="vật tư" PageButtonCount="2" />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Mã VT" HeaderStyle-Width="15%">
+                                            <asp:TemplateField HeaderText="Mã VT K.Toán" HeaderStyle-Width="90px">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("MAVT") %>'
-                                                        CommandName="EditItem" Text='<%# Eval("MAVT") %>'></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("MAVT") %>'  CommandName="EditItem" 
+                                                        Text='<%# Eval("KeToanMaSoVatTu") != null ?  Eval("KeToanMaSoVatTu").ToString() : "" %>'></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="15%" />
-                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="35%" />
-                                            <asp:BoundField HeaderText="Giá VT" DataField="GIAVT" HeaderStyle-Width="10%" />
-                                            <asp:BoundField HeaderText="Giá NC" DataField="GIANC" HeaderStyle-Width="10%" />
-                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="15%" />
+                                            <%--<asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="15%" />--%>
+                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="240px" />
+                                            <%--<asp:BoundField HeaderText="Giá VT" DataField="GIAVT" HeaderStyle-Width="10%" />
+                                            <asp:BoundField HeaderText="Giá NC" DataField="GIANC" HeaderStyle-Width="10%" />--%>
+                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="40px" />
+                                            <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
+                                                 <ItemTemplate>
+                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ) != null ? 
+                                                    new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                     </eoscrm:Grid>
                                 </div>
@@ -355,6 +379,10 @@
 		                                <asp:LinkButton ID="linkBtnChangeKhoiLuong" CausesValidation="false" style="display:none"  
                                             OnClick="linkBtnChangeKhoiLuong_Click" runat="server">Change KL</asp:LinkButton>
 		                            </div>
+                                    <div class="left">
+                                        <asp:Button ID="btAddVatTu" runat="server" CssClass="myButton" Text="Thêm " UseSubmitBehavior="false"
+                                            OnClientClick="return CheckFormAddVatTu();" OnClick="btAddVatTu_Click" />
+                                    </div>
 		                            <div class="left">
                                         <asp:Label ID="lblTENVT" runat="server" Text=""></asp:Label>
 		                            </div>
@@ -380,27 +408,33 @@
                                             <%# Container.DataItemIndex + 1%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mã VT" HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="Stt" HeaderStyle-Width="20px">
                                         <ItemTemplate>
-                                            <%# Eval("MAVT") %>
+                                            <%# Eval("VATTU.MAHIEU") != null ? Convert.ToInt32(Eval("VATTU.MAHIEU")).ToString() : ""  %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mã hiệu" HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="Mã VT K.Toán" HeaderStyle-Width="60px">
                                         <ItemTemplate>
-                                            <%# Eval("VATTU.MAHIEU") %>
-                                        </ItemTemplate>
+                                             <%# Eval("VATTU.KeToanMaSoVatTu") != null ?  Eval("VATTU.KeToanMaSoVatTu").ToString() : "" %>
+                                        </ItemTemplate> 
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Nội dung công việc">
+                                    <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
+                                        <ItemTemplate>
+                                            <%# new KhoDanhMucDao().Get(Eval("VATTU.KhoDanhMucId") != null ? Eval("VATTU.KhoDanhMucId").ToString() : "" ) != null ? 
+                                            new KhoDanhMucDao().Get(Eval("VATTU.KhoDanhMucId") != null ? Eval("VATTU.KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>                                   
+                                    <asp:TemplateField HeaderText="Tên V.tư">
                                         <ItemTemplate>
                                             <%# Eval("VATTU.TENVT") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Công ty đầu tư" HeaderStyle-Width="100px">
+                                    <asp:TemplateField HeaderText="Công ty đầu tư" HeaderStyle-Width="20px">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="cbISCTYDTU" runat="server" />                                           
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="ĐVT" HeaderStyle-Width="50px">
+                                    <asp:TemplateField HeaderText="ĐVT" HeaderStyle-Width="30px">
                                         <ItemTemplate>
                                             <%# Eval("VATTU.DVT") %>
                                         </ItemTemplate>
@@ -569,23 +603,59 @@
                      </td>
                 </tr>
                 <tr>
-                    <td>
+                     <td>
 		               <table class="crmtable">
 		                    <tr>
+                                <td class="crmcell right">Hình thiết kế </td>
+                                <td class="crmcell">                                 
+                                    <asp:FileUpload ID="UpHinhTK" runat="server" type="file" onchange="file_change(this)" Width="90px" />
+                                    <input id="f" type="file" onchange="file_change(this)" style="display: none" />
+                                    <input type="button" onclick="document.getElementById('f').click()" />
+                                    <div class="left">                                   
+                                        <img id="imgTK1" style="display: none" Height="150px" Width="120px"/>
+                                        <asp:Image ID="imgHINHTK1" runat="server" Height="150px" Width="120px"/>
+                                    </div>                                                       
+                                </td>                           
                                 <td class="crmcell right">Chọn mẫu thiết kế</td>
                                 <td class="crmcell">
                                     <div class="left">
-                                        <asp:DropDownList ID="ddlMBTHIETKE" Width="250px" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMBTHIETKE_SelectedIndexChanged1"       >
+                                        <asp:DropDownList ID="ddlMBTHIETKE" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMBTHIETKE_SelectedIndexChanged1"       >
                                         </asp:DropDownList>
-                                    </div> 
-                                    <div class="left">
-                                        <span style="color: Red; font-weight: bold">Chú ý: Phải nhập tên khách hàng và danh số trước mới chọn mẫu thiết kế.</span>
-                                     </div>                                   
+                                    </div>                                                                                           
                                 </td>
-                                </tr>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+		               <table class="crmtable">
+		                    <tr>
+                                <td class="crmcell right">Kết luận sau thiết kế</td>
+                                <td class="crmcell">
+		                            <div class="left">
+		                                <asp:TextBox ID="txtKetLuanSauTK" 	runat="server" Width="300px" />
+		                            </div>                                                      
+                                </td>                                
+                            </tr>
                         </table>
                      </td>
-                </tr>
+                </tr>  
+                 <tr>
+                     <td>
+		               <table class="crmtable">
+		                    <tr>
+                                <td class="crmcell right"></td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Button ID="btSaveMauTK" runat="server" CommandArgument="Change" CssClass="myButton" Text="Lưu thiết kế"
+                                            TabIndex="16" UseSubmitBehavior="false" OnClick="btSaveMauTK_Click" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>   
 		        <tr>
                     <td class="header">Chi phí đào lắp</td> 
 		        </tr>
@@ -597,7 +667,7 @@
 		                        <td class="crmcell">
 		                            <div class="left">
 		                                <asp:Button ID="btnAddChiPhi" runat="server" CssClass="addnew" OnClientClick="return CheckFormAddChiPhi();" 
-		                                    OnClick="btnAddChiPhi_Click" CausesValidation="false" UseSubmitBehavior="false" />
+		                                    OnClick="btnAddChiPhi_Click" CausesValidation="false" UseSubmitBehavior="false" Visible="False" />
 		                            </div>
 		                        </td>
 		                    </tr>
@@ -680,6 +750,9 @@
                 </table>
             </div>
 		</ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btSaveMauTK" />            
+        </Triggers> 
 	</asp:UpdatePanel>
 	
 	<br />

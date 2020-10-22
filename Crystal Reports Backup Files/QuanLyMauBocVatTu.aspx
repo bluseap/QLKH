@@ -43,51 +43,43 @@
             }
         }
 
-
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
+
+        function CheckFormCapNhatGiaMoi() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btCapNhatGiaMoi) %>', '');
+            return false;
+        }        
 
         function CheckFormCancel() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnCancel) %>', '');
-
             return false;
         }
-
-
 
         function CheckFormAddGhiChu() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnAddGhiChu) %>', '');
-
             return false;
         }
 
         function CheckFormAddChiPhi() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnAddChiPhi) %>', '');
-
             return false;
         }
 
         function CheckFormFilterVatTu() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterVatTu) %>', '');
-
             return false;
         }
 
@@ -95,10 +87,8 @@
             if (CheckRecordSelected('delete')) {
                 openWaitingDialog();
                 unblockWaitingDialog();
-
                 __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnDelete) %>', '');
             }
-
             return false;
         }
 
@@ -155,6 +145,7 @@
         }
 
         function updateCPMBVT(maCP, txtNDclientId, txtDGclientId, ddlDVTclientId, txtSLclientId,
+            txtCHIEURONGclientId, txtCHIEUCAOclientId,
 		    txtHSclientId, lblTTclientId, ddlLCPclientId) {
             openWaitingDialog();
             unblockWaitingDialog();
@@ -166,30 +157,46 @@
             var dvt = e.options[e.selectedIndex].value;
 
             var sl = document.getElementById(txtSLclientId).value;
+
+            var cr = document.getElementById(txtCHIEURONGclientId).value;
+            var cc = document.getElementById(txtCHIEUCAOclientId).value;
+
             var hs = document.getElementById(txtHSclientId).value;
 
             var f = document.getElementById(ddlLCPclientId);
             var loai = f.options[f.selectedIndex].value;
 
-            var msg = EOSCRM.Web.Common.AjaxCRM.UpdateCPMBVT(maCP, nd, dg, dvt, sl, hs, loai);
+            var msg = EOSCRM.Web.Common.AjaxCRM.UpdateCPMBVT(maCP, nd, dg, dvt, sl, cr, cc, hs, loai);
 
             if (msg.value != "<%= DELIMITER.Passed %>" && msg.value != "<%= DELIMITER.Failed %>") {
 
                 var idArr = msg.value.split("<%= DELIMITER.Delimiter %>");
 
-                if (idArr.length == 6) {
+                if (idArr.length == 8) {
                     document.getElementById(txtNDclientId).value = idArr[0];
                     document.getElementById(txtDGclientId).value = idArr[1];
                     document.getElementById(ddlDVTclientId).value = idArr[2];
                     document.getElementById(txtSLclientId).value = idArr[3];
-                    document.getElementById(txtHSclientId).value = idArr[4];
-                    document.getElementById(ddlLCPclientId).value = idArr[5];
+                    document.getElementById(txtCHIEURONGclientId).value = idArr[4];
+                    document.getElementById(txtCHIEUCAOclientId).value = idArr[5];
+                    document.getElementById(txtHSclientId).value = idArr[6];
+                    document.getElementById(ddlLCPclientId).value = idArr[7];
                 }
             }
 
+            //var tongcong = parseFloat(sl.replace(/,/g, '.')) * parseFloat(hs.replace(/,/g, '.')) * dg
+            //       * parseFloat(cr.replace(/,/g, '.')) * parseFloat(cc.replace(/,/g, '.'));
+            //var tongcong = "222";//parseFloat(sl) ;//* parseFloat(hs) * dg * parseFloat(cr) * parseFloat(cc);
+
             if (msg.value == "<%= DELIMITER.Passed %>") {
-                document.getElementById(lblTTclientId).innerHTML =
-		            parseFloat(sl.replace(/,/g, '.')) * parseFloat(hs.replace(/,/g, '.')) * dg;
+                
+
+                //document.getElementById(lblTTclientId).innerHTML = Math.round(parseFloat(sl) * parseFloat(hs) * parseFloat(dg) *
+                //       parseFloat(cr) * parseFloat(cc));
+
+                var tongtien = parseFloat(sl.replace(/,/g, '.')) * parseFloat(cr.replace(/,/g, '.')) * parseFloat(cc.replace(/,/g, '.')) * dg;
+                document.getElementById(lblTTclientId).innerHTML = parseInt(tongtien);
+
                 /*Math.formatNumber(sl * hs * dg + '', {
                 decimals:0,
                 currency:false,
@@ -225,6 +232,15 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtMADDK" runat="server" Width="200px" MaxLength="10" TabIndex="1" />
                                 </div>
+                                <td class="crmcell right">
+                                    Khu vực
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlKHUVUC" runat="server"  >
+                                        </asp:DropDownList>
+                                    </div>
+                                </td>
                             </td>
                         </tr>
                         <tr>
@@ -251,6 +267,12 @@
                                     <asp:Button ID="btnDelete" runat="server" CssClass="delete" UseSubmitBehavior="false"
                                         OnClick="btnDelete_Click" OnClientClick="return CheckFormDelete();" TabIndex="18" />
                                 </div>
+                                <td class="crmcell ">
+                                    <div class="left">
+                                        <asp:Button ID="btCapNhatGiaMoi" runat="server" CssClass="myButton" Text="Cập nhật giá mới (KH mua)" UseSubmitBehavior="false"
+                                             OnClientClick="return CheckFormCapNhatGiaMoi();" TabIndex="18" OnClick="btCapNhatGiaMoi_Click" />
+                                    </div>
+                                </td>
                             </td>
                         </tr>
                     </tbody>
@@ -325,8 +347,16 @@
                                 <table class="crmtable">
                                     <tbody>
                                         <tr>
-                                            <td class="crmcell right">Từ khóa</td>
+                                            <td class="crmcell right">Kho Xí nghiệp</td>
                                             <td class="crmcell">
+                                                <div class="left">                                                
+                                                    <asp:DropDownList ID="ddlKhoXiNghiep" runat="server" ></asp:DropDownList>
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Từ khóa</td>
+                                            <td class="crmcell">                                                
                                                 <div class="left">                                                
                                                     <asp:TextBox ID="txtFilterVatTu" onchange="return CheckFormFilterVatTu();" runat="server" />
                                                 </div>
@@ -348,15 +378,27 @@
 						                OnPageIndexChanging="gvVatTu_PageIndexChanging">
 							            <PagerSettings FirstPageText="vật tư" PageButtonCount="2" />
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Mã VT" HeaderStyle-Width="15%">
+                                            <asp:TemplateField HeaderText="Mã VT K.Toán" HeaderStyle-Width="90px">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("MAVT") %>'
-                                                        CommandName="EditItem" Text='<%# Eval("MAVT") %>'></asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("MAVT") %>'  CommandName="EditItem" 
+                                                        Text='<%# Eval("KeToanMaSoVatTu") != null ?  Eval("KeToanMaSoVatTu").ToString() : "" %>'>
+                                                    </asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField HeaderText="Mã hiệu" DataField="MAHIEU" HeaderStyle-Width="15%" />
-                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="55%" />
-                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="15%" />
+                                            <asp:BoundField HeaderText="Mã hiệu LX" DataField="MAHIEU" HeaderStyle-Width="40px" />
+                                            <asp:BoundField HeaderText="Tên vật tư" DataField="TENVT" HeaderStyle-Width="240px" />
+                                            <asp:BoundField HeaderText="Đơn vị tính" DataField="DVT" HeaderStyle-Width="40px" />
+                                            <%--<asp:TemplateField HeaderText="Loại VT" HeaderStyle-Width="10%">
+                                                <ItemTemplate>
+                                                    <%# Eval("LOAIVT") != null ? Eval("LOAIVT").ToString() : "" %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>  --%>
+                                            <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
+                                                <ItemTemplate>
+                                                    <%# new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ) != null ? 
+                                                    new KhoDanhMucDao().Get(Eval("KhoDanhMucId") != null ? Eval("KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>                                            
                                         </Columns>
                                     </eoscrm:Grid>
                                 </div>
@@ -426,22 +468,33 @@
                                             <%# Container.DataItemIndex + 1%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mã VT" HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="STT" HeaderStyle-Width="30px">
                                         <ItemTemplate>
-                                            <%# Eval("MAVT") %>
+                                            <%# Convert.ToInt32(Eval("VATTU.MAHIEU")) %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Mã hiệu" HeaderStyle-Width="60px">
+                                    <asp:TemplateField HeaderText="Mã VT K.Toán" HeaderStyle-Width="80px">
                                         <ItemTemplate>
-                                            <%# Eval("VATTU.MAHIEU") %>
+                                            <%# Eval("VATTU.KeToanMaSoVatTu") != null ?  Eval("VATTU.KeToanMaSoVatTu").ToString() : "" %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Nội dung công việc">
+                                    <asp:TemplateField HeaderText="Kho XN" HeaderStyle-Width="160px">
+                                        <ItemTemplate>
+                                            <%# new KhoDanhMucDao().Get(Eval("VATTU.KhoDanhMucId") != null ? Eval("VATTU.KhoDanhMucId").ToString() : "" ) != null ? 
+                                            new KhoDanhMucDao().Get(Eval("VATTU.KhoDanhMucId") != null ? Eval("VATTU.KhoDanhMucId").ToString() : "" ).TenKho.ToString() : ""   %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>       
+                                    <asp:TemplateField HeaderText="Ký hiệu" HeaderStyle-Width="60px">
+                                        <ItemTemplate>
+                                            <%# Eval("VATTU.KYHIEUVT") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Tên V.tư">
                                         <ItemTemplate>
                                             <%# Eval("VATTU.TENVT") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Công ty đầu tư" HeaderStyle-Width="100px">
+                                    <asp:TemplateField HeaderText="Công ty đầu tư" HeaderStyle-Width="20px">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="cbISCTYDTU" runat="server" />                                           
                                         </ItemTemplate>
@@ -476,6 +529,11 @@
                                             <asp:Label ID="lblTIENNC" Text='<%# Bind("TIENNC") %>' runat="server"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Loại VT" HeaderStyle-Width="20px">
+                                        <ItemTemplate>
+                                            <%# Eval("VATTU.LOAIVT") != null ? Eval("VATTU.LOAIVT").ToString() : "" %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>    
 					                <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="60px">
 						                <ItemTemplate>
 							                <asp:LinkButton ID="btnDelete" Text="Xóa" CommandName="DeleteVatTu" 
@@ -498,7 +556,7 @@
 		                        <td class="crmcell">
 		                            <div class="left">
 		                                <asp:Button ID="btnAddGhiChu" runat="server" CssClass="addnew" OnClientClick="return CheckFormAddGhiChu();" 
-		                                    OnClick="btnAddGhiChu_Click" CausesValidation="false" UseSubmitBehavior="false" />
+		                                    OnClick="btnAddGhiChu_Click" CausesValidation="false" UseSubmitBehavior="false" Visible="false" />
 		                            </div>
 		                        </td>
 		                    </tr>
@@ -576,7 +634,17 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtSOLUONG" Text='<%# Bind("SOLUONG") %>' Width="50px" runat="server" />
                                         </ItemTemplate>
+                                    </asp:TemplateField>                                    
+                                    <asp:TemplateField HeaderText="Chiều rộng" HeaderStyle-Width="40px">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtCHIEURONG" Text='<%# Bind("CHIEURONG") %>' Width="50px" runat="server" />                            
+                                        </ItemTemplate>
                                     </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Chiều cao" HeaderStyle-Width="40px">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtCHIEUCAO" Text='<%# Bind("CHIEUCAO") %>' Width="50px" runat="server" />                            
+                                        </ItemTemplate>
+                                    </asp:TemplateField>                                   
                                     <asp:TemplateField HeaderText="Hệ số" HeaderStyle-Width="60px">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtHESOCP" Text='<%# Bind("HESOCP") %>' Width="50px" runat="server" />                            

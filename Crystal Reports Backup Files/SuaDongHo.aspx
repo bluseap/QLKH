@@ -320,7 +320,7 @@
                                 <%# (Eval("DONDANGKY") != null) ? Eval("DONDANGKY.TENKH") : ""%>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField HeaderStyle-Width="10%" DataField="SONOCU" HeaderText="Số No củ" />
+                        <asp:BoundField HeaderStyle-Width="10%" DataField="SONOCU" HeaderText="Số No cũ" />
                         <asp:BoundField HeaderStyle-Width="10%" DataField="SONOMOI" HeaderText="Số No mới" />
                         <asp:TemplateField HeaderText="Ngày nhập" HeaderStyle-Width="10%">
                             <ItemTemplate>

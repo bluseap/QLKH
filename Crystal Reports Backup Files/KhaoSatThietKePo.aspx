@@ -22,19 +22,15 @@
             });
         });
 
-
-
         function CheckFormApprove() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnApprove) %>', '');
         }
 
         function CheckFormReject() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReject) %>', '');
         }
     </script>
@@ -158,8 +154,7 @@
                        
                         <asp:TemplateField HeaderText="Mã đơn&nbsp;">
                             <ItemTemplate>
-                                <asp:LinkButton ID="linkMa" runat="server" CommandArgument='<%# Eval("MADDKPO") %>'
-                                    OnClientClick="openDialogAndBlock('Thiết kế vật tư', 700, 'divThietKeVatTu')"
+                                <asp:LinkButton ID="linkMa" runat="server" CommandArgument='<%# Eval("MADDKPO") %>'                                    
                                     CommandName="EditHoSo" CssClass="link" Text='<%# Eval("MADDKPO") %>'></asp:LinkButton>
                             </ItemTemplate>
                             <ItemStyle Font-Bold="True" />

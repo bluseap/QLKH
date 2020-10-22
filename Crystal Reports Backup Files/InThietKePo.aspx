@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="InThietKePo.aspx.cs" Inherits="EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo.InThietKePo" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="InThietKePo.aspx.cs" Inherits="EOSCRM.Web.Forms.ThietKe.Power.BaoCaoPo.InThietKePo" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web,  Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
      namespace="CrystalDecisions.Web" tagprefix="CR" %>
 
 

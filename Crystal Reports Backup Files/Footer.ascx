@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" 
     Inherits="EOSCRM.Web.UserControls.Footer" CodeBehind="Footer.ascx.cs" %>
+
 <div id="cfooter">
     <div class="hori">
     </div>
@@ -29,8 +30,8 @@
 			$("#ccontent").css("height",$(window).height()-totalHeight);
 		}
 		$(document).ready(function(){
-			ddsmoothmenu.init({
-				mainmenuid: "cmenu", orientation: 'h', classname: 'ddsmoothmenu', contentsource: "markup"
+		    ddsmoothmenu.init({		    
+		        mainmenuid: "cmenu", orientation: 'h', classname: 'ddsmoothmenu', contentsource: "markup"		        
 			})
 			resizeccr();
 			$(window).resize(function() {

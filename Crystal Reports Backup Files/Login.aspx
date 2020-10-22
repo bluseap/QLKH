@@ -1,9 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="EOSCRM.Web.Login" CodeBehind="Login.aspx.cs" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Import Namespace="EOSCRM.Web.Common"%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>EOS-CRM > Đăng nhập hệ thống</title>
+    <title>POWACO-CRM > Đăng nhập hệ thống</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="content/images/powaco.ico" />
     <link type="text/css" href="content/css/core.css" rel="stylesheet" />
@@ -15,6 +16,11 @@
 		<link type="text/css" href="content/css/fixieIE6.css" rel="stylesheet" />
 	<![endif]-->
 
+    <link href="content/css/bootstrap.css" rel="stylesheet" />
+    <link href="content/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+    <link href="content/css/signin.css" rel="stylesheet" />
+    <script src="content/js/ie-emulation-modes-warning.js"></script>
+
     <script type="text/javascript" src="content/scripts/jquery-1.4.2.min.js"></script>
     <!-- Addon for background tiling support -->
     <script type="text/javascript" src="content/scripts/iepngfix_tilebg.js"></script>
@@ -24,13 +30,78 @@
             width: 251px;
         }
     </style>
+
+    <script type="text/javascript">     
+        //var x = document.getElementById("demo");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+
+            }
+            else { alert( "Geolocation is not supported by this browser."); }
+
+            //alert("dasda asd");
+            return;
+        }
+
+        function showPosition(position) {
+
+            var latlondata = position.coords.latitude + "," + position.coords.longitude;
+            var latlon = "Your Latitude Position is:=" + position.coords.latitude + "," + "Your Longitude Position is:=" + position.coords.longitude;
+            alert(latlon);
+           
+            document.getElementById("<%=hfLATVT.ClientID %>").value = position.coords.latitude;
+            document.getElementById("<%=hfLONGVT.ClientID %>").value = position.coords.longitude;                
+
+            //__doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReset) %>', '');
+        }
+
+        function showError(error) {
+            if (error.code == 1) {
+                alert( "User denied the request for Geolocation.");
+            }
+            else if (err.code == 2) {
+                alert( "Location information is unavailable.");
+            }
+            else if (err.code == 3) {
+                alert( "The request to get user location timed out.");
+            }
+            else {
+                alert( "An unknown error occurred.");
+            }
+        }
+
+        //window.onload = LoadgetLocation();
+        function LoadgetLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(LoadshowPosition, showError);
+            }
+            else { alert("Geolocation is not supported by this browser."); }            
+        }
+
+        function LoadshowPosition(position) {
+
+            var latlondata = position.coords.latitude + "," + position.coords.longitude;
+            var latlon = "Lat is:=" + position.coords.latitude + "," + "Long is:=" + position.coords.longitude;
+            //alert(latlon);
+
+            document.getElementById("<%=hfLATVT.ClientID %>").value = position.coords.latitude;
+            document.getElementById("<%=hfLONGVT.ClientID %>").value = position.coords.longitude;
+
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnReset) %>', '');
+        }           
+      
+     </script>
 </head>
-<body>
-    
-    <form id="form1" runat="server">
-        <table cellpadding="2" cellspacing="10" style="width: auto;" width="100%" >
-            <tr>
-                <td width="80%">                                       
+<body >       
+    <form id="form1" runat="server">    
+             
+        <asp:HiddenField ID="hfLATVT" runat="server" />
+        <asp:HiddenField ID="hfLONGVT" runat="server" />
+
+        <table cellpadding="2" cellspacing="10" style="width: auto;" width="100%" >   
+            <tr>     
+               <%-- <td width="80%">                                       
                      <table cellpadding="3" cellspacing="10" style="width: auto;" width="80%" >
                         <tr>
                             <td width="10%">
@@ -95,8 +166,9 @@
                             </td>
                         </tr>    
                      </table>              
-                </td>
-                <td width="20%">
+                </td>    --%>        
+
+               <td width="20%">
                     <div id="wrapper">
                         <div id="container">
                             <div id="login">
@@ -110,45 +182,53 @@
                                             SetFocusOnError="True"></asp:RequiredFieldValidator></div>
                                     <div class="mr10">
                                         <label for="txtPassword">
-                                            Password</label></div>
+                                            Password</label>
+                                    </div>
                                     <div>
-                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" TabIndex="2" /></div>
+                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" TabIndex="2" />
+                                    </div>
                                     <div class="mr10">
-                                        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" CssClass="btn_lg" TabIndex="3" />
-                                        <asp:Button ID="btnReset" TabIndex="4" runat="server" CssClass="btn_cc" OnClick="btnReset_Click" />
+                                        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" CssClass="btn_lg" TabIndex="3"  />
+                                        <asp:Button ID="btnReset" TabIndex="4" runat="server" CssClass="btn_cc" OnClick="btnReset_Click"/>
                                     </div>
                                     <div class="mr10 err">
                                         <asp:Label ID="lblErrorMsg" runat="server" Font-Bold="True"></asp:Label>
                                     </div>
+                                     <div >
+                                        <label > Phiên bản 2.0.0  </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>   
-                        <div id="longxuyen" align="center" style="font-size: large" >
-              <asp:HyperLink ID="hpLONGXUYEN" runat="server" NavigateUrl="~/GisWeb/glongxuyen.aspx" Visible="true">
-                                Long Xuyên
-              </asp:HyperLink>        
-         </div>
-        <div id="phutan" align="center" style="font-size: large" >
-              <asp:HyperLink ID="hpPHUTAN" runat="server" NavigateUrl="~/GisWeb/gphutan.aspx" Visible="true">
-                                Phú Tân
-              </asp:HyperLink>        
-         </div>
-        <div id="thoaison" align="center" style="font-size: large" >
-              <asp:HyperLink ID="hpTHOAISON" runat="server" NavigateUrl="~/GisWeb/gthoaison.aspx" Visible="true">
-                                Thoại Sơn
-              </asp:HyperLink>        
-         </div>     
+                        <%--<div id="longxuyen" align="center" style="font-size: large" >
+                              <asp:HyperLink ID="hpLONGXUYEN" runat="server" NavigateUrl="~/GisWeb/glongxuyen.aspx" Visible="true">
+                                                Long Xuyên
+                              </asp:HyperLink>        
+                        </div>
+                        <div id="phutan" align="center" style="font-size: large" >
+                              <asp:HyperLink ID="hpPHUTAN" runat="server" NavigateUrl="~/GisWeb/gphutan.aspx" Visible="true">
+                                                Phú Tân
+                              </asp:HyperLink>        
+                         </div>
+                        <div id="thoaison" align="center" style="font-size: large" >
+                              <asp:HyperLink ID="hpTHOAISON" runat="server" NavigateUrl="~/GisWeb/gthoaison.aspx" Visible="true">
+                                                Thoại Sơn
+                              </asp:HyperLink>        
+                         </div>     
                         <div id="TracNghiem" align="center" style="font-size: x-large" >
                             <asp:HyperLink ID="TSLamBai" runat="server" NavigateUrl="~/TracNghiem/TSLamBai.aspx" Visible="false">
                                 Hướng dẫn làm bài thi Trắc nghiệm
-                            </asp:HyperLink>
-        
-                        </div>
+                            </asp:HyperLink>        
+                        </div>--%>
                     </div>
-                    </td>
-                </tr>
+               </td>
+
+                
+
+            </tr>
        </table>
+        
     </form>
+    
 </body>
-<script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 12492]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script> 
 </html>

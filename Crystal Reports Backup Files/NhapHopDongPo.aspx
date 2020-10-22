@@ -35,18 +35,14 @@
         function CheckFormFilterDP() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDP) %>', '');
-
 		    return false;
         }
 
         function CheckFormFilterDDK() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDDK) %>', '');
-
 		    return false;
         }
 
@@ -58,22 +54,29 @@
         function CheckFormCancel() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnCancel) %>', '');
-
 		    return false;
         }
 
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
 		    return false;
         }
 
+        function CheckFormbtSearch() {           
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btSearch) %>', '');
+            return false;
+        }
 
+        function CheckFormChayChietTinhBravo() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnChayChietTinhBravo) %>', '');
+            return false;
+        }
+       
 	</script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -236,7 +239,7 @@
                                     <div class="right">Số hợp đồng</div>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtSOHD" runat="server" Width="90px" MaxLength="10" 
+                                    <asp:TextBox ID="txtSOHD" runat="server" Width="90px" 
                                         TabIndex="3" />
                                 </div>
                             </td>
@@ -330,8 +333,9 @@
                                         <asp:ListItem Text="5(100)" Value="5(100)" />
                                         <asp:ListItem Text="10(30)" Value="10(30)" />
                                         <asp:ListItem Text="10(40)" Value="10(40)" />
-                                        <asp:ListItem Text="10(80)" Value="10(80)" />
+                                        <asp:ListItem Text="10(80)" Value="10(80)" />                                        
                                         <asp:ListItem Text="20(80)" Value="20(80)" />
+                                        <asp:ListItem Text="10x3(100)" Value="10x3(100)" />
                                         <asp:ListItem Text="40(120)" Value="40(120)" />
                                     </asp:DropDownList>                                   
                                 </div>
@@ -495,6 +499,16 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="crmcell right">Tìm mã đơn, họ tên khách hàng </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtMADDKTENKH" runat="server"></asp:TextBox>
+                                    <asp:Button ID="btSearch" runat="server" CssClass="filter" OnClientClick="return CheckFormbtSearch();" 
+                                       TabIndex="31" UseSubmitBehavior="false" OnClick="btSearch_Click" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right">
                             </td>
                             <td class="crmcell">
@@ -502,10 +516,14 @@
                                     <asp:Button ID="btnSave" runat="server" CssClass="save" OnClientClick="return CheckFormSave();"
                                         OnClick="btnSave_Click" TabIndex="30" UseSubmitBehavior="false" />
                                 </div>
-                                <div class="left">
+                                <div class="left width-250">
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" OnClientClick="return CheckFormCancel();" 
                                         OnClick="btnCancel_Click" TabIndex="31" UseSubmitBehavior="false" />
                                 </div>
+                                <div class="left">
+                                    <asp:Button ID="btnChayChietTinhBravo" runat="server" CssClass="myButton" OnClientClick="return CheckFormChayChietTinhBravo();" 
+                                        TabIndex="31" UseSubmitBehavior="false" Text="Chạy CT Bravo" OnClick="btnChayChietTinhBravo_Click" />
+                                </div> 
                             </td>
                         </tr>
                     </tbody>

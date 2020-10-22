@@ -49,54 +49,42 @@
         function CheckFormFilterNV() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV) %>', '');
-
             return false;
         }
 
         function CheckFormFilterDDK() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDDK) %>', '');
-
             return false;
         }
 
         function CheckFormCancel() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnCancel) %>', '');
-
             return false;
         }
 
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
 
         function CheckFormFilter() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
-
             return false;
         }
 
         function CheckFormMANV() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(linkBtnMANV) %>', '');
-
             return false;
         }
 
@@ -345,8 +333,8 @@
 		                                OnClick="btnBrowseDDK_Click" CausesValidation="false" UseSubmitBehavior="false"
 		                                OnClientClick="openDialogAndBlock('Chọn đơn đăng ký', 700, 'divDonDangKy')" 
                                         TabIndex="2"  />
-                                </div>
-                                <div class="left filtered"></div>
+                                    <asp:Label ID="lbMADDTRAHSTK" runat="server" Visible="false"></asp:Label>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -354,8 +342,7 @@
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKH" runat="server" Width="400px" MaxLength="200" TabIndex="3" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -364,12 +351,11 @@
                             </td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtSONHA" runat="server" Width="68px" MaxLength="200" TabIndex="4" />
-                                    <asp:TextBox ID="txtDUONG" runat="server" Width="200px" MaxLength="200" TabIndex="5" />
+                                    <asp:TextBox ID="txtSONHA" runat="server" Width="200px" MaxLength="200" TabIndex="4" />
+                                    <asp:TextBox ID="txtDUONG" runat="server" Width="68px" MaxLength="200" TabIndex="5" />
                                     <asp:TextBox ID="txtPHUONG" runat="server" Width="100px" MaxLength="200" TabIndex="6" />
                                     <asp:TextBox ID="txtKHUVUC" runat="server" Width="150px" MaxLength="200" TabIndex="7" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -392,8 +378,7 @@
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtTENNV" runat="server" Width="250px" MaxLength="200" TabIndex="4" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -453,16 +438,14 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtMaDH" runat="server" Width="1px" MaxLength="20" 
                                         TabIndex="4" ReadOnly="True" Visible="False" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                                 <div class="left">
                                     <div class="right">Chỉ số khi lắp</div>
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtChiSo" runat="server" Width="120px" MaxLength="200" 
-                                        TabIndex="4" ReadOnly="True" />
-                                </div>
-                                <div class="left filtered"></div>
+                                        TabIndex="4" ReadOnly="false" />
+                                </div>                                
                                 <div class="left">
                                     <asp:CheckBox ID="chkLapQuyetToan" Checked="false" runat="server" Text="" />
                                 </div>
@@ -476,15 +459,34 @@
                             <td class="crmcell">                                
                                 <div class="left">
                                     <asp:TextBox ID="txtCKDM1" runat="server" Width="120px" MaxLength="200" TabIndex="4" />
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                                 <div class="left"><div class="right">Mặt 2</div></div>
                                 <div class="left">
                                     <asp:TextBox ID="txtCKDM2" runat="server" Width="120px" MaxLength="200" 
                                         TabIndex="4"  />
                                 </div>
                             </td>
-                        </tr>     
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Xác định hóa đơn KH kế bên</td>
+                            <td class="crmcell">                                
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlXDHDKEMTHEO" runat="server">
+                                        <asp:ListItem Value="KHONG01" Text="Không biết" />
+                                        <asp:ListItem Value="CUNGBEN" Text="Cùng bên KH đăng ký" />
+                                        <asp:ListItem Value="DOIDIEN" Text="Đối diện KH đăng ký" />                                        
+                                    </asp:DropDownList>
+                                </div>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Lý do trả HS về thiết kế</td>
+                            <td class="crmcell">                                
+                                <div class="left">
+                                    <asp:TextBox ID="txtLYDOTRAHSVETK" runat="server" Width="377px"></asp:TextBox>
+                                </div>                                
+                            </td>
+                        </tr> 
                         <tr>
                             <td class="crmcell right"></td>
                             <td class="crmcell">
@@ -579,7 +581,7 @@
                                 <%# (Eval("DONDANGKY") != null) ? Eval("DONDANGKY.TENKH") : ""%>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Địa chỉ" HeaderStyle-Width="30%">
+                        <asp:TemplateField HeaderText="Địa chỉ" HeaderStyle-Width="20%">
                             <ItemTemplate>
                                 <%# (Eval("DONDANGKY") != null) ? Eval("DONDANGKY.DIACHILD") : ""%>
                             </ItemTemplate>
@@ -588,7 +590,7 @@
                             <ItemTemplate>
                                 <%# (Eval("NHANVIEN") != null) ? Eval("NHANVIEN.HOTEN") : ""%>
                             </ItemTemplate>
-                            <HeaderStyle Width="15%" />
+                            <HeaderStyle Width="10%" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Ngày giao" HeaderStyle-Width="75px">
                             <ItemTemplate>
@@ -607,11 +609,23 @@
                                 <asp:Button ID="imgTT" runat="server" Width="90px" OnClientClick="return false;"
                                      CausesValidation="false" UseSubmitBehavior="false" />
                             </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText=" " HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkTRAHSTK" runat="server" CommandArgument='<%# Eval("MADDK") %>'
+                                    CommandName="TraHSVeTK" Text='Trả HS về TK'></asp:LinkButton>                                                    
+                            </ItemTemplate>
                         </asp:TemplateField>                      
-                        <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="75px">
+                        <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="40px">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lnkBtnIDReport" runat="server" CommandArgument='<%# Eval("MADDK") %>'
-                                    CommandName="ReportItem" Text='Báo cáo'></asp:LinkButton>                                                    
+                                    CommandName="ReportItem" Text='B.cáo'></asp:LinkButton>                                                    
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="" HeaderStyle-Width="40px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lkSUAMACHIKD" runat="server" CommandArgument='<%# Eval("MADDK") %>'
+                                    CommandName="SuaMaChiKD" Text='Sửa Mã chì KĐ'></asp:LinkButton>                                                    
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -622,6 +636,6 @@
     
     <br />    
 	<div class="crmcontainer p-5">
-        <a href="../ThiCongCongTrinh/LapQuyetToan.aspx">Chuyển sang bước kế tiếp</a>
+        <a href="../ThiCongCongTrinh/BienBanNghiemThu.aspx">Chuyển sang bước kế tiếp</a>
     </div>
 </asp:Content>

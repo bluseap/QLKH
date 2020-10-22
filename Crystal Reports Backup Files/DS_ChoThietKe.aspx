@@ -1,17 +1,29 @@
-<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="DS_ChoThietKe.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.DS_ChoThietKe" %>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="DS_ChoThietKe.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.DS_ChoThietKe" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
         function CheckFormReport() {
 		    openWaitingDialog();
 		    unblockWaitingDialog();
-
 		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
-		}
+        }
+        
+        function CheckFormBCTUCHOITK() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btBCTUCHOITK) %>', '');
+        }
+
+        function CheckFormbtDSChoTK() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btDSChoTK) %>', '');
+        }
+        
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -45,6 +57,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="crmcell right"></td>
+                    <td class="crmcell">    
+                        <asp:Label ID="Label1" runat="server" Text="Lấy ngày nhập trên máy" Font-Bold="True" ForeColor="Red"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
                     <td class="crmcell right">Khu vực</td>
                     <td class="crmcell">    
                         <div class="left">
@@ -59,11 +77,29 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="crmcell right">
+                        Nhà máy, tổ
+                    </td>
+                    <td class="crmcell">
+                        <div class="left">
+                            <asp:DropDownList ID="ddlNHAMAYTO" runat="server" />                                    
+                        </div>                        
+                    </td>                            
+                </tr>
+                <tr>
                     <td class="crmcell right"></td>
                     <td class="crmcell">    
                         <div class="left">
-                            <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="report" />
+                            <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="myButton" Text="DS chưa duyệt TK" />
                         </div>
+                        <div class="left">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btBCTUCHOITK" OnClientClick="return CheckFormBCTUCHOITK();" runat="server" CssClass="myButton" Text="BC Từ chối TK" OnClick="btBCTUCHOITK_Click" />
+                        </div>
+                        <div class="left">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btDSChoTK" OnClientClick="return CheckFormbtDSChoTK();" runat="server" CssClass="myButton" Text="DS Chờ TK" OnClick="btDSChoTK_Click"  />
+                        </div>                                                            
                     </td>
                 </tr>
             </tbody>

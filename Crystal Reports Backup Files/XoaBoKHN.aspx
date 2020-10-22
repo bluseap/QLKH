@@ -47,26 +47,16 @@
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
 
-        function CheckFormFilterKH() {
-            var idkh = jQuery.trim($("#<%= txtIDKH.ClientID %>").val());
-            var tenkh = jQuery.trim($("#<%= txtTENKH.ClientID %>").val());
-            var madh = jQuery.trim($("#<%= txtMADH.ClientID %>").val());
-            var sohd = jQuery.trim($("#<%= txtSOHD.ClientID %>").val());
-            var sonha = jQuery.trim($("#<%= txtSONHA.ClientID %>").val());
-            var tendp = jQuery.trim($("#<%= txtTENDP.ClientID %>").val());
-            var makv = jQuery.trim($("#<%= ddlKHUVUC.ClientID %>").val());
-
-            if (idkh == '' && tenkh == '' && madh == '' &&
-                    sohd == '' && sonha == '' && tendp == '' && (makv == '' || makv == 'NULL')) {
-                showError('Chọn tối thiểu một thông tin để lọc khách hàng.', '<%= txtIDKH.ClientID %>');
-                return false;
-            }
-
+        function CheckFormSearch() {
             openWaitingDialog();
             unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
+        }       
 
+        function CheckFormFilterKH() {   
+            openWaitingDialog();
+            unblockWaitingDialog();
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterKH) %>', '');
-
             return false;
         }
 
@@ -80,24 +70,7 @@
                     <table cellpadding="3" cellspacing="1" style="width: 610px;">
                         <tbody>
                             <tr>
-                                <td>
-                                    <asp:Panel ID="headerPanel" runat="server" CssClass="crmcontainer">
-                                        <table class="crmtable">
-                                            <tbody>
-                                                <tr class="crmfilter">
-                                                    <td class="crmcell">
-                                                        <div class="wrap">
-                                                            <asp:ImageButton ID="imgCollapse" runat="server" ImageUrl="~/content/images/icons/expanded.png"
-                                                                AlternateText="Hiện bộ lọc" />
-                                                        </div>
-                                                        <div class="wrap">
-                                                            <asp:Label ID="lblCollapse" runat="server">Click vào để hiển thị bộ lọc</asp:Label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>    
-                                    </asp:Panel>
+                                <td>                                    
                                     <asp:Panel ID="contentPanel" runat="server" CssClass="crmcontainer cleantop">
                                         <table class="crmtable">
                                             <tbody>
@@ -107,13 +80,13 @@
                                                     </td>
                                                     <td class="crmcell">
                                                         <div class="left">
-                                                            <asp:TextBox ID="txtIDKH" runat="server" onchange="return CheckFormFilterKH();" CssClass="width-150" MaxLength="200" />
+                                                            <asp:TextBox ID="txtIDKH" runat="server" CssClass="width-150" MaxLength="200" />
                                                         </div>
                                                         <div class="left width-100 pleft-50">
                                                             <div class="rightsmall">Tên khách hàng</div>
                                                         </div>
                                                         <div class="left">
-                                                            <asp:TextBox ID="txtTENKH" runat="server" onchange="return CheckFormFilterKH();" CssClass="width-150" MaxLength="200" />
+                                                            <asp:TextBox ID="txtTENKH" runat="server" CssClass="width-150" MaxLength="200" />
                                                         </div>  
                                                     </td>
                                                 </tr>
@@ -123,13 +96,13 @@
                                                     </td>
                                                     <td class="crmcell">
                                                         <div class="left">
-                                                            <asp:TextBox ID="txtMADH" runat="server" onchange="return CheckFormFilterKH();" CssClass="width-150" MaxLength="200" />
+                                                            <asp:TextBox ID="txtMADH" runat="server" CssClass="width-150" MaxLength="200" />
                                                         </div>
                                                         <div class="left width-100 pleft-50">
                                                             <div class="rightsmall">Số hợp đồng</div>
                                                         </div>
                                                         <div class="left">
-                                                            <asp:TextBox ID="txtSOHD" runat="server" onchange="return CheckFormFilterKH();" CssClass="width-150" MaxLength="200" />
+                                                            <asp:TextBox ID="txtSOHD" runat="server" CssClass="width-150" MaxLength="200" />
                                                         </div>  
                                                     </td>
                                                 </tr>
@@ -139,13 +112,13 @@
                                                     </td>
                                                     <td class="crmcell">
                                                         <div class="left">
-                                                            <asp:TextBox ID="txtSONHA" runat="server" onchange="return CheckFormFilterKH();" CssClass="width-150" MaxLength="200" />
+                                                            <asp:TextBox ID="txtSONHA" runat="server" CssClass="width-150" MaxLength="200" />
                                                         </div>
                                                         <div class="left width-100 pleft-50">
                                                            <div class="rightsmall">Tên đường phố</div>
                                                         </div>
                                                         <div class="left">
-                                                            <asp:TextBox ID="txtTENDP" runat="server" onchange="return CheckFormFilterKH();" CssClass="width-150" MaxLength="200" />
+                                                            <asp:TextBox ID="txtTENDP" runat="server" CssClass="width-150" MaxLength="200" />
                                                         </div>  
                                                     </td>
                                                 </tr>
@@ -171,18 +144,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </asp:Panel>
-                                    <ajaxToolkit:CollapsiblePanelExtender ID="cpeFilter" runat="Server" 
-                                        Collapsed="false"
-                                        TargetControlID="contentPanel"
-                                        ExpandControlID="headerPanel" 
-                                        CollapseControlID="headerPanel" 
-                                        TextLabelID="lblCollapse"
-                                        ImageControlID="imgCollapse" 
-                                        ExpandedText="Click vào để ẩn bộ lọc" 
-                                        CollapsedText="Click vào để hiển thị bộ lọc"
-                                        ExpandedImage="~/content/images/icons/collapsed.png" 
-                                        CollapsedImage="~/content/images/icons/expanded.png" />
+                                    </asp:Panel>                                    
                                 </td>
                             </tr>
                             <tr>
@@ -260,7 +222,7 @@
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:TextBox ID="txtSODB" runat="server" 
-                                        MaxLength="8" Width="90px" TabIndex="2" ReadOnly="True" onchange="CheckSearchKH();"
+                                        MaxLength="8" Width="90px" TabIndex="2" ReadOnly="True" 
                                         />
                                 </div>
                                 <div class="left">
@@ -374,7 +336,7 @@
                                         TabIndex="19" UseSubmitBehavior="false" />
                                 </div>
                                 <div class="left">
-                                    <asp:Button ID="btnSearch" OnClick="btnSearch_Click" Visible="false"
+                                    <asp:Button ID="btnSearch" OnClick="btnSearch_Click" 
                                         UseSubmitBehavior="false" OnClientClick="return CheckFormSearch();" 
                                         runat="server" CssClass="filter" Text="" TabIndex="12" />
                                 </div>  
@@ -384,7 +346,7 @@
                             <td class="crmcell right">  </td>
                             <td class="crmcell">                                
                                 <div class="left">
-                                    <asp:Button ID="btnSave" runat="server" CssClass="save" OnClick="btnSave_Click" 
+                                    <asp:Button ID="btnSave" runat="server" CssClass="myButton" Text ="Phục hồi KH "  OnClick="btnSave_Click" 
                                         TabIndex="13" UseSubmitBehavior="false" OnClientClick="return CheckFormSave();" />
                                 </div>   
                                 <div class="left">
@@ -428,14 +390,15 @@
                             </ItemTemplate>
                             <ItemStyle Font-Bold="True" />
                         </asp:TemplateField>     
-                        <asp:BoundField HeaderStyle-Width="5%" HeaderText="Số nhà" DataField="SONHA" />
-                        <asp:BoundField HeaderStyle-Width="25%" HeaderText="Tên khách hàng" DataField="TENKH" />
-                        <asp:TemplateField HeaderStyle-Width="25%" HeaderText="Địa chỉ">
+                        <asp:BoundField HeaderStyle-Width="20px" HeaderText="Số nhà" DataField="SONHA" />
+                        <asp:BoundField HeaderStyle-Width="100px" HeaderText="Tên khách hàng" DataField="TENKH" />
+                        <%--<asp:TemplateField HeaderStyle-Width="25%" HeaderText="Địa chỉ">
                             <ItemTemplate>
-                                <%# Eval("APTO.TENAPTO") + "," + Eval("XAPHUONG.TENXA")  %>                               
+                                <%# Eval("APTO.TENAPTO") != null && Eval("XAPHUONG.TENXA") != null
+                                    ? Eval("APTO.TENAPTO") + "," + Eval("XAPHUONG.TENXA") : "" %>                               
                             </ItemTemplate>
-                        </asp:TemplateField>    
-                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Khu vực">
+                        </asp:TemplateField>   --%> 
+                        <asp:TemplateField HeaderStyle-Width="50px" HeaderText="Khu vực">
                             <ItemTemplate>
                                 <%# Eval("KHUVUC.TENKV") %>
                             </ItemTemplate>
@@ -450,7 +413,12 @@
                                 <%# Eval("MAMDSD") %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField HeaderStyle-Width="35%" HeaderText="Lý do" DataField="LYDOXOA" />                     
+                        <asp:BoundField HeaderStyle-Width="140px" HeaderText="Lý do" DataField="LYDOXOA" />    
+                        <asp:TemplateField HeaderStyle-Width="40px" HeaderText="Kỳ xóa">
+                            <ItemTemplate>
+                               <%#  (Eval("NGAYXOA") != null) ?  String.Format("{0:MM/yyyy}", Eval("NGAYXOA"))                                                            : "" %>                                
+                            </ItemTemplate>
+                        </asp:TemplateField>                                         
                     </Columns>
                 </eoscrm:Grid>   
             </div>         

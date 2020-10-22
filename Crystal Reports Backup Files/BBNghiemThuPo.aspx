@@ -80,42 +80,32 @@
         }
 
         function CheckFormSave() {
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
 
         function CheckFormSearch() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
-
             return false;
         }
 
         function CheckFormSearchBB() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnLocBB) %>', '');
-
             return false;
         }
 
         function CheckFormDelete() {
-
             if (CheckRecordSelected('delete')) {
                 openWaitingDialog();
                 unblockWaitingDialog();
-
                 __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnDelete) %>', '');
             }
-
             return false;
         }
 
@@ -174,10 +164,8 @@
 						<tr>
 							<td class="ptop-10">
 							    <div class="crmcontainer">
-							        <eoscrm:Grid ID="gvTKVT" runat="server" AllowPaging="true" AutoGenerateColumns="false" CssClass="crmgrid"							            
-							            OnPageIndexChanging="gvTKVT_PageIndexChanging">
-							            <RowStyle CssClass="row" />
-                                        <AlternatingRowStyle CssClass="altrow" />
+							        <eoscrm:Grid ID="gvTKVT" runat="server"	UseCustomPager="true"					            
+							            OnPageIndexChanging="gvTKVT_PageIndexChanging">							            
                                         <PagerSettings FirstPageText="đơn đăng ký" PageButtonCount="2" />
                                         <Columns>                                            
                                             <asp:BoundField HeaderStyle-Width="25%" DataField="MAVT" HeaderText="Mã vật tư" />
@@ -512,6 +500,7 @@
                                     <asp:Label ID="lbNV1" runat="server" Text="nv1" Visible="false"></asp:Label>
                                     <asp:Label ID="lbNV2" runat="server" Text="nv2" Visible="false"></asp:Label>
                                     <asp:Label ID="lbNV3" runat="server" Text="nv3" Visible="false"></asp:Label>
+                                    <asp:Label ID="lbMADDTRAHSTK" runat="server" Visible="false"></asp:Label>
                                 </div>
                             </td>
                         </tr>
@@ -723,13 +712,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="crmcell right">Mã số kìm mặt 1</td>
+                            <td class="crmcell right">Chì hộp đấu dây 1</td>
                             <td class="crmcell">
                                 <div class="left width-200">
                                     <asp:TextBox ID="txtCHIM1" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="left">
-                                    <div class="right">Mã số kìm mặt 2</div>
+                                    <div class="right">Chì hộp đấu dây 2</div>
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtCHIM2" runat="server"></asp:TextBox>
@@ -802,7 +791,7 @@
                             <td class="crmcell right">Đồng hồ điện</td>
                             <td class="crmcell">
                                 <div class="left width-200">
-                                    <asp:DropDownList ID="ddlDONGHODIEN" Width="100px" SelectedValue='<%# Bind("TTDONGHODIEN") %>' runat="server">
+                                    <asp:DropDownList ID="ddlDONGHODIEN" Width="130px" SelectedValue='<%# Bind("TTDONGHODIEN") %>' runat="server">
                                         <asp:ListItem Value="BT" Text="Bình thường" />                                    
                                         <asp:ListItem Value="CH" Text="Chết" />
                                         <asp:ListItem Value="CA" Text="Cháy" />
@@ -840,19 +829,19 @@
                             <td class="crmcell right">Khoảng cách từ điểm đấu nối đến trụ potelet khách hàng</td>
                             <td class="crmcell">
                                 <div class="left width-200">
-                                    <asp:TextBox ID="txtKCDENPOTEKH" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtKCDENPOTEKH" runat="server" Width="40px"></asp:TextBox>
                                 </div>                                 
                                 <div class="left">
                                     <div class="right">Phần độ võng, ống sứ</div>
                                 </div>
                                  <div class="left">
-                                    <asp:TextBox ID="txtDOVONGONGSU" Width="20px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtDOVONGONGSU" Width="40px" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="left">
                                     <div class="right">Tổng cộng</div>
                                 </div>  
                                 <div class="left">
-                                    <asp:TextBox ID="txtTCCHIEUDAIDAY" Width="20px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtTCCHIEUDAIDAY" Width="40px" runat="server" ></asp:TextBox>
                                 </div>                     
                             </td>
                         </tr>
@@ -860,7 +849,7 @@
                             <td class="crmcell right">Loại chì chảy</td>
                             <td class="crmcell">
                                 <div class="left width-200">
-                                    <asp:DropDownList ID="ddlLOAICHICHAY" Width="100px" SelectedValue='<%# Bind("LOAICHICHAY") %>' runat="server">
+                                    <asp:DropDownList ID="ddlLOAICHICHAY"   SelectedValue='<%# Bind("LOAICHICHAY") %>' runat="server">
                                         <asp:ListItem Value="KO" Text="Không có" />                                    
                                         <asp:ListItem Value="CB" Text="CB" />
                                         <asp:ListItem Value="CC" Text="Chì chảy" />                                                                   
@@ -870,7 +859,7 @@
                                     <div class="right">Trụ đở sử dụng</div>
                                 </div>
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlLOAITRUDO" Width="100px" SelectedValue='<%# Bind("LOAITRUDO") %>' runat="server">
+                                    <asp:DropDownList ID="ddlLOAITRUDO" SelectedValue='<%# Bind("LOAITRUDO") %>' runat="server">
                                         <asp:ListItem Value="KO" Text="Không có" />
                                         <asp:ListItem Value="BTLT8" Text="Bê-tong li tâm 8 met 4" />
                                         <asp:ListItem Value="BTLT12" Text="Bê-tong li tâm 12 met " />
@@ -884,7 +873,7 @@
                                     <div class="right">Số lượng</div>
                                 </div>  
                                 <div class="left">
-                                    <asp:TextBox ID="txtSLTRUDO" Width="20px" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtSLTRUDO" Width="40px" runat="server"></asp:TextBox>
                                 </div> 
                             </td>
                         </tr>
@@ -935,7 +924,7 @@
                                     <div class="right">Số lượng</div>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtSLTTDAYNHANH" runat="server" Width="20px"></asp:TextBox>
+                                    <asp:TextBox ID="txtSLTTDAYNHANH" runat="server" Width="40px"></asp:TextBox>
                                 </div>
                             </td>
                         </tr>
@@ -949,13 +938,13 @@
                                     <div class="right">Số lượng</div>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtSLDAUNOIDAYNHANHDZ" runat="server" Width="20px"></asp:TextBox>
+                                    <asp:TextBox ID="txtSLDAUNOIDAYNHANHDZ" runat="server" Width="40px"></asp:TextBox>
                                 </div>
                                 <div class="left">
                                     <div class="right">Quấn băng keo</div>
                                 </div>
                                 <div class="left width-100">
-                                    <asp:DropDownList ID="ddlDAUNOIDNDZBKEO" Width="100px" SelectedValue='<%# Bind("DAUNOIDNDZBKEO") %>' runat="server">
+                                    <asp:DropDownList ID="ddlDAUNOIDNDZBKEO"  SelectedValue='<%# Bind("DAUNOIDNDZBKEO") %>' runat="server">
                                         <asp:ListItem Value="KO" Text="Không" />                                    
                                         <asp:ListItem Value="CO" Text="Có" />                                                                   
                                     </asp:DropDownList>
@@ -966,8 +955,9 @@
                             <td class="crmcell right">Loại dây nhánh vượt mái nhà</td>
                             <td class="crmcell">
                                 <div class="left width-100">
-                                    <asp:DropDownList ID="ddlDAYNHANHVUOTMAI" Width="100px" SelectedValue='<%# Bind("DAYNHANHVUOTMAI") %>' runat="server">
-                                        <asp:ListItem Value="KO" Text="Không" />                      
+                                    <asp:DropDownList ID="ddlDAYNHANHVUOTMAI"  SelectedValue='<%# Bind("DAYNHANHVUOTMAI") %>' runat="server">
+                                        <asp:ListItem Value="KO" Text="Không" />   
+                                        <asp:ListItem Value="CO" Text="Có" />                       
                                     </asp:DropDownList>
                                 </div>  
                                 <div class="left">
@@ -1075,6 +1065,22 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="crmcell right">Ghi chú Biên bản NT </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtGHICHUBBNT" runat="server"></asp:TextBox>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Tìm mã đơn, họ tên khách hàng </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtTIMKHBB" runat="server"></asp:TextBox>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right"></td>
                             <td class="crmcell">
                                 <div class="left">
@@ -1133,6 +1139,12 @@
                         <asp:TemplateField HeaderText="Ngày lập" HeaderStyle-Width="35%">
                             <ItemTemplate>
                                 <%# (Eval("NGAYLAPBB") != null) ? String.Format("{0:dd/MM/yyyy}", Eval("NGAYLAPBB")) : "" %> 
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText=" " HeaderStyle-Width="80px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkTRAHSTK" runat="server" CommandArgument='<%# Eval("MADDKPO") %>'
+                                    CommandName="TraHSVeTK" Text='Trả HS về TK'></asp:LinkButton>                                                    
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

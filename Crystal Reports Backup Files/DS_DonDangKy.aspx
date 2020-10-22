@@ -1,10 +1,12 @@
-<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" 
+﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" 
     CodeBehind="DS_DonDangKy.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.DS_DonDangKy" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Import Namespace="EOSCRM.Web.Common"%>
+<%@ Import Namespace="System.Data" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+<%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
@@ -58,10 +60,18 @@
 		    openWaitingDialog();
 		    unblockWaitingDialog();
 		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
-		}
-    </script>
+        }
+
+        function CheckFormExcelDSDLM() {            
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btExcelDSDLM) %>', '');
+        }
+
+            </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+
+    <asp:UpdatePanel ID="upnlBaoCao" UpdateMode="Conditional" runat="server">
+    <ContentTemplate>
     <div class="crmcontainer">
         <table class="crmtable">
             <tbody>
@@ -97,12 +107,14 @@
                         <div class="left">
                             <asp:DropDownList ID="cboKhuVuc" runat="server" />
                         </div>
-                        <div class="left">
-                            <div class="right">Người lập</div>
-                        </div> 
-                        <div class="left">
-                            <asp:TextBox ID="txtNguoiLap" runat="server" />
-                        </div> 
+                        <td class="crmcell">
+                            <div class="left">
+                                <div class="right">Người lập</div>
+                            </div> 
+                            <div class="left">
+                                <asp:TextBox ID="txtNguoiLap" runat="server" />
+                            </div> 
+                        </td>
                     </td>
                 </tr>
                  <tr>
@@ -119,23 +131,35 @@
                         <div class="left">
                             <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="report" />
                         </div>
+                        <td class="crmcell">
+                            <div class="left">
+                                <asp:Button ID="btExcelDSDLM" OnClientClick="return CheckFormExcelDSDLM();" runat="server" CssClass="myButton" Text="Xuất Excel" OnClick="btExcelDSDLM_Click" UseSubmitBehavior="false"/>
+                            </div>
+                        </td>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btExcelDSDLM" />
+            <asp:PostBackTrigger ControlID="btnBaoCao" />
+        </Triggers>
+    </asp:UpdatePanel>
+
     <br />
     <div class="crmcontainer" id="divReport" runat="server">
         <CR:CrystalReportViewer ID="rpViewer" runat="server" DisplayGroupTree="False" PrintMode="ActiveX" AutoDataBind="true" />
     </div>  
 
     
-
-    <div class="left">
+    
+    <%--<div class="left">
         <asp:Button ID="printreport" runat="server" CssClass="report" Visible="false"
             AutoPostBack="True" OnClick="printreport_Click"/>
-     </div>
-        <div class="left">   
+     </div>--%>
+    <div class="left">   
         <asp:Button ID="PrintButton" Text="Print" runat="server" OnClientClick="return PrintPanel();" Visible="false"/>
     </div>
     

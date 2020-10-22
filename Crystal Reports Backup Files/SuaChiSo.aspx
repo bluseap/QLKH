@@ -33,16 +33,13 @@
             var sonha = jQuery.trim($("#<%= txtSONHA.ClientID %>").val());
             var tendp = jQuery.trim($("#<%= txtTENDP.ClientID %>").val());
             var makv = jQuery.trim($("#<%= ddlKHUVUC.ClientID %>").val());
-
             if (idkh == '' && tenkh == '' && madh == '' &&
                     sohd == '' && sonha == '' && tendp == '' && (makv == '' || makv == 'NULL')) {
                 showError('Chọn tối thiểu một thông tin để lọc khách hàng.', '<%= txtIDKH.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterKH) %>', '');
 
             return false;
@@ -58,16 +55,13 @@
 
         function CheckFormSearch() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Vui lòng chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
-            }
-            
+            }            
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
 
             return false;
@@ -75,16 +69,13 @@
 
         function CheckFormSearchNguyen() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Vui lòng chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSNGUYEN) %>', '');
 
             return false;
@@ -92,16 +83,13 @@
 
         function CheckFormSearchbtnChuyenNguyen() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showError('Vui lòng chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnChuyenNguyen) %>', '');
 
             return false;
@@ -146,11 +134,7 @@
                 else if (order == 2)
                     FocusAndSelect(txtMTRUYTHUId);
                 
-                else if (order == 3) {
-                    
-
-                    
-
+                else if (order == 3) {     
 
                     var csd = $("#" + txtCHISODAUId).val();
                     var csc = $("#" + txtCHISOCUOIId).val();
@@ -196,7 +180,7 @@
                         setControlValue(txtMTRUYTHUId, oldMtt);
                         setControlValue(txtKLTIEUTHUId, oldKltt);
 
-                        alertWithFocusSelect(msg3, txtCHISOCUOIId);
+                        alertWithFocusSelect(csd.toString()+","+csc.toString()+","+mtt.toString()+""+kltt.toString(), txtCHISOCUOIId);
                         return;
                     }
 
@@ -453,7 +437,7 @@
 							                OnRowDataBound="gvDanhSach_RowDataBound" OnRowCommand="gvDanhSach_RowCommand">
                                             <PagerSettings FirstPageText="khách hàng" PageButtonCount="2" />
                                             <Columns>
-                                                <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã KH">
+                                                <asp:TemplateField HeaderStyle-Width="12%" HeaderText="Mã KH">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkBtnID" runat="server" CommandName="SelectSODB" 
                                                             CommandArgument='<%# Eval("MADP") + Eval("DUONGPHU").ToString() + Eval("MADB") %>'
@@ -524,7 +508,7 @@
                             </td>
                             <td class="crmcell">    
                                 <div class="left">
-                                    <asp:TextBox ID="txtSODB" runat="server" onkeydown="return CheckChangeKH(event);" MaxLength="8" Width="90px" TabIndex="7" />
+                                    <asp:TextBox ID="txtSODB" runat="server" onkeydown="return CheckChangeKH(event);" MaxLength="10" Width="90px" TabIndex="7" />
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnBrowseKH" runat="server" CssClass="pickup" OnClick="btnBrowseKH_Click"
@@ -537,6 +521,67 @@
                                         CausesValidation="false" UseSubmitBehavior="false" 
                                         OnClientClick="openDialogAndBlock('Chọn từ danh sách khách hàng', 610, 'divKhachHang')" 
                                         TabIndex="6" OnClick="btnNGUYEN_Click" Visible="False" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left ">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server" Enabled="False"></asp:DropDownList>
+                                </div>                                                                
+                            </td>                                  
+                        </tr> 
+                        <tr>    
+                            <td class="crmcell right">
+                                Trạng thái ghi
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTTHAIGHIMOI" runat="server">
+                                        <asp:ListItem Value="%" Text="Tất cả" /> 
+                                        <asp:ListItem Value="GDH_BT" Text="Bình thường" />                                    
+                                        <asp:ListItem Value="I" Text="I_Ít sử dụng" />
+                                        <asp:ListItem Value="THAY" Text="Thay ĐH" />
+                                        <asp:ListItem Value="CUP" Text="N_Cúp" />
+                                        <asp:ListItem Value="D" Text="D_Đóng cửa" />                                    
+                                        <asp:ListItem Value="L" Text="L_Lố số" />
+                                        <asp:ListItem Value="M" Text="M_Bỏ địa phương" />
+                                        <asp:ListItem Value="C" Text="C_Cháy - Chết" />
+                                        <asp:ListItem Value="H" Text="H_Hư hỏng" />
+                                        <asp:ListItem Value="B" Text="Bất thường" />
+                                        <asp:ListItem Value="Q" Text="Q_Qua số" />                                    
+                                        <asp:ListItem Value="GDH_KH" Text="Khoán" />
+                                        <asp:ListItem Value="K" Text="K_Khác" />
+                                        <asp:ListItem Value="NV" Text="V_Ngưng do vi phạm" />                                    
+                                        <asp:ListItem Value="A" Text="A_KH cung cấp" />
+                                        <asp:ListItem Value="M" Text="M_Bỏ địa phương" />
+                                        <asp:ListItem Value="U" Text="U_Tạm tính" />
+                                        <asp:ListItem Value="X" Text="X_Bể ống sau ĐH" />
+                                        <asp:ListItem Value="R" Text="R_Đồng hồ mờ" />
+                                        <asp:ListItem Value="S" Text="S_Điều chỉnh chỉ số cũ" />
+                                        <asp:ListItem Value="V" Text="V_Nghi ngờ" />                                
+                                        <asp:ListItem Value="Z" Text="Z_Đồng hồ nghiêng" />
+                                        <asp:ListItem Value="O" Text="O_Không chì" />
+                                        <asp:ListItem Value="P" Text="P_Đứt chì" />
+
+                                        <asp:ListItem Value="E" Text="E_Đề nghị xóa bộ" />
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <strong>Phiên (LX)</strong>
+                                </div>
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlPHIENLX" runat="server">
+                                        <asp:ListItem Value ="%">Tất cả</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
+                                        <asp:ListItem Value="2">2</asp:ListItem>
+                                        <asp:ListItem Value="3">3</asp:ListItem>
+                                        <asp:ListItem Value="4">4</asp:ListItem>
+                                        <asp:ListItem Value="5">5</asp:ListItem>
+                                        <asp:ListItem Value="6">6</asp:ListItem>
+                                        <asp:ListItem Value="A">A</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </td>
                         </tr>
@@ -569,7 +614,7 @@
         <ContentTemplate>
             <br />
             <div class="crmcontainer" id="divList" runat="server" visible="false">
-                <eoscrm:Grid ID="gvList" runat="server" PageSize="100" UseCustomPager="true" 
+                <eoscrm:Grid ID="gvList" runat="server" PageSize="500" UseCustomPager="true" 
                     OnRowDataBound="gvList_RowDataBound">
                     <PagerSettings FirstPageText="khách hàng" PageButtonCount="2" />
                     <Columns>
@@ -578,7 +623,7 @@
                                 <%# Container.DataItemIndex + 1 %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderStyle-Width="50px" HeaderText="Mã KH">
+                        <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Mã KH">
                             <ItemTemplate>
                                 <%# Eval("SODB")%>
                                 <%--
@@ -630,11 +675,15 @@
                                     <asp:ListItem Value="Q" Text="Q_Qua số" />                                    
                                     <asp:ListItem Value="GDH_KH" Text="Khoán" />
                                     <asp:ListItem Value="K" Text="K_Khác" />
-                                    <asp:ListItem Value="NV" Text="V_Ngưng do vi phạm" />
-                                    
+                                    <asp:ListItem Value="NV" Text="V_Ngưng do vi phạm" />                                    
                                     <asp:ListItem Value="A" Text="A_KH cung cấp" />
+                                    <asp:ListItem Value="M" Text="M_Bỏ địa phương" />
+                                    <asp:ListItem Value="U" Text="U_Tạm tính" />
                                     <asp:ListItem Value="X" Text="X_Bể ống sau ĐH" />
                                     <asp:ListItem Value="R" Text="R_Đồng hồ mờ" />
+                                    <asp:ListItem Value="S" Text="S_Điều chỉnh chỉ số cũ" />      
+                                    
+                                    <asp:ListItem Value="E" Text="E_Đề nghị xóa bộ" />        
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>                          
@@ -657,7 +706,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="txtKLTIEUTHU" Text='<%# Bind("KLTIEUTHU") %>' CssClass='editable' runat="server" />
                             </ItemTemplate>
-                        </asp:TemplateField>
+                        </asp:TemplateField>                       
                         <asp:BoundField HeaderStyle-Width="100px" HeaderText="Nhân viên" DataField="MANV_CS" />
                     </Columns>    
                 </eoscrm:Grid>

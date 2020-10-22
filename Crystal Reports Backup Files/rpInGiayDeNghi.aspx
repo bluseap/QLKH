@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="rpInGiayDeNghi.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.rpInGiayDeNghi" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="rpInGiayDeNghi.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.rpInGiayDeNghi" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="EOSCRM.Util" %>
 <%@ Import Namespace="EOSCRM.Dao" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
@@ -41,27 +41,22 @@
     function CheckFormFilterDP() {
         openWaitingDialog();
         unblockWaitingDialog();
-
         __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDDK) %>', '');
-
             return false;
     }
 
     function CheckFormFitler() {
         openWaitingDialog();
         unblockWaitingDialog();
-
         __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilter) %>', '');
-
                 return false;
             }
 
-            function CheckFormReport() {
-                openWaitingDialog();
-                unblockWaitingDialog();
-
-                __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
-            }
+    function CheckFormReport() {
+        openWaitingDialog();
+        unblockWaitingDialog();
+        __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
+    }
 
     </script>
 </asp:Content>

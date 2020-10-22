@@ -29,9 +29,7 @@
 		function CheckFormFilterDP() {
 		    openWaitingDialog();
 		    unblockWaitingDialog();
-
 		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDP) %>', '');
-
 		    return false;
 		}
 
@@ -43,18 +41,14 @@
 		function CheckFormCancel() {
 		    openWaitingDialog();
 		    unblockWaitingDialog();
-
 		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnCancel) %>', '');
-
 		    return false;
 		}
 
 		function CheckFormSave() {
 		    openWaitingDialog();
 		    unblockWaitingDialog();
-
 		    __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
 		    return false;
 		}
 
@@ -140,7 +134,7 @@
                                     <div class="right">Số hợp đồng</div>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtSOHD" runat="server" Width="90px" MaxLength="10" 
+                                    <asp:TextBox ID="txtSOHD" runat="server" Width="90px" MaxLength="20" 
                                         TabIndex="3" />
                                 </div>
                             </td>
@@ -158,11 +152,11 @@
                             <td class="crmcell right">Địa chỉ lắp đặt</td>
                             <td class="crmcell">
                                 <div class="left">
-                                    <asp:TextBox ID="txtSONHA" runat="server" Width="50px" MaxLength="200" 
+                                    <asp:TextBox ID="txtSONHA" runat="server" Width="200px" MaxLength="200" 
                                         TabIndex="5" />                                    
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtTENDUONG" runat="server" Width="315px" ReadOnly="true" 
+                                    <asp:TextBox ID="txtTENDUONG" runat="server" Width="150px" ReadOnly="true" 
                                         MaxLength="200" TabIndex="6" /> 
                                 </div>
                             </td>          

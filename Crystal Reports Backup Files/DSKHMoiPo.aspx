@@ -3,7 +3,7 @@
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="System.Data" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="CrystalDecisions.Web,  Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
@@ -28,6 +28,18 @@
             unblockWaitingDialog();
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkWORD) %>', '');
         }
+
+        function CheckFormMDK() {
+            //openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkKHMMucDK) %>', '');
+        }
+
+        function CheckFormExcelTS() {
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(lkXuatExcelTS) %>', '');
+        }
+        
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -58,7 +70,7 @@
                                     <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
                                     <asp:Label ID="lbRELOAD" runat="server" Visible="false"></asp:Label>
                                 </div>
-                                </td>
+                             </td>
                         </tr>
                         <tr>
                            
@@ -78,6 +90,14 @@
                                 </div>                                
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
+                        </tr> 
                         <tr>
                             <td class="crmcell right">Mục đích sử dụng</td>
                             <td class="crmcell">
@@ -103,13 +123,25 @@
                                 <div class="left">
                                     <div class="right">
                                         <asp:LinkButton ID="lkEXCEL" runat="server" OnClick="lkEXCEL_Click" UseSubmitBehavior="false" CssClass="myButton"  
-                                            OnClientClick="return CheckFormExcel();">Xuất Excel</asp:LinkButton>
+                                            OnClientClick="return CheckFormExcel();" Visible="true">Xuất Excel</asp:LinkButton>
                                     </div>                                    
                                 </div>
                                 <div class="left">
                                     <div class="right">
-                                            <asp:LinkButton ID="lkWORD" runat="server" OnClick="lkWORD_Click" UseSubmitBehavior="false" CssClass="myButton"  
-                                                OnClientClick="return CheckFormWord();">Xuất Word</asp:LinkButton>
+                                        <asp:LinkButton ID="lkXuatExcelTS" runat="server" UseSubmitBehavior="false" CssClass="myButton"  
+                                            OnClientClick="return CheckFormExcelTS();" OnClick="lkXuatExcelTS_Click" >Xuất Excel(TS)</asp:LinkButton>
+                                    </div>
+                                </div>
+                                <div class="left">
+                                    <div class="right">
+                                        <asp:LinkButton ID="lkWORD" runat="server" OnClick="lkWORD_Click" UseSubmitBehavior="false" CssClass="myButton"  
+                                            OnClientClick="return CheckFormWord();" Visible="false">Xuất Word</asp:LinkButton>
+                                    </div>
+                                </div>
+                                <div class="left">
+                                    <div class="right">
+                                            <asp:LinkButton ID="lkKHMMucDK" runat="server" OnClick="lkKHMMucDK_Click" UseSubmitBehavior="false" CssClass="myButton"  
+                                                OnClientClick="return CheckFormMDK();" Visible="false">DS Mục đích khác</asp:LinkButton>
                                     </div>
                                 </div>
                             </td>
@@ -120,6 +152,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="lkEXCEL" />
+            <asp:PostBackTrigger ControlID="lkXuatExcelTS" />
         </Triggers>
     </asp:UpdatePanel>
     <br />

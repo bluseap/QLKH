@@ -2,7 +2,7 @@
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web,  Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
@@ -57,6 +57,16 @@
                             <asp:TextBox ID="txtNguoiLap" runat="server" />
                         </div> 
                     </td>
+                </tr>
+                <tr>
+                    <td class="crmcell right">
+                        Nhà máy, tổ
+                    </td>
+                    <td class="crmcell">
+                        <div class="left">
+                            <asp:DropDownList ID="ddlNHAMAYTO" runat="server" />                                    
+                        </div>                        
+                    </td>                            
                 </tr>
                 <tr>
                     <td class="crmcell right"></td>

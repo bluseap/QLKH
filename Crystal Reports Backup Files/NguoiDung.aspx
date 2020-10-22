@@ -177,15 +177,17 @@
                             <td class="crmcell right">Khu vực</td>
                             <td class="crmcell"> 
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" runat="server" TabIndex="3" />
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click"
-                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilter();" 
-                                        runat="server" CssClass="filter" Text="" TabIndex="10" />
-                                </div> 
+                                    <asp:DropDownList ID="ddlKHUVUC" runat="server" TabIndex="3" AutoPostBack="true" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged" />
+                                </div>                                
                             </td>
                         </tr>
+                        <tr>    
+                            <td class="crmcell right">Phòng, ban</td>
+                            <td class="crmcell"> 
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlPhongBan" runat="server" TabIndex="3" />
+                                </div>
+                            </td>
                         <tr>
                             <td class="crmcell right"></td>
                             <td class="crmcell">
@@ -202,6 +204,11 @@
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" OnClick="btnCancel_Click"
                                         TabIndex="6" UseSubmitBehavior="false" OnClientClick="CheckFormCancel();" />                                    
                                 </div>
+                                <div class="left">
+                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click"
+                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilter();" 
+                                        runat="server" CssClass="filter" Text="" TabIndex="10" />
+                                </div> 
                             </td>
                         </tr> 
                     </tbody>

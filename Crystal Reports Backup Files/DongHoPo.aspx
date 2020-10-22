@@ -1,11 +1,33 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DongHoPo.aspx.cs" Inherits="EOSCRM.Web.Forms.DanhMuc.DongHoPo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DongHoPo.aspx.cs" Inherits="EOSCRM.Web.Forms.DanhMuc.DongHoPo" Culture="vi-VN" uiCulture="vi"%>
+
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Import Namespace="EOSCRM.Util" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
+<%@ Register Assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#divDonKhachHang").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divDonKhachHangDlgContainer");
+                }
+            });
+        });
+
+        function CheckFormXuatExcel() {
+            //unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnXuatExcel) %>', '');
+            return false;
+        }
+
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
@@ -53,10 +75,18 @@
         function clickButtonddltxtSONO(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
-                $('#<%=txtSXTAI.ClientID %>').focus();
+                $('#<%=ddlCONGSUATD.ClientID %>').focus();
                 return false;
             }
         }
+        function clickButtonddlCONGSUATD(e) {
+            var evt = e ? e : window.event;
+            if (evt.keyCode == 13) {
+                $('#<%=btnSave.ClientID %>').focus();
+                return false;
+            }
+        }          
+
         function clickButtontxtSXTAI(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -64,6 +94,7 @@
                 return false;
             }
         }
+
         function clickButtontxtNAMSX(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -71,6 +102,7 @@
                 return false;
             }
         }
+
         function clickButtontxtTEMKD(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -78,6 +110,7 @@
                 return false;
             }
         }
+
         function clickButtontxtHANKD(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -85,6 +118,7 @@
                 return false;
             }
         }
+
         function clickButtontxtNGAYKD(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -92,6 +126,7 @@
                 return false;
             }
         }
+
         function clickButtontxtTENCTKD(e) {
             var evt = e ? e : window.event;
             if (evt.keyCode == 13) {
@@ -100,20 +135,79 @@
             }
         }
 
-
+        
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <div id="divDonKhachHangDlgContainer">
+        <div id="divDonKhachHang" style="display: none">
+            <asp:UpdatePanel ID="upDonKhachHang" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Mã đơn
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtMADDKTT" runat="server" />
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Tên khách hàng
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtTENKHTT" runat="server" />
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Danh số
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtDANHSOTT" runat="server" />
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Tên KH khai thác
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtTENKHKTTT" runat="server" />
+                                                </div>                                                
+                                            </td>
+                                        </tr>                                        
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>					
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>
+    </div>
     <asp:UpdatePanel ID="upnlInfor" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <div class="crmcontainer">
                 <table class="crmtable">
                     <tbody>
                         <tr>    
-                            <td class="crmcell right">Số chứng nhận kiểm định</td>
+                            <td class="crmcell right"></td>
                             <td class="crmcell"> 
                                 <div class="left">
-                                    <asp:TextBox ID="txtSOKD" runat="server" Width="100px" MaxLength="20" 
+                                    <asp:TextBox ID="txtSOKD" runat="server" Width="100px" MaxLength="20" Visible="false"
                                         TabIndex="1" Enabled="true" />
                                 </div>
                                 <div class="left">
@@ -147,130 +241,36 @@
                                         TabIndex="3" />                                
                                 </div>
                                 <div class="left">
-                                    <div class="right">Sản xuất tại</div>
+                                    <div class="right"></div>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtSXTAI" runat="server" Width="100px" MaxLength="100" TabIndex="4" />
+                                    <asp:TextBox ID="txtSXTAI" runat="server" Width="100px" MaxLength="100" TabIndex="4" Visible="false"/>
                                 </div>                                
                                 <div class="left">
-                                    <div class="right">Năm sản xuất</div>
+                                    <div class="right"></div>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtNAMSX" runat="server" Width="80px" MaxLength="4" TabIndex="5" />
+                                    <asp:TextBox ID="txtNAMSX" runat="server" Width="80px" MaxLength="4" TabIndex="5" Visible="false"/>
                                 </div>
                             </td>                                
-                        </tr>
-                        <tr>
-                            <td class="crmcell right">Số tem kiểm định</td>
-                            <td class="crmcell">
-                                <div class="left">
-                                    <asp:TextBox ID="txtTEMKD" runat="server" Width="100px" MaxLength="20" 
-                                        TabIndex="6" Enabled="true" />
-                                </div>
-                                <div class="left">
-                                    <div class="right">Hết hạn kiểm định</div>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtHANKD" runat="server" Width="70px" MaxLength="7" TabIndex="7" />
-                                </div>
-                                <div class="left">
-                                    <asp:ImageButton runat="Server" ID="imgHANKD" ImageUrl="~/content/images/icons/calendar.png"
-                                        AlternateText="Click to show calendar" Visible="False" />
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtHANKD"
-                                        PopupButtonID="imgHANKD" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
-                                </div>
-                                <div class="left">
-                                    <div class="right">Ngày KĐ</div>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtNGAYKD" runat="server" Width="70px" MaxLength="10" TabIndex="8" />
-                                </div>
-                                <div class="left">
-                                    <asp:ImageButton runat="Server" ID="imgNGAYKD" ImageUrl="~/content/images/icons/calendar.png"
-                                        AlternateText="Click to show calendar" />
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender5" runat="server" TargetControlID="txtNGAYKD"
-                                        PopupButtonID="imgNGAYKD" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="crmcell right">Tên công ty kiểm định</td>
-                            <td class="crmcell">
-                                <div class="left">
-                                    <asp:TextBox ID="txtTENCTKD" runat="server" Width="700px" MaxLength="200" TabIndex="9" />
-                                </div>
-                            </td>
                         </tr>
                         <tr>
                             <td class="crmcell right">Công suất ĐH điện</td>
                             <td class="crmcell">
                                 <div class="left">
-                                     <asp:DropDownList ID="ddlCONGSUATD" Width="120px" runat="server" TabIndex="21">
-                                        <asp:ListItem Text="5(15)" Value="5(15)" />
-                                         <asp:ListItem Text="5(20)" Value="5(20)" />
+                                     <asp:DropDownList ID="ddlCONGSUATD" Width="120px" runat="server" TabIndex="21">                                        
+                                        <asp:ListItem Text="5(20)" Value="5(20)" />
                                         <asp:ListItem Text="5(100)" Value="5(100)" />
                                         <asp:ListItem Text="10(30)" Value="10(30)" />
                                         <asp:ListItem Text="10(40)" Value="10(40)" />
                                         <asp:ListItem Text="10(80)" Value="10(80)" />
+                                        <asp:ListItem Text="3x10(100)" Value="3x10(100)" />
                                         <asp:ListItem Text="20(80)" Value="20(80)" />
                                         <asp:ListItem Text="40(120)" Value="40(120)" />
+                                         <asp:ListItem Text="30(60)" Value="30(60)" />
+                                         <asp:ListItem Text="5(15)" Value="5(15)" />
                                     </asp:DropDownList>
                                 </div>                              
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="crmcell right">Ngày nhập đồng hồ nước</td>
-                            <td class="crmcell">
-                                <div class="left">
-                                    <asp:Label ID="lbNGAYNHAPDH" runat="server" Text=""></asp:Label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="crmcell right">Năm TT</td>
-                            <td class="crmcell">
-                                <div class="left">
-                                    <asp:TextBox ID="txtNAMTT" runat="server" Width="100px" MaxLength="4" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>    
-                            <td class="crmcell right">Ngày nhập kho</td>
-                            <td class="crmcell"> 
-                                <div class="left">
-                                    <asp:TextBox ID="txtNGAYNK" runat="server" Width="70px" MaxLength="10"  />
-                                </div>
-                                <div class="left">
-                                    <asp:ImageButton runat="Server" ID="imgNGAYNK" ImageUrl="~/content/images/icons/calendar.png"
-                                        AlternateText="Click to show calendar" />
-                                    <ajaxToolkit:CalendarExtender ID="calendarButtonExtender1" runat="server" TargetControlID="txtNGAYNK"
-                                        PopupButtonID="imgNGAYNK" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
-                                </div>
-                                <div class="left filtered"></div> 
-                                <div class="left">
-                                    <div class="right">Ngày xuất kho</div>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtNGAYXK" runat="server" Width="70px" MaxLength="4"  />
-                                </div>
-                                <div class="left">
-                                    <asp:ImageButton runat="Server" ID="imgNGAYXK" ImageUrl="~/content/images/icons/calendar.png"
-                                        AlternateText="Click to show calendar" />
-                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtNGAYXK"
-                                        PopupButtonID="imgNGAYXK" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>    
-                            <td class="crmcell right">Trạng thái</td>
-                            <td class="crmcell"> 
-                                <div class="left">
-                                    <asp:TextBox ID="txtTRANGTHAI" runat="server" Width="100px" MaxLength="2"  />
-                                </div> 
-                                <div class="left">
-                                   <div class="right"> </div>
-                                </div>
-                                
                             </td>
                         </tr>
                         <tr>    
@@ -281,30 +281,104 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>    
+                        <tr>
                             <td class="crmcell right"></td>
-                            <td class="crmcell"> 
-                                <%--<div class="left">
-                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click"
-                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilter();" 
-                                        runat="server" CssClass="filter" Text="" TabIndex="12" />
-                                </div> 
-                                --%><div class="left">
-                                    <asp:Button ID="btnSave" OnClick="btnSave_Click"
-                                        UseSubmitBehavior="false" OnClientClick="return CheckFormSave();" 
-                                        runat="server" CssClass="save" Text="" TabIndex="10" />
-                                </div>   
+                            <td class="crmcell">
                                 <div class="left">
-                                    <asp:Button ID="btnDelete" runat="server" CssClass="delete" UseSubmitBehavior="false"
-                                        OnClick="btnDelete_Click" TabIndex="11" OnClientClick="return CheckFormDelete();" />
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btnCancel" runat="server" CssClass="cancel" UseSubmitBehavior="false"
-                                        OnClick="btnCancel_Click" TabIndex="12" OnClientClick="return CheckFormCancel();" />
+                                    <asp:TextBox ID="txtTEMKD" runat="server" Width="100px" MaxLength="20" Visible="false"
+                                        TabIndex="6" Enabled="true" />
                                 </div>
                                 <div class="left">
                                     <div class="right"></div>
                                 </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtHANKD" runat="server" Width="70px" MaxLength="7" TabIndex="7" Visible="false"/>
+                                </div>
+                                <div class="left">
+                                    <asp:ImageButton runat="Server" ID="imgHANKD" ImageUrl="~/content/images/icons/calendar.png"
+                                        AlternateText="Click to show calendar" Visible="False" />
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtHANKD"
+                                        PopupButtonID="imgHANKD" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
+                                </div>
+                                <div class="left">
+                                    <div class="right"></div>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtNGAYKD" runat="server" Width="70px" MaxLength="10" TabIndex="8" Visible="false" />
+                                </div>
+                                <div class="left">
+                                    <asp:ImageButton runat="Server" ID="imgNGAYKD" ImageUrl="~/content/images/icons/calendar.png"
+                                        AlternateText="Click to show calendar" Visible="false"/>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender5" runat="server" TargetControlID="txtNGAYKD"
+                                        PopupButtonID="imgNGAYKD" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtTENCTKD" runat="server" Width="700px" MaxLength="200" TabIndex="9" Visible="false"/>
+                                </div>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbNGAYNHAPDH" runat="server" Text=""></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtNAMTT" runat="server" Width="100px" MaxLength="4" Visible="false" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell"> 
+                                <div class="left">
+                                    <asp:TextBox ID="txtNGAYNK" runat="server" Width="70px" MaxLength="10" Visible="false" />
+                                </div>
+                                <div class="left">
+                                    <asp:ImageButton runat="Server" ID="imgNGAYNK" ImageUrl="~/content/images/icons/calendar.png"
+                                        AlternateText="Click to show calendar" Visible="false" />
+                                    <ajaxToolkit:CalendarExtender ID="calendarButtonExtender1" runat="server" TargetControlID="txtNGAYNK"
+                                        PopupButtonID="imgNGAYNK" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
+                                </div>                                 
+                                <div class="left">
+                                    <div class="right"></div>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtNGAYXK" runat="server" Width="70px" MaxLength="4" Visible="false" />
+                                </div>
+                                <div class="left">
+                                    <asp:ImageButton runat="Server" ID="imgNGAYXK" ImageUrl="~/content/images/icons/calendar.png"
+                                        AlternateText="Click to show calendar" Visible="false"/>
+                                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtNGAYXK"
+                                        PopupButtonID="imgNGAYXK" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell"> 
+                                <div class="left">
+                                    <asp:TextBox ID="txtTRANGTHAI" runat="server" Width="100px" MaxLength="2"  Visible="false"/>
+                                </div> 
+                                <div class="left">
+                                   <div class="right"> </div>
+                                </div>
+                                
+                            </td>
+                        </tr>
+                         <tr>    
+                            <td class="crmcell right">Từ ngày</td>
+                            <td class="crmcell"> 
                                 <div class="left">
                                     <asp:TextBox ID="txtFromDate" onkeypress="return CheckKeywordFilter(event);" runat="server" Width="90px" MaxLength="10" />
                                 </div>
@@ -330,12 +404,45 @@
                                     <asp:Button ID="btnFilter" runat="server" CssClass="filter"
                                         OnClick="btnFilter_Click" OnClientClick="return CheckFormFilter();" TabIndex="15" UseSubmitBehavior="false" />
                                 </div>  
+                                <div class="left">
+                                        <asp:Button ID="btnXuatExcel" runat="server" CssClass="myButton"  OnClientClick="return CheckFormXuatExcel();"                                                                    
+                                         Visible="true"  UseSubmitBehavior="false" TabIndex="1" Text="Xuất Excel" OnClick="btnXuatExcel_Click"  />
+                                </div>
+                            </td>
+                         </tr>            
+                        <tr>    
+                            <td class="crmcell right"></td>
+                            <td class="crmcell"> 
+                                <%--<div class="left">
+                                    <asp:Button ID="btnFilter" OnClick="btnFilter_Click"
+                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilter();" 
+                                        runat="server" CssClass="filter" Text="" TabIndex="12" />
+                                </div> 
+                                --%><div class="left">
+                                    <asp:Button ID="btnSave" OnClick="btnSave_Click"
+                                        UseSubmitBehavior="false" OnClientClick="return CheckFormSave();" 
+                                        runat="server" CssClass="save" Text="" TabIndex="10" />
+                                </div>   
+                                <div class="left">
+                                    <asp:Button ID="btnDelete" runat="server" CssClass="delete" UseSubmitBehavior="false"
+                                        OnClick="btnDelete_Click" TabIndex="11" OnClientClick="return CheckFormDelete();" />
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btnCancel" runat="server" CssClass="cancel" UseSubmitBehavior="false"
+                                        OnClick="btnCancel_Click" TabIndex="12" OnClientClick="return CheckFormCancel();" />
+                                </div>
+                                <div class="left">
+                                    <div class="right"></div>
+                                </div> 
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnXuatExcel" />
+        </Triggers>
     </asp:UpdatePanel>
     <br />
     <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">
@@ -365,12 +472,26 @@
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="Loại đồng hồ" DataField="MALDHPO" HeaderStyle-Width="150px" />
                         <asp:BoundField HeaderText="Số No" DataField="SONO" HeaderStyle-Width="150px" />
-                        <asp:BoundField HeaderText="Năm sản xuất" DataField="NAMSX" HeaderStyle-Width="100px" />
-                        <asp:TemplateField HeaderText="Ngày nhập kho" HeaderStyle-Width="100px">
+                        <asp:TemplateField HeaderText="Sử dụng" HeaderStyle-Width="50px">
                             <ItemTemplate>
-                                <%# (Eval("NGAYNK") != null) ?
-                                        String.Format("{0:dd/MM/yyyy}", Eval("NGAYNK"))
+                                <%# Eval("DASD") != null ? (Convert.ToString(Eval("DASD")) == "True" ? "Đã dùng" : "Chưa" ) : "" %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField HeaderText="Năm sản xuất" DataField="NAMSX" HeaderStyle-Width="100px" />
+                        <asp:TemplateField HeaderText="Ngày nhập" HeaderStyle-Width="100px">
+                            <ItemTemplate>
+                                <%# (Eval("NGAYNHAP") != null) ?
+                                        String.Format("{0:dd/MM/yyyy}", Eval("NGAYNHAP"))
                                         : "" %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="100px">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lkbDonKhachHang" runat="server" CommandArgument='<%# Eval("MADHPO") %>'
+                                    CommandName="DonKhachHang" CssClass="link" Text='Thông tin'
+                                     OnClientClick="openDialogAndBlock('Thông khách hàng', 750, 'divDonKhachHang')"               
+                                    >
+                                </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -378,4 +499,28 @@
             </div>
         </ContentTemplate>
 	</asp:UpdatePanel>
+    <br />  
+    <asp:UpdatePanel ID="upnlCrystalReport" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <div class="crmcontainer" id="divCR" runat="server" visible="false">
+                <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX" 
+                    DisplayGroupTree="False" />
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="rpViewer" />
+        </Triggers>
+    </asp:UpdatePanel>    
+
+    <div >                
+                        <asp:GridView ID="gvXuat" runat="server" AllowPaging="True" Visible="false"
+                            BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" 
+                            CellPadding="4" onpageindexchanging="gvXuat_PageIndexChanging">
+                            <RowStyle BackColor="White" ForeColor="#003399" />
+                            <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+                            <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
+                            <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                            <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+                        </asp:GridView>
+             </div>
 </asp:Content>

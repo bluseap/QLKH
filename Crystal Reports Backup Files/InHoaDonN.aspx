@@ -8,7 +8,19 @@
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
+            $("#divSoThuTuHoaDonChuaIn").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divSoThuTuHoaDonChuaInDlg");
+                }
+            });
+
             $("#divDuongPho").dialog({
                 autoOpen: false,
                 modal: true,
@@ -55,6 +67,43 @@
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <div id="divSoThuTuHoaDonChuaInDlg">
+        <div id="divSoThuTuHoaDonChuaIn" style="display: none">
+            <asp:UpdatePanel ID="UpdivSoThuTuHoaDonChuaIn" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 800px;">
+                        <tr>
+							<td class="crmcontainer">	
+							    <eoscrm:Grid ID="gvTTTT" runat="server" UseCustomPager="true" PageSize="15"
+                                    OnPageIndexChanging="gvTTTT_PageIndexChanging" > 
+                                    <PagerSettings FirstPageText="kỳ" PageButtonCount="2" />
+                                    <Columns>
+                                        <asp:TemplateField HeaderStyle-Width="1%" HeaderText="#">
+                                            <ItemTemplate>
+                                                <%# Container.DataItemIndex + 1%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField HeaderStyle-Width="6%" HeaderText="#" DataField="IDKH" />                                        
+                                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Danh số">
+                                            <ItemTemplate>
+                                                <%# Eval("MADP").ToString() + Eval("MADB").ToString() %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>                                                                                
+                                        <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Số hóa đơn">
+                                            <ItemTemplate>
+                                                <%# Eval("STTNI").ToString() %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>      
+                                      
+                                    </Columns>
+                                </eoscrm:Grid>                                 
+							</td>
+						</tr>
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>        
+    </div>
      <asp:UpdatePanel ID="upnlTinhCuoc" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <div id="divupnlTinhCuoc" runat="server" class="crmcontainer">
@@ -82,21 +131,76 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
-                                </div>
-                                <div class="left">
-                                    <strong>Khu vực</strong>
-                                </div>
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server"
-                                        TabIndex="3">
-                                    </asp:DropDownList>
-                                </div>                                
+                                    <asp:TextBox ID="txtNAM" runat="server" Width="40px" MaxLength="4" TabIndex="2" />
+                                </div>                                                       
                             </td>
                         </tr>
                         <tr>
                             <td class="crmcell right">
-                                Số HĐ đầu
+                                Khu vực
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" runat="server"
+                                            TabIndex="3" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <td class="crmcell right">
+                                    Đợt in hóa đơn
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlDOTGCS" AutoPostBack="true"
+                                             runat="server" OnSelectedIndexChanged="ddlDOTGCS_SelectedIndexChanged"></asp:DropDownList>
+                                    </div>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                <asp:Label ID="lbSoHoaDon" runat="server" Text="Số hóa đơn" Visible="false"></asp:Label>
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbSoHoaDonSum" runat="server" Font-Bold="True" Font-Size="Larger" Visible="false"></asp:Label>
+                                </div>
+                                <td class="crmcell right">
+                                    <asp:Label ID="lbSoKhachHang" runat="server" Text="Số khách hàng" Visible="false"></asp:Label>
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Label ID="lbSoKhachHangSum" runat="server" Font-Bold="True" Font-Size="Larger" Visible="false"></asp:Label>
+                                    </div>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                <asp:Label ID="lbSoHoaDonDaIn" runat="server" Text="Số hóa đơn đã in" Visible="false"></asp:Label>
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:Label ID="lbSoHoaDonDaInSum" runat="server" Font-Bold="True" Font-Size="Larger" Visible="false"></asp:Label>
+                                </div>
+                                <td class="crmcell right">
+                                    <asp:Label ID="lbSoHoaDonChuaIn" runat="server" Text="Số hóa đơn chưa in" Visible="false"></asp:Label>
+                                </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Label ID="lbSoHoaDonChuaInSum" runat="server" Font-Bold="True" Font-Size="Larger" ForeColor="Red" Visible="false"></asp:Label>
+                                    </div>
+                                    <div class="left">
+                                        <asp:Button ID="btXemSoHoaDonChuaIn" runat="server" Text="Số thứ tự HĐ chưa in" CssClass="myButton" OnClick="btXemSoHoaDonChuaIn_Click"
+                                            CausesValidation="false" UseSubmitBehavior="false" Visible="false"
+                                            OnClientClick="openDialogAndBlock('Xem số thứ tự hóa đơn chưa in', 500, 'divSoThuTuHoaDonChuaIn')"
+                                            />
+                                    </div>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Số hóa đơn đầu
                             </td>
                             <td class="crmcell">
                                 <div class="left">
@@ -106,21 +210,31 @@
                                      <asp:Label ID="Label1" runat="server" Text="+"></asp:Label>
                                 </div>                                
                                 <div class="left">
-                                     <asp:TextBox ID="txtHDCONG" OnTextChanged="txtHDCONG_TextChanged"
+                                     <asp:TextBox ID="txtHDCONG" AutoPostBack="true" OnTextChanged="txtHDCONG_TextChanged"
                                         runat="server" Width="60px" MaxLength="7" TabIndex="2" />
                                 </div>
                                 <div class="left">
                                      <asp:Label ID="Label2" runat="server" Text="="></asp:Label>
                                 </div>
                                 <div class="left">
-                                     <asp:TextBox ID="txtHDCUOI" runat="server" Width="60px" MaxLength="7" TabIndex="2" />
+                                     <asp:TextBox ID="txtHDCUOI" runat="server" AutoPostBack="true" Width="60px" MaxLength="7" TabIndex="2" OnTextChanged="txtHDCUOI_TextChanged" />
                                 </div>
                                 <div class="left">
-                                    <strong>Số HĐ chưa in</strong>
+                                    <strong>Số hóa đơn in</strong>
                                 </div>
                                 <div class="left">
-                                    <asp:Label ID="lblSOHDCL" runat="server" />
+                                    <asp:Label ID="lblSOHDCL" runat="server" Font-Bold="True" />
                                 </div> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Tên máy in
+                            </td>
+                            <td>
+                                <div class="left">
+                                    <asp:TextBox ID="txtTenMayIn" runat="server" Width="300px" MaxLength="100" TabIndex="2" />
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -198,6 +312,27 @@
                                 
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Tên máy in in lại
+                            </td>
+                            <td>
+                                <div class="left">
+                                    <asp:TextBox ID="txtTenMayInInLai" runat="server" Width="300px" MaxLength="100" TabIndex="2" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">
+                                Ghi chú in lại
+                            </td>
+                            <td>
+                                <div class="left">
+                                         <asp:TextBox ID="txtGhiChuInLai" 
+                                            runat="server" Width="300px" MaxLength="100" TabIndex="2" />
+                                </div>
+                            </td>
+                        </tr>
                         <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell"> 
@@ -243,16 +378,24 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-Width="12%" HeaderText="Mã HĐ">
                             <ItemTemplate>
-                            <asp:LinkButton ID="linkMa" runat="server" 
-                                CommandArgument='<%# Eval("MASOHD") %>'
-                                CommandName="SelectHD" 
-                                Text='<%#  Eval("SOHDDAU")+"-"+Eval("SOHDCUOI") %>'>
-                            </asp:LinkButton>                                
+                                <asp:LinkButton ID="linkMa" runat="server" CommandArgument='<%# Eval("MASOHD") %>' CommandName="SelectHD" 
+                                    Text='<%#  Eval("SOHDDAU")+"-"+Eval("SOHDCUOI") %>'>
+                                </asp:LinkButton>                                
                             </ItemTemplate>
                             <ItemStyle Font-Bold="True" />
                         </asp:TemplateField>   
                         <asp:BoundField HeaderText="Số HĐ đầu" DataField="SOHDDAU" HeaderStyle-Width="78%" />
                         <asp:BoundField HeaderText="Số HĐ cuối" DataField="SOHDCUOI" HeaderStyle-Width="78%" />
+                        <asp:TemplateField HeaderStyle-Width="80px" HeaderText="Tổng HĐ">
+                            <ItemTemplate>
+                                <%# Eval("TONSOHOADON") != null ? Eval("TONSOHOADON").ToString() : "0" %>
+                            </ItemTemplate>                           
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderStyle-Width="130px" HeaderText="Tên máy in">
+                            <ItemTemplate>
+                                <%# Eval("TENMAYIN") != null ? Eval("TENMAYIN").ToString() : "" %>
+                            </ItemTemplate>                           
+                        </asp:TemplateField>       
                         <asp:BoundField HeaderText="Ngày in" DataField="NGAY" HeaderStyle-Width="78%" />
                         <asp:BoundField HeaderText="Ghi chú" DataField="GHICHU" HeaderStyle-Width="78%" />
                     </Columns>

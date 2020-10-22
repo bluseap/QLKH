@@ -9,32 +9,39 @@
 <%@ Import Namespace="EOSCRM.Dao" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
-    <script type="text/javascript">
+    <script type="text/javascript">        
         
+        function CheckFormBAOCAO() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btBAOCAO) %>', '');
+            return false;
+        }
+
+        function CheckFormLoc() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btLOC) %>', '');
+            return false;
+        }
 
         function CheckFormCancel() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnCancel) %>', '');
-
             return false;
         }
 
         function CheckFormSave() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
-
 
 	</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
-
     <asp:UpdatePanel ID="upnlInfor" UpdateMode="Conditional" runat="server">
 		<ContentTemplate>
             <div class="crmcontainer">
@@ -98,11 +105,37 @@
                             <td class="crmcell right">Ghi chú</td>
                             <td class="crmcell">
                                 <div class="left width-250">
-                                    <asp:TextBox ID="txtGHICHU" runat="server" Width="300px" MaxLength="20" 
+                                    <asp:TextBox ID="txtGHICHU" runat="server" Width="300px" 
                                         TabIndex="7" Font-Names="Time" />     
                                 </div>                                                      
                             </td>          
                         </tr>
+                        <tr>
+                    <td class="crmcell right">Từ ngày</td>
+                    <td class="crmcell">    
+                        <div class="left">
+                            <asp:TextBox ID="txtTuNgay" runat="server" Width="75px" />
+                        </div>
+                        <div class="left">
+                            <asp:ImageButton runat="Server" ID="imgFromDate" ImageUrl="~/content/images/icons/calendar.png"
+                                AlternateText="Click to show calendar" />
+                        </div>
+                        <ajaxToolkit:CalendarExtender ID="calendarButtonExtender1" runat="server" TargetControlID="txtTuNgay"
+                            PopupButtonID="imgFromDate" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />
+                        <div class="left">
+                            <div class="right">Đến ngày</div>
+                        </div> 
+                        <div class="left">
+                            <asp:TextBox ID="txtDenNgay" runat="server" Width="75px" Height="16px" />
+                        </div>
+                        <div class="left">
+                            <asp:ImageButton runat="Server" ID="imgToDate" ImageUrl="~/content/images/icons/calendar.png"
+                                AlternateText="Click to show calendar" />
+                        </div>
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDenNgay"
+                            PopupButtonID="imgToDate" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" />   
+                    </td>
+                </tr>
                         <tr>
                             <td class="crmcell right">
                             </td>
@@ -114,6 +147,14 @@
                                 <div class="left">
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" OnClientClick="return CheckFormCancel();" 
                                         OnClick="btnCancel_Click" TabIndex="9" UseSubmitBehavior="false" />
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btLOC" runat="server" CssClass="filter" OnClientClick="return CheckFormLoc();" 
+                                        TabIndex="9" UseSubmitBehavior="false" OnClick="btLOC_Click" />
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btBAOCAO" runat="server" CssClass="report" OnClientClick="return CheckFormBAOCAO();" 
+                                        TabIndex="9" UseSubmitBehavior="false" OnClick="btBAOCAO_Click"  />
                                 </div>
                             </td>
                         </tr>
@@ -128,7 +169,7 @@
             <div class="crmcontainer">
                 <eoscrm:Grid 
                     ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand" 
-                    OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound" PageSize="70">
+                    OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound" PageSize="50">
                     <PagerSettings FirstPageText="thông tin" PageButtonCount="2" />
                     <Columns>                    
                         <asp:TemplateField HeaderStyle-CssClass="checkbox">
@@ -150,7 +191,8 @@
                                 <%# (Eval("NGAYNHAN") != null) ?
                                     String.Format("{0:dd/MM/yyyy}", Eval("NGAYNHAN")) : "" %>
                             </ItemTemplate>
-                        </asp:TemplateField>                                            
+                        </asp:TemplateField>
+                        <asp:BoundField HeaderText="Ghi chú" DataField="GHICHU" HeaderStyle-Width="200px" />                                        
                     </Columns>
                 </eoscrm:Grid>
             </div>

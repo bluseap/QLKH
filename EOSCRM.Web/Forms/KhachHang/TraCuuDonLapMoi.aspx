@@ -339,7 +339,19 @@
                                         <tr>
                                             <td class="crmcell right">Ngày đăng ký</td>
                                             <td class="crmcell">
-                                                <div class="left"><asp:Label ID="lbDDKNGAYDK" runat="server" ></asp:Label></div>
+                                                <div class="left"><asp:Label ID="lbDDKNGAYDK" runat="server" ></asp:Label></div>                                               
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Ngày duyệt HS chuyển qua TK</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayChuyenHSToTK" runat="server" ></asp:Label></div>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày làm HS</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red"><asp:Label ID="lbSoNgayLamHoSo" runat="server" ></asp:Label></div>                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -408,6 +420,12 @@
                                                 <div class="left"><asp:Label ID="lbTKNGAYDK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr> 
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày làm HS</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red"><asp:Label ID="lbTKSoNgayLamHS" runat="server" ></asp:Label></div>                                                
+                                            </td>
+                                        </tr>
                                          <tr>
                                             <td class="crmcell right">Ngày thiết kế</td>
                                             <td class="crmcell">
@@ -430,6 +448,12 @@
                                             <td class="crmcell right">Ngày duyệt</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbTKNGAYDUYET" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red"><asp:Label ID="lbTKSoNgayThietKe" runat="server" ></asp:Label></div>                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -1120,7 +1144,7 @@
                                 </div>
                              </td>                                                
                         </tr>
-                        <tr>    
+                        <%--<tr>    
                             <td class="crmcell right">Ngày nhập đơn đăng ký</td>
                             <td class="crmcell">    
                                 <div class="left">
@@ -1161,19 +1185,19 @@
                                     </div>
                                 </td>                                
                             </td>
-                        </tr>   
+                        </tr>   --%>
                         <tr>    
                             <td class="crmcell right">Ngày khai thác</td>
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:Label ID="lbNGAYKHAITHAC" runat="server" Text=""></asp:Label>
                                 </div>  
-                                <td class="crmcell right">Ngày Nhân viên ký nghiệm thu</td>
+                               <%-- <td class="crmcell right">Ngày Nhân viên ký nghiệm thu</td>
                                 <td class="crmcell" colspan="3">
                                     <div class="left">
                                         <asp:Label ID="lbNVKYNGHIEMTHU" runat="server" Text=""></asp:Label>
                                     </div>
-                                </td>                                                      
+                                </td>    --%>                                                  
                             </td>
                         </tr>                      
                         <tr>    
@@ -1357,44 +1381,44 @@
                                         String.Format("{0:MM/yyyy}", new KhachHangDao().GetMADDK(Eval("MADDK").ToString()).KYKHAITHAC.Value)  : ""  %>
                             </ItemTemplate>
                         </asp:TemplateField> 
-                        <asp:TemplateField HeaderText="Đăng ký" HeaderStyle-Width="55px">
+                        <asp:TemplateField HeaderText="Đăng ký" HeaderStyle-Width="30px">
                             <ItemTemplate>
-                                <asp:Button ID="imgDK" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'
+                                <asp:Button ID="imgDK" runat="server" Width="38px" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="showDKStatus" CausesValidation="false" UseSubmitBehavior="false"                                   
                                     OnClientClick="openDialogAndBlock('Thông tin đơn đăng ký', 500, 'divDangKy')"  />        
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Thiết kế" HeaderStyle-Width="55px">
+                        <asp:TemplateField HeaderText="Thiết kế" HeaderStyle-Width="30px">
                             <ItemTemplate>
-                                <asp:Button ID="imgTK" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'
+                                <asp:Button ID="imgTK" runat="server" Width="45px" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="showTKStatus" CausesValidation="false" UseSubmitBehavior="false"
                                     OnClientClick="openDialogAndBlock('Thông tin thiết kế', 500, 'divThietKe')" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Chiết tính" HeaderStyle-Width="55px">
+                        <asp:TemplateField HeaderText="Chiết tính" HeaderStyle-Width="30px">
                             <ItemTemplate>
-                                <asp:Button ID="imgCT" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'
+                                <asp:Button ID="imgCT" runat="server" Width="45px" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="showCTStatus" CausesValidation="false" UseSubmitBehavior="false"
                                     OnClientClick="openDialogAndBlock('Thông tin chiết tính', 600, 'divChietTinh')" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Hợp đồng" HeaderStyle-Width="55px">
+                        <asp:TemplateField HeaderText="Hợp đồng" HeaderStyle-Width="30px">
                             <ItemTemplate>
-                                <asp:Button ID="imgHD" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'
+                                <asp:Button ID="imgHD" runat="server" Width="45px" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="showHDStatus" CausesValidation="false" UseSubmitBehavior="false"
                                     OnClientClick="openDialogAndBlock('Thông tin hợp đồng', 500, 'divHopDong')" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Thi công" HeaderStyle-Width="55px">
+                        <asp:TemplateField HeaderText="Thi công" HeaderStyle-Width="30px">
                             <ItemTemplate>                                
-                                <asp:Button ID="imgTC" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'
+                                <asp:Button ID="imgTC" runat="server" Width="45px" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="showTCStatus" CausesValidation="false" UseSubmitBehavior="false"
                                     OnClientClick="openDialogAndBlock('Thông tin thi công', 500, 'divThiCong')" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Nghiệm thu" HeaderStyle-Width="55px">
+                        <asp:TemplateField HeaderText="Nghiệm thu" HeaderStyle-Width="30px">
                             <ItemTemplate>                                
-                                <asp:Button ID="imgNT" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'
+                                <asp:Button ID="imgNT" runat="server" Width="45px" CommandArgument='<%# Eval("MADDK") %>'
                                     CommandName="showNTStatus" CausesValidation="false" UseSubmitBehavior="false"
                                     OnClientClick="openDialogAndBlock('Thông tin nghiệm thu', 500, 'divNghiemThu')" />
                             </ItemTemplate>

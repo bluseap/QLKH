@@ -13,6 +13,10 @@
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
         }
 
+        function CheckFormbtExcel() {           
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btExcel) %>', '');
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -51,12 +55,14 @@
                         <div class="left">
                             <asp:DropDownList ID="cboKhuVuc" runat="server" />
                         </div>
-                        <div class="left">
-                            <div class="right">Người lập</div>
-                        </div> 
-                        <div class="left">
-                            <asp:TextBox ID="txtNguoiLap" runat="server" />
-                        </div> 
+                        <td class="crmcell"> 
+                            <div class="left">
+                                <div class="right">Người lập</div>
+                            </div> 
+                            <div class="left">
+                                <asp:TextBox ID="txtNguoiLap" runat="server" />
+                            </div> 
+                        </td>
                     </td>
                 </tr>
                  <tr>
@@ -72,7 +78,12 @@
                     <td class="crmcell">    
                         <div class="left">
                             <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="report" />
-                        </div>
+                        </div>                        
+                        <td class="crmcell">    
+                            <div class="left">
+                                <asp:Button ID="btExcel" OnClientClick="return CheckFormbtExcel();" runat="server" CssClass="myButton" Text="Xuất Excel" OnClick="btExcel_Click" />
+                            </div>
+                        </td>
                     </td>
                 </tr>
             </tbody>

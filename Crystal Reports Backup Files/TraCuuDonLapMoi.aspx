@@ -1,8 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="True"
-    Inherits="EOSCRM.Web.Forms.KhachHang.TraCuuDonLapMoi" CodeBehind="TraCuuDonLapMoi.aspx.cs" %>
+    Inherits="EOSCRM.Web.Forms.KhachHang.TraCuuDonLapMoi" CodeBehind="TraCuuDonLapMoi.aspx.cs" Culture="vi-VN" uiCulture="vi" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
 <%@ Import Namespace="EOSCRM.Util" %>
+<%@ Import Namespace="EOSCRM.Dao" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
 
@@ -91,7 +93,19 @@
                 open: function(event, ui) {
                     $(this).parent().appendTo("#divDuongPhoDlgContainer");
                 }
-            });           
+            });
+
+            $("#divDPKHKEBEN").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divdivDPKHKEBENDlgContainer");
+                }
+            });
         });
 
         function checkDuongPhoForm() {
@@ -149,10 +163,80 @@
                 return false;
             }
         }
+
+        function CheckFormTIMSONODHN() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btTIMSONODHN) %>', '');
+            return false;
+        }       
+
     </script>
 </asp:Content>
 
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+
+    <div id="divdivDPKHKEBENDlgContainer">
+        <div id="divDPKHKEBEN" style="display: none">
+            <asp:UpdatePanel ID="upnlDPKHKEBEN" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 500px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Từ khóa
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="TextBox1" onchange="return CheckFormFilterDP();" runat="server" Width="250px" MaxLength="200" />
+                                                </div>
+                                                <div class="left">
+                                                    <asp:Button ID="Button1" OnClick="btnFilterDP_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilterDP();" 
+                                                        runat="server" CssClass="filter" Text="" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+						<tr>
+							<td class="ptop-10">
+							    <div class="crmcontainer">
+							        <eoscrm:Grid ID="gvDPKHKEBEN" runat="server" UseCustomPager="true" 
+							            OnRowDataBound="gvDPKHKEBEN_RowDataBound" OnRowCommand="gvDPKHKEBEN_RowCommand" 
+							            OnPageIndexChanging="gvDPKHKEBEN_PageIndexChanging">
+                                        <PagerSettings FirstPageText="đường phố" PageButtonCount="2" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã ĐP">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" 
+                                                        CommandArgument='<%# Eval("MADP") + "-" + Eval("DUONGPHU") %>' CommandName="SelectMADP"                                                         
+                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MADP").ToString()) %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <%--<asp:BoundField HeaderStyle-Width="15%" DataField="DUONGPHU" HeaderText="Đường phụ" />--%>
+                                            <asp:BoundField HeaderStyle-Width="60%" DataField="TENDP" HeaderText="Tên đường phố" />
+                                            <asp:TemplateField HeaderStyle-Width="30%" HeaderText="Khu vực">
+                                                <ItemTemplate>
+                                                    <%# Eval("KHUVUC.TENKV") %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </eoscrm:Grid>
+                                </div>
+							</td>
+						</tr>
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>
+    </div>
+
     <div id="divDuongPhoDlgContainer">
         <div id="divDuongPho" style="display: none">
             <asp:UpdatePanel ID="upnlDuongPho" runat="server" UpdateMode="Conditional">
@@ -354,6 +438,12 @@
                                                 <div class="left"><asp:Label ID="lbTKNVNHAP" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td class="crmcell right">Ghi chú</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuTK" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>
@@ -375,100 +465,49 @@
                                         <tr>
                                             <td class="crmcell right">Mã đơn đăng ký</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.MADDK : ""%></div>
+                                                <div class="left"><asp:Label ID="lbCTMADDK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="crmcell right">Tên khách hàng</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.TENKH : ""%></div>
+                                                <div class="left"><asp:Label ID="lbCTTENKH" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Địa chỉ lắp đặt</td>
+                                            <td class="crmcell right">Ngày nhập đơn</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIACHILD : "" %></div>
+                                                <div class="left"><asp:Label ID="lbCTNGAYNHAPDON" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Điện thoại</td>
+                                            <td class="crmcell right">Ngày nhập thiết kế</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIENTHOAI : ""%></div>
+                                                <div class="left"><asp:Label ID="lbCTNGAYNHAPTK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày đăng ký</td>
+                                            <td class="crmcell right">Ngày nhập chiết tính</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (DonDangKy != null && DonDangKy.NGAYDK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", DonDangKy.NGAYDK.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Ngày thiết kế</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ThietKe != null && ThietKe.NGAYLTK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ThietKe.NGAYLTK.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>                                        
-                                        <tr>
-                                            <td class="crmcell right">Người lập chiết tính</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NHANVIEN1 != null) ? ChietTinh.NHANVIEN1.HOTEN : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Ngày lập chiết tính</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NGAYLCT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ChietTinh.NGAYLCT.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Trạng thái</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? 
-                                                                        DonDangKy.TRANGTHAITHIETKE2 != null ?  DonDangKy.TRANGTHAITHIETKE2.TENTT : ""
-                                                                      : "" %></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Người duyệt chiết tính</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NHANVIEN != null) ? ChietTinh.NHANVIEN.HOTEN : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbCTNGAYLCT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="crmcell right">Ngày duyệt chiết tính</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NGAYDCT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ChietTinh.NGAYDCT.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbCTNGAYN" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
-                                        <%--<tr>
-                                            <td class="crmcell right">Tổng giá trị công trình</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.TONG_ST.HasValue) ?  
-                                                                      String.Format("{0:0,0}", ChietTinh.TONG_ST.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>--%>
                                         <tr>
-                                            <td class="crmcell right vtop">Ghi chú</td>
+                                            <td class="crmcell right">Nhân viên lập</td>
                                             <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:TextBox ID="txtGHICHUCT" ReadOnly="true" Width="425px" TextMode="MultiLine" runat="server" />
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbCTMANVLCT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ghi chú</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbCTGHICHU" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -492,72 +531,39 @@
                                         <tr>
                                             <td class="crmcell right">Mã đơn đăng ký</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= HopDong != null ? HopDong.MADDK : ""%></div>
+                                                <div class="left"><asp:Label ID="lbHDMADDK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="crmcell right">Tên khách hàng</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.TENKH : ""%></div>
+                                                <div class="left"><asp:Label ID="lbHDTENKH" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Địa chỉ lắp đặt</td>
+                                            <td class="crmcell right">Ngày nhập đơn</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIACHILD : "" %></div>
+                                                <div class="left"><asp:Label ID="lbHDNGAYNHAPDON" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Điện thoại</td>
+                                            <td class="crmcell right">Ngày nhập thiết kế</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIENTHOAI : ""%></div>
-                                            </td>
-                                        </tr>
-                                         <tr>
-                                            <td class="crmcell right">Ngày đăng ký</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (DonDangKy != null && DonDangKy.NGAYDK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", DonDangKy.NGAYDK.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbHDNGAYTK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày thiết kế</td>
+                                            <td class="crmcell right">Ngày nhập chiết tính</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ThietKe != null && ThietKe.NGAYLTK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ThietKe.NGAYLTK.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbNGAYCT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày lập chiết tính</td>
+                                            <td class="crmcell right">Ngày nhập hợp đồng</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NGAYLCT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ChietTinh.NGAYLCT.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbHDNGAYNHAPHD" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Ngày lập hợp đồng</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (HopDong != null && HopDong.NGAYTAO.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", HopDong.NGAYTAO.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Nhân viên nhập</td>
-                                            <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:Label ID="lvNVLAPHĐ" runat="server" Text="NV lập"></asp:Label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        
+                                        </tr>                                        
                                     </tbody>
                                 </table>
                             </td>
@@ -579,96 +585,57 @@
                                         <tr>
                                             <td class="crmcell right">Mã đơn đăng ký</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= ThiCong != null ? ThiCong.MADDK : ""%></div>
+                                                <div class="left"><asp:Label ID="lbTCMADDK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="crmcell right">Tên khách hàng</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.TENKH : ""%></div>
+                                                <div class="left"><asp:Label ID="lbTCTENKH" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Địa chỉ lắp đặt</td>
+                                            <td class="crmcell right">Ngày nhập đơn</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIACHILD : "" %></div>
+                                                <div class="left"><asp:Label ID="lbTCNGAYNHAPDON" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Điện thoại</td>
+                                            <td class="crmcell right">Ngày nhập thiết kế</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIENTHOAI : ""%></div>
-                                            </td>
-                                        </tr>
-                                         <tr>
-                                            <td class="crmcell right">Ngày đăng ký</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (DonDangKy != null && DonDangKy.NGAYDK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", DonDangKy.NGAYDK.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbTCNGAYTK" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày thiết kế</td>
+                                            <td class="crmcell right">Ngày nhập chiết tính</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ThietKe != null && ThietKe.NGAYLTK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ThietKe.NGAYLTK.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbTCNGAYCT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày lập chiết tính</td>
+                                            <td class="crmcell right">Ngày nhập hợp đồng</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NGAYLCT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ChietTinh.NGAYLCT.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbTCNGAYHD" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>
+                                        </tr>  
                                         <tr>
-                                            <td class="crmcell right">Ngày lập hợp đồng</td>
+                                            <td class="crmcell right">Ngày nhập thi công</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (HopDong != null && HopDong.NGAYTAO.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", HopDong.NGAYTAO.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbTCNGAYNHAP" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>
+                                        </tr>  
                                         <tr>
-                                            <td class="crmcell right">Nhân viên thi công</td>
+                                            <td class="crmcell right">Ngày cập nhật thi công</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ThiCong != null && ThiCong.NHANVIEN != null) ?  ThiCong.NHANVIEN.HOTEN : "" %></div>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbTCNGAYCAPNHAP" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>
+                                        </tr> 
                                         <tr>
-                                            <td class="crmcell right">Trạng thái</td>
+                                            <td class="crmcell right">Ghi chú</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? 
-                                                                        DonDangKy.TRANGTHAITHIETKE4 != null ?  DonDangKy.TRANGTHAITHIETKE4.TENTT : ""
-                                                                      : "" %></div>
+                                                <div class="left"><asp:Label ID="lbTCGHICHU" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Ngày gắn ĐH</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ThiCong != null && ThiCong.NGAYHT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ThiCong.NGAYHT.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Nhân viên nhập</td>
-                                            <td class="crmcell">
-                                                <div class="left">
-                                                    <asp:Label ID="lvNVLAPTHICONG" runat="server" Text="NV lập"></asp:Label>
-                                                </div>
-                                            </td>
-                                        </tr>
-
+                                        </tr>  
                                     </tbody>
                                 </table>
                             </td>
@@ -690,89 +657,81 @@
                                         <tr>
                                             <td class="crmcell right">Mã đơn đăng ký</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= NghiemThu != null ? NghiemThu.MADDK : ""%></div>
+                                                <div class="left"><asp:Label ID="lbMADDKBBNT" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>
-                                         <tr>
+                                        </tr>                                        
+                                        <tr>
                                             <td class="crmcell right">Tên khách hàng</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.TENKH : ""%></div>
+                                                <div class="left"><asp:Label ID="lbTENKHBBNT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Địa chỉ lắp đặt</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIACHILD : "" %></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Điện thoại</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= DonDangKy != null ? DonDangKy.DIENTHOAI : ""%></div>
-                                            </td>
-                                        </tr>
-                                         <tr>
                                             <td class="crmcell right">Ngày đăng ký</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (DonDangKy != null && DonDangKy.NGAYDK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", DonDangKy.NGAYDK.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbNgayDHNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ngày duyệt đơn</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayDuyetNT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="crmcell right">Ngày thiết kế</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ThietKe != null && ThietKe.NGAYLTK.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ThietKe.NGAYLTK.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbNgayTKNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ngày duyệt thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayDuyetTKNT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày lập chiết tính</td>
+                                            <td class="crmcell right">Ngày kế hoạch vật tư duyệt</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (ChietTinh != null && ChietTinh.NGAYLCT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ChietTinh.NGAYLCT.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbNgayDuyetKHNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ngày nhập hợp đồng</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayNhapHDNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>                                         
+                                        <tr>
+                                            <td class="crmcell right">Ngày nhập thi công</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayNhapTCNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ngày duyệt thi công</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayDuyetTCNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ngày nhập BBNT</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayNBBNT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td class="crmcell right">Ngày nhận HS</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbNgayNhanHS" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày lập hợp đồng</td>
+                                            <td class="crmcell right">Ngày chuyển HS</td>
                                             <td class="crmcell">
-                                                <div class="left"><%= (HopDong != null && HopDong.NGAYTAO.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", HopDong.NGAYTAO.Value) 
-                                                                      : "" %>
-                                                </div>
+                                                <div class="left"><asp:Label ID="lbNgayChuyenHS" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="crmcell right">Ngày gắn ĐH</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (ThiCong != null && ThiCong.NGAYHT.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", ThiCong.NGAYHT.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Ngày nghiệm thu</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (NghiemThu != null && NghiemThu.NGAYNHAP.HasValue) ?  
-                                                                      String.Format("{0:dd/MM/yyyy}", NghiemThu.NGAYNHAP.Value) 
-                                                                      : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Nhân viên nhập</td>
-                                            <td class="crmcell">
-                                                <div class="left"><%= (NghiemThu != null ) ? NghiemThu.NHANVIEN.HOTEN : "" %>
-                                                </div>
-                                            </td>
-                                        </tr>
-
                                     </tbody>
                                 </table>
                             </td>
@@ -894,8 +853,7 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtMADDK" runat="server" Width="95px" MaxLength="15" 
                                         TabIndex="1" />                            
-                                </div>
-                                <div class="left filtered"></div>
+                                </div>                                
                                 <div class="left">
                                     <asp:CheckBox ID="cbDAIDIEN" Enabled="false" runat="server" />
                                 </div>
@@ -909,7 +867,6 @@
                                     <asp:DropDownList ID="ddlMUCDICH" Width="142px" TabIndex="7" runat="server">
                                     </asp:DropDownList>
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">Số HĐ</td>
                             <td class="crmcell">
@@ -933,7 +890,6 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtSOHODN" runat="server" Width="130px" MaxLength="4" TabIndex="8" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">Số nhân khẩu</td>
                             <td class="crmcell">
@@ -948,14 +904,12 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKH" runat="server" Width="200px" MaxLength="200" TabIndex="3" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">ĐM/NK</td>
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtDMNK" runat="server" Width="130px" MaxLength="4" TabIndex="10" />
                                 </div>
-                                <div class="left filtered"></div>   
                             </td>
                             <td class="crmcell right">Định mức</td>
                             <td class="crmcell">
@@ -971,14 +925,12 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtDIENTHOAI" runat="server" Width="130px" MaxLength="200" TabIndex="4" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">CMND</td>
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtCMND" runat="server" Width="130px" MaxLength="20" TabIndex="9" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">Ngày cấp CMND</td>
                             <td class="crmcell">
@@ -994,12 +946,34 @@
                             </td>
                         </tr>
                         <tr>    
+                            <td class="crmcell right">
+                                <asp:Label ID="lbSONHAN2" runat="server" Text="Số nhà" ></asp:Label>
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:TextBox ID="txtSONHA2" runat="server" TabIndex="6" Width="50px" />
+                                </div>   
+                                <td class="crmcell right">Tổng tiền </td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:Label ID="lbTongTienTK" runat="server" Font-Bold="True" Font-Size="Larger" ForeColor="Blue" ></asp:Label>
+                                    </div>
+                                </td>
+                                <td class="crmcell right">Danh số</td>
+                                <td class="crmcell">
+                                    <div class="left">
+                                        <asp:TextBox ID="txtMADPDLM" runat="server" Width="50px" MaxLength="10" TabIndex="11" ReadOnly="True" />
+                                        <asp:TextBox ID="txtMADBDLM" runat="server" Width="50px" MaxLength="10" TabIndex="11" ReadOnly="True" />
+                                    </div>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>    
                             <td class="crmcell right">Địa chỉ thường trú</td>
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:TextBox ID="txtSONHA" runat="server" Width="200px" MaxLength="200" TabIndex="5" />
-                                </div>
-                                <div class="left filtered"></div>              
+                                </div>         
                             </td>
                             <td class="crmcell right">Ngày nhận đơn</td>
                             <td class="crmcell">
@@ -1032,7 +1006,6 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtMST" runat="server" Width="130px" MaxLength="20" TabIndex="9" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">Hẹn khảo sát</td>
                             <td class="crmcell">
@@ -1063,14 +1036,12 @@
                                         CausesValidation="false" UseSubmitBehavior="false" 
                                         OnClientClick="openDialogAndBlock('Chọn từ danh sách đường phố', 500, 'divDuongPho')" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
                             <td class="crmcell right">Số HK</td>
                             <td class="crmcell" colspan="3">    
                                 <div class="left">
                                     <asp:TextBox ID="txtDIACHIKHAC" runat="server" Width="400px" MaxLength="200" TabIndex="6" />
-                                </div>
-                                <div class="left filtered"></div>                                
+                                </div>                    
                             </td> 
                         </tr>
                         <tr>    
@@ -1081,16 +1052,23 @@
                                         TabIndex="13" runat="server" onchange="openWaitingDialog(); unblockWaitingDialog();"  
                                         onselectedindexchanged="ddlKHUVUC_SelectedIndexChanged" />
                                 </div>
-                                <div class="left filtered"></div>
                             </td>
-                            <td class="crmcell right">Phường, xã</td>
+                            <td class="crmcell right">Phòng, tổ, nhà máy</td>
                             <td class="crmcell" colspan="3">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlToNhaMay" TabIndex="14" runat="server">
+                                    </asp:DropDownList>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Phường, xã</td>
+                            <td class="crmcell">
                                 <div class="left">
                                     <asp:DropDownList ID="ddlPHUONG" TabIndex="14" runat="server">
                                     </asp:DropDownList>
                                 </div>
-                                <div class="left filtered"></div>
-                            </td>
+                            </td>                            
                         </tr>
                         <tr>
                             <td class="crmcell right">Người uỷ quyền</td>
@@ -1107,11 +1085,38 @@
                             </td>                           
                         </tr>
                         <tr>
+                            <td class="crmcell right">Tên C.vụ</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtTENCHUCVU" runat="server" MaxLength="100"  />
+                                </div>
+                                <td class="crmcell right">Danh số KH kế bên</td>
+                                <td class="crmcell" colspan="3">    
+                                    <div class="left">
+                                        <asp:TextBox ID="txtDPKHKEBEN" runat="server" Width="40px" MaxLength="11" TabIndex="99" AutoPostBack="true" />                                       
+                                    </div>                                      
+                                    <div class="left">
+                                        <asp:Button ID="btDPKHKEBEN" runat="server" CssClass="pickup" 
+                                            CausesValidation="false" UseSubmitBehavior="false" 
+                                            OnClientClick="openDialogAndBlock('Chọn từ danh sách đường phố', 500, 'divDPKHKEBEN')" />
+                                    </div>                                                   
+                                </td>
+                             </td> 
+                        </tr>
+                        <tr>
                             <td class="crmcell right">Hồ sơ giao cho nhà máy, tổ</td>
                             <td class="crmcell">
                                 <div class="left">
                                     <asp:DropDownList ID="ddlPHONGBAN2" TabIndex="14" runat="server">
                                     </asp:DropDownList>
+                                </div>
+                             </td>                                                
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Nội dung hồ sơ kèm theo</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtNOIDUNGKEMTHEO" runat="server" Width="800px"></asp:TextBox>
                                 </div>
                              </td>                                                
                         </tr>
@@ -1200,14 +1205,14 @@
                         </tr>
                         <tr>    
                             <td class="crmcell right">Đơn vị cấp sổ HN</td>
-                            <td class="crmcell">    
-                                <div class="left">
-                                    <asp:TextBox ID="txtDONVICAP" runat="server" Width="20px" MaxLength="100" 
-                                        TabIndex="6" Visible="false"/>
-                                </div>
+                            <td class="crmcell"> 
                                 <div class="left">
                                          <asp:DropDownList ID="ddlTENXA" Width="180px" runat="server" TabIndex="14" Enabled="False" AutoPostBack="True" OnSelectedIndexChanged="ddlTENXA_SelectedIndexChanged">
                                          </asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtDONVICAP" runat="server" Width="20px" MaxLength="100" 
+                                        TabIndex="6" Visible="false"/>
                                 </div>
                                 <td class="crmcell right">Mã sổ HN</td>
                                 <td class="crmcell" colspan="3">    
@@ -1281,6 +1286,16 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="crmcell right">Số No ĐH</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtSONODHN"  runat="server"   />
+                                    <asp:Button ID="btTIMSONODHN" runat="server" CssClass="myButton" Text="Tìm Số No"
+                                         OnClientClick="return CheckFormTIMSONODHN();"  UseSubmitBehavior="false" OnClick="btTIMSONODHN_Click" />
+                                </div>                               
+                            </td>   
+                        </tr>
                         <tr>    
                             <td class="crmcell right btop"></td>
                             <td class="crmcell btop" colspan="5">
@@ -1336,6 +1351,12 @@
                         <asp:BoundField HeaderText="Tên khách hàng" HeaderStyle-Width="25%" DataField="TENKH" />
                         <asp:BoundField HeaderStyle-Width="40%" HeaderText="Địa chỉ thường trú" DataField="SONHA" />
                         <asp:BoundField HeaderStyle-Width="40%" HeaderText="Địa chỉ lắp" DataField="DIACHILD" />
+                        <asp:TemplateField HeaderText="Kỳ khai thác" HeaderStyle-Width="70px">
+                            <ItemTemplate>
+                                <%# new KhachHangDao().GetMADDK(Eval("MADDK").ToString()) != null ? 
+                                        String.Format("{0:MM/yyyy}", new KhachHangDao().GetMADDK(Eval("MADDK").ToString()).KYKHAITHAC.Value)  : ""  %>
+                            </ItemTemplate>
+                        </asp:TemplateField> 
                         <asp:TemplateField HeaderText="Đăng ký" HeaderStyle-Width="55px">
                             <ItemTemplate>
                                 <asp:Button ID="imgDK" runat="server" Width="70px" CommandArgument='<%# Eval("MADDK") %>'

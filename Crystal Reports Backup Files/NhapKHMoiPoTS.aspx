@@ -95,24 +95,22 @@
                     FocusAndSelect(txtCHISOCUOIId);
                     //alertWithFocusSelect(msg3, oldCHISOCUOI);
                 }
-
                 else if (order == 2) {
 
                     //alertWithFocusSelect(msg3, oldCHISOCUOI);
                     //var savingMsg = EOSCRM.Web.Common.AjaxCRM.UpdateGCS2(idArr[0], idArr[1], idArr[2], csd, csc, mtt, kltt, idArr[8], tthaighi, idArr[7]);
-                    var savingMsg = EOSCRM.Web.Common.AjaxCRM.InKhachHangMoi(idArr[0], idArr[3], csdau, cscuoi, idArr[8], idArr[6], idArr[7]);
+                    var savingMsg = EOSCRM.Web.Common.AjaxCRM.InKhachHangMoiPo(idArr[0], idArr[3], csdau, cscuoi, idArr[8], idArr[6], idArr[7]);
 
                     if (savingMsg.value != "<%= DELIMITER.Passed %>") {
                         setControlValue(txtCHISODAUId, oldCHISODAU);
                         setControlValue(txtCHISOCUOIId, oldCHISOCUOI);
 
                         alertWithFocusSelect(idArr[0] + "," + idArr[1] + "," + idArr[2] + "," + idArr[3] + "," + idArr[4]
-                                            + "," + idArr[5], + "," + idArr[6] + "," + idArr[7] + "," + idArr[8] + ","
-                                            + csdau + "," + cscuoi//msg3
+                                            + "," + idArr[5]
                             , oldCHISOCUOI);
 
                         alertWithFocusSelect(idArr[6] + "," + idArr[7] + "," + idArr[8] + ","
-                                            + csdau + "," + cscuoi//msg3
+                                            + csdau + "," + cscuoi
                             , oldCHISOCUOI);
                         return;
                     }
@@ -265,13 +263,35 @@
                                         <asp:ListItem Text="12" Value="12" />
                                     </asp:DropDownList>
                                     <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
-                                </div>
+                                </div>                                
+                            </td>                                                   
+                        </tr>
+                        <tr>                           
+                            <td class="crmcell right">Khu vực</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKHUVUC1" runat="server" >
+                                    </asp:DropDownList>
+                                </div>                                                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
                                 <div class="left">
                                     <asp:Button ID="btLOCDSKHCBKT" runat="server" CssClass="filter" 
                                         CausesValidation="false" UseSubmitBehavior="false" TabIndex="44" OnClick="btLOCDSKHCBKT_Click" />
-                                </div>   
-                            </td>                                                   
-                        </tr>       
+                                </div>    
+                            </td>
+                        </tr>      
                     </tbody>
                 </table>
             </div> 

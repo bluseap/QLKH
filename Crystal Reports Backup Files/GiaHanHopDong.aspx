@@ -289,16 +289,25 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKHMOI" runat="server" Width="250px" MaxLength="200" 
                                         TabIndex="2" Font-Names="Times New Roman" />
-                                </div>
-                                <div class="left">
-                                    <div class="right">Tên uỷ quyền</div>
-                                </div>
+                                </div>                                
+                            </td>            
+                        </tr> 
+                        <tr>
+                            <td class="crmcell right">Tên uỷ quyền</td>
+                            <td class="crmcell">
                                 <div class="left">
                                     <asp:TextBox ID="txtUYQUYEN" runat="server" Width="250px" MaxLength="200" 
                                         TabIndex="3" Font-Names="Times New Roman" />
                                 </div>
+                                <div class="left">
+                                    <div class="right">Tên chức vụ</div>
+                                </div>
+                                <div class="left">
+                                    <asp:TextBox ID="txtTENCHUCVU" runat="server" MaxLength="100" 
+                                        TabIndex="3"  Font-Names="Times New Roman" />
+                                </div>
                             </td>            
-                        </tr>  
+                        </tr> 
                         <tr>
                             <td class="crmcell right">Địa chỉ lắp đặt(nhập tổ,xã)</td>
                             <td class="crmcell">
@@ -458,7 +467,7 @@
             <div class="crmcontainer">
                 <eoscrm:Grid 
                     ID="gvList" runat="server" UseCustomPager="true" OnRowCommand="gvList_RowCommand" 
-                    OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound" PageSize="70">
+                    OnPageIndexChanging="gvList_PageIndexChanging" OnRowDataBound="gvList_RowDataBound" PageSize="1000">
                     <PagerSettings FirstPageText="hợp đồng" PageButtonCount="2" />
                     <Columns>                    
                         <asp:TemplateField HeaderStyle-CssClass="checkbox">

@@ -29,18 +29,14 @@
             var sonha = jQuery.trim($("#<%= txtSONHA.ClientID %>").val());
             var tendp = jQuery.trim($("#<%= txtTENDP.ClientID %>").val());
             var makv = jQuery.trim($("#<%= ddlKHUVUC.ClientID %>").val());
-
             if (idkh == '' && tenkh == '' && madh == '' &&
                     sohd == '' && sonha == '' && tendp == '' && (makv == '' || makv == 'NULL')) {
                 showError('Chọn tối thiểu một thông tin để lọc khách hàng.', '<%= txtIDKH.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterKH) %>', '');
-
             return false;
         }
 
@@ -77,26 +73,25 @@
 
         function CheckFormSearch() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showErrorWithFocus('Phải chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
-
             return false;
         }
 
         function CheckFormReport() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
+        }
+        
+        function CheckFormbtXuatExcel() {           
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcel) %>', '');
         }
         
         function CheckFormDelete() {
@@ -408,11 +403,17 @@
                                 <div class="left">                                    
                                     <asp:CheckBox ID="ckTINH1GIA" runat="server" TabIndex="28" OnCheckedChanged="ckTINH1GIA_CheckedChanged"  
                                         AutoPostBack="True" />
+                                </div>                                
+                                <div class="left width-150 pleft-50">
+                                    <div class="right">Định mức</div>
                                 </div>
+                                <div class="left ">
+                                    <asp:TextBox ID="txtSODINHMUC" runat="server" Width="50px" TabIndex="8" />
+                                </div>  
                                 <div class="left">
                                     <asp:DropDownList ID="ddlMDSD" Visible="false"
-                                    OnSelectedIndexChanged="ddlMDSD_SelectedIndexChanged" runat="server" Width="200px" TabIndex="12" />
-                                </div>                                  
+                                    OnSelectedIndexChanged="ddlMDSD_SelectedIndexChanged" runat="server" TabIndex="12" />
+                                </div>                                
                             </td>
                         </tr>
                         <tr>
@@ -434,7 +435,44 @@
                                     <asp:TextBox ID="txtMTRUYTHU" runat="server" Width="50px" MaxLength="10" TabIndex="8" />
                                 </div>                         
                             </td>
-                        </tr>                        
+                        </tr>    
+                        <tr>
+                            <td class="crmcell right">Khối lượng nước</td>
+                            <td class="crmcell">
+                                <div class="left width-100">
+                                    <asp:TextBox ID="txtKhoiLuongNuoc" runat="server" Width="90px" MaxLength="10" TabIndex="7" />
+                                </div>
+                                <div class="left">
+                                    <div class="right">Tiền nước</div>
+                                </div>
+                                <div class="left width-100">
+                                    <asp:TextBox ID="txtTienNuoc" runat="server" Width="90px" MaxLength="10" TabIndex="7" />
+                                </div>     
+                                <div class="left">
+                                    <div class="right">Tiền thuế GTGT</div>
+                                </div>
+                                <div class="left width-100">
+                                    <asp:TextBox ID="txtTienThueGTGT" runat="server" Width="90px" MaxLength="10" TabIndex="8" />
+                                </div>                
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="crmcell right">Tiền thuế môi trường</td>
+                            <td class="crmcell">
+                                <div class="left width-100">
+                                    <asp:TextBox ID="txtTienThueMoiTruong" runat="server" Width="90px" MaxLength="10" TabIndex="8" />
+                                </div>
+                                <div class="left">
+                                    <div class="right">Tổng tiền</div>
+                                </div>
+                                <div class="left width-100">
+                                    <asp:TextBox ID="txtTongTienNuoc" runat="server" Width="90px" MaxLength="10" TabIndex="7" />
+                                </div>       
+                                <div class="left ">
+                                    <asp:Button ID="btTinhTien" runat="server" Text="Tính tiền" CssClass="myButton" OnClick="btTinhTien_Click" />
+                                </div>                                                   
+                            </td>
+                        </tr>                       
                         <tr>    
                             <td class="crmcell right">Ghi chú</td>
                             <td class="crmcell">
@@ -443,6 +481,14 @@
                                         MaxLength="500" runat="server" Font-Names="Times New Roman" />
                                 </div>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
                         </tr>   
                         <tr>    
                             <td class="crmcell right">  </td>
@@ -469,12 +515,20 @@
                                     <asp:Button ID="btnBaoCao" OnClick="btnBaoCao_Click"  OnClientClick="return CheckFormReport();" 
                                         runat="server" CssClass="report" TabIndex="13" />
                                 </div>
+                                <div class="left">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btXuatExcel" OnClientClick="return CheckFormbtXuatExcel();" 
+                                        runat="server" CssClass="myButton" Text="Xuất Excel" TabIndex="13" OnClick="btXuatExcel_Click" />
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btXuatExcel" />           
+        </Triggers>
     </asp:UpdatePanel>
     <br />
     <asp:UpdatePanel ID="upnlTTDC" UpdateMode="Conditional" runat="server">

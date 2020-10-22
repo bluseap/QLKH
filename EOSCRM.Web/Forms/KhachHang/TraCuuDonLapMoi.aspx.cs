@@ -694,13 +694,13 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             txtNOILAPDHN.Text = "";
             cbISTUYENONGCHUNG.Checked = false;
-            lbNGAYNHAPDON.Text = "";
-            lbNGAYNHAPTK.Text = "";
-            lbNGAYCHIETTINH.Text = "";
-            lbNGAYHOPDONG.Text = "";
-            lbNGAYTHICONG.Text = "";
-            lbNGAYBBNT.Text = "";
-            lbNVKYNGHIEMTHU.Text = "";
+            //lbNGAYNHAPDON.Text = "";
+            //lbNGAYNHAPTK.Text = "";
+            //lbNGAYCHIETTINH.Text = "";
+            //lbNGAYHOPDONG.Text = "";
+            //lbNGAYTHICONG.Text = "";
+            //lbNGAYBBNT.Text = "";
+            //lbNVKYNGHIEMTHU.Text = "";
             lbNGAYKHAITHAC.Text = "";
             txtSOHD1.Text = "";
             lbSONODH.Text = "";
@@ -941,11 +941,20 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 lbDDKDCLAP.Text = dondangky.DIACHILD != null ? dondangky.DIACHILD : "";
                                 lbDDKDIENTHOAI.Text = dondangky.DIENTHOAI != null ? dondangky.DIENTHOAI : "";
                                 lbDDKMDSD.Text = dondangky.MAMDSD != null ? mdsdDao.Get(dondangky.MAMDSD).TENMDSD : "";
-                                lbDDKNGAYDK.Text = dondangky.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYN) : "";
+                                //lbDDKNGAYDK.Text = dondangky.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYN) : "";
+                                lbDDKNGAYDK.Text = dondangky.NGAYDK != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYDK) : "";
+
+                                lbNgayChuyenHSToTK.Text = dondangky.NGAYDUYETHS != null ? 
+                                    String.Format("{0:dd/MM/yyyy}", dondangky.NGAYDUYETHS) : "";
+
+                                lbSoNgayLamHoSo.Text = dondangky.NGAYDK != null && dondangky.NGAYDUYETHS != null ? 
+                                    Math.Ceiling(((DateTime)dondangky.NGAYDUYETHS - (DateTime)dondangky.NGAYDK).TotalDays).ToString() : "0";
+
                                 lbDDKNOIDUNG.Text = dondangky.NOIDUNG != null ? dondangky.NOIDUNG : "";
                                 lbDDKNVNHAP.Text = _nvDao.Get(dondangky.MANV).HOTEN;
 
                                 upnlDangKy.Update();
+
                                 UnblockDialog("divDangKy");
                                 CloseWaitingDialog();
                             }                            
@@ -964,16 +973,26 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 lbTKDCLAPD.Text = dondangky.DIACHILD != null ? dondangky.DIACHILD : "";
                                 lbTKSODT.Text = dondangky.DIENTHOAI != null ? dondangky.DIENTHOAI : "";
                                 lbTKTENTK.Text = thietke.TENTK != null ? thietke.TENTK : "";
-                                lbTKNGAYDK.Text = dondangky.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYN) : "";
+                                //lbTKNGAYDK.Text = dondangky.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYN) : "";
+                                lbTKNGAYDK.Text = dondangky.NGAYDK != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYDK) : "";
                                 //lbTKNGAYTK.Text = String.Format("{0:dd/MM/yyyy}", tk.NGAYLTK);
-                                lbTKNGAYTK.Text = thietke.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", thietke.NGAYN) : "";
+                                lbTKSoNgayLamHS.Text = dondangky.NGAYDK != null && dondangky.NGAYDUYETHS != null ?
+                                    Math.Ceiling(((DateTime)dondangky.NGAYDUYETHS - (DateTime)dondangky.NGAYDK).TotalDays).ToString() : "0";
+
+                                lbTKNGAYTK.Text = thietke.NGAYLTK != null ? String.Format("{0:dd/MM/yyyy}", thietke.NGAYLTK) : "";
+
                                 lbTKNVPHUTRACH.Text = thietke.TENNVTK != null ? thietke.TENNVTK : "";
                                 lbTKNVDUYET.Text = thietke.MANVDTK != null ? _nvDao.Get(thietke.MANVDTK).HOTEN : "";
+
                                 lbTKNGAYDUYET.Text = thietke.NGAYDTK != null ? String.Format("{0:dd/MM/yyyy}", thietke.NGAYDTK) : "";
+                                lbTKSoNgayThietKe.Text = thietke.NGAYDTK != null && thietke.NGAYLTK != null ?
+                                    Math.Ceiling(((DateTime)thietke.NGAYDTK - (DateTime)thietke.NGAYLTK).TotalDays).ToString() : "0";
+
                                 lbTKNVNHAP.Text = thietke.MANVLTK != null ? _nvDao.Get(thietke.MANVLTK).HOTEN : "";
                                 lbGhiChuTK.Text = thietke.CHUTHICH != null ? thietke.CHUTHICH : "";
 
                                 upnlThietKe.Update();
+
                                 UnblockDialog("divThietKe");
                                 CloseWaitingDialog();
                             }
@@ -1746,48 +1765,51 @@ namespace EOSCRM.Web.Forms.KhachHang
         {
             try
             {
-                String _dontt = "DK_A", _tktt = "TK_P", _cttt = "CT_N", _hdtt = "HD_N", _tctt = "TC_N", _nttt = "NT_A";//Thêm mới thi công.
-                String _donmota = "Nhập đơn lắp mới", _tkmota = "Nhập thiết kế.", _ctmota = "Chạy chiết tính", _hdmota = "Nhập hợp đồng", _tcmota = "Thêm mới thi công.", _ntmota = "Nhập biên bản nghiệm thu.";
+                String //_dontt = "DK_A", _tktt = "TK_P", _cttt = "CT_N", _hdtt = "HD_N", _tctt = "TC_N",
+                    _nttt = "NT_A";//Thêm mới thi công.
+                String //_donmota = "Nhập đơn lắp mới", _tkmota = "Nhập thiết kế.", _ctmota = "Chạy chiết tính", _hdmota = "Nhập hợp đồng"
+                    //, _tcmota = "Thêm mới thi công.", 
+                    _ntmota = "Nhập biên bản nghiệm thu.";
                   
-                var dondk = _lvkdDao.GetMaDon(maddk, _dontt, _donmota);
-                if (dondk != null)
-                { lbNGAYNHAPDON.Text = dondk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
-                else { lbNGAYNHAPDON.Text = ""; }
+                //var dondk = _lvkdDao.GetMaDon(maddk, _dontt, _donmota);
+                //if (dondk != null)
+                //{ lbNGAYNHAPDON.Text = dondk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
+                //else { lbNGAYNHAPDON.Text = ""; }
 
-                var tkdk = _lvkdDao.GetMaDon(maddk, _tktt, _tkmota);
-                if (tkdk != null)
-                { lbNGAYNHAPTK.Text = tkdk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
-                else { lbNGAYNHAPTK.Text = ""; }
+                //var tkdk = _lvkdDao.GetMaDon(maddk, _tktt, _tkmota);
+                //if (tkdk != null)
+                //{ lbNGAYNHAPTK.Text = tkdk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
+                //else { lbNGAYNHAPTK.Text = ""; }
 
-                var ctdk = _lvkdDao.GetMaDon(maddk, _cttt, _ctmota);
-                if (ctdk != null)
-                { lbNGAYCHIETTINH.Text = ctdk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
-                else { lbNGAYCHIETTINH.Text = ""; }
+                //var ctdk = _lvkdDao.GetMaDon(maddk, _cttt, _ctmota);
+                //if (ctdk != null)
+                //{ lbNGAYCHIETTINH.Text = ctdk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
+                //else { lbNGAYCHIETTINH.Text = ""; }
 
-                var hddk = _lvkdDao.GetMaDon(maddk, _hdtt, _hdmota);
-                if (hddk != null)
-                { lbNGAYHOPDONG.Text = hddk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
-                else { lbNGAYHOPDONG.Text = ""; }
+                //var hddk = _lvkdDao.GetMaDon(maddk, _hdtt, _hdmota);
+                //if (hddk != null)
+                //{ lbNGAYHOPDONG.Text = hddk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
+                //else { lbNGAYHOPDONG.Text = ""; }
 
-                var tcdk = _lvkdDao.GetMaDon(maddk, _tctt, _tcmota);
-                if (tcdk != null)
-                { lbNGAYTHICONG.Text = tcdk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
-                else { lbNGAYTHICONG.Text = ""; }
+                //var tcdk = _lvkdDao.GetMaDon(maddk, _tctt, _tcmota);
+                //if (tcdk != null)
+                //{ lbNGAYTHICONG.Text = tcdk.NGAYTHUCHIEN.Value.ToString("dd/MM/yyyy"); }
+                //else { lbNGAYTHICONG.Text = ""; }
 
                 var ntdk = _lvkdDao.GetMaDon(maddk, _nttt, _ntmota);
                 var dateBBNT = _bbntDao.Get(maddk);
                 var maddkkh = _khDao.GetMADDK(maddk);
                 
-                if (dateBBNT != null)
-                { 
-                    lbNGAYBBNT.Text = dateBBNT.NGAYNHAP.Value.ToString("dd/MM/yyyy");
-                    lbNVKYNGHIEMTHU.Text = dateBBNT.NGAYLAPBB.Value.ToString("dd/MM/yyyy");
-                }
-                else 
-                { 
-                    lbNGAYBBNT.Text = "";
-                    lbNVKYNGHIEMTHU.Text = "";
-                };
+                //if (dateBBNT != null)
+                //{ 
+                //    lbNGAYBBNT.Text = dateBBNT.NGAYNHAP.Value.ToString("dd/MM/yyyy");
+                //    lbNVKYNGHIEMTHU.Text = dateBBNT.NGAYLAPBB.Value.ToString("dd/MM/yyyy");
+                //}
+                //else 
+                //{ 
+                //    lbNGAYBBNT.Text = "";
+                //    lbNVKYNGHIEMTHU.Text = "";
+                //};
 
                 if (maddkkh != null)
                 {

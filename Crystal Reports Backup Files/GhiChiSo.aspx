@@ -8,7 +8,6 @@
 <%@ Register Assembly="EOSCRM.Controls" Namespace="EOSCRM.Controls" TagPrefix="eoscrm" %>
     
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">   
-
     <script type="text/javascript">
         var isValid = true;
         $(document).ready(function () {
@@ -26,22 +25,16 @@
         });
 
         function CheckFormFilterDP() {
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterDP) %>', '');
-
             return false;
         }
 
         function CheckFormSave() {
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSave) %>', '');
-
             return false;
         }
 
@@ -55,18 +48,14 @@
 
         function CheckFormSearch() {
             var nam = jQuery.trim($("#<%= txtNAM.ClientID %>").val());
-
             if (!IsNumeric(nam) ||
                     parseInt(nam) < 1990 || parseInt(nam) > 2999) {
                 showErrorWithFocus('Phải chọn năm hợp lệ.', '<%= txtNAM.ClientID %>');
                 return false;
             }
-
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
-
             return false;
         }
 
@@ -600,7 +589,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                     <strong>Khu vực</strong>
                                 </div>
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server" TabIndex="3">
+                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server" TabIndex="3" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>                                
                                 <div class="left">
@@ -611,7 +600,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                     <%--onblur="CheckFormSearch();" --%>
                                 </div>
                                 <div class="left">
-                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="30px" TabIndex="5" />
+                                    <asp:TextBox ID="txtDUONGPHU" runat="server" MaxLength="1" Width="30px" TabIndex="5" Visible="false"/>
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnBrowseDP" runat="server" CssClass="pickup" OnClick="btnBrowseDP_Click"
@@ -677,6 +666,25 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                 </div>
                             </td>
                         </tr>
+                        <tr >    
+                            <td class="crmcell right">
+                                <asp:Label ID="lbDotInHD" runat="server" Text="Đợt in HĐ"  ></asp:Label>                               
+                            </td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server" ></asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:Label ID="lbTrangThaiTinhTien" runat="server" Text="Trạng thái" ></asp:Label>    
+                                </div>
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlTrangThaiTinhTien" runat="server" ></asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btTinhTien" runat="server" CssClass="myButton" Text="Tính tiền" OnClick="btTinhTien_Click" />
+                                </div>
+                            </td>
+                        </tr>
                         <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell"> 
@@ -691,6 +699,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                 </div>
                             </td>
                         </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -710,7 +719,7 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                             </ItemTemplate>
                             <HeaderStyle CssClass="checkbox" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderStyle-Width="65px" HeaderText="Mã KH">
+                        <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Mã KH">
                             <ItemTemplate>
                                 <%# Eval("SODB")%>
                                 <%--
@@ -783,9 +792,19 @@ function isDataValid(txtCHISODAUId, txtCHISOCUOIId, txtKLTIEUTHUId) {
                                     <asp:ListItem Value="GDH_KH" Text="Khoán" />
                                     <asp:ListItem Value="K" Text="K_Khác" />
                                     <asp:ListItem Value="NV" Text="V_Ngưng do vi phạm" />
-                                    <asp:ListItem Value="A" Text="A_KH cung cấp" />
+                                    <asp:ListItem Value="A" Text="A_KH cung cấp" />                                    
+                                    <asp:ListItem Value="M" Text="M_Bỏ địa phương" />
+                                    <asp:ListItem Value="U" Text="U_Tạm tính" />
                                     <asp:ListItem Value="X" Text="X_Bể ống sau ĐH" />
-                                    <asp:ListItem Value="R" Text="R_Đồng hồ mờ" />                                   
+                                    <asp:ListItem Value="R" Text="R_Đồng hồ mờ" />       
+                                    <asp:ListItem Value="S" Text="S_Điều chỉnh chỉ số cũ" />                                             
+                                    <asp:ListItem Value="V" Text="V_Nghi ngờ" />                                
+                                    <asp:ListItem Value="Z" Text="Z_Đồng hồ nghiêng" />
+                                    <asp:ListItem Value="O" Text="O_Không chì" />
+                                    <asp:ListItem Value="P" Text="P_Đứt chì" />
+
+                                    <asp:ListItem Value="E" Text="E_Đề nghị xóa bộ" />
+                                   
                                 </asp:DropDownList>
                             </ItemTemplate>
                             <HeaderStyle Width="115px" />

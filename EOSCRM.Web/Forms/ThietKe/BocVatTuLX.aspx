@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="BocVatTuLX.aspx.cs" Inherits="EOSCRM.Web.Forms.ThietKe.BocVatTuLX" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" CodeBehind="BocVatTuLX.aspx.cs" Inherits="EOSCRM.Web.Forms.ThietKe.BocVatTuLX" %>
 
-<%@ Register assembly="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
      namespace="CrystalDecisions.Web" tagprefix="CR" %>
 <%@ Import Namespace="EOSCRM.Dao" %>
 <%@ Import Namespace="EOSCRM.Util"%>

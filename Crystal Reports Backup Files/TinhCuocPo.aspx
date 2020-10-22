@@ -153,7 +153,7 @@
                                     <strong>Khu vực</strong>
                                 </div>
                                 <div class="left">
-                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true" Width="150px" runat="server" TabIndex="3">
+                                    <asp:DropDownList ID="ddlKHUVUC" AutoPostBack="true"  runat="server" TabIndex="3" OnSelectedIndexChanged="ddlKHUVUC_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="left">
@@ -173,6 +173,16 @@
                                 </div>
                                 <div class="left">
                                     <asp:Label ID="lblTENDUONG" runat="server" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">
+                                Đợt ghi
+                            </td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlDOTIN" runat="server"></asp:DropDownList>
                                 </div>
                             </td>
                         </tr>
@@ -259,7 +269,81 @@
             </asp:DataList>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">
+    <asp:UpdatePanel ID="upgvDOTINSH" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <br />
+            <asp:DataList ID="dlTinhCuocSH" Width="100%" CssClass="crmcontainer" runat="server" 
+                OnItemDataBound="dlTinhCuocSH_ItemDataBound" OnItemCommand="dlTinhCuocSH_ItemCommand"
+                RepeatColumns="3" RepeatDirection="Vertical" RepeatLayout="Table">
+                <HeaderTemplate>
+                    <table class="crmtable p-5">
+                        <tbody>
+                            <tr class="listheader">
+                                <td style="width: 4%; border: 0px;">
+                                    <img src="<%= ResolveUrl("~")%>content/images/common/arrow-down.png" />
+                                </td>
+                                <td style="border: 0px">
+                                    <a href="#" onclick="SelectAll('chkEnabledSH', true); return false;">
+                                        <strong>Chọn hết</strong></a> 
+                                    / 
+                                    <a href="#" onclick="SelectAll('chkEnabledSH', false); return false;">
+                                        <strong>Bỏ chọn hết</strong></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </HeaderTemplate>
+                <FooterTemplate>
+                    <table class="crmtable p-5">
+                        <tbody>
+                            <tr class="listheader">
+                                <td style="width: 4%; border: 0px;">
+                                    <img src="<%= ResolveUrl("~")%>content/images/common/arrow.png" />
+                                </td>
+                                <td style="border: 0px">
+                                    <a href="#" onclick="SelectAll('chkEnabledSH', true); return false;">
+                                        <strong>Chọn hết</strong></a> 
+                                    / 
+                                    <a href="#" onclick="SelectAll('chkEnabledSH', false); return false;">
+                                        <strong>Bỏ chọn hết</strong></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </FooterTemplate>
+                <ItemTemplate>
+                    <table class="crmdcrmtable p-5">
+                        <tbody>
+                            <tr>
+                                <td style="width: 4%; border: 0px;">
+                                    <input id="chkEnabledSH" runat="server" type="checkbox"  />
+                                </td>
+                                <td style="width: 76%; border: 0px;">
+                                    <%# Eval("TENDP")%>
+                                </td>
+                                <td style="width: 8%; border: 0px;">
+                                    <%# Eval("MADP") %>
+                                </td>
+                                <td style="width: 4%; border: 0px;">
+                                    <%# Eval("DUONGPHU")%>
+                                </td>      
+                                <td style="width: 4%; border: 0px;">
+                                    <asp:ImageButton ID="imgUnlock" runat="server" CausesValidation="False" 
+                                        CommandArgument='<%# Eval("MADP") + "-" + 
+                                                (Eval("DUONGPHU").ToString() == "" ? "NULL" : Eval("DUONGPHU")) + "-" +
+                                                Eval("MAKV") + "-" + 
+                                                Eval("KYGHI.Month") + "-" + 
+                                                Eval("KYGHI.Year") %>' 
+                                        CommandName="UnlockSH" OnClientClick="openWaitingDialog();unblockWaitingDialog();" ImageAlign="Baseline" ImageUrl='~/content/images/common/btnUnlock2.png' ToolTip="Mở khóa để tính cước" />
+                                </td>      
+                            </tr>
+                        </tbody>
+                    </table>
+                </ItemTemplate>
+            </asp:DataList>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <%--<asp:UpdatePanel ID="upnlGrid" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <br />
             <asp:DataList ID="dlTinhCuoc" Width="100%" CssClass="crmcontainer" runat="server" 
@@ -332,5 +416,5 @@
                 </ItemTemplate>
             </asp:DataList>
         </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>--%>
 </asp:Content>

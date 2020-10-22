@@ -18,17 +18,20 @@
             <marquee direction=FEFT scrollamount="2" Width="60%">
                 <div class="appname2"><%= tencongty %></div>
              </marquee>
-        </div> 
-        
-                    
+        </div>         
+                  
         <div id="hrgh" class="fr">
             <asp:LinkButton ID="lnkbtnLogOut" CssClass="logout" runat="server" OnClick="lnkbtnLogOut_Click">Thoát</asp:LinkButton>
             [<%= hoten %>]
         </div>
         <div id="hrgh2" class="fr">
-            <a href="<%= ResolveUrl("~")%>Forms/HeThong/ChangePassword.aspx" class="changepwd">Đổi mật khẩu</a>
+           <%-- <a href="http://powaco.com.vn/index.html" class="changepwd">Chat</a>--%>
+            <a href="<%= ResolveUrl("~")%>Forms/HeThong/ChangePassword.aspx" class="changepwd">Pass</a>          
         </div>
-    </div>
+
+            
+    </div>  
+    
 </div>
 <div id="cmenu" class="ddsmoothmenu">
     <asp:Repeater ID="repeater" runat="server" OnItemDataBound="repeater_ItemDataBound">
@@ -43,15 +46,15 @@
                         <ul>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <li<%# Container.ItemIndex == 0 ? " class=\"top\"" : "" %>><a href="<%= ResolveUrl("~")%><%# Eval("Url") %>">
-                            <%# Eval("Name") %></a>
+                        <li <%# Container.ItemIndex == 0 ? " class=\"top\"" : "" %>>
+                            <a href="<%= ResolveUrl("~") %><%# Eval("Url") %>"><%# Eval("Name") %></a>
                             <asp:Repeater ID="childRepeater2" runat="server"  OnItemDataBound="childRepeater2_ItemDataBound">
                                 <HeaderTemplate>
                                     <ul>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <li<%# Container.ItemIndex == 0 ? " class=\"top\"" : "" %>><a href="<%= ResolveUrl("~")%><%# Eval("Url") %>">
-                                        <%# Eval("Name") %></a>
+                                    <li<%# Container.ItemIndex == 0 ? " class=\"top\"" : "" %>>
+                                        <a href="<%= ResolveUrl("~")%><%# Eval("Url") %>"> <%# Eval("Name") %> </a>
                                         <asp:Repeater ID="childRepeater3" runat="server">
                                             <HeaderTemplate>
                                                 <ul>
