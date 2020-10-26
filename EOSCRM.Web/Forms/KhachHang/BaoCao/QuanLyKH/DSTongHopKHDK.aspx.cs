@@ -12,6 +12,7 @@ using EOSCRM.Domain;
 
 using System.IO;
 using System.Web.UI;
+using System.Globalization;
 
 namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 {
@@ -375,7 +376,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 string b = loginInfo.Username;
 
                 DateTime tungay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
-                DateTime denngay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());
+                DateTime denngay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());         
 
                 DataTable dt;
                 if (_nvDao.Get(b).MAKV == "X") // X la Long Xuyen
@@ -383,7 +384,6 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                     var ds = new ReportClass().DSTongHopDDK(tungay, denngay, cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue,
                         "", "", "DSTHDDKN");
                     dt = ds.Tables[0];
-
                 }
                 else
                 {
@@ -399,7 +399,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=THDDK" + ".xls");
+                Response.AddHeader("content-disposition", "attachment;filename=THDKN" + ".xls");
                 //Response.AddHeader("content-disposition", "attachment;filename=KHM" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".doc");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
@@ -426,7 +426,6 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 Response.End();
 
                 CloseWaitingDialog();
-
             }
             catch { }
         }

@@ -74,13 +74,22 @@
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:Button ID="btnBaoCao" OnClientClick="return CheckFormReport();" runat="server" onclick="btnBaoCao_Click" CssClass="report" />
-                                </div>
-                                <td class="crmcell">    
-                                    <div class="left">
+                                </div>                                                                                                                     
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">                            
+                                 <div class="left">
+                                    <asp:Button ID="btnExcelDSNgayNhap" OnClientClick="return CheckFormbtnExcelDSNgayNhap;" runat="server" CssClass="myButton" 
+                                            OnClick="btnExcelDSNgayNhap_Click" Text="DS TH Khách hàng (theo ngày nhập)"/>
+                                 </div>
+                                <td class="crmcell">
+                                     <div class="left">
                                         <asp:Button ID="btDSTongHopKH" OnClientClick="return CheckFormbtDSTongHopKH();" runat="server" CssClass="myButton" 
-                                            Text="DS TH Khách hàng" OnClick="btDSTongHopKH_Click1"/>
-                                    </div>                                                                                                           
-                                </td>                                                                                       
+                                                Text="DS TH Khách hàng (theo máy)" OnClick="btDSTongHopKH_Click1"/>
+                                     </div>  
+                                 </td>
                             </td>
                         </tr>
                         <tr>
@@ -105,11 +114,12 @@
             <asp:PostBackTrigger ControlID="btnBaoCao" />
             <asp:PostBackTrigger ControlID="btDSTongHopKH" />
             <asp:PostBackTrigger ControlID="btDSDieuKien" />
+            <asp:PostBackTrigger ControlID="btnExcelDSNgayNhap" />
         </Triggers>
     </asp:UpdatePanel>
     <br />
     <div class="crmcontainer" id="divReport" runat="server">
-        <CR:CrystalReportViewer ID="rpViewer" runat="server" DisplayGroupTree="False" PrintMode="ActiveX" AutoDataBind="true" />
+        <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" />
     </div>
     
 </asp:Content>

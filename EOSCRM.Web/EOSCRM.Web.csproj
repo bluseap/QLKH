@@ -304,6 +304,7 @@
     <Content Include="Login.aspx" />
     <Content Include="NhanSu\AboutPo.aspx" />
     <Content Include="NhanSu\NVLyLich.aspx" />
+    <Content Include="scriptsCode.txt" />
     <Content Include="UserControls\Footer.ascx" />
     <Content Include="UserControls\Header.ascx" />
     <Content Include="UserControls\MHeader.ascx" />
@@ -6192,6 +6193,7 @@
       <DependentUpon>TTTTKH.xsd</DependentUpon>
     </None>
     <Content Include="packages.config" />
+    <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\n.pubxml" />
     <None Include="Properties\PublishProfiles\QL.pubxml" />
     <Content Include="Reports\DonLapDatMoi\VatTuThietKe_DBP.rpt" />

@@ -80,7 +80,7 @@
                         <div class="left">
                                 <asp:Button ID="btnExcelDSNgayNhap" OnClientClick="return CheckFormbtnExcelDSNgayNhap;" runat="server" CssClass="myButton" 
                                     OnClick="btnExcelDSNgayNhap_Click" Text="DS TH Khách hàng (theo ngày nhập)"/>
-                            </div>
+                        </div>
                         <td class="crmcell">
                             <div class="left">
                                 <asp:Button ID="btExcelDSKH" OnClientClick="return CheckFormbtExcelDSKH;" runat="server" CssClass="myButton" 
@@ -110,4 +110,5 @@
     <div class="crmcontainer" id="divReport" runat="server">
         <CR:CrystalReportViewer ID="rpViewer" runat="server"  PrintMode="ActiveX" AutoDataBind="true" />
     </div>  
+   
 </asp:Content>

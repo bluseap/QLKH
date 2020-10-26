@@ -58,16 +58,15 @@ D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.
 D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
 D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
 D:\nguyen\quanlykhachhang\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
-D:\nguyen\qlkh\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojResolveAssemblyReference.cache
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
 D:\New folder\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb
-D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csprojAssemblyReference.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll.config
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.dll
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\bin\Debug\EOSCRM.Domain.pdb
 D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.csproj.CoreCompileInputs.cache
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.dll
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Domain\obj\Debug\EOSCRM.Domain.pdb

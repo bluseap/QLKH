@@ -221,7 +221,7 @@ namespace EOSCRM.Util
         {
             string[] slist1 = value.Split('/');
             return new DateTime(int.Parse(slist1[2]), int.Parse(slist1[1]), int.Parse(slist1[0]), 0, 0, 0);
-        }
+        }        
 
         public static DateTime GetVietNamDate(string value, string gio, string phut)
         {

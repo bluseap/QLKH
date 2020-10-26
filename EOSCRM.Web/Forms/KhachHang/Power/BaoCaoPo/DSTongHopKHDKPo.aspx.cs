@@ -408,5 +408,60 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             CloseWaitingDialog();
         }
 
+        protected void btnExcelDSNgayNhap_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                DateTime tungay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
+                DateTime denngay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());
+
+                DataTable dt;
+             
+                var ds = new ReportClass().DSTongHopKHDKPO_ByKVToNgay(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
+                dt = ds.Tables[0];               
+
+                //Create a dummy GridView
+                GridView GridView1 = new GridView();
+                GridView1.AllowPaging = false;
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=THDKD" + ".xls");
+                //Response.AddHeader("content-disposition", "attachment;filename=KHM" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".doc");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                //Response.ContentType = "application/vnd.ms-word ";
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    //Apply text style to each Row
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+                }
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                //Response.Write(style);
+                //string style = @"<style> TD { mso-number-format:\@; } </style>";
+                Response.Write(style);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                CloseWaitingDialog();
+            }
+            catch { }
+        }
+
     }
 }

@@ -1,0 +1,13 @@
+﻿
+
+
+	create procedure [dbo].[Get_DuongPho_ByAll]
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
+	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
+
+
+	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN ...
+
+	install .NET Framwork 4.6.1
+
+

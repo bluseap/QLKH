@@ -206,9 +206,7 @@ namespace EOSCRM.Dao
                 msg = ExceptionHandler.HandleUpdateException(ex, "Thiết kế ", "");
             }
             return msg;
-        }
-
-        
+        }        
 
         public Message Delete(THIETKEPO objUi, String useragent, String ipAddress, String sManv)
         {

@@ -83,7 +83,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 if (!txtNGAYTK.Text.Trim().Equals(String.Empty))
                     thietke.NGAYLTK = DateTimeUtil.GetVietNamDate(txtNGAYTK.Text.Trim());
                 else
-                    thietke.NGAYLTK = null;
+                    thietke.NGAYLTK = DateTime.Now;
 
                 return thietke;
             }
