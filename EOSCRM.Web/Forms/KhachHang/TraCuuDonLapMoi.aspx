@@ -169,7 +169,21 @@
             unblockWaitingDialog();
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btTIMSONODHN) %>', '');
             return false;
-        }       
+        }  
+
+        function CheckFormSaveNoiDungDDK() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSaveNoiDungDDK) %>', '');
+            return false;
+        }  
+       
+        function CheckFormSaveChuThichTK() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSaveChuThichTK) %>', '');
+            return false;
+        } 
 
     </script>
 </asp:Content>
@@ -353,17 +367,28 @@
                                             <td class="crmcell">
                                                 <div class="left" style="color:red"><asp:Label ID="lbSoNgayLamHoSo" runat="server" ></asp:Label></div>                                                
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="crmcell right">Nội dung</td>
-                                            <td class="crmcell">
-                                                <div class="left"><asp:Label ID="lbDDKNOIDUNG" runat="server" ></asp:Label></div>
-                                            </td>
-                                        </tr>
+                                        </tr>                                        
                                         <tr>
                                             <td class="crmcell right">Nhân viên nhập</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbDDKNVNHAP" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Nội dung</td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="lbDDKNOIDUNG" runat="server" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:Button ID="btnSaveNoiDungDDK" runat="server" CssClass="myButton" Text="Lưu"
+                                                        OnClientClick="return CheckFormSaveNoiDungDDK();"  UseSubmitBehavior="false" OnClick="btnSaveNoiDungDDK_Click" />
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -423,9 +448,19 @@
                                         <tr>
                                             <td class="crmcell right" style="color:red" >Số ngày làm HS</td>
                                             <td class="crmcell">
-                                                <div class="left" style="color:red"><asp:Label ID="lbTKSoNgayLamHS" runat="server" ></asp:Label></div>                                                
-                                            </td>
+                                                <div class="left" style="color:red">
+                                                    <asp:Label ID="lbTKSoNgayLamHS" runat="server" ></asp:Label>
+                                                </div>                                                
+                                            </td>                                            
                                         </tr>
+                                        <tr>
+                                            <td class="crmcell right">Nội dung Đk</td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:Label ID="lbNoiDungDonDangKyTK" runat="server"  />
+                                                </div>
+                                            </td>
+                                         </tr>
                                          <tr>
                                             <td class="crmcell right">Ngày thiết kế</td>
                                             <td class="crmcell">
@@ -465,7 +500,18 @@
                                         <tr>
                                             <td class="crmcell right">Ghi chú</td>
                                             <td class="crmcell">
-                                                <div class="left"><asp:Label ID="lbGhiChuTK" runat="server" ></asp:Label></div>
+                                                <div class="left">
+                                                    <asp:TextBox ID="lbGhiChuTK" runat="server" />                                                     
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:Button ID="btnSaveChuThichTK" runat="server" CssClass="myButton" Text="Lưu"
+                                                        OnClientClick="return CheckFormSaveChuThichTK();"  UseSubmitBehavior="false" OnClick="btnSaveChuThichTK_Click" />
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -1,13 +1,46 @@
 ﻿
 
 
-	create procedure [dbo].[Get_DuongPho_ByAll]
-	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
-	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
 
+
+
+	delete Database in table DMDOTINHD all column Thu ho hoac nho thu... 
+		delete DMDOTINHD where MADOTIN='NNNTD1' or MADOTIN='NNTHD1'
+		delete DOTINHD where IDMADOTIN='NNIN0301' or IDMADOTIN='NNIN0304' or IDMADOTIN='NNIN0401' or IDMADOTIN='NNIN0404' 
+			or IDMADOTIN='NNIN0501'	or IDMADOTIN='NNIN0504'
+
+	inserts Database in table: for 11 khuvuc, only update table DOTINHD columns MADOTIN 
+		insert into DOTINHD ([IDMADOTIN], [MADOTIN], [MAKV], [MAKVPO] , [MANVN], [NGAYN] , [STT] , [NGAYBT], [NGAYKT], [GHICHU])
+		vlaues ('NNIN1111',	'NN1TMD',	'Q',	'Q',	'admin',	'2020-10-26 00:00:00.000',	1,	'2016-01-01',	'2016-01-06',	NULL)
+		values ('NNIN1112',	'NN1TMD',	'M',	'M',	'admin',	'2020-10-26 00:00:00.000',	1,	'2016-01-01',	'2016-01-06',	NULL)
+		values ('NNIN1113',	'NN1TMD',	'L',	'L',	'admin',	'2020-10-26 00:00:00.000',	1,	'2016-01-01',	'2016-01-06',	NULL)
+
+		insert into DMDOTINHD ( MADOTIN, TENDONIN, MANVN, NGAYN, STT, IntMucDichKhac )
+		values ( 'NN1TMD', 'Đợt 1 (Mục đích khác)', '2020-10-26', 'admin', 1, 1) 
+		values ( 'NNDLX4', 'A1, A2 (Đợt 1)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NNDLX5', '1, 2  (Đợt 2)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NNDLX6', '3, 4  (Đợt 3)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NNDLX7', '5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
+
+	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 
 	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN ...
 
+
 	install .NET Framwork 4.6.1
+
+
+
+r2	create procedure [dbo].[Get_DuongPho_ByAll]
+r2	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
+r2	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
+ 
+r2	update procedure [dbo].[BienKHNuoc]
+r2	update procedure [dbo].[dsKHCBiKT]
+r2	update procedure [dbo].[DSKHMOIDOTIN]	
+r2	update procedure [dbo].[DSTHAYDOICHITIETNUOC]
+r2	update procedure [dbo].[DSTHAYDOICHITIETNUOCDOTIN]
+r2	update procedure [dbo].[HisBienCo]
+
 
 

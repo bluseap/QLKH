@@ -234,7 +234,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
             #endregion FreeMemory
 
             //DateTime TuNgay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
-            //DateTime DenNgay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());
+            //DateTime DenNgay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());            
             
             if (kv.MAKV != "O")
             {
@@ -245,18 +245,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 var DenNgay = DateTimeUtil.GetVietNamDate("01/01/2011");
 
                 //var iddotin = _diDao.GetKVDot(ddlDOTGCS.SelectedValue, cboKhuVuc.Text.Trim());
-                ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, 
-                                        "dsKHMOIDOTIN", TuNgay, DenNgay).Tables[0];
-                //var dt = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), "", "dsKHMOI", TuNgay, DenNgay);
-                //if (ddlDOTGCS.SelectedValue == "%")
-                //{
-                //    ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMOIDOTIN", TuNgay, DenNgay).Tables[0];
-                //}
-                //else
-                //{
-                //    ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMOIDOTIN", TuNgay, DenNgay).Tables[0];
-                //}
-                
+                ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMOIDOTIN", TuNgay, DenNgay).Tables[0];   
                 
                 if (ds == null) { CloseWaitingDialog(); return; }
                 ReportNgayN(ds);                
@@ -269,7 +258,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 
                 CloseWaitingDialog();
             }
-            else
+            else // dung cho Chau Thanh
             {
                 //DataTable dt;
                 
@@ -277,17 +266,6 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 var dt = new ReportClass().DskhMoiDotIn(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
                                           cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue , 
                                           "", "DSKHMDOTIN").Tables[0];
-
-                //if (ddlDOTGCS.SelectedValue == "%")
-                //{
-                //    dt = new ReportClass().DskhMoiDotIn(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
-                //                           cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "", "DSKHMDOTIN").Tables[0];
-                //}
-                //else
-                //{
-                //    dt = new ReportClass().DskhMoiDotIn(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
-                //                           cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "", "DSKHMDOTIN").Tables[0];
-                //}
 
                 rp = new ReportDocument();
                 var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/DSKhachHang.rpt");
@@ -588,17 +566,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 if (thangF == thanght && namF == namht)
                 {
                     _rpClass.UPKHTTCOBIEN("", "", "", thanght, namht, "", "", "", "", "", 0, 0, 0, "UPCSTTVAOKHMOI");
-                }
-
-                //var kynay = new DateTime(namht, thanght, 1);
-                //bool dung11 = _gcsDao.IsLockTinhCuocKy(kynay, nhanvien.MAKV);
-                //if (dung11 == false)
-                //{
-                //    if (thangF == thanght && namF == namht)
-                //    {
-                //        _rpClass.UPKHTTCOBIEN("", "", "", thanght, namht, "", "", "", "", "", 0, 0, 0, "UPCSTTVAOKHMOI");
-                //    }
-                //}                
+                }                            
 
                 DataTable dt;
                 if (_nvDao.Get(b).MAKV == "X")
@@ -626,13 +594,15 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMExDot", TuNgay, DenNgay);
                         dt = ds.Tables[0];
                     }
+                    else if (_nvDao.Get(b).MAKV == "U") // thoai son
+                    {
+                        var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMExDotTS", TuNgay, DenNgay);
+                        dt = ds.Tables[0];
+                    }
                     else
                     {
                         var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMExDot", TuNgay, DenNgay);
-                        dt = ds.Tables[0];
-
-                        //var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), "", "dsKHMOI_Ex", TuNgay, DenNgay);
-                        //dt = ds.Tables[0];
+                        dt = ds.Tables[0];                        
                     }
                 }                
 
@@ -999,8 +969,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 
                 DataTable dt;
                 if (_nvDao.Get(b).MAKV == "X")
-                {
-                    //var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), "", "dsKHMOI_ExLX2", TuNgay, DenNgay);
+                {                    
                     var ds = new ReportClass().BienKHNuoc("", cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, ddlPHIENLX.SelectedValue,
                         int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), "DSKHMLXPHIEN");
                     dt = ds.Tables[0];

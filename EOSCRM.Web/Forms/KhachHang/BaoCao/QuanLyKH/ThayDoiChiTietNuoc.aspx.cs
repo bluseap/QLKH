@@ -183,66 +183,31 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 var ds = new ReportClass().DSTHAYDOICHITIETNUOC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue);
                 if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
                 ReLoadTDCTN(ds.Tables[0]);
-
-                //divCR.Visible = true;
-                //upnlReport.Update();
-                //Session[SessionKey.KH_BAOCAO_DSTDCTN] = "KH_BAOCAO_DSTDCTN";                
-                //CloseWaitingDialog();
             }
             else
             {
-                var ds = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
+                if (cboKhuVuc.SelectedValue == "X")
+                {
+                    var ds = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                        cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINLX");
+
+                    if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
+                    ReLoadTDCTN(ds.Tables[0]);
+                }
+                else
+                {
+                    var ds = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
                         cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN");
 
-                if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
-                ReLoadTDCTN(ds.Tables[0]);
-
-                //divCR.Visible = true;
-                //upnlReport.Update();
-                //Session[SessionKey.KH_BAOCAO_DSTDCTN] = "KH_BAOCAO_DSTDCTN";  
-                //CloseWaitingDialog();
+                    if (ds == null || ds.Tables.Count == 0) { CloseWaitingDialog(); return; }
+                    ReLoadTDCTN(ds.Tables[0]);
+                }                
             }
 
             divCR.Visible = true;
             upnlReport.Update();
             Session[SessionKey.TK_BAOCAO_COBIEN] = "KH_BAOCAO_DSTDCTN";
             CloseWaitingDialog();
-
-            //rp = new ReportDocument();
-            //var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/DSTHAYDOICTNUOC.rpt");
-
-            //rp.Load(path);
-
-            //TextObject txtTIEUDE1 = rp.ReportDefinition.ReportObjects["txtTIEUDE"] as TextObject;
-            //txtTIEUDE1.Text = "DANH SÁCH THAY ĐỔI CHI TIẾT NƯỚC";
-
-            //string tendot = ddlDOTGCS.SelectedValue == "%" ? "" : " ("
-            //    + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN + ")";
-            //TextObject txtTuNgay1 = rp.ReportDefinition.ReportObjects["txtTuNgay"] as TextObject;
-            //txtTuNgay1.Text = "KỲ " + cboTHANG.SelectedValue + " NĂM " + txtNAM.Text.Trim() + tendot;
-            //TextObject xn1 = rp.ReportDefinition.ReportObjects["txtXN"] as TextObject;
-            //xn1.Text = "XN ĐIỆN NƯỚC " + cboKhuVuc.SelectedItem.ToString().ToUpper();
-            ////TextObject txtNguoiLap1 = rp.ReportDefinition.ReportObjects["txtNguoiLap"] as TextObject;
-            ////txtNguoiLap1.Text = txtNguoiLap.Text;
-            //var d = DateTime.Now.Day;
-            //var m = DateTime.Now.Month;
-            //var y = DateTime.Now.Year;
-
-            //TextObject ngay = rp.ReportDefinition.ReportObjects["txtNGAY"] as TextObject;
-            //ngay.Text = cboKhuVuc.SelectedItem + ", ngày " + d + " tháng " +
-            //        m + " năm " + y;
-
-            //rp.SetDataSource(dt);
-            //rpViewer.ReportSource = rp;
-            //rpViewer.DataBind();
-
-            ////divCR.Visible = true;
-            ////upnlReport.Update();
-
-            ////Session[SessionKey.KH_BAOCAO_DSTDCTN] = "KH_BAOCAO_DSTDCTN";
-            ////Session["DS_DonDangKy"] = dt;
-            ////Session[Constants.REPORT_FREE_MEM] = rp;
-            ////CloseWaitingDialog();
         }
 
         private void ReLoadTDCTN(DataTable dt)
@@ -267,9 +232,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
             }
 
             #endregion FreeMemory
-
-            
-
+                        
             rp = new ReportDocument();
             var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/DSTHAYDOICTNUOC.rpt");
 
@@ -329,37 +292,55 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         if (ddlDOTGCS.SelectedValue == "%")
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOCLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
-                        }
-                        else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
-                        {
-                            dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                    cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
-                        }
+                        }                        
                         else
                         {
-                            dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTINLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                    cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
+                            dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                    cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINLX").Tables[0];
                         }
+                        //if (ddlDOTGCS.SelectedValue == "%")
+                        //{
+                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
+                        //}
+                        //else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
+                        //{
+                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
+                        //}
+                        //else
+                        //{
+                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTINLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
+                        //}
                     }
                     else
-                    {      
+                    {
                         if (ddlDOTGCS.SelectedValue == "%")
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
-                        }
-                        else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
-                        {
-                            dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                    cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
-                        }
+                        }                        
                         else
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
                                     cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
                         }
+                        //if (ddlDOTGCS.SelectedValue == "%")
+                        //{
+                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
+                        //}
+                        //else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
+                        //{
+                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
+                        //}
+                        //else
+                        //{
+                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
+                        //}
                     }
                 }
-                else // long xuyen theo phien
+                else // long xuyen theo phien, bo phien do yeu cau d/c Chau phong CNTT, chi con theo dot 
                 {
                     if (ddlDOTGCS.SelectedValue == "%")
                     {

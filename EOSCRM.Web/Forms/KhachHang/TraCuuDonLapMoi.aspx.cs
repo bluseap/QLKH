@@ -935,7 +935,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                         {                            
                             //var ddk = ddkDao.Get(madon);
                             if (dondangky != null)
-                            {
+                            {                                
                                 lbMADDK.Text = dondangky.MADDK;
                                 lbDDKTENKH.Text = dondangky.TENKH;
                                 lbDDKDCLAP.Text = dondangky.DIACHILD != null ? dondangky.DIACHILD : "";
@@ -944,21 +944,23 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 //lbDDKNGAYDK.Text = dondangky.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYN) : "";
                                 lbDDKNGAYDK.Text = dondangky.NGAYDK != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYDK) : "";
 
-                                lbNgayChuyenHSToTK.Text = dondangky.NGAYDUYETHS != null ? 
-                                    String.Format("{0:dd/MM/yyyy}", dondangky.NGAYDUYETHS) : "";
+                                lbNgayChuyenHSToTK.Text = dondangky.NGAYHKS != null ? 
+                                    String.Format("{0:dd/MM/yyyy}", dondangky.NGAYHKS) : "";
 
-                                lbSoNgayLamHoSo.Text = dondangky.NGAYDK != null && dondangky.NGAYDUYETHS != null ? 
-                                    Math.Ceiling(((DateTime)dondangky.NGAYDUYETHS - (DateTime)dondangky.NGAYDK).TotalDays).ToString() : "0";
+                                lbSoNgayLamHoSo.Text = dondangky.NGAYDK != null && dondangky.NGAYHKS != null ? 
+                                    Math.Ceiling(((DateTime)dondangky.NGAYHKS - (DateTime)dondangky.NGAYDK).TotalDays).ToString() : "0";
 
                                 lbDDKNOIDUNG.Text = dondangky.NOIDUNG != null ? dondangky.NOIDUNG : "";
                                 lbDDKNVNHAP.Text = _nvDao.Get(dondangky.MANV).HOTEN;
+
+                                UpdateMode = Mode.Update;
 
                                 upnlDangKy.Update();
 
                                 UnblockDialog("divDangKy");
                                 CloseWaitingDialog();
                             }                            
-                        }                        
+                        }
                         break;
 
                     case "showTKStatus":
@@ -976,8 +978,9 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 //lbTKNGAYDK.Text = dondangky.NGAYN != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYN) : "";
                                 lbTKNGAYDK.Text = dondangky.NGAYDK != null ? String.Format("{0:dd/MM/yyyy}", dondangky.NGAYDK) : "";
                                 //lbTKNGAYTK.Text = String.Format("{0:dd/MM/yyyy}", tk.NGAYLTK);
-                                lbTKSoNgayLamHS.Text = dondangky.NGAYDK != null && dondangky.NGAYDUYETHS != null ?
-                                    Math.Ceiling(((DateTime)dondangky.NGAYDUYETHS - (DateTime)dondangky.NGAYDK).TotalDays).ToString() : "0";
+                                lbTKSoNgayLamHS.Text = dondangky.NGAYDK != null && dondangky.NGAYHKS != null ?
+                                    Math.Ceiling(((DateTime)dondangky.NGAYHKS - (DateTime)dondangky.NGAYDK).TotalDays).ToString() : "0";
+                                lbNoiDungDonDangKyTK.Text = dondangky.NOIDUNG != null ? dondangky.NOIDUNG : "";
 
                                 lbTKNGAYTK.Text = thietke.NGAYLTK != null ? String.Format("{0:dd/MM/yyyy}", thietke.NGAYLTK) : "";
 
@@ -989,12 +992,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                                     Math.Ceiling(((DateTime)thietke.NGAYDTK - (DateTime)thietke.NGAYLTK).TotalDays).ToString() : "0";
 
                                 lbTKNVNHAP.Text = thietke.MANVLTK != null ? _nvDao.Get(thietke.MANVLTK).HOTEN : "";
-                                lbGhiChuTK.Text = thietke.CHUTHICH != null ? thietke.CHUTHICH : "";
-
-                                upnlThietKe.Update();
-
-                                UnblockDialog("divThietKe");
-                                CloseWaitingDialog();
+                                lbGhiChuTK.Text = thietke.CHUTHICH != null ? thietke.CHUTHICH : "";                                
                             }
                             else
                             {
@@ -1004,17 +1002,21 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 lbTKSODT.Text = dondangky.DIENTHOAI != null ? dondangky.DIENTHOAI : "";
                                 lbTKTENTK.Text = dondangky.NOIDUNG != null ? dondangky.NOIDUNG : "";
                                 lbTKNGAYDK.Text = "";
+                                lbTKSoNgayLamHS.Text = "0";
+                                lbNoiDungDonDangKyTK.Text = "";
                                 lbTKNGAYTK.Text = "";
                                 lbTKNVPHUTRACH.Text = "";
                                 lbTKNVDUYET.Text = "";
                                 lbTKNGAYDUYET.Text = "";
                                 lbTKNVNHAP.Text = "";
-                                lbGhiChuTK.Text = "";
-
-                                upnlThietKe.Update();
-                                UnblockDialog("divThietKe");
-                                CloseWaitingDialog();
+                                lbGhiChuTK.Text = "";                                
                             }
+                            UpdateMode = Mode.Update;
+
+                            upnlThietKe.Update();
+
+                            UnblockDialog("divThietKe");
+                            CloseWaitingDialog();
                         }                        
                         break;
 
@@ -2040,6 +2042,107 @@ namespace EOSCRM.Web.Forms.KhachHang
             catch { }
         }
 
-        
+        protected void btnSaveNoiDungDDK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Authenticate
+                if (!HasPermission(Functions.KH_TraCuuDonLapMoi, Permission.Update))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                if (UpdateMode != Mode.Update)
+                    return;                
+
+                var maddkkh = _khDao.GetMADDK(lbMADDK.Text.Trim());
+                if (maddkkh != null)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Khách hàng đã khai thác. Không được sửa.");
+                    return;
+                }
+
+                var dondk = ddkDao.Get(lbMADDK.Text.Trim());
+
+                _rpClass.HisBienCo(dondk.MADDK, dondk.MAKV, LoginInfo.MANV, "THIETKEHIS");
+
+                Filtered = FilteredMode.None;
+
+                var msg = ddkDao.UpdateNoiDungDDK(lbMADDK.Text.Trim(), lbDDKNOIDUNG.Text.Trim(), CommonFunc.GetComputerName(), 
+                    CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);               
+                
+                upnlDangKy.Update();
+
+                HideDialog("divDangKy");
+                CloseWaitingDialog();
+
+                if (!msg.MsgType.Equals(MessageType.Error))
+                {
+                    ShowInfor(ResourceLabel.Get(msg));                   
+                    ClearContent();
+                    CloseWaitingDialog();                    
+                }
+                else
+                {
+                    ShowError(ResourceLabel.Get(msg));
+                }
+            }
+            catch { }
+        }
+       
+        protected void btnSaveChuThichTK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Authenticate
+                if (!HasPermission(Functions.KH_TraCuuDonLapMoi, Permission.Update))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                if (UpdateMode != Mode.Update)
+                    return;
+
+                var maddkkh = _khDao.GetMADDK(lbTKMADDK.Text.Trim());
+                if (maddkkh != null)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Khách hàng đã khai thác. Không được sửa.");
+                    return;
+                }
+
+                var dondk = ddkDao.Get(lbTKMADDK.Text.Trim());
+
+                _rpClass.HisBienCo(dondk.MADDK, dondk.MAKV, LoginInfo.MANV, "DONHIS");
+
+                Filtered = FilteredMode.None;
+
+                var msg = tkDao.UpdateGhiChuTK(lbTKMADDK.Text.Trim(), lbGhiChuTK.Text.Trim(), CommonFunc.GetComputerName(),
+                    CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                
+                upnlThietKe.Update();
+
+                HideDialog("divThietKe");
+                CloseWaitingDialog();
+
+                if (!msg.MsgType.Equals(MessageType.Error))
+                {
+                    ShowInfor(ResourceLabel.Get(msg));
+                    ClearContent();
+                    CloseWaitingDialog();                    
+                }
+                else
+                {
+                    ShowError(ResourceLabel.Get(msg));
+                }
+            }
+            catch { }
+        }
+
     }
 }

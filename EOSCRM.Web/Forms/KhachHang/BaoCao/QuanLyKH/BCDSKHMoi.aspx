@@ -252,7 +252,7 @@
                                 </div>
                                 <div class="left">
                                     <div class="right">
-                                        <asp:LinkButton ID="lkXuatExcelTS" runat="server" UseSubmitBehavior="false" CssClass="myButton"  
+                                        <asp:LinkButton ID="lkXuatExcelTS" runat="server" UseSubmitBehavior="false" CssClass="myButton"  Visible="false"
                                             OnClientClick="return CheckFormExcelTS();" OnClick="lkXuatExcelTS_Click" >Xuất Excel(TS)</asp:LinkButton>
                                     </div>
                                 </div>
@@ -265,7 +265,7 @@
                                 <div class="left">
                                     <div class="right">
                                         <asp:LinkButton ID="lkExcelLX" runat="server" OnClick="lkExcelLX_Click" UseSubmitBehavior="false" CssClass="myButton"  
-                                            OnClientClick="return CheckFormlkExcelLX();">Xuất Excel (LX)</asp:LinkButton>
+                                            Visible="false" OnClientClick="return CheckFormlkExcelLX();">Xuất Excel (LX)</asp:LinkButton>
                                     </div>
                                 </div>
                             </td>
