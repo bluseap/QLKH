@@ -297,21 +297,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
                                     cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINLX").Tables[0];
-                        }
-                        //if (ddlDOTGCS.SelectedValue == "%")
-                        //{
-                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
-                        //}
-                        //else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
-                        //{
-                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
-                        //}
-                        //else
-                        //{
-                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTINLX(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
-                        //}
+                        }                        
                     }
                     else
                     {
@@ -323,21 +309,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         {
                             dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
                                     cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
-                        }
-                        //if (ddlDOTGCS.SelectedValue == "%")
-                        //{
-                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOC(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
-                        //}
-                        //else if (dotinhd != null && dotinhd.MADOTIN == "NNNTD1")
-                        //{
-                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTINTH").Tables[0];
-                        //}
-                        //else
-                        //{
-                        //    dt = new ReportClass().DSTHAYDOICHITIETNUOCDOTIN(Convert.ToInt32(cboTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                        //            cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", "DSTDCTNDOTIN").Tables[0];
-                        //}
+                        }                        
                     }
                 }
                 else // long xuyen theo phien, bo phien do yeu cau d/c Chau phong CNTT, chi con theo dot 

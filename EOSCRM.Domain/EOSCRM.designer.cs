@@ -112016,8 +112016,8 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<System.DateTime> _NGAYNHAP;
 		
-		private System.Nullable<System.DateTime> _NGAYDUYET;
-		
+		private System.Nullable<System.DateTime> _NGAYDUYET;		
+
 		private System.Nullable<System.DateTime> _NGAYNHAPTRA;
 		
 		private System.Nullable<System.DateTime> _NGAYDUYETTRA;
@@ -112183,8 +112183,8 @@ namespace EOSCRM.Domain
 					this.OnNGAYDUYETChanged();
 				}
 			}
-		}
-		
+		}		
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYNHAPTRA", DbType="DateTime")]
 		public System.Nullable<System.DateTime> NGAYNHAPTRA
 		{

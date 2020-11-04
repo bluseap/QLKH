@@ -183,7 +183,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 if (!txtNGAYCD.Text.Trim().Equals(String.Empty))
                     obj.NGAYDK = DateTimeUtil.GetVietNamDate(txtNGAYCD.Text.Trim());
                 else
-                    obj.NGAYDK = null;
+                    obj.NGAYDK = DateTime.Now;
 
                 if (!txtNGAYKS.Text.Trim().Equals(String.Empty))
                     obj.NGAYHKS = DateTimeUtil.GetVietNamDate(txtNGAYKS.Text.Trim());

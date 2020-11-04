@@ -219,8 +219,12 @@ namespace EOSCRM.Util
 
         public static DateTime GetVietNamDate(string value)
         {
+            DateTime datetimeNow = DateTime.Now;
+
             string[] slist1 = value.Split('/');
-            return new DateTime(int.Parse(slist1[2]), int.Parse(slist1[1]), int.Parse(slist1[0]), 0, 0, 0);
+            //return new DateTime(int.Parse(slist1[2]), int.Parse(slist1[1]), int.Parse(slist1[0]), 0, 0, 0);
+            return new DateTime(int.Parse(slist1[2]), int.Parse(slist1[1]), int.Parse(slist1[0]), datetimeNow.Hour, datetimeNow.Minute, 
+                datetimeNow.Second);
         }        
 
         public static DateTime GetVietNamDate(string value, string gio, string phut)
@@ -230,5 +234,20 @@ namespace EOSCRM.Util
                                         int.Parse(phut), 0);
             return tmp;
         }
+
+        public static int CountDayDiffT7CN(DateTime startDate, DateTime endDate)
+        {
+            int count = 0;
+            for (DateTime currentDate = startDate; currentDate <= endDate; currentDate = currentDate.AddDays(1))
+            {
+                if (currentDate.DayOfWeek == DayOfWeek.Sunday || currentDate.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    continue;
+                }
+                count++;
+            }
+            return count;
+        }
+
     }
 }

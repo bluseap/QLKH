@@ -128,6 +128,7 @@
     <Compile Include="QuanHuyenDao.cs" />
     <Compile Include="SoHoaDonDao.cs" />
     <Compile Include="SoHoaDonILDao.cs" />
+    <Compile Include="StoredProcedureDao.cs" />
     <Compile Include="SuaChuaDao.cs" />
     <Compile Include="SuaDongHoDao.cs" />
     <Compile Include="KHSoNoDHDao.cs" />

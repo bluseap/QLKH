@@ -4837,6 +4837,7 @@
       <Column Name="TENKH" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="NGAYNHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="NGAYDUYET" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+	  <Column Name="SoNgay" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NGAYNHAPTRA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="NGAYDUYETTRA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MOTATTDON" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

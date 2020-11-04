@@ -3,9 +3,14 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CRM" %>
+
+<%@ Import Namespace="EOSCRM.Web.Common"%>
+
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">        
-        
+        function CheckFormbtXuatExcel() {
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btXuatExcel) %>', '');
+        } 
     </script>    
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">    
@@ -67,6 +72,15 @@
                             <asp:Button ID="btnBaoCao" runat="server" OnClick="btnBaoCao_Click" CssClass="report" 
                             />
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="crmcell right"> </td>
+                    <td class="crmcell">
+                        <div class="left">
+                            <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" OnClick="btXuatExcel_Click" UseSubmitBehavior="false"
+                                OnClientClick="return CheckFormbtXuatExcel();" Text ="Xuất Excel" />
+                        </div>                       
                     </td>
                 </tr>
                 <tr>

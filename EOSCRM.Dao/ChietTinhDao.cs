@@ -1701,5 +1701,56 @@ namespace EOSCRM.Dao
             }
             return msg;
         }
+
+        public Message UpdateGhiChuCT(string maddk, string ghichu, String useragent, String ipAddress, String sManv)
+        {
+            Message msg;
+            try
+            {
+                // get current object in database
+                var objDb = Get(maddk);
+
+                if (objDb != null)
+                {
+                    //TODO: update all fields
+                    
+                    objDb.GHICHU = ghichu;                    
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+
+                    //UpdateChiPhiForChietTinh(objUi.MADDK);
+
+                    #region Luu Vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = maddk,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.A.ToString(),
+                        MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                        MATT = "GhiChu_CT",
+                        MOTA = "Update ghi chú chiết tính."
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+                    #endregion
+                    // success message
+                    msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "Chiết tính ");
+                }
+                else
+                {
+                    // error message
+                    msg = new Message(MessageConstants.E_OBJECT_IN_USED, MessageType.Error, "chiết tính", maddk);
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ExceptionHandler.HandleUpdateException(ex, "Chiết tính ", maddk);
+            }
+            return msg;
+        }
+
     }
 }

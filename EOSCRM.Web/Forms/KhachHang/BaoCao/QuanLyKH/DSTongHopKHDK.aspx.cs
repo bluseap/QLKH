@@ -27,6 +27,15 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
         string namF = DateTime.Now.Year.ToString();
 
         #region Startup script registeration
+        private void ShowError(string message)
+        {
+            ((EOS)Page.Master).ShowError(message);
+        }
+
+        private void ShowInfor(string message)
+        {
+            ((EOS)Page.Master).ShowInfor(message);
+        }
         private void CloseWaitingDialog()
         {
             ((EOS)Page.Master).CloseWaitingDialog();
@@ -148,7 +157,7 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
         protected void btnBaoCao_Click(object sender, EventArgs e)
         {
             LayBaoCao();
-            CloseWaitingDialog(); 
+            CloseWaitingDialog();            
         }
 
         private void LayBaoCao()

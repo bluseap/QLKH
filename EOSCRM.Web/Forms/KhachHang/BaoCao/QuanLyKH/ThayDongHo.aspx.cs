@@ -8,7 +8,9 @@ using EOSCRM.Util;
 using EOSCRM.Dao ;
 using EOSCRM.Domain;
 using EOSCRM.Web.UserControls;
-
+using EOSCRM.Web.Shared;
+using System.IO;
+using System.Web.UI;
 
 namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 {
@@ -20,6 +22,28 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
         private ReportDocument rp = new ReportDocument();
         private NhanVienDao _nvDao = new NhanVienDao();
         private KhuVucDao _kvDao = new KhuVucDao();
+
+        #region Startup script registeration
+        private void SetControlValue(string id, string value)
+        {
+            ((EOS)Page.Master).SetControlValue(id, value);
+        }
+
+        private void HideDialog(string divId)
+        {
+            ((EOS)Page.Master).HideDialog(divId);
+        }
+
+        private void UnblockDialog(string divId)
+        {
+            ((EOS)Page.Master).UnblockDialog(divId);
+        }
+
+        private void CloseWaitingDialog()
+        {
+            ((EOS)Page.Master).CloseWaitingDialog();
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -163,12 +187,13 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 
             if (ddlDOTGCS.SelectedValue == "%")
             {
-                dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
+                dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
+                    cboKhuVuc.SelectedValue).Tables[0];
             }
             else
             {
                 dt = new ReportClass().ThayDongHodOotIn(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                        cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
+                    cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
             }
 
             rp = new ReportDocument();
@@ -254,6 +279,68 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
             Session[Constants.REPORT_FREE_MEM] = rp;
         }
 
-        
+        protected void btXuatExcel_Click(object sender, EventArgs e)
+        {            
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                var TuNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(ddlTHANG.Text.Trim()) + "/" + int.Parse(txtNAM.Text.Trim()));
+              
+                DataTable dt;
+
+                if (ddlDOTGCS.SelectedValue == "%")
+                {
+                    dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
+                        cboKhuVuc.SelectedValue).Tables[0];
+                }
+                else
+                {
+                    dt = new ReportClass().ThayDongHodOotIn(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                            cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
+                }                
+
+                //Create a dummy GridView
+                GridView GridView1 = new GridView();
+                GridView1.AllowPaging = false;
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=TDHN" + ddlTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".xls");
+                //Response.AddHeader("content-disposition", "attachment;filename=KHM" + cboTHANG.Text.Trim() + txtNAM.Text.Trim().Substring(2, 2) + ".doc");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                //Response.ContentType = "application/vnd.ms-word ";
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    //Apply text style to each Row
+                    GridView1.Rows[i].Attributes.Add("class", "textmode");
+                }
+                GridView1.RenderControl(hw);
+
+                //style to format numbers to string
+                //string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                //Response.Write(style);
+                string style = @"<style> TD { mso-number-format:\@; } </style>";
+                Response.Write(style);
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                CloseWaitingDialog();
+                //upnlBaoCao.Update();
+            }
+            catch { }            
+        }
+
     }
 }

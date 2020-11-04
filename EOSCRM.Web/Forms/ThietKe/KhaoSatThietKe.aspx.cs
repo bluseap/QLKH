@@ -325,23 +325,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                         btnApprove.Visible = false;
                         btnReject.Visible = false;
                     }                    
-                }
-                //else if (query.MAKV == "T") // tan chau
-                //{
-                //    if (query.MAPB == "KD")
-                //    {
-                //        btnApprove.Visible = false;
-                //        btnReject.Visible = false;
-                //        //btCHAPNHAN.Visible = false;
-
-                //        ddlPHONGBAN.Enabled = false;
-                //    }
-                //    else
-                //    {
-                //        btCHAPNHAN.Visible = false;
-                //        btKODUDIEUKIEN.Visible = false;
-                //    }  
-                //}
+                }                
                 else
                 {
                     btCHAPNHAN.Visible = false;

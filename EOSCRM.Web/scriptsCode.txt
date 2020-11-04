@@ -1,6 +1,19 @@
 ﻿
+	create procedure [dbo].[Get_DuongPho_ByAll]
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
+	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
+	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
 
-
+	update procedure [dbo].[BienKHNuoc]
+	update procedure [dbo].[dsKHCBiKT]
+	update procedure [dbo].[DSKHMOIDOTIN]	
+	update procedure [dbo].[DSTHAYDOICHITIETNUOC]
+	updare procedure [dbo].[DSTHAYDOICHITIETNUOCLX]
+	update procedure [dbo].[DSTHAYDOICHITIETNUOCDOTIN]
+	update procedure [dbo].[HisBienCo]
+	update procedure [dbo].[HisNgayDangKyBien]
+	update procedure [dbo].[RP_THAYDONGHO]
+	update procedure [dbo].[RP_THAYDONGHO_DOTIN]	
 
 
 
@@ -23,12 +36,71 @@
 		values ( 'NNDLX7', '5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
 
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
+	update Database in table HISNGAYDANGKY inserts Column: SoNgay (int) and
+		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYDK, d.NGAYHKS) + 1) 
+			- (DATEDIFF(wk, d.NGAYDK, d.NGAYHKS) * 2) 
+			- (CASE WHEN DATENAME(dw, d.NGAYDK) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, d.NGAYHKS) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKY hi inner join DONDANGKY d on hi.MADDK = d.MADDK
+		where MOTATTDON = 'DUYETDONDANGKY'
 
-	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN ...
+		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYHKS, tk.NGAYDTK) + 1) 
+			- (DATEDIFF(wk, d.NGAYHKS, tk.NGAYDTK) * 2) 
+			- (CASE WHEN DATENAME(dw, d.NGAYHKS) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, tk.NGAYDTK) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKY hi inner join THIETKE tk on hi.MADDK = tk.MADDK 
+			inner join DONDANGKY d on tk.MADDK = d.MADDK
+		where hi.MOTATTDON = 'DUYETTHIETKE'
+
+		update  HISNGAYDANGKY set SoNgay = 1
+		from HISNGAYDANGKY hi inner join THIETKE tk on hi.MADDK = tk.MADDK 
+			inner join DONDANGKY d on tk.MADDK = d.MADDK
+		where tk.NGAYDTK < d.NGAYHKS and MOTATTDON = 'DUYETTHIETKE'
+
+		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, tk.NGAYDTK, ct.NGAYN) + 1) 
+			- (DATEDIFF(wk, tk.NGAYDTK, ct.NGAYN) * 2) 
+			- (CASE WHEN DATENAME(dw, tk.NGAYDTK) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, ct.NGAYN) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKY hi inner join THIETKE tk on hi.MADDK = tk.MADDK 
+			inner join CHIETTINH ct on tk.MADDK = ct.MADDK
+		where hi.MOTATTDON = 'DUYETCTKH'
+
+
+	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN where ngayltk is null
+
+
+	insert Table in Database: ChietTinhHis
 
 
 	install .NET Framwork 4.6.1
 
+	
+-- diff Saturday and sunday
+DECLARE @StartDate DATETIME
+DECLARE @EndDate DATETIME
+SET @StartDate = '2020/10/29'
+SET @EndDate = '2020/11/03'
+
+SELECT (DATEDIFF(dd, @StartDate, @EndDate) + 1) 
+	- (DATEDIFF(wk, @StartDate, @EndDate) * 2) 
+	- (CASE WHEN DATENAME(dw, @StartDate) = 'Sunday' THEN 1 ELSE 0 END)
+	- (CASE WHEN DATENAME(dw, @EndDate) = 'Saturday' THEN 1 ELSE 0 END)
+
+	//DateTime tungay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
+            //DateTime denngay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());
+            //if (tungay <= denngay)
+            //{
+            //    int songay = DateTimeUtil.CountDayDiffT7CN(tungay, denngay);
+            //}
+            //else 
+            //{
+            //    ShowError("Chọn từ ngày đến ngày cho đúng.");
+            //}
+            //CloseWaitingDialog();
+
+	//lbSoNgayLamHoSo.Text = dondangky.NGAYDK != null && dondangky.NGAYHKS != null ?
+                                //    Convert.ToString(DateTimeUtil.CountDayDiffT7CN(dondangky.NGAYDK ?? DateTime.Now,
+                                //    dondangky.NGAYHKS ?? DateTime.Now)) : "0";
 
 
 r2	create procedure [dbo].[Get_DuongPho_ByAll]
