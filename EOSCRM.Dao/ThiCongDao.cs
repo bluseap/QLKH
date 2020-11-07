@@ -1818,6 +1818,65 @@ namespace EOSCRM.Dao
             return msg;
         }
 
-        
+        public Message UpdateGhiChuTC(string maddk, string ghichu, string useragent, string ipAddress, string sManv)
+        {
+            Message msg;
+            DbTransaction trans = null;
+
+            try
+            {
+                _db.Connection.Open();
+                trans = _db.Connection.BeginTransaction();
+                _db.Transaction = trans;
+
+                // get current object in database
+                var objDb = Get(maddk);
+
+                if (objDb != null)
+                {
+                    //TODO: update all fields                    
+                    objDb.GHICHU = ghichu;                    
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+
+                    trans.Commit();
+
+                    #region Luu Vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = maddk,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.A.ToString(),
+                        MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                        MATT = "GhiChu_TC",
+                        MOTA = "Update ghi chú thi công."
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+                    #endregion
+
+                    // success message
+                    msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "Thi công ");
+                }
+                else
+                {
+                    // error message
+                    msg = new Message(MessageConstants.E_FAILED, MessageType.Error, "Cập nhật thi công");
+                }
+            }
+            catch (Exception ex)
+            {
+                // rollback transaction
+                if (trans != null)
+                    trans.Rollback();
+
+                msg = ExceptionHandler.HandleUpdateException(ex, "Thi công ", maddk);
+            }
+            return msg;
+        }
+
     }
 }

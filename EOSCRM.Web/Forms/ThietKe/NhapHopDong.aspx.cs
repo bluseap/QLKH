@@ -80,13 +80,25 @@ namespace EOSCRM.Web.Forms.ThietKe
                 }
 
                 if (!txtNGAYTAO.Text.Trim().Equals(String.Empty))
+                {
                     hopdong.NGAYTAO = DateTimeUtil.GetVietNamDate(txtNGAYTAO.Text.Trim());
+                }
+                else 
+                {
+                    hopdong.NGAYTAO = DateTime.Now;
+                }
 
                 //if (!txtNGAYKT.Text.Trim().Equals(String.Empty))
                 //    hopdong.NGAYKT = DateTimeUtil.GetVietNamDate(txtNGAYKT.Text.Trim());
 
                 if (!txtNGAYHL.Text.Trim().Equals(String.Empty))
+                {
                     hopdong.NGAYHL = DateTimeUtil.GetVietNamDate(txtNGAYHL.Text.Trim());
+                }
+                else 
+                {
+                    hopdong.NGAYHL = DateTime.Now;
+                }                    
 
                 hopdong.SDInfo_INHOADON = cbSDInfo_INHOADON.Checked;
                 if (cbSDInfo_INHOADON.Checked)

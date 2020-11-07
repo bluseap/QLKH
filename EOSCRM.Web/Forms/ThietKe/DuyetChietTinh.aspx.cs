@@ -305,7 +305,6 @@ namespace EOSCRM.Web.Forms.ThietKe
                         ShowError("Vui lòng chọn chiết tính cần duyệt.");
                     }
                 }
-
             }
             catch (Exception ex)
             {

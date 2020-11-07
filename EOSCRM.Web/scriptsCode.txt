@@ -3,6 +3,8 @@
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
 	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
 	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
+	create procedure [dbo].[Get_HopDong_ByMaddk]
+	create procedure [dbo].[Update_HopDong_GhiChu]
 
 	update procedure [dbo].[BienKHNuoc]
 	update procedure [dbo].[dsKHCBiKT]
@@ -36,6 +38,7 @@
 		values ( 'NNDLX7', '5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
 
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
+	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
 	update Database in table HISNGAYDANGKY inserts Column: SoNgay (int) and
 		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYDK, d.NGAYHKS) + 1) 
 			- (DATEDIFF(wk, d.NGAYDK, d.NGAYHKS) * 2) 
@@ -65,16 +68,35 @@
 			inner join CHIETTINH ct on tk.MADDK = ct.MADDK
 		where hi.MOTATTDON = 'DUYETCTKH'
 
+		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, ct.NGAYN, hd.NGAYTAO) + 1) 
+			- (DATEDIFF(wk, ct.NGAYN, hd.NGAYTAO) * 2) 
+			- (CASE WHEN DATENAME(dw, ct.NGAYN) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, hd.NGAYTAO) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKY hi inner join CHIETTINH ct on hi.MADDK = ct.MADDK
+			inner join HOPDONG hd on ct.MADDK = hd.MADDK
+		where hi.MOTATTDON = 'INHOPDONG'
+
+		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, hd.NGAYTAO, tc.NGAYHT) + 1) 
+			- (DATEDIFF(wk, hd.NGAYTAO, tc.NGAYHT) * 2) 
+			- (CASE WHEN DATENAME(dw, hd.NGAYTAO) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, tc.NGAYHT) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKY hi inner join THICONG tc on hi.MADDK = tc.MADDK
+			inner join HOPDONG hd on tc.MADDK = hd.MADDK
+		where hi.MOTATTDON = 'DUYETTHICONG'
+
 
 	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN where ngayltk is null
 
 
 	insert Table in Database: ChietTinhHis
+	insert Table in Database: HopDongHis
 
 
 	install .NET Framwork 4.6.1
 
-	
+
+	select 'Ok' as KetQua	
+
 -- diff Saturday and sunday
 DECLARE @StartDate DATETIME
 DECLARE @EndDate DATETIME

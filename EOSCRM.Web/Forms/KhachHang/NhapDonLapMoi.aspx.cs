@@ -188,7 +188,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 if (!txtNGAYKS.Text.Trim().Equals(String.Empty))
                     obj.NGAYHKS = DateTimeUtil.GetVietNamDate(txtNGAYKS.Text.Trim());
                 else
-                    obj.NGAYHKS = null;
+                    obj.NGAYHKS = DateTime.Now;
 
 
                 //so ho ngheo
@@ -897,8 +897,7 @@ namespace EOSCRM.Web.Forms.KhachHang
             else
             {
                 ShowError(ResourceLabel.Get(msg));
-            }
-           
+            }           
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

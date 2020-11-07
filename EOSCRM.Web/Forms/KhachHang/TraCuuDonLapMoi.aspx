@@ -191,6 +191,20 @@
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSaveGhiChuCT) %>', '');
             return false;
         } 
+        
+        function CheckFormSaveGhiChuHD() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSaveGhiChuHD) %>', '');
+            return false;
+        }
+        
+        function CheckFormSaveGhiChuTC() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSaveGhiChuTC) %>', '');
+                return false;
+        }
     </script>
 </asp:Content>
 
@@ -452,6 +466,12 @@
                                             </td>
                                         </tr> 
                                         <tr>
+                                            <td class="crmcell right">Ghi chú đăng ký</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuDDKTK" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr> 
+                                        <tr>
                                             <td class="crmcell right" style="color:red" >Số ngày làm HS</td>
                                             <td class="crmcell">
                                                 <div class="left" style="color:red">
@@ -557,6 +577,12 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="crmcell right">Ghi chú đăng ký</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuDDKCT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="crmcell right" style="color:red" >Số ngày làm HS</td>
                                             <td class="crmcell">
                                                 <div class="left" style="color:red"><asp:Label ID="lbCTSoNgayLamHS" runat="server" ></asp:Label></div>                                                
@@ -573,11 +599,17 @@
                                             <td class="crmcell">
                                                 <div class="left" style="color:red"><asp:Label ID="lbCTSoNgayTK" runat="server" ></asp:Label></div>                                                
                                             </td>
-                                        </tr>
+                                        </tr>                                        
                                         <tr>
                                             <td class="crmcell right">Ngày chiết tính</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbCTNGAYLCT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Ghi chú thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuTKCT" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -646,15 +678,39 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày nhập đơn</td>
+                                            <td class="crmcell right">Ngày nhập đơn, chuyển HS TK</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbHDNGAYNHAPDON" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày nhập thiết kế</td>
+                                            <td class="crmcell right">Ghi chú đơn Đk</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuDDKHD" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày Đk</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayDDKHD" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Ngày nhập thiết kế, duyệt TK</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbHDNGAYTK" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Ghi chú thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuTKHD" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayTKHD" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -664,11 +720,46 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="crmcell right">Ghi chú chiết tính</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuCTHD" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày chiết tính</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayCTHD" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="crmcell right">Ngày nhập hợp đồng</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbHDNGAYNHAPHD" runat="server" ></asp:Label></div>
                                             </td>
-                                        </tr>                                        
+                                        </tr>  
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày họp đồng</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red"><asp:Label ID="lbSoNgayHopDongHD" runat="server" ></asp:Label></div>                                                
+                                            </td>
+                                        </tr>                                       
+                                        <tr>
+                                            <td class="crmcell right">Ghi chú</td>
+                                            <td class="crmcell">
+                                                <div class="left">                                                              
+                                                    <asp:TextBox ID="txtGhiChuHopDongHD" runat="server" ></asp:TextBox>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:Button ID="btnSaveGhiChuHD" runat="server" CssClass="myButton" Text="Lưu"
+                                                        OnClientClick="return CheckFormSaveGhiChuHD();"  UseSubmitBehavior="false" OnClick="btnSaveGhiChuHD_Click" />
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>
@@ -700,9 +791,21 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="crmcell right">Ngày nhập đơn</td>
+                                            <td class="crmcell right">Ngày nhập đơn, chuyển HS TK</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbTCNGAYNHAPDON" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Ghi chú đơn Đk</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuDKTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày Đk</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayDKTC" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -712,9 +815,33 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="crmcell right">Ghi chú thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuTKTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày thiết kế</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayTKTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td class="crmcell right">Ngày nhập chiết tính</td>
                                             <td class="crmcell">
                                                 <div class="left"><asp:Label ID="lbTCNGAYCT" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td class="crmcell right">Ghi chú chiết tính</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuCTTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày chiết tính</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayCTTC" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -723,6 +850,18 @@
                                                 <div class="left"><asp:Label ID="lbTCNGAYHD" runat="server" ></asp:Label></div>
                                             </td>
                                         </tr>  
+                                         <tr>
+                                            <td class="crmcell right">Ghi chú họp đồng</td>
+                                            <td class="crmcell">
+                                                <div class="left"><asp:Label ID="lbGhiChuHDTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày họp đồng</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayHDTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td class="crmcell right">Ngày nhập thi công</td>
                                             <td class="crmcell">
@@ -738,9 +877,26 @@
                                         <tr>
                                             <td class="crmcell right">Ghi chú</td>
                                             <td class="crmcell">
-                                                <div class="left"><asp:Label ID="lbTCGHICHU" runat="server" ></asp:Label></div>
+                                                <div class="left">
+                                                    <asp:TextBox ID="lbTCGHICHU" runat="server" ></asp:TextBox>
+                                                </div>
                                             </td>
-                                        </tr>  
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right" style="color:red" >Số ngày thi công</td>
+                                            <td class="crmcell">
+                                                <div class="left" style="color:red" ><asp:Label ID="lbSoNgayTC" runat="server" ></asp:Label></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:Button ID="btnSaveGhiChuTC" runat="server" CssClass="myButton" Text="Lưu"
+                                                        OnClientClick="return CheckFormSaveGhiChuTC();"  UseSubmitBehavior="false" OnClick="btnSaveGhiChuTC_Click" />
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>

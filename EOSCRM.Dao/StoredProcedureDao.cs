@@ -29,5 +29,29 @@ public class StoredProcedureDao
         return ds;
     }
 
+    public DataSet Get_HopDong_ByMaddk(string maddk)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 11, maddk)                    
+                };
+        DataSet ds = db.RunExecProc("Get_HopDong_ByMaddk", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Update_HopDong_GhiChu(string maddk, string ghichu, string manv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 11, maddk),
+                    db.MakeInParam("@GhiChu", SqlDbType.NVarChar  , 1000, ghichu ),                   
+                    db.MakeInParam("@Manv", SqlDbType.VarChar  , 50, manv )
+                };
+        DataSet ds = db.RunExecProc("Update_HopDong_GhiChu", prams);
+        db.Dispose();
+        return ds;
+    }
+
 
 }
