@@ -834,13 +834,22 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected global::System.Web.UI.WebControls.Label lbNgayDHNT;
 
         /// <summary>
-        /// lbNgayDuyetNT control.
+        /// lbGhiChuDKNT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNgayDuyetNT;
+        protected global::System.Web.UI.WebControls.Label lbGhiChuDKNT;
+
+        /// <summary>
+        /// lbSoNgayDKNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSoNgayDKNT;
 
         /// <summary>
         /// lbNgayTKNT control.
@@ -852,22 +861,49 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected global::System.Web.UI.WebControls.Label lbNgayTKNT;
 
         /// <summary>
-        /// lbNgayDuyetTKNT control.
+        /// lbGhiChuTKNT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNgayDuyetTKNT;
+        protected global::System.Web.UI.WebControls.Label lbGhiChuTKNT;
 
         /// <summary>
-        /// lbNgayDuyetKHNT control.
+        /// lbSoNgayTKNT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNgayDuyetKHNT;
+        protected global::System.Web.UI.WebControls.Label lbSoNgayTKNT;
+
+        /// <summary>
+        /// lbNgayNhapCTNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNgayNhapCTNT;
+
+        /// <summary>
+        /// lbGhiChuCTNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGhiChuCTNT;
+
+        /// <summary>
+        /// lbSoNgayCTNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSoNgayCTNT;
 
         /// <summary>
         /// lbNgayNhapHDNT control.
@@ -879,6 +915,24 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected global::System.Web.UI.WebControls.Label lbNgayNhapHDNT;
 
         /// <summary>
+        /// lbGhiChuHDNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGhiChuHDNT;
+
+        /// <summary>
+        /// lbSoNgayHDNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSoNgayHDNT;
+
+        /// <summary>
         /// lbNgayNhapTCNT control.
         /// </summary>
         /// <remarks>
@@ -888,13 +942,22 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected global::System.Web.UI.WebControls.Label lbNgayNhapTCNT;
 
         /// <summary>
-        /// lbNgayDuyetTCNT control.
+        /// lbGhiChuTCNT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNgayDuyetTCNT;
+        protected global::System.Web.UI.WebControls.Label lbGhiChuTCNT;
+
+        /// <summary>
+        /// lbSoNgayTCNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSoNgayTCNT;
 
         /// <summary>
         /// lbNgayNBBNT control.
@@ -915,13 +978,31 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected global::System.Web.UI.WebControls.Label lbNgayNhanHS;
 
         /// <summary>
-        /// lbNgayChuyenHS control.
+        /// txtGhiChuNT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNgayChuyenHS;
+        protected global::System.Web.UI.WebControls.TextBox txtGhiChuNT;
+
+        /// <summary>
+        /// lbSoNgayNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSoNgayNT;
+
+        /// <summary>
+        /// btnSaveGhiChuNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveGhiChuNT;
 
         /// <summary>
         /// upnlEditCustomer control.

@@ -1213,11 +1213,20 @@ namespace EOSCRM.Web.Forms.KhachHang
                                 lbTCMADDK.Text = dondangky.MADDK;
                                 lbTCTENKH.Text = dondangky.TENKH;
                                 lbTCNGAYNHAPDON.Text = "";
+                                lbGhiChuDKTC.Text = "";
+                                lbSoNgayDKTC.Text = "0";
                                 lbTCNGAYTK.Text = "";
+                                lbGhiChuTKTC.Text = "";
+                                lbSoNgayTKTC.Text = "0";
                                 lbTCNGAYCT.Text = "";
+                                lbGhiChuCTTC.Text = "";
+                                lbSoNgayCTTC.Text = "0";
                                 lbTCNGAYHD.Text = "";
+                                lbGhiChuHDTC.Text = "";
+                                lbSoNgayHDTC.Text = "0";
                                 lbTCNGAYNHAP.Text = "";
-                                lbTCGHICHU.Text = ""; 
+                                lbTCGHICHU.Text = "";
+                                lbSoNgayTC.Text = "0";
                             }
                             UpdateMode = Mode.Update;
                             upnlThiCong.Update();
@@ -1233,32 +1242,76 @@ namespace EOSCRM.Web.Forms.KhachHang
                             var ntdon = ddkDao.Get(madon);
                             if (bbnt != null)
                             {
-                                BindHisNgayBBNT(bbnt.MADDK);
+                                //BindHisNgayBBNT(bbnt.MADDK);
+                                //upnlNghiemThu.Update();
+                                //UnblockDialog("divNghiemThu");        
+                                lbMADDKBBNT.Text = bbnt.MADDK;
+                                lbTENKHBBNT.Text = dondangky.TENKH != null ? dondangky.TENKH : "";
 
-                                upnlNghiemThu.Update();
-                                UnblockDialog("divNghiemThu");                                
+                                string ngaydkTK = dondangky.NGAYDK != null ? dondangky.NGAYDK.ToString() : "";
+                                string ngayduyetdonTK = dondangky.NGAYHKS != null ? dondangky.NGAYHKS.ToString() : "";
+                                lbNgayDHNT.Text = ngaydkTK + " - " + ngayduyetdonTK;
+                                lbGhiChuDKNT.Text = dondangky.NOIDUNG != null ? dondangky.NOIDUNG : "";
+                                string songaylamhosoDDK = _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETDONDANGKY").Tables[0].Rows.Count != 0 ?
+                                  _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETDONDANGKY").Tables[0].Rows[0]["SoNgay"].ToString() : "0";
+                                lbSoNgayDKNT.Text = songaylamhosoDDK;
+
+                                string ngayltkCT = thietke.NGAYLTK != null ? thietke.NGAYLTK.ToString() : "";
+                                string ngaydtkCT = thietke.NGAYDTK != null ? thietke.NGAYDTK.ToString() : "";
+                                lbNgayTKNT.Text = ngayltkCT + " - " + ngaydtkCT;
+                                lbGhiChuTKNT.Text = thietke.CHUTHICH != null ? thietke.CHUTHICH : "";
+                                string songaythietkeTK = _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETTHIETKE").Tables[0].Rows.Count != 0 ?
+                                    _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETTHIETKE").Tables[0].Rows[0]["SoNgay"].ToString() : "0";
+                                lbSoNgayTKNT.Text = songaythietkeTK;
+
+                                lbNgayNhapCTNT.Text = chiettinh.NGAYN != null ? chiettinh.NGAYN.ToString() : "";
+                                lbGhiChuCTNT.Text = chiettinh.GHICHU != null ? chiettinh.GHICHU : "";
+                                string songaychiettinhCT = _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETCTKH").Tables[0].Rows.Count != 0 ?
+                                    _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETCTKH").Tables[0].Rows[0]["SoNgay"].ToString() : "0";
+                                lbSoNgayCTNT.Text = songaychiettinhCT;
+
+                                lbNgayNhapHDNT.Text = hopdong.NGAYTAO != null ? hopdong.NGAYTAO.ToString() : "";
+                                string songayhopdongHD = _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "INHOPDONG").Tables[0].Rows.Count != 0 ?
+                                    _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "INHOPDONG").Tables[0].Rows[0]["SoNgay"].ToString() : "0";
+                                string ghichuhopdongHD = _spDao.Get_HopDong_ByMaddk(dondangky.MADDK).Tables[0].Rows.Count != 0 ?
+                                    _spDao.Get_HopDong_ByMaddk(dondangky.MADDK).Tables[0].Rows[0]["GhiChu"].ToString() : "";
+                                lbGhiChuHDNT.Text = ghichuhopdongHD;
+                                lbSoNgayHDNT.Text = songayhopdongHD;
+
+                                lbNgayNhapTCNT.Text = thicong.NGAYGTC != null ? thicong.NGAYGTC.ToString() : "";
+                                lbGhiChuTCNT.Text = thicong.GHICHU != null ? thicong.GHICHU : "";
+                                string songayTC = _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETTHICONG").Tables[0].Rows.Count != 0 ?
+                                   _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "DUYETTHICONG").Tables[0].Rows[0]["SoNgay"].ToString() : "0";
+                                lbSoNgayTCNT.Text = songayTC;
+
+                                lbNgayNBBNT.Text = bbnt.NGAYLAPBB != null ? bbnt.NGAYLAPBB.ToString() : "";
+                                lbNgayNhanHS.Text = bbnt.NGAYNHANHSTC != null ? bbnt.NGAYNHANHSTC.ToString() : "";
+                                //lbNgayChuyenHS.Text = "";
+                                string songayNT = _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "INBBNT").Tables[0].Rows.Count != 0 ?
+                                  _spDao.Get_HisNgayDangKy_ByMaDDKMoTaTTDON(dondangky.MADDK, "INBBNT").Tables[0].Rows[0]["SoNgay"].ToString() : "0";
+                                lbSoNgayNT.Text = songayNT;
+                                txtGhiChuNT.Text = bbnt.GHICHU != null ? bbnt.GHICHU.ToString() : "";
                             }
                             else
                             {
                                 lbMADDKBBNT.Text = ntdon.MADDK;
                                 lbTENKHBBNT.Text = ntdon.TENKH;
                                 lbNgayDHNT.Text = ""; 
-                                lbNgayDuyetNT.Text = "";
+                                //lbNgayDuyetNT.Text = "";
                                 lbNgayTKNT.Text = "";
-                                lbNgayDuyetTKNT.Text = "";
-                                lbNgayDuyetKHNT.Text = "";
+                                //lbNgayDuyetTKNT.Text = "";
+                                //lbNgayDuyetKHNT.Text = "";
                                 lbNgayNhapHDNT.Text = "";
                                 lbNgayNhapTCNT.Text = "";
-                                lbNgayDuyetTCNT.Text = "";
+                                //lbNgayDuyetTCNT.Text = "";
                                 lbNgayNBBNT.Text = "";
                                 lbNgayNhanHS.Text = "";
-                                lbNgayChuyenHS.Text = "";
-
-                                UpdateMode = Mode.Update;
-                                upnlNghiemThu.Update();
-                                UnblockDialog("divNghiemThu");                               
-                                CloseWaitingDialog();
+                                //lbNgayChuyenHS.Text = "";                                
                             }
+                            UpdateMode = Mode.Update;
+                            upnlNghiemThu.Update();
+                            UnblockDialog("divNghiemThu");
+                            CloseWaitingDialog();
                         }                        
                         break;
 
@@ -1306,15 +1359,15 @@ namespace EOSCRM.Web.Forms.KhachHang
                     lbNgayDHNT.Text = String.Format("{0:dd/MM/yyyy}", ntdon.NGAYN);
                 }
 
-                var hisngayduyetdk = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETDONDANGKY");
-                if (hisngayduyetdk != null)
-                {
-                    lbNgayDuyetNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyetdk.NGAYDUYET);
-                }
-                else
-                {
-                    lbNgayDuyetNT.Text = String.Format("{0:dd/MM/yyyy}", ntdon.NGAYDUYETHS);
-                }
+                //var hisngayduyetdk = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETDONDANGKY");
+                //if (hisngayduyetdk != null)
+                //{
+                //    lbNgayDuyetNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyetdk.NGAYDUYET);
+                //}
+                //else
+                //{
+                //    lbNgayDuyetNT.Text = String.Format("{0:dd/MM/yyyy}", ntdon.NGAYDUYETHS);
+                //}
 
                 var hisngayintk = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "INTHIETKE");
                 if (hisngayintk != null)
@@ -1326,25 +1379,25 @@ namespace EOSCRM.Web.Forms.KhachHang
                     lbNgayTKNT.Text = String.Format("{0:dd/MM/yyyy}", ntdon.NGAYN);
                 }
 
-                var hisngayduyettk = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETTHIETKE");
-                if (hisngayduyettk != null)
-                {
-                    lbNgayDuyetTKNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyettk.NGAYDUYET);
-                }
-                else
-                {
-                    lbNgayDuyetTKNT.Text = String.Format("{0:dd/MM/yyyy}", tk.NGAYDTK);
-                }
+                //var hisngayduyettk = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETTHIETKE");
+                //if (hisngayduyettk != null)
+                //{
+                //    lbNgayDuyetTKNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyettk.NGAYDUYET);
+                //}
+                //else
+                //{
+                //    lbNgayDuyetTKNT.Text = String.Format("{0:dd/MM/yyyy}", tk.NGAYDTK);
+                //}
 
-                var hisngayduyetct = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETCTKH");
-                if (hisngayduyetct != null)
-                {
-                    lbNgayDuyetKHNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyetct.NGAYDUYET);
-                }
-                else
-                {
-                    lbNgayDuyetKHNT.Text = String.Format("{0:dd/MM/yyyy}", ct.NGAYN);
-                }
+                //var hisngayduyetct = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETCTKH");
+                //if (hisngayduyetct != null)
+                //{
+                //    lbNgayDuyetKHNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyetct.NGAYDUYET);
+                //}
+                //else
+                //{
+                //    lbNgayDuyetKHNT.Text = String.Format("{0:dd/MM/yyyy}", ct.NGAYN);
+                //}
 
                 var hisngayinhd = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "INHOPDONG");
                 if (hisngayinhd != null)
@@ -1366,15 +1419,15 @@ namespace EOSCRM.Web.Forms.KhachHang
                     lbNgayNhapTCNT.Text = String.Format("{0:dd/MM/yyyy}", tc.NGAYN);
                 }
 
-                var hisngayduyettc = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETTHICONG");
-                if (hisngayduyettc != null)
-                {
-                    lbNgayDuyetTCNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyettc.NGAYDUYET);
-                }
-                else
-                {
-                    lbNgayDuyetTCNT.Text = String.Format("{0:dd/MM/yyyy}", tc.NGAYN);
-                }
+                //var hisngayduyettc = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "DUYETTHICONG");
+                //if (hisngayduyettc != null)
+                //{
+                //    lbNgayDuyetTCNT.Text = String.Format("{0:dd/MM/yyyy}", hisngayduyettc.NGAYDUYET);
+                //}
+                //else
+                //{
+                //    lbNgayDuyetTCNT.Text = String.Format("{0:dd/MM/yyyy}", tc.NGAYN);
+                //}
 
                 var hisngayinbbnt = _hndkDao.GetMaxMADDKMoTa(nt.MADDK, "INBBNT");
                 if (hisngayinbbnt != null)
@@ -1395,14 +1448,14 @@ namespace EOSCRM.Web.Forms.KhachHang
                     lbNgayNhanHS.Text = "";
                 }
 
-                if (nt.NGAYCHUYENHSKTOAN != null)
-                {
-                    lbNgayChuyenHS.Text = String.Format("{0:dd/MM/yyyy}", nt.NGAYCHUYENHSKTOAN);
-                }
-                else
-                {
-                    lbNgayChuyenHS.Text = "";
-                }
+                //if (nt.NGAYCHUYENHSKTOAN != null)
+                //{
+                //    lbNgayChuyenHS.Text = String.Format("{0:dd/MM/yyyy}", nt.NGAYCHUYENHSKTOAN);
+                //}
+                //else
+                //{
+                //    lbNgayChuyenHS.Text = "";
+                //}
 
             }
             catch { }
@@ -2384,16 +2437,67 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 var dondk = ddkDao.Get(lbTCMADDK.Text.Trim());
 
-                _rpClass.HisBienCo(dondk.MADDK, dondk.MAKV, LoginInfo.MANV, "ThiCongHis");
+                _rpClass.HisBienCo(lbTCMADDK.Text.Trim(), dondk.MAKV, LoginInfo.MANV, "ThiCongHis");
 
                 Filtered = FilteredMode.None;
 
-                var msg = tcDao.UpdateGhiChuTC(lbHDMADDK.Text.Trim(), txtGhiChuHopDongHD.Text.Trim(), CommonFunc.GetComputerName(),
+                var msg = tcDao.UpdateGhiChuTC(lbTCMADDK.Text.Trim(), lbTCGHICHU.Text.Trim(), CommonFunc.GetComputerName(),
                    CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 upnlThiCong.Update();
 
                 HideDialog("divThiCong");
+                CloseWaitingDialog();
+
+                if (!msg.MsgType.Equals(MessageType.Error))
+                {
+                    ShowInfor(ResourceLabel.Get(msg));
+                    ClearContent();
+                    CloseWaitingDialog();
+                }
+                else
+                {
+                    ShowError(ResourceLabel.Get(msg));
+                }
+            }
+            catch { }
+        }
+
+        protected void btnSaveGhiChuNT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Authenticate
+                if (!HasPermission(Functions.KH_TraCuuDonLapMoi, Permission.Update))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                if (UpdateMode != Mode.Update)
+                    return;
+
+                var maddkkh = _khDao.GetMADDK(lbMADDKBBNT.Text.Trim());
+                if (maddkkh != null)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Khách hàng đã khai thác. Không được sửa.");
+                    return;
+                }
+
+                var dondk = ddkDao.Get(lbMADDKBBNT.Text.Trim());
+
+                _rpClass.HisBienCo(lbMADDKBBNT.Text.Trim(), dondk.MAKV, LoginInfo.MANV, "NghiemThuHis");
+
+                Filtered = FilteredMode.None;
+
+                var msg = _bbntDao.UpdateGhiChuNT(lbMADDKBBNT.Text.Trim(), txtGhiChuNT.Text.Trim(), CommonFunc.GetComputerName(),
+                   CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                
+
+                upnlNghiemThu.Update();
+
+                HideDialog("divNghiemThu");
                 CloseWaitingDialog();
 
                 if (!msg.MsgType.Equals(MessageType.Error))

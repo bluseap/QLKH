@@ -84,12 +84,22 @@
 			inner join HOPDONG hd on tc.MADDK = hd.MADDK
 		where hi.MOTATTDON = 'DUYETTHICONG'
 
+		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, tc.NGAYHT, bb.NGAYLAPBB) + 1) 
+			- (DATEDIFF(wk, tc.NGAYHT, bb.NGAYLAPBB) * 2) 
+			- (CASE WHEN DATENAME(dw, tc.NGAYHT) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, bb.NGAYLAPBB) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKY hi inner join THICONG tc on hi.MADDK = tc.MADDK
+			inner join BBNGHIEMTHU bb on tc.MADDK = bb.MADDK
+		where hi.MOTATTDON = 'INBBNT'
+
 
 	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN where ngayltk is null
 
 
+	insert table in Database: BBNghiemThuHis
 	insert Table in Database: ChietTinhHis
 	insert Table in Database: HopDongHis
+	insert Table in Database: HisNgayDangKyHis
 
 
 	install .NET Framwork 4.6.1

@@ -549,8 +549,52 @@ namespace EOSCRM.Dao
             return msg;
         }
 
+        public Message UpdateGhiChuNT(string maddk, string ghichu, string useragent, string ipAddress, string sManv)
+        {
+            Message msg;
+            try
+            {
+                // get current object in database
+                var objDb = Get(maddk);
 
-        
+                if (objDb != null)
+                {
+                    //TODO: update all fields                    
+
+                    objDb.GHICHU = ghichu;
+
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = maddk,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.U.ToString(),
+                        MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                        MATT = "GhiChu_NT",
+                        MOTA = "Update ghi chú nghiệm thu."
+                    };
+                    _db.LUUVET_KYDUYETs.InsertOnSubmit(luuvetKyduyet);
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+
+                    // success message
+                    msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "nghiệm thu");
+                }
+                else
+                {
+                    // error message
+                    msg = new Message(MessageConstants.E_OBJECT_IN_USED, MessageType.Error, "nghiệm thu", maddk);
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ExceptionHandler.HandleUpdateException(ex, "nghiệm thu");
+            }
+            return msg;
+        }
 
     }
 }
