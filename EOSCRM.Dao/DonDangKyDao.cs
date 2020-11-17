@@ -1774,8 +1774,8 @@ namespace EOSCRM.Dao
                     objDb.MAMDSD = objUi.MAMDSD;
                     if (objUi.NGAYDK.HasValue)
                         objDb.NGAYDK = objUi.NGAYDK.Value;
-                    if (objUi.NGAYHKS.HasValue)
-                        objDb.NGAYHKS = objUi.NGAYHKS.Value;
+                    //if (objUi.NGAYHKS.HasValue)
+                    //    objDb.NGAYHKS = objUi.NGAYHKS.Value;
 
                     objDb.NGAYSINH = objUi.NGAYSINH;
                     if (objUi.CAPNGAY.HasValue)

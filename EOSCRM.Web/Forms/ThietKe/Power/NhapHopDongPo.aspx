@@ -387,7 +387,7 @@
                                         TabIndex="20" />                                    
                                 </div>
                                 <div class="left">
-                                    <div class="right">Ngày làm hợp đồng</div>
+                                    <div class="right">Ngày nhập hợp đồng</div>
                                 </div>
                                 <div class="left">
                                     <asp:TextBox ID="txtNGAYTAO" onkeypress="return CheckKeywordFilter(event);" 

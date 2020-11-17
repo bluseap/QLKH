@@ -15,6 +15,7 @@ namespace EOSCRM.Dao
         private static readonly string Connectionstring = ConfigurationManager.AppSettings[Constants.SETTINGS_CONNECTION];
 
         //private readonly DonDangKyPoDao _ddkpoDao = new DonDangKyPoDao();
+        private readonly StoredProcedureDao _spDao = new StoredProcedureDao();
         private readonly KyDuyetDao _kdDao = new KyDuyetDao();
 
         public HopDongPoDao()
@@ -578,5 +579,46 @@ namespace EOSCRM.Dao
             }
             return msg;
         }
+
+        public Message UpdateGhiChu(string maddkpo, string noidung, string useragent, string ipAddress, string sManv)
+        {
+            Message msg;
+            try
+            {
+                // Submit changes to db
+                _db.SubmitChanges();
+
+                if (_spDao.Update_HopDongPo_GhiChu(maddkpo, noidung, sManv).Tables[0].Rows[0]["KetQua"].ToString() != "Ok")
+                {
+                    #region Luu Vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = maddkpo,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.A.ToString(),
+                        MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                        MATT = "GhiChu_HDPO",
+                        MOTA = "Update ghi chú họp đồng."
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+                    #endregion
+
+                    msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "hợp đồng");
+                }
+                else
+                {
+                    msg = new Message(MessageConstants.E_FAILED, MessageType.Info, "hợp đồng");
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ExceptionHandler.HandleUpdateException(ex, "hợp đồng", maddkpo);
+            }
+            return msg;
+        }
+
     }
 }

@@ -2233,7 +2233,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 var dondk = ddkDao.Get(lbMADDK.Text.Trim());
 
-                _rpClass.HisBienCo(dondk.MADDK, dondk.MAKV, LoginInfo.MANV, "THIETKEHIS");
+                _rpClass.HisBienCo(dondk.MADDK, dondk.MAKV, LoginInfo.MANV, "DONHIS");
 
                 Filtered = FilteredMode.None;
 

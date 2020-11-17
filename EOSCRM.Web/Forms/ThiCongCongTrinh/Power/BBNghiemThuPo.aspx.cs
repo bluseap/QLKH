@@ -53,7 +53,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
                 bb.KETLUAN = txtKETLUAN.Text.Trim();
                 bb.MADHPO = txtCSDONGHO.Text.Trim();
                 bb.NGAYLAPBB = !string.Empty.Equals(txtLAMBB.Text.Trim()) ? DateTimeUtil.GetVietNamDate(txtLAMBB.Text.Trim())
-                        : DateTimeUtil.GetVietNamDate(DateTime.Now.ToString("dd/MM/yyyy"));
+                        : DateTime.Now;
                 bb.NGAYNHAP = DateTime.Now;
                 bb.HETHONGCN = txtHETHONGCN.Text.Trim();
                 bb.MANV = LoginInfo.MANV.ToString();

@@ -1578,8 +1578,8 @@ namespace EOSCRM.Dao
                     objDb.MAMDSDPO = objUi.MAMDSDPO;
                     if (objUi.NGAYDK.HasValue)
                         objDb.NGAYDK = objUi.NGAYDK.Value;
-                    if (objUi.NGAYHKS.HasValue)
-                        objDb.NGAYHKS = objUi.NGAYHKS.Value;
+                    //if (objUi.NGAYHKS.HasValue)
+                    //    objDb.NGAYHKS = objUi.NGAYHKS.Value;
 
                     objDb.NGAYSINH = objUi.NGAYSINH;
 
@@ -2224,7 +2224,8 @@ namespace EOSCRM.Dao
                     }
 
                     tk.MANVDTK = sManv;
-                    tk.NGAYDTK = tk.NGAYLTK;
+                    //tk.NGAYDTK = tk.NGAYLTK;
+                    tk.NGAYDTK = ngayduyet;
 
                     tk.NGAYN = DateTime.Now;
 
@@ -3967,5 +3968,55 @@ namespace EOSCRM.Dao
 
             return result.OrderByDescending(d => d.MADDKPO).ToList();
         }
+
+        public Message UpdateNoiDungDDK(string maddkpo, string noidung, string useragent, string ipAddress, string sManv)
+        {
+            Message msg;
+            try
+            {
+                // get current object in database
+                var objDb = Get(maddkpo);
+
+                if (objDb != null)
+                {
+                    //TODO: update all fields
+                   
+                    objDb.NOIDUNG = noidung;
+
+                    // Submit changes to db
+                    _db.SubmitChanges();
+
+                    #region Luu Vet
+                    var luuvetKyduyet = new LUUVET_KYDUYET
+                    {
+                        MADON = maddkpo,
+                        IPAddress = ipAddress,
+                        MANV = sManv,
+                        UserAgent = useragent,
+                        NGAYTHUCHIEN = DateTime.Now,
+                        TACVU = TACVUKYDUYET.U.ToString(),
+                        MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                        MATT = "NoiDung_DDKPO",
+                        MOTA = "Update nội dung Đơn đăng ký."
+                    };
+                    _kdDao.Insert(luuvetKyduyet);
+                    #endregion
+
+                    // success message
+                    msg = new Message(MessageConstants.I_UPDATE_SUCCEED, MessageType.Info, "đơn đăng ký");
+                }
+                else
+                {
+                    // error message
+                    msg = new Message(MessageConstants.E_OBJECT_IN_USED, MessageType.Error, "đơn đăng ký của khách hàng", maddkpo);
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ExceptionHandler.HandleUpdateException(ex, "đơn đăng ký");
+            }
+            return msg;
+        }
+
     }
 }

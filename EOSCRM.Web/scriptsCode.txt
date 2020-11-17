@@ -3,8 +3,11 @@
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
 	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
 	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
+	create procedure [dbo].[Get_HisNgayDangKyPo_ByMaDDKMoTaTTDON]
 	create procedure [dbo].[Get_HopDong_ByMaddk]
+	create procedure [dbo].[Get_HopDongPo_ByMaddk]	
 	create procedure [dbo].[Update_HopDong_GhiChu]
+	create procedure [dbo].[Update_HopDongPo_GhiChu]
 
 	update procedure [dbo].[BienKHNuoc]
 	update procedure [dbo].[dsKHCBiKT]
@@ -14,6 +17,7 @@
 	update procedure [dbo].[DSTHAYDOICHITIETNUOCDOTIN]
 	update procedure [dbo].[HisBienCo]
 	update procedure [dbo].[HisNgayDangKyBien]
+	update procedure [dbo].[HisNgayDangKyBienPo]
 	update procedure [dbo].[RP_THAYDONGHO]
 	update procedure [dbo].[RP_THAYDONGHO_DOTIN]	
 
@@ -39,6 +43,8 @@
 
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
+	update Database in table HOPDONGPO inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
+
 	update Database in table HISNGAYDANGKY inserts Column: SoNgay (int) and
 		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYDK, d.NGAYHKS) + 1) 
 			- (DATEDIFF(wk, d.NGAYDK, d.NGAYHKS) * 2) 
@@ -92,14 +98,74 @@
 			inner join BBNGHIEMTHU bb on tc.MADDK = bb.MADDK
 		where hi.MOTATTDON = 'INBBNT'
 
+	update Database in table HISNGAYDANGKYPO inserts Column: SoNgay (int) and
+		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYDK, d.NGAYHKS) + 1) 
+			- (DATEDIFF(wk, d.NGAYDK, d.NGAYHKS) * 2) 
+			- (CASE WHEN DATENAME(dw, d.NGAYDK) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, d.NGAYHKS) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKYPO hi inner join DONDANGKYPO d on hi.MADDKPO = d.MADDKPO
+		where MOTATTDON = 'DUYETDONDANGKY'
 
-	updata Database table THIETKE, THIETKEPO => update THIETKE set NGAYLTK = NGAYN where ngayltk is null
+		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYHKS, tk.NGAYDTK) + 1) 
+			- (DATEDIFF(wk, d.NGAYHKS, tk.NGAYDTK) * 2) 
+			- (CASE WHEN DATENAME(dw, d.NGAYHKS) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, tk.NGAYDTK) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKYPO hi inner join THIETKEPO tk on hi.MADDKPO = tk.MADDKPO 
+			inner join DONDANGKYPO d on tk.MADDKPO = d.MADDKPO
+		where hi.MOTATTDON = 'DUYETTHIETKE'
+
+		update  HISNGAYDANGKYPO set SoNgay = 1
+		from HISNGAYDANGKYPO hi inner join THIETKEPO tk on hi.MADDKPO = tk.MADDKPO 
+			inner join DONDANGKYPO d on tk.MADDKPO = d.MADDKPO
+		where tk.NGAYDTK < d.NGAYHKS and MOTATTDON = 'DUYETTHIETKE'
+
+		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, tk.NGAYDTK, ct.NGAYN) + 1) 
+			- (DATEDIFF(wk, tk.NGAYDTK, ct.NGAYN) * 2) 
+			- (CASE WHEN DATENAME(dw, tk.NGAYDTK) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, ct.NGAYN) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKYPO hi inner join THIETKEPO tk on hi.MADDKPO = tk.MADDKPO
+			inner join CHIETTINH ct on tk.MADDKPO = ct.MADDK
+		where hi.MOTATTDON = 'DUYETCTKH'
+
+		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, ct.NGAYN, hd.NGAYTAO) + 1) 
+			- (DATEDIFF(wk, ct.NGAYN, hd.NGAYTAO) * 2) 
+			- (CASE WHEN DATENAME(dw, ct.NGAYN) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, hd.NGAYTAO) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKYPO hi inner join CHIETTINH ct on hi.MADDKPO = ct.MADDK
+			inner join HOPDONGPO hd on ct.MADDK = hd.MADDKPO
+		where hi.MOTATTDON = 'INHOPDONG'
+
+		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, hd.NGAYTAO, tc.NGAYHT) + 1) 
+			- (DATEDIFF(wk, hd.NGAYTAO, tc.NGAYHT) * 2) 
+			- (CASE WHEN DATENAME(dw, hd.NGAYTAO) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, tc.NGAYHT) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKYPO hi inner join THICONG tc on hi.MADDKPO = tc.MADDK
+			inner join HOPDONGPO hd on tc.MADDK = hd.MADDKPO
+		where hi.MOTATTDON = 'DUYETTHICONG'
+
+		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, tc.NGAYHT, bb.NGAYLAPBB) + 1) 
+			- (DATEDIFF(wk, tc.NGAYHT, bb.NGAYLAPBB) * 2) 
+			- (CASE WHEN DATENAME(dw, tc.NGAYHT) = 'Sunday' THEN 1 ELSE 0 END)
+			- (CASE WHEN DATENAME(dw, bb.NGAYLAPBB) = 'Saturday' THEN 1 ELSE 0 END))
+		from HISNGAYDANGKYPO hi inner join THICONG tc on hi.MADDKPO = tc.MADDK
+			inner join BBNGHIEMTHUPO bb on tc.MADDK = bb.MADDKPO
+		where hi.MOTATTDON = 'INBBNT'
+
+
+
+	updata Database table THIETKE, THIETKEPO => 
+		update THIETKE set NGAYLTK = NGAYN where ngayltk is null
+		update THIETKEPO set NGAYLTK = NGAYN where ngayltk is null
 
 
 	insert table in Database: BBNghiemThuHis
+	insert table in Database: BBNghiemThuPoHis
 	insert Table in Database: ChietTinhHis
 	insert Table in Database: HopDongHis
+	insert Table in Database: HopDongPoHis
 	insert Table in Database: HisNgayDangKyHis
+	insert Table in Database: HisNgayDangKyPoHis
+	insert Table in Database: ThietKePoHis
 
 
 	install .NET Framwork 4.6.1

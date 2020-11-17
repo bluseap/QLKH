@@ -647,12 +647,12 @@ namespace EOSCRM.Web.Forms.ThietKe
                         return;
                     }
 
-                    hopdong.SOHD = txtSOHD.Text.Trim();
-
-                    msg = hdDao.Update(hopdong, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                    
+                    hopdong.SOHD = txtSOHD.Text.Trim();                                        
 
                     _rpClass.HisNgayDangKyBien(hopdong.MADDK, LoginInfo.MANV, _nvDao.Get(b).MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                                 "", "", "", "", "UPHOPDONG");
+
+                    msg = hdDao.Update(hopdong, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
                 //msghdtc = ddkDao.UpdateNhapHDTCMoi(hopdong.MADDK, "");
             }

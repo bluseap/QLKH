@@ -536,8 +536,17 @@ namespace EOSCRM.Web.Forms.ThietKe
                     var listIds = strIds.Split(',');
 
                     //Add ma vao danh sách cần delete
-                    objs.AddRange(listIds.Select(ma => ddkDao.Get(ma)));   
-                  
+                    objs.AddRange(listIds.Select(ma => ddkDao.Get(ma)));
+
+                    foreach (var obj in objs) 
+                    {
+                        try
+                        {
+                            obj.NGAYHKS = DateTimeUtil.GetVietNamDate(txtApproveDate.Text.Trim());
+                        }
+                        catch { }
+                    }
+
                     var msg = ddkDao.UpdateListDuyetQuyen2(objs, CommonFunc.GetComputerName(),
                                               CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ddlPHONGBAN.SelectedValue);               
                     

@@ -211,7 +211,7 @@
             unblockWaitingDialog();
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSaveGhiChuNT) %>', '');
                 return false;
-            }
+        }
     </script>
 </asp:Content>
 

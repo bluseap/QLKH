@@ -333,28 +333,17 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                     //Add ma vao danh sách cần delete
                     objs.AddRange(listIds.Select(ma => _ddkpoDao.Get(ma)));
 
-                    /*foreach (var obj in objs)
+                    foreach (var obj in objs)
                     {
-                        // ReSharper disable EmptyGeneralCatchClause
-                        try { obj.NGAYKS = DateTimeUtil.GetVietNamDate(txtApproveDate.Text); }
+                        try
+                        {
+                            obj.NGAYHKS = DateTimeUtil.GetVietNamDate(txtApproveDate.Text.Trim());
+                        }
                         catch { }
-                        // ReSharper restore EmptyGeneralCatchClause
-                        // approve thiet ke
-                        if (obj.TTTK == null)
-                            obj.TTTK = TTTK.TK_N.ToString();
-
-                        obj.NOIDUNG = txtNoiDung.Text.Trim();
-
-                        AddDuyetQuyenPo(obj.MADDKPO, ddlPHONGBAN.SelectedValue);
-                    }*/
-
-                    //TODO: check relation before update list
-                    //var msg = _ddkpoDao.UpdateList(objs, CommonFunc.GetComputerName(),
-                      //                        CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
+                    }
 
                     var msg = _ddkpoDao.UpdateList2(objs, CommonFunc.GetComputerName(),
                                               CommonFunc.GetLanIPAddressM(), LoginInfo.MANV, ddlPHONGBAN.SelectedValue);
-
 
                     if (msg != null)
                     {

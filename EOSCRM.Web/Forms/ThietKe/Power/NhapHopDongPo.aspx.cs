@@ -517,16 +517,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                     hopdongpo.SOHD = _hdpoDao.NewId();
 
                     msg = _hdpoDao.Insert(hopdongpo, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-
-                    //var dondangky = _ddkpoDao.Get(hopdongpo.MADDKPO);
-                    //if (dondangky != null)
-                    //{
-                    //    dondangky.TTHD = "HD_A";// TTHD.HD_A.ToString();
-                    //    dondangky.TTTC = "TC_N";// TTTC.TC_N.ToString();
-
-                    //    msghdtcpo = _ddkpoDao.UpdateHDTC(dondangky);
-                    //}
-
+                   
                     msghdtcpo = _ddkpoDao.UpdateHDTCMoi(txtMADDK.Text.Trim(), "");
 
                     _rpClass.HisNgayDangKyBienPo(maddkpo, LoginInfo.MANV, hopdongpo.MAKVPO, DateTime.Now, DateTime.Now, DateTime.Now,
@@ -541,14 +532,14 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                         return;
                     }
 
-                    hopdongpo.SOHD = txtSOHD.Text.Trim();
-
-                    msg = _hdpoDao.Update(hopdongpo, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                    hopdongpo.SOHD = txtSOHD.Text.Trim();                    
 
                     //msghdtcpo = _ddkpoDao.UpdateHDTCMoi(txtMADDK.Text.Trim(), "");
 
                     _rpClass.HisNgayDangKyBienPo(hopdongpo.MADDKPO, LoginInfo.MANV, hopdongpo.MAKVPO, DateTime.Now, DateTime.Now, DateTime.Now,
                             "", "", "", "", "UPHOPDONG");
+
+                    msg = _hdpoDao.Update(hopdongpo, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                 }
 
                 CloseWaitingDialog();
