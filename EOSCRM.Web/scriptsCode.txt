@@ -152,10 +152,19 @@
 		where hi.MOTATTDON = 'INBBNT'
 
 
+	update Database table DONDANGKY, DONDANGKYPO =>
+		update DONDANGKY set NGAYDK = NGAYN where NGAYDK is null
+		update DONDANGKY set NGAYHKS = tk.NGAYDTK
+			from DONDANGKY d inner join THIETKE tk on d.MADDK = tk.MADDK where d.NGAYHKS is null
+		update DONDANGKYPO set NGAYDK = NGAYN where NGAYDK is null
+		update DONDANGKYPO set NGAYHKS = tk.NGAYDTK
+			from DONDANGKYPO d inner join THIETKEPO tk on d.MADDKPO = tk.MADDKPO where d.NGAYHKS is null
 
-	updata Database table THIETKE, THIETKEPO => 
+	update Database table THIETKE, THIETKEPO => 
 		update THIETKE set NGAYLTK = NGAYN where ngayltk is null
 		update THIETKEPO set NGAYLTK = NGAYN where ngayltk is null
+	
+	
 
 
 	insert table in Database: BBNghiemThuHis
