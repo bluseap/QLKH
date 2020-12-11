@@ -121,6 +121,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="code_update_Data2.sql" />
+    <Content Include="code_update_data22.sql" />
     <Content Include="content\css\bootstrap-theme.css" />
     <Content Include="content\css\bootstrap-theme.min.css" />
     <Content Include="content\css\bootstrap.css" />
@@ -209,6 +211,7 @@
     <Content Include="Forms\KhachHang\GiaHanHopDong.aspx" />
     <Content Include="Forms\KhachHang\HoNgheoN.aspx" />
     <Content Include="Forms\KhachHang\InHopDongKH.aspx" />
+    <Content Include="Forms\KhachHang\NhapDonCaiTao.aspx" />
     <Content Include="Forms\KhachHang\NhapKHCDoc.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSTongHopKHDKPo.aspx" />
@@ -1807,6 +1810,13 @@
     <Compile Include="Forms\KhachHang\KhachHangTam.aspx.designer.cs">
       <DependentUpon>KhachHangTam.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\KhachHang\NhapDonCaiTao.aspx.cs">
+      <DependentUpon>NhapDonCaiTao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\NhapDonCaiTao.aspx.designer.cs">
+      <DependentUpon>NhapDonCaiTao.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Forms\KhachHang\NhapKHCDoc.aspx.cs">
       <DependentUpon>NhapKHCDoc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3189,6 +3199,42 @@
       <DependentUpon>VatTuThietKe.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\DSBBChuaNTN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBBChuaNTN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DSBBChuaNTPo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBBChuaNTPo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DSBBNghiemThuN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBBNghiemThuN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DSBBNghiemThuPo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBBNghiemThuPo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DSChuaTCN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSChuaTCN.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DSChuaTCPo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSChuaTCPo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\HoaDonLapDatSuaChua\DSThuTaiQuayHD.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3417,6 +3463,12 @@
       <DependentUpon>DSCacDuongThuTienMat.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\QuanLyKhachHang\DsDonLapMoiSoNgayLap.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDonLapMoiSoNgayLap.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\QuanLyKhachHang\DSHoNgheo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3463,6 +3515,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSThuTaiQuayNgay.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\QuanLyKhachHang\DSTongHopDK.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSTongHopDK.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\QuanLyKhachHang\DS_CapNuoc.cs">
@@ -4496,6 +4554,30 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>VatTuThietKe.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DSBBChuaNTN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSBBChuaNTN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DSBBChuaNTPo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSBBChuaNTPo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DSBBNghiemThuN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSBBNghiemThuN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DSBBNghiemThuPo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSBBNghiemThuPo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DSChuaTCN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSChuaTCN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DSChuaTCPo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSChuaTCPo.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\GhiChiSo\DSDOTINHD.rdlc" />
     <EmbeddedResource Include="Reports\HoaDonLapDatSuaChua\DSThuTaiQuayHD.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4645,9 +4727,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ChuanThuTN_SLTT.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\QuanLyKhachHang\DsDonLapMoiSoNgayLap.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DsDonLapMoiSoNgayLap.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\QuanLyKhachHang\DSHoNgheo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>DSHoNgheo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\QuanLyKhachHang\DSTongHopDK.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DSTongHopDK.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\QuanLyKhachHang\DSXOABON.rdlc" />
     <EmbeddedResource Include="Reports\QuanLyKhachHang\DSHopDong.rpt">

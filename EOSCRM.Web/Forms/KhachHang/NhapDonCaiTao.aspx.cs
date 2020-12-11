@@ -254,36 +254,36 @@ namespace EOSCRM.Web.Forms.KhachHang
 
         private void BindDataForGrid()
         {
-            try
-            {
-                if (Filtered == FilteredMode.None)
-                {
-                    var objList = ddkDao.GetListTrangThaiDonCaiTao();
-                    gvList.DataSource = objList;
-                    gvList.PagerInforText = objList.Count.ToString();
-                    gvList.DataBind();
-                }
-                else
-                {
-                    DateTime? ngaynd = null;
+            //try
+            //{
+            //    if (Filtered == FilteredMode.None)
+            //    {
+            //        var objList = ddkDao.GetListTrangThaiDonCaiTao();
+            //        gvList.DataSource = objList;
+            //        gvList.PagerInforText = objList.Count.ToString();
+            //        gvList.DataBind();
+            //    }
+            //    else
+            //    {
+            //        DateTime? ngaynd = null;
 
-                    // ReSharper disable EmptyGeneralCatchClause
-                    try { ngaynd = DateTimeUtil.GetVietNamDate(txtNGAYCD.Text.Trim()); }
-                    catch { }
-                    // ReSharper restore EmptyGeneralCatchClause
+            //        // ReSharper disable EmptyGeneralCatchClause
+            //        try { ngaynd = DateTimeUtil.GetVietNamDate(txtNGAYCD.Text.Trim()); }
+            //        catch { }
+            //        // ReSharper restore EmptyGeneralCatchClause
 
-                    var objList = ddkDao.GetListTrangThaiDonCaiTao(txtMADDK.Text.Trim(), txtNoiDung.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
-                                    ngaynd, ddlKHUVUC.SelectedValue, ddlPHUONG.SelectedValue);
+            //        var objList = ddkDao.GetListTrangThaiDonCaiTao(txtMADDK.Text.Trim(), txtNoiDung.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
+            //                        ngaynd, ddlKHUVUC.SelectedValue, ddlPHUONG.SelectedValue);
 
-                    gvList.DataSource = objList;
-                    gvList.PagerInforText = objList.Count.ToString();
-                    gvList.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
-                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
-            }
+            //        gvList.DataSource = objList;
+            //        gvList.PagerInforText = objList.Count.ToString();
+            //        gvList.DataBind();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            //}
         }
 
         private bool IsDataValid()
@@ -470,12 +470,12 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             if (UpdateMode.Equals(Mode.Create))
             {
-                if (!HasPermission(Functions.KH_DonCaiTaoCongTy, Permission.Insert))
-                {
-                    CloseWaitingDialog();
-                    ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
-                    return;
-                }
+                //if (!HasPermission(Functions.KH_DonCaiTaoCongTy, Permission.Insert))
+                //{
+                //    CloseWaitingDialog();
+                //    ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
+                //    return;
+                //}
 
                 // check exists
                 var existed = ddkDao.Get(don.MADDK);
@@ -500,12 +500,12 @@ namespace EOSCRM.Web.Forms.KhachHang
             }
             else
             {
-                if (!HasPermission(Functions.KH_DonCaiTaoCongTy, Permission.Update))
-                {
-                    CloseWaitingDialog();
-                    ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
-                    return;
-                } 
+                //if (!HasPermission(Functions.KH_DonCaiTaoCongTy, Permission.Update))
+                //{
+                //    CloseWaitingDialog();
+                //    ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
+                //    return;
+                //} 
 
                 msg = ddkDao.Update(don, CommonFunc.GetComputerName(), CommonFunc.GetIpAdddressComputerName(), LoginInfo.MANV);
             }
@@ -553,12 +553,12 @@ namespace EOSCRM.Web.Forms.KhachHang
                 Filtered = FilteredMode.None;
 
                 // Authenticate
-                if (!HasPermission(Functions.KH_DonCaiTaoCongTy, Permission.Delete))
-                {
-                    CloseWaitingDialog();
-                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
-                    return;
-                }
+                //if (!HasPermission(Functions.KH_DonCaiTaoCongTy, Permission.Delete))
+                //{
+                //    CloseWaitingDialog();
+                //    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                //    return;
+                //}
 
                 // Get list of ids that to be update
                 var strIds = Request["listIds"];

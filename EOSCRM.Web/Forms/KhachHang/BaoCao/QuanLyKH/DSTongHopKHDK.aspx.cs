@@ -107,7 +107,9 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 ddlDieuKien.Items.Add(new ListItem("DS 1 tháng nhập đơn chưa thiết kế", "DS1TKOTK"));
                 ddlDieuKien.Items.Add(new ListItem("DS nghiệm thu chưa khai thác", "DSNTKOKHM"));
                 //ddlDieuKien.Items.Add(new ListItem("DS 6 tháng chưa nhập thi công", "DS6TKOTC"));
-                
+                ddlDieuKien.Items.Add(new ListItem("DS đơn đúng quy trình 7 ngày", "DSDonDung7Ngay"));
+                ddlDieuKien.Items.Add(new ListItem("DS đơn trễ quy trình 7 ngày", "DSDonTre7Ngay"));
+
             }
             catch { }
         }
@@ -324,6 +326,16 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                         var ds = new ReportClass().DSTongHopDDK(tungay, denngay, cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue,
                             "", ddlDieuKien.SelectedValue, "DSNTKOKHM"); //LAY NGAY NHAP TREN MAY
                         dt = ds.Tables[0];
+                    }                    
+                    else if (ddlDieuKien.SelectedValue == "DSDonDung7Ngay") 
+                    {
+                        var ds = new ReportClass().Get_DSTongHopKHDK_ByKVToDung7Ngay(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
+                        dt = ds.Tables[0];
+                    }
+                    else if (ddlDieuKien.SelectedValue == "DSDonTre7Ngay")
+                    {
+                        var ds = new ReportClass().Get_DSTongHopKHDK_ByKVToTre7Ngay(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
+                        dt = ds.Tables[0];
                     }
                     else
                     {
@@ -388,17 +400,20 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
                 DateTime denngay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());         
 
                 DataTable dt;
-                if (_nvDao.Get(b).MAKV == "X") // X la Long Xuyen
-                {
-                    var ds = new ReportClass().DSTongHopDDK(tungay, denngay, cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue,
-                        "", "", "DSTHDDKN");
-                    dt = ds.Tables[0];
-                }
-                else
-                {
-                    var ds = new ReportClass().DSTongHopKHDK_ByKVToNgay(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
-                    dt = ds.Tables[0];
-                }
+                var ds = new ReportClass().DSTongHopKHDK_ByKVToNgay(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
+                dt = ds.Tables[0];
+
+                //if (_nvDao.Get(b).MAKV == "X") // X la Long Xuyen
+                //{
+                //    var ds = new ReportClass().DSTongHopDDK(tungay, denngay, cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue,
+                //        "", "", "DSTHDDKN");
+                //    dt = ds.Tables[0];
+                //}
+                //else
+                //{
+                //    var ds = new ReportClass().DSTongHopKHDK_ByKVToNgay(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
+                //    dt = ds.Tables[0];
+                //}
 
                 //Create a dummy GridView
                 GridView GridView1 = new GridView();

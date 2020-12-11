@@ -1,6 +1,8 @@
 ﻿
 	create procedure [dbo].[Get_DuongPho_ByAll]
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7Ngay]	
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7Ngay]
 	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
 	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
 	create procedure [dbo].[Get_HisNgayDangKyPo_ByMaDDKMoTaTTDON]
@@ -82,12 +84,18 @@
 			inner join HOPDONG hd on ct.MADDK = hd.MADDK
 		where hi.MOTATTDON = 'INHOPDONG'
 
+		update  HISNGAYDANGKY set SoNgay = 1
+		from HISNGAYDANGKY hi inner join CHIETTINH ct on hi.MADDK = ct.MADDK
+			inner join HOPDONG hd on ct.MADDK = hd.MADDK
+		where hi.MOTATTDON = 'INHOPDONG' and hi.SoNgay < 0
+
 		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, hd.NGAYTAO, tc.NGAYHT) + 1) 
 			- (DATEDIFF(wk, hd.NGAYTAO, tc.NGAYHT) * 2) 
 			- (CASE WHEN DATENAME(dw, hd.NGAYTAO) = 'Sunday' THEN 1 ELSE 0 END)
 			- (CASE WHEN DATENAME(dw, tc.NGAYHT) = 'Saturday' THEN 1 ELSE 0 END))
 		from HISNGAYDANGKY hi inner join THICONG tc on hi.MADDK = tc.MADDK
 			inner join HOPDONG hd on tc.MADDK = hd.MADDK
+			inner join CHIETTINH ct on tc.MADDK = ct.MADDK
 		where hi.MOTATTDON = 'DUYETTHICONG'
 
 		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, tc.NGAYHT, bb.NGAYLAPBB) + 1) 
@@ -135,12 +143,18 @@
 			inner join HOPDONGPO hd on ct.MADDK = hd.MADDKPO
 		where hi.MOTATTDON = 'INHOPDONG'
 
+		update  HISNGAYDANGKYPO set SoNgay = 1
+		from HISNGAYDANGKYPO hi inner join CHIETTINH ct on hi.MADDKPO = ct.MADDK
+			inner join HOPDONGPO hd on ct.MADDK = hd.MADDKPO
+		where hi.MOTATTDON = 'INHOPDONG' and hi.SoNgay < 0
+
 		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, hd.NGAYTAO, tc.NGAYHT) + 1) 
 			- (DATEDIFF(wk, hd.NGAYTAO, tc.NGAYHT) * 2) 
 			- (CASE WHEN DATENAME(dw, hd.NGAYTAO) = 'Sunday' THEN 1 ELSE 0 END)
 			- (CASE WHEN DATENAME(dw, tc.NGAYHT) = 'Saturday' THEN 1 ELSE 0 END))
 		from HISNGAYDANGKYPO hi inner join THICONG tc on hi.MADDKPO = tc.MADDK
 			inner join HOPDONGPO hd on tc.MADDK = hd.MADDKPO
+			inner join CHIETTINH ct on tc.MADDK = ct.MADDK
 		where hi.MOTATTDON = 'DUYETTHICONG'
 
 		update  HISNGAYDANGKYPO set SoNgay = (SELECT (DATEDIFF(dd, tc.NGAYHT, bb.NGAYLAPBB) + 1) 

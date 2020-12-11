@@ -177,6 +177,34 @@ public class ReportClass
         return ds;
     }
 
+    public DataSet Get_DSTongHopKHDK_ByKVToDung7Ngay(string khuVuc, string mapb, DateTime tuNgay, DateTime denNgay)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@MaKV", SqlDbType.VarChar  , 10, khuVuc ),
+                    db.MakeInParam("@MaPB", SqlDbType.VarChar  , 10, mapb ),
+                    db.MakeInParam("@TuNgay", SqlDbType.DateTime  ,30, tuNgay),
+                    db.MakeInParam("@DenNgay", SqlDbType.DateTime  ,30, denNgay)
+                };
+        DataSet ds = db.RunExecProc("Get_DSTongHopKHDK_ByKVToDung7Ngay", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_DSTongHopKHDK_ByKVToTre7Ngay(string khuVuc, string mapb, DateTime tuNgay, DateTime denNgay)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@MaKV", SqlDbType.VarChar  , 10, khuVuc ),
+                    db.MakeInParam("@MaPB", SqlDbType.VarChar  , 10, mapb ),
+                    db.MakeInParam("@TuNgay", SqlDbType.DateTime  ,30, tuNgay),
+                    db.MakeInParam("@DenNgay", SqlDbType.DateTime  ,30, denNgay)
+                };
+        DataSet ds = db.RunExecProc("Get_DSTongHopKHDK_ByKVToTre7Ngay", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet DSTongHopKHDKPO_ByKVToNgay(string khuVuc, string mapb, DateTime tuNgay, DateTime denNgay)
     {
         Database db = new Database();
