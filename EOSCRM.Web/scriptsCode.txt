@@ -3,6 +3,8 @@
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7Ngay]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7Ngay]
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7NgayPo]	
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7NgayPo]
 	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
 	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
 	create procedure [dbo].[Get_HisNgayDangKyPo_ByMaDDKMoTaTTDON]
