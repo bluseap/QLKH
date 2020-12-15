@@ -102,6 +102,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                 ddlDieuKien.Items.Add(new ListItem("DS nghiệm thu chưa khai thác", "DSNTKOKHMPO"));
                 ddlDieuKien.Items.Add(new ListItem("DS đơn đúng quy trình 7 ngày", "DSDonDung7NgayPo"));
                 ddlDieuKien.Items.Add(new ListItem("DS đơn trễ quy trình 7 ngày", "DSDonTre7NgayPo"));
+                ddlDieuKien.Items.Add(new ListItem("DS đã duyệt chiết tính nhưng chưa thi công (Toàn bộ)", "DSDuyetCTKoThiCongPo"));
             }
             catch { }
         }
@@ -258,6 +259,12 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                     else if (ddlDieuKien.SelectedValue == "DSDonTre7NgayPo")
                     {
                         var ds = new ReportClass().Get_DSTongHopKHDK_ByKVToTre7NgayPo(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
+                        dt = ds.Tables[0];
+                    }
+                    //DSDuyetCTKoThiCongPo
+                    else if (ddlDieuKien.SelectedValue == "DSDuyetCTKoThiCongPo")
+                    {
+                        var ds = new ReportClass().Get_DSTongHopKHDK_ByDuyetCTKoTCPo(cboKhuVuc.SelectedValue, ddlNHAMAYTO.SelectedValue, tungay, denngay);
                         dt = ds.Tables[0];
                     }
                     else

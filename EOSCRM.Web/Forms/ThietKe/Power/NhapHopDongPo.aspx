@@ -168,13 +168,15 @@
                                             <td class="crmcell right">Từ ngày</td>
                                             <td class="crmcell">
                                                 <div class="left">
-                                                    <asp:TextBox ID="txtTuNgay" runat="server" Width="90px" />
+                                                    <asp:TextBox ID="txtTuNgay" runat="server" Width="150px" />
                                                 </div>
                                                 <div class="left">
                                                     <div class="right">Đến ngày</div>                                                
                                                 </div>
                                                 <div class="left">
-                                                    <asp:TextBox ID="txtDenNgay" runat="server" Width="90px" />
+                                                    <div class="right">
+                                                        <asp:TextBox ID="txtDenNgay" runat="server" Width="160px" />
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>

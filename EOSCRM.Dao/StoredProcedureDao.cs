@@ -63,6 +63,17 @@ public class StoredProcedureDao
         return ds;
     }
 
+    public DataSet Get_DonDangKy_ByMaddk(string maddk)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 11, maddk)
+                };
+        DataSet ds = db.RunExecProc("Get_DonDangKy_ByMaddk", prams);
+        db.Dispose();
+        return ds;
+    }
+
     public DataSet Update_HopDong_GhiChu(string maddk, string ghichu, string manv)
     {
         Database db = new Database();
@@ -85,6 +96,20 @@ public class StoredProcedureDao
                     db.MakeInParam("@Manv", SqlDbType.VarChar  , 50, manv )
                 };
         DataSet ds = db.RunExecProc("Update_HopDongPo_GhiChu", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Update_DonDangKy_SoDienThoai2MuaVatTu(string maddk, string sodienthoai2, bool muavattu, string manv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 11, maddk),
+                    db.MakeInParam("@SoDienThoai2", SqlDbType.VarChar  , 20, sodienthoai2 ),
+                    db.MakeInParam("@IsMuaVatTu", SqlDbType.Bit  , 20, muavattu ),
+                    db.MakeInParam("@Manv", SqlDbType.VarChar  , 50, manv )
+                };
+        DataSet ds = db.RunExecProc("Update_DonDangKy_SoDienThoai2MuaVatTu", prams);
         db.Dispose();
         return ds;
     }

@@ -527,14 +527,16 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
             {
                 var don = ddkDao.Get(lbMADDTRAHSTK.Text.Trim());
 
-                if (don.MAKV == "P" || don.MAKV == "T") // phu tan, tan chau
-                {
-                    msg = tcdao.UpdateTraHSTCTKPT(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                }
-                else
-                {
-                    msg = tcdao.UpdateTraHSTCKT(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                }
+                //if (don.MAKV == "P" || don.MAKV == "T") // phu tan, tan chau
+                //{
+                //    msg = tcdao.UpdateTraHSTCTKPT(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                //}
+                //else
+                //{
+                //    msg = tcdao.UpdateTraHSTCKT(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                //}
+
+                msg = tcdao.UpdateTraHSTCTKPT(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 _rpClass.HisNgayDangKyBien(thicong.MADDK, LoginInfo.MANV, nvdao.Get(LoginInfo.MANV).MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                            "", "", "", "", "TRAHSTCKT");
@@ -560,10 +562,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     CloseWaitingDialog();
                     ShowInfor(ResourceLabel.Get(msg2));
                     return;
-                }          
-
-                ShowInfor(ResourceLabel.Get(msg));               
-             
+                }
+                ShowInfor(ResourceLabel.Get(msg));
             }
             else
             {

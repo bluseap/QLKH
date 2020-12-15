@@ -1,17 +1,27 @@
 ﻿
 	create procedure [dbo].[Get_DuongPho_ByAll]
+	create procedure [dbo].[Get_DonDangKy_ByMaddk]
+	create procedure [dbo].[Get_DSTongHopKHDK_ByDuyetCTKoTC]
+	create procedure [dbo].[Get_DSTongHopKHDK_ByDuyetCTKoTCPo]
+
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7Ngay]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7Ngay]
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7NgayPo]	
-	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7NgayPo]
-	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]
+	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7NgayPo]	
+
+	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]	
+	
 	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
 	create procedure [dbo].[Get_HisNgayDangKyPo_ByMaDDKMoTaTTDON]
+	
 	create procedure [dbo].[Get_HopDong_ByMaddk]
 	create procedure [dbo].[Get_HopDongPo_ByMaddk]	
+
+	create procedure [dbo].[Update_DonDangKy_SoDienThoai2MuaVatTu]
 	create procedure [dbo].[Update_HopDong_GhiChu]
 	create procedure [dbo].[Update_HopDongPo_GhiChu]
+	
 
 	update procedure [dbo].[BienKHNuoc]
 	update procedure [dbo].[dsKHCBiKT]
@@ -45,6 +55,8 @@
 		values ( 'NNDLX6', '3, 4  (Đợt 3)', '2020-10-26', 'admin', 1, NULL) 
 		values ( 'NNDLX7', '5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
 
+	update Database in table DONDANGKY inserts Column: SoDienThoai2 varchar(20)
+	update Database in table DONDANGKY inserts Column: IsKHMuaVatTu (bit)
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
 	update Database in table HOPDONGPO inserts Column: GhiChu nvarchar(1000), Manv varchar(11)

@@ -508,14 +508,16 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.Power
             {
                 var don = _ddkpoDao.Get(lbMADDTRAHSTK.Text.Trim());
 
-                if (don.MAKVPO == "P" || don.MAKVPO == "T") // phu tan, tan chau
-                {
-                    msg = tcdao.UpdateTraTCToTK(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                }
-                else
-                {
-                    msg = tcdao.UpdateTraTCToTK(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                }
+                //if (don.MAKVPO == "P" || don.MAKVPO == "T") // phu tan, tan chau
+                //{
+                //    msg = tcdao.UpdateTraTCToTK(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                //}
+                //else
+                //{
+                //    msg = tcdao.UpdateTraTCToTK(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                //}
+
+                msg = tcdao.UpdateTraTCToTK(thicong, TTTC.TC_RA, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 _rpClass.HisNgayDangKyBien(thicong.MADDK, LoginInfo.MANV, nvdao.Get(LoginInfo.MANV).MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                            "", "", "", "", "TRAHSTCKT");

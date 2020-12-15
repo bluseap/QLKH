@@ -377,12 +377,18 @@
                                     <asp:LinkButton ID="lkKTCMND" CausesValidation="false" style="display:none"  
                                         OnClick="lkKTCMND_Click" runat="server"></asp:LinkButton>                                 
                                 </div>                               
-                                <td class="crmcell right">Điện thoại</td>
+                                <td class="crmcell right">Điện thoại 1</td>
                                 <td class="crmcell"> 
                                     <div class="left">
                                         <asp:TextBox ID="txtDIENTHOAI" runat="server" Width="90px" MaxLength="20"  onblur="checkSDTForm();" TabIndex="16" />
                                         <asp:LinkButton ID="lkKTSDT" CausesValidation="false" style="display:none"  
                                         OnClick="lkKTSDT_Click" runat="server"></asp:LinkButton>
+                                    </div>                                     
+                                </td>
+                                <td class="crmcell right">Điện thoại 2</td>
+                                <td class="crmcell"> 
+                                    <div class="left">
+                                        <asp:TextBox ID="txtSoDienThoai2" runat="server" Width="90px" MaxLength="20" TabIndex="16" />                                       
                                     </div>                                     
                                 </td>
                             </td>                            
@@ -515,6 +521,9 @@
                                 <td class="crmcell" colspan="3">    
                                     <div class="left">
                                         <asp:TextBox ID="txtTIENVATTULX" runat="server"></asp:TextBox> 
+                                    </div>
+                                    <div class="left">
+                                        <asp:CheckBox ID="ckKHMuaVatTu" runat="server" Text="  Khách hàng đồng ý mua vật tư" TabIndex="18"/>
                                     </div>
                                 </td>
                             </td>

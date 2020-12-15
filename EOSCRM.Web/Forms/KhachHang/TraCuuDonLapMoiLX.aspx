@@ -1261,6 +1261,12 @@
                                     <asp:TextBox ID="txtSONHA2" runat="server" TabIndex="6" Width="50px" />
                                 </div>   
                             </td>
+                            <td class="crmcell right">Số điện thoại 2</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtSoDienThoai2" runat="server" Width="130px" MaxLength="20" TabIndex="9" />
+                                </div>
+                            </td>
                         </tr>
                         <tr>    
                             <td class="crmcell right">Địa chỉ thường trú</td>
@@ -1395,11 +1401,16 @@
                                     <asp:TextBox ID="txtTEINCOCLX" runat="server"></asp:TextBox>                
                                 </div>                                                                                            
                                 <td class="crmcell right">Tiển mua vật tư</td>
-                                <td class="crmcell" colspan="3">    
+                                <td class="crmcell" >    
                                     <div class="left">
                                         <asp:TextBox ID="txtTIENVATTULX" runat="server"></asp:TextBox> 
                                     </div>
-                                </td>
+                                </td>                                
+                            </td>                           
+                            <td class="crmcell" >    
+                                <div class="left">
+                                    <asp:CheckBox ID="ckKHMuaVatTu" runat="server" Text="  Khách hàng đồng ý mua vật tư" TabIndex="18"/>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -1411,7 +1422,7 @@
                                 </div>
                              </td>                                                
                         </tr>
-                        <tr>    
+                        <%--<tr>    
                             <td class="crmcell right">Ngày nhập đơn đăng ký</td>
                             <td class="crmcell">    
                                 <div class="left">
@@ -1452,19 +1463,19 @@
                                     </div>
                                 </td>                                
                             </td>
-                        </tr>   
+                        </tr> --%>  
                         <tr>    
                             <td class="crmcell right">Ngày khai thác</td>
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:Label ID="lbNGAYKHAITHAC" runat="server" Text=""></asp:Label>
                                 </div>  
-                                <td class="crmcell right">Ngày Nhân viên ký nghiệm thu</td>
+                                <%--<td class="crmcell right">Ngày Nhân viên ký nghiệm thu</td>
                                 <td class="crmcell" colspan="3">
                                     <div class="left">
                                         <asp:Label ID="lbNVKYNGHIEMTHU" runat="server" Text=""></asp:Label>
                                     </div>
-                                </td>                                                      
+                                </td>    --%>                                                  
                             </td>
                         </tr>                      
                         <tr>    

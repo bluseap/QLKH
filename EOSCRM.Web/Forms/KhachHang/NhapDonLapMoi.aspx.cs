@@ -14,6 +14,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 {
     public partial class NhapDonLapMoi : Authentication
     {
+        private readonly StoredProcedureDao _spDao = new StoredProcedureDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly DonDangKyDao ddkDao = new DonDangKyDao();
         private readonly KhuVucDao kvDao = new KhuVucDao();
@@ -795,6 +796,9 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             txtTEINCOCLX.Text = "0";
             txtTIENVATTULX.Text = "0";
+            ckKHMuaVatTu.Checked = false;
+
+            txtSoDienThoai2.Text = "";
         }
         
         protected void btnSave_Click(object sender, EventArgs e)
@@ -860,10 +864,12 @@ namespace EOSCRM.Web.Forms.KhachHang
                 don.MAPB = makvts.MAPB != null ? makvts.MAPB : "KD";
 
                 // insert
-                msg = ddkDao.Insert(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                msg = ddkDao.Insert(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                
 
                 _rpClass.HisNgayDangKyBien(don.MADDK, LoginInfo.MANV, don.MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                     "","","","","INDONDK");
+
+                _spDao.Update_DonDangKy_SoDienThoai2MuaVatTu(don.MADDK, txtSoDienThoai2.Text.Trim(), ckKHMuaVatTu.Checked, LoginInfo.MANV);
             }
             else
             {
