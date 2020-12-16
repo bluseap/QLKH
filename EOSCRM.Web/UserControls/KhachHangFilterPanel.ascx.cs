@@ -27,6 +27,9 @@ namespace EOSCRM.Web.UserControls
         private string xoabonuoc;
         private string sodienthoai;
 
+        private string makhachhang;
+        private string cmnd;
+
         public string IDKH
         {
             get { return id; }
@@ -81,6 +84,18 @@ namespace EOSCRM.Web.UserControls
             set { xoabonuoc = value; }
         }
 
+        public string MaKhachHang
+        {
+            get { return makhachhang; }
+            set { makhachhang = value; }
+        }
+
+        public string Cmnd
+        {
+            get { return cmnd; }
+            set { cmnd = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.IsPostBack) return;
@@ -93,6 +108,9 @@ namespace EOSCRM.Web.UserControls
             txtSOHD.Text = sohd ?? "";
             txtMADH.Text = madh ?? "";
             txtTENDP.Text = tendp ?? "";
+
+            txtMaKhachHang.Text = makhachhang ?? "";
+            txtCMND.Text = cmnd ?? "";
 
             txtSODIENTHOAI.Text = sodienthoai ?? "";
 
@@ -165,6 +183,14 @@ namespace EOSCRM.Web.UserControls
 
             if (txtTENDP.Text.Trim() != "")
                 hash.Add(Constants.PARAM_TENDP, EncryptUtil.Encrypt(txtTENDP.Text.Trim()));
+
+
+            if (txtMaKhachHang.Text.Trim() != "")
+                hash.Add(Constants.PARAM_MAKHACHHANG, EncryptUtil.Encrypt(txtMaKhachHang.Text.Trim()));
+
+            if (txtCMND.Text.Trim() != "")
+                hash.Add(Constants.PARAM_CMND, EncryptUtil.Encrypt(txtCMND.Text.Trim()));
+
 
             if (txtSODIENTHOAI.Text.Trim() != "")
                 hash.Add(Constants.PARAM_SODIENTHOAI, EncryptUtil.Encrypt(txtSODIENTHOAI.Text.Trim()));

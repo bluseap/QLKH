@@ -1525,6 +1525,59 @@ namespace EOSCRM.Dao
                         .ToList();
         }
 
+        public List<KHACHHANG> GetListMaKhachHang(string IDKH, string SOHD, string MADH, string TENKH, string SONHA, string TENDP, 
+            string MAKV, string GHI2THANG1LAN, string makhachhang, string cmnd)
+        {            
+            var dskh = from kh in _db.KHACHHANGs
+                       join d in _db.DONGHOs on kh.MADH equals d.MADH
+                       //where kh.XOABOKH == false
+                       select kh;
+
+            if (IDKH != null)
+                dskh = dskh.Where(kh => (kh.MADP + kh.DUONGPHU + kh.MADB).Contains(IDKH));
+
+            if (SOHD != null)
+                dskh = dskh.Where(kh => kh.SOHD.Equals(SOHD));
+
+            if (MADH != null)
+                //dskh = dskh.Where(kh => kh.MADH.Contains(MADH));
+                dskh = dskh.Where(kh => kh.DONGHO.SONO.Contains(MADH));
+
+            if (TENKH != null)
+                dskh = dskh.Where(kh => kh.TENKH.Contains(TENKH));            
+
+            if (SONHA != null)
+                dskh = dskh.Where(kh => kh.SONHA.Contains(SONHA));
+
+            if (TENDP != null)
+                dskh = dskh.Where(kh => kh.DUONGPHO.TENDP.Contains(TENDP) || kh.MADP.Equals(TENDP));
+
+            if (MAKV != null)
+                dskh = dskh.Where(kh => kh.MAKV.Equals(MAKV));
+
+            if (GHI2THANG1LAN != null)
+                dskh = dskh.Where(kh => kh.XOABOKH.Equals(Convert.ToInt16(GHI2THANG1LAN)));
+
+            if (makhachhang != null)
+                dskh = dskh.Where(kh => kh.MAKV.Equals(makhachhang.Substring(0, 1)) && kh.IDKH.Equals(makhachhang.Substring(1, 6)));
+
+            if (cmnd != null)
+            {
+                var khachhangmoi = from kh in dskh
+                                   join don in _db.DONDANGKies on kh.MADDK equals don.MADDK
+                                   where don.CMND == cmnd
+                                   select kh;
+
+                dskh = khachhangmoi;
+            }                
+
+            return dskh
+                        .OrderBy(kh => kh.STT)
+                        .OrderBy(kh => kh.DUONGPHU)
+                        .OrderBy(kh => kh.MADP)
+                        .ToList();
+        }
+
         public List<KHACHHANG> GetListLX(String IDKH, String SOHD, String MADH, String TENKH, String SONHA, String TENDP, 
                 String MAKV, String GHI2THANG1LAN, string SODIENTHOAI)
         {
@@ -1564,6 +1617,64 @@ namespace EOSCRM.Dao
 
             if (GHI2THANG1LAN != null)
                 dskh = dskh.Where(kh => kh.XOABOKH.Equals(Convert.ToInt16(GHI2THANG1LAN)));
+
+            return dskh
+                        .OrderBy(kh => kh.STT)
+                        .OrderBy(kh => kh.DUONGPHU)
+                        .OrderBy(kh => kh.MADP)
+                        .ToList();
+        }
+
+        public List<KHACHHANG> GetListLXMaKhachHang(String IDKH, String SOHD, String MADH, String TENKH, String SONHA, String TENDP,
+                String MAKV, String GHI2THANG1LAN, string SODIENTHOAI, string makhachhang, string cmnd)
+        {          
+
+            var dskh = from kh in _db.KHACHHANGs
+                       join d in _db.DONGHOs on kh.MADH equals d.MADH
+                       //where kh.XOABOKH == false
+                       select kh;
+
+            if (IDKH != null)
+                dskh = dskh.Where(kh => (kh.MADP + kh.DUONGPHU + kh.MADB).Contains(IDKH));
+
+            if (SOHD != null)
+                dskh = dskh.Where(kh => kh.SOHD.Equals(SOHD));
+
+            if (MADH != null)
+                //dskh = dskh.Where(kh => kh.MADH.Contains(MADH));
+                dskh = dskh.Where(kh => kh.DONGHO.SONO.Contains(MADH));
+
+            if (TENKH != null)
+                dskh = dskh.Where(kh => kh.TENKH.Contains(TENKH));
+
+            if (SONHA != null)
+                dskh = dskh.Where(kh => kh.SONHA2.Contains(SONHA));
+
+            if (SODIENTHOAI != null)
+                dskh = dskh.Where(kh => kh.SDT.Contains(SODIENTHOAI));
+
+            if (TENDP != null)
+                dskh = dskh.Where(kh => kh.DUONGPHO.TENDP.Contains(TENDP) ||
+                                            kh.MADP.Equals(TENDP));
+
+            if (MAKV != null)
+                dskh = dskh.Where(kh => kh.MAKV.Equals(MAKV));
+
+            if (GHI2THANG1LAN != null)
+                dskh = dskh.Where(kh => kh.XOABOKH.Equals(Convert.ToInt16(GHI2THANG1LAN)));
+
+            if (makhachhang != null)
+                dskh = dskh.Where(kh => kh.MAKV.Equals(makhachhang.Substring(0, 1)) && kh.IDKH.Equals(makhachhang.Substring(1, 6)));
+
+            if (cmnd != null)
+            {
+                var khachhangmoi = from kh in dskh
+                                   join don in _db.DONDANGKies on kh.MADDK equals don.MADDK
+                                   where don.CMND == cmnd
+                                   select kh;
+
+                dskh = khachhangmoi;
+            }
 
             return dskh
                         .OrderBy(kh => kh.STT)

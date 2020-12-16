@@ -1028,6 +1028,59 @@ namespace EOSCRM.Dao
                         .ToList();
         }
 
+        public List<KHACHHANGPO> GetListMaKhachHang(String IDKH, String SOHD, String MADH, String TENKH, String SONHA, String TENDP,
+            String MAKV, String GHI2THANG1LAN, string makhachhang, string cmnd)
+        {          
+
+            var dskh = from kh in _db.KHACHHANGPOs
+                       join d in _db.DONGHOPOs on kh.MADHPO equals d.MADHPO
+                       select kh;
+
+            if (IDKH != null)
+                dskh = dskh.Where(kh => (kh.MADPPO + kh.DUONGPHUPO + kh.MADBPO).Contains(IDKH));
+
+            if (SOHD != null)
+                dskh = dskh.Where(kh => kh.SOHD.Equals(SOHD));
+
+            if (MADH != null)
+                //dskh = dskh.Where(kh => kh.MADH.Contains(MADH));
+                dskh = dskh.Where(kh => kh.DONGHOPO.SONO.Contains(MADH));
+
+            if (TENKH != null)
+                dskh = dskh.Where(kh => kh.TENKH.Contains(TENKH));
+
+            if (SONHA != null)
+                dskh = dskh.Where(kh => kh.SONHA.Contains(SONHA));
+
+            if (TENDP != null)
+                dskh = dskh.Where(kh => kh.DUONGPHOPO.TENDP.Contains(TENDP) || kh.MADPPO.Equals(TENDP));
+
+            if (MAKV != null)
+                dskh = dskh.Where(kh => kh.MAKVPO.Equals(MAKV));
+
+            if (GHI2THANG1LAN != null)
+                dskh = dskh.Where(kh => kh.XOABOKHPO.Equals(Convert.ToInt16(GHI2THANG1LAN)));
+
+            if (makhachhang != null)
+                dskh = dskh.Where(kh => kh.MAKVPO.Equals(makhachhang.Substring(0, 1)) && kh.IDKHPO.Equals(makhachhang.Substring(1, 6)));
+
+            if (cmnd != null)
+            {
+                var khachhangmoi = from kh in dskh
+                                   join don in _db.DONDANGKYPOs on kh.MADDKPO equals don.MADDKPO
+                                   where don.CMND == cmnd
+                                   select kh;
+
+                dskh = khachhangmoi;
+            }
+
+            return dskh
+                        .OrderBy(kh => kh.STT)
+                        .OrderBy(kh => kh.DUONGPHUPO)
+                        .OrderBy(kh => kh.MADPPO)
+                        .ToList();
+        }
+
         public List<TIEUTHUPO> GetThongTinTieuThu(string idkh)
         {
             return _db.TIEUTHUPOs.Where(tt => tt.IDKHPO.Equals(idkh))

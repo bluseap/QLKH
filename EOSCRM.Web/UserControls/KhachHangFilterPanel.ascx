@@ -99,6 +99,22 @@
             </tr>
             <tr>
                 <td class="crmcell right">
+                    Mã khách hàng
+                </td>
+                <td class="crmcell">
+                    <div class="left">
+                        <asp:TextBox ID="txtMaKhachHang" onkeypress="return CheckKeywordFilter(event);" runat="server" Width="200px" MaxLength="200" />
+                    </div>
+                    <div class="left" style="width: 150px;">
+                        <strong>Số CMND</strong>
+                    </div>
+                    <div class="left">
+                        <asp:TextBox ID="txtCMND" onkeypress="return CheckKeywordFilter(event);" runat="server" Width="200px" MaxLength="200" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="crmcell right">
                     Khu vực
                 </td>
                 <td class="crmcell">

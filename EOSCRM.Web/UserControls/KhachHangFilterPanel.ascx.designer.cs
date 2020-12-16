@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EOSCRM.Web.UserControls {
-    
-    
-    public partial class KhachHangFilterPanel {
-        
+namespace EOSCRM.Web.UserControls
+{
+
+
+    public partial class KhachHangFilterPanel
+    {
+
         /// <summary>
         /// Header control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Header;
-        
+
         /// <summary>
         /// Image control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton Image;
-        
+
         /// <summary>
         /// Text control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Text;
-        
+
         /// <summary>
         /// Content control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Content;
-        
+
         /// <summary>
         /// txtIDKH control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIDKH;
-        
+
         /// <summary>
         /// txtSOHD control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSOHD;
-        
+
         /// <summary>
         /// txtMADH control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMADH;
-        
+
         /// <summary>
         /// txtTENKH control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTENKH;
-        
+
         /// <summary>
         /// txtSONHA control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSONHA;
-        
+
         /// <summary>
         /// txtTENDP control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTENDP;
-        
+
         /// <summary>
         /// txtSODIENTHOAI control.
         /// </summary>
@@ -110,7 +112,25 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSODIENTHOAI;
-        
+
+        /// <summary>
+        /// txtMaKhachHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMaKhachHang;
+
+        /// <summary>
+        /// txtCMND control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCMND;
+
         /// <summary>
         /// ddlKHUVUC control.
         /// </summary>
@@ -119,7 +139,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlKHUVUC;
-        
+
         /// <summary>
         /// ddlXOABO control.
         /// </summary>
@@ -128,7 +148,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlXOABO;
-        
+
         /// <summary>
         /// btnFilter control.
         /// </summary>
@@ -137,7 +157,7 @@ namespace EOSCRM.Web.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFilter;
-        
+
         /// <summary>
         /// cpeFilter control.
         /// </summary>

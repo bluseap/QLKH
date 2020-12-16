@@ -461,6 +461,28 @@ namespace EOSCRM.Web.Forms.KhachHang
             }
         }
 
+        protected String MaKhachHang
+        {
+            get
+            {
+                var param = ParameterWrapper.GetParams();
+                return !param.ContainsKey(Constants.PARAM_MAKHACHHANG) ?
+                    null :
+                    EncryptUtil.Decrypt(param[Constants.PARAM_MAKHACHHANG].ToString());
+            }
+        }
+
+        protected String Cmnd
+        {
+            get
+            {
+                var param = ParameterWrapper.GetParams();
+                return !param.ContainsKey(Constants.PARAM_CMND) ?
+                    null :
+                    EncryptUtil.Decrypt(param[Constants.PARAM_CMND].ToString());
+            }
+        }
+
         protected bool HasFiltered
         {
             get
@@ -819,6 +841,10 @@ namespace EOSCRM.Web.Forms.KhachHang
             filterPanel.SONHA = SONHA;
             filterPanel.TENDP = TENDP;
             filterPanel.XOABONUOC = XOABONUOC;
+
+            filterPanel.MaKhachHang = MaKhachHang;
+            filterPanel.Cmnd = Cmnd;
+            
         }
       
         private void ClearForm()
@@ -1591,7 +1617,8 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 if (nvDao.Get(b).MAKV == "X")
                 {
-                    var list = khDao.GetListLX(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC, SODIENTHOAI);
+                    //var list = khDao.GetListLX(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC, SODIENTHOAI);
+                    var list = khDao.GetListLXMaKhachHang(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC, SODIENTHOAI, MaKhachHang, Cmnd);
 
                     gvKhachHang.DataSource = list;
                     gvKhachHang.PagerInforText = list.Count.ToString();
@@ -1599,7 +1626,8 @@ namespace EOSCRM.Web.Forms.KhachHang
                 }
                 else
                 {
-                    var list = khDao.GetList(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC);
+                    //var list = khDao.GetList(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC);
+                    var list = khDao.GetListMaKhachHang(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC, MaKhachHang, Cmnd);
 
                     gvKhachHang.DataSource = list;
                     gvKhachHang.PagerInforText = list.Count.ToString();

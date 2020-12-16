@@ -407,6 +407,28 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             }
         }
 
+        protected String MaKhachHang
+        {
+            get
+            {
+                var param = ParameterWrapper.GetParams();
+                return !param.ContainsKey(Constants.PARAM_MAKHACHHANG) ?
+                    null :
+                    EncryptUtil.Decrypt(param[Constants.PARAM_MAKHACHHANG].ToString());
+            }
+        }
+
+        protected String Cmnd
+        {
+            get
+            {
+                var param = ParameterWrapper.GetParams();
+                return !param.ContainsKey(Constants.PARAM_CMND) ?
+                    null :
+                    EncryptUtil.Decrypt(param[Constants.PARAM_CMND].ToString());
+            }
+        }
+
         protected String XOABONUOC
         {
             get
@@ -777,6 +799,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             filterPanel.SONHA = SONHA;
             filterPanel.TENDP = TENDP;
             filterPanel.XOABONUOC = XOABONUOC;
+
+            filterPanel.MaKhachHang = MaKhachHang;
+            filterPanel.Cmnd = Cmnd;
         }
 
         private void ClearForm()
@@ -1368,8 +1393,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         #region Khách hàng
         private void BindKhachHangGrid()
         {
-            var list = _khpoDao.GetList(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC);
-
+            //var list = _khpoDao.GetList(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC);
+            var list = _khpoDao.GetListMaKhachHang(IDKH, SOHD, MADH, TENKH, SONHA, TENDP, MAKV, XOABONUOC, MaKhachHang, Cmnd);
+            
             gvKhachHang.DataSource = list;
             gvKhachHang.PagerInforText = list.Count.ToString();
             gvKhachHang.DataBind();

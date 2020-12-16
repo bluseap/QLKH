@@ -22,7 +22,10 @@ namespace EOSCRM.Util
         public const string PARAM_SOHD = "sohd";
         public const string PARAM_FILTERED = "filtered";
 
-        public const string PARAM_XOABONUOC = "xoabonuoc";        
+        public const string PARAM_XOABONUOC = "xoabonuoc";
+
+        public const string PARAM_MAKHACHHANG = "makhachhang";
+        public const string PARAM_CMND = "cmnd";
 
         public const string SESSION_TIEUTHUKHACHHANG = "SessionTieuThuKhachHang";
         
