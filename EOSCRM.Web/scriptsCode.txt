@@ -55,6 +55,9 @@
 		values ( 'NNDLX6', '3, 4  (Đợt 3)', '2020-10-26', 'admin', 1, NULL) 
 		values ( 'NNDLX7', '5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
 
+
+	update Database in table MAUBOCVATTU, update MAKV of Dien theo tung khu vuc Xi nghiep (huong dan cho Xi nghiep)
+
 	update Database in table DONDANGKY inserts Column: SoDienThoai2 varchar(20)
 	update Database in table DONDANGKY inserts Column: IsKHMuaVatTu (bit)
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)

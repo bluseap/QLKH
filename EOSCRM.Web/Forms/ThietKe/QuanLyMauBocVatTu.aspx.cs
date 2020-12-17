@@ -265,7 +265,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                     gvList.PagerInforText = objList.Count.ToString();
                     gvList.DataBind();
                 }
-                else if (_nvDao.Get(b).MAKV == "S")
+                else if (_nvDao.Get(b).MAKV == "S") // Châu Đốc
                 {
                     var objList = ddkDao.GetListNNBravo();
 
@@ -275,7 +275,8 @@ namespace EOSCRM.Web.Forms.ThietKe
                 }
                 else
                 {
-                    var objList = ddkDao.GetListNNBravo();
+                    //var objList = ddkDao.GetListNNBravo();
+                    var objList = ddkDao.GetListMAKV(ddlKHUVUC.SelectedValue);
 
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
@@ -1145,5 +1146,29 @@ namespace EOSCRM.Web.Forms.ThietKe
             }
             catch { }
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                var objList = ddkDao.GetListMAKV(ddlKHUVUC.SelectedValue);
+                gvList.DataSource = objList;
+                gvList.PagerInforText = objList.Count.ToString();
+                gvList.DataBind();
+
+                ClearContent();
+                CloseWaitingDialog();
+                upnlGrid.Update();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }            
+        }
+
     }
 }

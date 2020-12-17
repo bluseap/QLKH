@@ -24,6 +24,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
         private readonly GhiChuMauBocVatTuDao gcmbvtDao = new GhiChuMauBocVatTuDao();
         private readonly VatTuDao vtDao = new VatTuDao();
         private readonly DvtDao dvtDao = new DvtDao();
+        private readonly KhuVucDao kvDao = new KhuVucDao();
 
         #region Properties
         /*private MAUBOCVATTU MauBocVatTu
@@ -195,6 +196,8 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 if (loginInfo == null) return;
                 string b = loginInfo.Username;
 
+                timkv();
+
                 var nhanvien = _nvDao.Get(b);
                 if (nhanvien.MAKV == "X")
                 {
@@ -284,7 +287,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 NGAYTK = DateTime.Now,
                 SOBCT = null,
                 LOAIMBVT = "DD",
-                //MAKV = ddlKHUVUC.SelectedValue,
+                MAKV = ddlKHUVUC.SelectedValue,
                 MauCuaAi = "KT"
             };
 
@@ -695,53 +698,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             }
         }
 
-        /*
-        protected void btnAddVatTu_Click(object sender, EventArgs e)
-        {
-            if (txtMAVT.Text.Trim() == "")
-            {
-                CloseWaitingDialog();
-                ShowError("Vui lòng nhập mã vật tư", txtMAVT.ClientID);
-                return;
-            }
-
-            var vt = vtDao.Get(txtMAVT.Text.Trim());
-            if (vt == null)
-            {
-                CloseWaitingDialog();
-                ShowError("Vật tư không có trong cơ sở dữ liệu. Vui lòng chọn lại.");
-                return;
-            }
-
-            var mbvt = SelectedMBVT;
-            if (mbvt == null)
-            {
-                CloseWaitingDialog();
-                return;
-            }
-
-            // add to grid
-            var ctmbvt = new CTMAUBOCVATTU
-            {
-                MADDK = mbvt.MADDK,
-                MAVT = vt.MAVT,
-                NOIDUNG = vt.TENVT,
-                SOLUONG = 1,
-                ISCTYDTU = chkIsCtyDauTu.Checked
-            };
-
-            txtMAVT.Text = "";
-            ctmbvtDao.Insert(ctmbvt);
-            BindSelectedVatTuGrid();
-
-            txtMAVT.Focus();
-
-            CloseWaitingDialog();
-        }
-        */
-
-
-
         private void BindGhiChu()
         {
             var mbvt = SelectedMBVT;
@@ -822,10 +778,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
                 DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
             }
         }
-
-
-
-
 
         private void BindChiPhi()
         {
@@ -947,9 +899,6 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
             }
         }
 
-
-
-
         protected void linkBtnChangeKhoiLuong_Click(object sender, EventArgs e)
         {
             if (txtMAVT.Text.Trim() == "")
@@ -1035,5 +984,62 @@ namespace EOSCRM.Web.Forms.ThietKe.Power
 
             CloseWaitingDialog();
         }
+
+        public void timkv()
+        {
+            var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+            if (loginInfo == null) return;
+            string b = loginInfo.Username;
+
+            var query = _nvDao.GetListKV(b);
+            foreach (var a in query)
+            {
+                string d = a.MAKV;
+
+                if (a.MAKV == "99")
+                {
+                    var kvList = kvDao.GetList();
+                    ddlKHUVUC.Items.Clear();
+                    //ddlKHUVUC1.Items.Add(new ListItem("Tất cả", "%"));
+                    foreach (var kv in kvList)
+                    {
+                        ddlKHUVUC.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
+                    }
+                }
+                else
+                {
+                    var kvList = kvDao.GetListKV(d);
+                    ddlKHUVUC.Items.Clear();
+                    foreach (var kv in kvList)
+                    {
+                        ddlKHUVUC.Items.Add(new ListItem(kv.TENKV, kv.MAKV));
+                    }
+                }
+            }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                var objList = _mbvtDao.GetListDienMAKV(ddlKHUVUC.SelectedValue);
+                gvList.DataSource = objList;
+                gvList.PagerInforText = objList.Count.ToString();
+                gvList.DataBind();
+
+                ClearContent();
+                CloseWaitingDialog();
+                upnlGrid.Update();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
     }
 }

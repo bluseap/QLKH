@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EOSCRM.Web.Forms.ThietKe.Power {
-    
-    
-    public partial class QuanLyMauBVTPower {
-        
+namespace EOSCRM.Web.Forms.ThietKe.Power
+{
+
+
+    public partial class QuanLyMauBVTPower
+    {
+
         /// <summary>
         /// upnlInfor control.
         /// </summary>
@@ -20,7 +22,16 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlInfor;
-        
+
+        /// <summary>
+        /// ddlKHUVUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlKHUVUC;
+
         /// <summary>
         /// txtMADDK control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMADDK;
-        
+
         /// <summary>
         /// txtTENTK control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTENTK;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-        
+
         /// <summary>
         /// btnCancel control.
         /// </summary>
@@ -56,7 +67,16 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-        
+
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
         /// <summary>
         /// btnDelete control.
         /// </summary>
@@ -65,7 +85,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
-        
+
         /// <summary>
         /// upnlGrid control.
         /// </summary>
@@ -74,7 +94,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlGrid;
-        
+
         /// <summary>
         /// gvList control.
         /// </summary>
@@ -83,7 +103,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::EOSCRM.Controls.Grid gvList;
-        
+
         /// <summary>
         /// upnlVatTu control.
         /// </summary>
@@ -92,7 +112,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlVatTu;
-        
+
         /// <summary>
         /// ddlKhoXiNghiep control.
         /// </summary>
@@ -101,7 +121,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlKhoXiNghiep;
-        
+
         /// <summary>
         /// txtFilterVatTu control.
         /// </summary>
@@ -110,7 +130,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFilterVatTu;
-        
+
         /// <summary>
         /// btnFilterVatTu control.
         /// </summary>
@@ -119,7 +139,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFilterVatTu;
-        
+
         /// <summary>
         /// gvVatTu control.
         /// </summary>
@@ -128,7 +148,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::EOSCRM.Controls.Grid gvVatTu;
-        
+
         /// <summary>
         /// upnlMBVT control.
         /// </summary>
@@ -137,7 +157,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upnlMBVT;
-        
+
         /// <summary>
         /// tblMBVT control.
         /// </summary>
@@ -146,7 +166,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable tblMBVT;
-        
+
         /// <summary>
         /// txtMAVT control.
         /// </summary>
@@ -155,7 +175,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMAVT;
-        
+
         /// <summary>
         /// linkBtnChangeMAVT control.
         /// </summary>
@@ -164,7 +184,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkBtnChangeMAVT;
-        
+
         /// <summary>
         /// btnBrowseVatTu control.
         /// </summary>
@@ -173,7 +193,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBrowseVatTu;
-        
+
         /// <summary>
         /// txtKHOILUONG control.
         /// </summary>
@@ -182,7 +202,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtKHOILUONG;
-        
+
         /// <summary>
         /// linkBtnChangeKhoiLuong control.
         /// </summary>
@@ -191,7 +211,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkBtnChangeKhoiLuong;
-        
+
         /// <summary>
         /// lblTENVT control.
         /// </summary>
@@ -200,7 +220,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTENVT;
-        
+
         /// <summary>
         /// chkIsCtyDauTu control.
         /// </summary>
@@ -209,7 +229,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsCtyDauTu;
-        
+
         /// <summary>
         /// gvSelectedVatTu control.
         /// </summary>
@@ -218,7 +238,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::EOSCRM.Controls.Grid gvSelectedVatTu;
-        
+
         /// <summary>
         /// btnAddGhiChu control.
         /// </summary>
@@ -227,7 +247,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddGhiChu;
-        
+
         /// <summary>
         /// gvGhiChu control.
         /// </summary>
@@ -236,7 +256,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::EOSCRM.Controls.Grid gvGhiChu;
-        
+
         /// <summary>
         /// btnAddChiPhi control.
         /// </summary>
@@ -245,7 +265,7 @@ namespace EOSCRM.Web.Forms.ThietKe.Power {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddChiPhi;
-        
+
         /// <summary>
         /// gvChiPhi control.
         /// </summary>

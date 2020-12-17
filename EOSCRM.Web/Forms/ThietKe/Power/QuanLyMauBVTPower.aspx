@@ -191,7 +191,14 @@
             closeWaitingDialog();
         }
 
-	</script>
+        function CheckFormSearch() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSearch) %>', '');
+            return false;
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <asp:UpdatePanel ID="upnlInfor" UpdateMode="Conditional" runat="server">
@@ -199,6 +206,15 @@
             <div class="crmcontainer">
                 <table class="crmtable">
                     <tbody>
+                        <tr>
+                            <td class="crmcell right">Khu vực</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:DropDownList ID="ddlKHUVUC" runat="server"  >
+                                        </asp:DropDownList>
+                                </div>                                
+                            </td>
+                        </tr>
                         <tr>
                             <td class="crmcell right">Mã mẫu bốc vật tư</td>
                             <td class="crmcell">
@@ -226,6 +242,10 @@
                                 <div class="left">
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" UseSubmitBehavior="false"
                                         OnClick="btnCancel_Click" OnClientClick="return CheckFormCancel();" TabIndex="17" />
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btnSearch" runat="server" CssClass="filter" OnClick="btnSearch_Click"
+                                        TabIndex="20" UseSubmitBehavior="false" OnClientClick="return CheckFormSearch();" />
                                 </div>
                                 <div class="left">
                                     <asp:Button ID="btnDelete" runat="server" CssClass="delete" UseSubmitBehavior="false"
