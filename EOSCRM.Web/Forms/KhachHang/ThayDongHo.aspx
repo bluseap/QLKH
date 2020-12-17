@@ -388,14 +388,22 @@
                         <tr>    
                             <td class="crmcell right">Tên khách hàng</td>
                             <td class="crmcell">    
-                                <div class="left">
+                                <div class="left width-200">
                                     <asp:Label ID="lblTENKH" runat="server" Text=""></asp:Label>
-                                </div>
+                                </div>  
                                 <div class="left">
                                     <asp:Label ID="lblNGAYTHAY" runat="server" Visible="False"></asp:Label>
                                 </div>
                                 <div class="left">
                                     <asp:Label ID="lblNGAYHOANTHANH" runat="server" Visible="False"></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Mục đích sử dụng</td>
+                            <td class="crmcell">    
+                                <div class="left width-200">
+                                    <asp:Label ID="lbMucDichSuDung" runat="server" Text=""></asp:Label>
                                 </div>
                             </td>
                         </tr>

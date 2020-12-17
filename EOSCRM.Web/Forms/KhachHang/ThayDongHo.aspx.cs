@@ -36,6 +36,7 @@ namespace EOSCRM.Web.Forms.KhachHang
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly XaPhuongDao _xpDao = new XaPhuongDao();
         private readonly ApToDao _atDao = new ApToDao();
+        private readonly MucDichSuDungDao _mdsdDao = new MucDichSuDungDao();
 
         #region Startup script registeration
         private void SetControlValue(string id, string value)
@@ -446,7 +447,9 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             ddlLYDOTHAYDH.SelectedIndex = 0;
             lbSONODH.Text = "";
-            lbCONGSUATLX.Text = "";            
+            lbCONGSUATLX.Text = "";
+
+            lbMucDichSuDung.Text = "";
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -942,7 +945,10 @@ namespace EOSCRM.Web.Forms.KhachHang
                             BindStatusTDH(khachhang);
                             BindTDH(tdh);
                             HideDialog("divKhachHang");
+
                             lblID.Text = id;
+                            lbMucDichSuDung.Text = _mdsdDao.Get(khachhang.MAMDSD).TENMDSD;
+
                             CloseWaitingDialog();
                             txtSODB.Focus();
                         }
