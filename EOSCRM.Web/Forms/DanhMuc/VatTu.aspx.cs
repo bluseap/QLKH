@@ -196,21 +196,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
                     gvList.DataBind();
-
-                    //if (ddlLOAIVATTU.SelectedValue == "%")
-                    //{
-                    //    var objList = _objDao.GetListKhuVuc(ddlKHUVUC.SelectedValue);
-                    //    gvList.DataSource = objList;
-                    //    gvList.PagerInforText = objList.Count.ToString();
-                    //    gvList.DataBind();
-                    //}
-                    //else
-                    //{
-                    //    var objList = _objDao.GetListLoaiVTKhuVucKHTT(ddlLOAIVATTU.SelectedValue, ddlKHUVUC.SelectedValue);
-                    //    gvList.DataSource = objList;
-                    //    gvList.PagerInforText = objList.Count.ToString();
-                    //    gvList.DataBind();
-                    //}
+                    
                 }
                 else if (ddlKHUVUC.SelectedValue == "S")
                 {
@@ -266,57 +252,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
                     gvList.DataSource = objList;
                     gvList.PagerInforText = objList.Count.ToString();
                     gvList.DataBind();
-
-                    //if (ddlLOAIVATTU.SelectedValue == "%")
-                    //{
-                    //    decimal? giavt = null;
-                    //    decimal? gianc = null;
-
-                    //    // ReSharper disable EmptyGeneralCatchClause
-                    //    try { giavt = decimal.Parse(txtGIAVT.Text.Trim()); }
-                    //    catch { }
-                    //    try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
-                    //    catch { }
-                    //    // ReSharper restore EmptyGeneralCatchClause
-                    //    var objList = _objDao.GetListKhuVuc(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
-                    //                ddlDVT.SelectedValue, ddlNHOM.SelectedValue, gianc, giavt, ddlKHUVUC.SelectedValue);
-
-                    //    gvList.DataSource = objList;
-                    //    gvList.PagerInforText = objList.Count.ToString();
-                    //    gvList.DataBind();
-                    //}
-                    //else
-                    //{
-                    //    decimal? giavt = null;
-                    //    decimal? gianc = null;
-
-                    //    // ReSharper disable EmptyGeneralCatchClause
-                    //    try { giavt = decimal.Parse(txtGIAVT.Text.Trim()); }
-                    //    catch { }
-                    //    try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
-                    //    catch { }
-                    //    // ReSharper restore EmptyGeneralCatchClause
-                    //    if (ddlKHUVUC.SelectedValue == "S")
-                    //    {
-                    //        var objList = _objDao.GetListLoaiVTKhuVuc(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
-                    //                    ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
-                    //                    gianc, giavt, ddlLOAIVATTU.SelectedValue, ddlKHUVUC.SelectedValue);
-
-                    //        gvList.DataSource = objList;
-                    //        gvList.PagerInforText = objList.Count.ToString();
-                    //        gvList.DataBind();
-                    //    }
-                    //    else
-                    //    {
-                    //        var objList = _objDao.GetListLoaiVTKhuVucKHTT(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
-                    //                    ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
-                    //                    gianc, giavt, ddlLOAIVATTU.SelectedValue, ddlKHUVUC.SelectedValue);
-
-                    //        gvList.DataSource = objList;
-                    //        gvList.PagerInforText = objList.Count.ToString();
-                    //        gvList.DataBind();
-                    //    }
-                    //}
+                    
                 }
                 else if (ddlKHUVUC.SelectedValue == "S")
                 {
@@ -331,9 +267,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
                         catch { }
                         // ReSharper restore EmptyGeneralCatchClause
-                        var objList = _objDao.GetList(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
+                        //var objList = _objDao.GetList(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
+                        //            ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
+                        //            gianc, giavt);
+                        var objList = _objDao.GetListMaVatTuKeToan(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
                                     ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
-                                    gianc, giavt);
+                                    gianc, giavt, txtMaVatTuKeToan.Text.Trim());
 
                         gvList.DataSource = objList;
                         gvList.PagerInforText = objList.Count.ToString();
@@ -350,9 +289,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
                         catch { }
                         // ReSharper restore EmptyGeneralCatchClause
-                        var objList = _objDao.GetListKhoKT(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
+                        //var objList = _objDao.GetListKhoKT(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
+                        //            ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
+                        //            gianc, giavt, ddlLOAIVATTU.SelectedValue);
+                        var objList = _objDao.GetListKhoKTMaVatTuKeToan(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
                                     ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
-                                    gianc, giavt, ddlLOAIVATTU.SelectedValue);
+                                    gianc, giavt, ddlLOAIVATTU.SelectedValue, txtMaVatTuKeToan.Text.Trim());
 
                         gvList.DataSource = objList;
                         gvList.PagerInforText = objList.Count.ToString();
@@ -372,9 +314,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
                         catch { }
                         // ReSharper restore EmptyGeneralCatchClause
-                        var objList = _objDao.GetList(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
+                        //var objList = _objDao.GetList(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
+                        //            ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
+                        //            gianc, giavt);
+                        var objList = _objDao.GetListMaVatTuKeToan(txtMAVT.Text.Trim(), txtMAHIEU.Text.Trim(), txtTENVT.Text.Trim(),
                                     ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
-                                    gianc, giavt);
+                                    gianc, giavt, txtMaVatTuKeToan.Text.Trim()); 
 
                         gvList.DataSource = objList;
                         gvList.PagerInforText = objList.Count.ToString();
@@ -391,9 +336,12 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         try { gianc = decimal.Parse(txtGIANC.Text.Trim()); }
                         catch { }
                         // ReSharper restore EmptyGeneralCatchClause
-                        var objList = _objDao.GetListKhoKT(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
+                        //var objList = _objDao.GetListKhoKT(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
+                        //            ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
+                        //            gianc, giavt, ddlLOAIVATTU.SelectedValue);
+                        var objList = _objDao.GetListKhoKTMaVatTuKeToan(txtMAVT.Text.Trim(), ddlKhoVatTuKeToan.SelectedValue, txtTENVT.Text.Trim(),
                                     ddlDVT.SelectedValue, ddlNHOM.SelectedValue,
-                                    gianc, giavt, ddlLOAIVATTU.SelectedValue);
+                                    gianc, giavt, ddlLOAIVATTU.SelectedValue, txtMaVatTuKeToan.Text.Trim()); 
 
                         gvList.DataSource = objList;
                         gvList.PagerInforText = objList.Count.ToString();

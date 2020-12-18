@@ -66,6 +66,40 @@ namespace EOSCRM.Dao
             return query.ToList();
         }
 
+        public List<VATTU> SearchMaVatTuKeToan(string makhoxn, string key)
+        {
+            var query = _db.VATTUs.Where(p => p.MAVT.Substring(0, 2) != "DD"
+                                    && p.KeToanMaSoVatTu != null
+                                    //   && (p.MAVT.ToUpper().Contains(key.ToUpper()) || p.TENVT.ToUpper().Contains(key.ToUpper()) 
+                                    //        || p.MAHIEU.ToUpper().Contains(key.ToUpper()))                                     
+                                    );
+
+            if (makhoxn == "%")
+            {
+                query = query.Where(p => (p.MAVT.ToUpper().Contains(key.ToUpper()) || p.TENVT.ToUpper().Contains(key.ToUpper())
+                            || p.MAHIEU.ToUpper().Contains(key.ToUpper()) || p.KeToanMaSoVatTu.ToUpper().Contains(key.ToUpper())
+                            ))
+                    .OrderBy(p => p.MAHIEU);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(key))
+                {
+                    query = query.Where(p => (p.MAVT.ToUpper().Contains(key.ToUpper()) || p.TENVT.ToUpper().Contains(key.ToUpper())
+                            || p.MAHIEU.ToUpper().Contains(key.ToUpper())
+                            || p.KeToanMaSoVatTu.ToUpper().Contains(key.ToUpper()) ) && p.KhoDanhMucId.Equals(makhoxn)
+                            )
+                    .OrderBy(p => p.MAHIEU);
+                }
+                else
+                {
+                    query = query.Where(p => p.KhoDanhMucId.Equals(makhoxn)).OrderBy(p => p.MAHIEU);
+                }
+            }
+
+            return query.ToList();
+        }
+
         public List<VATTU> SearchMAKVAll(string key, string makv)
         {
             return _db.VATTUs.Where(p => p.MAVT.Substring(0, 2) == "NN" && p.MAKV.Equals(makv) 
@@ -242,6 +276,29 @@ namespace EOSCRM.Dao
             return query.OrderBy(vt => vt.TENVT).ToList();
         }
 
+        public List<VATTU> GetListMaVatTuKeToan(String mavt, String mahieu, String tenvt, String madvt, String manhom, decimal? gianc, 
+            decimal? giavt, string mavattuketoan)
+        {
+            var query = _db.VATTUs.AsQueryable();
+
+            if (!String.IsNullOrEmpty(mavt))
+                query = query.Where(vt => vt.MAVT.Contains(mavt));
+            if (!String.IsNullOrEmpty(mahieu))
+                query = query.Where(vt => vt.MAHIEU.Contains(mahieu));
+            if (!String.IsNullOrEmpty(tenvt))
+                query = query.Where(vt => vt.TENVT.Contains(tenvt));
+
+            if (!String.IsNullOrEmpty(madvt) && madvt != "%")
+                query = query.Where(vt => vt.DVT.Equals(madvt));
+            if (!String.IsNullOrEmpty(manhom) && manhom != "%")
+                query = query.Where(vt => vt.MANHOM.Equals(manhom));
+
+            if (!string.IsNullOrEmpty(mavattuketoan))
+                query = query.Where(vt => vt.KeToanMaSoVatTu.Equals(mavattuketoan));
+
+            return query.OrderBy(vt => vt.TENVT).ToList();
+        }
+
         public List<VATTU> GetListKhuVuc(String mavt, String mahieu, String tenvt, String madvt, String manhom, 
                 decimal? gianc, decimal? giavt, string makv)
         {
@@ -305,6 +362,29 @@ namespace EOSCRM.Dao
 
             if (!String.IsNullOrEmpty(manhom) && manhom != "%")
                 query = query.Where(vt => vt.MANHOM.Equals(manhom));
+
+            return query.OrderBy(vt => vt.TENVT).ToList();
+        }
+
+        public List<VATTU> GetListKhoKTMaVatTuKeToan(string mavt, string makho, String tenvt, String madvt, String manhom,
+            decimal? gianc, decimal? giavt, string loaivt, string mavattuketoan)
+        {
+            var query = _db.VATTUs.Where(p => p.KhoDanhMucId.Equals(makho)).AsQueryable();
+
+            if (!String.IsNullOrEmpty(mavt))
+                query = query.Where(vt => vt.MAVT.Contains(mavt));
+
+            if (!String.IsNullOrEmpty(tenvt))
+                query = query.Where(vt => vt.TENVT.Contains(tenvt));
+
+            if (!String.IsNullOrEmpty(madvt) && madvt != "%")
+                query = query.Where(vt => vt.DVT.Equals(madvt));
+
+            if (!String.IsNullOrEmpty(manhom) && manhom != "%")
+                query = query.Where(vt => vt.MANHOM.Equals(manhom));
+
+            if (!string.IsNullOrEmpty(mavattuketoan))
+                query = query.Where(vt => vt.KeToanMaSoVatTu.Equals(mavattuketoan));
 
             return query.OrderBy(vt => vt.TENVT).ToList();
         }

@@ -421,25 +421,30 @@ namespace EOSCRM.Web.Forms.ThietKe
                 if (loginInfo == null) return;
                 string manv = loginInfo.Username;
                 string makvnv = _nvDao.Get(manv).MAKV;
-                
-                if (makvnv == "S")
-                {                    
-                    //var list = vtDao.SearchMAKVAll(txtFilterVatTu.Text.Trim(), makvnv);
-                    var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
 
-                    gvVatTu.DataSource = list;
-                    gvVatTu.PagerInforText = list.Count.ToString();
-                    gvVatTu.DataBind();
-                }
-                else
-                {
-                    //var list = vtDao.Search(txtFilterVatTu.Text.Trim());   
-                    var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+                var list = vtDao.SearchMaVatTuKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
 
-                    gvVatTu.DataSource = list;
-                    gvVatTu.PagerInforText = list.Count.ToString();
-                    gvVatTu.DataBind();
-                }
+                gvVatTu.DataSource = list;
+                gvVatTu.PagerInforText = list.Count.ToString();
+                gvVatTu.DataBind();
+
+                //if (makvnv == "S")
+                //{                                       
+                //    var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+
+                //    gvVatTu.DataSource = list;
+                //    gvVatTu.PagerInforText = list.Count.ToString();
+                //    gvVatTu.DataBind();
+                //}
+                //else
+                //{                    
+                //    //var list = vtDao.SearchMaSoKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+                //    var list = vtDao.SearchMaVatTuKeToan(ddlKhoXiNghiep.SelectedValue, txtFilterVatTu.Text.Trim());
+
+                //    gvVatTu.DataSource = list;
+                //    gvVatTu.PagerInforText = list.Count.ToString();
+                //    gvVatTu.DataBind();
+                //}
             }
             catch { }
         }
