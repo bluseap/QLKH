@@ -730,23 +730,44 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                     if (_dhpoDao.Get(txtMADH.Text).DASD != true)
                     {
-                        msg = _dhpoDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);           
+                        msg = _dhpoDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV); 
                     }
                     else
                     {
-                        dhsua.MADHPO = txtMADH.Text.Trim();
-                        dhsua.MALDHPO = ddlMALDH.SelectedValue;
-                        dhsua.TRANGTHAI = txtTRANGTHAI.Text.Trim();
-                        dhsua.SONO = txtSONO.Text.Trim();
-                        dhsua.DASD = chkDASD.Checked;
-                        dhsua.SOKD = txtSOKD.Text.Trim();
-                        dhsua.TEMKD = txtTEMKD.Text.Trim();
-                        dhsua.TENCTKD = txtTENCTKD.Text.Trim();
-                        dhsua.SXTAI = txtSXTAI.Text.Trim();
-                        dhsua.MAKVPO = ddlKHUVUC.SelectedValue;
-                        dhsua.CONGSUAT = ddlCONGSUATD.SelectedValue;
+                        if (b == "nguyen")
+                        {
+                            dhsua.MADHPO = txtMADH.Text.Trim();
+                            dhsua.MALDHPO = ddlMALDH.SelectedValue;
+                            dhsua.TRANGTHAI = txtTRANGTHAI.Text.Trim();
+                            dhsua.SONO = txtSONO.Text.Trim();
+                            dhsua.DASD = chkDASD.Checked;
+                            dhsua.SOKD = txtSOKD.Text.Trim();
+                            dhsua.TEMKD = txtTEMKD.Text.Trim();
+                            dhsua.TENCTKD = txtTENCTKD.Text.Trim();
+                            dhsua.SXTAI = txtSXTAI.Text.Trim();
+                            dhsua.MAKVPO = ddlKHUVUC.SelectedValue;
+                            dhsua.CONGSUAT = ddlCONGSUATD.SelectedValue;
 
-                        msg = _dhpoDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                         
+                            msg = _dhpoDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                            
+                        }
+                        else
+                        {
+                            dhsua.MADHPO = txtMADH.Text.Trim();
+                            dhsua.MALDHPO = ddlMALDH.SelectedValue;
+                            dhsua.TRANGTHAI = txtTRANGTHAI.Text.Trim();
+                            //dhsua.SONO = txtSONO.Text.Trim();
+                            //dhsua.DASD = chkDASD.Checked;
+                            dhsua.SOKD = txtSOKD.Text.Trim();
+                            dhsua.TEMKD = txtTEMKD.Text.Trim();
+                            dhsua.TENCTKD = txtTENCTKD.Text.Trim();
+                            dhsua.SXTAI = txtSXTAI.Text.Trim();
+                            dhsua.MAKVPO = ddlKHUVUC.SelectedValue;
+                            dhsua.CONGSUAT = ddlCONGSUATD.SelectedValue;
+
+                            msg = _dhpoDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+
+                            ShowError("Đồng hồ đã sử dụng không được sửa số No.");
+                        }
                     }
 
                     ClearForm();  

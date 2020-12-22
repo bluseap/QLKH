@@ -504,7 +504,7 @@
         <ContentTemplate>
             <div class="crmcontainer" id="divCR" runat="server" visible="false">
                 <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX" 
-                    DisplayGroupTree="False" />
+                    />
             </div>
         </ContentTemplate>
         <Triggers>

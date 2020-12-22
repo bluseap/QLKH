@@ -731,15 +731,6 @@ namespace EOSCRM.Web.Forms.DanhMuc
                         return;
                     }
 
-                    //var sono = _objDao.GetSoNo(txtSONO.Text.Trim());
-                    //var sono = _objDao.GetSoNoKVLoai(txtSONO.Text.Trim(), _nvDao.Get(b).MAKV, ddlMALDH.SelectedValue);
-                    //if (sono != null)
-                    //{
-                    //    CloseWaitingDialog();
-                    //    ShowError("Số No đồng hồ đã tồn tại. Kiểm tra lại.", txtSONO.ClientID);
-                    //    return;
-                    //}
-
                     if (_nvDao.Get(b).MAKV == "X")
                     {
                         //txtMADH.Text= _objDao.NewId();
@@ -757,6 +748,7 @@ namespace EOSCRM.Web.Forms.DanhMuc
                             //txtMADH.Text= _objDao.NewId();NewIdCD
                             //info.MADH = "CD" + _objDao.NewIdLX(_nvDao.Get(b).MAKV);
                             info.MADH = "CD" + _objDao.NewIdCD(_nvDao.Get(b).MAKV, "CD");
+                            //info.MADH = "CD" + _objDao.NewIdCD(_nvDao.Get(b).MAKV, "S");
                             //info.MADH = _objDao.NewIdLX();
                             info.MANVNHAP = LoginInfo.MANV.ToString();
                             info.NGAYNHAP = DateTime.Now;
@@ -883,37 +875,44 @@ namespace EOSCRM.Web.Forms.DanhMuc
 
                     if (dhsua.DASD != true)
                     {
-                        msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                        msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);                        
                     }
                     else 
-                    {       
-                        dhsua.MADH = txtMADH.Text.Trim();
-                        dhsua.MALDH = ddlMALDH.SelectedValue;
-                        dhsua.TRANGTHAI = txtTRANGTHAI.Text.Trim();
-                        dhsua.SONO = txtSONO.Text.Trim();
-                        dhsua.DASD = chkDASD.Checked;
-                        dhsua.SOKD = txtSOKD.Text.Trim();
-                        dhsua.TEMKD = txtTEMKD.Text.Trim();
-                        dhsua.TENCTKD = txtTENCTKD.Text.Trim();
-                        dhsua.SXTAI = txtSXTAI.Text.Trim();
-                        dhsua.MAKV = ddlKHUVUC.SelectedValue;
-                        dhsua.CONGSUAT = txtCONGSUAT.Text.Trim();
-
-                        msg = _objDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
-                        
-                        /*if (_khDao.GetMADH(info.MADH) == null && _tcDao.GetMADH(info.MADH) == null)
+                    {
+                        if (b == "nguyen")
                         {
-                            info.DASD = false;
-                            msg = _objDao.Update(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+                            dhsua.MADH = txtMADH.Text.Trim();
+                            dhsua.MALDH = ddlMALDH.SelectedValue;
+                            dhsua.TRANGTHAI = txtTRANGTHAI.Text.Trim();
+                            dhsua.SONO = txtSONO.Text.Trim();
+                            dhsua.DASD = chkDASD.Checked;
+                            dhsua.SOKD = txtSOKD.Text.Trim();
+                            dhsua.TEMKD = txtTEMKD.Text.Trim();
+                            dhsua.TENCTKD = txtTENCTKD.Text.Trim();
+                            dhsua.SXTAI = txtSXTAI.Text.Trim();
+                            dhsua.MAKV = ddlKHUVUC.SelectedValue;
+                            dhsua.CONGSUAT = txtCONGSUAT.Text.Trim();
+
+                            msg = _objDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
                         }
                         else
                         {
-                            ShowInfor("Đồng hồ đang sử dụng. Bạn không đủ quyền sửa!");
-                        }*/
+                            dhsua.MADH = txtMADH.Text.Trim();
+                            dhsua.MALDH = ddlMALDH.SelectedValue;
+                            dhsua.TRANGTHAI = txtTRANGTHAI.Text.Trim();
+                            //dhsua.SONO = txtSONO.Text.Trim();
+                            //dhsua.DASD = chkDASD.Checked;
+                            dhsua.SOKD = txtSOKD.Text.Trim();
+                            dhsua.TEMKD = txtTEMKD.Text.Trim();
+                            dhsua.TENCTKD = txtTENCTKD.Text.Trim();
+                            dhsua.SXTAI = txtSXTAI.Text.Trim();
+                            dhsua.MAKV = ddlKHUVUC.SelectedValue;
+                            dhsua.CONGSUAT = txtCONGSUAT.Text.Trim();
 
-                        /*ShowInfor("Đồng hồ đang sử dụng. Bạn không đủ quyền sửa!");
-                        CloseWaitingDialog();
-                        return;*/
+                            msg = _objDao.Update(dhsua, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+
+                            ShowError("Đồng hồ đã sử dụng không được sửa số No.");
+                        }
                     }                     
 
                     ClearForm();

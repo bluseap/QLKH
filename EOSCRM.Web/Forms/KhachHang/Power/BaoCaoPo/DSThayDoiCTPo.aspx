@@ -107,7 +107,7 @@
     <asp:UpdatePanel ID="upnlReport" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <div class="crmcontainer" id="divCR" runat="server" visible="false">
-                 <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" DisplayGroupTree="False" />       
+                 <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" />       
             </div>            
         </ContentTemplate>
         <Triggers>
