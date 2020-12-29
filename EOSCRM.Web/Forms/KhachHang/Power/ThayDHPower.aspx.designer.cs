@@ -564,15 +564,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         protected global::System.Web.UI.WebControls.TextBox txtSoTem;
 
         /// <summary>
-        /// ddlDOTGCS control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDOTGCS;
-
-        /// <summary>
         /// btnSaveUp control.
         /// </summary>
         /// <remarks>
@@ -607,6 +598,15 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
+
+        /// <summary>
+        /// ddlDOTGCS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDOTGCS;
 
         /// <summary>
         /// btExcel control.

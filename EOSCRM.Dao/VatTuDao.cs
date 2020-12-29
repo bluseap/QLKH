@@ -766,7 +766,16 @@ namespace EOSCRM.Dao
                     )
                 .Max(p => p.MAVT);
 
-            var temp = int.Parse(query.Substring(3, 6)) + 2;
+            int temp;
+            if (query != null)
+            {
+                temp = int.Parse(query.Substring(3, 6)) + 2;
+            }
+            else
+            {
+                temp = 3;
+            }
+            //temp = int.Parse(query.Substring(3, 6)) + 2;
             return temp.ToString("D6");
         }
 
@@ -779,7 +788,16 @@ namespace EOSCRM.Dao
                     )
                 .Max(p => p.MAVT);
 
-            var temp = int.Parse(query.Substring(3, 6)) + 3;
+            int temp;
+            if (query != null)
+            {
+                temp = int.Parse(query.Substring(3, 6)) + 2;
+            }
+            else
+            {
+                temp = 3;
+            }
+            //var temp = int.Parse(query.Substring(3, 6)) + 3;
             return temp.ToString("D6");
         }
 

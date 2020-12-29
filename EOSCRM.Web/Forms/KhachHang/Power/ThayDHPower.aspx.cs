@@ -1263,13 +1263,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 {
                     dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
                         Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
-                                            "DSNOTDHPOP7D1").Tables[0];
+                                  "DSNOTDHPOP7D1").Tables[0];
                 }
                 else
                 {
                     dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
                         Convert.ToInt32(ddlTHANG1.SelectedValue), Convert.ToInt32(txtNAM1.Text.Trim()),
-                                            "DSNOTDHPODOTINCD").Tables[0];
+                                            "DSNOTDHPODOTINCD").Tables[0];                    
                 }
 
                 //Create a dummy GridView

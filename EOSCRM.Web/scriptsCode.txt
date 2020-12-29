@@ -24,6 +24,7 @@
 	
 
 	update procedure [dbo].[BienKHNuoc]
+	update procedure [dbo].[BienKHPo]
 	update procedure [dbo].[dsKHCBiKT]
 	update procedure [dbo].[dsKHCBiKTPO]
 	update procedure [dbo].[DSKHMOIDOTIN]	

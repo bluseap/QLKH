@@ -844,15 +844,7 @@ namespace EOSCRM.Web.Forms.KhachHang
             {
                 int thangF = int.Parse(ddlTHANG.SelectedValue);
                 string namF = txtNAM.Text.Trim();
-                var kynayF = new DateTime(int.Parse(namF), thangF, 1);      
-
-                //bool dungF = _gcsDao.IsLockTinhCuocKy(kynayF, ddlKHUVUC.SelectedValue);
-                //if (dungF == true)
-                //{
-                //    ShowError("Đã khóa sổ kỳ ghi.");
-                //    CloseWaitingDialog();
-                //    return;
-                //}
+                var kynayF = new DateTime(int.Parse(namF), thangF, 1);                 
 
                 _rpClass.UpLoadFileDuongPho("", "", ddlKHUVUC.SelectedValue, ddlDUONGPHO.SelectedValue, "", "",
                         kynayF, DateTime.Now, "DSTACHDUONGTOKH");

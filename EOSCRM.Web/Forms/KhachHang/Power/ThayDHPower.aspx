@@ -616,15 +616,7 @@
                                      <asp:TextBox ID = "txtSoTem" runat ="server" Width="108px" visible="false"/>
                                 </div>                                
                             </td>
-                        </tr> 
-                        <tr>
-                            <td class="crmcell right">Đợt GCS</td>
-                            <td class="crmcell">
-                                <div class="left width-200">
-                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
-                                </div>                                
-                            </td>                                  
-                        </tr> 
+                        </tr>                         
                         <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell">
@@ -644,15 +636,7 @@
                                 <div class="left width-200">
                                     <asp:Button ID="btnDelete" runat="server" CssClass="delete" OnClientClick="return CheckFormDelete();" OnClick="btnDelete_Click"
                                         TabIndex="19" UseSubmitBehavior="false" />
-                                </div>
-                                <div class="left  width-200 ">
-                                    <asp:Button ID="btExcel" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtExcel();"
-                                             OnClick="btExcel_Click" TabIndex="19" UseSubmitBehavior="false" Text="Xuất Excel"/>
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btDSChuaThay" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtDSChuaThay();"
-                                             TabIndex="19" UseSubmitBehavior="false" Text="DS chưa thay ĐH" OnClick="btDSChuaThay_Click"/>
-                                </div>
+                                </div>                                
                                
                                 <%--<div class="left">
                                     <div class="right">Kỳ áp dụng</div>
@@ -682,11 +666,27 @@
                                         runat="server" CssClass="filter" Text="" TabIndex="3" />
                                 </div>--%>
                             </td>
-                        </tr>
-                        <tr>    
+                        </tr>                        
+                        <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
+                        </tr> 
+                        <tr>
                             <td class="crmcell right"></td>
                             <td class="crmcell">
-                                 <div class="left">
+                                <div class="left  width-200 ">
+                                        <asp:Button ID="btExcel" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtExcel();"
+                                                 OnClick="btExcel_Click" TabIndex="19" UseSubmitBehavior="false" Text="Xuất Excel"/>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btDSChuaThay" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtDSChuaThay();"
+                                                TabIndex="19" UseSubmitBehavior="false" Text="DS chưa thay ĐH" OnClick="btDSChuaThay_Click"/>
+                                </div>
+                                <div class="left">
                                     <asp:Button ID="btnDSChiSoCuoiThangTruoc" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtnDSChiSoCuoiThangTruoc();"
                                           Visible="false"   TabIndex="19" UseSubmitBehavior="false" Text="Excel có Chỉ số Cuối tháng trước" OnClick="btnDSChiSoCuoiThangTruoc_Click" />
                                 </div>

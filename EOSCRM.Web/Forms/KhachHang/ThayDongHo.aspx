@@ -626,15 +626,7 @@
                                         TabIndex="12" />
                                 </div>
                             </td>
-                        </tr>
-                         <tr>
-                            <td class="crmcell right">Đợt GCS</td>
-                            <td class="crmcell">
-                                <div class="left width-200">
-                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
-                                </div>                                
-                            </td>                                  
-                        </tr> 
+                        </tr>                        
                         <tr>    
                             <td class="crmcell right"></td>
                             <td class="crmcell">
@@ -654,43 +646,28 @@
                                 <div class="left width-200">
                                     <asp:Button ID="btnDelete" runat="server" CssClass="delete" OnClientClick="return CheckFormDelete();" OnClick="btnDelete_Click"
                                         TabIndex="19" UseSubmitBehavior="false" />
-                                </div>
-                                
+                                </div>     
+                            </td>
+                        </tr>
+                         <tr>
+                            <td class="crmcell right">Đợt GCS</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlDOTGCS" runat="server"></asp:DropDownList>
+                                </div>                                
+                            </td>                                  
+                        </tr>
+                        <tr>
+                            <td class="crmcell right"></td>
+                            <td class="crmcell">
                                 <div class="left">
-                                    <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" OnClientClick="return CheckFormXuatExcel();" 
-                                        Text="Xuất Excel" UseSubmitBehavior="false" OnClick="btXuatExcel_Click" />
+                                        <asp:Button ID="btXuatExcel" runat="server" CssClass="myButton" OnClientClick="return CheckFormXuatExcel();" 
+                                            Text="Xuất Excel" UseSubmitBehavior="false" OnClick="btXuatExcel_Click" />
                                 </div>
-                               <div class="left">
+                                <div class="left">
                                     <asp:Button ID="btDSChuaThay" runat="server" CssClass="myButton" OnClientClick="return CheckFormbtDSChuaThay();"
-                                             TabIndex="19" UseSubmitBehavior="false" Text="DS chưa thay ĐH" OnClick="btDSChuaThay_Click"/>
+                                                TabIndex="19" UseSubmitBehavior="false" Text="DS chưa thay ĐH" OnClick="btDSChuaThay_Click"/>
                                 </div>
-                                <%--<div class="left">
-                                    <div class="right">Kỳ áp dụng</div>
-                                </div>
-                                <div class="left">
-                                    <asp:DropDownList ID="ddlTHANG" runat="server" TabIndex="1">
-                                        <asp:ListItem Text="01" Value="01" />
-                                        <asp:ListItem Text="02" Value="02" />
-                                        <asp:ListItem Text="03" Value="03" />
-                                        <asp:ListItem Text="04" Value="04" />
-                                        <asp:ListItem Text="05" Value="05" />
-                                        <asp:ListItem Text="06" Value="06" />
-                                        <asp:ListItem Text="07" Value="07" />
-                                        <asp:ListItem Text="08" Value="08" />
-                                        <asp:ListItem Text="09" Value="09" />
-                                        <asp:ListItem Text="10" Value="10" />
-                                        <asp:ListItem Text="11" Value="11" />
-                                        <asp:ListItem Text="12" Value="12" />
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="left">
-                                    <asp:TextBox ID="txtNAM" runat="server" Width="30px" MaxLength="4" TabIndex="2" />
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btnSearch" OnClick="btnSearch_Click"
-                                        UseSubmitBehavior="false" OnClientClick="return CheckSearch();" 
-                                        runat="server" CssClass="filter" Text="" TabIndex="3" />
-                                </div>--%>
                             </td>
                         </tr>
                     </tbody>
