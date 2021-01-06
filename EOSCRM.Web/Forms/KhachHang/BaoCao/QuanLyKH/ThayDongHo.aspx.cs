@@ -185,15 +185,28 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
             string b = loginInfo.Username;
             //var dotin = _diDao.GetKVDot(ddlDOTGCS.SelectedValue, _nvDao.Get(b).MAKV);
 
-            if (ddlDOTGCS.SelectedValue == "%")
+            //if (ddlDOTGCS.SelectedValue == "%")
+            //{
+            //    dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
+            //        cboKhuVuc.SelectedValue).Tables[0];
+            //}
+            //else
+            //{
+            //    dt = new ReportClass().ThayDongHodOotIn(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+            //        cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
+            //}
+            if (_nvDao.Get(b).MAKV == "X")
             {
-                dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
-                    cboKhuVuc.SelectedValue).Tables[0];
+                //var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), "", "dsKHMOI_ExLX2", TuNgay, DenNgay);
+                var ds = new ReportClass().BienKHNuoc("", _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue, "",
+                    int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "DSTHAYDHNLX");
+                dt = ds.Tables[0];
             }
             else
             {
-                dt = new ReportClass().ThayDongHodOotIn(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                    cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
+                var ds = new ReportClass().BienKHNuoc("", _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue, "",
+                   int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "DSTHAYDHNLX");
+                dt = ds.Tables[0];
             }
 
             rp = new ReportDocument();
@@ -291,16 +304,29 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
               
                 DataTable dt;
 
-                if (ddlDOTGCS.SelectedValue == "%")
+                //if (ddlDOTGCS.SelectedValue == "%")
+                //{
+                //    dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
+                //        cboKhuVuc.SelectedValue).Tables[0];
+                //}
+                //else
+                //{
+                //    dt = new ReportClass().ThayDongHodOotIn(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                //            cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
+                //}   
+                if (_nvDao.Get(b).MAKV == "X")
                 {
-                    dt = new ReportClass().ThayDongHo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), 
-                        cboKhuVuc.SelectedValue).Tables[0];
+                    //var ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), "", "dsKHMOI_ExLX2", TuNgay, DenNgay);
+                    var ds = new ReportClass().BienKHNuoc("", _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue, "",
+                        int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "DSTHAYDHNLX");
+                    dt = ds.Tables[0];
                 }
                 else
                 {
-                    dt = new ReportClass().ThayDongHodOotIn(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                            cboKhuVuc.SelectedValue, "", ddlDOTGCS.SelectedValue, "DSTHAYDOTIN").Tables[0];
-                }                
+                    var ds = new ReportClass().BienKHNuoc("", _nvDao.Get(b).MAKV, ddlDOTGCS.SelectedValue, "",
+                       int.Parse(ddlTHANG.SelectedValue), int.Parse(txtNAM.Text.Trim()), "DSTHAYDHNLX");
+                    dt = ds.Tables[0];
+                }
 
                 //Create a dummy GridView
                 GridView GridView1 = new GridView();

@@ -780,6 +780,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             if (loginInfo == null) return;
             string b = loginInfo.Username;
 
+            string makvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;
+
             if (ddlDOTGCS.SelectedValue == "%")
             {
                 var list = _khpoDao.GetTHDKV(thang, nam, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO);
@@ -788,15 +790,26 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 gvKhachHang.PagerInforText = list.Count.ToString();
                 gvKhachHang.DataBind();
             }
+            else if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
+            {
+                var list = _khpoDao.GetListTDHDotInP7D1(thang, nam, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO, ddlDOTGCS.SelectedValue);
+                if (list != null)
+                {
+                    gvKhachHang.DataSource = list;
+                    gvKhachHang.PagerInforText = list.Count.ToString();
+                    gvKhachHang.DataBind();
+                }
+            }
             else
             {
+                // danh sach dot theo duong
                 var list = _khpoDao.GetListTDHDotIn2(thang, nam, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO, ddlDOTGCS.SelectedValue);
                 if (list != null)
                 {
                     gvKhachHang.DataSource = list;
                     gvKhachHang.PagerInforText = list.Count.ToString();
                     gvKhachHang.DataBind();
-                }                
+                }
             }
 
             CloseWaitingDialog();

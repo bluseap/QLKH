@@ -1141,17 +1141,27 @@ namespace EOSCRM.Dao
             return query.ToList();
         }
 
+        public List<THAYDONGHOPO> GetListTDHDotInP7D1(int thang, int nam, string makv, string idmadotin)
+        {
+            var query = from th in _db.THAYDONGHOPOs
+                        join kh in _db.KHACHHANGPOs on th.IDKHPO equals kh.IDKHPO
+                        //join dp in _db.DUONGPHOPOs on kh.MADPPO equals dp.MADPPO
+                        where kh.MAKVPO.Equals(makv) && th.KYTHAYDH.Value.Month == thang && th.KYTHAYDH.Value.Year == nam 
+                            && kh.DOTINHD.Equals(idmadotin)
+                        select th;
+          
+            return query.ToList();
+        }
+
         public List<THAYDONGHOPO> GetListTDHDotIn2(int thang, int nam, string makv, string idmadotin)
         {
             var query = from th in _db.THAYDONGHOPOs
-                        //join kh in _db.KHACHHANGPOs on th.IDKHPO equals kh.IDKHPO
-                        //join dp in _db.DUONGPHOPOs on kh.MADPPO equals dp.MADPPO
-                        where th.IDMADOTIN.Equals(idmadotin) && th.KYTHAYDH.Value.Month == thang && th.KYTHAYDH.Value.Year == nam
+                        join kh in _db.KHACHHANGPOs on th.IDKHPO equals kh.IDKHPO
+                        join dp in _db.DUONGPHOPOs on kh.MADPPO equals dp.MADPPO
+                        where kh.MAKVPO.Equals(makv) && th.KYTHAYDH.Value.Month == thang && th.KYTHAYDH.Value.Year == nam
+                            && dp.IDMADOTIN.Equals(idmadotin)
                         select th;
-
-            //query.Where(t => t.KYTHAYDH.Value.Month == thang && t.KYTHAYDH.Value.Year == nam
-            //                       && t.KHACHHANG.MAKV.Equals(makv));
-
+           
             return query.ToList();
         }
 

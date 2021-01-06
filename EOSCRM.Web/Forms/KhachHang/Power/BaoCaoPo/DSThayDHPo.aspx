@@ -1,17 +1,24 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Shared/PO.Master" AutoEventWireup="true" CodeBehind="DSThayDHPo.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo.DSThayDHPo" %>
 
+<%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
     <script type="text/javascript">        
-        
+        function CheckFormReport() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnBaoCao) %>', '');
+        }
     </script>    
 </asp:Content>
 
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
-    <div class="crmcontainer">
+    <asp:UpdatePanel ID="upnlBaoCao" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+        <div class="crmcontainer">
         <table cellspacing="0" class="rgMasterTable rgClipCells form" style="width: 100%;
             table-layout: fixed; empty-cells: show;">
             <tbody>
@@ -99,9 +106,13 @@
                         <div class="left">
                             <asp:TextBox ID="txtNguoiLap" runat="server" />
                         </div>
-                        <div class="left">
+                       <%-- <div class="left">
                             <asp:Button ID="btnBaoCao" runat="server" OnClick="btnBaoCao_Click" CssClass="report" 
                             />
+                        </div>--%>
+                        <div class="left">
+                            <asp:Button ID="btnBaoCao" runat="server"  CssClass="report" 
+                                OnClick="btnBaoCao_Click" OnClientClick="return CheckFormReport();" />
                         </div>
                     </td>
                 </tr>
@@ -115,12 +126,27 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td class="crmcell" colspan="2">
                         <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" />
                     </td>
-                </tr>
+                </tr>--%>
             </tbody>
         </table>
     </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <br />
+    <asp:UpdatePanel ID="upnlCrystalReport" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <div class="crmcontainer" id="divCR" runat="server" visible="false">
+                <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX" 
+                     />
+            </div>
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="rpViewer" />
+            <asp:PostBackTrigger ControlID="btnBaoCao" />
+        </Triggers>
+    </asp:UpdatePanel>
 </asp:Content>

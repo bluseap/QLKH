@@ -120,12 +120,38 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             if (loginInfo == null) return;
             string b = loginInfo.Username;
 
-            var dotin = _diDao.GetListKVDDNotP7(_kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO);
-            ddlDOTGCS.Items.Clear();
-            ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
-            foreach (var d in dotin)
+            //var dotin = _diDao.GetListKVDDNotP7(_kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO);
+            //ddlDOTGCS.Items.Clear();
+            //ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+            //foreach (var d in dotin)
+            //{
+            //    ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
+            //}
+
+            var kvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;
+
+            if (kvpo == "J")
             {
-                ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
+                var dotin = _diDao.GetListKVDDP7(kvpo);
+
+                ddlDOTGCS.Items.Clear();
+                ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var d in dotin)
+                {
+                    ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
+                }
+            }
+            else
+            {
+                //var dotin = _diDao.GetListKVDDNotP7(kvpo);
+                var dotin = _diDao.GetListKVDDP7(kvpo);
+
+                ddlDOTGCS.Items.Clear();
+                ddlDOTGCS.Items.Add(new ListItem("Tất cả", "%"));
+                foreach (var d in dotin)
+                {
+                    ddlDOTGCS.Items.Add(new ListItem(_dmdiDao.Get(d.MADOTIN).TENDOTIN, d.IDMADOTIN));
+                }
             }
         }
 
@@ -170,6 +196,7 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             ddlTHANG.SelectedIndex = DateTime.Now.Month - 1;
             txtNAM.Text = DateTime.Now.Year.ToString();
 
+            lbRELOAD.Text = "0";
         }
 
         protected void btnBaoCao_Click(object sender, EventArgs e)
@@ -191,7 +218,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
                 }
                 catch  {  }
             }
-
             #endregion FreeMemory
 
             DateTime TuNgay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
@@ -202,35 +228,50 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
             if (loginInfo == null) return;
             string b = loginInfo.Username;
-            //var dotin = _diDao.GetKVPoIdDot(ddlDOTGCS.SelectedValue, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO);
-            //var dotin = _diDao.Get(ddlDOTGCS.SelectedValue);
-            //if (dotin == null)
-            //{
-            //    ShowError("Chưa có đợt in này! Xin kiểm tra lại.");
-            //    CloseWaitingDialog();
-            //    return;
-            //}
+            string makvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;            
 
+            //if (ddlDOTGCS.SelectedValue == "%")
+            //{
+            //    dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, "", "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+            //                            "DSTHAYDHSINHH").Tables[0];
+            //}
+            //else
+            //{
+            //    dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+            //                            "DSTHAYDHSINHHPODOTIN").Tables[0];
+            //}
             if (ddlDOTGCS.SelectedValue == "%")
             {
-                dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, "", "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                        "DSTHAYDHSINHH").Tables[0];
+                dt = new ReportClass().BienKHPo("", makvpo, "", "",
+                    Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                        "DsThayDHPoBCAll").Tables[0];
+            }
+            else if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
+            {
+                dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                    Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                              "DsThayDHPoBCP7D1").Tables[0];
             }
             else
             {
-                dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                        "DSTHAYDHSINHHPODOTIN").Tables[0];
+                dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                    Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                        "DsThayDHPoBCDotInCD").Tables[0];
             }
 
             //dt = new ReportClass().ThayDongHoPo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
             //dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, "", "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
             //                            "DSTHAYDHSINHH").Tables[0];
-            
+
             rp = new ReportDocument();
             var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/ThayDongHoPo.rpt");
             rp.Load(path);
             //}
             // DataTable dt = new ReportClass().RPDSCDDangKy(TuNgay, DenNgay.AddDays(1), cboKhuVuc.Text).Tables[0];
+
+            rp.SetDataSource(dt);
+            rpViewer.ReportSource = rp;
+            rpViewer.DataBind();
 
             string tendot = ddlDOTGCS.SelectedValue == "%" ? "" : " (" 
                 + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN  + ")";
@@ -246,13 +287,15 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
 
             TextObject ngay = rp.ReportDefinition.ReportObjects["txtNGAY"] as TextObject;
             ngay.Text = _kvpoDao.Get(cboKhuVuc.SelectedValue.ToString()).TENKV + ", ngày " + d + " tháng " +
-                    m + " năm " + y;
+                    m + " năm " + y;            
 
-            rp.SetDataSource(dt);
-            rpViewer.ReportSource = rp;
-            rpViewer.DataBind();
+            divCR.Visible = true;
+            upnlCrystalReport.Update();
 
-            lbRELOAD.Text = "1";
+            lbRELOAD.Text = "1";            
+            upnlBaoCao.Update();
+
+            CloseWaitingDialog();
 
             Session["DS_DonDangKy"] = dt;
             Session[Constants.REPORT_FREE_MEM] = rp;
@@ -283,43 +326,38 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
             if (loginInfo == null) return;
             string b = loginInfo.Username;
-            //var dotin = _diDao.GetKVPoDot(ddlDOTGCS.SelectedValue, _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO);
-            //if (dotin == null)
-            //{
-            //    ShowError("Chưa có đợt in này! Xin kiểm tra lại.");
-            //    CloseWaitingDialog();
-            //    return;
-            //}
-
+            string makvpo = _kvpoDao.GetPo(_nvDao.Get(b).MAKV).MAKVPO;
+           
             if (ddlDOTGCS.SelectedValue == "%")
             {
-                dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, "", "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                        "DSTHAYDHSINHH").Tables[0];
+                dt = new ReportClass().BienKHPo("", makvpo, "", "",
+                    Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                        "DsThayDHPoBCAll").Tables[0];
+            }
+            else if (_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN == "DDP7D1")
+            {
+                dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                    Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                              "DsThayDHPoBCP7D1").Tables[0];
             }
             else
             {
-                dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, ddlDOTGCS.SelectedValue, "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-                                        "DSTHAYDHSINHHPODOTIN").Tables[0];
+                dt = new ReportClass().BienKHPo("", makvpo, ddlDOTGCS.SelectedValue, "",
+                    Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
+                                        "DsThayDHPoBCDotInCD").Tables[0];
             }
-
-            //dt = new ReportClass().ThayDongHoPo(Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()), cboKhuVuc.SelectedValue).Tables[0];
-            //dt = new ReportClass().BienKHPo("", cboKhuVuc.SelectedValue, "", "", Convert.ToInt32(ddlTHANG.SelectedValue), Convert.ToInt32(txtNAM.Text.Trim()),
-            //                            "DSTHAYDHSINHH").Tables[0];
-
+           
             rp = new ReportDocument();
             var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/ThayDongHoPo.rpt");
             rp.Load(path);
-            //}
-            // DataTable dt = new ReportClass().RPDSCDDangKy(TuNgay, DenNgay.AddDays(1), cboKhuVuc.Text).Tables[0];
-
+          
             string tendot = ddlDOTGCS.SelectedValue == "%" ? "" : " ("
-                    + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN + ")";
+                + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN + ")";
             TextObject txtTuNgay1 = rp.ReportDefinition.ReportObjects["txtTuNgay"] as TextObject;
             txtTuNgay1.Text = "KỲ " + ddlTHANG.SelectedValue + " NĂM " + txtNAM.Text.Trim() + tendot;
             TextObject xn1 = rp.ReportDefinition.ReportObjects["txtXN"] as TextObject;
             xn1.Text = "XN ĐIỆN NƯỚC " + _kvpoDao.Get(cboKhuVuc.SelectedValue.ToString()).TENKV.ToUpper();
-            //TextObject txtNguoiLap1 = rp.ReportDefinition.ReportObjects["txtNguoiLap"] as TextObject;
-            //txtNguoiLap1.Text = txtNguoiLap.Text;
+           
             var d = DateTime.Now.Day;
             var m = DateTime.Now.Month;
             var y = DateTime.Now.Year;
@@ -332,7 +370,13 @@ namespace EOSCRM.Web.Forms.KhachHang.Power.BaoCaoPo
             rpViewer.ReportSource = rp;
             rpViewer.DataBind();
 
+            divCR.Visible = true;
+            upnlCrystalReport.Update();
+
             //lbRELOAD.Text = "1";
+            upnlBaoCao.Update();
+
+            CloseWaitingDialog();
 
             Session["DS_DonDangKy"] = dt;
             Session[Constants.REPORT_FREE_MEM] = rp;
