@@ -634,7 +634,7 @@
                             </td>
                             <td class="crmcell" style="height: 29px">
                                 <div class="left">
-                                    <asp:TextBox ID="txtMALDH" runat="server" Width="45px" MaxLength="20" 
+                                    <asp:TextBox ID="txtMALDH" runat="server" Width="90px" MaxLength="20" 
                                         TabIndex="11" Enabled="False"  />                                    
                                 </div>
                                 <div class="left">
@@ -851,7 +851,7 @@
                                 <div class="left">
                                     <asp:TextBox ID="txtSODINHMUCTAM" runat="server" Width="15px" TabIndex="27" Enabled="False" />                                
                                                                
-                                    <asp:CheckBox ID="ckDINHMUCTAM" runat="server" TabIndex="29" Visible="true" Text="Định mức tạm"
+                                    <asp:CheckBox ID="ckDINHMUCTAM" runat="server" TabIndex="29" Visible="true" Text=" Định mức tạm"
                                         AutoPostBack="true" OnCheckedChanged="ckDINHMUCTAM_CheckedChanged"/>
                                     
                                     <asp:TextBox ID="txtCQ" MaxLength="20" Enabled="false" runat="server" Width="100px" TabIndex="32" Visible="false"/>

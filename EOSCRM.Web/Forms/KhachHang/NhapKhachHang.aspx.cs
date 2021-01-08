@@ -1154,7 +1154,15 @@ namespace EOSCRM.Web.Forms.KhachHang
                     CloseWaitingDialog();                    
                     ShowInfor("Đã khoá sổ ghi chỉ số.");
                     return; 
-                }                
+                }
+                
+                var iskhachhang = khDao.GetMADDK(lbMADDK.Text.Trim());
+                if (iskhachhang != null)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor("Trùng khách hàng. Kiểm tra lại.");
+                    return;
+                }
 
                 Message msg;
                 Message msgkt;

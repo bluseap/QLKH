@@ -1031,6 +1031,17 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             var item9 = ddlKHUVUCDN.Items.FindByValue(kv.MAKVPO);
             if (item9 != null)
                 ddlKHUVUCDN.SelectedIndex = ddlKHUVUCDN.Items.IndexOf(item9);
+
+
+            //var khuvucpo = _kvpoDao.Get(ddlKHUVUC.SelectedValue);
+            var listPhuongXa = _xpDao.GetListKV(kv.MAKV);
+
+            ddlPhuongXa.Items.Clear();
+            ddlPhuongXa.Items.Add(new ListItem("Tất cả", "%"));
+            foreach (var phuongxa in listPhuongXa)
+            {
+                ddlPhuongXa.Items.Add(new ListItem(phuongxa.TENXA, phuongxa.MAXA));
+            }
         }
 
         #region Control event handlers
