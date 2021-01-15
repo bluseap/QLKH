@@ -11,6 +11,7 @@ namespace EOSCRM.Dao
 {
     public class DonDangKyPoDao
     {
+        private readonly StoredProcedureDao _spDao = new StoredProcedureDao();
         private readonly KhuVucPoDao _kvpoDao = new KhuVucPoDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly HopDongPoDao _hdpoDao = new HopDongPoDao();
@@ -4016,6 +4017,69 @@ namespace EOSCRM.Dao
                 msg = ExceptionHandler.HandleUpdateException(ex, "đơn đăng ký");
             }
             return msg;
+        }
+
+        public Message DeleteDonLapMoiPo(string maddk, string ghichuxoa, string useragent, string ipAddress, string sManv)
+        {
+            Message msg;
+
+            try
+            { 
+                _spDao.Delete_DonDangKyPo_ByMaddk(maddk, ghichuxoa);
+
+                // Submit changes to db
+                _db.SubmitChanges();
+
+                #region Luu Vet
+                var luuvetKyduyet = new LUUVET_KYDUYET
+                {
+                    MADON = maddk,
+                    IPAddress = ipAddress,
+                    MANV = sManv,
+                    UserAgent = useragent,
+                    NGAYTHUCHIEN = DateTime.Now,
+                    TACVU = TACVUKYDUYET.D.ToString(),
+                    MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                    MATT = "Xoa_DLM",
+                    MOTA = "Xóa đơn lắp mới IsXoa."
+                };
+                _kdDao.Insert(luuvetKyduyet);
+                #endregion
+                // success message
+                msg = new Message(MessageConstants.I_DELETE_SUCCEED, MessageType.Info, "Đơn đăng ký ");
+            }
+            catch (Exception ex)
+            {
+                _db.Connection.Close();
+
+                msg = ExceptionHandler.HandleDeleteException(ex, "Đơn đăng ký ");
+            }
+
+            return msg;
+        }
+
+        public List<DONDANGKYPO> GetListByXoaDLM(bool isxoadlm)
+        {
+            if (isxoadlm == true)
+            {
+                var query1 = from don in _db.DONDANGKYPOs
+                             where don.IsXoaDLM.Equals(isxoadlm)
+                             select don;
+
+                var query = query1.AsQueryable();
+
+                return query.OrderByDescending(d => d.MADDKPO).OrderByDescending(d => d.NGAYDK).ToList();
+            }
+            else
+            {
+                var query1 = from don in _db.DONDANGKYPOs
+                             where don.IsXoaDLM == null || don.IsXoaDLM == false
+                             select don;
+
+                var query = query1.AsQueryable();
+
+                return query.OrderByDescending(d => d.MADDKPO).OrderByDescending(d => d.NGAYDK).ToList();
+            }
         }
 
     }

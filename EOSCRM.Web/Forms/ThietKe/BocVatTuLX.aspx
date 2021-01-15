@@ -1174,7 +1174,10 @@
                             <asp:Label ID="lbTHCPCHUNGC2" runat="server" Text ="C" Font-Bold="True" Font-Size="Larger" ></asp:Label>
                         </div> 
                         <td class="crmcell right">
-                            <asp:Label ID="lbTHCPCHUNGC3" runat="server" Text="T x 5% = "></asp:Label>
+                            <div class="right">
+                                <asp:Label ID="lbTHCPCHUNGC3" runat="server" Text="T x "></asp:Label>                            
+                                <asp:TextBox ID="txtChiPhiChungGCTKLX" Width="30px" runat="server" />
+                             </div>
                         </td>
                         <td class="crmcell">
                             <div class="right">

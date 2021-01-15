@@ -17,6 +17,7 @@ public class StoredProcedureDao
 
     }
 
+    #region Get
     public DataSet Get_HisNgayDangKy_ByMaDDKMoTaTTDON(string maddk, string motattdon)
     {
         Database db = new Database();
@@ -74,6 +75,9 @@ public class StoredProcedureDao
         return ds;
     }
 
+    #endregion
+
+    #region Update
     public DataSet Update_HopDong_GhiChu(string maddk, string ghichu, string manv)
     {
         Database db = new Database();
@@ -114,5 +118,33 @@ public class StoredProcedureDao
         return ds;
     }
 
+    #endregion
+
+    #region Delete
+    public DataSet Delete_DonDangKy_ByMaddk(string maddk, string ghichuxoa)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 11, maddk),
+                    db.MakeInParam("@GhiChuDLM", SqlDbType.NVarChar  , 1000, ghichuxoa)
+                };
+        DataSet ds = db.RunExecProc("Delete_DonDangKy_ByMaddk", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Delete_DonDangKyPo_ByMaddk(string maddkpo, string ghichuxoa)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddkpo", SqlDbType.VarChar  , 11, maddkpo),
+                    db.MakeInParam("@GhiChuDLM", SqlDbType.NVarChar  , 1000, ghichuxoa)
+                };
+        DataSet ds = db.RunExecProc("Delete_DonDangKyPo_ByMaddk", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    #endregion
 
 }

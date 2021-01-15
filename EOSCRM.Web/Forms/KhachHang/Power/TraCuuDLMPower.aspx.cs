@@ -388,36 +388,51 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                         || query.MAPB == "LG" || query.MAPB == "ML" || query.MAPB == "NL" || query.MAPB == "TM" // CHO MOI
                         || query.MAPB == "LA" || query.MAPB == "NC" || query.MAPB == "VH") // TAN CHAU)
                 {//giao ho so roi
+                    if (ckIsXoaDLM.Checked)
+                    {
+                        var objList = _ddkpoDao.GetListByXoaDLM(ckIsXoaDLM.Checked);
 
-                    ////var objList = _ddkpoDao.GetListForTcdldmPB(txtMADDK.Text.Trim(), txtTENKH.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
-                    ////                txtDIACHIKHAC.Text.Trim(), sohodn, sonk, dmnk,
-                    ////                ddlMUCDICH.SelectedValue, ddlKHUVUC.SelectedValue, ddlPHUONG.SelectedValue, query.MAPB.ToString());
-                    var objList = _ddkpoDao.GetListForTcdldmPBcm(txtMADDK.Text.Trim(), txtTENKH.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
+                    else
+                    {                        
+                        var objList = _ddkpoDao.GetListForTcdldmPBcm(txtMADDK.Text.Trim(), txtTENKH.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
                                     txtDIACHIKHAC.Text.Trim(), sohodn, sonk, dmnk,
                                     ddlMUCDICH.SelectedValue, ddlKHUVUC.SelectedValue, ddlPHUONG.SelectedValue, query.MAPB.ToString(),
                                     txtCMND.Text.Trim());
 
-                    gvList.DataSource = objList;
-                    gvList.PagerInforText = objList.Count.ToString();
-                    gvList.DataBind();
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }                    
                 }
                 else
                 {
-                    //var objList = _ddkpoDao.GetListForTcdldm(txtMADDK.Text.Trim(), txtTENKH.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
-                    //                txtDIACHIKHAC.Text.Trim(), sohodn, sonk, dmnk,
-                    //                ddlMUCDICH.SelectedValue, ddlKHUVUC.SelectedValue, ddlPHUONG.SelectedValue);
-                    var objList = _ddkpoDao.GetListForTcdldmcm(txtMADDK.Text.Trim(), txtTENKH.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
+                    if (ckIsXoaDLM.Checked)
+                    {
+                        var objList = _ddkpoDao.GetListByXoaDLM(ckIsXoaDLM.Checked);
+
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
+                    else
+                    {
+                        var objList = _ddkpoDao.GetListForTcdldmcm(txtMADDK.Text.Trim(), txtTENKH.Text.Trim(), txtSONHA.Text.Trim(), txtDIENTHOAI.Text.Trim(), txtMADP.Text.Trim(),
                                     txtDIACHIKHAC.Text.Trim(), sohodn, sonk, dmnk,
-                                    ddlMUCDICH.SelectedValue, ddlKHUVUC.SelectedValue, 
+                                    ddlMUCDICH.SelectedValue, ddlKHUVUC.SelectedValue,
                                     ddlToNhaMay.SelectedValue,
                                     //ddlPHUONG.SelectedValue,
                                     txtCMND.Text.Trim());
 
-                    gvList.DataSource = objList;
-                    gvList.PagerInforText = objList.Count.ToString();
-                    gvList.DataBind();
+                        gvList.DataSource = objList;
+                        gvList.PagerInforText = objList.Count.ToString();
+                        gvList.DataBind();
+                    }
                 }
-                //}
+                ClearContent();
             }
             catch (Exception ex)
             {
@@ -690,11 +705,15 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtMADBDLM.Text = "";
             ddlToNhaMay.SelectedIndex = 0;
 
+            ckIsXoaDLM.Checked = false;
+            txtGhiChuXoaDLM.Text = "";
+            txtGhiChuXoaDLM.Enabled = false;
+            btnDelete.Visible = false;
         }
 
         private void SetDDKToForm(DONDANGKYPO ddk)
         {
-            SetControlValue(txtMADDK.ClientID, ddk.MADDKPO);
+            txtMADDK.Text = ddk.MADDKPO;
             SetReadonly(txtMADDK.ClientID, true);
             SetControlValue(txtTENKH.ClientID, ddk.TENKH);
             SetControlValue(txtSONHA.ClientID, ddk.SONHA);
@@ -808,7 +827,22 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
             var tonhamay = ddlToNhaMay.Items.FindByValue(ddk.MADDKPO.Substring(1, 2));
             if (tonhamay != null)
-                ddlToNhaMay.SelectedIndex = ddlToNhaMay.Items.IndexOf(tonhamay);           
+                ddlToNhaMay.SelectedIndex = ddlToNhaMay.Items.IndexOf(tonhamay);
+
+            //Xoa don lap moi
+            var isCheckedXoaDLM = ddk.IsXoaDLM is null || ddk.IsXoaDLM == false ? false : ddk.IsXoaDLM.Value;
+            ckIsXoaDLM.Checked = isCheckedXoaDLM;            
+            if (isCheckedXoaDLM)
+            {
+                txtGhiChuXoaDLM.Enabled = true;
+                btnDelete.Visible = true;
+            }
+            else
+            {
+                txtGhiChuXoaDLM.Enabled = false;
+                btnDelete.Visible = false;
+            }
+            txtGhiChuXoaDLM.Text = ddk.GhiChuXoaDLM != null ? ddk.GhiChuXoaDLM.ToString() : "";
 
             upnlInfor.Update();
         }
@@ -1517,8 +1551,26 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     return;
                 }
 
+                var msg = _ddkpoDao.DeleteDonLapMoiPo(txtMADDK.Text.Trim(), txtGhiChuXoaDLM.Text.Trim(), CommonFunc.GetComputerName(), 
+                    CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+
+                if (msg.MsgType != MessageType.Error)
+                {
+                    CloseWaitingDialog();
+                    ShowInfor(ResourceLabel.Get(msg));
+                    ClearContent();
+                    // Refresh grid view
+                    BindDataForGrid();
+                    upnlGrid.Update();
+                }
+                else
+                {
+                    CloseWaitingDialog();
+                    ShowError(ResourceLabel.Get(msg));
+                }
+
                 // Get list of ids that to be update
-                var strIds = Request["listIds"];
+                /*var strIds = Request["listIds"];
                 if ((strIds != null) && (!string.Empty.Equals(strIds)))
                 {
                     var objs = new List<DONDANGKYPO>();
@@ -1546,23 +1598,18 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                     if (msg.MsgType != MessageType.Error)
                     {
                         CloseWaitingDialog();
-
                         ShowInfor(ResourceLabel.Get(msg));
-
                         ClearContent();
-
                         // Refresh grid view
                         BindDataForGrid();
-
                         upnlGrid.Update();
                     }
                     else
                     {
                         CloseWaitingDialog();
-
                         ShowError(ResourceLabel.Get(msg));
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -2157,6 +2204,20 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
             }
             catch { }
+        }
+
+        protected void ckIsXoaDLM_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckIsXoaDLM.Checked)
+            {
+                txtGhiChuXoaDLM.Enabled = true;
+                btnDelete.Visible = true;
+            }
+            else
+            {
+                txtGhiChuXoaDLM.Enabled = false;
+                btnDelete.Visible = false;
+            }
         }
 
     }

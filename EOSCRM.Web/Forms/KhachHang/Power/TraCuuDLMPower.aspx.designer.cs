@@ -1383,6 +1383,33 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         protected global::System.Web.UI.WebControls.CheckBox cbISTUYENONGCHUNG;
 
         /// <summary>
+        /// ckIsXoaDLM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ckIsXoaDLM;
+
+        /// <summary>
+        /// txtGhiChuXoaDLM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGhiChuXoaDLM;
+
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete;
+
+        /// <summary>
         /// cbSDInfo_INHOADON control.
         /// </summary>
         /// <remarks>
@@ -1453,15 +1480,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
 
         /// <summary>
         /// upnlGrid control.

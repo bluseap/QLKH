@@ -11,6 +11,7 @@ namespace EOSCRM.Dao
 {
     public class DonDangKyDao
     {
+        private readonly StoredProcedureDao _spDao = new StoredProcedureDao();
         private readonly HopDongDao _hdDao = new HopDongDao();
         private readonly ReportClass _rpClass = new ReportClass();
         private readonly ThietKeDao _tkDao = new ThietKeDao();
@@ -313,7 +314,31 @@ namespace EOSCRM.Dao
 
             return query.OrderByDescending(d => d.MADDK).OrderByDescending(d => d.NGAYDK).ToList();
         }
-        
+
+        public List<DONDANGKY> GetListByXoaDLM(bool isxoadlm)
+        {            
+            if (isxoadlm == true)
+            {
+                var query1 = from don in _db.DONDANGKies
+                         where don.IsXoaDLM.Equals(isxoadlm)
+                         select don;
+
+                var query = query1.AsQueryable();                
+
+                return query.OrderByDescending(d => d.MADDK).OrderByDescending(d => d.NGAYDK).ToList();
+            }
+            else
+            {
+                var query1 = from don in _db.DONDANGKies
+                         where don.IsXoaDLM == null || don.IsXoaDLM == false
+                         select don;
+
+                var query = query1.AsQueryable();                
+
+                return query.OrderByDescending(d => d.MADDK).OrderByDescending(d => d.NGAYDK).ToList();
+            }                       
+        }
+
         public List<DONDANGKY> GetList(String keyword, DateTime? fromDate, DateTime? toDate, string makv, string maNV)
         {
             /*
@@ -4972,8 +4997,6 @@ namespace EOSCRM.Dao
             return msg;
         }
 
-
-
         public List<DONDANGKY> GetListDonChoThiCong(String keyword, DateTime? fromDate, DateTime? toDate, String areaCode)
         {
             // increase performance later
@@ -5348,8 +5371,58 @@ namespace EOSCRM.Dao
                 msg = ExceptionHandler.HandleUpdateException(ex, "đơn đăng ký");
             }
             return msg;
-        }        
+        }
 
+        public Message DeleteDonLapMoi(string maddk, string ghichuxoa, string useragent, string ipAddress, string sManv)
+        {
+            Message msg;
+
+            try
+            {
+                // Get current Item in db
+                //var objDb = Get(objUi.MADDK);
+                //if (objDb == null)
+                //{
+                //    // error message
+                //    msg = new Message(MessageConstants.E_OBJECT_NOT_EXISTS, MessageType.Error, "Đơn đăng ký ", objUi.TENKH);
+                //    return msg;
+                //}
+
+                // Set delete info
+                //_db.DONDANGKies.DeleteOnSubmit(objDb);
+
+                _spDao.Delete_DonDangKy_ByMaddk(maddk, ghichuxoa);
+
+                // Submit changes to db
+                _db.SubmitChanges();
+
+                #region Luu Vet
+                var luuvetKyduyet = new LUUVET_KYDUYET
+                {
+                    MADON = maddk,
+                    IPAddress = ipAddress,
+                    MANV = sManv,
+                    UserAgent = useragent,
+                    NGAYTHUCHIEN = DateTime.Now,
+                    TACVU = TACVUKYDUYET.D.ToString(),
+                    MACN = CHUCNANGKYDUYET.KH01.ToString(),
+                    MATT = "Xoa_DLM",
+                    MOTA = "Xóa đơn lắp mới IsXoa."
+                };
+                _kdDao.Insert(luuvetKyduyet);
+                #endregion
+                // success message
+                msg = new Message(MessageConstants.I_DELETE_SUCCEED, MessageType.Info, "Đơn đăng ký ");
+            }
+            catch (Exception ex)
+            {
+                _db.Connection.Close();
+
+                msg = ExceptionHandler.HandleDeleteException(ex, "Đơn đăng ký ");
+            }
+
+            return msg;
+        }
 
     }
 }

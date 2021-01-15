@@ -1,9 +1,9 @@
 ﻿
 	create procedure [dbo].[Get_DuongPho_ByAll]
 	create procedure [dbo].[Get_DonDangKy_ByMaddk]
+
 	create procedure [dbo].[Get_DSTongHopKHDK_ByDuyetCTKoTC]
 	create procedure [dbo].[Get_DSTongHopKHDK_ByDuyetCTKoTCPo]
-
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToNgay]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7Ngay]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7Ngay]
@@ -22,6 +22,9 @@
 	create procedure [dbo].[Update_HopDong_GhiChu]
 	create procedure [dbo].[Update_HopDongPo_GhiChu]
 	
+	create procedure [dbo].[Delete_DonDangKy_ByMaddk]	
+	create procedure [dbo].[Delete_DonDangKyPo_ByMaddk]	
+
 
 	update procedure [dbo].[BienKHNuoc]
 	update procedure [dbo].[BienKHPo]
@@ -41,6 +44,8 @@
 	update procedure [dbo].[RP_THAYDONGHO]
 	update procedure [dbo].[RP_THAYDONGHO_DOTIN]	
 
+
+	update phan quyen cho phep Xoa trong Tra cuu don lap moi dien, nuoc
 
 
 	delete Database in table DMDOTINHD all column Thu ho hoac nho thu... 
@@ -64,8 +69,15 @@
 
 	update Database in table MAUBOCVATTU, update MAKV of Dien theo tung khu vuc Xi nghiep (huong dan cho Xi nghiep)
 
-	update Database in table DONDANGKY inserts Column: SoDienThoai2 varchar(20)
-	update Database in table DONDANGKY inserts Column: IsKHMuaVatTu (bit)
+	update Database in table DONDANGKY inserts Column: SoDienThoai2 varchar(20), IsKHMuaVatTu (bit), IsXoaDLM (bit), 
+		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+	update Database in table DONDANGKY_H inserts Column: SONHANHAPDON2 nvarchar(20), TENDUONG nvarchar(100), MAXA varchar(10),
+		TENXA nvarchar(100), MAAPTO varchar(10), TENAPTO nvarchar(100) SoDienThoai2 varchar(20), IsKHMuaVatTu (bit), IsXoaDLM (bit), 
+		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+
+	update Database in table DONDANGKYPO inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+	update Database in table DONDANGKYPO_H inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
 	update Database in table HOPDONGPO inserts Column: GhiChu nvarchar(1000), Manv varchar(11)

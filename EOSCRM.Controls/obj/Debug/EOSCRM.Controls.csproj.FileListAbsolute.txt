@@ -53,3 +53,4 @@ D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csproj.
 D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csproj.CopyComplete
 D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.dll
 D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.pdb
+D:\nguyen\QLKH\Quanlykhachhang\EOSCRM.Controls\obj\Debug\EOSCRM.Controls.csprojAssemblyReference.cache

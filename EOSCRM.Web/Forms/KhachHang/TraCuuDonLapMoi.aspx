@@ -1624,6 +1624,28 @@
                         <tr>
                             <td class="header btop" colspan="6">
                                 <div class="left">
+                                    Xóa Đơn lắp đặt mới
+                                </div> 
+                                <div class="left" style="padding-left: 10px">
+                                    <asp:CheckBox ID="ckIsXoaDLM" runat="server" TabIndex="34" OnCheckedChanged="ckIsXoaDLM_CheckedChanged" AutoPostBack="True"/>                                
+                                </div>                              
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Ghi chú xóa ĐLM</td>
+                            <td class="crmcell">
+                                <div class="left">                                    
+                                        <asp:TextBox ID="txtGhiChuXoaDLM" runat="server" Width="500px" MaxLength="300" />
+                                 </div> 
+                                <div class="right">
+                                    <asp:Button ID="btnDelete" runat="server" CssClass="delete" OnClientClick="return CheckFormDelete();" OnClick="btnDelete_Click"
+                                        TabIndex="18" UseSubmitBehavior="false" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="header btop" colspan="6">
+                                <div class="left">
                                     Đổi thông tin xuất hóa đơn
                                 </div> 
                                 <div class="left" style="padding-left: 10px">
@@ -1669,11 +1691,7 @@
                                 <div class="left">
                                     <asp:Button ID="btnCancel" runat="server" CssClass="cancel" OnClick="btnCancel_Click"
                                          OnClientClick="return CheckFormCancel();" TabIndex="17" UseSubmitBehavior="false" />
-                                </div>
-                                <div class="left">
-                                    <asp:Button ID="btnDelete" runat="server" CssClass="delete" OnClientClick="return CheckFormDelete();" OnClick="btnDelete_Click"
-                                        TabIndex="18" UseSubmitBehavior="false" />
-                                </div>
+                                </div>                                
                             </td>
                         </tr>                        
                     </tbody>

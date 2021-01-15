@@ -1378,30 +1378,30 @@ namespace EOSCRM.Web.Forms.ThietKe
                 lbTCPVCST2.Text = string.Format("{0 : 0,0}", Convert.ToInt64(ttvctruocthue + ttvcthueGTGT));
 
                 lbTHCPNCT4.Text = string.Format("{0 : 0,0}", Convert.ToInt64(ttnhancong + ttdaolap));          // T
-                decimal? chiphichungC = Convert.ToInt64((ttnhancong + ttdaolap) * (decimal)0.05);               // C
+                decimal? chiphichungC = Convert.ToInt64((ttnhancong + ttdaolap) * (decimal)0.05);               // C = T * 5%
                 lbTHCPCHUNGC4.Text = string.Format("{0 : 0,0}", chiphichungC);
-                decimal? thunhapchiuthuetinhtruocTL = (ttnhancong + ttdaolap + chiphichungC) * (decimal)0.055;  // TL
+                decimal? thunhapchiuthuetinhtruocTL = (ttnhancong + ttdaolap + chiphichungC) * (decimal)0.055;  // TL = (T + C) * 5.5%
                 lbTHTNCTTTTL4.Text = string.Format("{0 : 0,0}", thunhapchiuthuetinhtruocTL);
                 decimal? gtxaylaptthueG = ttnhancong + ttdaolap + chiphichungC + thunhapchiuthuetinhtruocTL;   // G
                 lbGTXLTTG4.Text = string.Format("{0 : 0,0}", gtxaylaptthueG);
-                decimal? tgtgtxaylapVAT1 = gtxaylaptthueG * (decimal)0.1;                           // VAT1
+                decimal? tgtgtxaylapVAT1 = gtxaylaptthueG * (decimal)0.1;                           // VAT1 = G * 10%
                 lbTGTGTXLVAT14.Text = string.Format("{0 : 0,0}", tgtgtxaylapVAT1);
                 decimal? cpxaylapsauthueG1 = gtxaylaptthueG + tgtgtxaylapVAT1;                      // G1
                 lbCPXLSTG14.Text = string.Format("{0 : 0,0}", cpxaylapsauthueG1);
-                decimal? cpthietkettTK = gtxaylaptthueG * (decimal)0.0207 * (decimal)1.3;           // TK
+                decimal? cpthietkettTK = gtxaylaptthueG * (decimal)0.0207 * (decimal)1.3;           // TK = G * 2.07% * 1.3
                 lbCPTKTTTK4.Text = string.Format("{0 : 0,0}", cpthietkettTK);
-                decimal? tgtgttkVAT2 = cpthietkettTK * (decimal)0.1;                                // VAT2
+                decimal? tgtgttkVAT2 = cpthietkettTK * (decimal)0.1;                                // VAT2 = TK * 10%
                 lbTGTGTTTVAT24.Text = string.Format("{0 : 0,0}", tgtgttkVAT2);
                 decimal? cptkstG2 = cpthietkettTK + tgtgttkVAT2;                                    // G2
                 lbCPTKSTG24.Text = string.Format("{0 : 0,0}", cptkstG2);
                 lbCPVTTTVT14.Text = string.Format("{0 : 0,0}", ttvattu);                            // VT
-                decimal? tgtgtvtVAT3 = ttvattu * (decimal)0.1;                                      // VAT3
+                decimal? tgtgtvtVAT3 = ttvattu * (decimal)0.1;                                      // VAT3 = VT * 10%
                 lbTGTGTVT14.Text = string.Format("{0 : 0,0}", tgtgtvtVAT3);
                 decimal? cpvtstG3 = ttvattu + tgtgtvtVAT3;                                          // G3
                 lbCPVTSTG314.Text = string.Format("{0 : 0,0}", cpvtstG3);
 
                 lbCPVCTTVAT14.Text = string.Format("{0 : 0,0}", ttvctruocthue);                     // VC
-                lbTGTGTVC4.Text = string.Format("{0 : 0,0}", ttvcthueGTGT);                         // VAT4
+                lbTGTGTVC4.Text = string.Format("{0 : 0,0}", ttvcthueGTGT);                         // VAT4 = VC * 10%
                 decimal? cpvcstG4 = ttvctruocthue + ttvcthueGTGT;                                   // G4
                 lbCPVCSTG44.Text = string.Format("{0 : 0,0}", cpvcstG4);  
                 decimal? tongcongcpsauthuekh = cpxaylapsauthueG1 + cptkstG2 + cpvtstG3 + cpvcstG4;
