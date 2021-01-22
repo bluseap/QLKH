@@ -31,6 +31,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 {
     public partial class BienBanNghiemThu : Authentication
     {
+        private readonly StoredProcedureDao _spDao = new StoredProcedureDao();
         private readonly NhanVienDao _nvDao = new NhanVienDao();
         private readonly KhachHangDao _khDao = new KhachHangDao();
         private readonly DonDangKyDao ddkDao = new DonDangKyDao();
@@ -47,8 +48,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
         private readonly ChiTietThietKeDao _cttkDao = new ChiTietThietKeDao();
         private readonly ReportClass _rpDao = new ReportClass();
 
-        string madon1;        
-        
+        string madon1;
+
         private BBNGHIEMTHU ItemObj
         {
             get
@@ -79,10 +80,10 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 bb.HETHONGCN = txtHETHONGCN.Text.Trim();
                 bb.MANV = LoginInfo.MANV.ToString();
                 bb.NGAYNHANHSTC = (txtNGAYNHANHS.Text.Trim() != "") ? DateTimeUtil.GetVietNamDate(txtNGAYNHANHS.Text.Trim())
-                        : (DateTime?) null;
+                        : (DateTime?)null;
 
                 bb.NGAYCHUYENHSKTOAN = (txtNGAYCHUYENHS.Text.Trim() != "") ? DateTimeUtil.GetVietNamDate(txtNGAYCHUYENHS.Text.Trim())
-                        : (DateTime?) null; //: DateTimeUtil.GetVietNamDate(DateTime.Now.ToString("dd/MM/yyyy"));
+                        : (DateTime?)null; //: DateTimeUtil.GetVietNamDate(DateTime.Now.ToString("dd/MM/yyyy"));
                 return bb;
             }
         }
@@ -188,6 +189,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 if (!Page.IsPostBack)
                 {
                     LoadStaticReferences();
+
                     if (lbnt.Text == "1")
                     { BinBienBan(); }
                     else { BindDataBB(); }
@@ -212,8 +214,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
             CommonFunc.SetPropertiesForGrid(gvTKVT);
             CommonFunc.SetPropertiesForGrid(gvBienBan);
-            //CommonFunc.SetPropertiesForGrid(gvList);
-        }        
+            CommonFunc.SetPropertiesForGrid(gvMauNhanVienChiTiet);
+        }
 
         public bool ValidateData()
         {
@@ -249,13 +251,13 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         ddlMaKV.Items.Add(new System.Web.UI.WebControls.ListItem(kv.TENKV, kv.MAKV));
                     }
                 }
-                
-                txtNV1.Text ="";                
-                txtNV2.Text ="";                
-                txtNV3.Text ="";
+
+                txtNV1.Text = "";
+                txtNV2.Text = "";
+                txtNV3.Text = "";
                 txtCHIEUCAO.Text = "";
                 txtKHOANCACH.Text = "";
-                txtVITRILAP.Text = "";                
+                txtVITRILAP.Text = "";
                 //txtCHIKDM1.Text = "";
                 //txtCHIKDM2.Text = "";
                 txtCSDONGHO.Text = "";
@@ -269,12 +271,12 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         txtCHIM1.Text = "N2/2018"; //"CT/ĐNAG";
                         txtCHIM2.Text = "CT/ĐNAG"; //"N2/2007";
                     }
-                    else if (nv.MANV == "cthtq" )
+                    else if (nv.MANV == "cthtq")
                     {
                         txtCHIM1.Text = "N1/2018"; //"E2N/ĐNAG"; //"CT/ĐNAG";
                         txtCHIM2.Text = "CT/ĐNAG"; //"CT/2001"; //"N1/2007";
                     }
-                    else if ( nv.MANV == "dnl")
+                    else if (nv.MANV == "dnl")
                     {
                         txtCHIM1.Text = "N3/2018"; //"E2N/ĐNAG"; //"CT/ĐNAG";
                         txtCHIM2.Text = "CT/ĐNAG"; //"CT/2001"; //"N1/2007";
@@ -283,7 +285,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     {
                         txtCHIM1.Text = "";
                         txtCHIM2.Text = "";
-                    }                    
+                    }
 
                     //nguyễn thị thanh thuy
                     lbNV1.Text = "nttt";
@@ -305,7 +307,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         txtCHIM2.Text = "";
                     }
                 }
-               
+
                 //txtMADDK.Text = "";
 
                 txtKETLUAN.Text = "Đồng hồ nước hoạt động bình thường. Lắp đặt đúng qui định.";
@@ -317,7 +319,12 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 lbKHACHHANG.Text = "";
 
                 //txtNGAYCHUYENHS.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                
+
+                var khuvuc = nvdao.GetKV(b);
+                // 1 : Nuoc ; 2 : Dien
+                loadMauNhanVien(khuvuc.MAKV, 1);
+
+                txtSortOrderMauNhanVien.Text = "1";
             }
             catch (Exception ex)
             {
@@ -373,8 +380,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
         protected void gvDDK_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {                
-                gvDDK.PageIndex = e.NewPageIndex;               
+            {
+                gvDDK.PageIndex = e.NewPageIndex;
                 BindDDK();
             }
             catch (Exception ex)
@@ -398,7 +405,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                             ShowInfor("Không có hồ sơ thiết kế..");
                             return;
                         }
-                        if (id == null || id=="")
+                        if (id == null || id == "")
                         {
                             ShowInfor("Không có hồ sơ thiết kế....");
                             return;
@@ -442,8 +449,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     {
                         lbDANHSO.Text = (hd.MADP + hd.MADB).ToString();
                     }
-                    else { 
-                        lbDANHSO.Text = ""; 
+                    else {
+                        lbDANHSO.Text = "";
                     }
 
                     if (dp != null)
@@ -457,7 +464,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         lblTENDP2.Text = "";
                     }
                 }
-                
+
                 var tc = _tcDao.Get(madon.ToString());
                 if (tc != null)
                 {
@@ -473,8 +480,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
                     txtCHIKDM1.Text = tc.CHIKDM1 != null ? tc.CHIKDM1.ToString() : "";
                     txtCHIKDM2.Text = tc.CHIKDM2 != null ? tc.CHIKDM2.ToString() : "";
-                }                
-                
+                }
+
                 upnlThongTin.Update();
             }
             catch (Exception ex)
@@ -514,7 +521,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 {
                     lblTENDP1.Text = "";
                     lblTENDP2.Text = "";
-                }                
+                }
 
                 var tc = _tcDao.Get(madon.ToString());
                 if (tc != null)
@@ -537,8 +544,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 {
                     if (dh.SONO != null)
                         lbSONO.Text = dh.SONO.ToString();
-                }                
-                
+                }
+
                 var ldh = _ldhDao.Get(dh.MALDH.ToString());
                 if (ldh != null)
                 {
@@ -589,7 +596,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         txtLAMBB.Text = "";
                     }
                     if (bb.HETHONGCN != null)
-                        { txtHETHONGCN.Text = bb.HETHONGCN.ToString(); }
+                    { txtHETHONGCN.Text = bb.HETHONGCN.ToString(); }
                     else
                     {
                         txtHETHONGCN.Text = "";
@@ -703,10 +710,10 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                     }
 
                     info.NGAYNHANHSTC = txtNGAYNHANHS.Text.Trim() != "" ? DateTimeUtil.GetVietNamDate(txtNGAYNHANHS.Text.Trim())
-                        : DateTimeUtil.GetVietNamDate(DateTime.Now.ToString("dd/MM/yyyy"));                    
+                        : DateTimeUtil.GetVietNamDate(DateTime.Now.ToString("dd/MM/yyyy"));
                 }
 
-                msg = _bbntDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);  
+                msg = _bbntDao.Insert(info, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
 
                 _rpDao.UPCHIKDNUOC(txtMADDK.Text.Trim(), txtCHIKDM1.Text.Trim(), txtCHIKDM2.Text.Trim());
 
@@ -773,7 +780,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
             BindDataBB();
 
-            upnlThongTin.Update();            
+            upnlThongTin.Update();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -802,7 +809,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
         {
             try
             {
-                var id = e.CommandArgument.ToString();                
+                var id = e.CommandArgument.ToString();
 
                 switch (e.CommandName)
                 {
@@ -827,7 +834,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         HideDialog("divNhanVien");
                         CloseWaitingDialog();
 
-                        break;                   
+                        break;
 
                 }
             }
@@ -993,13 +1000,13 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
         {
             string makv = nvdao.Get(LoginInfo.MANV).MAKV;
 
-            if (makv == "S" )
+            if (makv == "S")
             {
                 var list = nvdao.SearchTP_PT(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
 
                 gvNhanVien2.DataSource = list;
                 gvNhanVien2.PagerInforText = list.Count.ToString();
-                gvNhanVien2.DataBind(); 
+                gvNhanVien2.DataBind();
             }
             else
             {
@@ -1010,7 +1017,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
                     gvNhanVien2.DataSource = list;
                     gvNhanVien2.PagerInforText = list.Count.ToString();
-                    gvNhanVien2.DataBind();                    
+                    gvNhanVien2.DataBind();
                 }
                 else if (nvdao.Get(LoginInfo.MANV).MAKV.Equals("P"))
                 {
@@ -1018,9 +1025,9 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
                     gvNhanVien2.DataSource = list;
                     gvNhanVien2.PagerInforText = list.Count.ToString();
-                    gvNhanVien2.DataBind();                    
+                    gvNhanVien2.DataBind();
                 }
-                else 
+                else
                 {
                     //var list = nvdao.SearchKV3(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);                
                     var list = nvdao.TimNVKyThuat(txtKeywordNV2.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
@@ -1028,7 +1035,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
                     gvNhanVien2.DataSource = list;
                     gvNhanVien2.PagerInforText = list.Count.ToString();
-                    gvNhanVien2.DataBind();                    
+                    gvNhanVien2.DataBind();
                 }
             }
 
@@ -1039,13 +1046,13 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
         {
             string makv = nvdao.Get(LoginInfo.MANV).MAKV;
 
-            if (makv == "S" )//|| makv == "P" || makv == "T")
+            if (makv == "S")//|| makv == "P" || makv == "T")
             {
                 var list = nvdao.SearchKV3(txtKeywordNV3.Text.Trim(), makv, nvdao.Get(LoginInfo.MANV).MAPB);
 
                 gvNhanVien3.DataSource = list;
                 gvNhanVien3.PagerInforText = list.Count.ToString();
-                gvNhanVien3.DataBind();     
+                gvNhanVien3.DataBind();
             }
             else
             {
@@ -1057,10 +1064,10 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
                     gvNhanVien3.DataSource = list;
                     gvNhanVien3.PagerInforText = list.Count.ToString();
-                    gvNhanVien3.DataBind();                    
+                    gvNhanVien3.DataBind();
                 }
                 else
-                {                    
+                {
                     var list = nvdao.TimNV_NM_To(txtKeywordNV3.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
 
                     gvNhanVien3.DataSource = list;
@@ -1144,7 +1151,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 string b = loginInfo.Username;
 
                 if (string.IsNullOrEmpty(txtTIMKHBB.Text.Trim()) || txtTIMKHBB.Text == "")
-                {                    
+                {
                     var objList = _bbntDao.GetListKV(nvdao.Get(b).MAKV);
 
                     gvBienBan.DataSource = objList;
@@ -1214,14 +1221,14 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 CloseWaitingDialog();
             }
             catch { }
-        }        
+        }
 
         protected void gvBienBan_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {                
+            {
                 gvBienBan.PageIndex = e.NewPageIndex;
-              
+
                 if (lbnt.Text == "1")
                 { BinBienBan(); }
                 else { BindDataBB(); }
@@ -1245,7 +1252,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                         {
                             var objDb = _bbntDao.Get(id);
                             if (objDb != null)
-                            {                                
+                            {
                                 BindBienBan(id);
                                 UpdateMode = Mode.Update;
                             }
@@ -1276,10 +1283,10 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                                 ShowInfor("Không có biên bản..");
                             }
                         }
-                        
+
                         CloseWaitingDialog();
 
-                        break;                     
+                        break;
 
                 }
             }
@@ -1301,8 +1308,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
         protected void gvTKVT_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {                
-                gvTKVT.PageIndex = e.NewPageIndex;              
+            {
+                gvTKVT.PageIndex = e.NewPageIndex;
                 BindTKVT();
             }
             catch (Exception ex)
@@ -1408,7 +1415,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
             {
                 var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
                 if (loginInfo == null) return;
-                string b = loginInfo.Username;                
+                string b = loginInfo.Username;
 
                 DateTime? fromDate = null;
                 DateTime? toDate = null;
@@ -1430,7 +1437,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 var objList = _bbntDao.GetListKVLX(fromDate, toDate, nvdao.Get(b).MAKV);
 
                 var msg = _bbntDao.UpdateChuyenHS_KT(objList, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV,
-                        DateTimeUtil.GetVietNamDate(txtNGAYCHUYENHS.Text.Trim()));               
+                        DateTimeUtil.GetVietNamDate(txtNGAYCHUYENHS.Text.Trim()));
 
                 if (msg == null) return;
                 if (msg.MsgType != MessageType.Error)
@@ -1453,7 +1460,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
 
         protected void btXuatExcel_Click(object sender, EventArgs e)
         {
-            XuatExcelDSNgayChuyen();            
+            XuatExcelDSNgayChuyen();
 
             BinBienBan();
 
@@ -1497,7 +1504,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 System.IO.StringWriter sw = new System.IO.StringWriter();
                 System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw);
 
-                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"); 
+                hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
@@ -1578,8 +1585,561 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                 upnlGrid.Update();
             }
             catch { }
-        }        
+        }
 
+        private void loadMauNhanVien(string makv, int serviceid)
+        {
+            try
+            {
+                var query = _spDao.Get_MauNhanVien_ByMakvService(makv, serviceid);
+
+                ddlMauNhanVienTao.Items.Clear();
+                ddlChonMauNhanVien.Items.Clear();
+                ddlMauNhanVienTao.Items.Add(new System.Web.UI.WebControls.ListItem("-- Chọn mẫu --", "0"));
+                ddlChonMauNhanVien.Items.Add(new System.Web.UI.WebControls.ListItem("-- Chọn mẫu --", "0"));
+
+                if (query.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < query.Tables[0].Rows.Count; i++)
+                    {
+                        ddlMauNhanVienTao.Items.Add(new System.Web.UI.WebControls.ListItem(query.Tables[0].Rows[i]["TenMauNhanVien"].ToString(),
+                            query.Tables[0].Rows[i]["Id"].ToString()));
+
+                        ddlChonMauNhanVien.Items.Add(new System.Web.UI.WebControls.ListItem(query.Tables[0].Rows[i]["TenMauNhanVien"].ToString(),
+                            query.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void btnTaoMauNhanVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lbParaTaoMauNhanVien.Text = "1";
+
+                upnlMauNhanVien.Update();
+                UnblockDialog("divMauNhanVien");
+            }
+            catch { }
+        }
+
+        protected void btnLuuMauNhanVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string paraTaoMau = lbParaTaoMauNhanVien.Text.Trim();
+
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var khuvuc = nvdao.GetKV(b);
+
+                if (paraTaoMau == "1")
+                {
+                    if (!HasPermission(Functions.TC_BienBanNghiemThu, Permission.Insert))
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
+                        return;
+                    }
+
+                    var result = _spDao.Insert_MauNhanVien(txtTenMauNhanVien.Text.Trim(), txtKimM1MauNhanVien.Text.Trim(), 
+                        txtKimM2MauNhanVien.Text.Trim(), khuvuc.MAKV, 1, 1, b); // services 1: nuoc; 2: dien
+
+                    if (result.Tables[0].Rows[0]["KetQua"].ToString() == "Ok")
+                    {
+                        ShowInfor("Lưu mẫu nhân viên thành công.");
+                        loadMauNhanVien(khuvuc.MAKV, 1); // services 1: nuoc; 2: dien
+                    }
+                    else
+                    {
+                        ShowError("Lưu không thành công. Kiểm tra lại.");
+                    }
+
+                    lbParaTaoMauNhanVien.Text = "1";
+                }
+
+                if (paraTaoMau == "2")
+                {
+                    if (!HasPermission(Functions.TC_BienBanNghiemThu, Permission.Update))
+                    {
+                        CloseWaitingDialog();
+                        ShowInfor(Resources.Message.WARN_PERMISSION_DENIED);
+                        return;
+                    }
+
+                    var result = _spDao.Update_MauNhanVien(Convert.ToInt32(ddlMauNhanVienTao.SelectedValue.ToString()),
+                        txtTenMauNhanVien.Text.Trim(), txtKimM1MauNhanVien.Text.Trim(), txtKimM2MauNhanVien.Text.Trim(), b);
+
+                    if (result.Tables[0].Rows[0]["KetQua"].ToString() == "Ok")
+                    {
+                        ShowInfor("Sửa mẫu nhân viên thành công.");
+                        loadMauNhanVien(khuvuc.MAKV, 1); // services 1: nuoc; 2: dien
+                    }
+                    else
+                    {
+                        ShowError("Sửa không thành công. Kiểm tra lại.");
+                    }
+
+                    lbParaTaoMauNhanVien.Text = "1";
+                }
+
+                txtTenMauNhanVien.Text = "";
+                //txtChiKDM1MauNhanVien.Text = "";
+                //txtChiKDM2MauNhanVienn.Text = "";
+                txtKimM1MauNhanVien.Text = "";
+                txtKimM2MauNhanVien.Text = "";
+
+                txtTenMauNhanVien.Enabled = false;
+                //txtChiKDM1MauNhanVien.Enabled = false;
+                //txtChiKDM2MauNhanVienn.Enabled = false;
+                txtKimM1MauNhanVien.Enabled = false;
+                txtKimM2MauNhanVien.Enabled = false;
+
+                btnLuuMauNhanVien.Visible = false;
+
+                upnlMauNhanVien.Update();
+                upnlThongTin.Update();
+            }
+            catch { }
+        }
+
+        protected void btnSuaTenMau_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lbParaTaoMauNhanVien.Text = "2";
+
+                txtTenMauNhanVien.Enabled = true;
+                //txtChiKDM1MauNhanVien.Enabled = true;
+                //txtChiKDM2MauNhanVienn.Enabled = true;
+                txtKimM1MauNhanVien.Enabled = true;
+                txtKimM2MauNhanVien.Enabled = true;
+
+                btnLuuMauNhanVien.Visible = true;
+
+                int maunhanvienid = Convert.ToInt32(ddlMauNhanVienTao.SelectedValue.ToString());
+
+                var result = _spDao.Get_MauNhanVien_ById(maunhanvienid);
+
+                txtTenMauNhanVien.Text = result.Tables[0].Rows[0]["TenMauNhanVien"].ToString();
+                txtKimM1MauNhanVien.Text = result.Tables[0].Rows[0]["MaSoKimM1"].ToString();
+                txtKimM2MauNhanVien.Text = result.Tables[0].Rows[0]["MaSoKimM2"].ToString();
+            }
+            catch { }
+        }
+
+        protected void btnThemMoiMau_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lbParaTaoMauNhanVien.Text = "1";
+
+                txtTenMauNhanVien.Enabled = true;
+                //txtChiKDM1MauNhanVien.Enabled = true;
+                //txtChiKDM2MauNhanVienn.Enabled = true;
+                txtKimM1MauNhanVien.Enabled = true;
+                txtKimM2MauNhanVien.Enabled = true;
+
+                btnLuuMauNhanVien.Visible = true;
+
+                upnlMauNhanVien.Update();
+            }
+            catch { }
+        }
+
+        protected void btnXoaTenMau_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Filtered = FilteredMode.None;
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var khuvuc = nvdao.GetKV(b);
+
+                // Authenticate
+                if (!HasPermission(Functions.TC_BienBanNghiemThu, Permission.Delete))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                int maunhanvienid = Convert.ToInt32(ddlMauNhanVienTao.SelectedValue.ToString());
+
+                var result = _spDao.Delete_MauNhanVien(maunhanvienid, b);
+
+                if (result.Tables[0].Rows[0]["KetQua"].ToString() == "Ok")
+                {
+                    ShowInfor("Xóa mẫu nhân viên thành công.");
+                    loadMauNhanVien(khuvuc.MAKV, 1); // services 1: nuoc; 2: dien
+                }
+                else
+                {
+                    ShowError("Xóa không thành công. Kiểm tra lại.");
+                }
+
+                CloseWaitingDialog();
+                upnlMauNhanVien.Update();
+                upnlThongTin.Update();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        private void BindMauNhanVienChiTiet()
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+                var khuvuc = nvdao.GetKV(b);
+
+                int maunhanvienid = Convert.ToInt32(ddlMauNhanVienTao.SelectedValue.ToString());
+
+                if (maunhanvienid != 0)
+                {
+                    var result = _spDao.Get_MauNhanVienChiTiet_ByMauNhanVienId(maunhanvienid);
+
+                    gvMauNhanVienChiTiet.DataSource = result.Tables[0];
+                    gvMauNhanVienChiTiet.PagerInforText = result.Tables[0].Rows.Count.ToString();
+                    gvMauNhanVienChiTiet.DataBind();
+                }
+                else
+                {
+                    gvMauNhanVienChiTiet.DataSource = null;
+                    gvMauNhanVienChiTiet.PagerInforText = "0";
+                    gvMauNhanVienChiTiet.DataBind();
+                }
+
+                CloseWaitingDialog();
+            }
+            catch { }
+        }
+
+        protected void ddlMauNhanVienTao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BindMauNhanVienChiTiet();
+            }
+            catch { }
+        }
+
+        protected void gvMauNhanVienChiTiet_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
+
+            var lnkBtnID = e.Row.FindControl("lnkBtnID") as LinkButton;
+            if (lnkBtnID == null) return;
+            lnkBtnID.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(lnkBtnID) + "')");
+        }
+
+        protected void gvMauNhanVienChiTiet_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                var id = e.CommandArgument.ToString();
+                int maunhanvienchitietId = Convert.ToInt16(id);
+
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                switch (e.CommandName)
+                {
+                    case "EditSortOrderMauNhanVienChiTiet":                        
+
+                        var result = _spDao.Get_MauNhanVienChiTiet_ById(maunhanvienchitietId);
+
+                        if (result.Tables[0].Rows.Count != 0)
+                        {
+                            lbMauNhanVienChiTietId.Text = result.Tables[0].Rows[0]["Id"].ToString();
+                            lbTenNhanVienMauNhanVien.Text = result.Tables[0].Rows[0]["NhanVienHoTen"].ToString();
+                            txtSortOrderMauNhanVien.Text = result.Tables[0].Rows[0]["SortOrder"].ToString();
+                        }
+
+                        upnlMauNhanVien.Update();
+                        CloseWaitingDialog();
+                        break;
+
+                    case "DeleteMauNhanVienChiTiet":
+
+                        // Authenticate
+                        if (!HasPermission(Functions.TC_BienBanNghiemThu, Permission.Delete))
+                        {
+                            CloseWaitingDialog();
+                            ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                            return;
+                        }
+
+                        var resultDelete = _spDao.Delete_MauNhanVienChiTiet(maunhanvienchitietId, b);
+
+                        if (resultDelete.Tables[0].Rows[0]["KetQua"].ToString() == "Ok")
+                        {
+                            ShowInfor("Xóa mẫu nhân viên thành công.");
+                            BindMauNhanVienChiTiet();
+                        }
+                        else
+                        {
+                            ShowError("Xóa không thành công. Kiểm tra lại.");
+                        }
+
+                        upnlMauNhanVien.Update();
+                        CloseWaitingDialog();
+                        break;                        
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvMauNhanVienChiTiet_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {                
+                gvMauNhanVienChiTiet.PageIndex = e.NewPageIndex;              
+                BindMauNhanVienChiTiet();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+        
+        protected void btnTimNhanVienMau_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                int maunhanvienid = Convert.ToInt32(ddlMauNhanVienTao.SelectedValue.ToString());
+                if (maunhanvienid == 0)
+                {
+                    ShowError("Chọn mẫu nhân viên.");
+                    return;
+                }
+
+                BindNhanVienMau();
+                //upnlNhanVienMau.Update();
+                UnblockDialog("divNhanVienMau");
+
+                CloseWaitingDialog();
+                upnlMauNhanVien.Update();
+            }
+            catch { }
+        }
+
+        private void BindNhanVienMau()
+        {
+            string makv = nvdao.Get(LoginInfo.MANV).MAKV;
+
+            if (makv == "S" || makv == "P" || makv == "T")
+            {
+                var list = nvdao.SearchKV_GD(txtNhanVienMau.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
+                gvNhanVienMau.DataSource = list;
+                gvNhanVienMau.PagerInforText = list.Count.ToString();
+                gvNhanVienMau.DataBind();
+            }
+            else
+            {
+                var list = nvdao.SearchKV3(txtNhanVienMau.Text.Trim(), nvdao.Get(LoginInfo.MANV).MAKV, nvdao.Get(LoginInfo.MANV).MAPB);
+                gvNhanVienMau.DataSource = list;
+                gvNhanVienMau.PagerInforText = list.Count.ToString();
+                gvNhanVienMau.DataBind();
+            }
+
+            upnlNhanVienMau.Update();
+        }
+
+        protected void gvNhanVienMau_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (!e.Row.RowType.Equals(DataControlRowType.DataRow)) return;
+
+            var lnkBtnID = e.Row.FindControl("lnkBtnID") as LinkButton;
+            if (lnkBtnID == null) return;
+            lnkBtnID.Attributes.Add("onclick", "onClientClickGridItem('" + CommonFunc.UniqueIDWithDollars(lnkBtnID) + "')");
+        }
+
+        protected void gvNhanVienMau_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                var id = e.CommandArgument.ToString();
+
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;                
+
+                switch (e.CommandName)
+                {
+                    case "SelectMANVMau":
+                        var nv = nvdao.Get(id);
+                        if (nv != null)
+                        {              
+                            // Authenticate
+                            if (!HasPermission(Functions.TC_BienBanNghiemThu, Permission.Insert))
+                            {
+                                CloseWaitingDialog();
+                                ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                                return;
+                            }
+
+                            int maunhanvienid = Convert.ToInt32(ddlMauNhanVienTao.SelectedValue.ToString());
+                            int sortOrder = Convert.ToInt32(txtSortOrderMauNhanVien.Text.Trim());
+
+                            var result = _spDao.Insert_MauNhanVienChiTiet(id, maunhanvienid, sortOrder, b);
+
+                            if (result.Tables[0].Rows[0]["KetQua"].ToString() == "Ok")
+                            {
+                                ShowInfor("Thêm nhân viên vào mẫu thành công.");
+                                txtSortOrderMauNhanVien.Text = "1";
+                                //loadMauNhanVien(khuvuc.MAKV, 1); // services 1: nuoc; 2: dien
+                            }
+                            else
+                            {
+                                ShowError("Lỗi thêm nhân viên vào mẫu. Kiểm tra lại!");
+                            }
+
+                            CloseWaitingDialog();
+                            BindMauNhanVienChiTiet();
+                            upnlMauNhanVien.Update();
+                        }
+
+                        HideDialog("divNhanVienMau");
+                        CloseWaitingDialog();
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void gvNhanVienMau_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {                
+                gvNhanVienMau.PageIndex = e.NewPageIndex;                
+                BindNhanVienMau();
+            }
+            catch (Exception ex)
+            {
+                DoError(new Message(MessageConstants.E_EXCEPTION, MessageType.Error, ex.Message, ex.StackTrace));
+            }
+        }
+
+        protected void btnFilterNVMau_Click(object sender, EventArgs e)
+        {
+            BindNhanVienMau();
+            CloseWaitingDialog();
+        }
+
+        protected void btnLuuSortOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Authenticate
+                if (!HasPermission(Functions.TC_BienBanNghiemThu, Permission.Insert))
+                {
+                    CloseWaitingDialog();
+                    ShowError(Resources.Message.WARN_PERMISSION_DENIED);
+                    return;
+                }
+
+                var loginInfo = Session[SessionKey.USER_LOGIN] as UserAdmin;
+                if (loginInfo == null) return;
+                string b = loginInfo.Username;
+
+                int maunhanvienchitietid = Convert.ToInt32(lbMauNhanVienChiTietId.Text.Trim());
+                int sortOrder = Convert.ToInt32(txtSortOrderMauNhanVien.Text.Trim());
+
+                var result = _spDao.Update_MauNhanVienChiTiet_BySortOrder(maunhanvienchitietid, sortOrder, b);
+
+                if (result.Tables[0].Rows[0]["KetQua"].ToString() == "Ok")
+                {
+                    ShowInfor("Sắp xếp nhân viên thành công.");
+                    lbTenNhanVienMauNhanVien.Text = "";
+                    txtSortOrderMauNhanVien.Text = "1";                    
+                }
+                else
+                {
+                    ShowError("Lỗi sắp xếp nhân viên. Kiểm tra lại!");
+                }
+
+                CloseWaitingDialog();
+                BindMauNhanVienChiTiet();
+                upnlMauNhanVien.Update();
+            }
+            catch { }
+        }
+
+        protected void ddlChonMauNhanVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int maunhanvienid = Convert.ToInt32(ddlChonMauNhanVien.SelectedValue.ToString());
+
+                if (maunhanvienid != 0)
+                {
+                    var result = _spDao.Get_MauNhanVienChiTiet_ByMauNhanVienId(maunhanvienid);
+
+                    if (result.Tables[0].Rows.Count != 0)
+                    {
+                        for (int i = 0; i < result.Tables[0].Rows.Count; i++)
+                        {
+                           int sortOrder = Convert.ToInt16(result.Tables[0].Rows[i]["SortOrder"].ToString());
+
+                           if (sortOrder == 1)
+                            {
+                                lbNV1.Text = result.Tables[0].Rows[i]["NhanVienId"].ToString();
+                                txtNV1.Text = result.Tables[0].Rows[i]["NhanVienHoTen"].ToString();                                
+                                txtCV1.Text = result.Tables[0].Rows[i]["TenPhong"].ToString();
+                            }
+
+                            if (sortOrder == 2)
+                            {
+                                lbNV2.Text = result.Tables[0].Rows[i]["NhanVienId"].ToString();
+                                txtNV2.Text = result.Tables[0].Rows[i]["NhanVienHoTen"].ToString();
+                                txtCV2.Text = result.Tables[0].Rows[i]["TenPhong"].ToString();
+                            }
+
+                            if (sortOrder == 3)
+                            {
+                                lbNV3.Text = result.Tables[0].Rows[i]["NhanVienId"].ToString();
+                                txtNV3.Text = result.Tables[0].Rows[i]["NhanVienHoTen"].ToString();
+                                txtCV3.Text = result.Tables[0].Rows[i]["TenPhong"].ToString();
+                            }
+                        }
+                    }
+
+                    var maunhanvien = _spDao.Get_MauNhanVien_ById(maunhanvienid);
+                    if (maunhanvien.Tables[0].Rows.Count != 0)
+                    {
+                        txtCHIM1.Text = maunhanvien.Tables[0].Rows[0]["MaSoKimM1"] != null ? 
+                            maunhanvien.Tables[0].Rows[0]["MaSoKimM1"].ToString() : "";
+                        txtCHIM2.Text = maunhanvien.Tables[0].Rows[0]["MaSoKimM2"] != null ? 
+                            maunhanvien.Tables[0].Rows[0]["MaSoKimM2"].ToString() : "";
+                    }
+                }
+
+                CloseWaitingDialog();
+                upnlThongTin.Update();
+            }
+            catch { }
+        }              
 
     }
 }

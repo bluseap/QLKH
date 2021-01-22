@@ -18,12 +18,26 @@
 	create procedure [dbo].[Get_HopDong_ByMaddk]
 	create procedure [dbo].[Get_HopDongPo_ByMaddk]	
 
+	create procedure [dbo].[Get_MauNhanVien_ById]	
+	create procedure [dbo].[Get_MauNhanVien_ByMakvService]
+
+	create procedure [dbo].[Get_MauNhanVienChiTiet_ById]
+	create procedure [dbo].[Get_MauNhanVienChiTiet_ByMauNhanVienId]	
+	
+
+	create procedure [dbo].[Insert_MauNhanVien]	
+	create procedure [dbo].[Insert_MauNhanVienChiTiet]
+
 	create procedure [dbo].[Update_DonDangKy_SoDienThoai2MuaVatTu]
 	create procedure [dbo].[Update_HopDong_GhiChu]
 	create procedure [dbo].[Update_HopDongPo_GhiChu]
-	
+	create procedure [dbo].[Update_MauNhanVien]	
+	create procedure [dbo].[Update_MauNhanVienChiTiet_BySortOrder]	
+
 	create procedure [dbo].[Delete_DonDangKy_ByMaddk]	
 	create procedure [dbo].[Delete_DonDangKyPo_ByMaddk]	
+	create procedure [dbo].[Delete_MauNhanVien]	
+	create procedure [dbo].[Delete_MauNhanVienChiTiet]	
 
 
 	update procedure [dbo].[BienKHNuoc]
@@ -219,11 +233,14 @@
 	insert table in Database: BBNghiemThuHis
 	insert table in Database: BBNghiemThuPoHis
 	insert Table in Database: ChietTinhHis
+	insert Table in Database: MauNhanVien
+	insert Table in Database: MauNhanVienHis
 	insert Table in Database: HopDongHis
 	insert Table in Database: HopDongPoHis
 	insert Table in Database: HisNgayDangKyHis
 	insert Table in Database: HisNgayDangKyPoHis
 	insert Table in Database: ThietKePoHis
+	insert Table in Database: Services (generate scripts)
 
 
 	install .NET Framwork 4.6.1
