@@ -2005,11 +2005,7 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh
                                 ShowInfor("Thêm nhân viên vào mẫu thành công.");
                                 txtSortOrderMauNhanVien.Text = "1";
                                 //loadMauNhanVien(khuvuc.MAKV, 1); // services 1: nuoc; 2: dien
-                            }
-                            else
-                            {
-                                ShowError("Lỗi thêm nhân viên vào mẫu. Kiểm tra lại!");
-                            }
+                            }                            
 
                             CloseWaitingDialog();
                             BindMauNhanVienChiTiet();

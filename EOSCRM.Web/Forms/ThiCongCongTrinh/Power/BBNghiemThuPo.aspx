@@ -67,8 +67,31 @@
                     $(this).parent().appendTo("#divDonDangKyDlgContainer");
                 }
             });
-        });
 
+            $("#divMauNhanVien").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divMauNhanVienDlgContainer");
+                }
+            });
+
+            $("#divNhanVienMau").dialog({
+                autoOpen: false,
+                modal: true,
+                minHeight: 100,
+                height: 'auto',
+                width: 'auto',
+                resizable: false,
+                open: function (event, ui) {
+                    $(this).parent().appendTo("#divNhanVienMauDlgContainer");
+                }
+            });
+        });
 
         function CheckFormFilterDDK() {
             openWaitingDialog();
@@ -112,34 +135,321 @@
         function CheckFormFilterNV() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV) %>', '');
-
             return false;
         }
 
         function CheckFormFilterNV2() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV2) %>', '');
-
             return false;
         }
 
         function CheckFormFilterNV3() {
             openWaitingDialog();
             unblockWaitingDialog();
-
             __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNV3) %>', '');
-
             return false;
         }
 
+        function CheckbtnLuuMauNhanVien() {
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnLuuMauNhanVien) %>', '');
+            return false;
+        }
+
+        function CheckbtnSuaTenMau() {
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnSuaTenMau) %>', '');
+            return false;
+        }
+
+        function CheckbtnXoaTenMau() {
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnXoaTenMau) %>', '');
+            return false;
+        }
+
+        function CheckbtnThemMoiMau() {
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnThemMoiMau) %>', '');
+            return false;
+        }
+        
+        function CheckbtnTimNhanVienMau() {
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnTimNhanVienMau) %>', '');
+            return false;
+        }
+
+        function CheckFormFilterNVMau() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnFilterNVMau) %>', '');
+            return false;
+        }
+        
+        function CheckbtnLuuSortOrder() {
+            openWaitingDialog();
+            unblockWaitingDialog();
+            __doPostBack('<%= CommonFunc.UniqueIDWithDollars(btnLuuSortOrder) %>', '');
+            return false;
+        }
 
     </script>
 </asp:Content>
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <div id="divNhanVienMauDlgContainer">
+        <div id="divNhanVienMau" style="display: none">
+            <asp:UpdatePanel ID="upnlNhanVienMau" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 800px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Từ khóa
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtNhanVienMau" onchange="return CheckFormFilterNVMau();" runat="server" Width="250px" MaxLength="200" />
+                                                </div>
+                                                <div class="left">
+                                                    <asp:Button ID="btnFilterNVMau" OnClick="btnFilterNVMau_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckFormFilterNVMau();" 
+                                                        runat="server" CssClass="filter" Text="" />                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+						<tr>
+							<td class="ptop-10">
+							    <div class="crmcontainer">
+							        <eoscrm:Grid ID="gvNhanVienMau" runat="server" UseCustomPager="true" 
+							            AllowPaging="true" AutoGenerateColumns="false" CssClass="crmgrid"
+							            OnRowDataBound="gvNhanVienMau_RowDataBound" OnRowCommand="gvNhanVienMau_RowCommand" 
+							            OnPageIndexChanging="gvNhanVienMau_PageIndexChanging">
+							            <RowStyle CssClass="row" />
+                                        <AlternatingRowStyle CssClass="altrow" />
+                                        <HeaderStyle CssClass="header" />
+                                        <PagerSettings FirstPageText="nhân viên" PageButtonCount="2" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Mã NV">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" 
+                                                        CommandArgument='<%# Eval("MANV") %>' CommandName="SelectMANVMau"                                                         
+                                                        Text='<%# HttpUtility.HtmlEncode(Eval("MANV").ToString()) %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderStyle-Width="35%" DataField="HOTEN" HeaderText="Họ tên" />
+                                            <asp:TemplateField HeaderStyle-Width="30%" HeaderText="Phòng ban">
+                                                <ItemTemplate>
+                                                    <%# Eval("PHONGBAN") != null ? Eval("PHONGBAN.TENPB") : "" %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderStyle-Width="25%" HeaderText="Công việc">
+                                                <ItemTemplate>
+                                                    <%# Eval("CONGVIEC") != null ? Eval("CONGVIEC.TENCV") : ""%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </eoscrm:Grid>
+                                </div>
+							</td>
+						</tr>
+					</table>
+				</ContentTemplate>                
+	        </asp:UpdatePanel>            
+        </div>
+    </div>
+    <div id="divMauNhanVienDlgContainer">
+        <div id="divMauNhanVien" style="display: none">
+            <asp:UpdatePanel ID="upnlMauNhanVien" runat="server" UpdateMode="Conditional">
+				<ContentTemplate>
+				    <table cellpadding="3" cellspacing="1" style="width: 800px;">
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="crmcell right">
+                                                Tên mẫu nhân viên
+                                            </td>
+                                            <td class="crmcell">
+                                                <div class="left">
+                                                    <asp:TextBox ID="txtTenMauNhanVien" runat="server" Width="250px" MaxLength="200" Enabled="false"/>
+                                                </div>                                                
+                                            </td>
+                                        </tr>
+                                        <%--<tr>
+                                            <td class="crmcell right">Mã chì KĐ M 1</td>
+                                            <td class="crmcell">    
+                                                <div class="left ">
+                                                    <asp:TextBox ID="txtChiKDM1MauNhanVien" runat="server" width="80" />
+                                                </div>   
+                                                <td class="crmcell right">Mã chì KĐ M 2</td>
+                                                <td class="crmcell">
+                                                    <div class="left">
+                                                        <asp:TextBox ID="txtChiKDM2MauNhanVienn" runat="server" width="80"  /> 
+                                                    </div>
+                                                </td>
+                                            </td>
+                                        </tr> --%>
+                                        <tr>
+                                            <td class="crmcell right">Mã số kìm mặt 1</td>
+                                            <td class="crmcell">    
+                                                <div class="left ">
+                                                    <asp:TextBox ID="txtKimM1MauNhanVien" runat="server" width="80"  />
+                                                </div>   
+                                                <td class="crmcell right">Mã số kìm mặt 2</td>
+                                                <td class="crmcell">
+                                                    <div class="left">
+                                                        <asp:TextBox ID="txtKimM2MauNhanVien" runat="server" width="80"  /> 
+                                                    </div>
+                                                </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">    
+                                                <div class="left">
+                                                    <asp:Button ID="btnLuuMauNhanVien" runat="server" CssClass="save" Text="" Visible="false"
+                                                        OnClick="btnLuuMauNhanVien_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckbtnLuuMauNhanVien();"  />
+                                                </div>                                                  
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right">Chọn mẫu nhân viên</td>
+                                            <td class="crmcell">
+                                                <div class="left ">
+                                                    <asp:DropDownList ID="ddlMauNhanVienTao" runat="server" AutoPostBack="True" 
+                                                        OnSelectedIndexChanged="ddlMauNhanVienTao_SelectedIndexChanged">
+                                                    </asp:DropDownList>
+                                                </div>                                                    
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">    
+                                                <div class="left">
+                                                    <asp:Button ID="btnSuaTenMau" runat="server" CssClass="myButton" Text="Sửa tên mẫu" 
+                                                        OnClick="btnSuaTenMau_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckbtnSuaTenMau();"  />
+                                                    <asp:Button ID="btnXoaTenMau" runat="server" CssClass="myButton" Text="Xóa tên mẫu" 
+                                                        OnClick="btnXoaTenMau_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckbtnXoaTenMau();"  />
+                                                     <asp:Button ID="btnThemMoiMau" runat="server" CssClass="myButton" Text="Thêm tên mẫu" 
+                                                        OnClick="btnThemMoiMau_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckbtnThemMoiMau();"  />
+                                                </div>                                                                                           
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td class="crmcontainer">
+                                <table class="crmtable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="header btop" colspan="6">
+                                                Sắp xếp nhân viên 1, 2, 3 theo mẫu
+                                            </td>
+                                        </tr>                                        
+                                        <tr>
+                                            <td class="crmcell right">Tên nhân viên</td>
+                                            <td class="crmcell">    
+                                                <div class="left ">
+                                                    <asp:Label ID="lbMauNhanVienChiTietId" runat="server" Text="" Visible="true"></asp:Label>
+                                                    <asp:Label ID="lbTenNhanVienMauNhanVien" runat="server" Text=""></asp:Label>
+                                                </div>   
+                                                <td class="crmcell right">Số thứ tự</td>
+                                                <td class="crmcell">
+                                                    <div class="left">
+                                                        <asp:TextBox ID="txtSortOrderMauNhanVien" runat="server" Width="60px" /> 
+                                                    </div>
+                                                </td>
+                                            </td>
+                                        </tr>   
+                                        <tr>
+                                            <td class="crmcell right"></td>
+                                            <td class="crmcell">    
+                                                <div class="left">
+                                                    <asp:Button ID="btnLuuSortOrder" runat="server" CssClass="save" Text="" 
+                                                        OnClick="btnLuuSortOrder_Click"
+                                                        UseSubmitBehavior="false" OnClientClick="return CheckbtnLuuSortOrder();"  />
+                                                </div>
+                                            </td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+						<tr>
+							<td class="ptop-10">
+							    <div class="crmcontainer">
+                                    <div class="right">
+                                        <asp:Button ID="btnTimNhanVienMau" runat="server" CssClass="myButton" Text="Tìm nhân viên" 
+                                            OnClick="btnTimNhanVienMau_Click"
+                                            OnClientClick="openDialogAndBlock('Chọn từ danh sách nhân viên', 800, 'divNhanVienMau')"
+                                            UseSubmitBehavior="false" CausesValidation="false" />     
+                                    </div>
+							        <eoscrm:Grid ID="gvMauNhanVienChiTiet" runat="server" UseCustomPager="true" 
+							            AllowPaging="true" AutoGenerateColumns="false" CssClass="crmgrid"
+							            OnRowDataBound="gvMauNhanVienChiTiet_RowDataBound" OnRowCommand="gvMauNhanVienChiTiet_RowCommand" 
+							            OnPageIndexChanging="gvMauNhanVienChiTiet_PageIndexChanging">
+							            <RowStyle CssClass="row" />
+                                        <AlternatingRowStyle CssClass="altrow" />
+                                        <HeaderStyle CssClass="header" />
+                                        <PagerSettings FirstPageText="Mẫu nhân viên" PageButtonCount="2" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderStyle-Width="10%" HeaderText="Id">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkBtnID" runat="server" CommandArgument='<%# Eval("Id") %>'
+                                                        CommandName="EditItem" Text='<%# Eval("Id") %>'></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderStyle-Width="35%" DataField="NhanVienHoTen" HeaderText="Họ tên" />
+                                            <asp:TemplateField HeaderStyle-Width="35%" HeaderText="Phòng ban">
+                                                <ItemTemplate>
+                                                    <%# Eval("TenPhong") != null ? Eval("TenPhong") : ""%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderStyle-Width="6%" HeaderText="Số tt">
+                                                <ItemTemplate>
+                                                    <%# Eval("SortOrder") != null ? Eval("SortOrder") : "0"%>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="7%">
+                                               <ItemTemplate>
+							                        <asp:LinkButton ID="btnEditSortOrderMauNhanVienChiTiet" Text="Sửa Stt" CommandName="EditSortOrderMauNhanVienChiTiet" 
+							                            CausesValidation="false" CommandArgument='<%# Eval("Id")%>' runat="server"></asp:LinkButton>	
+						                        </ItemTemplate>
+					                        </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="" HeaderStyle-Width="7%">                                                
+						                        <ItemTemplate>
+							                        <asp:LinkButton ID="btnDeleteMauNhanVienChiTiet" Text="Xóa" CommandName="DeleteMauNhanVienChiTiet" 
+							                            CausesValidation="false" CommandArgument='<%# Eval("Id")%>' runat="server"></asp:LinkButton>	
+						                        </ItemTemplate>
+					                        </asp:TemplateField>     
+                                        </Columns>
+                                    </eoscrm:Grid>
+                                </div>
+							</td>
+						</tr>
+					</table>
+				</ContentTemplate>
+	        </asp:UpdatePanel>
+        </div>
+    </div>
     <div id="divTKVTDlgContainer">
         <div id="divThietKeVatTu" style="display: none">
             <asp:UpdatePanel ID="upnlThietKeVatTu" runat="server" UpdateMode="Conditional">
@@ -501,6 +811,8 @@
                                     <asp:Label ID="lbNV2" runat="server" Text="nv2" Visible="false"></asp:Label>
                                     <asp:Label ID="lbNV3" runat="server" Text="nv3" Visible="false"></asp:Label>
                                     <asp:Label ID="lbMADDTRAHSTK" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lbParaTaoMauNhanVien" runat="server" Visible="false"></asp:Label>
+                                    <asp:Label ID="lbParaAddNhanVien" runat="server" Visible="false"></asp:Label>
                                 </div>
                             </td>
                         </tr>
@@ -613,6 +925,21 @@
                                 </div>
                                 <div class="left">
                                     <asp:Label ID="lbMACHIM2" runat="server" Text=""></asp:Label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="crmcell right">Chọn mẫu nhân viên</td>
+                            <td class="crmcell">
+                                <div class="left width-200">
+                                    <asp:DropDownList ID="ddlChonMauNhanVien" runat="server" AutoPostBack="True" 
+                                        OnSelectedIndexChanged="ddlChonMauNhanVien_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="left">
+                                    <asp:Button ID="btnTaoMauNhanVien" runat="server" class="myButton" Text="Tạo mẫu nhân viên"
+                                        OnClick="btnTaoMauNhanVien_Click" OnClientClick="openDialogAndBlock('Tạo mẫu nhân viên mới', 800, 'divMauNhanVien')"
+                                        UseSubmitBehavior="false" CausesValidation="false"/>
                                 </div>
                             </td>
                         </tr>

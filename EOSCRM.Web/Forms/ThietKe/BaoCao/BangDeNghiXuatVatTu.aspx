@@ -4,7 +4,7 @@
 
 <%@ Import Namespace="EOSCRM.Web.Common"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
 
     <script type="text/javascript">
@@ -67,6 +67,6 @@
     </div>
     <br />
     <div class="crmcontainer" id="divReport" runat="server">
-        <CR:CrystalReportViewer ID="rpViewer" runat="server" DisplayGroupTree="False" PrintMode="ActiveX" AutoDataBind="true" />
+        <CR:CrystalReportViewer ID="rpViewer" runat="server" DPrintMode="ActiveX" AutoDataBind="true" />
     </div>  
 </asp:Content>

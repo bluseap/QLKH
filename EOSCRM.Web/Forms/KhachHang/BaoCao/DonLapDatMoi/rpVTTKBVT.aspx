@@ -72,7 +72,7 @@
             </tr>
             <tr>
                 <td class="crmcell" colspan="6" style="height: 502px" valign="top">
-                    <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" DisplayGroupTree="False" />
+                    <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true"/>
                     <br />
                 </td>
             </tr>

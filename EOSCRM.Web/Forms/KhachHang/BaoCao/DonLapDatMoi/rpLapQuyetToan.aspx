@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/Shared/EOS.Master" AutoEventWireup="true" 
     CodeBehind="rpLapQuyetToan.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.DonLapDatMoi.rpLapQuyetToan" %>
 
-<%@ Register assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
+<%@ Register assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" namespace="CrystalDecisions.Web" tagprefix="CR" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
 </asp:Content>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td class="crmcell" colspan="6" style="height: 502px" valign="top">
-                    <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" DisplayGroupTree="False" />
+                    <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true"  />
                     <br />
                 </td>
             </tr>

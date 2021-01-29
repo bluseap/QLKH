@@ -14,7 +14,7 @@
                     <td class="crmcell" valign="top">
                         <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" 
                             HasToggleGroupTreeButton="False" PrintMode="ActiveX" 
-                            DisplayGroupTree="False" />
+                           />
                         <br />
                     </td>
                 </tr>

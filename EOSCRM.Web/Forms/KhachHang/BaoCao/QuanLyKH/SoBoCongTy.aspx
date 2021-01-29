@@ -2,7 +2,7 @@
     CodeBehind="SoBoCongTy.aspx.cs" Inherits="EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH.SoBoCongTy" %>
 
 <%@ Import Namespace="EOSCRM.Web.Common" %>
-<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
     Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <asp:Content ID="head" ContentPlaceHolderID="headCPH" runat="server">
 
@@ -91,6 +91,6 @@
     <br />
     <div class="crmcontainer" id="divReport" runat="server" visible="false">
         <CR:CrystalReportViewer ID="rpViewer" runat="server" AutoDataBind="true" PrintMode="ActiveX"
-            DisplayGroupTree="False" />
+            />
     </div>
 </asp:Content>

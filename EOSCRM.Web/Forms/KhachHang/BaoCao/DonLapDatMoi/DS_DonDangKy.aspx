@@ -150,7 +150,7 @@
 
     <br />
     <div class="crmcontainer" id="divReport" runat="server">
-        <CR:CrystalReportViewer ID="rpViewer" runat="server" DisplayGroupTree="False" PrintMode="ActiveX" AutoDataBind="true" />
+        <CR:CrystalReportViewer ID="rpViewer" runat="server"  PrintMode="ActiveX" AutoDataBind="true" />
     </div>  
 
     
