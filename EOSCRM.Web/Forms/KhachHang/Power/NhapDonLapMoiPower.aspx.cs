@@ -119,9 +119,23 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 }
                 else { cnhongheo = ""; }//
 
+                string cnsohuudat = "";
+                if (ckSoHuuDat.Checked == true)
+                {
+                    cnsohuudat = "Giấy chứng nhận sở hữu đất (Photo,công chứng). ";
+                }
+                else { cnsohuudat = ""; }
+
+                string cnthoathuankhachhang = "";
+                if (ckThoaThuanKhachHang.Checked == true)
+                {
+                    cnthoathuankhachhang = "Giấy thỏa thuận với khách hàng khác. ";
+                }
+                else { cnthoathuankhachhang = ""; }
+
 
                 //obj.NOIDUNG = txtNOIDUNG.Text.Trim();
-                obj.NOIDUNG = cnhongheo + ndhk + ndcm + ndxn + ndkd + cnnha + hdtnha + cndkkd + cnddthue ;
+                obj.NOIDUNG = cnhongheo + ndhk + ndcm + ndxn + ndkd + cnnha + hdtnha + cndkkd + cnddthue + cnsohuudat + cnthoathuankhachhang;
 
                 obj.CTCTMOI = false;
                 obj.MANV = LoginInfo.MANV;
@@ -1190,7 +1204,6 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 txtCAPNGAY.Focus();
             }
             catch { }
-
         }
 
         protected void ckDoiPhuongXa_CheckedChanged(object sender, EventArgs e)

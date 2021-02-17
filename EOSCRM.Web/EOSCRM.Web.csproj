@@ -213,6 +213,7 @@
     <Content Include="Forms\KhachHang\InHopDongKH.aspx" />
     <Content Include="Forms\KhachHang\NhapDonCaiTao.aspx" />
     <Content Include="Forms\KhachHang\NhapKHCDoc.aspx" />
+    <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSKHDieuKienPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx" />
     <Content Include="Forms\KhachHang\Power\BaoCaoPo\DSTongHopKHDKPo.aspx" />
     <Content Include="Forms\KhachHang\Power\SuaNoDHKHPo.aspx" />
@@ -1823,6 +1824,13 @@
     </Compile>
     <Compile Include="Forms\KhachHang\NhapKHCDoc.aspx.designer.cs">
       <DependentUpon>NhapKHCDoc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHDieuKienPo.aspx.cs">
+      <DependentUpon>DSKHDieuKienPo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHDieuKienPo.aspx.designer.cs">
+      <DependentUpon>DSKHDieuKienPo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\KhachHang\Power\BaoCaoPo\DSKHMoiPo.aspx.cs">
       <DependentUpon>DSKHMoiPo.aspx</DependentUpon>

@@ -116,7 +116,7 @@ namespace EOSCRM.Dao
             return dbcon;
         }
 
-        public SqlParameter MakeInParam(string ParamName, SqlDbType DbType, int Size, object Value)
+        public SqlParameter MakeInParam(string ParamName, SqlDbType DbType, Int32 Size, object Value)
         {
             return MakeParam(ParamName, DbType, Size, ParameterDirection.Input, Value);
         }

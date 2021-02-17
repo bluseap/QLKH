@@ -195,8 +195,8 @@ namespace EOSCRM.Web.Forms.ThiCongCongTrinh.BaoCao
 
 
             rp.SetDataSource(dt);
-            rpViewer.ReportSource = rp;
-            rpViewer.DataBind();
+            //rpViewer.ReportSource = rp;
+            //rpViewer.DataBind();
 
             divReport.Visible = true;
 

@@ -11,6 +11,8 @@
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7NgayPo]	
 
 	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]	
+
+	create procedure [dbo].[Get_KhachHangPo_ByDuongPhoId]
 	
 	create procedure [dbo].[Get_HisNgayDangKy_ByMaDDKMoTaTTDON]
 	create procedure [dbo].[Get_HisNgayDangKyPo_ByMaDDKMoTaTTDON]
@@ -23,6 +25,8 @@
 
 	create procedure [dbo].[Get_MauNhanVienChiTiet_ById]
 	create procedure [dbo].[Get_MauNhanVienChiTiet_ByMauNhanVienId]	
+
+	create procedure [dbo].[Get_UploadFile_ByMakv]	
 	
 
 	create procedure [dbo].[Insert_MauNhanVien]	
@@ -74,11 +78,20 @@
 		values ('NNIN1113',	'NN1TMD',	'L',	'L',	'admin',	'2020-10-26 00:00:00.000',	1,	'2016-01-01',	'2016-01-06',	NULL)
 
 		insert into DMDOTINHD ( MADOTIN, TENDONIN, MANVN, NGAYN, STT, IntMucDichKhac )
-		values ( 'NN1TMD', 'Đợt 1 (Mục đích khác)', '2020-10-26', 'admin', 1, 1) 
-		values ( 'NNDLX4', 'A1, A2 (Đợt 1)', '2020-10-26', 'admin', 1, NULL) 
-		values ( 'NNDLX5', '1, 2  (Đợt 2)', '2020-10-26', 'admin', 1, NULL) 
-		values ( 'NNDLX6', '3, 4  (Đợt 3)', '2020-10-26', 'admin', 1, NULL) 
-		values ( 'NNDLX7', '5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NN1TMD', N'Đợt 1 (Mục đích khác)', '2020-10-26', 'admin', 1, 1) 
+		values ( 'NNDLX4', N'A1, A2 (Đợt 1)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NNDLX5', N'1, 2  (Đợt 2)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NNDLX6', N'3, 4  (Đợt 3)', '2020-10-26', 'admin', 1, NULL) 
+		values ( 'NNDLX7', N'5, 6  (Đợt 4)', '2020-10-26', 'admin', 1, NULL) 
+
+		insert into CrmFunction ([Id] ,[Name] , [Url]  ,[Parent] ,[Deleted] ,[Order])
+		values ( 1300,  N'DS khách hàng điện theo điều kiện', 'Forms/KhachHang/Power/BaoCaoPo/DSKHDieuKienPo.aspx', 416, 0, 8 )
+
+		insert into  GroupPermission ([FunctionId] ,[GroupId] ,[Mash] ,[Deleted] ,[Active] ,[CreateDate] ,[CreateBy] ,[UpdateDate] ,[UpdateBy])
+		values ( 1300, 1, 1, 0, 1, '2021-02-01 16:31:28.603', 'nguyen', '2021-02-01 16:31:28.603', 'nguyen')
+		values ( 1300, 1, 1, 0, 2, '2021-02-01 16:31:28.603', 'nguyen', '2021-02-01 16:31:28.603', 'nguyen')
+		values ( 1300, 1, 1, 0, 3, '2021-02-01 16:31:28.603', 'nguyen', '2021-02-01 16:31:28.603', 'nguyen')
+		values ( 1300, 1, 1, 0, 4, '2021-02-01 16:31:28.603', 'nguyen', '2021-02-01 16:31:28.603', 'nguyen')
 
 
 	update Database in table MAUBOCVATTU, update MAKV of Dien theo tung khu vuc Xi nghiep (huong dan cho Xi nghiep)
@@ -95,6 +108,7 @@
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
 	update Database in table HOPDONGPO inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
+	update Database in table UPLOADFILE inserts Column: MAKV varchar(10)
 
 	update Database in table HISNGAYDANGKY inserts Column: SoNgay (int) and
 		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYDK, d.NGAYHKS) + 1) 
@@ -235,6 +249,7 @@
 	insert Table in Database: ChietTinhHis
 	insert Table in Database: MauNhanVien
 	insert Table in Database: MauNhanVienHis
+	insert Table in Database: KhachHangPoHis
 	insert Table in Database: HopDongHis
 	insert Table in Database: HopDongPoHis
 	insert Table in Database: HisNgayDangKyHis

@@ -446,6 +446,12 @@
                                  <div class="left">
                                     <asp:CheckBox ID="ckDKTHUE" runat="server" Text="  Giấy chứng nhận đăng ký thuế" TabIndex="18"/>
                                 </div>
+                                <div class="left">
+                                    <asp:CheckBox ID="ckSoHuuDat" runat="server" Text="  Giấy chứng nhận sở hữu đất (Photo,công chứng)" TabIndex="18"/>
+                                </div>
+                                 <div class="left">
+                                    <asp:CheckBox ID="ckThoaThuanKhachHang" runat="server" Text="  Giấy thỏa thuận với khách hàng khác" TabIndex="18"/>
+                                </div>
                             </td>                       
                         </tr>
                         <tr>

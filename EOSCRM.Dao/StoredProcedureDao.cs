@@ -120,6 +120,30 @@ public class StoredProcedureDao
         return ds;
     }
 
+    public DataSet Get_KhachHangPo_ByDuongPhoId(string makv, string madp, DateTime kykh)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@KhuVucId", SqlDbType.VarChar  , 10, makv),
+                    db.MakeInParam("@DuongPhoId", SqlDbType.VarChar  , 10, madp),
+                    db.MakeInParam("@KyKhaiThac", SqlDbType.DateTime  , 20, kykh)
+                };
+        DataSet ds = db.RunExecProc("Get_KhachHangPo_ByDuongPhoId", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_UploadFile_ByMakv(string makv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Makv", SqlDbType.VarChar  , 10, makv)
+                };
+        DataSet ds = db.RunExecProc("Get_UploadFile_ByMakv", prams);
+        db.Dispose();
+        return ds;
+    }
+
     #endregion
 
     #region Insert
@@ -150,6 +174,33 @@ public class StoredProcedureDao
                     db.MakeInParam("@Manv", SqlDbType.VarChar  , 50, manv)
                 };
         DataSet ds = db.RunExecProc("Insert_MauNhanVienChiTiet", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Insert_UploadFile(string tenfile, string filepath, string makv, string manv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@TenFile", SqlDbType.NVarChar  , 100, tenfile),
+                    db.MakeInParam("@FilePath", SqlDbType.NVarChar  , 100, filepath),
+                    db.MakeInParam("@Makv", SqlDbType.VarChar  , 10, makv),
+                    db.MakeInParam("@Manv", SqlDbType.VarChar  , 10, manv)
+                };
+        DataSet ds = db.RunExecProc("Insert_UploadFile", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Insert_KhachHangPo_SoTruXML(string xml, string makv, string manv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@SoTruXML", SqlDbType.Xml , 1500000000 , xml),                   
+                    db.MakeInParam("@Makv", SqlDbType.VarChar  , 10, makv),
+                    db.MakeInParam("@Manv", SqlDbType.VarChar  , 10, manv)
+                };
+        DataSet ds = db.RunExecProc("Insert_KhachHangPo_SoTruXML", prams);
         db.Dispose();
         return ds;
     }

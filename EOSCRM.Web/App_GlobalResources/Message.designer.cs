@@ -1564,6 +1564,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Báo cáo &gt; Khách hàng điện &gt; Ds Đường phố theo trụ.
+        /// </summary>
+        internal static string PAGE_KH_BAOCAOPO_DSKHDUONGPHOTHEOTRU {
+            get {
+                return ResourceManager.GetString("PAGE_KH_BAOCAOPO_DSKHDUONGPHOTHEOTRU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Danh sách khách hàng mới điện.
         /// </summary>
         internal static string PAGE_KH_BAOCAOPO_DSKHMPO {
@@ -3828,6 +3837,15 @@ namespace Resources {
         internal static string TITLE_KH_BAOCAOPO_DSKHCBIKT {
             get {
                 return ResourceManager.GetString("TITLE_KH_BAOCAOPO_DSKHCBIKT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to POWACO-CRM &gt; Khách hàng &gt; Báo cáo điện &gt;Ds Đường phố theo trụ.
+        /// </summary>
+        internal static string TITLE_KH_BAOCAOPO_DSKHDUONGPHOTHEOTRU {
+            get {
+                return ResourceManager.GetString("TITLE_KH_BAOCAOPO_DSKHDUONGPHOTHEOTRU", resourceCulture);
             }
         }
         
