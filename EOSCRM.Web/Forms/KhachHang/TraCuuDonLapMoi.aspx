@@ -1257,13 +1257,28 @@
                                 </div>                                
                             </td>
                         </tr>
-                        <tr>    
+                        <tr>
                             <td class="crmcell right">Họ tên khách hàng</td>
                             <td class="crmcell">    
                                 <div class="left">
                                     <asp:TextBox ID="txtTENKH" runat="server" Width="200px" MaxLength="200" TabIndex="3" />
                                 </div>
                             </td>
+                            <td class="crmcell right">Năm sinh</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtNamSinhDLM" runat="server" Width="130px" MaxLength="4" TabIndex="10" />
+                                </div>
+                            </td>
+                            <td class="crmcell right">Danh số</td>
+                            <td class="crmcell">
+                                <div class="left">
+                                    <asp:TextBox ID="txtMADPDLM" runat="server" Width="50px" MaxLength="10" TabIndex="11" ReadOnly="False" />
+                                    <asp:TextBox ID="txtMADBDLM" runat="server" Width="50px" MaxLength="10" TabIndex="11" ReadOnly="False" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="crmcell right">ĐM/NK</td>
                             <td class="crmcell">
                                 <div class="left">
@@ -1317,14 +1332,7 @@
                                     <div class="left">
                                         <asp:Label ID="lbTongTienTK" runat="server" Font-Bold="True" Font-Size="Larger" ForeColor="Blue" ></asp:Label>
                                     </div>
-                                </td>
-                                <td class="crmcell right">Danh số</td>
-                                <td class="crmcell">
-                                    <div class="left">
-                                        <asp:TextBox ID="txtMADPDLM" runat="server" Width="50px" MaxLength="10" TabIndex="11" ReadOnly="True" />
-                                        <asp:TextBox ID="txtMADBDLM" runat="server" Width="50px" MaxLength="10" TabIndex="11" ReadOnly="True" />
-                                    </div>
-                                </td>
+                                </td>                                
                             </td>
                         </tr>
                         <tr>    

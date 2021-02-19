@@ -275,6 +275,36 @@ public class StoredProcedureDao
         return ds;
     }
 
+    public DataSet Update_DonDangKyHopDongThietKe_NamSinhMadpMadb(string maddk, string namsinh, string madp, string madb , string manv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 50, maddk),
+                    db.MakeInParam("@NamSinh", SqlDbType.VarChar  , 50, namsinh),
+                    db.MakeInParam("@Madp", SqlDbType.VarChar  , 50, madp),
+                    db.MakeInParam("@Madb", SqlDbType.VarChar  , 50, madb),
+                    db.MakeInParam("@Manv", SqlDbType.VarChar  , 50, manv)
+                };
+        DataSet ds = db.RunExecProc("Update_DonDangKyHopDongThietKe_NamSinhMadpMadb", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Update_DonDangKyHopDongThietKePo_NamSinhMadpMadb(string maddk, string namsinh, string madp, string madb, string manv)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Maddk", SqlDbType.VarChar  , 50, maddk),
+                    db.MakeInParam("@NamSinh", SqlDbType.VarChar  , 50, namsinh),
+                    db.MakeInParam("@Madp", SqlDbType.VarChar  , 50, madp),
+                    db.MakeInParam("@Madb", SqlDbType.VarChar  , 50, madb),
+                    db.MakeInParam("@Manv", SqlDbType.VarChar  , 50, manv)
+                };
+        DataSet ds = db.RunExecProc("Update_DonDangKyHopDongThietKePo_NamSinhMadpMadb", prams);
+        db.Dispose();
+        return ds;
+    }
+
     #endregion
 
     #region Delete

@@ -233,77 +233,117 @@ namespace EOSCRM.Web.Forms.KhachHang.BaoCao.QuanLyKH
 
             #endregion FreeMemory
 
-            //DateTime TuNgay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
-            //DateTime DenNgay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());            
-            
-            if (kv.MAKV != "O")
-            {
-                DataTable ds;
-                //dt = new ReportClass().DskhMoi(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
-                 //                          cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim()).Tables[0];
-                var TuNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(cboTHANG.Text.Trim()) + "/" + int.Parse(txtNAM.Text.Trim()));
-                var DenNgay = DateTimeUtil.GetVietNamDate("01/01/2011");
-
-                //var iddotin = _diDao.GetKVDot(ddlDOTGCS.SelectedValue, cboKhuVuc.Text.Trim());
-                ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMOIDOTIN", TuNgay, DenNgay).Tables[0];   
-                
-                if (ds == null) { CloseWaitingDialog(); return; }
-                ReportNgayN(ds);                
-
-                divCR.Visible = true;
-                upnlCrystalReport.Update();
-
-                lbRELOAD.Text = "1";
-                upnlBaoCao.Update();
-
-                CloseWaitingDialog();
-            }
-            else // dung cho Chau Thanh
-            {
-                //DataTable dt;
-                
-                //var iddotin = _diDao.GetKVDot(ddlDOTGCS.SelectedValue, cboKhuVuc.Text.Trim());
-                var dt = new ReportClass().DskhMoiDotIn(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
-                                          cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue , 
+            var dt = new ReportClass().DskhMoiDotIn(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
+                                          cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue,
                                           "", "DSKHMDOTIN").Tables[0];
 
-                rp = new ReportDocument();
-                var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/DSKhachHang.rpt");
-                rp.Load(path);
+            rp = new ReportDocument();
+            var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/DSKhachHang.rpt");
+            rp.Load(path);
 
-                rp.SetDataSource(dt);
-                rpViewer.ReportSource = rp;
-                rpViewer.DataBind();
+            rp.SetDataSource(dt);
+            rpViewer.ReportSource = rp;
+            rpViewer.DataBind();
 
-                TextObject txtTIEUDE1 = rp.ReportDefinition.ReportObjects["txtTIEUDE"] as TextObject;
-                txtTIEUDE1.Text = "DANH SÁCH KHÁCH HÀNG MỚI";
+            TextObject txtTIEUDE1 = rp.ReportDefinition.ReportObjects["txtTIEUDE"] as TextObject;
+            txtTIEUDE1.Text = "DANH SÁCH KHÁCH HÀNG MỚI";
 
-                string dotin = ddlDOTGCS.SelectedValue == "%" ? "" : " (" 
-                    + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN + ")";
-                TextObject txtTuNgay1 = rp.ReportDefinition.ReportObjects["txtTuNgay"] as TextObject;
-                txtTuNgay1.Text = "KỲ " + cboTHANG.Text.Trim() + " NĂM " + txtNAM.Text.Trim() + dotin;
-                TextObject xn1 = rp.ReportDefinition.ReportObjects["txtXN"] as TextObject;
-                xn1.Text = "XN ĐIỆN NƯỚC " + cboKhuVuc.SelectedItem.ToString().ToUpper();
-                var d = DateTime.Now.Day;
-                var m = DateTime.Now.Month;
-                var y = DateTime.Now.Year;
-                TextObject ngay = rp.ReportDefinition.ReportObjects["txtNGAY"] as TextObject;
-                ngay.Text = cboKhuVuc.SelectedItem + ", ngày " + d + " tháng " +
-                        m + " năm " + y;             
+            string dotin = ddlDOTGCS.SelectedValue == "%" ? "" : " ("
+                + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN + ")";
+            TextObject txtTuNgay1 = rp.ReportDefinition.ReportObjects["txtTuNgay"] as TextObject;
+            txtTuNgay1.Text = "KỲ " + cboTHANG.Text.Trim() + " NĂM " + txtNAM.Text.Trim() + dotin;
+            TextObject xn1 = rp.ReportDefinition.ReportObjects["txtXN"] as TextObject;
+            xn1.Text = "XN ĐIỆN NƯỚC " + cboKhuVuc.SelectedItem.ToString().ToUpper();
+            var d = DateTime.Now.Day;
+            var m = DateTime.Now.Month;
+            var y = DateTime.Now.Year;
+            TextObject ngay = rp.ReportDefinition.ReportObjects["txtNGAY"] as TextObject;
+            ngay.Text = cboKhuVuc.SelectedItem + ", ngày " + d + " tháng " +
+                    m + " năm " + y;
 
-                divCR.Visible = true;
-                upnlCrystalReport.Update();
+            divCR.Visible = true;
+            upnlCrystalReport.Update();
 
-                lbRELOAD.Text = "2";
-                upnlBaoCao.Update();
+            lbRELOAD.Text = "2";
+            upnlBaoCao.Update();
 
-                CloseWaitingDialog();
-                //rp.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.ExcelRecord, Response, true, "PersonDetails");
-                
-                Session["DSBAOCAO"] = dt;
-                Session[Constants.REPORT_FREE_MEM] = rp;
-            }
-            
+            CloseWaitingDialog();
+            //rp.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.ExcelRecord, Response, true, "PersonDetails");
+
+            Session["DSBAOCAO"] = dt;
+            Session[Constants.REPORT_FREE_MEM] = rp;
+
+            //DateTime TuNgay = DateTimeUtil.GetVietNamDate(txtTuNgay.Text.Trim());
+            //DateTime DenNgay = DateTimeUtil.GetVietNamDate(txtDenNgay.Text.Trim());            
+
+            //if (kv.MAKV != "O")
+            //{
+            //    DataTable ds;
+            //    //dt = new ReportClass().DskhMoi(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
+            //     //                          cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim()).Tables[0];
+            //    var TuNgay = DateTimeUtil.GetVietNamDate("01/" + int.Parse(cboTHANG.Text.Trim()) + "/" + int.Parse(txtNAM.Text.Trim()));
+            //    var DenNgay = DateTimeUtil.GetVietNamDate("01/01/2011");
+
+            //    //var iddotin = _diDao.GetKVDot(ddlDOTGCS.SelectedValue, cboKhuVuc.Text.Trim());
+            //    ds = new ReportClass().dsKHCBiKT(cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue, "dsKHMOIDOTIN", TuNgay, DenNgay).Tables[0];                 
+
+            //    if (ds == null) { CloseWaitingDialog(); return; }
+            //    ReportNgayN(ds);                
+
+            //    divCR.Visible = true;
+            //    upnlCrystalReport.Update();
+
+            //    lbRELOAD.Text = "1";
+            //    upnlBaoCao.Update();
+
+            //    CloseWaitingDialog();
+            //}
+            //else // dung cho Chau Thanh
+            //{
+            //    //DataTable dt;
+
+            //    //var iddotin = _diDao.GetKVDot(ddlDOTGCS.SelectedValue, cboKhuVuc.Text.Trim());
+            //    var dt = new ReportClass().DskhMoiDotIn(int.Parse(cboTHANG.Text.Trim()), int.Parse(txtNAM.Text.Trim()), txtMaDp.Text.Trim(), txtDuongPhu.Text.Trim(), cboMucDichSuDung.Text.Trim(),
+            //                              cboTrangThai.Text.Trim(), cboKhuVuc.Text.Trim(), ddlDOTGCS.SelectedValue , 
+            //                              "", "DSKHMDOTIN").Tables[0];
+
+            //    rp = new ReportDocument();
+            //    var path = Server.MapPath("../../../../Reports/QuanLyKhachHang/DSKhachHang.rpt");
+            //    rp.Load(path);
+
+            //    rp.SetDataSource(dt);
+            //    rpViewer.ReportSource = rp;
+            //    rpViewer.DataBind();
+
+            //    TextObject txtTIEUDE1 = rp.ReportDefinition.ReportObjects["txtTIEUDE"] as TextObject;
+            //    txtTIEUDE1.Text = "DANH SÁCH KHÁCH HÀNG MỚI";
+
+            //    string dotin = ddlDOTGCS.SelectedValue == "%" ? "" : " (" 
+            //        + _dmdiDao.Get(_diDao.Get(ddlDOTGCS.SelectedValue).MADOTIN).TENDOTIN + ")";
+            //    TextObject txtTuNgay1 = rp.ReportDefinition.ReportObjects["txtTuNgay"] as TextObject;
+            //    txtTuNgay1.Text = "KỲ " + cboTHANG.Text.Trim() + " NĂM " + txtNAM.Text.Trim() + dotin;
+            //    TextObject xn1 = rp.ReportDefinition.ReportObjects["txtXN"] as TextObject;
+            //    xn1.Text = "XN ĐIỆN NƯỚC " + cboKhuVuc.SelectedItem.ToString().ToUpper();
+            //    var d = DateTime.Now.Day;
+            //    var m = DateTime.Now.Month;
+            //    var y = DateTime.Now.Year;
+            //    TextObject ngay = rp.ReportDefinition.ReportObjects["txtNGAY"] as TextObject;
+            //    ngay.Text = cboKhuVuc.SelectedItem + ", ngày " + d + " tháng " +
+            //            m + " năm " + y;             
+
+            //    divCR.Visible = true;
+            //    upnlCrystalReport.Update();
+
+            //    lbRELOAD.Text = "2";
+            //    upnlBaoCao.Update();
+
+            //    CloseWaitingDialog();
+            //    //rp.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.ExcelRecord, Response, true, "PersonDetails");
+
+            //    Session["DSBAOCAO"] = dt;
+            //    Session[Constants.REPORT_FREE_MEM] = rp;
+            //}
+
         }
 
         private void ReLoadBaoCao()

@@ -709,6 +709,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtGhiChuXoaDLM.Text = "";
             txtGhiChuXoaDLM.Enabled = false;
             btnDelete.Visible = false;
+
+            txtNamSinhDLM.Text = "";
         }
 
         private void SetDDKToForm(DONDANGKYPO ddk)
@@ -843,6 +845,8 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
                 btnDelete.Visible = false;
             }
             txtGhiChuXoaDLM.Text = ddk.GhiChuXoaDLM != null ? ddk.GhiChuXoaDLM.ToString() : "";
+
+            txtNamSinhDLM.Text = ddk.NGAYSINH.Substring(ddk.NGAYSINH.Length - 4, 4);
 
             upnlInfor.Update();
         }
@@ -1479,6 +1483,9 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             Filtered = FilteredMode.None;
 
             var msg = _ddkpoDao.Update(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+
+            _spDao.Update_DonDangKyHopDongThietKePo_NamSinhMadpMadb(don.MADDKPO, txtNamSinhDLM.Text.Trim(),
+                   txtMADPDLM.Text.Trim(), txtMADBDLM.Text.Trim(), LoginInfo.MANV);
 
             _rpClass.HisNgayDangKyBienPo(don.MADDKPO, LoginInfo.MANV, don.MAKVPO, DateTime.Now, DateTime.Now, DateTime.Now,
                    "", "", "", "", "UPDONDK");

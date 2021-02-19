@@ -32,6 +32,8 @@
 	create procedure [dbo].[Insert_MauNhanVien]	
 	create procedure [dbo].[Insert_MauNhanVienChiTiet]
 
+	create procedure [dbo].[Update_DonDangKyHopDongThietKe_NamSinhMadpMadb]	
+	create procedure [dbo].[Update_DonDangKyHopDongThietKePo_NamSinhMadpMadb]	
 	create procedure [dbo].[Update_DonDangKy_SoDienThoai2MuaVatTu]
 	create procedure [dbo].[Update_HopDong_GhiChu]
 	create procedure [dbo].[Update_HopDongPo_GhiChu]
@@ -63,7 +65,9 @@
 	update procedure [dbo].[RP_THAYDONGHO_DOTIN]	
 
 
-	update phan quyen cho phep Xoa trong Tra cuu don lap moi dien, nuoc
+	update phan quyen cho phep Update, Xoa trong Tra cuu don lap moi dien, nuoc
+
+	update phuong xa khac huyen theo de nghi cua Tri Ton
 
 
 	delete Database in table DMDOTINHD all column Thu ho hoac nho thu... 
@@ -97,13 +101,15 @@
 	update Database in table MAUBOCVATTU, update MAKV of Dien theo tung khu vuc Xi nghiep (huong dan cho Xi nghiep)
 
 	update Database in table DONDANGKY inserts Column: SoDienThoai2 varchar(20), IsKHMuaVatTu (bit), IsXoaDLM (bit), 
-		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime, MADB varchar(50)
 	update Database in table DONDANGKY_H inserts Column: SONHANHAPDON2 nvarchar(20), TENDUONG nvarchar(100), MAXA varchar(10),
 		TENXA nvarchar(100), MAAPTO varchar(10), TENAPTO nvarchar(100) SoDienThoai2 varchar(20), IsKHMuaVatTu (bit), IsXoaDLM (bit), 
-		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime, MADB varchar(50)
 
 	update Database in table DONDANGKYPO inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+		, MADBPO varchar(50)
 	update Database in table DONDANGKYPO_H inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
+		, MADBPO varchar(50)
 
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)

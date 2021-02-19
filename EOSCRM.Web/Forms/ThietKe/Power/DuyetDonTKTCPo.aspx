@@ -149,12 +149,26 @@
                         <asp:BoundField HeaderText="Tên công trình" HeaderStyle-Width="10%" DataField="TENTK" />
                         <asp:BoundField HeaderText="Điện thoại" HeaderStyle-Width="60px" DataField="DIENTHOAI" />
                         <asp:BoundField HeaderText="Địa chỉ lắp đặt" HeaderStyle-Width="35%" DataField="DIACHILD" />
-                        <asp:TemplateField HeaderText="Ngày thiết kế" HeaderStyle-Width="80px">
+                        <%--<asp:TemplateField HeaderText="Ngày thiết kế" HeaderStyle-Width="80px">
                             <ItemTemplate>
                                 <%# (Eval("NGAYLTK") != null) ?
                                             String.Format("{0:dd/MM/yyyy}", Eval("NGAYLTK")) : "" %>
                             </ItemTemplate>
+                        </asp:TemplateField>--%>
+                        <asp:TemplateField HeaderStyle-Width="75px" HeaderText="Ngày đăng ký">
+                            <ItemTemplate>
+                                <%# (Eval("NGAYDK") != null) ?
+                                        String.Format("{0:dd/MM/yyyy}", Eval("NGAYDK"))
+                                        : "" %>
+                            </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Ngày hẹn khảo sát">
+                            <ItemTemplate>
+                                <%# (Eval("NGAYHKS") != null) ?
+                                        String.Format("{0:dd/MM/yyyy}", Eval("NGAYHKS"))
+                                        : "" %>
+                            </ItemTemplate>
+                        </asp:TemplateField>   
                         <asp:TemplateField HeaderText="TT T.Kế"  HeaderStyle-Width="80px">
                             <ItemTemplate>
                                 <asp:Button ID="imgTT" runat="server" Width="90px" CausesValidation="false" UseSubmitBehavior="false" />

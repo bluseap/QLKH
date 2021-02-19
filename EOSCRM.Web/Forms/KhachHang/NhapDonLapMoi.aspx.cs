@@ -51,7 +51,7 @@ namespace EOSCRM.Web.Forms.KhachHang
                 obj.DIENTHOAI = txtDIENTHOAI.Text.Trim();
                 obj.CMND = txtCMND.Text.Trim();
 
-                String namsinh = "11/" + "11/" + txtNGAYSINH.Text.Trim();
+                string namsinh = "11/" + "11/" + txtNGAYSINH.Text.Trim();
                 obj.NGAYSINH = namsinh;
 
                 if (!txtCAPNGAY.Text.Trim().Equals(String.Empty))

@@ -512,7 +512,7 @@ namespace EOSCRM.Web.Forms.ThietKe
             var query = _nvDao.GetKV(b);
 
             if (query.MAKV != "O" && query.MAKV != "N" && query.MAKV != "X" && query.MAKV != "S" && query.MAKV != "P"  
-                && query.MAKV != "K" && query.MAKV != "L" && query.MAKV != "M" && query.MAKV != "Q"
+                && query.MAKV != "K" && query.MAKV != "L" && query.MAKV != "M" && query.MAKV != "Q"          
                   ) //chi lay khu vuc thoai son, tan chau
             {
                 if (string.IsNullOrEmpty(txtSODB.Text.Trim()))
@@ -522,14 +522,7 @@ namespace EOSCRM.Web.Forms.ThietKe
                     return;
                 }
                 else
-                {
-                    //if (txtSODB.Text.Trim().ToUpper().Substring(0, 1) != "U" || txtSODB.Text.Trim().ToUpper().Substring(0, 1) != "T")
-                    //{
-                    //    ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Nhập đường phố trước. VD: UA01"), txtSODB.ClientID);
-                    //    CloseWaitingDialog();
-                    //    return;
-                    //}
-
+                {     
                     if (_dpDao.GetDP(txtSODB.Text.Trim().ToUpper().Substring(0, 4)) == null)
                     {
                         ShowError(String.Format(Resources.Message.E_INVALID_DATA, "Đường phố chưa có. Nhập đường phố trước. VD: UA01"), txtSODB.ClientID);

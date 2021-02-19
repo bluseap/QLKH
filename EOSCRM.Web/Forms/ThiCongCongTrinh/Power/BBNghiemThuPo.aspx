@@ -1189,11 +1189,14 @@
                                     <asp:DropDownList ID="ddlLOAITRUDO" SelectedValue='<%# Bind("LOAITRUDO") %>' runat="server">
                                         <asp:ListItem Value="KO" Text="Không có" />
                                         <asp:ListItem Value="BTLT8" Text="Bê-tong li tâm 8 met 4" />
+                                        <asp:ListItem Value="BTLT5" Text="Bê-tong li tâm 8 met 5" />
+                                        <asp:ListItem Value="BTLT105" Text="Bê-tong li tâm 10 met 5" />
                                         <asp:ListItem Value="BTLT12" Text="Bê-tong li tâm 12 met " />
                                         <asp:ListItem Value="PHI60" Text="Fi 60" />
                                         <asp:ListItem Value="PHI90" Text="Fi 90" />
                                         <asp:ListItem Value="PHI114" Text="Fi 114" />
-                                        <asp:ListItem Value="VE5" Text="V 5" />                                  
+                                        <asp:ListItem Value="VE5" Text="V 5" />
+                                        <asp:ListItem Value="KHUNGSU1" Text="Khung sứ" />           
                                     </asp:DropDownList>
                                 </div>
                                 <div class="left">

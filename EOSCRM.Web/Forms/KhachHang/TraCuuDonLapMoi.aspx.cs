@@ -232,6 +232,9 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 obj.NOIDUNG = txtNOIDUNGKEMTHEO.Text.Trim();
 
+                string namsinh = "11/" + "11/" + txtNamSinhDLM.Text.Trim();
+                obj.NGAYSINH = namsinh;
+
                 return obj;
             }
         }       
@@ -762,6 +765,8 @@ namespace EOSCRM.Web.Forms.KhachHang
             txtGhiChuXoaDLM.Text = "";
             txtGhiChuXoaDLM.Enabled = false;
             btnDelete.Visible = false;
+
+            txtNamSinhDLM.Text = "";            
         }
 
         private void SetDDKToForm(DONDANGKY ddk)
@@ -960,7 +965,9 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             var tonhamay = ddlToNhaMay.Items.FindByValue(ddk.MADDK.Substring(1, 2));
             if (tonhamay != null)
-                ddlToNhaMay.SelectedIndex = ddlToNhaMay.Items.IndexOf(tonhamay);           
+                ddlToNhaMay.SelectedIndex = ddlToNhaMay.Items.IndexOf(tonhamay);
+
+            txtNamSinhDLM.Text = ddk.NGAYSINH.Substring(ddk.NGAYSINH.Length - 4, 4);
 
             upnlInfor.Update();
         }
@@ -1758,6 +1765,9 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 Filtered = FilteredMode.None;
                 var msg = ddkDao.Update(don, CommonFunc.GetComputerName(), CommonFunc.GetLanIPAddressM(), LoginInfo.MANV);
+
+                _spDao.Update_DonDangKyHopDongThietKe_NamSinhMadpMadb(don.MADDK, txtNamSinhDLM.Text.Trim(),
+                    txtMADPDLM.Text.Trim(), txtMADBDLM.Text.Trim(), LoginInfo.MANV);
 
                 _rpClass.HisNgayDangKyBien(don.MADDK, LoginInfo.MANV, don.MAKV, DateTime.Now, DateTime.Now, DateTime.Now,
                     "", "", "", "", "UPDONDK");
