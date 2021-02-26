@@ -499,6 +499,13 @@
                                         : "" %>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Ngày sửa" HeaderStyle-Width="100px">
+                            <ItemTemplate>
+                                <%# (Eval("NgaySua") != null) ?
+                                        String.Format("{0:dd/MM/yyyy}", Eval("NgaySua"))
+                                        : "" %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Hoạt động" HeaderStyle-Width="100px">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lkbDonKhachHang" runat="server" CommandArgument='<%# Eval("MADH") %>'

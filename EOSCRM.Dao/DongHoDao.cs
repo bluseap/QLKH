@@ -355,6 +355,9 @@ namespace EOSCRM.Dao
 
                     objDb.DASD = objUi.DASD;
 
+                    objDb.NgaySua = DateTime.Now;
+                    objDb.ManvSua = sManv;
+
                     var luuvetKyduyet = new LUUVET_KYDUYET
                     {
                         MADON = objUi.MADH,

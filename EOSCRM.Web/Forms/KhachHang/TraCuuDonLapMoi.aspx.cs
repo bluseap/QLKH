@@ -235,6 +235,22 @@ namespace EOSCRM.Web.Forms.KhachHang
                 string namsinh = "11/" + "11/" + txtNamSinhDLM.Text.Trim();
                 obj.NGAYSINH = namsinh;
 
+                obj.TENDUONG = txtSoNhaTenDuongKH.Text.Trim();
+                obj.ThanhPhoTinhIdKH = Convert.ToInt32(ddlTinhKH.SelectedValue);
+                obj.QuanHuyenIdKH = Convert.ToInt32(ddlThanhPhoHuyenKH.SelectedValue);
+                obj.MAXA = ddlPhuongXaKH.SelectedIndex.ToString();
+                obj.TENXA = ddlPhuongXaKH.SelectedItem.Text;
+                obj.MAAPTO = ddlToApKH.SelectedValue.ToString();
+                obj.TENAPTO = ddlToApKH.SelectedItem.Text;
+
+                obj.SoNhaTenDuongLD = txtSoNhaTenDuongDCL.Text.Trim();
+                obj.ThanhPhoTinhIdLD = Convert.ToInt32(ddlTinhDCL.SelectedValue);
+                obj.QuanHuyenIdLD = Convert.ToInt32(ddlThanhPhoHuyenDCL.SelectedValue);
+                obj.PhuongXaIdLD = Convert.ToInt32(ddlPhuongXaDCL.SelectedValue);
+                obj.TenPhuongXaLD = ddlPhuongXaDCL.SelectedItem.Text;
+                obj.MaApLD = ddlPhuongXaDCL.SelectedValue;
+                obj.TenApLD = ddlPhuongXaDCL.SelectedItem.Text;
+
                 return obj;
             }
         }       
@@ -549,6 +565,8 @@ namespace EOSCRM.Web.Forms.KhachHang
                 listPhongBan();
 
                 LoadToNhaMay(ddlKHUVUC.SelectedValue);
+
+                loadTinhPhuongXa(ddlKHUVUC.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -969,6 +987,34 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             txtNamSinhDLM.Text = ddk.NGAYSINH.Substring(ddk.NGAYSINH.Length - 4, 4);
 
+            txtSoNhaTenDuongKH.Text = ddk.TENDUONG;
+
+            var thanhphotinhidkh = ddlToNhaMay.Items.FindByValue(ddk.ThanhPhoTinhIdKH.ToString()); 
+            ddlTinhKH.SelectedIndex = ddlTinhKH.Items.IndexOf(thanhphotinhidkh);
+
+            var quanhuyenidkh = ddlThanhPhoHuyenKH.Items.FindByValue(ddk.QuanHuyenIdKH.ToString());
+            ddlThanhPhoHuyenKH.SelectedIndex = ddlThanhPhoHuyenKH.Items.IndexOf(quanhuyenidkh);
+
+            var phuongxaidkh = ddlPhuongXaKH.Items.FindByValue(ddk.MAXA);
+            ddlPhuongXaKH.SelectedIndex = ddlPhuongXaKH.Items.IndexOf(phuongxaidkh);
+
+            var aptoidkh = ddlToApKH.Items.FindByValue(ddk.MAAPTO);
+            ddlToApKH.SelectedIndex = ddlToApKH.Items.IndexOf(aptoidkh);
+
+            txtSoNhaTenDuongDCL.Text = ddk.SoNhaTenDuongLD;
+
+            var thanhphotinhidld = ddlTinhDCL.Items.FindByValue(ddk.ThanhPhoTinhIdLD.ToString());
+            ddlTinhDCL.SelectedIndex = ddlTinhDCL.Items.IndexOf(thanhphotinhidld);
+
+            var quanhuyenidld = ddlThanhPhoHuyenDCL.Items.FindByValue(ddk.QuanHuyenIdLD.ToString());
+            ddlThanhPhoHuyenDCL.SelectedIndex = ddlThanhPhoHuyenDCL.Items.IndexOf(quanhuyenidld);
+
+            var phuongxaidld = ddlPhuongXaDCL.Items.FindByValue(ddk.PhuongXaIdLD.ToString());
+            ddlPhuongXaDCL.SelectedIndex = ddlPhuongXaDCL.Items.IndexOf(phuongxaidld);
+
+            var aptoidld = ddlToApDCL.Items.FindByValue(ddk.MaApLD);
+            ddlToApDCL.SelectedIndex = ddlToApDCL.Items.IndexOf(aptoidld);
+
             upnlInfor.Update();
         }
         
@@ -1372,6 +1418,8 @@ namespace EOSCRM.Web.Forms.KhachHang
                         break;
 
                     case "EditItem":
+                        loadTinhPhuongXa("");
+
                         if (!string.Empty.Equals(madon))
                         {
                             var don = ddkDao.Get(madon);
@@ -2613,6 +2661,284 @@ namespace EOSCRM.Web.Forms.KhachHang
                 btnDelete.Visible = false;
             }
         }
+
+        private void loadTinhPhuongXa(string makv)
+        {
+            try
+            {
+                int tinhAnGiang = 89;
+
+                var tinhthanhpho = _spDao.Get_ThanhPhoTinh_ByAll();
+                var quanhuyen = _spDao.Get_QuanHuyen_ByAll();
+                var phuongxa = _spDao.Get_PhuongXa_ByAll();
+                var apto = _spDao.Get_ApTo_ByAll();
+
+                var tinhthanhphoById = _spDao.Get_ThanhPhoTinh_ById(tinhAnGiang);
+                var quanhuyenByTinhAnGiang = _spDao.Get_QuanHuyen_ByThanhPhoTinhId(tinhAnGiang);
+                var phuongxaTinhAnGiang = _spDao.Get_PhuongXa_ByTinhThanhPhoId(tinhAnGiang);
+                var aptoTinhAnGiang = _spDao.Get_ApTo_ByTinhThanhPhoId(tinhAnGiang);
+
+                ddlTinhKH.Items.Clear();
+                ddlTinhKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (tinhthanhpho.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < tinhthanhpho.Tables[0].Rows.Count; i++)
+                    {
+                        ddlTinhKH.Items.Add(new System.Web.UI.WebControls.ListItem(tinhthanhpho.Tables[0].Rows[i]["TenTinh"].ToString(),
+                            tinhthanhpho.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+                ddlThanhPhoHuyenKH.Items.Clear();
+                ddlThanhPhoHuyenKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (quanhuyen.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < quanhuyen.Tables[0].Rows.Count; i++)
+                    {
+                        ddlThanhPhoHuyenKH.Items.Add(new System.Web.UI.WebControls.ListItem(quanhuyen.Tables[0].Rows[i]["TenQuan"].ToString(),
+                            quanhuyen.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+                ddlPhuongXaKH.Items.Clear();
+                ddlPhuongXaKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (phuongxa.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < phuongxa.Tables[0].Rows.Count; i++)
+                    {
+                        ddlPhuongXaKH.Items.Add(new System.Web.UI.WebControls.ListItem(phuongxa.Tables[0].Rows[i]["TenPhuongXa"].ToString(),
+                            phuongxa.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+                ddlToApKH.Items.Clear();
+                ddlToApKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (apto.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < apto.Tables[0].Rows.Count; i++)
+                    {
+                        ddlToApKH.Items.Add(new System.Web.UI.WebControls.ListItem(apto.Tables[0].Rows[i]["TENAPTO"].ToString(),
+                            apto.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+
+                ddlTinhDCL.Items.Clear();
+                if (tinhthanhphoById.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < tinhthanhphoById.Tables[0].Rows.Count; i++)
+                    {
+                        ddlTinhDCL.Items.Add(new System.Web.UI.WebControls.ListItem(tinhthanhphoById.Tables[0].Rows[i]["TenTinh"].ToString(),
+                            tinhthanhphoById.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+                ddlThanhPhoHuyenDCL.Items.Clear();
+                ddlThanhPhoHuyenDCL.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (quanhuyenByTinhAnGiang.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < quanhuyenByTinhAnGiang.Tables[0].Rows.Count; i++)
+                    {
+                        ddlThanhPhoHuyenDCL.Items.Add(new System.Web.UI.WebControls.ListItem(quanhuyenByTinhAnGiang.Tables[0].Rows[i]["TenQuan"].ToString(),
+                            quanhuyenByTinhAnGiang.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+                ddlPhuongXaDCL.Items.Clear();
+                ddlPhuongXaDCL.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (phuongxaTinhAnGiang.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < phuongxaTinhAnGiang.Tables[0].Rows.Count; i++)
+                    {
+                        ddlPhuongXaDCL.Items.Add(new System.Web.UI.WebControls.ListItem(phuongxaTinhAnGiang.Tables[0].Rows[i]["TenPhuongXa"].ToString(),
+                            phuongxaTinhAnGiang.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+
+                ddlToApDCL.Items.Clear();
+                ddlToApDCL.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (aptoTinhAnGiang.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < aptoTinhAnGiang.Tables[0].Rows.Count; i++)
+                    {
+                        ddlToApDCL.Items.Add(new System.Web.UI.WebControls.ListItem(aptoTinhAnGiang.Tables[0].Rows[i]["TENAPTO"].ToString(),
+                            aptoTinhAnGiang.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlTinhKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int tinhId = Convert.ToInt32(ddlTinhKH.SelectedValue.ToString());
+                var quanhuyenByTinh = _spDao.Get_QuanHuyen_ByThanhPhoTinhId(tinhId);
+
+                ddlThanhPhoHuyenKH.Items.Clear();
+                ddlThanhPhoHuyenKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (quanhuyenByTinh.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < quanhuyenByTinh.Tables[0].Rows.Count; i++)
+                    {
+                        ddlThanhPhoHuyenKH.Items.Add(new System.Web.UI.WebControls.ListItem(quanhuyenByTinh.Tables[0].Rows[i]["TenQuan"].ToString(),
+                            quanhuyenByTinh.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlThanhPhoHuyenKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int quanhuyenId = Convert.ToInt32(ddlThanhPhoHuyenKH.SelectedValue.ToString());
+                var phuongxaByQuanHuyen = _spDao.Get_PhuongXa_ByQuanHuyenId(quanhuyenId);
+
+                ddlPhuongXaKH.Items.Clear();
+                ddlPhuongXaKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (phuongxaByQuanHuyen.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < phuongxaByQuanHuyen.Tables[0].Rows.Count; i++)
+                    {
+                        ddlPhuongXaKH.Items.Add(new System.Web.UI.WebControls.ListItem(phuongxaByQuanHuyen.Tables[0].Rows[i]["TenPhuongXa"].ToString(),
+                            phuongxaByQuanHuyen.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+                //loadTinhThanhPhoKH();
+            }
+            catch { }
+        }
+
+        protected void ddlPhuongXaKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string phuongxaId = ddlPhuongXaKH.SelectedValue.ToString();
+                var aptoByPhuongXa = _spDao.Get_ApTo_ByPhuongXaId(phuongxaId);
+
+                ddlToApKH.Items.Clear();
+                ddlToApKH.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (aptoByPhuongXa.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < aptoByPhuongXa.Tables[0].Rows.Count; i++)
+                    {
+                        ddlToApKH.Items.Add(new System.Web.UI.WebControls.ListItem(aptoByPhuongXa.Tables[0].Rows[i]["TENAPTO"].ToString(),
+                            aptoByPhuongXa.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+                //loadPhuongApKH();
+            }
+            catch { }
+        }
+
+        protected void ddlToApKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //loadPhuongApKH();
+            }
+            catch { }
+        }
+
+        protected void ddlThanhPhoHuyenDCL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int quanhuyenId = Convert.ToInt32(ddlThanhPhoHuyenDCL.SelectedValue.ToString());
+                var phuongxaByQuanHuyen = _spDao.Get_PhuongXa_ByQuanHuyenId(quanhuyenId);
+
+                ddlPhuongXaDCL.Items.Clear();
+                ddlPhuongXaDCL.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (phuongxaByQuanHuyen.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < phuongxaByQuanHuyen.Tables[0].Rows.Count; i++)
+                    {
+                        ddlPhuongXaDCL.Items.Add(new System.Web.UI.WebControls.ListItem(phuongxaByQuanHuyen.Tables[0].Rows[i]["TenPhuongXa"].ToString(),
+                            phuongxaByQuanHuyen.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+                //loadTinhThanhPhoDCL();
+            }
+            catch { }
+        }
+
+        protected void ddlPhuongXaDCL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string phuongxaId = ddlPhuongXaDCL.SelectedValue.ToString();
+                var aptoByPhuongXa = _spDao.Get_ApTo_ByPhuongXaId(phuongxaId);
+
+                ddlToApDCL.Items.Clear();
+                ddlToApDCL.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
+                if (aptoByPhuongXa.Tables[0].Rows.Count != 0)
+                {
+                    for (int i = 0; i < aptoByPhuongXa.Tables[0].Rows.Count; i++)
+                    {
+                        ddlToApDCL.Items.Add(new System.Web.UI.WebControls.ListItem(aptoByPhuongXa.Tables[0].Rows[i]["TENAPTO"].ToString(),
+                            aptoByPhuongXa.Tables[0].Rows[i]["Id"].ToString()));
+                    }
+                }
+                //loadPhuongApDLC();
+            }
+            catch { }
+        }
+
+        protected void ddlToApDCL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //loadPhuongApDLC();
+            }
+            catch { }
+        }
+
+        //private void loadTinhThanhPhoKH()
+        //{
+        //    try
+        //    {
+        //        string tinh = ddlTinhKH.SelectedItem.Text.ToString();
+        //        string huyen = ddlThanhPhoHuyenKH.SelectedItem.Text.ToString();
+        //        txtHUYEN.Text = huyen + "," + tinh;
+        //    }
+        //    catch { }
+        //}
+
+        //private void loadPhuongApKH()
+        //{
+        //    try
+        //    {
+        //        string phuong = ddlPhuongXaKH.SelectedItem.Text.ToString();
+        //        string ap = ddlToApKH.SelectedValue == "0" ? "" : ddlToApKH.SelectedItem.Text.ToString();
+        //        txtDIACHILAPDAT.Text = ap + "," + phuong;
+        //    }
+        //    catch { }
+        //}
+
+        //private void loadTinhThanhPhoDCL()
+        //{
+        //    try
+        //    {
+        //        string tinh = ddlTinhDCL.SelectedItem.Text.ToString();
+        //        string huyen = ddlThanhPhoHuyenDCL.SelectedItem.Text.ToString();
+        //        txtHUYENDLLAP.Text = huyen + "," + tinh;
+        //    }
+        //    catch { }
+        //}
+
+        //private void loadPhuongApDLC()
+        //{
+        //    try
+        //    {
+        //        string phuong = ddlPhuongXaDCL.SelectedItem.Text.ToString();
+        //        string ap = ddlToApDCL.SelectedValue == "0" ? "" : ddlToApKH.SelectedItem.Text.ToString();
+        //        txtDIACHILAPDAT.Text = ap + "," + phuong;
+        //    }
+        //    catch { }
+        //}
 
     }
 }

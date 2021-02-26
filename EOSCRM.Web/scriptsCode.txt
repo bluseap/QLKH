@@ -25,6 +25,22 @@
 
 	create procedure [dbo].[Get_MauNhanVienChiTiet_ById]
 	create procedure [dbo].[Get_MauNhanVienChiTiet_ByMauNhanVienId]	
+	
+
+	create procedure [dbo].[Get_ApTo_ByAll]	
+	create procedure [dbo].[Get_ApTo_ByPhuongXaId]	
+	create procedure [dbo].[Get_ApTo_ByTinhThanhPhoId]	
+
+	create procedure [dbo].[Get_PhuongXa_ByAll]	
+	create procedure [dbo].[Get_PhuongXa_ByQuanHuyenId]	
+	create procedure [dbo].[Get_PhuongXa_ByTinhThanhPhoId]	
+
+	create procedure [dbo].[Get_QuanHuyen_ByAll]	
+	create procedure [dbo].[Get_QuanHuyen_ByThanhPhoTinhId]	
+
+	create procedure [dbo].[Get_ThanhPhoTinh_ByAll]	
+	create procedure [dbo].[Get_ThanhPhoTinh_ById]	
+
 
 	create procedure [dbo].[Get_UploadFile_ByMakv]	
 	
@@ -50,6 +66,7 @@
 	update procedure [dbo].[BienKHPo]
 	update procedure [dbo].[dsKHCBiKT]
 	update procedure [dbo].[dsKHCBiKTPO]
+	update procedure [dbo].[DongHo_His]
 	update procedure [dbo].[DSKHMOIDOTIN]	
 	update procedure [dbo].[DSTDCTNLX]
 	update procedure [dbo].[DSTHAYDOICHITIETDIEN]
@@ -67,7 +84,16 @@
 
 	update phan quyen cho phep Update, Xoa trong Tra cuu don lap moi dien, nuoc
 
-	update phuong xa khac huyen theo de nghi cua Tri Ton
+	update phuong xa khac huyen theo de nghi cua Tri Ton; 
+		update table ThanhPhoTinh; QuanHuyen; PhuongXa co trong tinhPhuongXa.sql (update table QUANHUYEN to QUANYUEN_CU, delete PK_QUANHUYEN);
+		update table QuanHuyen add column .... from database generate scripts all QuanHuyen
+		update table APTO add column: Status int, Active bit, CreateBy varchar(20), CreateDate datetime, UpdateBy varchar(20), UpdateDate datetime,
+			delete data APTO khong trung => add PK_APTO
+		update table APTO_H add column: Status int, Active bit, CreateBy varchar(20), CreateDate datetime, UpdateBy varchar(20), UpdateDate datetime,
+			
+
+	update column NgaySua at table DONGHO to table DONGHO_H at column NGAYN
+	update column NgaySua at table DONGHOPO to table DONGHOPO_H at column NGAYN
 
 
 	delete Database in table DMDOTINHD all column Thu ho hoac nho thu... 
@@ -101,11 +127,15 @@
 	update Database in table MAUBOCVATTU, update MAKV of Dien theo tung khu vuc Xi nghiep (huong dan cho Xi nghiep)
 
 	update Database in table DONDANGKY inserts Column: SoDienThoai2 varchar(20), IsKHMuaVatTu (bit), IsXoaDLM (bit), 
-		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime, MADB varchar(50)
+		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime, MADB varchar(50), 
+		[PhuongXaIdLD] int, [TenPhuongXaLD] nvarchar(500), [MaApLD] varchar(10), [TenApLD] nvarchar(100),
+		ThanhPhoTinhIdLD	int	,QuanHuyenIdLD	int	,ThanhPhoTinhIdKH	int	,QuanHuyenIdKH	int	
 	update Database in table DONDANGKY_H inserts Column: SONHANHAPDON2 nvarchar(20), TENDUONG nvarchar(100), MAXA varchar(10),
 		TENXA nvarchar(100), MAAPTO varchar(10), TENAPTO nvarchar(100) SoDienThoai2 varchar(20), IsKHMuaVatTu (bit), IsXoaDLM (bit), 
-		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime, MADB varchar(50)
-
+		GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime, MADB varchar(50),
+		[PhuongXaIdLD] int, [TenPhuongXaLD] nvarchar(500), [MaApLD] varchar(10), [TenApLD] nvarchar(100)
+		ThanhPhoTinhIdLD	int	,QuanHuyenIdLD	int	,ThanhPhoTinhIdKH	int	,QuanHuyenIdKH	int	
+	
 	update Database in table DONDANGKYPO inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
 		, MADBPO varchar(50)
 	update Database in table DONDANGKYPO_H inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
@@ -115,6 +145,11 @@
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
 	update Database in table HOPDONGPO inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
 	update Database in table UPLOADFILE inserts Column: MAKV varchar(10)
+	update Database in table DONGHO inserts Column: NgaySua datetime, ManvSua varchar(50)
+	update Database in table DONGHO_H inserts Column: NgaySua datetime, ManvSua varchar(50)
+	update Database in table DONGHOPO inserts Column: NgaySua datetime, ManvSua varchar(50)
+	update Database in table DONGHODIEN inserts Column: NgaySua datetime, ManvSua varchar(50)
+
 
 	update Database in table HISNGAYDANGKY inserts Column: SoNgay (int) and
 		update  HISNGAYDANGKY set SoNgay = (SELECT (DATEDIFF(dd, d.NGAYDK, d.NGAYHKS) + 1) 
@@ -262,6 +297,9 @@
 	insert Table in Database: HisNgayDangKyPoHis
 	insert Table in Database: ThietKePoHis
 	insert Table in Database: Services (generate scripts)
+
+	update table QUANHUYEN thanh QUANHUYEN_CU(delete PK_QuanHuyen trong index)
+		insert table in DataBase: QuanHuyen; PhuongXa; ThanhPhoTinh
 
 
 	install .NET Framwork 4.6.1

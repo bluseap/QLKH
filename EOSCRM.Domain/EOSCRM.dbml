@@ -1679,6 +1679,15 @@
       <Column Name="IsXoaDLM" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="GhiChuXoaDLM" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Column Name="NgayXoaDLM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SoNhaTenDuongLD" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="PhuongXaIdLD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenPhuongXaLD" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MaApLD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="TenApLD" Type="System.String" DbType="NVarCHar(100)" CanBeNull="true" />
+      <Column Name="ThanhPhoTinhIdLD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuanHuyenIdLD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThanhPhoTinhIdKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuanHuyenIdKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="DONDANGKY_HOADONLAPDAT" Member="HOADONLAPDATs" ThisKey="MADDK" OtherKey="MADDK" Type="HOADONLAPDAT" />
       <Association Name="DONDANGKY_CHIETTINH" Member="CHIETTINH" ThisKey="MADDK" OtherKey="MADDK" Type="CHIETTINH" Cardinality="One" />
       <Association Name="DONDANGKY_HOPDONG" Member="HOPDONG" ThisKey="MADDK" OtherKey="MADDK" Type="HOPDONG" Cardinality="One" />
@@ -2542,6 +2551,8 @@
       <Column Name="MANVNHAP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MAKV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="CONGSUAT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ManvSua" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="DONGHO_KDDHCT" Member="KDDHCTs" ThisKey="MADH" OtherKey="MADH" Type="KDDHCT" />
       <Association Name="DONGHO_KHACHHANG" Member="KHACHHANGs" ThisKey="MADH" OtherKey="MADH" Type="KHACHHANG" />
       <Association Name="DONGHO_KHACHHANGXOA" Member="KHACHHANGXOAs" ThisKey="MADH" OtherKey="MADH" Type="KHACHHANGXOA" />
@@ -3717,6 +3728,8 @@
       <Column Name="CONGSUAT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NGAYNHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MANVNHAP" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="NgaySua" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ManvSua" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="DONGHOPO_KHACHHANGPO" Member="KHACHHANGPOs" ThisKey="MADHPO" OtherKey="MADHPO" Type="KHACHHANGPO" />
       <Association Name="DONGHOPO_KHACHHANGXOAPO" Member="KHACHHANGXOAPOs" ThisKey="MADHPO" OtherKey="MADHPO" Type="KHACHHANGXOAPO" />
       <Association Name="LOAIDHPO_DONGHOPO" Member="LOAIDHPO" ThisKey="MALDHPO" OtherKey="MALDHPO" Type="LOAIDHPO" IsForeignKey="true" />

@@ -222,6 +222,96 @@ namespace EOSCRM.Web.Forms.KhachHang
         protected global::System.Web.UI.WebControls.TextBox txtSONHA2;
 
         /// <summary>
+        /// txtSoNhaTenDuongKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSoNhaTenDuongKH;
+
+        /// <summary>
+        /// ddlTinhKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTinhKH;
+
+        /// <summary>
+        /// ddlThanhPhoHuyenKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlThanhPhoHuyenKH;
+
+        /// <summary>
+        /// ddlPhuongXaKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPhuongXaKH;
+
+        /// <summary>
+        /// ddlToApKH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlToApKH;
+
+        /// <summary>
+        /// txtSoNhaTenDuongDCL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSoNhaTenDuongDCL;
+
+        /// <summary>
+        /// ddlTinhDCL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTinhDCL;
+
+        /// <summary>
+        /// ddlThanhPhoHuyenDCL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlThanhPhoHuyenDCL;
+
+        /// <summary>
+        /// ddlPhuongXaDCL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPhuongXaDCL;
+
+        /// <summary>
+        /// ddlToApDCL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlToApDCL;
+
+        /// <summary>
         /// txtSONHA control.
         /// </summary>
         /// <remarks>

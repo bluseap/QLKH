@@ -144,6 +144,117 @@ public class StoredProcedureDao
         return ds;
     }
 
+    public DataSet Get_ThanhPhoTinh_ByAll()
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Id", SqlDbType.Int  , 10, 0)
+                };
+        DataSet ds = db.RunExecProc("Get_ThanhPhoTinh_ByAll", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_ThanhPhoTinh_ById(int id)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Id", SqlDbType.Int  , 10, id)
+                };
+        DataSet ds = db.RunExecProc("Get_ThanhPhoTinh_ById", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_QuanHuyen_ByAll()
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Id", SqlDbType.Int  , 10, 0)
+                };
+        DataSet ds = db.RunExecProc("Get_QuanHuyen_ByAll", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_QuanHuyen_ByThanhPhoTinhId(int thanhphotinhId)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@ThanhPhoTinhId", SqlDbType.Int  , 10, thanhphotinhId)
+                };
+        DataSet ds = db.RunExecProc("Get_QuanHuyen_ByThanhPhoTinhId", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_PhuongXa_ByAll()
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Id", SqlDbType.Int  , 10, 0)
+                };
+        DataSet ds = db.RunExecProc("Get_PhuongXa_ByAll", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_PhuongXa_ByQuanHuyenId(int quanhuyenId)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@QuanHuyenId", SqlDbType.Int  , 10, quanhuyenId)
+                };
+        DataSet ds = db.RunExecProc("Get_PhuongXa_ByQuanHuyenId", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_PhuongXa_ByTinhThanhPhoId(int tinhthanhphoId)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@TinhThanhPhoId", SqlDbType.Int  , 10, tinhthanhphoId)
+                };
+        DataSet ds = db.RunExecProc("Get_PhuongXa_ByTinhThanhPhoId", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_ApTo_ByAll()
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@Id", SqlDbType.Int  , 10, 0)
+                };
+        DataSet ds = db.RunExecProc("Get_ApTo_ByAll", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_ApTo_ByPhuongXaId(string phuongxaId)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@PhuongXaId", SqlDbType.VarChar  , 10, phuongxaId)
+                };
+        DataSet ds = db.RunExecProc("Get_ApTo_ByPhuongXaId", prams);
+        db.Dispose();
+        return ds;
+    }
+
+    public DataSet Get_ApTo_ByTinhThanhPhoId(int tinhthanhphoId)
+    {
+        Database db = new Database();
+        SqlParameter[] prams = {
+                    db.MakeInParam("@TinhThanhPhoId", SqlDbType.Int  , 10, tinhthanhphoId)
+                };
+        DataSet ds = db.RunExecProc("Get_ApTo_ByTinhThanhPhoId", prams);
+        db.Dispose();
+        return ds;
+    }
+
+
     #endregion
 
     #region Insert

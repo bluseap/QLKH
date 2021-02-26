@@ -305,6 +305,9 @@ namespace EOSCRM.Dao
                     objDb.NGAYNHAP = objUi.NGAYNHAP;
                     objDb.MANVNHAP = sManv;
 
+                    objDb.NgaySua = DateTime.Now;
+                    objDb.ManvSua = sManv;
+
                     var luuvetKyduyet = new LUUVET_KYDUYET
                     {
                         MADON = objUi.MADHPO,
