@@ -505,7 +505,6 @@ namespace EOSCRM.Web.Forms.KhachHang
                 txtTIENVATTULX.Text = "0";
 
                 loadTinhPhuongXa(_nvDao.Get(b).MAKV);
-
             }
             catch (Exception ex)
             {
@@ -1519,7 +1518,6 @@ namespace EOSCRM.Web.Forms.KhachHang
 
                 ddlToApDCL.Items.Clear();
                 ddlToApDCL.Items.Add(new System.Web.UI.WebControls.ListItem("-- Tất cả --", "0"));
-
             }
             catch { }
         }

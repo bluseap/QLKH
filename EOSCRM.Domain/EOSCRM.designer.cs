@@ -79258,6 +79258,30 @@ namespace EOSCRM.Domain
 		
 		private System.Nullable<System.DateTime> _NgayXoaDLM;
 		
+		private string _SoNhaKH;
+		
+		private string _TenDuongKH;
+		
+		private System.Nullable<int> _ThanhPhoTinhIdKH;
+		
+		private System.Nullable<int> _QuanHuyenIdKH;
+		
+		private System.Nullable<int> _PhuongXaIdKH;
+		
+		private string _ApToIdKH;
+		
+		private string _SoNhaLD;
+		
+		private string _TenDuongLD;
+		
+		private System.Nullable<int> _ThanhPhoTinhIdLD;
+		
+		private System.Nullable<int> _QuanHuyenIdLD;
+		
+		private System.Nullable<int> _PhuongXaIdLD;
+		
+		private string _ApToIdLD;
+		
 		private EntitySet<THICONG> _THICONGs;
 		
 		private EntitySet<DUYET_QUYEN> _DUYET_QUYENs;
@@ -79418,6 +79442,30 @@ namespace EOSCRM.Domain
     partial void OnGhiChuXoaDLMChanged();
     partial void OnNgayXoaDLMChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayXoaDLMChanged();
+    partial void OnSoNhaKHChanging(string value);
+    partial void OnSoNhaKHChanged();
+    partial void OnTenDuongKHChanging(string value);
+    partial void OnTenDuongKHChanged();
+    partial void OnThanhPhoTinhIdKHChanging(System.Nullable<int> value);
+    partial void OnThanhPhoTinhIdKHChanged();
+    partial void OnQuanHuyenIdKHChanging(System.Nullable<int> value);
+    partial void OnQuanHuyenIdKHChanged();
+    partial void OnPhuongXaIdKHChanging(System.Nullable<int> value);
+    partial void OnPhuongXaIdKHChanged();
+    partial void OnApToIdKHChanging(string value);
+    partial void OnApToIdKHChanged();
+    partial void OnSoNhaLDChanging(string value);
+    partial void OnSoNhaLDChanged();
+    partial void OnTenDuongLDChanging(string value);
+    partial void OnTenDuongLDChanged();
+    partial void OnThanhPhoTinhIdLDChanging(System.Nullable<int> value);
+    partial void OnThanhPhoTinhIdLDChanged();
+    partial void OnQuanHuyenIdLDChanging(System.Nullable<int> value);
+    partial void OnQuanHuyenIdLDChanged();
+    partial void OnPhuongXaIdLDChanging(System.Nullable<int> value);
+    partial void OnPhuongXaIdLDChanged();
+    partial void OnApToIdLDChanging(string value);
+    partial void OnApToIdLDChanged();
     #endregion
 		
 		public DONDANGKYPO()
@@ -80653,6 +80701,246 @@ namespace EOSCRM.Domain
 					this._NgayXoaDLM = value;
 					this.SendPropertyChanged("NgayXoaDLM");
 					this.OnNgayXoaDLMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNhaKH", DbType="NVarCHar(50)")]
+		public string SoNhaKH
+		{
+			get
+			{
+				return this._SoNhaKH;
+			}
+			set
+			{
+				if ((this._SoNhaKH != value))
+				{
+					this.OnSoNhaKHChanging(value);
+					this.SendPropertyChanging();
+					this._SoNhaKH = value;
+					this.SendPropertyChanged("SoNhaKH");
+					this.OnSoNhaKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenDuongKH", DbType="NVarChar(500)")]
+		public string TenDuongKH
+		{
+			get
+			{
+				return this._TenDuongKH;
+			}
+			set
+			{
+				if ((this._TenDuongKH != value))
+				{
+					this.OnTenDuongKHChanging(value);
+					this.SendPropertyChanging();
+					this._TenDuongKH = value;
+					this.SendPropertyChanged("TenDuongKH");
+					this.OnTenDuongKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhPhoTinhIdKH", DbType="Int")]
+		public System.Nullable<int> ThanhPhoTinhIdKH
+		{
+			get
+			{
+				return this._ThanhPhoTinhIdKH;
+			}
+			set
+			{
+				if ((this._ThanhPhoTinhIdKH != value))
+				{
+					this.OnThanhPhoTinhIdKHChanging(value);
+					this.SendPropertyChanging();
+					this._ThanhPhoTinhIdKH = value;
+					this.SendPropertyChanged("ThanhPhoTinhIdKH");
+					this.OnThanhPhoTinhIdKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuanHuyenIdKH", DbType="Int")]
+		public System.Nullable<int> QuanHuyenIdKH
+		{
+			get
+			{
+				return this._QuanHuyenIdKH;
+			}
+			set
+			{
+				if ((this._QuanHuyenIdKH != value))
+				{
+					this.OnQuanHuyenIdKHChanging(value);
+					this.SendPropertyChanging();
+					this._QuanHuyenIdKH = value;
+					this.SendPropertyChanged("QuanHuyenIdKH");
+					this.OnQuanHuyenIdKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhuongXaIdKH", DbType="Int")]
+		public System.Nullable<int> PhuongXaIdKH
+		{
+			get
+			{
+				return this._PhuongXaIdKH;
+			}
+			set
+			{
+				if ((this._PhuongXaIdKH != value))
+				{
+					this.OnPhuongXaIdKHChanging(value);
+					this.SendPropertyChanging();
+					this._PhuongXaIdKH = value;
+					this.SendPropertyChanged("PhuongXaIdKH");
+					this.OnPhuongXaIdKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApToIdKH", DbType="VarChar(10)")]
+		public string ApToIdKH
+		{
+			get
+			{
+				return this._ApToIdKH;
+			}
+			set
+			{
+				if ((this._ApToIdKH != value))
+				{
+					this.OnApToIdKHChanging(value);
+					this.SendPropertyChanging();
+					this._ApToIdKH = value;
+					this.SendPropertyChanged("ApToIdKH");
+					this.OnApToIdKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNhaLD", DbType="NVarChar(50)")]
+		public string SoNhaLD
+		{
+			get
+			{
+				return this._SoNhaLD;
+			}
+			set
+			{
+				if ((this._SoNhaLD != value))
+				{
+					this.OnSoNhaLDChanging(value);
+					this.SendPropertyChanging();
+					this._SoNhaLD = value;
+					this.SendPropertyChanged("SoNhaLD");
+					this.OnSoNhaLDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenDuongLD", DbType="NVarChar(500)")]
+		public string TenDuongLD
+		{
+			get
+			{
+				return this._TenDuongLD;
+			}
+			set
+			{
+				if ((this._TenDuongLD != value))
+				{
+					this.OnTenDuongLDChanging(value);
+					this.SendPropertyChanging();
+					this._TenDuongLD = value;
+					this.SendPropertyChanged("TenDuongLD");
+					this.OnTenDuongLDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhPhoTinhIdLD", DbType="Int")]
+		public System.Nullable<int> ThanhPhoTinhIdLD
+		{
+			get
+			{
+				return this._ThanhPhoTinhIdLD;
+			}
+			set
+			{
+				if ((this._ThanhPhoTinhIdLD != value))
+				{
+					this.OnThanhPhoTinhIdLDChanging(value);
+					this.SendPropertyChanging();
+					this._ThanhPhoTinhIdLD = value;
+					this.SendPropertyChanged("ThanhPhoTinhIdLD");
+					this.OnThanhPhoTinhIdLDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuanHuyenIdLD", DbType="Int")]
+		public System.Nullable<int> QuanHuyenIdLD
+		{
+			get
+			{
+				return this._QuanHuyenIdLD;
+			}
+			set
+			{
+				if ((this._QuanHuyenIdLD != value))
+				{
+					this.OnQuanHuyenIdLDChanging(value);
+					this.SendPropertyChanging();
+					this._QuanHuyenIdLD = value;
+					this.SendPropertyChanged("QuanHuyenIdLD");
+					this.OnQuanHuyenIdLDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhuongXaIdLD", DbType="Int")]
+		public System.Nullable<int> PhuongXaIdLD
+		{
+			get
+			{
+				return this._PhuongXaIdLD;
+			}
+			set
+			{
+				if ((this._PhuongXaIdLD != value))
+				{
+					this.OnPhuongXaIdLDChanging(value);
+					this.SendPropertyChanging();
+					this._PhuongXaIdLD = value;
+					this.SendPropertyChanged("PhuongXaIdLD");
+					this.OnPhuongXaIdLDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ApToIdLD", DbType="VarChar(10)")]
+		public string ApToIdLD
+		{
+			get
+			{
+				return this._ApToIdLD;
+			}
+			set
+			{
+				if ((this._ApToIdLD != value))
+				{
+					this.OnApToIdLDChanging(value);
+					this.SendPropertyChanging();
+					this._ApToIdLD = value;
+					this.SendPropertyChanged("ApToIdLD");
+					this.OnApToIdLDChanged();
 				}
 			}
 		}

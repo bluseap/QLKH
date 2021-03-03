@@ -1177,6 +1177,63 @@
                             </td>
                         </tr>
                         <tr>    
+                            <td class="crmcell right">Số nhà, tên đường KH</td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:TextBox ID="txtSoNhaTenDuongKH" runat="server" Width="180px" MaxLength="150" 
+                                        TabIndex="6" />
+                                </div>                                
+                                <td class="crmcell right">
+                                    <div class="right">
+                                        <asp:DropDownList ID="ddlTinhKH" TabIndex="3" runat="server" AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlTinhKH_SelectedIndexChanged" >
+                                        </asp:DropDownList>
+                                    </div>   
+                                </td>
+                                <td class="crmcell" colspan="3">    
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlThanhPhoHuyenKH" TabIndex="3" runat="server" AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlThanhPhoHuyenKH_SelectedIndexChanged" >
+                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPhuongXaKH" TabIndex="3" runat="server" AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlPhuongXaKH_SelectedIndexChanged" >
+                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlToApKH" TabIndex="3" runat="server"  AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlToApKH_SelectedIndexChanged" >
+                                        </asp:DropDownList>
+                                    </div>                
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td class="crmcell right">Số nhà, tên đường địa chỉ lắp</td>
+                            <td class="crmcell">    
+                                <div class="left">
+                                    <asp:TextBox ID="txtSoNhaTenDuongDCL" runat="server" Width="180px" MaxLength="150" 
+                                        TabIndex="6" />
+                                </div>                                
+                                <td class="crmcell right">
+                                    <div class="right">
+                                        <asp:DropDownList ID="ddlTinhDCL" TabIndex="3" runat="server" >
+                                        </asp:DropDownList>
+                                    </div>   
+                                </td>
+                                <td class="crmcell" colspan="3">    
+                                    <div class="left">
+                                        <asp:DropDownList ID="ddlThanhPhoHuyenDCL" TabIndex="3" runat="server"  AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlThanhPhoHuyenDCL_SelectedIndexChanged" >
+                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPhuongXaDCL" TabIndex="3" runat="server"  AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlPhuongXaDCL_SelectedIndexChanged" >
+                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlToApDCL" TabIndex="3" runat="server"   AutoPostBack="True" 
+                                            OnSelectedIndexChanged="ddlToApDCL_SelectedIndexChanged" >
+                                        </asp:DropDownList>                                           
+                                    </div>                
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>    
                             <td class="crmcell right">Địa chỉ thường trú</td>
                             <td class="crmcell">    
                                 <div class="left">

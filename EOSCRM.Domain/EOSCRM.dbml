@@ -3453,6 +3453,18 @@
       <Column Name="IsXoaDLM" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="GhiChuXoaDLM" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Column Name="NgayXoaDLM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SoNhaKH" Type="System.String" DbType="NVarCHar(50)" CanBeNull="true" />
+      <Column Name="TenDuongKH" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ThanhPhoTinhIdKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuanHuyenIdKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuongXaIdKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ApToIdKH" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SoNhaLD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenDuongLD" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ThanhPhoTinhIdLD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuanHuyenIdLD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhuongXaIdLD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ApToIdLD" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="DONDANGKYPO_THICONG" Member="THICONGs" ThisKey="MADDKPO" OtherKey="MADDK" Type="THICONG" />
       <Association Name="DONDANGKYPO_DUYET_QUYEN" Member="DUYET_QUYENs" ThisKey="MADDKPO" OtherKey="MADDK" Type="DUYET_QUYEN" />
       <Association Name="DONDANGKYPO_DONDANGKYPO" Member="DONDANGKYPOs" ThisKey="MADDKPO" OtherKey="MADDKTONG" Type="DONDANGKYPO" />

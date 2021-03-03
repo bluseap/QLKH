@@ -784,7 +784,19 @@ namespace EOSCRM.Web.Forms.KhachHang
             txtGhiChuXoaDLM.Enabled = false;
             btnDelete.Visible = false;
 
-            txtNamSinhDLM.Text = "";            
+            txtNamSinhDLM.Text = "";
+
+            txtSoNhaTenDuongKH.Text = "";
+            ddlTinhKH.SelectedIndex = 1;
+            ddlThanhPhoHuyenKH.SelectedIndex = 0;
+            ddlPhuongXaKH.SelectedIndex = 0;
+            ddlToApKH.SelectedIndex = 0;
+
+            txtSoNhaTenDuongDCL.Text = "";
+            ddlTinhDCL.SelectedIndex = 0;
+            ddlThanhPhoHuyenDCL.SelectedIndex = 0;
+            ddlPhuongXaDCL.SelectedIndex = 0;
+            ddlToApDCL.SelectedIndex = 0;
         }
 
         private void SetDDKToForm(DONDANGKY ddk)
@@ -989,7 +1001,7 @@ namespace EOSCRM.Web.Forms.KhachHang
 
             txtSoNhaTenDuongKH.Text = ddk.TENDUONG;
 
-            var thanhphotinhidkh = ddlToNhaMay.Items.FindByValue(ddk.ThanhPhoTinhIdKH.ToString()); 
+            var thanhphotinhidkh = ddlTinhKH.Items.FindByValue(ddk.ThanhPhoTinhIdKH.ToString()); 
             ddlTinhKH.SelectedIndex = ddlTinhKH.Items.IndexOf(thanhphotinhidkh);
 
             var quanhuyenidkh = ddlThanhPhoHuyenKH.Items.FindByValue(ddk.QuanHuyenIdKH.ToString());

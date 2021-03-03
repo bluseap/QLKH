@@ -208,12 +208,30 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
 
                 obj.NOIDUNG = txtNOIDUNGKEMTHEO.Text.Trim();
 
+                string sonhatenduongKH = txtSoNhaTenDuongKH.Text.Trim();
+                string[] sonhatenduongKH1 = sonhatenduongKH.Split(' ');
+
+                string sonhatenduongDCL = txtSoNhaTenDuongDCL.Text.Trim();
+                string[] sonhatenduongDCL1 = sonhatenduongDCL.Split(' ');
+
+                obj.SoNhaKH = sonhatenduongKH1[0].ToString();
+                obj.TenDuongKH = sonhatenduongKH.Substring(sonhatenduongKH1.Length, sonhatenduongKH.Length - sonhatenduongKH1.Length);
+                obj.ThanhPhoTinhIdKH = Convert.ToInt32(ddlTinhKH.SelectedValue.ToString());
+                obj.QuanHuyenIdKH = Convert.ToInt32(ddlThanhPhoHuyenKH.SelectedValue.ToString());
+                obj.PhuongXaIdKH = Convert.ToInt32(ddlPhuongXaKH.SelectedValue.ToString());
+                obj.ApToIdKH = ddlToApKH.SelectedValue.ToString();
+
+                obj.SoNhaLD = sonhatenduongDCL1[0].ToString();
+                obj.TenDuongLD = sonhatenduongDCL.Substring(sonhatenduongDCL1.Length, sonhatenduongDCL.Length - sonhatenduongDCL1.Length);
+                obj.ThanhPhoTinhIdLD = Convert.ToInt32(ddlTinhDCL.SelectedValue.ToString());
+                obj.QuanHuyenIdLD = Convert.ToInt32(ddlThanhPhoHuyenDCL.SelectedValue.ToString());
+                obj.PhuongXaIdLD = Convert.ToInt32(ddlPhuongXaDCL.SelectedValue.ToString());
+                obj.ApToIdLD = ddlToApDCL.SelectedValue.ToString();
+
                 return obj;
             }
         }
-
-        
-
+                
         #endregion
 
         #region loc, up
@@ -711,6 +729,18 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             btnDelete.Visible = false;
 
             txtNamSinhDLM.Text = "";
+
+            txtSoNhaTenDuongKH.Text = "";
+            ddlTinhKH.SelectedIndex = 1;
+            ddlThanhPhoHuyenKH.SelectedIndex = 0;
+            ddlPhuongXaKH.SelectedIndex = 0;
+            ddlToApKH.SelectedIndex = 0;
+
+            txtSoNhaTenDuongDCL.Text = "";
+            ddlTinhDCL.SelectedIndex = 0;
+            ddlThanhPhoHuyenDCL.SelectedIndex = 0;
+            ddlPhuongXaDCL.SelectedIndex = 0;
+            ddlToApDCL.SelectedIndex = 0;
         }
 
         private void SetDDKToForm(DONDANGKYPO ddk)
@@ -847,6 +877,35 @@ namespace EOSCRM.Web.Forms.KhachHang.Power
             txtGhiChuXoaDLM.Text = ddk.GhiChuXoaDLM != null ? ddk.GhiChuXoaDLM.ToString() : "";
 
             txtNamSinhDLM.Text = ddk.NGAYSINH.Substring(ddk.NGAYSINH.Length - 4, 4);
+
+
+            txtSoNhaTenDuongKH.Text = ddk.SoNhaKH + " " + ddk.TenDuongKH;
+
+            var thanhphotinhidkh = ddlTinhKH.Items.FindByValue(ddk.ThanhPhoTinhIdKH.ToString());
+            ddlTinhKH.SelectedIndex = ddlTinhKH.Items.IndexOf(thanhphotinhidkh);
+
+            var quanhuyenidkh = ddlThanhPhoHuyenKH.Items.FindByValue(ddk.QuanHuyenIdKH.ToString());
+            ddlThanhPhoHuyenKH.SelectedIndex = ddlThanhPhoHuyenKH.Items.IndexOf(quanhuyenidkh);
+
+            var phuongxaidkh = ddlPhuongXaKH.Items.FindByValue(ddk.PhuongXaIdKH.ToString());
+            ddlPhuongXaKH.SelectedIndex = ddlPhuongXaKH.Items.IndexOf(phuongxaidkh);
+
+            var aptoidkh = ddlToApKH.Items.FindByValue(ddk.ApToIdKH.ToString());
+            ddlToApKH.SelectedIndex = ddlToApKH.Items.IndexOf(aptoidkh);
+
+            txtSoNhaTenDuongDCL.Text = ddk.SoNhaLD + " " + ddk.TenDuongLD;
+
+            var thanhphotinhidld = ddlTinhDCL.Items.FindByValue(ddk.ThanhPhoTinhIdLD.ToString());
+            ddlTinhDCL.SelectedIndex = ddlTinhDCL.Items.IndexOf(thanhphotinhidld);
+
+            var quanhuyenidld = ddlThanhPhoHuyenDCL.Items.FindByValue(ddk.QuanHuyenIdLD.ToString());
+            ddlThanhPhoHuyenDCL.SelectedIndex = ddlThanhPhoHuyenDCL.Items.IndexOf(quanhuyenidld);
+
+            var phuongxaidld = ddlPhuongXaDCL.Items.FindByValue(ddk.PhuongXaIdLD.ToString());
+            ddlPhuongXaDCL.SelectedIndex = ddlPhuongXaDCL.Items.IndexOf(phuongxaidld);
+
+            var aptoidld = ddlToApDCL.Items.FindByValue(ddk.ApToIdLD.ToString());
+            ddlToApDCL.SelectedIndex = ddlToApDCL.Items.IndexOf(aptoidld);
 
             upnlInfor.Update();
         }

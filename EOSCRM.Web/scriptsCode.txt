@@ -137,9 +137,13 @@
 		ThanhPhoTinhIdLD	int	,QuanHuyenIdLD	int	,ThanhPhoTinhIdKH	int	,QuanHuyenIdKH	int	
 	
 	update Database in table DONDANGKYPO inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
-		, MADBPO varchar(50)
+		, MADBPO varchar(50),SoNhaKH	nvarchar(50), TenDuongKH	nvarchar(500), ThanhPhoTinhIdKH	int	, QuanHuyenIdKH	int
+		, PhuongXaIdKH	int, ApToIdKH	varchar(10), SoNhaLD	nvarchar(50), TenDuongLD	nvarchar(500), ThanhPhoTinhIdLD	int
+		QuanHuyenIdLD	int, PhuongXaIdLD	int, ApToIdLD	varchar(10)
 	update Database in table DONDANGKYPO_H inserts Column: IsKHMuaVatTu (bit), IsXoaDLM (bit), GhiChuXoaDLM nvarchar(1000), NgayXoaDLM datetime
-		, MADBPO varchar(50)
+		, MADBPO varchar(50),SoNhaKH	nvarchar(50), TenDuongKH	nvarchar(500), ThanhPhoTinhIdKH	int	, QuanHuyenIdKH	int
+		, PhuongXaIdKH	int, ApToIdKH	varchar(10), SoNhaLD	nvarchar(50), TenDuongLD	nvarchar(500), ThanhPhoTinhIdLD	int
+		QuanHuyenIdLD	int, PhuongXaIdLD	int, ApToIdLD	varchar(10)
 
 	update Database in table DMDOTINHD inserts Column: IntMucDichKhac (int)
 	update Database in table HOPDONG inserts Column: GhiChu nvarchar(1000), Manv varchar(11)
