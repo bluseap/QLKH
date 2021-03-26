@@ -1176,7 +1176,8 @@
                         <td class="crmcell right">
                             <div class="right">
                                 <asp:Label ID="lbTHCPCHUNGC3" runat="server" Text="T x "></asp:Label>                            
-                                <asp:TextBox ID="txtChiPhiChungGCTKLX" Width="30px" runat="server" />
+                                <asp:TextBox ID="txtChiPhiChungGCTKLX" Width="30px" runat="server"  />
+                                <asp:Label ID="lbTHCPCHUNGC3Bang" runat="server" Text=" = "></asp:Label>
                              </div>
                         </td>
                         <td class="crmcell">
@@ -1195,7 +1196,9 @@
                             <asp:Label ID="lbTHTNCTTTTL2" runat="server" Text ="TL" Font-Bold="True" Font-Size="Larger" ></asp:Label>
                         </div> 
                         <td class="crmcell right">
-                            <asp:Label ID="lbTHTNCTTTTL3" runat="server" Text="(T + C) x 5,5% = "></asp:Label>
+                            <asp:Label ID="lbTHTNCTTTTL3" runat="server" Text="(T + C) x "></asp:Label>
+                            <asp:TextBox ID="txtThuNhapChiuThueTinhTruoc55" Width="30px" runat="server" />
+                            <asp:Label ID="lbTHTNCTTTTL3Bang" runat="server" Text=" = "></asp:Label>
                         </td>
                         <td class="crmcell">
                             <div class="right">
@@ -1231,7 +1234,9 @@
                             <asp:Label ID="lbTGTGTXLVAT12" runat="server" Text ="VAT1" Font-Bold="True" Font-Size="Larger" ></asp:Label>
                         </div> 
                         <td class="crmcell right">
-                            <asp:Label ID="lbTGTGTXLVAT13" runat="server" Text="G x 10% = "></asp:Label>
+                            <asp:Label ID="lbTGTGTXLVAT13" runat="server" Text="G x "></asp:Label>
+                            <asp:TextBox ID="txtTGTGTXLVAT1310" Width="30px" runat="server" />
+                            <asp:Label ID="lbTGTGTXLVAT1310Bang" runat="server" Text=" = "></asp:Label>
                         </td>
                         <td class="crmcell">
                             <div class="right">
@@ -1267,7 +1272,11 @@
                             <asp:Label ID="lbCPTKTTTK2" runat="server" Text ="TK" Font-Bold="True" Font-Size="Larger" ></asp:Label>
                         </div> 
                         <td class="crmcell right">
-                            <asp:Label ID="lbCPTKTTTK3" runat="server" Text="G x 2,07% x 1,3 = "></asp:Label>
+                            <asp:Label ID="lbCPTKTTTK3" runat="server" Text="G x "></asp:Label>
+                            <asp:TextBox ID="txtCPTKTTTK3207" Width="30px" runat="server" />
+                            <asp:Label ID="lbtxtCPTKTTTK3207x" runat="server" Text=" x "></asp:Label>
+                            <asp:TextBox ID="txtCPTKTTTK313" Width="30px" runat="server" />
+                            <asp:Label ID="txtCPTKTTTK3207Bang" runat="server" Text=" = "></asp:Label>
                         </td>
                         <td class="crmcell">
                             <div class="right">
@@ -1285,7 +1294,9 @@
                             <asp:Label ID="lbTGTGTTTVAT22" runat="server" Text ="VAT2" Font-Bold="True" Font-Size="Larger" ></asp:Label>
                         </div> 
                         <td class="crmcell right">
-                            <asp:Label ID="lbTGTGTTTVAT23" runat="server" Text="TK x 10% = "></asp:Label>
+                            <asp:Label ID="lbTGTGTTTVAT23" runat="server" Text="TK x "></asp:Label>
+                            <asp:TextBox ID="txtTGTGTTTVAT2310" Width="30px" runat="server" />
+                            <asp:Label ID="lbtxtTGTGTTTVAT2310" runat="server" Text=" = "></asp:Label>
                         </td>
                         <td class="crmcell">
                             <div class="right">
@@ -1339,7 +1350,9 @@
                             <asp:Label ID="lbTGTGTVT12" runat="server" Text ="VAT3" Font-Bold="True" Font-Size="Larger" ></asp:Label>
                         </div> 
                         <td class="crmcell right">
-                            <asp:Label ID="lbTGTGTVT13" runat="server" Text="VT x 10% = "></asp:Label>
+                            <asp:Label ID="lbTGTGTVT13" runat="server" Text="VT x "></asp:Label>
+                            <asp:TextBox ID="txtTGTGTVT1310" Width="30px" runat="server" />
+                            <asp:Label ID="lbTGTGTVT1310" runat="server" Text=" = "></asp:Label>
                         </td>
                         <td class="crmcell">
                             <div class="right">
@@ -1532,7 +1545,8 @@
                 <table class="crmtable">
                     <tr>
                         <td class="crmcell" colspan="6" style="height: 502px" valign="top">
-                            <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" DisplayGroupTree="False"  Visible="false"/>
+                            <CR:CrystalReportViewer ID="rpViewer" runat="server" PrintMode="ActiveX" AutoDataBind="true" 
+                               Visible="false"/>
                         </td>
                     </tr>
                 </table>

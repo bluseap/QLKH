@@ -1,4 +1,7 @@
 ﻿
+
+
+
 	create procedure [dbo].[Get_DuongPho_ByAll]
 	create procedure [dbo].[Get_DonDangKy_ByMaddk]
 
@@ -9,7 +12,6 @@
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7Ngay]
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToDung7NgayPo]	
 	create procedure [dbo].[Get_DSTongHopKHDK_ByKVToTre7NgayPo]	
-
 	create procedure [dbo].[Get_DSTongHopKHDKPO_ByKVToNgay]	
 
 	create procedure [dbo].[Get_KhachHangPo_ByDuongPhoId]
@@ -60,7 +62,7 @@
 	create procedure [dbo].[Delete_DonDangKyPo_ByMaddk]	
 	create procedure [dbo].[Delete_MauNhanVien]	
 	create procedure [dbo].[Delete_MauNhanVienChiTiet]	
-
+----- ok -------------
 
 	update procedure [dbo].[BienKHNuoc]
 	update procedure [dbo].[BienKHPo]

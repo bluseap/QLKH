@@ -618,6 +618,15 @@ namespace EOSCRM.Web.Forms.ThietKe
         protected global::System.Web.UI.WebControls.TextBox txtChiPhiChungGCTKLX;
 
         /// <summary>
+        /// lbTHCPCHUNGC3Bang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTHCPCHUNGC3Bang;
+
+        /// <summary>
         /// lbTHCPCHUNGC4 control.
         /// </summary>
         /// <remarks>
@@ -652,6 +661,24 @@ namespace EOSCRM.Web.Forms.ThietKe
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTHTNCTTTTL3;
+
+        /// <summary>
+        /// txtThuNhapChiuThueTinhTruoc55 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtThuNhapChiuThueTinhTruoc55;
+
+        /// <summary>
+        /// lbTHTNCTTTTL3Bang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTHTNCTTTTL3Bang;
 
         /// <summary>
         /// lbTHTNCTTTTL4 control.
@@ -726,6 +753,24 @@ namespace EOSCRM.Web.Forms.ThietKe
         protected global::System.Web.UI.WebControls.Label lbTGTGTXLVAT13;
 
         /// <summary>
+        /// txtTGTGTXLVAT1310 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTGTGTXLVAT1310;
+
+        /// <summary>
+        /// lbTGTGTXLVAT1310Bang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTGTGTXLVAT1310Bang;
+
+        /// <summary>
         /// lbTGTGTXLVAT14 control.
         /// </summary>
         /// <remarks>
@@ -798,6 +843,42 @@ namespace EOSCRM.Web.Forms.ThietKe
         protected global::System.Web.UI.WebControls.Label lbCPTKTTTK3;
 
         /// <summary>
+        /// txtCPTKTTTK3207 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCPTKTTTK3207;
+
+        /// <summary>
+        /// lbtxtCPTKTTTK3207x control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbtxtCPTKTTTK3207x;
+
+        /// <summary>
+        /// txtCPTKTTTK313 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCPTKTTTK313;
+
+        /// <summary>
+        /// txtCPTKTTTK3207Bang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtCPTKTTTK3207Bang;
+
+        /// <summary>
         /// lbCPTKTTTK4 control.
         /// </summary>
         /// <remarks>
@@ -832,6 +913,24 @@ namespace EOSCRM.Web.Forms.ThietKe
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTGTGTTTVAT23;
+
+        /// <summary>
+        /// txtTGTGTTTVAT2310 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTGTGTTTVAT2310;
+
+        /// <summary>
+        /// lbtxtTGTGTTTVAT2310 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbtxtTGTGTTTVAT2310;
 
         /// <summary>
         /// lbTGTGTTTVAT24 control.
@@ -940,6 +1039,24 @@ namespace EOSCRM.Web.Forms.ThietKe
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbTGTGTVT13;
+
+        /// <summary>
+        /// txtTGTGTVT1310 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTGTGTVT1310;
+
+        /// <summary>
+        /// lbTGTGTVT1310 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTGTGTVT1310;
 
         /// <summary>
         /// lbTGTGTVT14 control.

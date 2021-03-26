@@ -215,6 +215,14 @@ namespace EOSCRM.Web.Forms.ThietKe
                 lbTTGTGTVC2.Text = "0";
                 lbTCPVCST2.Text = "0";
                 lbTONCONGSAUTHUE2.Text = "0";
+
+                txtChiPhiChungGCTKLX.Text = "0.055";
+                txtThuNhapChiuThueTinhTruoc55.Text = "0.055";
+                txtTGTGTXLVAT1310.Text = "0.1";
+                txtCPTKTTTK3207.Text = "0.0207";
+                txtCPTKTTTK313.Text = "1.3";
+                txtTGTGTTTVAT2310.Text = "0.1";
+                txtTGTGTVT1310.Text = "0.1";
             }
             catch { }
         }
@@ -1378,24 +1386,57 @@ namespace EOSCRM.Web.Forms.ThietKe
                 lbTCPVCST2.Text = string.Format("{0 : 0,0}", Convert.ToInt64(ttvctruocthue + ttvcthueGTGT));
 
                 lbTHCPNCT4.Text = string.Format("{0 : 0,0}", Convert.ToInt64(ttnhancong + ttdaolap));          // T
-                decimal? chiphichungC = Convert.ToInt64((ttnhancong + ttdaolap) * (decimal)0.05);               // C = T * 5%
+
+                //txtChiPhiChungGCTKLX.Text = "0.05";                
+                decimal cpnhancong5 = Convert.ToDecimal(txtChiPhiChungGCTKLX.Text.Trim() != "" ? txtChiPhiChungGCTKLX.Text.Trim() : "0");
+                //decimal? chiphichungC = Convert.ToInt64((ttnhancong + ttdaolap) * (decimal)0.05);               // C = T * 5%
+                decimal? chiphichungC = Convert.ToInt64((ttnhancong + ttdaolap) * cpnhancong5);               // C = T * 5%
                 lbTHCPCHUNGC4.Text = string.Format("{0 : 0,0}", chiphichungC);
-                decimal? thunhapchiuthuetinhtruocTL = (ttnhancong + ttdaolap + chiphichungC) * (decimal)0.055;  // TL = (T + C) * 5.5%
+
+                //txtThuNhapChiuThueTinhTruoc55.Text = "0.055";
+                decimal thunhapchiuthuetinhtruoc55 = Convert.ToDecimal(txtThuNhapChiuThueTinhTruoc55.Text.Trim() != "" ? 
+                    txtThuNhapChiuThueTinhTruoc55.Text.Trim() : "0");
+                //decimal? thunhapchiuthuetinhtruocTL = (ttnhancong + ttdaolap + chiphichungC) * (decimal)0.055;  // TL = (T + C) * 5.5%
+                decimal? thunhapchiuthuetinhtruocTL = (ttnhancong + ttdaolap + chiphichungC) * thunhapchiuthuetinhtruoc55;  // TL = (T + C) * 5.5%
                 lbTHTNCTTTTL4.Text = string.Format("{0 : 0,0}", thunhapchiuthuetinhtruocTL);
+
                 decimal? gtxaylaptthueG = ttnhancong + ttdaolap + chiphichungC + thunhapchiuthuetinhtruocTL;   // G
                 lbGTXLTTG4.Text = string.Format("{0 : 0,0}", gtxaylaptthueG);
-                decimal? tgtgtxaylapVAT1 = gtxaylaptthueG * (decimal)0.1;                           // VAT1 = G * 10%
+
+                decimal thueGTGTVAT1310 = Convert.ToDecimal(txtTGTGTXLVAT1310.Text.Trim() != "" ?
+                    txtTGTGTXLVAT1310.Text.Trim() : "0");
+                //decimal? tgtgtxaylapVAT1 = gtxaylaptthueG * (decimal)0.1;                           // VAT1 = G * 10%
+                decimal ? tgtgtxaylapVAT1 = gtxaylaptthueG * thueGTGTVAT1310;                           // VAT1 = G * 10%
                 lbTGTGTXLVAT14.Text = string.Format("{0 : 0,0}", tgtgtxaylapVAT1);
+
                 decimal? cpxaylapsauthueG1 = gtxaylaptthueG + tgtgtxaylapVAT1;                      // G1
                 lbCPXLSTG14.Text = string.Format("{0 : 0,0}", cpxaylapsauthueG1);
-                decimal? cpthietkettTK = gtxaylaptthueG * (decimal)0.0207 * (decimal)1.3;           // TK = G * 2.07% * 1.3
+
+                decimal chiphitk207 = Convert.ToDecimal(txtCPTKTTTK3207.Text.Trim() != "" ?
+                    txtCPTKTTTK3207.Text.Trim() : "0");
+                decimal chiphitk13 = Convert.ToDecimal(txtCPTKTTTK313.Text.Trim() != "" ?
+                    txtCPTKTTTK313.Text.Trim() : "0");
+                //decimal? cpthietkettTK = gtxaylaptthueG * (decimal)0.0207 * (decimal)1.3;           // TK = G * 2.07% * 1.3
+                decimal? cpthietkettTK = gtxaylaptthueG * chiphitk207 * chiphitk13;           // TK = G * 2.07% * 1.3
+
                 lbCPTKTTTK4.Text = string.Format("{0 : 0,0}", cpthietkettTK);
-                decimal? tgtgttkVAT2 = cpthietkettTK * (decimal)0.1;                                // VAT2 = TK * 10%
+
+                decimal thuegtgt2310 = Convert.ToDecimal(txtTGTGTTTVAT2310.Text.Trim() != "" ?
+                    txtTGTGTTTVAT2310.Text.Trim() : "0");
+                //decimal? tgtgttkVAT2 = cpthietkettTK * (decimal)0.1;                                // VAT2 = TK * 10%
+                decimal? tgtgttkVAT2 = cpthietkettTK * thuegtgt2310;                                // VAT2 = TK * 10%
+
                 lbTGTGTTTVAT24.Text = string.Format("{0 : 0,0}", tgtgttkVAT2);
+
                 decimal? cptkstG2 = cpthietkettTK + tgtgttkVAT2;                                    // G2
                 lbCPTKSTG24.Text = string.Format("{0 : 0,0}", cptkstG2);
                 lbCPVTTTVT14.Text = string.Format("{0 : 0,0}", ttvattu);                            // VT
-                decimal? tgtgtvtVAT3 = ttvattu * (decimal)0.1;                                      // VAT3 = VT * 10%
+
+                decimal thuevtgtgt2310 = Convert.ToDecimal(txtTGTGTVT1310.Text.Trim() != "" ?
+                    txtTGTGTVT1310.Text.Trim() : "0");
+                //decimal? tgtgtvtVAT3 = ttvattu * (decimal)0.1;                                      // VAT3 = VT * 10%
+                decimal? tgtgtvtVAT3 = ttvattu * thuevtgtgt2310;                                      // VAT3 = VT * 10%
+
                 lbTGTGTVT14.Text = string.Format("{0 : 0,0}", tgtgtvtVAT3);
                 decimal? cpvtstG3 = ttvattu + tgtgtvtVAT3;                                          // G3
                 lbCPVTSTG314.Text = string.Format("{0 : 0,0}", cpvtstG3);
@@ -1426,21 +1467,6 @@ namespace EOSCRM.Web.Forms.ThietKe
                 _rpClass.TongHopCPTK(ThietKe.MADDK, "", "", ttnhancong + ttdaolap, chiphichungC, thunhapchiuthuetinhtruocTL,
                             gtxaylaptthueG, tgtgtxaylapVAT1, cpxaylapsauthueG1, cpthietkettTK, tgtgttkVAT2, cptkstG2,
                             ttvattu, tgtgtvtVAT3, cpvtstG3, ttvctruocthue, ttvcthueGTGT, cpvcstG4, "INTHCPTKN");
-
-                //if (gctkdao.GetMaDonKy(ThietKe.MADDK) != null)
-                //{
-                //    //update
-                //    _rpClass.TongHopCPTK(ThietKe.MADDK, "", "", ttnhancong, chiphichungC, thunhapchiuthuetinhtruocTL,
-                //            gtxaylaptthueG, tgtgtxaylapVAT1, cpxaylapsauthueG1, cpthietkettTK, tgtgttkVAT2, cptkstG2,
-                //            ttvattu, tgtgtvtVAT3, cpvtstG3, ttvctruocthue, ttvcthueGTGT, cpvcstG4, "UPTHCPTKN");                                                            
-                //}
-                //else 
-                //{
-                //    //insert
-                //    _rpClass.TongHopCPTK(ThietKe.MADDK, "", "", ttnhancong, chiphichungC, thunhapchiuthuetinhtruocTL,
-                //            gtxaylaptthueG, tgtgtxaylapVAT1, cpxaylapsauthueG1, cpthietkettTK, tgtgttkVAT2, cptkstG2,
-                //            ttvattu, tgtgtvtVAT3, cpvtstG3, ttvctruocthue, ttvcthueGTGT, cpvcstG4, "INTHCPTKN");
-                //}
 
                 upTONGTIENTK.Update();
                 CloseWaitingDialog();
